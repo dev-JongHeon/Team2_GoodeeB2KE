@@ -1,3 +1,6 @@
+web/dist/* linguist-vendored
+web/template/* linguist-vendored
+web/vendor/* linguist-vendored
 ###############################################################################
 # Set default behavior to automatically normalize line endings.
 ###############################################################################
