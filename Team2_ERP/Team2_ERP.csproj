@@ -1,0 +1,625 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7D2E7576-4E3E-4E0A-8993-5E37DE411A29}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Team2_ERP</RootNamespace>
+    <AssemblyName>Team2_ERP</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\..\Downloads\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseForms\Base1Dgv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseForms\Base1Dgv.designer.cs">
+      <DependentUpon>Base1Dgv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseForms\Base2Dgv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseForms\Base2Dgv.designer.cs">
+      <DependentUpon>Base2Dgv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseForms\BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseForms\BaseForm.designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseForms\BasePopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseForms\BasePopup.designer.cs">
+      <DependentUpon>BasePopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomForms\AddressControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomForms\AddressControl.designer.cs">
+      <DependentUpon>AddressControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomForms\AddressSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomForms\AddressSearch.designer.cs">
+      <DependentUpon>AddressSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomForms\NumTXT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomForms\NumTXT.designer.cs">
+      <DependentUpon>NumTXT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomForms\PlaceHolderTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomForms\PlaceHolderTextBox.designer.cs">
+      <DependentUpon>PlaceHolderTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomForms\SearchPeriodControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomForms\SearchPeriodControl.designer.cs">
+      <DependentUpon>SearchPeriodControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomForms\SearchUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomForms\SearchUserControl.designer.cs">
+      <DependentUpon>SearchUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomForms\TabForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomForms\TabForm.designer.cs">
+      <DependentUpon>TabForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CMG\BOM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CMG\BOM.designer.cs">
+      <DependentUpon>BOM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CMG\Category.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CMG\Category.designer.cs">
+      <DependentUpon>Category.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CMG\CategoryInsUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CMG\CategoryInsUp.designer.cs">
+      <DependentUpon>CategoryInsUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CMG\Company.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CMG\Company.designer.cs">
+      <DependentUpon>Company.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CMG\CompanyInsUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CMG\CompanyInsUp.designer.cs">
+      <DependentUpon>CompanyInsUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CMG\Customer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CMG\Customer.designer.cs">
+      <DependentUpon>Customer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CMG\Department.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CMG\Department.designer.cs">
+      <DependentUpon>Department.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CMG\Employees.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CMG\Employees.designer.cs">
+      <DependentUpon>Employees.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CMG\EmployeesInsUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CMG\EmployeesInsUp.designer.cs">
+      <DependentUpon>EmployeesInsUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CMG\Factory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CMG\Factory.designer.cs">
+      <DependentUpon>Factory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CMG\FactoryInsUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CMG\FactoryInsUp.designer.cs">
+      <DependentUpon>FactoryInsUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CMG\LineInsUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CMG\LineInsUp.designer.cs">
+      <DependentUpon>LineInsUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CMG\ProductComp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CMG\ProductComp.designer.cs">
+      <DependentUpon>ProductComp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CMG\Resource.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CMG\Resource.designer.cs">
+      <DependentUpon>Resource.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CMG\ResourceInsUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CMG\ResourceInsUp.designer.cs">
+      <DependentUpon>ResourceInsUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CMG\SemiProductComp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CMG\SemiProductComp.designer.cs">
+      <DependentUpon>SemiProductComp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CMG\Warehouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CMG\Warehouse.designer.cs">
+      <DependentUpon>Warehouse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CMG\WarehouseInsUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CMG\WarehouseInsUp.designer.cs">
+      <DependentUpon>WarehouseInsUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\HJS\SearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HJS\SearchForm.designer.cs">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KHS\OrderCompleteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KHS\OrderCompleteForm.designer.cs">
+      <DependentUpon>OrderCompleteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KHS\OrderMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KHS\OrderMainForm.designer.cs">
+      <DependentUpon>OrderMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KHS\SalesMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KHS\SalesMainForm.designer.cs">
+      <DependentUpon>SalesMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KHS\ShipmentCompleteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KHS\ShipmentCompleteForm.designer.cs">
+      <DependentUpon>ShipmentCompleteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KHS\ShipmentMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KHS\ShipmentMainForm.designer.cs">
+      <DependentUpon>ShipmentMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KHS\ShipmentReg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KHS\ShipmentReg.designer.cs">
+      <DependentUpon>ShipmentReg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KJH\CalendarForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KJH\CalendarForm.designer.cs">
+      <DependentUpon>CalendarForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KJH\ChangePwd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KJH\ChangePwd.designer.cs">
+      <DependentUpon>ChangePwd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KJH\Defective.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KJH\Defective.designer.cs">
+      <DependentUpon>Defective.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KJH\DefectiveType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KJH\DefectiveType.designer.cs">
+      <DependentUpon>DefectiveType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KJH\DefectiveTypeAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KJH\DefectiveTypeAdd.designer.cs">
+      <DependentUpon>DefectiveTypeAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KJH\Downtime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KJH\Downtime.designer.cs">
+      <DependentUpon>Downtime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KJH\DowntimeType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KJH\DowntimeType.designer.cs">
+      <DependentUpon>DowntimeType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KJH\DowntimeTypeAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KJH\DowntimeTypeAdd.designer.cs">
+      <DependentUpon>DowntimeTypeAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KJH\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KJH\LoginForm.designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KJH\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KJH\MainForm.designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KJH\MainTab.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KJH\MainTab.designer.cs">
+      <DependentUpon>MainTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KJH\Produce.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KJH\Produce.designer.cs">
+      <DependentUpon>Produce.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KJH\UserAuth.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KJH\UserAuth.designer.cs">
+      <DependentUpon>UserAuth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KJH\Work.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KJH\Work.designer.cs">
+      <DependentUpon>Work.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SSD\BaljuList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SSD\BaljuList.designer.cs">
+      <DependentUpon>BaljuList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SSD\BaljuList_Completed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SSD\BaljuList_Completed.designer.cs">
+      <DependentUpon>BaljuList_Completed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SSD\InOutList_MaterialWarehouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SSD\InOutList_MaterialWarehouse.designer.cs">
+      <DependentUpon>InOutList_MaterialWarehouse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SSD\InOutList_SemiProductWarehouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SSD\InOutList_SemiProductWarehouse.designer.cs">
+      <DependentUpon>InOutList_SemiProductWarehouse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SSD\StockStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SSD\StockStatus.designer.cs">
+      <DependentUpon>StockStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\SettingMenuStrip.cs" />
+    <Compile Include="Util\UtilClass.cs" />
+    <EmbeddedResource Include="BaseForms\Base1Dgv.resx">
+      <DependentUpon>Base1Dgv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseForms\Base2Dgv.resx">
+      <DependentUpon>Base2Dgv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseForms\BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseForms\BasePopup.resx">
+      <DependentUpon>BasePopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomForms\AddressControl.resx">
+      <DependentUpon>AddressControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomForms\AddressSearch.resx">
+      <DependentUpon>AddressSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomForms\NumTXT.resx">
+      <DependentUpon>NumTXT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomForms\PlaceHolderTextBox.resx">
+      <DependentUpon>PlaceHolderTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomForms\SearchPeriodControl.resx">
+      <DependentUpon>SearchPeriodControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomForms\SearchUserControl.resx">
+      <DependentUpon>SearchUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomForms\TabForm.resx">
+      <DependentUpon>TabForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CMG\BOM.resx">
+      <DependentUpon>BOM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CMG\Category.resx">
+      <DependentUpon>Category.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CMG\CategoryInsUp.resx">
+      <DependentUpon>CategoryInsUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CMG\Company.resx">
+      <DependentUpon>Company.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CMG\CompanyInsUp.resx">
+      <DependentUpon>CompanyInsUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CMG\Customer.resx">
+      <DependentUpon>Customer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CMG\Department.resx">
+      <DependentUpon>Department.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CMG\Employees.resx">
+      <DependentUpon>Employees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CMG\EmployeesInsUp.resx">
+      <DependentUpon>EmployeesInsUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CMG\Factory.resx">
+      <DependentUpon>Factory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CMG\FactoryInsUp.resx">
+      <DependentUpon>FactoryInsUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CMG\LineInsUp.resx">
+      <DependentUpon>LineInsUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CMG\ProductComp.resx">
+      <DependentUpon>ProductComp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CMG\Resource.resx">
+      <DependentUpon>Resource.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CMG\ResourceInsUp.resx">
+      <DependentUpon>ResourceInsUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CMG\SemiProductComp.resx">
+      <DependentUpon>SemiProductComp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CMG\Warehouse.resx">
+      <DependentUpon>Warehouse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CMG\WarehouseInsUp.resx">
+      <DependentUpon>WarehouseInsUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HJS\SearchForm.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KHS\OrderCompleteForm.resx">
+      <DependentUpon>OrderCompleteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KHS\OrderMainForm.resx">
+      <DependentUpon>OrderMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KHS\SalesMainForm.resx">
+      <DependentUpon>SalesMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KHS\ShipmentCompleteForm.resx">
+      <DependentUpon>ShipmentCompleteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KHS\ShipmentMainForm.resx">
+      <DependentUpon>ShipmentMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KHS\ShipmentReg.resx">
+      <DependentUpon>ShipmentReg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KJH\CalendarForm.resx">
+      <DependentUpon>CalendarForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KJH\ChangePwd.resx">
+      <DependentUpon>ChangePwd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KJH\Defective.resx">
+      <DependentUpon>Defective.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KJH\DefectiveType.resx">
+      <DependentUpon>DefectiveType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KJH\DefectiveTypeAdd.resx">
+      <DependentUpon>DefectiveTypeAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KJH\Downtime.resx">
+      <DependentUpon>Downtime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KJH\DowntimeType.resx">
+      <DependentUpon>DowntimeType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KJH\DowntimeTypeAdd.resx">
+      <DependentUpon>DowntimeTypeAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KJH\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KJH\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KJH\MainTab.resx">
+      <DependentUpon>MainTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KJH\Produce.resx">
+      <DependentUpon>Produce.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KJH\UserAuth.resx">
+      <DependentUpon>UserAuth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KJH\Work.resx">
+      <DependentUpon>Work.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SSD\BaljuList.resx">
+      <DependentUpon>BaljuList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SSD\BaljuList_Completed.resx">
+      <DependentUpon>BaljuList_Completed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SSD\InOutList_MaterialWarehouse.resx">
+      <DependentUpon>InOutList_MaterialWarehouse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SSD\InOutList_SemiProductWarehouse.resx">
+      <DependentUpon>InOutList_SemiProductWarehouse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SSD\StockStatus.resx">
+      <DependentUpon>StockStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Team2_VO\Team2_VO.csproj">
+      <Project>{fadad5a8-d7be-466a-a7e0-679c91bb281c}</Project>
+      <Name>Team2_VO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\1486564410-chat_81504.png" />
+    <Content Include="Resources\Action_Logoff.png" />
+    <Content Include="Resources\Action_Logoff_32x32.png" />
+    <Content Include="Resources\Action_Refresh_32x32.png" />
+    <Content Include="Resources\Action_Refresh_64x64.png" />
+    <Content Include="Resources\AddFile_32x32.png" />
+    <Content Include="Resources\BOOrderItem_16x16.png" />
+    <Content Include="Resources\BOProductGroup_16x16.png" />
+    <Content Include="Resources\BOReport_16x16.png" />
+    <Content Include="Resources\Calendar_16x16.png" />
+    <Content Include="Resources\chat-26_icon-icons.com_65943.png" />
+    <Content Include="Resources\close %281%29.png" />
+    <Content Include="Resources\Close_32x32.png" />
+    <Content Include="Resources\Customization_16x16.png" />
+    <Content Include="Resources\DeleteList_32x32.png" />
+    <Content Include="Resources\down_16x16.png" />
+    <Content Include="Resources\Edit_32x32.png" />
+    <Content Include="Resources\facebook_cover_photo_1.png" />
+    <Content Include="Resources\facebook_cover_photo_2.png" />
+    <Content Include="Resources\ic_message_128_28648.png" />
+    <Content Include="Resources\IDE_16x16.png" />
+    <Content Include="Resources\instagram_profile_image.png" />
+    <Content Include="Resources\left-arrow %282%29.png" />
+    <Content Include="Resources\logo.png" />
+    <Content Include="Resources\logo_transparent.png" />
+    <Content Include="Resources\Lookup&amp;Reference_32x32.png" />
+    <Content Include="Resources\Message_16x16.png" />
+    <Content Include="Resources\NewProducts_32x32.png" />
+    <Content Include="Resources\NewSales_16x16.png" />
+    <Content Include="Resources\Next_32x32.png" />
+    <Content Include="Resources\Prev_16x16.png" />
+    <Content Include="Resources\Prev_16x161.png" />
+    <Content Include="Resources\Printer_32x32.png" />
+    <Content Include="Resources\right-arrow.png" />
+    <Content Include="Resources\Search_16x16.png" />
+    <Content Include="Resources\ViewSetting_16x16.png" />
+    <Content Include="Resources\Window_32x32.png" />
+    <Content Include="Resources\window_remove_12810.png" />
+    <Content Include="Resources\로고.PNG" />
+    <Content Include="Resources\팀2최종1.PNG" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
