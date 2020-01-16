@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using Team2_VO;
 using Excel = Microsoft.Office.Interop.Excel;
 
-namespace Team2_WinProgram
+namespace Team2_ERP
 {
     public class UtilClass
     {
