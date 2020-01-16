@@ -37,8 +37,8 @@
             this.txtCompanyName = new System.Windows.Forms.TextBox();
             this.txtCompanyNumber = new System.Windows.Forms.TextBox();
             this.txtCompanyFaxNumber = new System.Windows.Forms.TextBox();
-            this.cboCompanyDivision = new System.Windows.Forms.ComboBox();
             this.addressControl1 = new Team2_ERP.AddressControl();
+            this.cboCompanyDivision = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).BeginInit();
@@ -49,8 +49,8 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.addressControl1);
             this.panel5.Controls.Add(this.cboCompanyDivision);
+            this.panel5.Controls.Add(this.addressControl1);
             this.panel5.Controls.Add(this.txtCompanyFaxNumber);
             this.panel5.Controls.Add(this.txtCompanyNumber);
             this.panel5.Controls.Add(this.txtCompanyName);
@@ -72,7 +72,6 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.label1.Location = new System.Drawing.Point(49, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 14);
@@ -82,7 +81,6 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.label2.Location = new System.Drawing.Point(49, 75);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 14);
@@ -110,7 +108,6 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.label6.Location = new System.Drawing.Point(49, 236);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(29, 14);
@@ -145,6 +142,15 @@
             this.txtCompanyFaxNumber.Size = new System.Drawing.Size(133, 21);
             this.txtCompanyFaxNumber.TabIndex = 2;
             // 
+            // addressControl1
+            // 
+            this.addressControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.addressControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.addressControl1.Location = new System.Drawing.Point(52, 279);
+            this.addressControl1.Name = "addressControl1";
+            this.addressControl1.Size = new System.Drawing.Size(505, 106);
+            this.addressControl1.TabIndex = 3;
+            // 
             // cboCompanyDivision
             // 
             this.cboCompanyDivision.FormattingEnabled = true;
@@ -152,15 +158,6 @@
             this.cboCompanyDivision.Name = "cboCompanyDivision";
             this.cboCompanyDivision.Size = new System.Drawing.Size(133, 22);
             this.cboCompanyDivision.TabIndex = 4;
-            // 
-            // addressControl1
-            // 
-            this.addressControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.addressControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.addressControl1.Location = new System.Drawing.Point(52, 276);
-            this.addressControl1.Name = "addressControl1";
-            this.addressControl1.Size = new System.Drawing.Size(505, 106);
-            this.addressControl1.TabIndex = 5;
             // 
             // CompanyInsUp
             // 
@@ -190,7 +187,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cboCompanyDivision;
         private AddressControl addressControl1;
+        private System.Windows.Forms.ComboBox cboCompanyDivision;
     }
 }
