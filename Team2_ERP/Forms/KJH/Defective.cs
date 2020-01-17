@@ -32,5 +32,6 @@ namespace Team2_ERP
         {
             new SettingMenuStrip().SetMenu(this, a, a, a, a, a, a, a);
         }
+
     }
 }
