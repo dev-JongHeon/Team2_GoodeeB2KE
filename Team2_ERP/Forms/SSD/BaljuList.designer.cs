@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.품번 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.품명 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.searchUserControl1 = new Team2_ERP.SearchUserControl();
             this.searchPeriodControl1 = new Team2_ERP.SearchPeriodControl();
             this.searchUserControl4 = new Team2_ERP.SearchUserControl();
@@ -42,6 +38,11 @@
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.품번 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.품명 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -86,34 +87,14 @@
             this.품번,
             this.품명,
             this.Column1,
-            this.Column8});
+            this.Column8,
+            this.Column2});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.Size = new System.Drawing.Size(1364, 368);
             this.dataGridView1.TabIndex = 2;
-            // 
-            // 품번
-            // 
-            this.품번.HeaderText = "발주지시번호";
-            this.품번.Name = "품번";
-            // 
-            // 품명
-            // 
-            this.품명.HeaderText = "거래처코드";
-            this.품명.Name = "품명";
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "거래처명칭";
-            this.Column1.Name = "Column1";
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "발주요청일자";
-            this.Column8.Name = "Column8";
-            this.Column8.Width = 110;
             // 
             // searchUserControl1
             // 
@@ -187,6 +168,32 @@
             this.Column3.HeaderText = "부족수량";
             this.Column3.Name = "Column3";
             // 
+            // 품번
+            // 
+            this.품번.HeaderText = "발주지시번호";
+            this.품번.Name = "품번";
+            // 
+            // 품명
+            // 
+            this.품명.HeaderText = "거래처코드";
+            this.품명.Name = "품명";
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "거래처명칭";
+            this.Column1.Name = "Column1";
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "발주요청일자";
+            this.Column8.Name = "Column8";
+            this.Column8.Width = 110;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "등록사원";
+            this.Column2.Name = "Column2";
+            // 
             // BaljuList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -228,5 +235,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn 품명;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
     }
 }

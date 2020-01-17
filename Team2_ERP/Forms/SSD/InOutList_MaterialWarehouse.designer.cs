@@ -44,9 +44,6 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -98,9 +95,6 @@
             this.Column4,
             this.Column5,
             this.Column6,
-            this.Column8,
-            this.Column9,
-            this.Column10,
             this.Column11});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
@@ -188,7 +182,7 @@
             // 
             // Column2
             // 
-            this.Column2.HeaderText = "목표창고";
+            this.Column2.HeaderText = "창고명";
             this.Column2.Name = "Column2";
             // 
             // Column4
@@ -206,24 +200,9 @@
             this.Column6.HeaderText = "수불수량";
             this.Column6.Name = "Column6";
             // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "최초등록시각";
-            this.Column8.Name = "Column8";
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "최초등록사원";
-            this.Column9.Name = "Column9";
-            // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "최종등록시각";
-            this.Column10.Name = "Column10";
-            // 
             // Column11
             // 
-            this.Column11.HeaderText = "최종등록사원";
+            this.Column11.HeaderText = "등록사원";
             this.Column11.Name = "Column11";
             // 
             // InOutList_MaterialWarehouse
@@ -263,9 +242,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
     }
 }
