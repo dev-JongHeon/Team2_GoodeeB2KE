@@ -102,7 +102,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(180, 31);
             this.label3.TabIndex = 0;
-            this.label3.Text = "생산 작업 번호";
+            this.label3.Text = "생산 실적 번호";
             // 
             // lblProduce
             // 

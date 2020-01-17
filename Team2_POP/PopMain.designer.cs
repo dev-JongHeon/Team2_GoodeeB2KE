@@ -47,27 +47,41 @@
             this.btnWorkStart = new System.Windows.Forms.Button();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.dgvWork = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
-            this.dgvProduce = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnDefective = new System.Windows.Forms.Button();
             this.btnWorker = new System.Windows.Forms.Button();
             this.btnProduceStart = new System.Windows.Forms.Button();
             this.lblWorker = new System.Windows.Forms.Label();
+            this.splitContainer6 = new System.Windows.Forms.SplitContainer();
+            this.dgvProduce = new System.Windows.Forms.DataGridView();
+            this.dgvPerformance = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -87,12 +101,17 @@
             this.splitContainer4.Panel1.SuspendLayout();
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProduce)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).BeginInit();
             this.splitContainer5.Panel1.SuspendLayout();
             this.splitContainer5.Panel2.SuspendLayout();
             this.splitContainer5.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).BeginInit();
+            this.splitContainer6.Panel1.SuspendLayout();
+            this.splitContainer6.Panel2.SuspendLayout();
+            this.splitContainer6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProduce)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPerformance)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -372,39 +391,18 @@
             this.dgvWork.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvWork.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
+            this.Column15,
             this.Column10,
             this.Column11,
-            this.dataGridViewTextBoxColumn9});
+            this.dataGridViewTextBoxColumn9,
+            this.Column13,
+            this.Column14});
             this.dgvWork.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvWork.Location = new System.Drawing.Point(0, 0);
             this.dgvWork.Name = "dgvWork";
             this.dgvWork.RowTemplate.Height = 23;
             this.dgvWork.Size = new System.Drawing.Size(1264, 249);
             this.dgvWork.TabIndex = 2;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "작업지시번호";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 200;
-            // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "작업예정일";
-            this.Column10.Name = "Column10";
-            this.Column10.Width = 200;
-            // 
-            // Column11
-            // 
-            this.Column11.HeaderText = "납기일";
-            this.Column11.Name = "Column11";
-            this.Column11.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.HeaderText = "작업상태";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.Width = 150;
             // 
             // splitContainer4
             // 
@@ -415,7 +413,7 @@
             // 
             // splitContainer4.Panel1
             // 
-            this.splitContainer4.Panel1.Controls.Add(this.dgvProduce);
+            this.splitContainer4.Panel1.Controls.Add(this.splitContainer6);
             // 
             // splitContainer4.Panel2
             // 
@@ -423,75 +421,6 @@
             this.splitContainer4.Size = new System.Drawing.Size(1264, 576);
             this.splitContainer4.SplitterDistance = 459;
             this.splitContainer4.TabIndex = 1;
-            // 
-            // dgvProduce
-            // 
-            this.dgvProduce.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dgvProduce.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProduce.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column6,
-            this.Column8,
-            this.Column9,
-            this.Column7});
-            this.dgvProduce.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvProduce.Location = new System.Drawing.Point(0, 0);
-            this.dgvProduce.Name = "dgvProduce";
-            this.dgvProduce.RowTemplate.Height = 23;
-            this.dgvProduce.Size = new System.Drawing.Size(1264, 459);
-            this.dgvProduce.TabIndex = 1;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "생산작업번호";
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 150;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "품목코드";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "품목명";
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 200;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "지시량";
-            this.Column4.Name = "Column4";
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "생산량";
-            this.Column5.Name = "Column5";
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "지시잔량";
-            this.Column6.Name = "Column6";
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "불량수";
-            this.Column8.Name = "Column8";
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "불량처리여부";
-            this.Column9.Name = "Column9";
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "작업상태";
-            this.Column7.Name = "Column7";
-            this.Column7.Width = 150;
             // 
             // splitContainer5
             // 
@@ -576,6 +505,197 @@
             this.lblWorker.Text = "작업자명 : xxx";
             this.lblWorker.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // splitContainer6
+            // 
+            this.splitContainer6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer6.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer6.Name = "splitContainer6";
+            // 
+            // splitContainer6.Panel1
+            // 
+            this.splitContainer6.Panel1.Controls.Add(this.dgvProduce);
+            // 
+            // splitContainer6.Panel2
+            // 
+            this.splitContainer6.Panel2.Controls.Add(this.dgvPerformance);
+            this.splitContainer6.Size = new System.Drawing.Size(1264, 459);
+            this.splitContainer6.SplitterDistance = 793;
+            this.splitContainer6.TabIndex = 0;
+            // 
+            // dgvProduce
+            // 
+            this.dgvProduce.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dgvProduce.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProduce.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column5,
+            this.Column4,
+            this.Column8,
+            this.Column9,
+            this.Column7});
+            this.dgvProduce.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvProduce.Location = new System.Drawing.Point(0, 0);
+            this.dgvProduce.Name = "dgvProduce";
+            this.dgvProduce.RowTemplate.Height = 23;
+            this.dgvProduce.Size = new System.Drawing.Size(793, 459);
+            this.dgvProduce.TabIndex = 2;
+            // 
+            // dgvPerformance
+            // 
+            this.dgvPerformance.BackgroundColor = System.Drawing.Color.White;
+            this.dgvPerformance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPerformance.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column12,
+            this.Column16,
+            this.Column17,
+            this.Column18,
+            this.Column19,
+            this.Column20,
+            this.Column21,
+            this.Column22,
+            this.Column23,
+            this.Column24});
+            this.dgvPerformance.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvPerformance.Location = new System.Drawing.Point(0, 0);
+            this.dgvPerformance.Name = "dgvPerformance";
+            this.dgvPerformance.RowTemplate.Height = 23;
+            this.dgvPerformance.Size = new System.Drawing.Size(467, 459);
+            this.dgvPerformance.TabIndex = 0;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "작업지시번호";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 200;
+            // 
+            // Column15
+            // 
+            this.Column15.HeaderText = "출하지시서코드";
+            this.Column15.Name = "Column15";
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "작업시작일";
+            this.Column10.Name = "Column10";
+            this.Column10.Width = 200;
+            // 
+            // Column11
+            // 
+            this.Column11.HeaderText = "납기일";
+            this.Column11.Name = "Column11";
+            this.Column11.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.HeaderText = "작업상태";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.Width = 150;
+            // 
+            // Column13
+            // 
+            this.Column13.HeaderText = "사원코드";
+            this.Column13.Name = "Column13";
+            // 
+            // Column14
+            // 
+            this.Column14.HeaderText = "작업지시자명";
+            this.Column14.Name = "Column14";
+            // 
+            // Column12
+            // 
+            this.Column12.HeaderText = "생산실적번호";
+            this.Column12.Name = "Column12";
+            // 
+            // Column16
+            // 
+            this.Column16.HeaderText = "생산작업번호(F)";
+            this.Column16.Name = "Column16";
+            // 
+            // Column17
+            // 
+            this.Column17.HeaderText = "합격수량";
+            this.Column17.Name = "Column17";
+            // 
+            // Column18
+            // 
+            this.Column18.HeaderText = "불량수량";
+            this.Column18.Name = "Column18";
+            // 
+            // Column19
+            // 
+            this.Column19.HeaderText = "작업시작날짜";
+            this.Column19.Name = "Column19";
+            // 
+            // Column20
+            // 
+            this.Column20.HeaderText = "작업종료날짜";
+            this.Column20.Name = "Column20";
+            // 
+            // Column21
+            // 
+            this.Column21.HeaderText = "사원아이디";
+            this.Column21.Name = "Column21";
+            // 
+            // Column22
+            // 
+            this.Column22.HeaderText = "작업자이름";
+            this.Column22.Name = "Column22";
+            // 
+            // Column23
+            // 
+            this.Column23.HeaderText = "불량률";
+            this.Column23.Name = "Column23";
+            // 
+            // Column24
+            // 
+            this.Column24.HeaderText = "가동시간";
+            this.Column24.Name = "Column24";
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "생산작업번호";
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 150;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "품목코드";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "품목명";
+            this.Column3.Name = "Column3";
+            this.Column3.Width = 200;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "생산지시량";
+            this.Column5.Name = "Column5";
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "투입량";
+            this.Column4.Name = "Column4";
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "불량수";
+            this.Column8.Name = "Column8";
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "불량처리여부";
+            this.Column9.Name = "Column9";
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "작업상태";
+            this.Column7.Name = "Column7";
+            this.Column7.Width = 150;
+            // 
             // PopMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -608,12 +728,17 @@
             this.splitContainer4.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
             this.splitContainer4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProduce)).EndInit();
             this.splitContainer5.Panel1.ResumeLayout(false);
             this.splitContainer5.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
             this.splitContainer5.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
+            this.splitContainer6.Panel1.ResumeLayout(false);
+            this.splitContainer6.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).EndInit();
+            this.splitContainer6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProduce)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPerformance)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -637,29 +762,43 @@
         private System.Windows.Forms.Button btnLineSearch;
         private System.Windows.Forms.Label lblState;
         private System.Windows.Forms.DataGridView dgvWork;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.Button btnWorkStart;
         private System.Windows.Forms.Button btnDownTime;
         private System.Windows.Forms.SplitContainer splitContainer4;
-        private System.Windows.Forms.DataGridView dgvProduce;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.SplitContainer splitContainer5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Button btnDefective;
         private System.Windows.Forms.Button btnWorker;
         private System.Windows.Forms.Button btnProduceStart;
         private System.Windows.Forms.Label lblWorker;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
+        private System.Windows.Forms.SplitContainer splitContainer6;
+        private System.Windows.Forms.DataGridView dgvProduce;
+        private System.Windows.Forms.DataGridView dgvPerformance;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column17;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column18;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column24;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
     }
 }
 
