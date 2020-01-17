@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -36,7 +35,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtEmployeesNumber = new System.Windows.Forms.TextBox();
             this.txtEmployeesName = new System.Windows.Forms.TextBox();
             this.txtEmployeesPassword = new System.Windows.Forms.TextBox();
             this.txtEmployeesPhoneNumber = new System.Windows.Forms.TextBox();
@@ -61,7 +59,6 @@
             this.panel5.Controls.Add(this.txtEmployeesPhoneNumber);
             this.panel5.Controls.Add(this.txtEmployeesPassword);
             this.panel5.Controls.Add(this.txtEmployeesName);
-            this.panel5.Controls.Add(this.txtEmployeesNumber);
             this.panel5.Controls.Add(this.label8);
             this.panel5.Controls.Add(this.label7);
             this.panel5.Controls.Add(this.label6);
@@ -69,7 +66,6 @@
             this.panel5.Controls.Add(this.label4);
             this.panel5.Controls.Add(this.label3);
             this.panel5.Controls.Add(this.label2);
-            this.panel5.Controls.Add(this.label1);
             // 
             // btnCancel
             // 
@@ -79,19 +75,11 @@
             // 
             this.btnOK.FlatAppearance.BorderSize = 0;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(33, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 14);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "사원번호";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(33, 71);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label2.Location = new System.Drawing.Point(33, 28);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 14);
             this.label2.TabIndex = 0;
@@ -100,7 +88,8 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(33, 123);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label3.Location = new System.Drawing.Point(33, 79);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 14);
             this.label3.TabIndex = 0;
@@ -109,7 +98,8 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(33, 175);
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label4.Location = new System.Drawing.Point(33, 135);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 14);
             this.label4.TabIndex = 0;
@@ -118,7 +108,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(33, 229);
+            this.label5.Location = new System.Drawing.Point(33, 189);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(40, 14);
             this.label5.TabIndex = 0;
@@ -127,7 +117,8 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(33, 276);
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label6.Location = new System.Drawing.Point(33, 245);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(51, 14);
             this.label6.TabIndex = 0;
@@ -136,7 +127,8 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(33, 323);
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label7.Location = new System.Drawing.Point(33, 301);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(51, 14);
             this.label7.TabIndex = 0;
@@ -145,36 +137,30 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(33, 368);
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label8.Location = new System.Drawing.Point(33, 360);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(51, 14);
             this.label8.TabIndex = 0;
             this.label8.Text = "생년월일";
             // 
-            // txtEmployeesNumber
-            // 
-            this.txtEmployeesNumber.Location = new System.Drawing.Point(100, 15);
-            this.txtEmployeesNumber.Name = "txtEmployeesNumber";
-            this.txtEmployeesNumber.Size = new System.Drawing.Size(132, 21);
-            this.txtEmployeesNumber.TabIndex = 1;
-            // 
             // txtEmployeesName
             // 
-            this.txtEmployeesName.Location = new System.Drawing.Point(100, 68);
+            this.txtEmployeesName.Location = new System.Drawing.Point(100, 25);
             this.txtEmployeesName.Name = "txtEmployeesName";
             this.txtEmployeesName.Size = new System.Drawing.Size(132, 21);
             this.txtEmployeesName.TabIndex = 1;
             // 
             // txtEmployeesPassword
             // 
-            this.txtEmployeesPassword.Location = new System.Drawing.Point(100, 269);
+            this.txtEmployeesPassword.Location = new System.Drawing.Point(100, 242);
             this.txtEmployeesPassword.Name = "txtEmployeesPassword";
             this.txtEmployeesPassword.Size = new System.Drawing.Size(132, 21);
             this.txtEmployeesPassword.TabIndex = 1;
             // 
             // txtEmployeesPhoneNumber
             // 
-            this.txtEmployeesPhoneNumber.Location = new System.Drawing.Point(100, 316);
+            this.txtEmployeesPhoneNumber.Location = new System.Drawing.Point(100, 298);
             this.txtEmployeesPhoneNumber.Name = "txtEmployeesPhoneNumber";
             this.txtEmployeesPhoneNumber.Size = new System.Drawing.Size(132, 21);
             this.txtEmployeesPhoneNumber.TabIndex = 1;
@@ -182,7 +168,7 @@
             // dtpEmployeesHireDate
             // 
             this.dtpEmployeesHireDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpEmployeesHireDate.Location = new System.Drawing.Point(100, 170);
+            this.dtpEmployeesHireDate.Location = new System.Drawing.Point(100, 130);
             this.dtpEmployeesHireDate.Name = "dtpEmployeesHireDate";
             this.dtpEmployeesHireDate.Size = new System.Drawing.Size(132, 21);
             this.dtpEmployeesHireDate.TabIndex = 2;
@@ -191,7 +177,7 @@
             // 
             this.dtpEmployeesResignDate.Enabled = false;
             this.dtpEmployeesResignDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpEmployeesResignDate.Location = new System.Drawing.Point(100, 224);
+            this.dtpEmployeesResignDate.Location = new System.Drawing.Point(100, 184);
             this.dtpEmployeesResignDate.Name = "dtpEmployeesResignDate";
             this.dtpEmployeesResignDate.Size = new System.Drawing.Size(132, 21);
             this.dtpEmployeesResignDate.TabIndex = 2;
@@ -199,7 +185,7 @@
             // txtEmployeesBirthDay
             // 
             this.txtEmployeesBirthDay.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.txtEmployeesBirthDay.Location = new System.Drawing.Point(100, 361);
+            this.txtEmployeesBirthDay.Location = new System.Drawing.Point(100, 355);
             this.txtEmployeesBirthDay.Name = "txtEmployeesBirthDay";
             this.txtEmployeesBirthDay.Size = new System.Drawing.Size(132, 21);
             this.txtEmployeesBirthDay.TabIndex = 2;
@@ -207,7 +193,7 @@
             // cboEmployeesCategory
             // 
             this.cboEmployeesCategory.FormattingEnabled = true;
-            this.cboEmployeesCategory.Location = new System.Drawing.Point(100, 120);
+            this.cboEmployeesCategory.Location = new System.Drawing.Point(100, 76);
             this.cboEmployeesCategory.Name = "cboEmployeesCategory";
             this.cboEmployeesCategory.Size = new System.Drawing.Size(132, 22);
             this.cboEmployeesCategory.TabIndex = 3;
@@ -231,8 +217,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -246,7 +230,6 @@
         private System.Windows.Forms.TextBox txtEmployeesPhoneNumber;
         private System.Windows.Forms.TextBox txtEmployeesPassword;
         private System.Windows.Forms.TextBox txtEmployeesName;
-        private System.Windows.Forms.TextBox txtEmployeesNumber;
         private System.Windows.Forms.Label label8;
     }
 }

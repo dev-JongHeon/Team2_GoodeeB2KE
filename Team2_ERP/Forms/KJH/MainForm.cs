@@ -317,6 +317,8 @@ namespace Team2_ERP
 
         private void 신규ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CompanyInsUp frm = new CompanyInsUp();
+            frm.ShowDialog();
         }
 
         private void button3_Click(object sender, EventArgs e)
