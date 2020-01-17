@@ -43,6 +43,7 @@
             this.품명 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -93,6 +94,7 @@
             this.품명,
             this.Column1,
             this.Column8,
+            this.Column5,
             this.Column2,
             this.Column11});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -213,6 +215,11 @@
             this.Column8.Name = "Column8";
             this.Column8.Width = 110;
             // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "등록사원";
+            this.Column5.Name = "Column5";
+            // 
             // Column2
             // 
             this.Column2.HeaderText = "수령일시";
@@ -266,6 +273,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn 품명;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
     }
