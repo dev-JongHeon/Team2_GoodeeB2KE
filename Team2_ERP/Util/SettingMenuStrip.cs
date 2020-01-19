@@ -10,8 +10,8 @@ namespace Team2_ERP
     /// <summary>
     /// MenuStrip이벤트를 등록하는 화면 입니다.
     /// <br></br> 사용방법
-    /// <br></br> Activated ==> SetMenu(this, 메서드1, 메서드2, 메서드3, 메서드4, 메서드5, 메서드6, 메서드7);
-    /// <br></br> Deactivated ==> UnSetMenu(this, 메서드1, 메서드2, 메서드3, 메서드4, 메서드5, 메서드6, 메서드7);
+    /// <br></br> Activated ==> SetMenu(this, 새로고침 메서드, 신규 메서드, 수정 메서드, 삭제 메서드, 검색 메서드, 프린트 메서드, 닫기 메서드);
+    /// <br></br> Deactivated ==> UnSetMenu(this, 새로고침 메서드, 신규 메서드, 수정 메서드, 삭제 메서드, 검색 메서드, 프린트 메서드, 닫기 메서드);
     /// </summary>
     public class SettingMenuStrip
     {
@@ -44,7 +44,7 @@ namespace Team2_ERP
             }
         }
 
-        public void UnsetMenu<T>(T frm, 
+        public void UnsetMenu<T>(T frm,
             Action<object, EventArgs> e_refresh,
             Action<object, EventArgs> e_new,
             Action<object, EventArgs> e_modify,

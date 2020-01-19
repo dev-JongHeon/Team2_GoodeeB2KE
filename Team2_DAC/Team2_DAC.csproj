@@ -41,8 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="POPDAC.cs" />
+    <Compile Include="Helper.cs" />
+    <Compile Include="HJS\POPDAC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Team2_VO\Team2_VO.csproj">
+      <Project>{fadad5a8-d7be-466a-a7e0-679c91bb281c}</Project>
+      <Name>Team2_VO</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
