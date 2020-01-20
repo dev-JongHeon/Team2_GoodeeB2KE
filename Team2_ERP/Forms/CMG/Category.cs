@@ -15,6 +15,7 @@ namespace Team2_ERP
     public partial class Category : BaseForm
     {
         List<CodeTableVO> list;
+        string code = string.Empty;
         string name = string.Empty;
         string context = string.Empty;
 
@@ -65,7 +66,11 @@ namespace Team2_ERP
 
         private void Delete(object sender, EventArgs e)
         {
-
+            if(MessageBox.Show("삭제하시겠습니까?", "확인", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                CodeTableService service = new CodeTableService();
+                service.DeleteCodeTable(code);
+            }
         }
 
         private void Search(object sender, EventArgs e)
@@ -97,6 +102,7 @@ namespace Team2_ERP
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            code = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
             name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             context = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
         }
