@@ -25,24 +25,24 @@ namespace Team2_ERP
 
         public void Form_Activated(object sender, EventArgs e)
         {
-            tabCtrl.SelectedTab = tabPag;
+            //tabCtrl.SelectedTab = tabPag;
 
-            if (!tabCtrl.Visible)
-            {
-                tabCtrl.Visible = true;
-            }
+            //if (!tabCtrl.Visible)
+            //{
+            //    tabCtrl.Visible = true;
+            //}
         }
 
         public void Form_FormClosing(object sender, FormClosingEventArgs e)
         {
             //Destroy the corresponding Tabpage when closing MDI child form
-            this.tabPag.Dispose();
+            //this.tabPag.Dispose();
 
             //If no Tabpage left
-            if (!tabCtrl.HasChildren)
-            {
-                tabCtrl.Visible = false;
-            }
+            //if (!tabCtrl.HasChildren)
+            //{
+            //    tabCtrl.Visible = false;
+            //}
         }
         #endregion
 
