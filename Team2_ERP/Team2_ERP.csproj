@@ -400,6 +400,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\CMG\CodeTableService.cs" />
+    <Compile Include="Service\KJH\LoginService.cs" />
+    <Compile Include="Service\KJH\SearchService.cs" />
     <Compile Include="Util\LoggingUtility.cs" />
     <Compile Include="Util\SettingMenuStrip.cs" />
     <Compile Include="Util\UtilClass.cs" />
@@ -650,7 +652,6 @@
     <Content Include="Resources\팀2최종1.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Service\KJH\" />
     <Folder Include="Service\SSD\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

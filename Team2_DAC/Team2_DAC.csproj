@@ -50,15 +50,14 @@
     <Compile Include="SSD\BaljuDAC.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ConnectionInfo.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Team2_VO\Team2_VO.csproj">
       <Project>{fadad5a8-d7be-466a-a7e0-679c91bb281c}</Project>
       <Name>Team2_VO</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="ConnectionInfo.xml" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(SolutionDir)\Team2_DAC\ConnectionInfo.xml" "$(SolutionDir)\Team2_ERP\bin\Debug"</PostBuildEvent>
