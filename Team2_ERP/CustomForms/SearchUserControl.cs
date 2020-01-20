@@ -32,7 +32,7 @@ namespace Team2_ERP
         
         public string Labelname { get => lblName.Text; set => lblName.Text=value; }
 
-        public enum Mode { Worker, Defective, Product, Downtime, Company,
+        public enum Mode { Employee, Worker, Defective, Product, Downtime, Company,
             Factory, Line, Meterial, SemiProduct,Customer, Warehouse, Department };
 
         Mode Modes = Mode.Worker;
@@ -46,6 +46,9 @@ namespace Team2_ERP
 
                 switch (Modes)
                 {
+                    case Mode.Employee:
+                        this.CodeLabel.Text = "사원";
+                        break;
                     case Mode.Worker:
                         this.CodeLabel.Text = "작업자";
                         break;
