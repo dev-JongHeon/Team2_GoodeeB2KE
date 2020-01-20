@@ -42,7 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeTableVO.cs" />
-    <Compile Include="ComboItemVO.cs" />
+    <Compile Include="Common\ComboItemVO.cs" />
+    <Compile Include="Common\SearchedInfoVO.cs" />
     <Compile Include="HJS\Performance.cs" />
     <Compile Include="HJS\Produce.cs" />
     <Compile Include="HJS\Work.cs" />
@@ -51,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CMG\" />
+    <Folder Include="KJH\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
