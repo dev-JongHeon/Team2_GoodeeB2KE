@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Team2_VO;
+using System.Data;
 
 namespace Team2_DAC
 {
@@ -40,9 +41,33 @@ namespace Team2_DAC
             }
         }
 
-        public bool InsertCategory()
+        public bool InsertCategory(CodeTableVO category)
         {
-            return true;
+            string sql = "InsertCategory";
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@CodeTable_CodeID", category.CodeTable_CodeID);
+                    cmd.Parameters.AddWithValue("@CodeTable_CodeName", category.CodeTable_CodeName);
+                    cmd.Parameters.AddWithValue("@CodeTable_CodeExplain", category.CodeTable_CodeExplain);
+
+                    conn.Open();
+                    var rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+            catch(Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
     }
 }
