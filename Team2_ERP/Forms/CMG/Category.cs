@@ -48,7 +48,7 @@ namespace Team2_ERP
         private void Refresh(object sender, EventArgs e)
         {
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = list;
+            LoadGridView();
         }
 
         private void New(object sender, EventArgs e)
