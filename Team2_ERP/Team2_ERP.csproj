@@ -163,6 +163,12 @@
     <Compile Include="Forms\CMG\Department.designer.cs">
       <DependentUpon>Department.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CMG\DepartmentInsUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CMG\DepartmentInsUp.Designer.cs">
+      <DependentUpon>DepartmentInsUp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CMG\Employees.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -393,8 +399,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\KJH\LoginService.cs" />
-    <Compile Include="Service\KJH\SearchService.cs" />
+    <Compile Include="Service\CMG\CodeTableService.cs" />
     <Compile Include="Util\LoggingUtility.cs" />
     <Compile Include="Util\SettingMenuStrip.cs" />
     <Compile Include="Util\UtilClass.cs" />
@@ -451,6 +456,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CMG\Department.resx">
       <DependentUpon>Department.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CMG\DepartmentInsUp.resx">
+      <DependentUpon>DepartmentInsUp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CMG\Employees.resx">
       <DependentUpon>Employees.cs</DependentUpon>
@@ -642,7 +650,7 @@
     <Content Include="Resources\팀2최종1.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Service\CMG\" />
+    <Folder Include="Service\KJH\" />
     <Folder Include="Service\SSD\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Team2_DAC;
+using Team2_ERP.Service.CMG;
 using Team2_VO;
 
 namespace Team2_ERP
@@ -36,8 +36,8 @@ namespace Team2_ERP
         // DataGridView 가져오기
         private void LoadGridView()
         {
-            CodeTableDAC dac = new CodeTableDAC();
-            list = dac.GetAllCodeTable();
+            CodeTableService service = new CodeTableService();
+            list = service.GetAllCodeTable();
             List<CodeTableVO> departmentList = (from item in list where item.CodeTable_CodeID.Contains("Depart") select item).ToList();
             dataGridView1.DataSource = departmentList;
         }

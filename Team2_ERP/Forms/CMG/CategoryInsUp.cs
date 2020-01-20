@@ -7,48 +7,51 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Team2_DAC;
+using Team2_ERP.Service.CMG;
 using Team2_VO;
 
 namespace Team2_ERP
 {
     public partial class CategoryInsUp : BasePopup
     {
-        public enum EditMode { Category, Depart }
+        public enum EditMode { Insert, Update }
 
-        public CategoryInsUp(EditMode editMode)
+        public CategoryInsUp(EditMode editMode, string name, string context)
         {
             InitializeComponent();
 
-            if(editMode == EditMode.Category)
+            if(editMode == EditMode.Update)
             {
-                label1.Text = "카테고리이름";
-                label2.Text = "카테고리설명";
-            }
-
-            else if(editMode == EditMode.Depart)
-            {
-                label1.Text = "부서이름";
-                label2.Text = "부서설명";
+                txtName.Text = name;
+                txtContext.Text = context;
             }
         }
 
+        // 반제품 등록
         private void InsertCategory()
         {
             CodeTableVO category = new CodeTableVO();
-            CodeTableDAC dac = new CodeTableDAC();
+            CodeTableService service = new CodeTableService();
 
-            category.CodeTable_CodeID = "S";
             category.CodeTable_CodeName = txtName.Text;
             category.CodeTable_CodeExplain = txtContext.Text;
 
-            dac.InsertCategory(category);
+            service.InsertCategory(category);
         }
 
-        private void InsertDepartMent()
+        private void btnCancel_Click(object sender, EventArgs e)
         {
-            CodeTableVO dept = new CodeTableVO();
-            CodeTableDAC dac = new CodeTableDAC();
+            this.Close();
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            InsertCategory();
+        }
+
+        private void CategoryInsUp_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

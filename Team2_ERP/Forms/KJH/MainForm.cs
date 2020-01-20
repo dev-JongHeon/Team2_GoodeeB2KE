@@ -47,7 +47,7 @@ namespace Team2_ERP
         {
             M_Refresh?.Invoke(this, e);
 
-            OpenBaseForm<Department>("부서");
+            OpenBaseForm<Category>("카테고리");
         }
         private void splitter1_SplitterMoved(object sender, SplitterEventArgs e)
         {
@@ -317,9 +317,8 @@ namespace Team2_ERP
 
         private void 신규ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-            CategoryInsUp frm = new CategoryInsUp(CategoryInsUp.EditMode.Depart);
-            frm.ShowDialog();
+            if (M_New != null)
+                M_New.Invoke(this, null);
         }
 
         private void button3_Click(object sender, EventArgs e)

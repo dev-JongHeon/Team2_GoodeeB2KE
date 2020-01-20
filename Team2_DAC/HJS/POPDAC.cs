@@ -113,13 +113,63 @@ namespace Team2_DAC
 
         #endregion
 
+        #region 공정 조회 (가동 비가동)
+
+        #endregion
+
+
+
+
         #region 삽입
 
         // 작업자 설정
-        // 생산 실적을 봄 ==> 생산실적개수가 없는 경우 삽입
-        // 생산 실적을 봄 ==> 생산실적이 있는경우 생산실적에 생산데이터가 있는지 없는지 확인 없는경우 ==> 작업자명 변경
+        public void SetWorkerForPerformance(string produceID , int empID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "proc_SetWorkerForPerformancePOP";
 
+                    FillParameter(cmd, new string[] { "@ProduceID", "@Employee_ID" }, new object[] { produceID, empID });
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+            catch
+            {
+                
+            }
+        }
+
+        
         // 비가동 처리
+        public void ToggleDowntime(DowntimePOP downtime, bool isDowntime)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "proc_SetWorkerForPerformancePOP";
+
+                    FillParameter(cmd, new string[] { "@LineID" }, new object[] {  });
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+            catch
+            {
+
+            }
+        }
 
         // 불량 처리
 

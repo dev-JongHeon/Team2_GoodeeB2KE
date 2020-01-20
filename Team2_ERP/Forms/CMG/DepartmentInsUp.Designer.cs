@@ -1,6 +1,6 @@
-﻿namespace Team2_ERP
+﻿namespace Team2_ERP.Forms
 {
-    partial class CategoryInsUp
+    partial class DepartmentInsUp
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtContext = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).BeginInit();
@@ -72,56 +72,53 @@
             // btnCancel
             // 
             this.btnCancel.FlatAppearance.BorderSize = 0;
-            this.btnCancel.Location = new System.Drawing.Point(367, 3);
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnCancel.Location = new System.Drawing.Point(366, 3);
             // 
             // btnOK
             // 
             this.btnOK.FlatAppearance.BorderSize = 0;
-            this.btnOK.Location = new System.Drawing.Point(170, 3);
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // txtContext
-            // 
-            this.txtContext.Location = new System.Drawing.Point(131, 100);
-            this.txtContext.Multiline = true;
-            this.txtContext.Name = "txtContext";
-            this.txtContext.Size = new System.Drawing.Size(390, 137);
-            this.txtContext.TabIndex = 5;
-            // 
-            // txtName
-            // 
-            this.txtName.Location = new System.Drawing.Point(131, 38);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(143, 21);
-            this.txtName.TabIndex = 6;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(33, 41);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 14);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "카테고리이름";
+            this.btnOK.Location = new System.Drawing.Point(169, 3);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(33, 100);
+            this.label2.Location = new System.Drawing.Point(33, 104);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 14);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "카테고리설명";
+            this.label2.Size = new System.Drawing.Size(51, 14);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "부서설명";
             // 
-            // CategoryInsUp
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(33, 45);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 14);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "부서이름";
+            // 
+            // txtContext
+            // 
+            this.txtContext.Location = new System.Drawing.Point(119, 104);
+            this.txtContext.Multiline = true;
+            this.txtContext.Name = "txtContext";
+            this.txtContext.Size = new System.Drawing.Size(390, 137);
+            this.txtContext.TabIndex = 8;
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(119, 42);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(143, 21);
+            this.txtName.TabIndex = 9;
+            // 
+            // DepartmentInsUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(641, 408);
-            this.Name = "CategoryInsUp";
-            this.Text = "CategoryInsUp";
-            this.Load += new System.EventHandler(this.CategoryInsUp_Load);
+            this.Name = "DepartmentInsUp";
+            this.Text = "DepartmentInsUp";
             this.panel1.ResumeLayout(false);
             this.panel_Title.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).EndInit();
@@ -135,9 +132,9 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtContext;
-        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtContext;
+        private System.Windows.Forms.TextBox txtName;
     }
 }
