@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Team2_DAC;
+using Team2_VO;
 
 namespace Team2_ERP
 {
@@ -29,6 +31,24 @@ namespace Team2_ERP
                 label1.Text = "부서이름";
                 label2.Text = "부서설명";
             }
+        }
+
+        private void InsertCategory()
+        {
+            CodeTableVO category = new CodeTableVO();
+            CodeTableDAC dac = new CodeTableDAC();
+
+            category.CodeTable_CodeID = "S";
+            category.CodeTable_CodeName = txtName.Text;
+            category.CodeTable_CodeExplain = txtContext.Text;
+
+            dac.InsertCategory(category);
+        }
+
+        private void InsertDepartMent()
+        {
+            CodeTableVO dept = new CodeTableVO();
+            CodeTableDAC dac = new CodeTableDAC();
         }
     }
 }
