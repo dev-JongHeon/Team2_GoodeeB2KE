@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <settings>
+    <add key ="TEAM2"><![CDATA[Server = whyfi8888.ddns.net,11433; uid = team2; pwd = 1234; database = team2]]></add>
+  </settings>
+</configuration>

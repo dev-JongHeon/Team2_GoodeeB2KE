@@ -12,6 +12,8 @@ namespace Team2_ERP
 {
     public partial class LoginForm : Form
     {
+        private Point mousePoint;
+
         public LoginForm()
         {
             InitializeComponent();
@@ -37,6 +39,20 @@ namespace Team2_ERP
         {
             ChangePwd frm = new ChangePwd();
             frm.Show();
+        }
+
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            mousePoint = new Point(e.X, e.Y);
+        }
+
+        private void panel1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if ((e.Button & MouseButtons.Left) == MouseButtons.Left)
+            {
+                Location = new Point(this.Left - (mousePoint.X - e.X),
+                    this.Top - (mousePoint.Y - e.Y));
+            }
         }
     }
 }
