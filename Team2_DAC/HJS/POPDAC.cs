@@ -9,13 +9,13 @@ using Team2_VO;
 
 namespace Team2_DAC
 {
-    public class POPDAC
+    public class POPDAC : ConnectionInfo
     {
         SqlConnection conn = null;
         public POPDAC()
         {
             conn = new SqlConnection();
-            conn.ConnectionString = "Server = whyfi8888.ddns.net,11433; uid = team2; pwd = 1234; database = team2";
+            conn.ConnectionString = this.ConnectionString;
         }
 
         // 파라미터 넣는 함수 Null이 있는경우 ==> Null값을 전달
