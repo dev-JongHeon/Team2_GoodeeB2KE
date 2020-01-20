@@ -220,6 +220,7 @@
             this.btnLineSearch.TabIndex = 4;
             this.btnLineSearch.Text = "공정 조회";
             this.btnLineSearch.UseVisualStyleBackColor = false;
+            this.btnLineSearch.Click += new System.EventHandler(this.btnLineSearch_Click);
             // 
             // lblState
             // 
@@ -301,6 +302,7 @@
             this.btnNextDate.Size = new System.Drawing.Size(176, 70);
             this.btnNextDate.TabIndex = 3;
             this.btnNextDate.UseVisualStyleBackColor = true;
+            this.btnNextDate.Click += new System.EventHandler(this.btnNextDate_Click);
             // 
             // label4
             // 
@@ -329,6 +331,7 @@
             this.btnPreDate.Size = new System.Drawing.Size(176, 70);
             this.btnPreDate.TabIndex = 1;
             this.btnPreDate.UseVisualStyleBackColor = false;
+            this.btnPreDate.Click += new System.EventHandler(this.btnPreDate_Click);
             // 
             // label5
             // 
@@ -353,6 +356,7 @@
             this.btnDate.TabIndex = 6;
             this.btnDate.Text = "날짜 조회";
             this.btnDate.UseVisualStyleBackColor = true;
+            this.btnDate.Click += new System.EventHandler(this.btnDate_Click);
             // 
             // btnWorkStart
             // 
@@ -660,6 +664,7 @@
             this.btnDefective.TabIndex = 2;
             this.btnDefective.Text = "불량 처리 등록";
             this.btnDefective.UseVisualStyleBackColor = true;
+            this.btnDefective.Click += new System.EventHandler(this.btnDefective_Click);
             // 
             // btnWorker
             // 
@@ -672,6 +677,7 @@
             this.btnWorker.TabIndex = 1;
             this.btnWorker.Text = "작업자 설정";
             this.btnWorker.UseVisualStyleBackColor = true;
+            this.btnWorker.Click += new System.EventHandler(this.btnWorker_Click);
             // 
             // btnProduceStart
             // 
