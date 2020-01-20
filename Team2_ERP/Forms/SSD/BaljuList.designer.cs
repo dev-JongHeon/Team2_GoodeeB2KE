@@ -28,21 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgv_Balju = new System.Windows.Forms.DataGridView();
             this.searchUserControl1 = new Team2_ERP.SearchUserControl();
             this.searchPeriodControl1 = new Team2_ERP.SearchPeriodControl();
             this.searchUserControl4 = new Team2_ERP.SearchUserControl();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.품번 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.품명 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgv_BaljuDetail = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -55,8 +45,8 @@
             this.panel_Title.SuspendLayout();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Balju)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_BaljuDetail)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -64,11 +54,11 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.dataGridView1);
+            this.panel2.Controls.Add(this.dgv_Balju);
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.dataGridView2);
+            this.panel3.Controls.Add(this.dgv_BaljuDetail);
             // 
             // panel5
             // 
@@ -80,21 +70,17 @@
             // 
             this.lblFormName.Text = "발주현황";
             // 
-            // dataGridView1
+            // dgv_Balju
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.품번,
-            this.품명,
-            this.Column1,
-            this.Column8,
-            this.Column2});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(1364, 368);
-            this.dataGridView1.TabIndex = 2;
+            this.dgv_Balju.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_Balju.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_Balju.Location = new System.Drawing.Point(0, 0);
+            this.dgv_Balju.Name = "dgv_Balju";
+            this.dgv_Balju.RowTemplate.Height = 23;
+            this.dgv_Balju.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_Balju.Size = new System.Drawing.Size(1364, 368);
+            this.dgv_Balju.TabIndex = 2;
+            this.dgv_Balju.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Balju_CellDoubleClick);
             // 
             // searchUserControl1
             // 
@@ -127,72 +113,16 @@
             this.searchUserControl4.Size = new System.Drawing.Size(312, 25);
             this.searchUserControl4.TabIndex = 80;
             // 
-            // dataGridView2
+            // dgv_BaljuDetail
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column6,
-            this.Column7,
-            this.dataGridViewTextBoxColumn2,
-            this.Column4,
-            this.Column3});
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 23;
-            this.dataGridView2.Size = new System.Drawing.Size(1364, 290);
-            this.dataGridView2.TabIndex = 1;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "품목코드";
-            this.Column6.Name = "Column6";
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "품목명";
-            this.Column7.Name = "Column7";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "현재고량";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "안전재고량";
-            this.Column4.Name = "Column4";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "부족수량";
-            this.Column3.Name = "Column3";
-            // 
-            // 품번
-            // 
-            this.품번.HeaderText = "발주지시번호";
-            this.품번.Name = "품번";
-            // 
-            // 품명
-            // 
-            this.품명.HeaderText = "거래처코드";
-            this.품명.Name = "품명";
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "거래처명칭";
-            this.Column1.Name = "Column1";
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "발주요청일자";
-            this.Column8.Name = "Column8";
-            this.Column8.Width = 110;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "등록사원";
-            this.Column2.Name = "Column2";
+            this.dgv_BaljuDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_BaljuDetail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_BaljuDetail.Location = new System.Drawing.Point(0, 0);
+            this.dgv_BaljuDetail.Name = "dgv_BaljuDetail";
+            this.dgv_BaljuDetail.RowTemplate.Height = 23;
+            this.dgv_BaljuDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_BaljuDetail.Size = new System.Drawing.Size(1364, 290);
+            this.dgv_BaljuDetail.TabIndex = 1;
             // 
             // BaljuList
             // 
@@ -201,6 +131,7 @@
             this.FormName = "발주현황";
             this.Name = "BaljuList";
             this.Text = "발주현황";
+            this.Load += new System.EventHandler(this.BaljuList_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -213,28 +144,18 @@
             this.panel_Title.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Balju)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_BaljuDetail)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgv_Balju;
         private SearchUserControl searchUserControl1;
         private SearchPeriodControl searchPeriodControl1;
         private SearchUserControl searchUserControl4;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 품번;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 품명;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridView dgv_BaljuDetail;
     }
 }
