@@ -12,9 +12,23 @@ namespace Team2_ERP
 {
     public partial class CategoryInsUp : BasePopup
     {
-        public CategoryInsUp()
+        public enum EditMode { Category, Depart }
+
+        public CategoryInsUp(EditMode editMode)
         {
             InitializeComponent();
+
+            if(editMode == EditMode.Category)
+            {
+                label1.Text = "카테고리이름";
+                label2.Text = "카테고리설명";
+            }
+
+            else if(editMode == EditMode.Depart)
+            {
+                label1.Text = "부서이름";
+                label2.Text = "부서설명";
+            }
         }
     }
 }
