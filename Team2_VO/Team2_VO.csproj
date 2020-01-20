@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="CodeTableVO.cs" />
     <Compile Include="ComboItemVO.cs" />
+    <Compile Include="HJS\Performance.cs" />
     <Compile Include="HJS\Produce.cs" />
     <Compile Include="HJS\Work.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

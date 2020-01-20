@@ -30,7 +30,7 @@ namespace Team2_DAC
             }
         }
 
-
+        #region 조회 (작업 - 생산 - 생산 실적)
 
         // 작업조회 (날짜 Default = 오늘 날짜)
         public List<Work> GetWorks(DateTime WorkDate)
@@ -59,7 +59,7 @@ namespace Team2_DAC
         }
 
         // 생산목록 조회 (작업 아이디) -- POP화면 => 작업을 더블클릭한 경우
-        public List<Produce> GetProduces(string produceID)
+        public List<Produce> GetProduces(string workID)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace Team2_DAC
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "proc_GetProducesPOP";
 
-                    FillParameter(cmd, new string[] { "@ProduceID" }, new object[] { produceID });
+                    FillParameter(cmd, new string[] { "@ProduceID" }, new object[] { workID });
 
                     conn.Open();
                     List<Produce> list = Helper.DataReaderMapToList<Produce>(cmd.ExecuteReader());
@@ -86,7 +86,7 @@ namespace Team2_DAC
 
 
         // 생산실적 조회 (생산 아이디)
-        public List<Produce> GetPerformance(string produceID)
+        public List<Performance> GetPerformance(string produceID)
         {
             try
             {
@@ -99,7 +99,7 @@ namespace Team2_DAC
                     FillParameter(cmd, new string[] { "@ProduceID" }, new object[] { produceID });
 
                     conn.Open();
-                    List<Produce> list = Helper.DataReaderMapToList<Produce>(cmd.ExecuteReader());
+                    List<Performance> list = Helper.DataReaderMapToList<Performance>(cmd.ExecuteReader());
                     conn.Close();
 
                     return list;
@@ -111,6 +111,16 @@ namespace Team2_DAC
             }
         }
 
+        #endregion
 
+        #region 삽입
+
+        // 작업자 설정
+
+        // 비가동 처리
+
+        // 불량 처리
+
+        #endregion
     }
 }

@@ -14,5 +14,6 @@ namespace Team2_VO
         public int Produce_QtyRequested { get; set; }
         public int Performance_QtyDefectiveItem { get; set; }
         public int Produce_State { get; set; }
+        public string Work_ID { get; set; }
     }
 }
