@@ -143,7 +143,7 @@
             // searchUserControl1
             // 
             this.searchUserControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl1.ControlType = Team2_ERP.SearchUserControl.Mode.Worker;
+            this.searchUserControl1.ControlType = Team2_ERP.SearchUserControl.Mode.Company;
             this.searchUserControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.searchUserControl1.Labelname = "출하처리자";
             this.searchUserControl1.Location = new System.Drawing.Point(330, 47);
@@ -172,7 +172,7 @@
             // searchUserControl2
             // 
             this.searchUserControl2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl2.ControlType = Team2_ERP.SearchUserControl.Mode.Worker;
+            this.searchUserControl2.ControlType = Team2_ERP.SearchUserControl.Mode.Company;
             this.searchUserControl2.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.searchUserControl2.Labelname = "출하지시자";
             this.searchUserControl2.Location = new System.Drawing.Point(330, 16);

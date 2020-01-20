@@ -181,7 +181,7 @@
             // searchUserControl4
             // 
             this.searchUserControl4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl4.ControlType = Team2_ERP.SearchUserControl.Mode.Worker;
+            this.searchUserControl4.ControlType = Team2_ERP.SearchUserControl.Mode.Company;
             this.searchUserControl4.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.searchUserControl4.Location = new System.Drawing.Point(355, 42);
             this.searchUserControl4.Name = "searchUserControl4";

@@ -166,7 +166,7 @@
             // searchUserControl3
             // 
             this.searchUserControl3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl3.ControlType = Team2_ERP.SearchUserControl.Mode.Worker;
+            this.searchUserControl3.ControlType = Team2_ERP.SearchUserControl.Mode.Company;
             this.searchUserControl3.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.searchUserControl3.Labelname = "작업자";
             this.searchUserControl3.Location = new System.Drawing.Point(89, 6);

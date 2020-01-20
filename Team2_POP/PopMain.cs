@@ -34,7 +34,7 @@ namespace Team2_POP
             downtime.ShowDialog();
         }
 
-        private void btnWorker_Click(object sender, EventArgs e)
+        private void btnCompany_Click(object sender, EventArgs e)
         {
             WorkRegister work = new WorkRegister();
             work.ShowDialog();
