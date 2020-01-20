@@ -51,6 +51,7 @@
     <Compile Include="KJH\LoginVO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SSD\Balju.cs" />
+    <Compile Include="SSD\Stock.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CMG\" />

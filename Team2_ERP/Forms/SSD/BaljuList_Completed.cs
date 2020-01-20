@@ -22,6 +22,11 @@ namespace Team2_ERP
 
         private void BaljuList_Completed_Load(object sender, EventArgs e)
         {
+            LoadData();
+        }
+
+        private void LoadData()
+        {
             UtilClass.AddNewColum(dgv_BaljuCompleted, "발주지시번호", "Balju_ID", true);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "거래처코드", "Company_ID", true);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "거래처명칭", "Company_Name", true);
