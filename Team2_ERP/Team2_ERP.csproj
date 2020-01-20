@@ -232,40 +232,40 @@
     <Compile Include="Forms\HJS\SearchForm.designer.cs">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\KHS\OrderCompleteForm.cs">
+    <Compile Include="Forms\SSD\OrderCompleteForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\KHS\OrderCompleteForm.designer.cs">
+    <Compile Include="Forms\SSD\OrderCompleteForm.designer.cs">
       <DependentUpon>OrderCompleteForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\KHS\OrderMainForm.cs">
+    <Compile Include="Forms\SSD\OrderMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\KHS\OrderMainForm.designer.cs">
+    <Compile Include="Forms\SSD\OrderMainForm.designer.cs">
       <DependentUpon>OrderMainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\KHS\SalesMainForm.cs">
+    <Compile Include="Forms\SSD\SalesMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\KHS\SalesMainForm.designer.cs">
+    <Compile Include="Forms\SSD\SalesMainForm.designer.cs">
       <DependentUpon>SalesMainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\KHS\ShipmentCompleteForm.cs">
+    <Compile Include="Forms\SSD\ShipmentCompleteForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\KHS\ShipmentCompleteForm.designer.cs">
+    <Compile Include="Forms\SSD\ShipmentCompleteForm.designer.cs">
       <DependentUpon>ShipmentCompleteForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\KHS\ShipmentMainForm.cs">
+    <Compile Include="Forms\SSD\ShipmentMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\KHS\ShipmentMainForm.designer.cs">
+    <Compile Include="Forms\SSD\ShipmentMainForm.designer.cs">
       <DependentUpon>ShipmentMainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\KHS\ShipmentReg.cs">
+    <Compile Include="Forms\SSD\ShipmentReg.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\KHS\ShipmentReg.designer.cs">
+    <Compile Include="Forms\SSD\ShipmentReg.designer.cs">
       <DependentUpon>ShipmentReg.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\KJH\CalendarForm.cs">
@@ -482,22 +482,22 @@
     <EmbeddedResource Include="Forms\HJS\SearchForm.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\KHS\OrderCompleteForm.resx">
+    <EmbeddedResource Include="Forms\SSD\OrderCompleteForm.resx">
       <DependentUpon>OrderCompleteForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\KHS\OrderMainForm.resx">
+    <EmbeddedResource Include="Forms\SSD\OrderMainForm.resx">
       <DependentUpon>OrderMainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\KHS\SalesMainForm.resx">
+    <EmbeddedResource Include="Forms\SSD\SalesMainForm.resx">
       <DependentUpon>SalesMainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\KHS\ShipmentCompleteForm.resx">
+    <EmbeddedResource Include="Forms\SSD\ShipmentCompleteForm.resx">
       <DependentUpon>ShipmentCompleteForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\KHS\ShipmentMainForm.resx">
+    <EmbeddedResource Include="Forms\SSD\ShipmentMainForm.resx">
       <DependentUpon>ShipmentMainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\KHS\ShipmentReg.resx">
+    <EmbeddedResource Include="Forms\SSD\ShipmentReg.resx">
       <DependentUpon>ShipmentReg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\KJH\CalendarForm.resx">
@@ -629,6 +629,11 @@
     <Content Include="Resources\window_remove_12810.png" />
     <Content Include="Resources\로고.PNG" />
     <Content Include="Resources\팀2최종1.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Service\CMG\" />
+    <Folder Include="Service\KJH\" />
+    <Folder Include="Service\SSD\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
