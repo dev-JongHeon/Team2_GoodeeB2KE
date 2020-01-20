@@ -16,7 +16,7 @@ namespace Team2_VO
         public string Warehouse_Name { get; set; }
         public string Product_Name { get; set; }
         public string Product_ID { get; set; }
-        public int Employees_ID { get; set; }
+        public string Employees_Name { get; set; }
         public int StockReceipt_Quantity { get; set; }
     }
 }

@@ -36,13 +36,16 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Stock, "품번", "Product_ID", true);
             UtilClass.AddNewColum(dgv_Stock, "품명", "Product_Name", true);
             UtilClass.AddNewColum(dgv_Stock, "수불수량", "StockReceipt_Quantity", true);
-            UtilClass.AddNewColum(dgv_Stock, "등록사원", "Employees_ID", true);
+            UtilClass.AddNewColum(dgv_Stock, "등록사원", "Employees_Name", true);
+            UtilClass.AddNewColum(dgv_Stock, "창고유형", "Warehouse_Division", false);
+
+
             StockReceipt_AllList = dac.GetStockReceipts(); // 자재수불내역 갱신
 
-            List<Stock> BaljuDetail_List = (from list_Stock in StockReceipt_AllList
-                                                  where list_Stock.Warehouse_Division == false
-                                                  select list_Stock).ToList();
-            dgv_Stock.DataSource = BaljuDetail_List;
+            List<Stock> StockReceipt_list = (from list_Stock in StockReceipt_AllList
+                                            where list_Stock.Warehouse_Division == false
+                                            select list_Stock).ToList();
+            dgv_Stock.DataSource = StockReceipt_list;
         }
     }
 }

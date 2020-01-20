@@ -30,15 +30,6 @@
         {
             this.label4 = new System.Windows.Forms.Label();
             this.dgv_Stock = new System.Windows.Forms.DataGridView();
-            this.품번 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.품명 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.searchPeriodControl1 = new Team2_ERP.SearchPeriodControl();
             this.searchUserControl1 = new Team2_ERP.SearchUserControl();
             this.searchUserControl2 = new Team2_ERP.SearchUserControl();
@@ -86,67 +77,12 @@
             // dgv_Stock
             // 
             this.dgv_Stock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_Stock.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.품번,
-            this.품명,
-            this.Column1,
-            this.Column3,
-            this.Column2,
-            this.Column4,
-            this.Column5,
-            this.Column6,
-            this.Column11});
             this.dgv_Stock.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_Stock.Location = new System.Drawing.Point(0, 0);
             this.dgv_Stock.Name = "dgv_Stock";
             this.dgv_Stock.RowTemplate.Height = 23;
             this.dgv_Stock.Size = new System.Drawing.Size(1364, 662);
             this.dgv_Stock.TabIndex = 1;
-            // 
-            // 품번
-            // 
-            this.품번.HeaderText = "수불번호";
-            this.품번.Name = "품번";
-            // 
-            // 품명
-            // 
-            this.품명.HeaderText = "수불유형";
-            this.품명.Name = "품명";
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "수불일자";
-            this.Column1.Name = "Column1";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "창고코드";
-            this.Column3.Name = "Column3";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "창고명";
-            this.Column2.Name = "Column2";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "품번";
-            this.Column4.Name = "Column4";
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "품명";
-            this.Column5.Name = "Column5";
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "수불수량";
-            this.Column6.Name = "Column6";
-            // 
-            // Column11
-            // 
-            this.Column11.HeaderText = "등록사원";
-            this.Column11.Name = "Column11";
             // 
             // searchPeriodControl1
             // 
@@ -235,14 +171,5 @@
         private SearchUserControl searchUserControl2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 품번;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 품명;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
     }
 }
