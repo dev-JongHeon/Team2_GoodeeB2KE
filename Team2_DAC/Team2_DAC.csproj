@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CMG\CodeTableDAC.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="HJS\POPDAC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -51,5 +52,6 @@
       <Name>Team2_VO</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
