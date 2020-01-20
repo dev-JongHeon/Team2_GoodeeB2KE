@@ -9,13 +9,13 @@ using Team2_VO;
 
 namespace Team2_DAC
 {
-    public class POPDAC
+    public class POPDAC : ConnectionInfo
     {
         SqlConnection conn = null;
         public POPDAC()
         {
             conn = new SqlConnection();
-            conn.ConnectionString = "Server = whyfi8888.ddns.net,11433; uid = team2; pwd = 1234; database = team2";
+            conn.ConnectionString = this.ConnectionString;
         }
 
         // 파라미터 넣는 함수 Null이 있는경우 ==> Null값을 전달
@@ -116,6 +116,8 @@ namespace Team2_DAC
         #region 삽입
 
         // 작업자 설정
+        // 생산 실적을 봄 ==> 생산실적개수가 없는 경우 삽입
+        // 생산 실적을 봄 ==> 생산실적이 있는경우 생산실적에 생산데이터가 있는지 없는지 확인 없는경우 ==> 작업자명 변경
 
         // 비가동 처리
 

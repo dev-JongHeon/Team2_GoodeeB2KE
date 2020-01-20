@@ -21,7 +21,7 @@ namespace Team2_ERP
         }
 
         // 그리드 뷰 디자인 
-        public void InitGridView()
+        private void InitGridView()
         {
             UtilClass.SettingDgv(dataGridView1);
 
@@ -34,7 +34,7 @@ namespace Team2_ERP
         }
 
         // DataGridView 가져오기
-        public void LoadGridView()
+        private void LoadGridView()
         {
             CodeTableDAC dac = new CodeTableDAC();
             list = dac.GetAllCodeTable();
