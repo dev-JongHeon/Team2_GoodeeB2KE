@@ -44,6 +44,8 @@ namespace Team2_ERP
                 info = frm.info;
                 txtEmpID.Text = info.ID.ToString();
                 txtEmpName.Text = info.Name.ToString();
+                this.ActiveControl = txtEmpPwd;
+                
             }
 
         }
@@ -107,6 +109,7 @@ namespace Team2_ERP
                 logininfo.Employee_PWD = txtEmpPwd.Text;
                 ChangePwd frm = new ChangePwd(logininfo);
                 frm.ShowDialog();
+                this.ActiveControl = txtEmpPwd;
             }
             else
             {

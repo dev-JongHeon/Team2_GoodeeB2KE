@@ -65,7 +65,7 @@
             this.btnCancel.Location = new System.Drawing.Point(225, 134);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 29);
-            this.btnCancel.TabIndex = 2;
+            this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "취소";
             this.btnCancel.UseVisualStyleBackColor = false;
             // 
@@ -77,7 +77,7 @@
             this.btnOK.Location = new System.Drawing.Point(142, 134);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 29);
-            this.btnOK.TabIndex = 1;
+            this.btnOK.TabIndex = 3;
             this.btnOK.Text = "확인";
             this.btnOK.UseVisualStyleBackColor = false;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -102,7 +102,7 @@
             this.txtNewPwd2.Name = "txtNewPwd2";
             this.txtNewPwd2.PasswordChar = '*';
             this.txtNewPwd2.Size = new System.Drawing.Size(134, 21);
-            this.txtNewPwd2.TabIndex = 6;
+            this.txtNewPwd2.TabIndex = 2;
             this.txtNewPwd2.Validating += new System.ComponentModel.CancelEventHandler(this.txtNewPwd2_Validating);
             // 
             // txtNewPwd
@@ -111,7 +111,7 @@
             this.txtNewPwd.Name = "txtNewPwd";
             this.txtNewPwd.PasswordChar = '*';
             this.txtNewPwd.Size = new System.Drawing.Size(134, 21);
-            this.txtNewPwd.TabIndex = 5;
+            this.txtNewPwd.TabIndex = 1;
             // 
             // txtPrevPwd
             // 
@@ -119,7 +119,7 @@
             this.txtPrevPwd.Name = "txtPrevPwd";
             this.txtPrevPwd.PasswordChar = '*';
             this.txtPrevPwd.Size = new System.Drawing.Size(134, 21);
-            this.txtPrevPwd.TabIndex = 4;
+            this.txtPrevPwd.TabIndex = 0;
             // 
             // label3
             // 

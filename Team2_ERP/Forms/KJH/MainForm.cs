@@ -23,7 +23,7 @@ namespace Team2_ERP
         public EventHandler M_Print;
         public EventHandler M_Close;
         int tindex;
-        bool isLogout=false;
+        bool isLogout = false;
         LoginVO logininfo = new LoginVO();
         public LoginVO Logininfo { get => logininfo; set => logininfo = value; }
 
@@ -412,6 +412,41 @@ namespace Team2_ERP
             isLogout = true;
             Logininfo.IsLogout = isLogout;
             this.Close();
+        }
+
+        private void menu_System_Click(object sender, EventArgs e)
+        {
+            Panel panel = (Panel)sender;
+            string name = panel.Name.ToString();
+            string ptag = string.Empty;
+            string lname = string.Empty;
+            switch (name)
+            {
+                case "menu_System":
+                    ptag = "panel_System";
+                    lname = "lblSystem";
+                    break;
+                case "menu_Production":
+                    ptag = "panel_Production";
+                    lname = "lblProduction";
+                    break;
+                case "menu_Stock":
+                    ptag = "panel_Stock";
+                    lname = "lblStock";
+                    break;
+                case "menu_Sales":
+                    ptag = "panel_Sales";
+                    lname = "lblSales";
+                    break;
+                case "menu_Info":
+                    ptag = "panel_Info";
+                    lname = "lblInfo";
+                    break;
+                default:
+                    break;
+            }
+            SelectMenu(ptag, lname);
+            FillMenu();
         }
     }
 }
