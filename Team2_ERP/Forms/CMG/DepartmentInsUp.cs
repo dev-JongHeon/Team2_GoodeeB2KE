@@ -14,9 +14,17 @@ namespace Team2_ERP.Forms
 {
     public partial class DepartmentInsUp : BasePopup
     {
-        public DepartmentInsUp()
+        public enum EditMode { Insert, Update }
+
+        public DepartmentInsUp(EditMode editMode, string name, string context)
         {
             InitializeComponent();
+
+            if (editMode == EditMode.Update)
+            {
+                txtName.Text = name;
+                txtContext.Text = context;
+            }
         }
 
         // 부서 등록
