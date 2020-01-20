@@ -45,9 +45,9 @@ namespace Team2_ERP
         }
         private void 새로고침ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            M_Refresh?.Invoke(this, e);
 
-            OpenBaseForm<Category>("카테고리");
+            if (M_Refresh != null)
+                M_Refresh.Invoke(this, null);
         }
         private void splitter1_SplitterMoved(object sender, SplitterEventArgs e)
         {
@@ -330,6 +330,44 @@ namespace Team2_ERP
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
 
+        }
+
+        private void 수정ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (M_Modify != null)
+                M_Modify.Invoke(this, null);
+        }
+
+        private void 삭제ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (M_Delete != null)
+                M_Delete.Invoke(this, null);
+        }
+
+        private void 검색toolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (M_Search != null)
+                M_Search.Invoke(this, null);
+        }
+
+        private void 인쇄ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (M_Print != null)
+                M_Print.Invoke(this, null);
+        }
+
+        private void 닫기ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (M_Close != null)
+                M_Close.Invoke(this, null);
+        }
+
+        private void treeView4_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Node.Name == "Category")
+            {
+                OpenBaseForm<Category>("카테고리");
+            }
         }
     }
 }
