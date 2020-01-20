@@ -9,13 +9,14 @@ using System.Data;
 
 namespace Team2_DAC
 {
-    public class CodeTableDAC
+    public class CodeTableDAC : ConnectionInfo
     {
         SqlConnection conn = null;
+
         public CodeTableDAC()
         {
             conn = new SqlConnection();
-            conn.ConnectionString = "Server = whyfi8888.ddns.net,11433; uid = team2; pwd = 1234; database = team2";
+            conn.ConnectionString = this.ConnectionString;
         }
 
         public List<CodeTableVO> GetAllCodeTable()
@@ -51,7 +52,6 @@ namespace Team2_DAC
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@CodeTable_CodeID", category.CodeTable_CodeID);
                     cmd.Parameters.AddWithValue("@CodeTable_CodeName", category.CodeTable_CodeName);
                     cmd.Parameters.AddWithValue("@CodeTable_CodeExplain", category.CodeTable_CodeExplain);
 
@@ -61,6 +61,34 @@ namespace Team2_DAC
                 }
             }
             catch(Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public bool InsertDepart(CodeTableVO category)
+        {
+            string sql = "InsertDepart";
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@CodeTable_CodeName", category.CodeTable_CodeName);
+                    cmd.Parameters.AddWithValue("@CodeTable_CodeExplain", category.CodeTable_CodeExplain);
+
+                    conn.Open();
+                    var rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+            catch (Exception err)
             {
                 throw new Exception(err.Message);
             }
