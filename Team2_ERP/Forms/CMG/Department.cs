@@ -15,6 +15,10 @@ namespace Team2_ERP
     public partial class Department : BaseForm
     {
         List<CodeTableVO> list;
+        string code = string.Empty;
+        string name = string.Empty;
+        string context = string.Empty;
+
         public Department()
         {
             InitializeComponent();
@@ -42,10 +46,61 @@ namespace Team2_ERP
             dataGridView1.DataSource = departmentList;
         }
 
+        private void Refresh(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = null;
+            LoadGridView();
+        }
+
+        private void New(object sender, EventArgs e)
+        {
+            CategoryInsUp frm = new CategoryInsUp(CategoryInsUp.EditMode.Insert, null, null);
+            frm.ShowDialog();
+        }
+
+        private void Modify(object sender, EventArgs e)
+        {
+            CategoryInsUp frm = new CategoryInsUp(CategoryInsUp.EditMode.Update, name, context);
+            frm.ShowDialog();
+        }
+
+        private void Delete(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Search(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Print(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Close(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void SettingMenu()
+        {
+            new SettingMenuStrip().SetMenu(this, Refresh, New, Modify, Delete, Search, Print, Close);
+        }
+
         private void Department_Load(object sender, EventArgs e)
         {
             InitGridView();
             LoadGridView();
+            SettingMenu();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            code = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+            name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+            context = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
         }
     }
 }
