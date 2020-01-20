@@ -59,7 +59,8 @@ namespace Team2_ERP
             dgv.DefaultCellStyle.SelectionBackColor = Color.DodgerBlue;
             dgv.DefaultCellStyle.SelectionForeColor = Color.White;
             dgv.DefaultCellStyle.WrapMode = DataGridViewTriState.NotSet;
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(54, 64, 67);
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(55, 113, 138);
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font(dgv.Font, FontStyle.Bold);
             dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(54, 64, 67);
             dgv.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;

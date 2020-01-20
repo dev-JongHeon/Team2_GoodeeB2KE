@@ -79,9 +79,9 @@
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnDefective = new System.Windows.Forms.Button();
-            this.btnWorker = new System.Windows.Forms.Button();
+            this.btnCompany = new System.Windows.Forms.Button();
             this.btnProduceStart = new System.Windows.Forms.Button();
-            this.lblWorker = new System.Windows.Forms.Label();
+            this.lblCompany = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -626,7 +626,7 @@
             // 
             // splitContainer5.Panel2
             // 
-            this.splitContainer5.Panel2.Controls.Add(this.lblWorker);
+            this.splitContainer5.Panel2.Controls.Add(this.lblCompany);
             this.splitContainer5.Size = new System.Drawing.Size(1264, 113);
             this.splitContainer5.SplitterDistance = 83;
             this.splitContainer5.TabIndex = 0;
@@ -639,7 +639,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.Controls.Add(this.btnDefective, 2, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnWorker, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnCompany, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnProduceStart, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
@@ -661,17 +661,17 @@
             this.btnDefective.Text = "불량 처리 등록";
             this.btnDefective.UseVisualStyleBackColor = true;
             // 
-            // btnWorker
+            // btnCompany
             // 
-            this.btnWorker.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnWorker.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnWorker.Font = new System.Drawing.Font("나눔고딕", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnWorker.Location = new System.Drawing.Point(424, 3);
-            this.btnWorker.Name = "btnWorker";
-            this.btnWorker.Size = new System.Drawing.Size(415, 77);
-            this.btnWorker.TabIndex = 1;
-            this.btnWorker.Text = "작업자 설정";
-            this.btnWorker.UseVisualStyleBackColor = true;
+            this.btnCompany.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnCompany.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCompany.Font = new System.Drawing.Font("나눔고딕", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnCompany.Location = new System.Drawing.Point(424, 3);
+            this.btnCompany.Name = "btnCompany";
+            this.btnCompany.Size = new System.Drawing.Size(415, 77);
+            this.btnCompany.TabIndex = 1;
+            this.btnCompany.Text = "작업자 설정";
+            this.btnCompany.UseVisualStyleBackColor = true;
             // 
             // btnProduceStart
             // 
@@ -685,16 +685,16 @@
             this.btnProduceStart.Text = "생산 시작";
             this.btnProduceStart.UseVisualStyleBackColor = true;
             // 
-            // lblWorker
+            // lblCompany
             // 
-            this.lblWorker.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblWorker.Font = new System.Drawing.Font("나눔고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblWorker.Location = new System.Drawing.Point(0, 0);
-            this.lblWorker.Name = "lblWorker";
-            this.lblWorker.Size = new System.Drawing.Size(1264, 26);
-            this.lblWorker.TabIndex = 0;
-            this.lblWorker.Text = "작업자명 : xxx";
-            this.lblWorker.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblCompany.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblCompany.Font = new System.Drawing.Font("나눔고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblCompany.Location = new System.Drawing.Point(0, 0);
+            this.lblCompany.Name = "lblCompany";
+            this.lblCompany.Size = new System.Drawing.Size(1264, 26);
+            this.lblCompany.TabIndex = 0;
+            this.lblCompany.Text = "작업자명 : xxx";
+            this.lblCompany.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // PopMain
             // 
@@ -768,9 +768,9 @@
         private System.Windows.Forms.SplitContainer splitContainer5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Button btnDefective;
-        private System.Windows.Forms.Button btnWorker;
+        private System.Windows.Forms.Button btnCompany;
         private System.Windows.Forms.Button btnProduceStart;
-        private System.Windows.Forms.Label lblWorker;
+        private System.Windows.Forms.Label lblCompany;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;

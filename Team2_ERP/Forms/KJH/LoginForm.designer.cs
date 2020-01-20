@@ -112,7 +112,7 @@
             this.btnPwdChange.TabIndex = 6;
             this.btnPwdChange.Text = "암호 변경";
             this.btnPwdChange.UseVisualStyleBackColor = false;
-            this.btnPwdChange.Click += new System.EventHandler(this.button3_Click);
+            this.btnPwdChange.Click += new System.EventHandler(this.btnPwdChange_Click);
             // 
             // btnClose
             // 
@@ -126,7 +126,7 @@
             this.btnClose.TabIndex = 5;
             this.btnClose.Text = "취소";
             this.btnClose.UseVisualStyleBackColor = false;
-            this.btnClose.Click += new System.EventHandler(this.button2_Click);
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnLogin
             // 
@@ -140,7 +140,7 @@
             this.btnLogin.TabIndex = 4;
             this.btnLogin.Text = "로그인";
             this.btnLogin.UseVisualStyleBackColor = false;
-            this.btnLogin.Click += new System.EventHandler(this.button1_Click);
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // panel3
             // 
@@ -206,6 +206,7 @@
             this.btnSearch.Size = new System.Drawing.Size(21, 21);
             this.btnSearch.TabIndex = 6;
             this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // txtEmpID
             // 
