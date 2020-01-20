@@ -42,8 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CMG\CodeTableDAC.cs" />
+    <Compile Include="ConnectionInfo.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="HJS\POPDAC.cs" />
+    <Compile Include="KJH\LoginDAC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -52,6 +54,11 @@
       <Name>Team2_VO</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="ConnectionInfo.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(SolutionDir)\Team2_DAC\ConnectionInfo.xml" "$(SolutionDir)\Team2_ERP\bin\Debug"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

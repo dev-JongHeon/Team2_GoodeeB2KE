@@ -42,6 +42,7 @@ namespace Team2_DAC
 
         public bool InsertCategory()
         {
+            return true;
         }
     }
 }

@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="CodeTableVO.cs" />
     <Compile Include="ComboItemVO.cs" />
     <Compile Include="HJS\Performance.cs" />
