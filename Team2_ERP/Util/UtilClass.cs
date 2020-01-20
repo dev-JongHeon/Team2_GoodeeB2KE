@@ -62,7 +62,7 @@ namespace Team2_ERP
             dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(55, 113, 138);
             dgv.ColumnHeadersDefaultCellStyle.Font = new Font(dgv.Font, FontStyle.Bold);
             dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(54, 64, 67);
+            dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(55, 113, 138);
             dgv.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
             dgv.EnableHeadersVisualStyles = false;
             dgv.AllowUserToResizeColumns = true;

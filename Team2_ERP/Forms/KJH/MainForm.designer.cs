@@ -93,7 +93,7 @@
             this.닫기ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnLogOut = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -105,7 +105,7 @@
             this.panel_Menu = new System.Windows.Forms.Panel();
             this.mpanel = new System.Windows.Forms.Panel();
             this.panel_Info = new System.Windows.Forms.Panel();
-            this.treeView4 = new System.Windows.Forms.TreeView();
+            this.treeView_Info = new System.Windows.Forms.TreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.menu_Info = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
@@ -113,21 +113,21 @@
             this.lblInfo = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.panel_Sales = new System.Windows.Forms.Panel();
-            this.treeView3 = new System.Windows.Forms.TreeView();
+            this.treeView_Sales = new System.Windows.Forms.TreeView();
             this.menu_Sales = new System.Windows.Forms.Panel();
             this.panel12 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
             this.lblSales = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.panel_Stock = new System.Windows.Forms.Panel();
-            this.treeView2 = new System.Windows.Forms.TreeView();
+            this.treeView_Stock = new System.Windows.Forms.TreeView();
             this.menu_Stock = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.lblStock = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel_Production = new System.Windows.Forms.Panel();
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.treeView_Production = new System.Windows.Forms.TreeView();
             this.menu_production = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
@@ -324,28 +324,29 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(236)))), ((int)(((byte)(241)))));
-            this.panel5.Controls.Add(this.button2);
+            this.panel5.Controls.Add(this.btnLogOut);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel5.Location = new System.Drawing.Point(1495, 0);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(85, 84);
             this.panel5.TabIndex = 1;
             // 
-            // button2
+            // btnLogOut
             // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(236)))), ((int)(((byte)(241)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button2.ForeColor = System.Drawing.Color.Gray;
-            this.button2.Image = global::Team2_ERP.Properties.Resources.Action_Logoff;
-            this.button2.Location = new System.Drawing.Point(0, 0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(85, 26);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "로그아웃";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnLogOut.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnLogOut.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(236)))), ((int)(((byte)(241)))));
+            this.btnLogOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogOut.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnLogOut.ForeColor = System.Drawing.Color.Gray;
+            this.btnLogOut.Image = global::Team2_ERP.Properties.Resources.Action_Logoff;
+            this.btnLogOut.Location = new System.Drawing.Point(0, 0);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(85, 26);
+            this.btnLogOut.TabIndex = 0;
+            this.btnLogOut.Text = "로그아웃";
+            this.btnLogOut.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnLogOut.UseVisualStyleBackColor = true;
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
             // panel4
             // 
@@ -460,7 +461,7 @@
             // 
             // panel_Info
             // 
-            this.panel_Info.Controls.Add(this.treeView4);
+            this.panel_Info.Controls.Add(this.treeView_Info);
             this.panel_Info.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_Info.Location = new System.Drawing.Point(0, 505);
             this.panel_Info.Name = "panel_Info";
@@ -468,14 +469,14 @@
             this.panel_Info.TabIndex = 12;
             this.panel_Info.Tag = "panel_Info";
             // 
-            // treeView4
+            // treeView_Info
             // 
-            this.treeView4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView4.FullRowSelect = true;
-            this.treeView4.ImageIndex = 2;
-            this.treeView4.ImageList = this.imageList1;
-            this.treeView4.Location = new System.Drawing.Point(0, 0);
-            this.treeView4.Name = "treeView4";
+            this.treeView_Info.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView_Info.FullRowSelect = true;
+            this.treeView_Info.ImageIndex = 2;
+            this.treeView_Info.ImageList = this.imageList1;
+            this.treeView_Info.Location = new System.Drawing.Point(0, 0);
+            this.treeView_Info.Name = "treeView_Info";
             treeNode1.ImageIndex = 0;
             treeNode1.Name = "노드1";
             treeNode1.SelectedImageIndex = 1;
@@ -516,13 +517,13 @@
             treeNode10.Text = "BOM 관리";
             treeNode11.Name = "노드0";
             treeNode11.Text = "공장관련기준정보";
-            this.treeView4.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            this.treeView_Info.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode6,
             treeNode11});
-            this.treeView4.SelectedImageIndex = 3;
-            this.treeView4.Size = new System.Drawing.Size(196, 95);
-            this.treeView4.TabIndex = 1;
-            this.treeView4.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView4_NodeMouseDoubleClick);
+            this.treeView_Info.SelectedImageIndex = 3;
+            this.treeView_Info.Size = new System.Drawing.Size(196, 95);
+            this.treeView_Info.TabIndex = 1;
+            this.treeView_Info.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView4_NodeMouseDoubleClick);
             // 
             // imageList1
             // 
@@ -600,7 +601,7 @@
             // 
             // panel_Sales
             // 
-            this.panel_Sales.Controls.Add(this.treeView3);
+            this.panel_Sales.Controls.Add(this.treeView_Sales);
             this.panel_Sales.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_Sales.Location = new System.Drawing.Point(0, 385);
             this.panel_Sales.Name = "panel_Sales";
@@ -608,14 +609,14 @@
             this.panel_Sales.TabIndex = 10;
             this.panel_Sales.Tag = "panel_Sales";
             // 
-            // treeView3
+            // treeView_Sales
             // 
-            this.treeView3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView3.FullRowSelect = true;
-            this.treeView3.ImageIndex = 2;
-            this.treeView3.ImageList = this.imageList1;
-            this.treeView3.Location = new System.Drawing.Point(0, 0);
-            this.treeView3.Name = "treeView3";
+            this.treeView_Sales.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView_Sales.FullRowSelect = true;
+            this.treeView_Sales.ImageIndex = 2;
+            this.treeView_Sales.ImageList = this.imageList1;
+            this.treeView_Sales.Location = new System.Drawing.Point(0, 0);
+            this.treeView_Sales.Name = "treeView_Sales";
             treeNode12.ImageIndex = 0;
             treeNode12.Name = "노드1";
             treeNode12.SelectedImageIndex = 1;
@@ -626,11 +627,11 @@
             treeNode13.Text = "매출현황";
             treeNode14.Name = "노드0";
             treeNode14.Text = "영업관리";
-            this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            this.treeView_Sales.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode14});
-            this.treeView3.SelectedImageIndex = 3;
-            this.treeView3.Size = new System.Drawing.Size(196, 95);
-            this.treeView3.TabIndex = 1;
+            this.treeView_Sales.SelectedImageIndex = 3;
+            this.treeView_Sales.Size = new System.Drawing.Size(196, 95);
+            this.treeView_Sales.TabIndex = 1;
             // 
             // menu_Sales
             // 
@@ -699,7 +700,7 @@
             // 
             // panel_Stock
             // 
-            this.panel_Stock.Controls.Add(this.treeView2);
+            this.panel_Stock.Controls.Add(this.treeView_Stock);
             this.panel_Stock.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_Stock.Location = new System.Drawing.Point(0, 265);
             this.panel_Stock.Name = "panel_Stock";
@@ -707,14 +708,14 @@
             this.panel_Stock.TabIndex = 8;
             this.panel_Stock.Tag = "panel_Stock";
             // 
-            // treeView2
+            // treeView_Stock
             // 
-            this.treeView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView2.FullRowSelect = true;
-            this.treeView2.ImageIndex = 2;
-            this.treeView2.ImageList = this.imageList1;
-            this.treeView2.Location = new System.Drawing.Point(0, 0);
-            this.treeView2.Name = "treeView2";
+            this.treeView_Stock.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView_Stock.FullRowSelect = true;
+            this.treeView_Stock.ImageIndex = 2;
+            this.treeView_Stock.ImageList = this.imageList1;
+            this.treeView_Stock.Location = new System.Drawing.Point(0, 0);
+            this.treeView_Stock.Name = "treeView_Stock";
             treeNode15.ImageIndex = 0;
             treeNode15.Name = "노드1";
             treeNode15.SelectedImageIndex = 1;
@@ -725,11 +726,11 @@
             treeNode17.Text = "노드2";
             treeNode18.Name = "노드0";
             treeNode18.Text = "재고관리";
-            this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            this.treeView_Stock.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode18});
-            this.treeView2.SelectedImageIndex = 3;
-            this.treeView2.Size = new System.Drawing.Size(196, 95);
-            this.treeView2.TabIndex = 1;
+            this.treeView_Stock.SelectedImageIndex = 3;
+            this.treeView_Stock.Size = new System.Drawing.Size(196, 95);
+            this.treeView_Stock.TabIndex = 1;
             // 
             // menu_Stock
             // 
@@ -798,7 +799,7 @@
             // 
             // panel_Production
             // 
-            this.panel_Production.Controls.Add(this.treeView1);
+            this.panel_Production.Controls.Add(this.treeView_Production);
             this.panel_Production.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_Production.Location = new System.Drawing.Point(0, 145);
             this.panel_Production.Name = "panel_Production";
@@ -806,14 +807,14 @@
             this.panel_Production.TabIndex = 6;
             this.panel_Production.Tag = "panel_Production";
             // 
-            // treeView1
+            // treeView_Production
             // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.FullRowSelect = true;
-            this.treeView1.ImageIndex = 2;
-            this.treeView1.ImageList = this.imageList1;
-            this.treeView1.Location = new System.Drawing.Point(0, 0);
-            this.treeView1.Name = "treeView1";
+            this.treeView_Production.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView_Production.FullRowSelect = true;
+            this.treeView_Production.ImageIndex = 2;
+            this.treeView_Production.ImageList = this.imageList1;
+            this.treeView_Production.Location = new System.Drawing.Point(0, 0);
+            this.treeView_Production.Name = "treeView_Production";
             treeNode19.ImageIndex = 0;
             treeNode19.Name = "노드3";
             treeNode19.SelectedImageIndex = 1;
@@ -844,13 +845,13 @@
             treeNode26.Text = "불량현황";
             treeNode27.Name = "노드0";
             treeNode27.Text = "불량 관리";
-            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            this.treeView_Production.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode21,
             treeNode24,
             treeNode27});
-            this.treeView1.SelectedImageIndex = 3;
-            this.treeView1.Size = new System.Drawing.Size(196, 95);
-            this.treeView1.TabIndex = 1;
+            this.treeView_Production.SelectedImageIndex = 3;
+            this.treeView_Production.Size = new System.Drawing.Size(196, 95);
+            this.treeView_Production.TabIndex = 1;
             // 
             // menu_production
             // 
@@ -936,7 +937,7 @@
             this.treeView_System.Location = new System.Drawing.Point(0, 0);
             this.treeView_System.Name = "treeView_System";
             treeNode28.ImageIndex = 0;
-            treeNode28.Name = "노드1";
+            treeNode28.Name = "UserAuth";
             treeNode28.SelectedImageIndex = 1;
             treeNode28.Text = "사용자권한설정";
             treeNode29.Name = "노드0";
@@ -1068,6 +1069,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "구디 B2KE";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
             this.panel1.ResumeLayout(false);
@@ -1110,7 +1112,7 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnLogOut;
         private System.Windows.Forms.Panel panel7;
         public System.Windows.Forms.MenuStrip menuStrip;
         public System.Windows.Forms.ToolStripMenuItem 새로고침ToolStripMenuItem;
@@ -1159,10 +1161,10 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TreeView treeView_System;
         private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.TreeView treeView4;
-        private System.Windows.Forms.TreeView treeView3;
-        private System.Windows.Forms.TreeView treeView2;
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView treeView_Info;
+        private System.Windows.Forms.TreeView treeView_Sales;
+        private System.Windows.Forms.TreeView treeView_Stock;
+        private System.Windows.Forms.TreeView treeView_Production;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Panel panel15;
         private System.Windows.Forms.PictureBox pictureBox2;

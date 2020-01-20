@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Team2_ERP.Properties;
-
+using Team2_VO;
 
 namespace Team2_ERP
 {
@@ -22,10 +22,19 @@ namespace Team2_ERP
         public EventHandler M_Search;
         public EventHandler M_Print;
         public EventHandler M_Close;
+        int tindex;
+        bool isLogout=false;
+        LoginVO logininfo = new LoginVO();
+        public LoginVO Logininfo { get => logininfo; set => logininfo = value; }
 
         public MainForm()
         {
             InitializeComponent();
+        }
+        public MainForm(LoginVO info)
+        {
+            InitializeComponent();
+            Logininfo = info;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -327,10 +336,6 @@ namespace Team2_ERP
 
         }
 
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-
-        }
 
         private void 수정ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -358,8 +363,28 @@ namespace Team2_ERP
 
         private void 닫기ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (M_Close != null)
-                M_Close.Invoke(this, null);
+            foreach (Form Child in Application.OpenForms)
+            {
+                if (Child is Category)
+                {
+                    Category tmp = (Category)Child;
+                    if (tmp.TabPag == tabControl1.SelectedTab)
+                    {
+                        tmp.Close();
+                        break;
+                    }
+                }
+            }
+            if (tindex != 0)
+            {
+                tabControl1.SelectedIndex = tindex - 1;
+            }
+            else
+            {
+                tabControl1.SelectedIndex = tindex;
+
+            }
+            tabControl1.Invalidate();
         }
 
         private void treeView4_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -368,6 +393,25 @@ namespace Team2_ERP
             {
                 OpenBaseForm<Category>("카테고리");
             }
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!isLogout)
+            {
+                if (MessageBox.Show("프로그램을 종료하시겠습니까?", "프로그램 종료", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }
+
+        }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            isLogout = true;
+            Logininfo.IsLogout = isLogout;
+            this.Close();
         }
     }
 }

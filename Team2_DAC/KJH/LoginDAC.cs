@@ -17,21 +17,45 @@ namespace Team2_DAC
             conn = new SqlConnection(this.ConnectionString);
         }
 
-        public List<SearchedInfoVO> GetInfo(string div)
+        public LoginVO DoLogin(int id, string pwd)
         {
             try
             {
-                List<SearchedInfoVO> list = new List<SearchedInfoVO>();
-                string sql = "GetInfo";
+                List<LoginVO> list = new List<LoginVO>();
+                string sql = "Login";
                 using (SqlCommand cmd = new SqlCommand(sql,conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@div", div);
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    cmd.Parameters.AddWithValue("@Pwd", pwd);
                     conn.Open();
-                    list = Helper.DataReaderMapToList<SearchedInfoVO>(cmd.ExecuteReader());
+                    list = Helper.DataReaderMapToList<LoginVO>(cmd.ExecuteReader());
                     conn.Close();
                 }
-                return list;
+                return (list[0].Employee_ID==0)? null:list[0];
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+        }
+
+        public bool ChangePwd(LoginVO login,string newpwd)
+        {
+            try
+            {
+                string sql = "ChangePWD";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ID", login.Employee_ID);
+                    cmd.Parameters.AddWithValue("@Pwd", login.Employee_PWD);
+                    cmd.Parameters.AddWithValue("@newPwd", newpwd);
+                    conn.Open();
+                    int result = Convert.ToInt32(cmd.ExecuteNonQuery());
+                    conn.Close();
+                    return result>0;
+                }
             }
             catch (Exception err)
             {
