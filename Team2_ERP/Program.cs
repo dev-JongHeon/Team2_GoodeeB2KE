@@ -24,7 +24,7 @@ namespace Team2_ERP
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new BaljuList_Completed());
+            Application.Run(new InOutList_MaterialWarehouse());
         }
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)

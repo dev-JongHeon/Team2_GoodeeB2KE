@@ -48,6 +48,7 @@
     <Compile Include="KJH\LoginDAC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SSD\BaljuDAC.cs" />
+    <Compile Include="SSD\StockDAC.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Team2_VO\Team2_VO.csproj">
