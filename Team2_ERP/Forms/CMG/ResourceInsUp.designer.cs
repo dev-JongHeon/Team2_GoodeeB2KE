@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.txtResourceSafe = new System.Windows.Forms.TextBox();
-            this.txtFactoryDivision = new System.Windows.Forms.TextBox();
+            this.txtResourceMoney = new System.Windows.Forms.TextBox();
             this.txtResourceName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -55,7 +55,7 @@
             this.panel5.Controls.Add(this.numResourceNum);
             this.panel5.Controls.Add(this.cboResourceWarehouse);
             this.panel5.Controls.Add(this.txtResourceSafe);
-            this.panel5.Controls.Add(this.txtFactoryDivision);
+            this.panel5.Controls.Add(this.txtResourceMoney);
             this.panel5.Controls.Add(this.txtResourceName);
             this.panel5.Controls.Add(this.label6);
             this.panel5.Controls.Add(this.label5);
@@ -67,10 +67,12 @@
             // btnCancel
             // 
             this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOK
             // 
             this.btnOK.FlatAppearance.BorderSize = 0;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // txtResourceSafe
             // 
@@ -79,12 +81,12 @@
             this.txtResourceSafe.Size = new System.Drawing.Size(133, 21);
             this.txtResourceSafe.TabIndex = 7;
             // 
-            // txtFactoryDivision
+            // txtResourceMoney
             // 
-            this.txtFactoryDivision.Location = new System.Drawing.Point(129, 149);
-            this.txtFactoryDivision.Name = "txtFactoryDivision";
-            this.txtFactoryDivision.Size = new System.Drawing.Size(133, 21);
-            this.txtFactoryDivision.TabIndex = 9;
+            this.txtResourceMoney.Location = new System.Drawing.Point(129, 149);
+            this.txtResourceMoney.Name = "txtResourceMoney";
+            this.txtResourceMoney.Size = new System.Drawing.Size(133, 21);
+            this.txtResourceMoney.TabIndex = 9;
             // 
             // txtResourceName
             // 
@@ -183,6 +185,7 @@
             this.ClientSize = new System.Drawing.Size(800, 525);
             this.Name = "ResourceInsUp";
             this.Text = "ResourceInsUp";
+            this.Load += new System.EventHandler(this.ResourceInsUp_Load);
             this.panel1.ResumeLayout(false);
             this.panel_Title.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).EndInit();
@@ -199,7 +202,7 @@
         private System.Windows.Forms.NumericUpDown numResourceNum;
         private System.Windows.Forms.ComboBox cboResourceWarehouse;
         private System.Windows.Forms.TextBox txtResourceSafe;
-        private System.Windows.Forms.TextBox txtFactoryDivision;
+        private System.Windows.Forms.TextBox txtResourceMoney;
         private System.Windows.Forms.TextBox txtResourceName;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;

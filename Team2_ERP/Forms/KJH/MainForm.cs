@@ -260,7 +260,7 @@ namespace Team2_ERP
             }
             else if(e.Node.Name== "Resource")
             {
-                OpenBaseForm<Resource>("원자재관리");
+                OpenBaseForm<Resource> ("원자재관리");
             }
             else if(e.Node.Name== "InOutList_SemiProductWarehouse")
             {
@@ -303,6 +303,8 @@ namespace Team2_ERP
                 }
             }
         }
+
+        
         #endregion
 
         #region MDI 자식폼 열기
