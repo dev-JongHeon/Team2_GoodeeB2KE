@@ -26,6 +26,11 @@ namespace Team2_ERP
             {
                 tabCtrl.Visible = true;
             }
+            MainForm frm = (MainForm)this.ParentForm;
+            foreach(ToolStripMenuItem item in frm.menuStrip.Items)
+            {
+                item.Visible = true;
+            }
         }
 
         public void Form_FormClosing(object sender, FormClosingEventArgs e)

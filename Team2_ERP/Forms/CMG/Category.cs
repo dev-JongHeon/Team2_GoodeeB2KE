@@ -19,7 +19,7 @@ namespace Team2_ERP
         string code = string.Empty;
         string name = string.Empty;
         string context = string.Empty;
-
+        MainForm frm;
         public Category()
         {
             InitializeComponent();
@@ -50,18 +50,18 @@ namespace Team2_ERP
         // 메인 폼 메세지 초기화
         private void InitMessage()
         {
-            MainForm frm = (MainForm)this.ParentForm;
+            
             frm.NoticeMessage = "메세지";
         }
 
-        private void Refresh(object sender, EventArgs e)
+        public override void Refresh(object sender, EventArgs e)
         {
             InitMessage();
             dataGridView1.DataSource = null;
             LoadGridView();
         }
 
-        private void New(object sender, EventArgs e)
+        public override void New(object sender, EventArgs e)
         {
             InitMessage();
 
@@ -74,13 +74,12 @@ namespace Team2_ERP
             }
         }
 
-        private void Modify(object sender, EventArgs e)
+        public override void Modify(object sender, EventArgs e)
         {
             InitMessage();
 
             if (code == string.Empty)
             {
-                MainForm frm = (MainForm)this.ParentForm;
                 frm.NoticeMessage = "수정할 카테고리를 선택해 주세요.";
             }
             else
@@ -95,7 +94,7 @@ namespace Team2_ERP
             }
         }
 
-        private void Delete(object sender, EventArgs e)
+        public override void Delete(object sender, EventArgs e)
         {
             InitMessage();
 
@@ -108,18 +107,10 @@ namespace Team2_ERP
             }
         }
 
-        private void Search(object sender, EventArgs e)
-        {
-
-        }
-        
-        private void Print(object sender, EventArgs e)
-        {
-
-        }
 
         private void Category_Load(object sender, EventArgs e)
         {
+            frm = (MainForm)this.ParentForm;
             InitGridView();
             LoadGridView();
         }
@@ -133,14 +124,8 @@ namespace Team2_ERP
 
         private void Category_Activated(object sender, EventArgs e)
         {
-            new SettingMenuStrip().SetMenu(this, Refresh, New, Modify, Delete, Search, Print);
             ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = false;
             ((MainForm)MdiParent).검색toolStripMenuItem.Visible = false;
-        }
-
-        private void Category_Deactivate(object sender, EventArgs e)
-        {
-            new SettingMenuStrip().UnsetMenu(this, Refresh, New, Modify, Delete, Search, Print);
         }
     }
 }

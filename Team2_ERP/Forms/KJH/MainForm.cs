@@ -446,7 +446,10 @@ namespace Team2_ERP
 
         private void treeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-
+            if (e.Node.Name == "Category")
+            {
+                OpenBaseForm<Category>("카테고리관리");
+            }
         }
     }
 }
