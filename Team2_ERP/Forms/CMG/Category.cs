@@ -15,6 +15,7 @@ namespace Team2_ERP
     public partial class Category : BaseForm
     {
         List<CodeTableVO> list;
+
         string code = string.Empty;
         string name = string.Empty;
         string context = string.Empty;
@@ -46,18 +47,27 @@ namespace Team2_ERP
             dataGridView1.DataSource = categoryList;
         }
 
+        // 메인 폼 메세지 초기화
+        private void InitMessage()
+        {
+            MainForm frm = (MainForm)this.ParentForm;
+            frm.NoticeMessage = "메세지";
+        }
+
         private void Refresh(object sender, EventArgs e)
         {
+            InitMessage();
             dataGridView1.DataSource = null;
             LoadGridView();
         }
 
         private void New(object sender, EventArgs e)
         {
+            InitMessage();
+
             CategoryInsUp frm = new CategoryInsUp(CategoryInsUp.EditMode.Insert, null, null, null);
             if(frm.ShowDialog() == DialogResult.OK)
             {
-                
                 frm.Close();
                 dataGridView1.DataSource = null;
                 LoadGridView();
@@ -66,6 +76,8 @@ namespace Team2_ERP
 
         private void Modify(object sender, EventArgs e)
         {
+            InitMessage();
+
             if (code == string.Empty)
             {
                 MainForm frm = (MainForm)this.ParentForm;
@@ -74,7 +86,6 @@ namespace Team2_ERP
             else
             {
                 CategoryInsUp frm = new CategoryInsUp(CategoryInsUp.EditMode.Update, code, name, context);
-
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     frm.Close();
@@ -86,6 +97,8 @@ namespace Team2_ERP
 
         private void Delete(object sender, EventArgs e)
         {
+            InitMessage();
+
             if(MessageBox.Show("삭제하시겠습니까?", "확인", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 CodeTableService service = new CodeTableService();

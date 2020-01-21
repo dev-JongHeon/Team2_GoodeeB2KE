@@ -30,16 +30,6 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_StockStatus, "수불수량", "StockReceipt_Quantity", true);
             UtilClass.AddNewColum(dgv_StockStatus, "등록사원", "Employees_Name", true);
             UtilClass.AddNewColum(dgv_StockStatus, "창고유형", "Warehouse_Division", false);
-
-            StockReceipt_AllList = dac.GetStockReceipts(); // 자재수불내역 갱신
-
-            // LINQ로 반제품창고에 속한것만 가져옴
-            List<Stock> StockReceipt_list = (from list_Stock in StockReceipt_AllList
-                                             where list_Stock.Warehouse_Division == true
-                                             select list_Stock).ToList();
-            dgv_Stock.DataSource = StockReceipt_list;
         }
-
-
     }
 }
