@@ -6,10 +6,20 @@ using System.Threading.Tasks;
 using Team2_DAC;
 using Team2_VO;
 
-namespace Team2_ERP.Service
+namespace Team2_ERP
 {
     public class LoginService
     {
-        
+        public LoginVO DoLogin(int id, string pwd)
+        {
+            LoginDAC dac = new LoginDAC();
+            return dac.DoLogin(id, pwd);
+        }
+
+        public bool ChangePwd(LoginVO login, string newpwd)
+        {
+            LoginDAC dac = new LoginDAC();
+            return dac.ChangePwd(login, newpwd);
+        }
     }
 }

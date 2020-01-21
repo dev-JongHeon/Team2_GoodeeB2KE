@@ -14,22 +14,11 @@ namespace Team2_ERP
     public partial class LoginForm : Form
     {
         private Point mousePoint;
-
+        SearchedInfoVO info = new SearchedInfoVO();
+        LoginVO logininfo = new LoginVO();
         public LoginForm()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-
-        }
-
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-          
         }
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
@@ -48,7 +37,6 @@ namespace Team2_ERP
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            SearchedInfoVO info = new SearchedInfoVO();
             SearchForm frm = new SearchForm(info);
             frm.Mode = SearchUserControl.Mode.Employee;
             if (frm.ShowDialog() == DialogResult.OK)
@@ -56,8 +44,10 @@ namespace Team2_ERP
                 info = frm.info;
                 txtEmpID.Text = info.ID.ToString();
                 txtEmpName.Text = info.Name.ToString();
+                this.ActiveControl = txtEmpPwd;
+                
             }
-            
+
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -67,18 +57,74 @@ namespace Team2_ERP
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            MainForm frm = new MainForm();
-            this.Hide();
-            if (frm.ShowDialog() == DialogResult.Cancel)
+            if (txtEmpID.TextLength > 0)
             {
-                this.Show();
+                try
+                {
+                    LoginService service = new LoginService();
+                    LoginVO user = service.DoLogin(int.Parse(txtEmpID.Text), txtEmpPwd.Text);
+                    if (user != null)
+                    {
+                        logininfo = user;
+                        MainForm frm = new MainForm(logininfo);
+                        this.Hide();
+                        if (frm.ShowDialog() == DialogResult.Cancel)
+                        {
+                            logininfo = frm.Logininfo;
+                            if (!logininfo.IsLogout)
+                            {
+                                this.Close();
+                            }
+                            else
+                            {
+                                this.Show();
+                                txtEmpID.Text = logininfo.Employee_ID.ToString();
+                                txtEmpName.Text = logininfo.Employee_Name;
+                                txtEmpPwd.Text = "";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("입력한 비밀번호가 잘못되었습니다.", "비밀번호 오류", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("사원번호가 비어있습니다.\n사원을 선택하여주세요.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                btnSearch.PerformClick();
             }
         }
 
         private void btnPwdChange_Click(object sender, EventArgs e)
         {
-            ChangePwd frm = new ChangePwd();
-            frm.Show();
+            if (txtEmpID.TextLength > 0 && txtEmpName.TextLength > 0)
+            {
+                logininfo.Employee_ID = int.Parse(txtEmpID.Text);
+                logininfo.Employee_PWD = txtEmpPwd.Text;
+                ChangePwd frm = new ChangePwd(logininfo);
+                frm.ShowDialog();
+                this.ActiveControl = txtEmpPwd;
+            }
+            else
+            {
+                if (txtEmpID.TextLength < 1)
+                {
+                    MessageBox.Show("사원번호가 비어있습니다.\n사원을 선택하여주세요.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnSearch.PerformClick();
+                }
+                else if (txtEmpName.TextLength < 1)
+                {
+                    MessageBox.Show("사원명이 비어있습니다.\n사원을 선택하여주세요.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnSearch.PerformClick();
+                }
+            }
+
         }
     }
 }

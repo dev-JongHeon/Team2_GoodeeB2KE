@@ -12,7 +12,7 @@ namespace Team2_ERP
     {
         public List<SearchedInfoVO> GetInfo(string div)
         {
-            LoginDAC dac = new LoginDAC();
+            SearchDAC dac = new SearchDAC();
             return dac.GetInfo(div);
         }
     }

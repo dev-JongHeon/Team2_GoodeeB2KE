@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Team2_ERP.Properties;
-
+using Team2_VO;
 
 namespace Team2_ERP
 {
@@ -22,10 +22,19 @@ namespace Team2_ERP
         public EventHandler M_Search;
         public EventHandler M_Print;
         public EventHandler M_Close;
+        int tindex;
+        bool isLogout = false;
+        LoginVO logininfo = new LoginVO();
+        public LoginVO Logininfo { get => logininfo; set => logininfo = value; }
 
         public MainForm()
         {
             InitializeComponent();
+        }
+        public MainForm(LoginVO info)
+        {
+            InitializeComponent();
+            Logininfo = info;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -45,9 +54,9 @@ namespace Team2_ERP
         }
         private void 새로고침ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            M_Refresh?.Invoke(this, e);
 
-            OpenBaseForm<Category>("카테고리");
+            if (M_Refresh != null)
+                M_Refresh.Invoke(this, null);
         }
         private void splitter1_SplitterMoved(object sender, SplitterEventArgs e)
         {
@@ -327,9 +336,117 @@ namespace Team2_ERP
 
         }
 
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        {
 
+        private void 수정ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (M_Modify != null)
+                M_Modify.Invoke(this, null);
+        }
+
+        private void 삭제ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (M_Delete != null)
+                M_Delete.Invoke(this, null);
+        }
+
+        private void 검색toolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (M_Search != null)
+                M_Search.Invoke(this, null);
+        }
+
+        private void 인쇄ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (M_Print != null)
+                M_Print.Invoke(this, null);
+        }
+
+        private void 닫기ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form Child in Application.OpenForms)
+            {
+                if (Child is Category)
+                {
+                    Category tmp = (Category)Child;
+                    if (tmp.TabPag == tabControl1.SelectedTab)
+                    {
+                        tmp.Close();
+                        break;
+                    }
+                }
+            }
+            if (tindex != 0)
+            {
+                tabControl1.SelectedIndex = tindex - 1;
+            }
+            else
+            {
+                tabControl1.SelectedIndex = tindex;
+
+            }
+            tabControl1.Invalidate();
+        }
+
+        private void treeView4_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Node.Name == "Category")
+            {
+                OpenBaseForm<Category>("카테고리");
+            }
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!isLogout)
+            {
+                if (MessageBox.Show("프로그램을 종료하시겠습니까?", "프로그램 종료", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }
+
+        }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            isLogout = true;
+            Logininfo.IsLogout = isLogout;
+            this.Close();
+        }
+
+        private void menu_System_Click(object sender, EventArgs e)
+        {
+            Panel panel = (Panel)sender;
+            string name = panel.Name.ToString();
+            string ptag = string.Empty;
+            string lname = string.Empty;
+            switch (name)
+            {
+                case "menu_System":
+                    ptag = "panel_System";
+                    lname = "lblSystem";
+                    break;
+                case "menu_Production":
+                    ptag = "panel_Production";
+                    lname = "lblProduction";
+                    break;
+                case "menu_Stock":
+                    ptag = "panel_Stock";
+                    lname = "lblStock";
+                    break;
+                case "menu_Sales":
+                    ptag = "panel_Sales";
+                    lname = "lblSales";
+                    break;
+                case "menu_Info":
+                    ptag = "panel_Info";
+                    lname = "lblInfo";
+                    break;
+                default:
+                    break;
+            }
+            SelectMenu(ptag, lname);
+            FillMenu();
         }
     }
 }
