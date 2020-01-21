@@ -80,6 +80,8 @@
             this.ClientSize = new System.Drawing.Size(1364, 820);
             this.Name = "Department";
             this.Text = "Department";
+            this.Activated += new System.EventHandler(this.Department_Activated);
+            this.Deactivate += new System.EventHandler(this.Department_Deactivate);
             this.Load += new System.EventHandler(this.Department_Load);
             this.panel1.ResumeLayout(false);
             this.panel_Search.ResumeLayout(false);
