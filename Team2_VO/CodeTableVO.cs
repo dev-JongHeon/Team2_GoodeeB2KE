@@ -11,5 +11,6 @@ namespace Team2_VO
         public string CodeTable_CodeID { get; set; }
         public string CodeTable_CodeName { get; set; }
         public string CodeTable_CodeExplain { get; set; }
+        public bool CodeTable_DeletedYN { get; set; }
     }
 }
