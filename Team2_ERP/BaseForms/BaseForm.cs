@@ -35,7 +35,7 @@ namespace Team2_ERP
 
         public void Form_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //Destroy the corresponding Tabpage when closing MDI child form
+            ////Destroy the corresponding Tabpage when closing MDI child form
             //this.tabPag.Dispose();
 
             ////If no Tabpage left

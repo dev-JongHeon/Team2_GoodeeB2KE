@@ -20,24 +20,16 @@ namespace Team2_ERP
         }
         public void LoadData()
         {
-            UtilClass.AddNewColum(dgv_StockStatus, "수불번호", "StockReceipt_ID", true);
-            UtilClass.AddNewColum(dgv_StockStatus, "수불유형", "StockReceipt_Division1", true);
-            UtilClass.AddNewColum(dgv_StockStatus, "처리일시", "StockReceipt_Date", true);
-            UtilClass.AddNewColum(dgv_StockStatus, "창고코드", "Warehouse_ID", true);
-            UtilClass.AddNewColum(dgv_StockStatus, "창고명", "Warehouse_Name", true);
             UtilClass.AddNewColum(dgv_StockStatus, "품번", "Product_ID", true);
             UtilClass.AddNewColum(dgv_StockStatus, "품명", "Product_Name", true);
-            UtilClass.AddNewColum(dgv_StockStatus, "수불수량", "StockReceipt_Quantity", true);
-            UtilClass.AddNewColum(dgv_StockStatus, "등록사원", "Employees_Name", true);
-            UtilClass.AddNewColum(dgv_StockStatus, "창고유형", "Warehouse_Division", false);
-
-            StockReceipt_AllList = dac.GetStockReceipts(); // 자재수불내역 갱신
-
-            // LINQ로 반제품창고에 속한것만 가져옴
-            List<Stock> StockReceipt_list = (from list_Stock in StockReceipt_AllList
-                                             where list_Stock.Warehouse_Division == true
-                                             select list_Stock).ToList();
-            dgv_Stock.DataSource = StockReceipt_list;
+            UtilClass.AddNewColum(dgv_StockStatus, "카테고리", "Product_Category", true);
+            UtilClass.AddNewColum(dgv_StockStatus, "창고코드", "Warehouse_ID", true);
+            UtilClass.AddNewColum(dgv_StockStatus, "창고명", "Warehouse_Name", true);
+            UtilClass.AddNewColum(dgv_StockStatus, "단가", "Product_Price", true);
+            UtilClass.AddNewColum(dgv_StockStatus, "재고량", "Product_Qty", true);
+            UtilClass.AddNewColum(dgv_StockStatus, "안전재고량", "Product_Safety", true);
+            UtilClass.AddNewColum(dgv_StockStatus, "차이수량", "Count_Subtract", true);
+            UtilClass.AddNewColum(dgv_StockStatus, "삭제여부", "Product_DeletedYN", false);
         }
 
 

@@ -35,7 +35,7 @@ namespace Team2_ERP
         public string Labelname { get => lblName.Text; set => lblName.Text=value; }
 
         public enum Mode { Employee,DepOperation,DepMaterial,DepSales,DepProd1,DepProd2, Defective, Product, Downtime, Company,
-            Factory, Line, Meterial, SemiProduct,Customer, Warehouse, Department };
+            Factory, Line, Meterial, SemiProduct,Customer, Warehouse, Department, ProductCategory };
 
         Mode Modes = Mode.Employee;
 
@@ -98,6 +98,9 @@ namespace Team2_ERP
                         break;
                     case Mode.Company:
                         this.CodeLabel.Text = "회사";
+                        break;
+                    case Mode.ProductCategory:
+                        this.CodeLabel.Text = "제품카테고리";
                         break;
                 }
             }
