@@ -42,29 +42,14 @@
             this.btnNextDate = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.btnPreDate = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblDate = new System.Windows.Forms.Label();
             this.btnDate = new System.Windows.Forms.Button();
             this.btnWorkStart = new System.Windows.Forms.Button();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.dgvWork = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.splitContainer6 = new System.Windows.Forms.SplitContainer();
             this.dgvProduce = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvPerformance = new System.Windows.Forms.DataGridView();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -207,6 +192,7 @@
             this.cboFactory.Name = "cboFactory";
             this.cboFactory.Size = new System.Drawing.Size(246, 44);
             this.cboFactory.TabIndex = 1;
+            this.cboFactory.SelectedIndexChanged += new System.EventHandler(this.cboFactory_SelectedIndexChanged);
             // 
             // btnLineSearch
             // 
@@ -268,7 +254,7 @@
             this.tableLayoutPanel1.Controls.Add(this.btnNextDate, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnPreDate, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lblDate, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnDate, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnWorkStart, 5, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -333,17 +319,17 @@
             this.btnPreDate.UseVisualStyleBackColor = false;
             this.btnPreDate.Click += new System.EventHandler(this.btnPreDate_Click);
             // 
-            // label5
+            // lblDate
             // 
-            this.label5.AutoSize = true;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Font = new System.Drawing.Font("나눔고딕", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label5.Location = new System.Drawing.Point(336, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(267, 76);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "2020-01-05";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblDate.AutoSize = true;
+            this.lblDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblDate.Font = new System.Drawing.Font("나눔고딕", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblDate.Location = new System.Drawing.Point(336, 0);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(267, 76);
+            this.lblDate.TabIndex = 2;
+            this.lblDate.Text = "2020-01-05";
+            this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnDate
             // 
@@ -393,59 +379,13 @@
             // 
             this.dgvWork.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvWork.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvWork.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.Column15,
-            this.Column10,
-            this.Column11,
-            this.dataGridViewTextBoxColumn9,
-            this.Column13,
-            this.Column14});
             this.dgvWork.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvWork.Location = new System.Drawing.Point(0, 0);
             this.dgvWork.Name = "dgvWork";
             this.dgvWork.RowTemplate.Height = 23;
             this.dgvWork.Size = new System.Drawing.Size(1264, 249);
             this.dgvWork.TabIndex = 2;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "작업지시번호";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 200;
-            // 
-            // Column15
-            // 
-            this.Column15.HeaderText = "출하지시서코드";
-            this.Column15.Name = "Column15";
-            // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "작업시작일";
-            this.Column10.Name = "Column10";
-            this.Column10.Width = 200;
-            // 
-            // Column11
-            // 
-            this.Column11.HeaderText = "납기일";
-            this.Column11.Name = "Column11";
-            this.Column11.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.HeaderText = "작업상태";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.Width = 150;
-            // 
-            // Column13
-            // 
-            this.Column13.HeaderText = "사원코드";
-            this.Column13.Name = "Column13";
-            // 
-            // Column14
-            // 
-            this.Column14.HeaderText = "작업지시자명";
-            this.Column14.Name = "Column14";
+            this.dgvWork.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvWork_CellClick);
             // 
             // splitContainer4
             // 
@@ -486,64 +426,12 @@
             // 
             this.dgvProduce.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvProduce.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProduce.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column5,
-            this.Column4,
-            this.Column8,
-            this.Column9,
-            this.Column7});
             this.dgvProduce.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvProduce.Location = new System.Drawing.Point(0, 0);
             this.dgvProduce.Name = "dgvProduce";
             this.dgvProduce.RowTemplate.Height = 23;
             this.dgvProduce.Size = new System.Drawing.Size(793, 459);
             this.dgvProduce.TabIndex = 2;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "생산작업번호";
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 150;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "품목코드";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "품목명";
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 200;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "생산지시량";
-            this.Column5.Name = "Column5";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "투입량";
-            this.Column4.Name = "Column4";
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "불량수";
-            this.Column8.Name = "Column8";
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "불량처리여부";
-            this.Column9.Name = "Column9";
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "작업상태";
-            this.Column7.Name = "Column7";
-            this.Column7.Width = 150;
             // 
             // dgvPerformance
             // 
@@ -757,7 +645,7 @@
         private System.Windows.Forms.Button btnNextDate;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnPreDate;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.Button btnDate;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
@@ -777,13 +665,6 @@
         private System.Windows.Forms.Button btnWorker;
         private System.Windows.Forms.Button btnProduceStart;
         private System.Windows.Forms.Label lblWorker;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
         private System.Windows.Forms.SplitContainer splitContainer6;
         private System.Windows.Forms.DataGridView dgvProduce;
         private System.Windows.Forms.DataGridView dgvPerformance;
@@ -797,14 +678,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column23;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column24;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
     }
 }
 
