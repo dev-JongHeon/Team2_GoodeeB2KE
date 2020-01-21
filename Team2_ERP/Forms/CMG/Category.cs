@@ -57,6 +57,7 @@ namespace Team2_ERP
             CategoryInsUp frm = new CategoryInsUp(CategoryInsUp.EditMode.Insert, null, null, null);
             if(frm.ShowDialog() == DialogResult.OK)
             {
+                
                 frm.Close();
                 dataGridView1.DataSource = null;
                 LoadGridView();
@@ -95,14 +96,12 @@ namespace Team2_ERP
 
         }
 
-        private void Close(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void SettingMenu()
         {
-            new SettingMenuStrip().SetMenu(this, Refresh, New, Modify, Delete, Search, Print, Close);
+            new SettingMenuStrip().SetMenu(this, Refresh, New, Modify, Delete, Search, Print);
+            ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = false;
+            ((MainForm)MdiParent).검색toolStripMenuItem.Visible = false;
+            MainForm frm = new MainForm();
         }
 
         private void Category_Load(object sender, EventArgs e)

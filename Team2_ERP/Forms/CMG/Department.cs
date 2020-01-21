@@ -79,14 +79,9 @@ namespace Team2_ERP
 
         }
 
-        private void Close(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void SettingMenu()
         {
-            new SettingMenuStrip().SetMenu(this, Refresh, New, Modify, Delete, Search, Print, Close);
+            new SettingMenuStrip().SetMenu(this, Refresh, New, Modify, Delete, Search, Print);
         }
 
         private void Department_Load(object sender, EventArgs e)

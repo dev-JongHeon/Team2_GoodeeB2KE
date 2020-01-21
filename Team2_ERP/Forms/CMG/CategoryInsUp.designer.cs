@@ -87,14 +87,14 @@
             this.txtContext.Multiline = true;
             this.txtContext.Name = "txtContext";
             this.txtContext.Size = new System.Drawing.Size(390, 137);
-            this.txtContext.TabIndex = 5;
+            this.txtContext.TabIndex = 1;
             // 
             // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(131, 38);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(143, 21);
-            this.txtName.TabIndex = 6;
+            this.txtName.TabIndex = 0;
             // 
             // label1
             // 
