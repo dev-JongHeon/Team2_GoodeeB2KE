@@ -13,6 +13,7 @@ namespace Team2_VO
         public string Employee_Depart { get; set; }
         public string Employee_PWD { get; set; }
         public bool Employee_IsAdmin { get; set; }
+        public string Auth { get; set; }
         public bool IsLogout { get; set; }
     }
 }

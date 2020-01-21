@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CMG\ResourceVO.cs" />
     <Compile Include="CodeTableVO.cs" />
     <Compile Include="Common\ComboItemVO.cs" />
     <Compile Include="Common\SearchedInfoVO.cs" />
@@ -53,8 +54,6 @@
     <Compile Include="SSD\Balju.cs" />
     <Compile Include="SSD\Stock.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CMG\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

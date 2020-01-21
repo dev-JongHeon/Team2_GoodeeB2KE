@@ -15,6 +15,7 @@ namespace Team2_ERP
     public partial class Category : BaseForm
     {
         List<CodeTableVO> list;
+
         string code = string.Empty;
         string name = string.Empty;
         string context = string.Empty;
@@ -42,22 +43,31 @@ namespace Team2_ERP
         {
             CodeTableService service = new CodeTableService();
             list = service.GetAllCodeTable();
-            List<CodeTableVO> categoryList = (from item in list where item.CodeTable_CodeID.Contains("S") && !item.CodeTable_CodeID.Contains("e") || item.CodeTable_CodeID.Contains("M") select item).ToList();
+            List<CodeTableVO> categoryList = (from item in list where item.CodeTable_CodeID.Contains("S") && !item.CodeTable_CodeID.Contains("e") || item.CodeTable_CodeID.Contains("M") && item.CodeTable_DeletedYN == false select item).ToList();
             dataGridView1.DataSource = categoryList;
+        }
+
+        // 메인 폼 메세지 초기화
+        private void InitMessage()
+        {
+            MainForm frm = (MainForm)this.ParentForm;
+            frm.NoticeMessage = "메세지";
         }
 
         private void Refresh(object sender, EventArgs e)
         {
+            InitMessage();
             dataGridView1.DataSource = null;
             LoadGridView();
         }
 
         private void New(object sender, EventArgs e)
         {
+            InitMessage();
+
             CategoryInsUp frm = new CategoryInsUp(CategoryInsUp.EditMode.Insert, null, null, null);
             if(frm.ShowDialog() == DialogResult.OK)
             {
-                
                 frm.Close();
                 dataGridView1.DataSource = null;
                 LoadGridView();
@@ -66,17 +76,29 @@ namespace Team2_ERP
 
         private void Modify(object sender, EventArgs e)
         {
-            CategoryInsUp frm = new CategoryInsUp(CategoryInsUp.EditMode.Update, code, name, context);
-            if(frm.ShowDialog() == DialogResult.OK)
+            InitMessage();
+
+            if (code == string.Empty)
             {
-                frm.Close();
-                dataGridView1.DataSource = null;
-                LoadGridView();
+                MainForm frm = (MainForm)this.ParentForm;
+                frm.NoticeMessage = "수정할 카테고리를 선택해 주세요.";
+            }
+            else
+            {
+                CategoryInsUp frm = new CategoryInsUp(CategoryInsUp.EditMode.Update, code, name, context);
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    frm.Close();
+                    dataGridView1.DataSource = null;
+                    LoadGridView();
+                }
             }
         }
 
         private void Delete(object sender, EventArgs e)
         {
+            InitMessage();
+
             if(MessageBox.Show("삭제하시겠습니까?", "확인", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 CodeTableService service = new CodeTableService();
@@ -96,19 +118,10 @@ namespace Team2_ERP
 
         }
 
-        private void SettingMenu()
-        {
-            new SettingMenuStrip().SetMenu(this, Refresh, New, Modify, Delete, Search, Print);
-            ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = false;
-            ((MainForm)MdiParent).검색toolStripMenuItem.Visible = false;
-            MainForm frm = new MainForm();
-        }
-
         private void Category_Load(object sender, EventArgs e)
         {
             InitGridView();
             LoadGridView();
-            SettingMenu();
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -116,6 +129,18 @@ namespace Team2_ERP
             code = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
             name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             context = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+        }
+
+        private void Category_Activated(object sender, EventArgs e)
+        {
+            new SettingMenuStrip().SetMenu(this, Refresh, New, Modify, Delete, Search, Print);
+            ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = false;
+            ((MainForm)MdiParent).검색toolStripMenuItem.Visible = false;
+        }
+
+        private void Category_Deactivate(object sender, EventArgs e)
+        {
+            new SettingMenuStrip().UnsetMenu(this, Refresh, New, Modify, Delete, Search, Print);
         }
     }
 }
