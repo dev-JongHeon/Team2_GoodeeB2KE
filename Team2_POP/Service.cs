@@ -32,5 +32,10 @@ namespace Team2_POP
             else
                 return null;
         }
+
+        public List<Performance> GetPerformance(string produceID)
+        {
+            return new POPDAC().GetPerformance(produceID);
+        }
     }
 }

@@ -105,7 +105,7 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch
+            catch(Exception err)
             {
                 return null;
             }

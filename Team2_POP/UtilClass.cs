@@ -72,6 +72,7 @@ namespace Team2_POP
             dgv.AllowUserToResizeColumns = false;
             dgv.AllowUserToResizeRows = false;
             dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgv.RowHeadersVisible = false;
         }
 
         #region comboBox 바인딩 관련 유틸리티

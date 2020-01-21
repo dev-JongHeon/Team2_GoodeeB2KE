@@ -62,7 +62,7 @@ namespace Team2_POP
             UtilClass.AddNewColum(dgvWork, "작업지시자 이름", "Employees_Name", true, 120);
             UtilClass.AddNewColum(dgvWork, "출하 요청날짜", "Shipment_RequiredDate", true, 150);
 
-
+            // 생산 그리드뷰
             UtilClass.SettingDgv(dgvProduce);
 
             UtilClass.AddNewColum(dgvProduce, "생산지시번호", "Produce_ID", true, 150);
@@ -71,8 +71,21 @@ namespace Team2_POP
             UtilClass.AddNewColum(dgvProduce, "생산요청수량", "Produce_QtyRequested", true);
             UtilClass.AddNewColum(dgvProduce, "불량품 수", "Performance_QtyDefectiveItem", true);
             UtilClass.AddNewColum(dgvProduce, "생산 상태", "Produce_State", true);
-
+            
+            
+            // 실적 그리드뷰
             UtilClass.SettingDgv(dgvPerformance);
+
+            UtilClass.AddNewColum(dgvPerformance, "생산실적번호", "Performance_ID", true, 150);
+            UtilClass.AddNewColum(dgvPerformance, "생산지시번호", "Produce_ID", false, 150);
+            UtilClass.AddNewColum(dgvPerformance, "양품수", "Performance_QtySuccessItem", true, 150);
+            UtilClass.AddNewColum(dgvPerformance, "불량수", "Performance_QtyDefectiveItem", true);
+            UtilClass.AddNewColum(dgvPerformance, "시작 날짜", "Performance_StartDate", true);
+            UtilClass.AddNewColum(dgvPerformance, "종료 날짜", "Performance_EndDate", true);
+            UtilClass.AddNewColum(dgvPerformance, "사원번호", "Employees_ID", false);
+            UtilClass.AddNewColum(dgvPerformance, "사원이름", "Employees_Name", true);
+            UtilClass.AddNewColum(dgvPerformance, "불량률", "Performance_DefectiveRate", true);
+            UtilClass.AddNewColum(dgvPerformance, "가동시간", "Performance_ElapsedTime", true);
 
         }
 
@@ -175,6 +188,24 @@ namespace Team2_POP
                 {
                     dgvProduce.DataSource = null;
                     dgvProduce.DataSource = new Service().GetProduce(dgvWork.SelectedRows[e.RowIndex].Cells[0].Value.ToString());
+                    dgvProduce.ClearSelection();
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void dgvProduce_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex > -1 && e.ColumnIndex > -1)
+                {
+                    dgvPerformance.DataSource = null;
+                    dgvPerformance.DataSource = new Service().GetPerformance(dgvProduce.SelectedRows[e.RowIndex].Cells[0].Value.ToString());
+                    dgvPerformance.ClearSelection();
                 }
             }
             catch

@@ -51,16 +51,6 @@
             this.splitContainer6 = new System.Windows.Forms.SplitContainer();
             this.dgvProduce = new System.Windows.Forms.DataGridView();
             this.dgvPerformance = new System.Windows.Forms.DataGridView();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnDefective = new System.Windows.Forms.Button();
@@ -432,78 +422,18 @@
             this.dgvProduce.RowTemplate.Height = 23;
             this.dgvProduce.Size = new System.Drawing.Size(793, 459);
             this.dgvProduce.TabIndex = 2;
+            this.dgvProduce.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProduce_CellClick);
             // 
             // dgvPerformance
             // 
             this.dgvPerformance.BackgroundColor = System.Drawing.Color.White;
             this.dgvPerformance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPerformance.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column12,
-            this.Column16,
-            this.Column17,
-            this.Column18,
-            this.Column19,
-            this.Column20,
-            this.Column21,
-            this.Column22,
-            this.Column23,
-            this.Column24});
             this.dgvPerformance.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvPerformance.Location = new System.Drawing.Point(0, 0);
             this.dgvPerformance.Name = "dgvPerformance";
             this.dgvPerformance.RowTemplate.Height = 23;
             this.dgvPerformance.Size = new System.Drawing.Size(467, 459);
             this.dgvPerformance.TabIndex = 0;
-            // 
-            // Column12
-            // 
-            this.Column12.HeaderText = "생산실적번호";
-            this.Column12.Name = "Column12";
-            // 
-            // Column16
-            // 
-            this.Column16.HeaderText = "생산작업번호(F)";
-            this.Column16.Name = "Column16";
-            // 
-            // Column17
-            // 
-            this.Column17.HeaderText = "합격수량";
-            this.Column17.Name = "Column17";
-            // 
-            // Column18
-            // 
-            this.Column18.HeaderText = "불량수량";
-            this.Column18.Name = "Column18";
-            // 
-            // Column19
-            // 
-            this.Column19.HeaderText = "작업시작날짜";
-            this.Column19.Name = "Column19";
-            // 
-            // Column20
-            // 
-            this.Column20.HeaderText = "작업종료날짜";
-            this.Column20.Name = "Column20";
-            // 
-            // Column21
-            // 
-            this.Column21.HeaderText = "사원아이디";
-            this.Column21.Name = "Column21";
-            // 
-            // Column22
-            // 
-            this.Column22.HeaderText = "작업자이름";
-            this.Column22.Name = "Column22";
-            // 
-            // Column23
-            // 
-            this.Column23.HeaderText = "불량률";
-            this.Column23.Name = "Column23";
-            // 
-            // Column24
-            // 
-            this.Column24.HeaderText = "가동시간";
-            this.Column24.Name = "Column24";
             // 
             // splitContainer5
             // 
@@ -668,16 +598,6 @@
         private System.Windows.Forms.SplitContainer splitContainer6;
         private System.Windows.Forms.DataGridView dgvProduce;
         private System.Windows.Forms.DataGridView dgvPerformance;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column17;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column18;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column24;
     }
 }
 
