@@ -30,6 +30,10 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_StockStatus, "수불수량", "StockReceipt_Quantity", true);
             UtilClass.AddNewColum(dgv_StockStatus, "등록사원", "Employees_Name", true);
             UtilClass.AddNewColum(dgv_StockStatus, "창고유형", "Warehouse_Division", false);
+
+            
         }
+
+
     }
 }
