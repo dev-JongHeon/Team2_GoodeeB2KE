@@ -1,25 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using Team2_VO;
 
 namespace Team2_DAC
 {
-
-    public class StockDAC
+    public class OrderDAC
     {
         SqlConnection conn = null;
-        public StockDAC()
+        public OrderDAC()
         {
             string ConnectionStr = "Server = whyfi8888.ddns.net,11433; uid = team2; pwd = 1234; database = team2";
             conn = new SqlConnection(ConnectionStr);
         }
 
-        public List<StockReceipt> GetStockReceipts() // 뷰 사용
+        public List<Order> GetOrderList()  // 뷰 사용
         {
             try
             {
@@ -27,11 +28,11 @@ namespace Team2_DAC
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "select * from StockReceipt_List";
+                    cmd.CommandText = "select * from Order_top";  
                     conn.Open();
-                    List<StockReceipt> list = Helper.DataReaderMapToList<StockReceipt>(cmd.ExecuteReader());
+                    List<Order> list = Helper.DataReaderMapToList<Order>(cmd.ExecuteReader());
                     conn.Close();
-                    
+
                     return list;
                 }
             }
@@ -41,7 +42,7 @@ namespace Team2_DAC
             }
         }
 
-        public List<StockStatus> GetStockStatus() // 뷰 사용
+        public List<OrderDetail> GetOrderDetailList()  // 뷰사용
         {
             try
             {
@@ -49,9 +50,9 @@ namespace Team2_DAC
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "select * from StockStatus_List";
+                    cmd.CommandText = "select * from Order_bottom";
                     conn.Open();
-                    List<StockStatus> list = Helper.DataReaderMapToList<StockStatus>(cmd.ExecuteReader());
+                    List<OrderDetail> list = Helper.DataReaderMapToList<OrderDetail>(cmd.ExecuteReader());
                     conn.Close();
 
                     return list;
