@@ -46,9 +46,9 @@
     <Compile Include="Common\ComboItemVO.cs" />
     <Compile Include="Common\SearchedInfoVO.cs" />
     <Compile Include="HJS\DowntimePOP.cs" />
-    <Compile Include="HJS\Performance.cs" />
-    <Compile Include="HJS\Produce.cs" />
-    <Compile Include="HJS\Work.cs" />
+    <Compile Include="HJS\PerformancePOP.cs" />
+    <Compile Include="HJS\ProducePOP.cs" />
+    <Compile Include="HJS\WorkPOP.cs" />
     <Compile Include="KJH\LoginVO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SSD\Balju.cs" />

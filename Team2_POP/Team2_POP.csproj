@@ -66,6 +66,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service.cs" />
+    <Compile Include="UtilClass.cs" />
     <Compile Include="WorkRegister.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +109,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Team2_DAC\Team2_DAC.csproj">
+      <Project>{4e16ea1b-f52f-44c3-bd77-b6a353a93901}</Project>
+      <Name>Team2_DAC</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Team2_VO\Team2_VO.csproj">
       <Project>{fadad5a8-d7be-466a-a7e0-679c91bb281c}</Project>
       <Name>Team2_VO</Name>

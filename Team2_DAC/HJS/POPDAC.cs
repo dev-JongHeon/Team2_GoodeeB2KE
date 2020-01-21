@@ -33,7 +33,7 @@ namespace Team2_DAC
         #region 조회 (작업 - 생산 - 생산 실적)
 
         // 작업조회 (날짜 Default = 오늘 날짜)
-        public List<Work> GetWorks(DateTime WorkDate)
+        public List<Work> GetWorks(string workDate, int lineID)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace Team2_DAC
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "proc_GetWorksPOP";
 
-                    FillParameter(cmd, new string[] { "@WorkDate" }, new object[] { WorkDate });
+                    FillParameter(cmd, new string[] { "@WorkDate", "@Line_ID" }, new object[] { workDate, lineID });
 
                     conn.Open();
                     List<Work> list = Helper.DataReaderMapToList<Work>(cmd.ExecuteReader());
@@ -69,7 +69,7 @@ namespace Team2_DAC
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "proc_GetProducesPOP";
 
-                    FillParameter(cmd, new string[] { "@ProduceID" }, new object[] { workID });
+                    FillParameter(cmd, new string[] { "@Work_ID" }, new object[] { workID });
 
                     conn.Open();
                     List<Produce> list = Helper.DataReaderMapToList<Produce>(cmd.ExecuteReader());
@@ -117,6 +117,68 @@ namespace Team2_DAC
 
         #endregion
 
+        #region 정보 조회 (공장, 공정)
+
+        //공장 조회
+        public List<ComboItemVO> GetFactory()
+        {
+            List<ComboItemVO> list = null;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "GetInfo";
+
+                    FillParameter(cmd, new string[] { "@div"}, new object[] { "Factory" });
+
+                    conn.Open();
+                    list = Helper.DataReaderMapToList<ComboItemVO>(cmd.ExecuteReader());
+                    conn.Close();
+
+                    return list;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        //공정조회
+        public List<ComboItemVO> GetLine(int factoryID)
+        {
+            List<ComboItemVO> list = null;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    StringBuilder qryString = new StringBuilder();
+                    qryString.Append(" SELECT CONVERT(NVARCHAR(5), Line_ID) AS ID, Line_Name AS Name  ");
+                    qryString.Append(" FROM Line ");
+                    qryString.Append(" WHERE Factory_ID = @Factory_ID ");
+
+                    cmd.CommandText = qryString.ToString();
+
+                    FillParameter(cmd, new string[] { "@Factory_ID" }, new object[] { factoryID });
+
+                    conn.Open();
+                    list = Helper.DataReaderMapToList<ComboItemVO>(cmd.ExecuteReader());
+                    conn.Close();
+
+                    return list;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        #endregion
 
 
 
