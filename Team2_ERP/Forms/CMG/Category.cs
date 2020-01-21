@@ -50,7 +50,6 @@ namespace Team2_ERP
         // 메인 폼 메세지 초기화
         private void InitMessage()
         {
-            
             frm.NoticeMessage = "메세지";
         }
 
@@ -80,7 +79,7 @@ namespace Team2_ERP
 
             if (code == string.Empty)
             {
-                frm.NoticeMessage = "수정할 카테고리를 선택해 주세요.";
+                frm.NoticeMessage = "수정할 카테고리를 선택해주세요.";
             }
             else
             {
@@ -98,12 +97,19 @@ namespace Team2_ERP
         {
             InitMessage();
 
-            if(MessageBox.Show("삭제하시겠습니까?", "확인", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (code == string.Empty)
             {
-                CodeTableService service = new CodeTableService();
-                service.DeleteCodeTable(code);
-                dataGridView1.DataSource = null;
-                LoadGridView();
+                frm.NoticeMessage = "삭제할 카테고리를 선택해주세요.";
+            }
+            else
+            {
+                if (MessageBox.Show("삭제하시겠습니까?", "확인", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    CodeTableService service = new CodeTableService();
+                    service.DeleteCodeTable(code);
+                    dataGridView1.DataSource = null;
+                    LoadGridView();
+                }
             }
         }
 

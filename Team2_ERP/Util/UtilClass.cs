@@ -159,8 +159,8 @@ namespace Team2_ERP
 
             list.Insert(0, new ComboItemVO(blankText));
             combo.DataSource = list;
-            combo.DisplayMember = "CodeNm";
-            combo.ValueMember = "Code";
+            combo.DisplayMember = "Name";
+            combo.ValueMember = "ID";
         }
 
         public static void ComboBinding<T>(ComboBox combo, List<T> list, string Code, string CodeNm)

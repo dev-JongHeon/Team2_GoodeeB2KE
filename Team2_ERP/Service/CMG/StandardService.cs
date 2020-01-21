@@ -15,5 +15,23 @@ namespace Team2_ERP.Service.CMG
             StandardDAC dac = new StandardDAC();
             return dac.GetAllResource();
         }
+
+        public bool InsertResource(ResourceVO item)
+        {
+            StandardDAC dac = new StandardDAC();
+            return dac.InsertResource(item);
+        }
+
+        public List<ComboItemVO> GetComboWarehouse()
+        {
+            StandardDAC dac = new StandardDAC();
+            return dac.GetComboWarehouse();
+        }
+
+        public List<ComboItemVO> GetComboMeterial()
+        {
+            StandardDAC dac = new StandardDAC();
+            return dac.GetComboMeterial();
+        }
     }
 }
