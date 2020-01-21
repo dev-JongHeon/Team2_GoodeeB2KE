@@ -124,7 +124,7 @@ namespace Team2_DAC
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@div", "ProductCategory");
+                    cmd.Parameters.AddWithValue("@div", "CategoryM");
 
                     conn.Open();
                     list = Helper.DataReaderMapToList<ComboItemVO>(cmd.ExecuteReader());
