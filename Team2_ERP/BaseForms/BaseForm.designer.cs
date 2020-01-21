@@ -142,7 +142,7 @@
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Name = "BaseForm";
-            this.Text = "Base";
+            this.Text = " ";
             this.Activated += new System.EventHandler(this.Form_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_FormClosing);
             this.panel1.ResumeLayout(false);

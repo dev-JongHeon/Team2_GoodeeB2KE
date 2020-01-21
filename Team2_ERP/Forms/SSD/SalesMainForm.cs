@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Team2_ERP
 {
-    public partial class SalesMainForm : Team2_ERP.Base1Dgv
+    public partial class SalesMainForm : Base1Dgv
     {
         public SalesMainForm()
         {

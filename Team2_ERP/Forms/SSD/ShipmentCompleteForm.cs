@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Team2_ERP
 {
-    public partial class ShipmentCompleteForm : Team2_ERP.Base2Dgv
+    public partial class ShipmentCompleteForm : Base2Dgv
     {
         public ShipmentCompleteForm()
         {
