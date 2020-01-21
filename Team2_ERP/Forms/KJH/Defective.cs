@@ -24,13 +24,13 @@ namespace Team2_ERP
         {
             //this.lblFormName.Text = "불량유형";        
 
-            new SettingMenuStrip().SetMenu(this, a, a, a, a, a, a, a);
+            new SettingMenuStrip().SetMenu(this, a, a, a, a, a, a);
             ((MainForm)MdiParent).수정ToolStripMenuItem.Visible = false;
         }
 
         private void a(object sender, EventArgs e)
         {
-            new SettingMenuStrip().SetMenu(this, a, a, a, a, a, a, a);
+            new SettingMenuStrip().SetMenu(this, a, a, a, a, a, a);
         }
 
     }

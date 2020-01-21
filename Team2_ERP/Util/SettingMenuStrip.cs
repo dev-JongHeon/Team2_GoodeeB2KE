@@ -25,8 +25,7 @@ namespace Team2_ERP
             Action<object, EventArgs> e_modify,
             Action<object, EventArgs> e_delete,
             Action<object, EventArgs> e_search,
-            Action<object, EventArgs> e_print,
-            Action<object, EventArgs> e_close) where T : BaseForm, new()
+            Action<object, EventArgs> e_print) where T : BaseForm, new()
         {
             MainForm m = (MainForm)frm.MdiParent;
 
@@ -36,7 +35,6 @@ namespace Team2_ERP
             m.M_Delete += new EventHandler(e_delete);
             m.M_Search += new EventHandler(e_search);
             m.M_Print += new EventHandler(e_print);
-            m.M_Close += new EventHandler(e_close);
 
             foreach (ToolStripMenuItem item in m.menuStrip.Items)
             {
@@ -50,8 +48,7 @@ namespace Team2_ERP
             Action<object, EventArgs> e_modify,
             Action<object, EventArgs> e_delete,
             Action<object, EventArgs> e_search,
-            Action<object, EventArgs> e_print,
-            Action<object, EventArgs> e_close) where T : BaseForm, new()
+            Action<object, EventArgs> e_print) where T : BaseForm, new()
         {
 
             MainForm m = (MainForm)frm.MdiParent;
@@ -61,8 +58,7 @@ namespace Team2_ERP
             m.M_Modify -= new EventHandler(e_modify);
             m.M_Delete -= new EventHandler(e_delete);
             m.M_Search -= new EventHandler(e_search);
-            m.M_Print -= new EventHandler(e_print);
-            m.M_Close -= new EventHandler(e_close);
+            m.M_Print -= new EventHandler(e_print);           
         }
     }
 }
