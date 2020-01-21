@@ -29,16 +29,9 @@
         private void InitializeComponent()
         {
             this.dgv_StockStatus = new System.Windows.Forms.DataGridView();
-            this.품번 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.품명 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.searchUserControl1 = new Team2_ERP.SearchUserControl();
             this.searchUserControl3 = new Team2_ERP.SearchUserControl();
+            this.searchUserControl2 = new Team2_ERP.SearchUserControl();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel_Search.SuspendLayout();
@@ -55,6 +48,7 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.searchUserControl2);
             this.panel5.Controls.Add(this.searchUserControl3);
             this.panel5.Controls.Add(this.searchUserControl1);
             // 
@@ -65,61 +59,12 @@
             // dgv_StockStatus
             // 
             this.dgv_StockStatus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_StockStatus.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.품번,
-            this.품명,
-            this.Column2,
-            this.Column1,
-            this.Column6,
-            this.Column7,
-            this.Column8,
-            this.Column9});
             this.dgv_StockStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_StockStatus.Location = new System.Drawing.Point(0, 0);
             this.dgv_StockStatus.Name = "dgv_StockStatus";
             this.dgv_StockStatus.RowTemplate.Height = 23;
             this.dgv_StockStatus.Size = new System.Drawing.Size(1364, 662);
             this.dgv_StockStatus.TabIndex = 1;
-            // 
-            // 품번
-            // 
-            this.품번.HeaderText = "품번";
-            this.품번.Name = "품번";
-            // 
-            // 품명
-            // 
-            this.품명.HeaderText = "품명";
-            this.품명.Name = "품명";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "창고코드";
-            this.Column2.Name = "Column2";
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "창고명";
-            this.Column1.Name = "Column1";
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "단가";
-            this.Column6.Name = "Column6";
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "재고량";
-            this.Column7.Name = "Column7";
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "안전재고량";
-            this.Column8.Name = "Column8";
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "차이수량";
-            this.Column9.Name = "Column9";
             // 
             // searchUserControl1
             // 
@@ -142,6 +87,17 @@
             this.searchUserControl3.Name = "searchUserControl3";
             this.searchUserControl3.Size = new System.Drawing.Size(312, 25);
             this.searchUserControl3.TabIndex = 35;
+            // 
+            // searchUserControl2
+            // 
+            this.searchUserControl2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.searchUserControl2.ControlType = Team2_ERP.SearchUserControl.Mode.ProductCategory;
+            this.searchUserControl2.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchUserControl2.Labelname = "제품카테고리";
+            this.searchUserControl2.Location = new System.Drawing.Point(388, 26);
+            this.searchUserControl2.Name = "searchUserControl2";
+            this.searchUserControl2.Size = new System.Drawing.Size(312, 25);
+            this.searchUserControl2.TabIndex = 36;
             // 
             // StockStatus
             // 
@@ -167,13 +123,6 @@
         private System.Windows.Forms.DataGridView dgv_StockStatus;
         private SearchUserControl searchUserControl3;
         private SearchUserControl searchUserControl1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 품번;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 품명;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private SearchUserControl searchUserControl2;
     }
 }

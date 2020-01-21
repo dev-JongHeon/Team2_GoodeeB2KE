@@ -126,6 +126,12 @@ namespace Team2_ERP
                     col1 = this.Text + "번호";
                     col2 = this.Text + "명";
                     break;
+                case "ProductCategory":
+                    this.Text = "제품카테고리";
+                    col1 = this.Text + "번호";
+                    col2 = this.Text + "명";
+                    break;
+
             }
             // Mode값에 따라 그리드뷰 컬럼명 및 검색 결과 
             

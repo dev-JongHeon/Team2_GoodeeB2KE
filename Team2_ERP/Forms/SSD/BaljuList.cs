@@ -34,7 +34,7 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Balju, "발주요청일시", "Balju_Date", true);
             UtilClass.AddNewColum(dgv_Balju, "등록사원", "Employees_Name", true);
             UtilClass.AddNewColum(dgv_Balju, "삭제여부", "Balju_DeletedYN", false);
-            UtilClass.AddNewColum(dgv_Balju, "필요없는것", "Balju_ReceiptDate", false);
+            UtilClass.AddNewColum(dgv_Balju, "X", "Balju_ReceiptDate", false);
             dgv_Balju.DataSource = dac.GetBaljuList(); // 발주리스트 갱신
 
             UtilClass.AddNewColum(dgv_BaljuDetail, "발주지시번호", "Balju_ID", true);
