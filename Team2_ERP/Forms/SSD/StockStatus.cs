@@ -29,7 +29,7 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_StockStatus, "재고량", "Product_Qty", true);
             UtilClass.AddNewColum(dgv_StockStatus, "안전재고량", "Product_Safety", true);
             UtilClass.AddNewColum(dgv_StockStatus, "차이수량", "Count_Subtract", true);
-            UtilClass.AddNewColum(dgv_StockStatus, "삭제여부", "Product_DeletedYN", false);
+            UtilClass.AddNewColum(dgv_StockStatus, "삭제여부", "Product_DeletedYN", false); 
         }
 
 
