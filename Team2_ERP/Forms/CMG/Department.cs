@@ -114,7 +114,7 @@ namespace Team2_ERP
 
         private void Department_Deactivate(object sender, EventArgs e)
         {
-            new SettingMenuStrip().UnsetMenu(this, Refresh, New, Modify, Delete, Search, Print);
+            new SettingMenuStrip().UnsetMenu(this);
         }
     }
 }

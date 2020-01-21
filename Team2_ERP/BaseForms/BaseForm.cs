@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Team2_ERP
 {
-    public partial class BaseForm : Form
+    public  partial class BaseForm : Form
     {
         public string FormName
         {
@@ -25,24 +25,56 @@ namespace Team2_ERP
 
         public void Form_Activated(object sender, EventArgs e)
         {
-            //tabCtrl.SelectedTab = tabPag;
+            tabCtrl.SelectedTab = tabPag;
+            if (!tabCtrl.Visible)
+            {
+                tabCtrl.Visible = true;
+            }
+            new SettingMenuStrip().SetMenu(this, Refresh, New, Modify, Delete, Search, Print);
+        }
+        public virtual void Refresh(object sender, EventArgs e)
+        {
+            
+        }
 
-            //if (!tabCtrl.Visible)
-            //{
-            //    tabCtrl.Visible = true;
-            //}
+        public virtual void Modify(object sender, EventArgs e)
+        {
+           
+        }
+
+        public virtual void New(object sender, EventArgs e)
+        {
+           
+        }
+
+        public virtual void Delete(object sender, EventArgs e)
+        {
+            
+        }
+
+        public virtual void Search(object sender, EventArgs e)
+        {
+            
+        }
+
+        public virtual void Print(object sender, EventArgs e)
+        {
+            
         }
 
         public void Form_FormClosing(object sender, FormClosingEventArgs e)
         {
-            ////Destroy the corresponding Tabpage when closing MDI child form
-            //this.tabPag.Dispose();
+            
+            //Destroy the corresponding Tabpage when closing MDI child form
+            if (TabPag.Text != "메인화면")
+                this.tabPag.Dispose();
 
-            ////If no Tabpage left
-            //if (!tabCtrl.HasChildren)
-            //{
-            //    tabCtrl.Visible = false;
-            //}
+            //If no Tabpage left
+            if (!tabCtrl.HasChildren)
+            {
+                tabCtrl.Visible = false;
+            }
+            new SettingMenuStrip().UnsetMenu(this);
         }
         #endregion
 
@@ -50,5 +82,9 @@ namespace Team2_ERP
         {
             InitializeComponent();
         }
+
+       
+        
+
     }
 }

@@ -8,8 +8,8 @@ namespace Team2_VO
 {
     public class ComboItemVO
     {
-        public int Code { get; set; }
-        public string CodeNm { get; set; }
+        public string ID { get; set; }
+        public string Name { get; set; }
         public string CodeType { get; set; }
 
         public ComboItemVO()
@@ -19,7 +19,7 @@ namespace Team2_VO
 
         public ComboItemVO(string blankText)
         {
-            CodeNm = blankText;
+            Name = blankText;
         }
 
     }

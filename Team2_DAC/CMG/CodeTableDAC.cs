@@ -127,7 +127,7 @@ namespace Team2_DAC
 
         public bool DeleteCodeTable(string code)
         {
-            string sql = $"Update CodeTable set CodeTable_DeletedYN = {1} where CodeTable_CodeID = @CodeTable_CodeID "; ;
+            string sql = $"Update CodeTable set CodeTable_DeletedYN = {1} where CodeTable_CodeID = @CodeTable_CodeID ";
 
             try
             {

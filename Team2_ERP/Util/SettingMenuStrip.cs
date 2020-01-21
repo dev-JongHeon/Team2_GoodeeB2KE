@@ -28,37 +28,42 @@ namespace Team2_ERP
             Action<object, EventArgs> e_print) where T : BaseForm, new()
         {
             MainForm m = (MainForm)frm.MdiParent;
-
-            m.M_Refresh += new EventHandler(e_refresh);
-            m.M_New += new EventHandler(e_new);
-            m.M_Modify += new EventHandler(e_modify);
-            m.M_Delete += new EventHandler(e_delete);
-            m.M_Search += new EventHandler(e_search);
-            m.M_Print += new EventHandler(e_print);
-
-            foreach (ToolStripMenuItem item in m.menuStrip.Items)
+            if (e_refresh != null)
             {
-                item.Visible = true;
+                m.M_Refresh += new EventHandler(e_refresh);
+            }
+            if (e_new != null)
+            {
+                m.M_New += new EventHandler(e_new);
+            }
+            if (e_modify != null)
+            {
+                m.M_Modify += new EventHandler(e_modify);
+            }
+            if (e_delete != null)
+            {
+                m.M_Delete += new EventHandler(e_delete);
+            }
+            if (e_search != null)
+            {
+                m.M_Search += new EventHandler(e_search);
+            }
+            if (e_print != null)
+            {
+                m.M_Print += new EventHandler(e_print); 
             }
         }
 
-        public void UnsetMenu<T>(T frm,
-            Action<object, EventArgs> e_refresh,
-            Action<object, EventArgs> e_new,
-            Action<object, EventArgs> e_modify,
-            Action<object, EventArgs> e_delete,
-            Action<object, EventArgs> e_search,
-            Action<object, EventArgs> e_print) where T : BaseForm, new()
+        public void UnsetMenu<T>(T frm) where T : BaseForm, new()
         {
-
             MainForm m = (MainForm)frm.MdiParent;
 
-            m.M_Refresh -= new EventHandler(e_refresh);
-            m.M_New -= new EventHandler(e_new);
-            m.M_Modify -= new EventHandler(e_modify);
-            m.M_Delete -= new EventHandler(e_delete);
-            m.M_Search -= new EventHandler(e_search);
-            m.M_Print -= new EventHandler(e_print);           
+            m.M_Refresh -= m.M_Refresh;
+            m.M_New -= m.M_New;
+            m.M_Modify -= m.M_Modify;
+            m.M_Delete -= m.M_Delete;
+            m.M_Search -= m.M_Search;
+            m.M_Print -= m.M_Print;           
         }
     }
 }

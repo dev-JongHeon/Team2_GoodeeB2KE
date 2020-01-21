@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CMG\CodeTableDAC.cs" />
+    <Compile Include="CMG\StandardDAC.cs" />
     <Compile Include="ConnectionInfo.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="HJS\POPDAC.cs" />
@@ -52,7 +53,9 @@
     <Compile Include="SSD\StockDAC.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ConnectionInfo.xml" />
+    <Content Include="ConnectionInfo.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Team2_VO\Team2_VO.csproj">

@@ -19,12 +19,17 @@ namespace Team2_ERP
         public TabPage TabPag { get => tabPag; set => tabPag = value; }
 
         public void Form_Activated(object sender, EventArgs e)
-        {
+        {   
             tabCtrl.SelectedTab = tabPag;
 
             if (!tabCtrl.Visible)
             {
                 tabCtrl.Visible = true;
+            }
+            MainForm frm = (MainForm)this.ParentForm;
+            foreach(ToolStripMenuItem item in frm.menuStrip.Items)
+            {
+                item.Visible = true;
             }
         }
 

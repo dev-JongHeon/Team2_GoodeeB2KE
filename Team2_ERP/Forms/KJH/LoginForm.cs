@@ -66,10 +66,12 @@ namespace Team2_ERP
                     if (user != null)
                     {
                         logininfo = user;
+                        SetSession();
                         MainForm frm = new MainForm(logininfo);
                         this.Hide();
                         if (frm.ShowDialog() == DialogResult.Cancel)
                         {
+                            
                             logininfo = frm.Logininfo;
                             if (!logininfo.IsLogout)
                             {
@@ -99,6 +101,15 @@ namespace Team2_ERP
                 MessageBox.Show("사원번호가 비어있습니다.\n사원을 선택하여주세요.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 btnSearch.PerformClick();
             }
+        }
+
+        private void SetSession()
+        {
+            Session.Employee_ID = logininfo.Employee_ID;
+            Session.Employee_Name = logininfo.Employee_Name;
+            Session.Employee_IsAdmin = logininfo.Employee_IsAdmin;
+            Session.Employee_Depart = logininfo.Employee_Depart;
+            Session.Auth = logininfo.Auth;
         }
 
         private void btnPwdChange_Click(object sender, EventArgs e)
