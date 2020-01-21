@@ -271,12 +271,6 @@
     <Compile Include="Forms\SSD\ShipmentMainForm.designer.cs">
       <DependentUpon>ShipmentMainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SSD\ShipmentReg.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\SSD\ShipmentReg.designer.cs">
-      <DependentUpon>ShipmentReg.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\KJH\CalendarForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -397,6 +391,7 @@
     <Compile Include="Forms\SSD\StockStatus.designer.cs">
       <DependentUpon>StockStatus.cs</DependentUpon>
     </Compile>
+    <Compile Include="Service\KJH\Session.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\CMG\CodeTableService.cs" />
@@ -512,9 +507,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SSD\ShipmentMainForm.resx">
       <DependentUpon>ShipmentMainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SSD\ShipmentReg.resx">
-      <DependentUpon>ShipmentReg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\KJH\CalendarForm.resx">
       <DependentUpon>CalendarForm.cs</DependentUpon>

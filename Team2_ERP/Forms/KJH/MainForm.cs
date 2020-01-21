@@ -36,6 +36,8 @@ namespace Team2_ERP
         {
             InitializeComponent();
             Logininfo = info;
+            lblUserName.Text = Session.Employee_ID.ToString() + " " + Session.Employee_Name;
+            lblUserDept.Text = Session.Employee_Depart;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -334,7 +336,6 @@ namespace Team2_ERP
         private void button3_Click(object sender, EventArgs e)
         {
             OpenBaseForm<Defective>("불량현황");
-
         }
 
 
@@ -388,13 +389,6 @@ namespace Team2_ERP
             tabControl1.Invalidate();
         }
 
-        private void treeView4_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            if (e.Node.Name == "Category")
-            {
-                OpenBaseForm<Category>("카테고리");
-            }
-        }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -448,6 +442,11 @@ namespace Team2_ERP
             }
             SelectMenu(ptag, lname);
             FillMenu();
+        }
+
+        private void treeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+
         }
     }
 }
