@@ -794,6 +794,7 @@
             this.treeView_Sales.SelectedImageIndex = 3;
             this.treeView_Sales.Size = new System.Drawing.Size(196, 95);
             this.treeView_Sales.TabIndex = 1;
+            this.treeView_Sales.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView_NodeMouseDoubleClick);
             // 
             // menu_Sales
             // 
@@ -912,6 +913,7 @@
             this.treeView_Stock.SelectedImageIndex = 3;
             this.treeView_Stock.Size = new System.Drawing.Size(196, 95);
             this.treeView_Stock.TabIndex = 1;
+            this.treeView_Stock.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView_NodeMouseDoubleClick);
             // 
             // menu_Stock
             // 
@@ -1034,6 +1036,7 @@
             this.treeView_Production.SelectedImageIndex = 3;
             this.treeView_Production.Size = new System.Drawing.Size(196, 95);
             this.treeView_Production.TabIndex = 1;
+            this.treeView_Production.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView_NodeMouseDoubleClick);
             // 
             // menu_Production
             // 
@@ -1130,6 +1133,7 @@
             this.treeView_System.SelectedImageIndex = 3;
             this.treeView_System.Size = new System.Drawing.Size(196, 95);
             this.treeView_System.TabIndex = 0;
+            this.treeView_System.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView_NodeMouseDoubleClick);
             // 
             // menu_System
             // 
@@ -1221,6 +1225,7 @@
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 26;
             this.tabControl1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl1_DrawItem);
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // button1
             // 
