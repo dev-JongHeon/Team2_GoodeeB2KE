@@ -126,5 +126,26 @@ namespace Team2_ERP
             }
 
         }
+
+        private void txtEmpPwd_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                btnLogin.PerformClick();
+            }
+        }
+
+        private void txtEmpID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(e.KeyChar == Convert.ToChar(Keys.Back))) 
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtEmpName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
     }
 }

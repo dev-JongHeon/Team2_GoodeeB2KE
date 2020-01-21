@@ -165,6 +165,7 @@
             this.txtEmpPwd.PasswordChar = '*';
             this.txtEmpPwd.Size = new System.Drawing.Size(116, 21);
             this.txtEmpPwd.TabIndex = 10;
+            this.txtEmpPwd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmpPwd_KeyPress);
             // 
             // label3
             // 
@@ -179,11 +180,11 @@
             // 
             // txtEmpName
             // 
-            this.txtEmpName.Enabled = false;
             this.txtEmpName.Location = new System.Drawing.Point(81, 77);
             this.txtEmpName.Name = "txtEmpName";
             this.txtEmpName.Size = new System.Drawing.Size(116, 21);
             this.txtEmpName.TabIndex = 8;
+            this.txtEmpName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmpName_KeyPress);
             // 
             // label2
             // 
@@ -222,11 +223,11 @@
             // 
             // txtEmpID
             // 
-            this.txtEmpID.Enabled = false;
             this.txtEmpID.Location = new System.Drawing.Point(81, 40);
             this.txtEmpID.Name = "txtEmpID";
             this.txtEmpID.Size = new System.Drawing.Size(89, 21);
             this.txtEmpID.TabIndex = 11;
+            this.txtEmpID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmpID_KeyPress);
             // 
             // LoginForm
             // 

@@ -98,6 +98,7 @@
             this.txtCode.ReadOnly = true;
             this.txtCode.Size = new System.Drawing.Size(198, 21);
             this.txtCode.TabIndex = 4;
+            this.txtCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCode_KeyPress);
             // 
             // SearchUserControl
             // 

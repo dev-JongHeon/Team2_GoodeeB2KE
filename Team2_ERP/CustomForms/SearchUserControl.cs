@@ -120,5 +120,13 @@ namespace Team2_ERP
                 txtCode.Text = info.ID + " " + info.Name;
             }
         }
+
+        private void txtCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(e.KeyChar == Convert.ToChar(Keys.Back)))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

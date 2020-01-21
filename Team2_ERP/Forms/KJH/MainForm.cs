@@ -26,6 +26,7 @@ namespace Team2_ERP
         bool isLogout = false;
         LoginVO logininfo = new LoginVO();
         public LoginVO Logininfo { get => logininfo; set => logininfo = value; }
+        public string NoticeMessage { get => lblNoticeMsg.Text; set => lblNoticeMsg.Text = value; }
 
         public MainForm()
         {
