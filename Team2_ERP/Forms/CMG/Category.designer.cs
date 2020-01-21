@@ -63,6 +63,8 @@
             this.ClientSize = new System.Drawing.Size(1364, 820);
             this.Name = "Category";
             this.Text = "Category";
+            this.Activated += new System.EventHandler(this.Category_Activated);
+            this.Deactivate += new System.EventHandler(this.Category_Deactivate);
             this.Load += new System.EventHandler(this.Category_Load);
             this.panel1.ResumeLayout(false);
             this.panel_Search.ResumeLayout(false);

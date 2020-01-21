@@ -60,8 +60,22 @@ namespace Team2_ERP
 
         private void Modify(object sender, EventArgs e)
         {
-            CategoryInsUp frm = new CategoryInsUp(CategoryInsUp.EditMode.Update, code, name, context);
-            frm.ShowDialog();
+            if (code == string.Empty)
+            {
+                MainForm frm = (MainForm)this.ParentForm;
+                frm.NoticeMessage = "수정할 부서를 선택해 주세요.";
+            }
+            else
+            {
+                CategoryInsUp frm = new CategoryInsUp(CategoryInsUp.EditMode.Update, code, name, context);
+
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    frm.Close();
+                    dataGridView1.DataSource = null;
+                    LoadGridView();
+                }
+            }
         }
 
         private void Delete(object sender, EventArgs e)
@@ -79,16 +93,10 @@ namespace Team2_ERP
 
         }
 
-        private void SettingMenu()
-        {
-            new SettingMenuStrip().SetMenu(this, Refresh, New, Modify, Delete, Search, Print);
-        }
-
         private void Department_Load(object sender, EventArgs e)
         {
             InitGridView();
             LoadGridView();
-            SettingMenu();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -96,6 +104,17 @@ namespace Team2_ERP
             code = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
             name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             context = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+        }
+
+        private void Department_Activated(object sender, EventArgs e)
+        {
+            new SettingMenuStrip().SetMenu(this, Refresh, New, Modify, Delete, Search, Print);
+            ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = false;
+        }
+
+        private void Department_Deactivate(object sender, EventArgs e)
+        {
+            new SettingMenuStrip().UnsetMenu(this, Refresh, New, Modify, Delete, Search, Print);
         }
     }
 }

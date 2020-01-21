@@ -21,7 +21,7 @@ namespace Team2_DAC
 
         public List<CodeTableVO> GetAllCodeTable()
         {
-            string sql = "select CodeTable_CodeID, CodeTable_CodeName, CodeTable_CodeExplain from CodeTable ";
+            string sql = "select CodeTable_CodeID, CodeTable_CodeName, CodeTable_CodeExplain, CodeTable_DeletedYN from CodeTable ";
 
             try
             {
@@ -127,7 +127,7 @@ namespace Team2_DAC
 
         public bool DeleteCodeTable(string code)
         {
-            string sql = "Delete from CodeTable where CodeTable_CodeID = @CodeTable_CodeID ";
+            string sql = $"Update CodeTable set CodeTable_DeletedYN = {1} where CodeTable_CodeID = @CodeTable_CodeID ";
 
             try
             {
