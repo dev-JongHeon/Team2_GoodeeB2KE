@@ -55,7 +55,8 @@ namespace Team2_ERP
             }
 
         }
-        private void 새로고침ToolStripMenuItem_Click(object sender
+        private void 새로고침ToolStripMenuItem_Click(object sender, EventArgs e)
+        {            
             if (M_Refresh != null)
                 M_Refresh.Invoke(this, null);
         }

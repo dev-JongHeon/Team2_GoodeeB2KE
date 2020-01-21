@@ -64,7 +64,7 @@ namespace Team2_ERP
 
         public void Form_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+
             //Destroy the corresponding Tabpage when closing MDI child form
             if (TabPag.Text != "메인화면")
                 this.tabPag.Dispose();

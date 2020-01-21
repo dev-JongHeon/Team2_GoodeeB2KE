@@ -429,7 +429,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.96154F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.03846F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 67F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 68F));
             this.tableLayoutPanel1.Controls.Add(this.panel19, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel18, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel17, 1, 0);
@@ -446,9 +446,9 @@
             // 
             this.panel19.Controls.Add(this.lblUserDept);
             this.panel19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel19.Location = new System.Drawing.Point(179, 3);
+            this.panel19.Location = new System.Drawing.Point(178, 3);
             this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(62, 16);
+            this.panel19.Size = new System.Drawing.Size(63, 16);
             this.panel19.TabIndex = 3;
             // 
             // lblUserDept
@@ -468,7 +468,7 @@
             // 
             this.panel18.Controls.Add(this.label5);
             this.panel18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel18.Location = new System.Drawing.Point(109, 3);
+            this.panel18.Location = new System.Drawing.Point(108, 3);
             this.panel18.Name = "panel18";
             this.panel18.Size = new System.Drawing.Size(64, 16);
             this.panel18.TabIndex = 2;
@@ -492,7 +492,7 @@
             this.panel17.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel17.Location = new System.Drawing.Point(57, 3);
             this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(46, 16);
+            this.panel17.Size = new System.Drawing.Size(45, 16);
             this.panel17.TabIndex = 1;
             // 
             // lblUserName
