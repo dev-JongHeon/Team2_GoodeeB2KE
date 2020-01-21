@@ -98,6 +98,33 @@ namespace Team2_DAC
             }
         }
 
+        public bool UpdateCodeTable(CodeTableVO code)
+        {
+            string sql = "Update CodeTable set CodeTable_CodeName = @CodeTable_CodeName, CodeTable_CodeExplain = @CodeTable_CodeExplain where CodeTable_CodeID = @CodeTable_CodeID ";
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@CodeTable_CodeName", code.CodeTable_CodeName);
+                    cmd.Parameters.AddWithValue("@CodeTable_CodeExplain", code.CodeTable_CodeExplain);
+                    cmd.Parameters.AddWithValue("@CodeTable_CodeID", code.CodeTable_CodeID);
+
+                    conn.Open();
+                    var rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+            catch(Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         public bool DeleteCodeTable(string code)
         {
             string sql = "Delete from CodeTable where CodeTable_CodeID = @CodeTable_CodeID ";

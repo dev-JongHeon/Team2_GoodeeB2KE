@@ -54,13 +54,13 @@ namespace Team2_ERP
 
         private void New(object sender, EventArgs e)
         {
-            CategoryInsUp frm = new CategoryInsUp(CategoryInsUp.EditMode.Insert, null, null);
+            CategoryInsUp frm = new CategoryInsUp(CategoryInsUp.EditMode.Insert, null, null, null);
             frm.ShowDialog();
         }
 
         private void Modify(object sender, EventArgs e)
         {
-            CategoryInsUp frm = new CategoryInsUp(CategoryInsUp.EditMode.Update, name, context);
+            CategoryInsUp frm = new CategoryInsUp(CategoryInsUp.EditMode.Update, code, name, context);
             frm.ShowDialog();
         }
 

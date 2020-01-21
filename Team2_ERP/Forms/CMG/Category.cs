@@ -54,14 +54,24 @@ namespace Team2_ERP
 
         private void New(object sender, EventArgs e)
         {
-            CategoryInsUp frm = new CategoryInsUp(CategoryInsUp.EditMode.Insert, null, null);
-            frm.ShowDialog();
+            CategoryInsUp frm = new CategoryInsUp(CategoryInsUp.EditMode.Insert, null, null, null);
+            if(frm.ShowDialog() == DialogResult.OK)
+            {
+                frm.Close();
+                dataGridView1.DataSource = null;
+                LoadGridView();
+            }
         }
 
         private void Modify(object sender, EventArgs e)
         {
-            CategoryInsUp frm = new CategoryInsUp(CategoryInsUp.EditMode.Update, name, context);
-            frm.ShowDialog();
+            CategoryInsUp frm = new CategoryInsUp(CategoryInsUp.EditMode.Update, code, name, context);
+            if(frm.ShowDialog() == DialogResult.OK)
+            {
+                frm.Close();
+                dataGridView1.DataSource = null;
+                LoadGridView();
+            }
         }
 
         private void Delete(object sender, EventArgs e)
@@ -70,6 +80,8 @@ namespace Team2_ERP
             {
                 CodeTableService service = new CodeTableService();
                 service.DeleteCodeTable(code);
+                dataGridView1.DataSource = null;
+                LoadGridView();
             }
         }
 

@@ -28,6 +28,12 @@ namespace Team2_ERP.Service.CMG
             return dac.InsertDepart(dept);
         }
 
+        public bool UpdateCodeTable(CodeTableVO code)
+        {
+            CodeTableDAC dac = new CodeTableDAC();
+            return dac.UpdateCodeTable(code);
+        }
+
         public bool DeleteCodeTable(string code)
         {
             CodeTableDAC dac = new CodeTableDAC();
