@@ -93,7 +93,6 @@
             // txtCode
             // 
             this.txtCode.BackColor = System.Drawing.Color.White;
-            this.txtCode.Enabled = false;
             this.txtCode.Location = new System.Drawing.Point(84, 2);
             this.txtCode.Name = "txtCode";
             this.txtCode.ReadOnly = true;
