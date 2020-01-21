@@ -14,7 +14,7 @@ namespace Team2_ERP
     public partial class InOutList_SemiProductWarehouse : Base1Dgv
     {
         StockDAC dac = new StockDAC();
-        List<Stock> StockReceipt_AllList = null;
+        List<StockReceipt> StockReceipt_AllList = null;
         public InOutList_SemiProductWarehouse()
         {
             InitializeComponent();
@@ -27,6 +27,7 @@ namespace Team2_ERP
 
         private void LoadData()
         {
+            UtilClass.SettingDgv(dgv_Stock);
             UtilClass.AddNewColum(dgv_Stock, "수불번호", "StockReceipt_ID", true);
             UtilClass.AddNewColum(dgv_Stock, "수불유형", "StockReceipt_Division1", true);
             UtilClass.AddNewColum(dgv_Stock, "처리일시", "StockReceipt_Date", true);
@@ -38,10 +39,10 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Stock, "등록사원", "Employees_Name", true);
             UtilClass.AddNewColum(dgv_Stock, "창고유형", "Warehouse_Division", false);
 
-            StockReceipt_AllList = dac.GetStockReceipts(); // 자재수불내역 갱신
+            StockReceipt_AllList = dac.GetStockReceipts(); // 수불내역 갱신
 
-            // LINQ로 반제품창고에 속한것만 가져옴
-            List<Stock> StockReceipt_list = (from list_Stock in StockReceipt_AllList
+            // LINQ로 반제품창고에 속한 수불현황만 가져옴
+            List<StockReceipt> StockReceipt_list = (from list_Stock in StockReceipt_AllList
                                              where list_Stock.Warehouse_Division == true
                                              select list_Stock).ToList();
             dgv_Stock.DataSource = StockReceipt_list;

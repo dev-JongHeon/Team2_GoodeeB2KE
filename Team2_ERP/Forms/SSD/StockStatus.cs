@@ -5,11 +5,13 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using Team2_DAC;
 
 namespace Team2_ERP
 {
     public partial class StockStatus : Base1Dgv
     {
+        StockDAC dac = new StockDAC();
         public StockStatus()
         {
             InitializeComponent();
@@ -20,6 +22,7 @@ namespace Team2_ERP
         }
         public void LoadData()
         {
+            UtilClass.SettingDgv(dgv_StockStatus);
             UtilClass.AddNewColum(dgv_StockStatus, "품번", "Product_ID", true);
             UtilClass.AddNewColum(dgv_StockStatus, "품명", "Product_Name", true);
             UtilClass.AddNewColum(dgv_StockStatus, "카테고리", "Product_Category", true);
@@ -29,9 +32,8 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_StockStatus, "재고량", "Product_Qty", true);
             UtilClass.AddNewColum(dgv_StockStatus, "안전재고량", "Product_Safety", true);
             UtilClass.AddNewColum(dgv_StockStatus, "차이수량", "Count_Subtract", true);
-            UtilClass.AddNewColum(dgv_StockStatus, "삭제여부", "Product_DeletedYN", false); 
+            UtilClass.AddNewColum(dgv_StockStatus, "삭제여부", "Product_DeletedYN", false);
+            dgv_StockStatus.DataSource = dac.GetStockStatus();
         }
-
-
     }
 }

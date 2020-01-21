@@ -27,6 +27,7 @@ namespace Team2_ERP
 
         private void LoadData()
         {
+            UtilClass.SettingDgv(dgv_BaljuCompleted);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "발주지시번호", "Balju_ID", true);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "거래처코드", "Company_ID", true);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "거래처명칭", "Company_Name", true);
@@ -36,6 +37,7 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_BaljuCompleted, "삭제여부", "Balju_DeletedYN", false);
             dgv_BaljuCompleted.DataSource = dac.GetBalju_CompletedList(); // 발주리스트 갱신
 
+            UtilClass.SettingDgv(dgv_BaljuDetail);
             UtilClass.AddNewColum(dgv_BaljuDetail, "발주지시번호", "Balju_ID", true);
             UtilClass.AddNewColum(dgv_BaljuDetail, "품목코드", "Product_ID", true);
             UtilClass.AddNewColum(dgv_BaljuDetail, "품목명", "Product_Name", true);

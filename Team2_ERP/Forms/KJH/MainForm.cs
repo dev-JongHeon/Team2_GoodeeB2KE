@@ -262,6 +262,31 @@ namespace Team2_ERP
             {
                 OpenBaseForm<Resource>("원자재관리");
             }
+            else if(e.Node.Name== "InOutList_SemiProductWarehouse")
+            {
+                OpenBaseForm<InOutList_SemiProductWarehouse>("반제품수불현황");
+            }
+            else if (e.Node.Name == "InOutList_MaterialWarehouse")
+            {
+                OpenBaseForm<InOutList_MaterialWarehouse>("자재수불현황");
+            }
+            else if (e.Node.Name == "StockStatus")
+            {
+                OpenBaseForm<StockStatus>("재고현황");
+            }
+            else if (e.Node.Name == "OrderMainForm")
+            {
+                OpenBaseForm<OrderMainForm>("주문현황");
+            }
+            else if (e.Node.Name == "BaljuList")
+            {
+                OpenBaseForm<BaljuList>("발주현황");
+            }
+            else if (e.Node.Name == "BaljuList_Completed")
+            {
+                OpenBaseForm<BaljuList_Completed>("발주완료현황");
+            }
+
         }
 
         private void SettingTreeView()
