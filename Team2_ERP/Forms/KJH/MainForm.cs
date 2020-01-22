@@ -30,7 +30,7 @@ namespace Team2_ERP
         public LoginVO Logininfo { get => logininfo; set => logininfo = value; }
         public string NoticeMessage { get => lblNoticeMsg.Text; set => lblNoticeMsg.Text = value; }
 
-        private Dictionary<string, string> menulist = new Dictionary<string, string>
+        public static Dictionary<string, string> menulist = new Dictionary<string, string>
         {
             {"UserAuth","사용자권한설정" },
             {"Work","작업대기현황" },
@@ -57,8 +57,8 @@ namespace Team2_ERP
             {"Category","카테고리관리" },
             {"Factory","공장&공정관리" },
             {"Resource","원자재관리" },
-            {"Warehouse","창고 관리" },
-            {"BOM","BOM 관리" },
+            {"Warehouse","창고관리" },
+            {"BOM","BOM관리" },
         };
         #endregion
 
@@ -97,7 +97,7 @@ namespace Team2_ERP
                 menu_System.Visible = false;
                 panel_System.Visible = false;
             }
-            //SettingTreeView();
+            SettingAuth();
             tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
             foreach (Panel p in mpanel.Controls)
             {
@@ -408,18 +408,96 @@ namespace Team2_ERP
 
         private void SettingAuth()
         {
-            foreach (TreeView item in mpanel.Controls)
+            string[] authlist = Session.Auth.Split(',');
+            List<TreeNode> mlist = new List<TreeNode>();
+            
+            foreach (TreeNode item in treeView_Production.Nodes)
             {
-                TreeView tmp = item;
-                foreach (TreeNode i in tmp.Nodes)
+
+                if (item.Parent != null)
                 {
-                    if (i.Name == "UserAuth")
+                    foreach (string frmname in menulist.Keys)
                     {
-                        i.Tag = "테스트";
+                        if (item.Name == frmname)
+                        {
+                            mlist.Add(item);
+                        }
+                    }
+                }
+            }
+            foreach (TreeNode item in treeView_Stock.Nodes)
+            {
+                if (item.Parent != null)
+                {
+                    foreach (string frmname in menulist.Keys)
+                    {
+                        if (item.Name == frmname)
+                        {
+                            mlist.Add(item);
+                        }
+                    }
+                }
+            }
+            foreach (TreeNode item in treeView_Sales.Nodes)
+            {
+                if (item.Parent != null)
+                {
+                    foreach (string frmname in menulist.Keys)
+                    {
+                        if (item.Name == frmname)
+                        {
+                            mlist.Add(item);
+                            break;
+                        }
+                    }
+                }
+            }
+            foreach (TreeNode item in treeView_Info.Nodes)
+            {
+                if (item.Parent != null)
+                {
+                    foreach (string frmname in menulist.Keys)
+                    {
+                        if (item.Name == frmname)
+                        {
+                            mlist.Add(item);
+                        }
                     }
                 }
             }
         }
+
+        private void NewMethod(List<TreeNode> mlist,TreeNode node)
+        {
+            foreach (TreeNode item in treeView_System.Nodes)
+            {
+                foreach (TreeNode item2 in item.Nodes)
+                {
+                    foreach (string frmname in menulist.Keys)
+                    {
+                        if (item2.Name == frmname)
+                        {
+                            mlist.Add(item2);
+                        }
+                    }
+                }
+            }
+            foreach (TreeNode item in treeView_Production.Nodes)
+            {
+                foreach (TreeNode item2 in item.Nodes)
+                {
+                    foreach (string frmname in menulist.Keys)
+                    {
+                        if (item2.Name == frmname)
+                        {
+                            mlist.Add(item2);
+                        }
+                    }
+                }
+            }
+        }
+
+
 
 
         #endregion
@@ -655,6 +733,7 @@ namespace Team2_ERP
 
         private void tabControl1_MouseDown(object sender, MouseEventArgs e)
         {
+            
             if (e.Button == MouseButtons.Left) // 마우스 왼쪽 클릭시
             {
                 TabControl tc = (TabControl)sender;
@@ -674,7 +753,6 @@ namespace Team2_ERP
                 if (tc.GetTabRect(i).Contains(tc.PointToClient(Cursor.Position)))
                     return i;
             }
-
             return -1;
         }
 
