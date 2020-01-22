@@ -78,6 +78,7 @@
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.Size = new System.Drawing.Size(1344, 571);
             this.dataGridView1.TabIndex = 7;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // searchUserControl1
             // 
@@ -97,6 +98,9 @@
             this.ClientSize = new System.Drawing.Size(1344, 729);
             this.Name = "Warehouse";
             this.Text = "Warehouse";
+            this.Activated += new System.EventHandler(this.Warehouse_Activated);
+            this.Deactivate += new System.EventHandler(this.Warehouse_Deactivate);
+            this.Load += new System.EventHandler(this.Warehouse_Load);
             this.panel1.ResumeLayout(false);
             this.panel_Search.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
