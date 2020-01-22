@@ -28,20 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgv_Shipment = new System.Windows.Forms.DataGridView();
+            this.dgv_ShipmentDetail = new System.Windows.Forms.DataGridView();
             this.searchPeriodControl1 = new Team2_ERP.SearchPeriodControl();
             this.searchPeriodControl2 = new Team2_ERP.SearchPeriodControl();
             this.searchUserControl2 = new Team2_ERP.SearchUserControl();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -54,8 +55,8 @@
             this.panel_Title.SuspendLayout();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Shipment)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_ShipmentDetail)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -64,12 +65,12 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.dataGridView1);
+            this.panel2.Controls.Add(this.dgv_Shipment);
             this.panel2.Size = new System.Drawing.Size(1364, 280);
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.dataGridView2);
+            this.panel3.Controls.Add(this.dgv_ShipmentDetail);
             this.panel3.Size = new System.Drawing.Size(1364, 378);
             // 
             // panel5
@@ -82,81 +83,37 @@
             // 
             this.lblFormName.Text = "출하관리";
             // 
-            // dataGridView1
+            // dgv_Shipment
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgv_Shipment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_Shipment.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
+            this.Column5,
             this.Column9,
+            this.Column4,
             this.Column3,
             this.Column2});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(1364, 280);
-            this.dataGridView1.TabIndex = 36;
+            this.dgv_Shipment.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_Shipment.Location = new System.Drawing.Point(0, 0);
+            this.dgv_Shipment.Name = "dgv_Shipment";
+            this.dgv_Shipment.RowTemplate.Height = 23;
+            this.dgv_Shipment.Size = new System.Drawing.Size(1364, 280);
+            this.dgv_Shipment.TabIndex = 36;
             // 
-            // Column1
+            // dgv_ShipmentDetail
             // 
-            this.Column1.HeaderText = "출하번호";
-            this.Column1.Name = "Column1";
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "주문번호";
-            this.Column9.Name = "Column9";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "출하지시일";
-            this.Column3.Name = "Column3";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "출하지시자";
-            this.Column2.Name = "Column2";
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column12,
+            this.dgv_ShipmentDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_ShipmentDetail.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column6,
+            this.Column12,
             this.Column10,
-            this.Column11,
-            this.Column13});
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 23;
-            this.dataGridView2.Size = new System.Drawing.Size(1364, 378);
-            this.dataGridView2.TabIndex = 37;
-            // 
-            // Column12
-            // 
-            this.Column12.HeaderText = "출하상세번호";
-            this.Column12.Name = "Column12";
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "출하번호";
-            this.Column6.Name = "Column6";
-            // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "제품명";
-            this.Column10.Name = "Column10";
-            // 
-            // Column11
-            // 
-            this.Column11.HeaderText = "수량";
-            this.Column11.Name = "Column11";
-            // 
-            // Column13
-            // 
-            this.Column13.HeaderText = "판매가";
-            this.Column13.Name = "Column13";
+            this.Column11});
+            this.dgv_ShipmentDetail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_ShipmentDetail.Location = new System.Drawing.Point(0, 0);
+            this.dgv_ShipmentDetail.Name = "dgv_ShipmentDetail";
+            this.dgv_ShipmentDetail.RowTemplate.Height = 23;
+            this.dgv_ShipmentDetail.Size = new System.Drawing.Size(1364, 378);
+            this.dgv_ShipmentDetail.TabIndex = 37;
             // 
             // searchPeriodControl1
             // 
@@ -187,12 +144,63 @@
             this.searchUserControl2.Size = new System.Drawing.Size(312, 25);
             this.searchUserControl2.TabIndex = 2;
             // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "출하번호";
+            this.Column6.Name = "Column6";
+            // 
+            // Column12
+            // 
+            this.Column12.HeaderText = "제품ID";
+            this.Column12.Name = "Column12";
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "제품명";
+            this.Column10.Name = "Column10";
+            // 
+            // Column11
+            // 
+            this.Column11.HeaderText = "수량";
+            this.Column11.Name = "Column11";
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "출하번호";
+            this.Column1.Name = "Column1";
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "주문일시";
+            this.Column5.Name = "Column5";
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "주문번호";
+            this.Column9.Name = "Column9";
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "주문자ID";
+            this.Column4.Name = "Column4";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "출하지시일";
+            this.Column3.Name = "Column3";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "출하지시자";
+            this.Column2.Name = "Column2";
+            // 
             // ShipmentMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.ClientSize = new System.Drawing.Size(1364, 820);
             this.FormName = "출하관리";
             this.Name = "ShipmentMainForm";
+            this.Load += new System.EventHandler(this.ShipmentMainForm_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -205,26 +213,27 @@
             this.panel_Title.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Shipment)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_ShipmentDetail)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dgv_Shipment;
+        private System.Windows.Forms.DataGridView dgv_ShipmentDetail;
         private SearchPeriodControl searchPeriodControl2;
         private SearchPeriodControl searchPeriodControl1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private SearchUserControl searchUserControl2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
-        private SearchUserControl searchUserControl2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
     }

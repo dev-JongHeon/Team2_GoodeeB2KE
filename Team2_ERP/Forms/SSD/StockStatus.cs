@@ -6,12 +6,13 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Team2_DAC;
+using Team2_ERP.Service;
 
 namespace Team2_ERP
 {
     public partial class StockStatus : Base1Dgv
     {
-        StockDAC dac = new StockDAC();
+        StockService service = new StockService();
         public StockStatus()
         {
             InitializeComponent();
@@ -33,7 +34,7 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_StockStatus, "안전재고량", "Product_Safety", true);
             UtilClass.AddNewColum(dgv_StockStatus, "차이수량", "Count_Subtract", true);
             UtilClass.AddNewColum(dgv_StockStatus, "삭제여부", "Product_DeletedYN", false);
-            dgv_StockStatus.DataSource = dac.GetStockStatus();
+            dgv_StockStatus.DataSource = service.GetStockStatus();
         }
     }
 }
