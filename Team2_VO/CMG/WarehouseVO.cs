@@ -14,6 +14,7 @@ namespace Team2_VO
         public string Warehouse_Number { get; set; }
         public string Warehouse_Fax { get; set; }
         public bool Warehouse_DeletedYN { get; set; }
-        public bool Warehouse_Division { get; set; }
+        public int Warehouse_Division { get; set; }
+        public string Warehouse_Division_Name { get; set; }
     }
 }

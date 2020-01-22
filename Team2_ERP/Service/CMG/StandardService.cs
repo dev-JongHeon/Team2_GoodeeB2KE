@@ -51,5 +51,11 @@ namespace Team2_ERP.Service.CMG
             WarehouseDAC dac = new WarehouseDAC();
             return dac.GetAllWarehouse();
         }
+
+        public bool InsertWarehouse(WarehouseVO item)
+        {
+            WarehouseDAC dac = new WarehouseDAC();
+            return dac.InsertResource(item);
+        }
     }
 }

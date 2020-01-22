@@ -17,6 +17,7 @@ namespace Team2_ERP
         List<WarehouseVO> list;
 
         MainForm frm;
+
         WarehouseVO item;
 
         public Warehouse()
@@ -33,7 +34,7 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dataGridView1, "창고주소", "Warehouse_Address", true, 100);
             UtilClass.AddNewColum(dataGridView1, "전화번호", "Warehouse_Number", true, 100);
             UtilClass.AddNewColum(dataGridView1, "FAX번호", "Warehouse_Fax", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "구분", "Warehouse_Division", true, 100);
+            UtilClass.AddNewColum(dataGridView1, "구분", "Warehouse_Division_Name", true, 100);
 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -63,6 +64,9 @@ namespace Team2_ERP
 
         private void Warehouse_Activated(object sender, EventArgs e)
         {
+            ((MainForm)MdiParent).신규ToolStripMenuItem.Visible = true;
+            ((MainForm)MdiParent).수정ToolStripMenuItem.Visible = true;
+            ((MainForm)MdiParent).삭제ToolStripMenuItem.Visible = true;
             ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = false;
         }
 
@@ -80,38 +84,38 @@ namespace Team2_ERP
             LoadGridView();
         }
 
-        //public override void New(object sender, EventArgs e)
-        //{
-        //    InitMessage();
+        public override void New(object sender, EventArgs e)
+        {
+            InitMessage();
 
-        //    WarehouseInsUp frm = new WarehouseInsUp(WarehouseInsUp.EditMode.Insert, null);
-        //    if (frm.ShowDialog() == DialogResult.OK)
-        //    {
-        //        frm.Close();
-        //        dataGridView1.DataSource = null;
-        //        LoadGridView();
-        //    }
-        //}
+            WarehouseInsUp frm = new WarehouseInsUp(WarehouseInsUp.EditMode.Insert, null);
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                frm.Close();
+                dataGridView1.DataSource = null;
+                LoadGridView();
+            }
+        }
 
-        //public override void Modify(object sender, EventArgs e)
-        //{
-        //    InitMessage();
+        public override void Modify(object sender, EventArgs e)
+        {
+            InitMessage();
 
-        //    if (item == null)
-        //    {
-        //        frm.NoticeMessage = "수정할 제품을 선택해주세요.";
-        //    }
-        //    else
-        //    {
-        //        WarehouseInsUp frm = new WarehouseInsUp(WarehouseInsUp.EditMode.Update, item);
-        //        if (frm.ShowDialog() == DialogResult.OK)
-        //        {
-        //            frm.Close();
-        //            dataGridView1.DataSource = null;
-        //            LoadGridView();
-        //        }
-        //    }
-        //}
+            if (item == null)
+            {
+                frm.NoticeMessage = "수정할 창고를 선택해주세요.";
+            }
+            else
+            {
+                WarehouseInsUp frm = new WarehouseInsUp(WarehouseInsUp.EditMode.Update, item);
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    frm.Close();
+                    dataGridView1.DataSource = null;
+                    LoadGridView();
+                }
+            }
+        }
 
         //public override void Delete(object sender, EventArgs e)
         //{
@@ -142,6 +146,36 @@ namespace Team2_ERP
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if(dataGridView1.Rows[e.RowIndex].Cells[3].Value == null)
+            {
+                if(dataGridView1.Rows[e.RowIndex].Cells[4].Value == null)
+                {
+                    item = new WarehouseVO
+                    {
+                        Warehouse_ID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value),
+                        Warehouse_Name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString()
+                    };
+                }
+                else
+                {
+                    item = new WarehouseVO
+                    {
+                        Warehouse_ID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value),
+                        Warehouse_Name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                        Warehouse_Fax = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString()
+                    };
+                }
+            }
+            else
+            {
+                item = new WarehouseVO
+                {
+                    Warehouse_ID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value),
+                    Warehouse_Name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                    Warehouse_Number = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString(),
+                    Warehouse_Fax = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString()
+                };
+            }
         }
     }
 }
