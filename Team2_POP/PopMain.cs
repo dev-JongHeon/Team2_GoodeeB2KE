@@ -56,43 +56,46 @@ namespace Team2_POP
             // 작업 그리드뷰
             UtilClass.SettingDgv(dgvWork);
 
-            UtilClass.AddNewColum(dgvWork, "작업지시번호", "Work_ID", true, 170);
+            UtilClass.AddNewColum(dgvWork, "작업지시번호", "Work_ID", true, 160);
             UtilClass.AddNewColum(dgvWork, "작업 시작날짜", "Work_StartDate", true, 150);
             UtilClass.AddNewColum(dgvWork, "작업 종료날짜", "Work_EndDate", true, 150);
             UtilClass.AddNewColum(dgvWork, "출하지시번호", "Shipment_ID", true, 170);
             UtilClass.AddNewColum(dgvWork, "작업 현황", "Work_State", true);
             UtilClass.AddNewColum(dgvWork, "작업지시자 사번", "Employees_ID", false);
             UtilClass.AddNewColum(dgvWork, "작업지시자 이름", "Employees_Name", true, 120);
-            UtilClass.AddNewColum(dgvWork, "출하 요청날짜", "Shipment_RequiredDate", true, 130);
+            UtilClass.AddNewColum(dgvWork, "출하 요청일", "Shipment_RequiredDate", true, 130);
 
             // 생산 그리드뷰
             UtilClass.SettingDgv(dgvProduce);
 
-            UtilClass.AddNewColum(dgvProduce, "생산지시번호", "Produce_ID", true, 170);
-            UtilClass.AddNewColum(dgvProduce, "상품코드", "Product_ID", true, 135);
-            UtilClass.AddNewColum(dgvProduce, "상품명", "Product_Name", true, 380);
+            UtilClass.AddNewColum(dgvProduce, "생산지시번호", "Produce_ID", true, 160);
+            UtilClass.AddNewColum(dgvProduce, "상품코드", "Product_ID", true, 100);
+            UtilClass.AddNewColum(dgvProduce, "생산시작날짜", "Produce_StartDate", true, 135);
+            UtilClass.AddNewColum(dgvProduce, "생산완료날짜", "Produce_DoneDate", true, 135);
+            UtilClass.AddNewColum(dgvProduce, "상품명", "Product_Name", true, 200);
             UtilClass.AddNewColum(dgvProduce, "생산요청수량", "Produce_QtyRequested", true, 100, DataGridViewContentAlignment.MiddleRight);
-            UtilClass.AddNewColum(dgvProduce, "불량품 수", "Performance_QtyDefectiveItem", true, 100, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dgvProduce, "불량수", "Performance_QtyDefectiveItem", true, 80, DataGridViewContentAlignment.MiddleRight);
             UtilClass.AddNewColum(dgvProduce, "생산 상태", "Produce_State", true);
 
 
             // 실적 그리드뷰
             UtilClass.SettingDgv(dgvPerformance);
 
-            UtilClass.AddNewColum(dgvPerformance, "생산실적번호", "Performance_ID", true, 170);
+            UtilClass.AddNewColum(dgvPerformance, "생산실적번호", "Performance_ID", true, 160);
+            UtilClass.AddNewColum(dgvPerformance, "실적날짜", "Performance_Date", true, 130);
             UtilClass.AddNewColum(dgvPerformance, "생산지시번호", "Produce_ID", false, 150);
-            UtilClass.AddNewColum(dgvPerformance, "양품수", "Performance_QtySuccessItem", true, 90, DataGridViewContentAlignment.MiddleRight);
-            UtilClass.AddNewColum(dgvPerformance, "불량수", "Performance_QtyDefectiveItem", true, 90, DataGridViewContentAlignment.MiddleRight);
-            UtilClass.AddNewColum(dgvPerformance, "시작 날짜", "Performance_StartDate", true, 130);
-            UtilClass.AddNewColum(dgvPerformance, "종료 날짜", "Performance_EndDate", true, 130);
+            UtilClass.AddNewColum(dgvPerformance, "양품", "Performance_QtySuccessItem", true, 70, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dgvPerformance, "불량", "Performance_QtyDefectiveItem", true, 70, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dgvPerformance, "생산 시작", "Performance_StartDate", true, 110);
+            UtilClass.AddNewColum(dgvPerformance, "생산 종료", "Performance_EndDate", true, 110);
             UtilClass.AddNewColum(dgvPerformance, "사원번호", "Employees_ID", false);
-            UtilClass.AddNewColum(dgvPerformance, "작업자 명", "Employees_Name", true);
+            UtilClass.AddNewColum(dgvPerformance, "작업자 명", "Employees_Name", false);
             UtilClass.AddNewColum(dgvPerformance, "불량률", "Performance_DefectiveRate", true, 100, DataGridViewContentAlignment.MiddleRight);
             UtilClass.AddNewColum(dgvPerformance, "가동시간", "Performance_ElapsedTime", true, 100, DataGridViewContentAlignment.MiddleRight);
 
-
-            
-            dgvPerformance.Columns[8].DefaultCellStyle.Format = "##0.0#%";
+            dgvPerformance.Columns[5].DefaultCellStyle.Format = "HH:mm:ss";
+            dgvPerformance.Columns[6].DefaultCellStyle.Format = "HH:mm:ss";
+            dgvPerformance.Columns[9].DefaultCellStyle.Format = "##0.0#%";
         }
 
         private void InitData()
@@ -156,7 +159,9 @@ namespace Team2_POP
                 work.FactoryDivision = Convert.ToInt32(cboFactory.Tag);
                 if (work.ShowDialog() == DialogResult.OK)
                 {
-                    // 생산실적추가 프로시저 
+                    // 생산실적 추가 프로시저 
+                    new Service().SetWorker(work.ProduceID, work.EmployeeID);
+                    new Service().GetPerformance(work.ProduceID);
                 }
             }
                 
@@ -247,7 +252,7 @@ namespace Team2_POP
                 if (e.RowIndex > -1 && e.ColumnIndex > -1)
                 {
                     dgvPerformance.DataSource = null;
-                    dgvPerformance.DataSource = new Service().GetPerformance(dgvProduce.SelectedRows[e.RowIndex].Cells[0].Value.ToString());
+                    dgvPerformance.DataSource = new Service().GetPerformance(dgvProduce.SelectedRows[0].Cells[0].Value.ToString());
                     dgvPerformance.ClearSelection();
                 }
             }
@@ -259,8 +264,11 @@ namespace Team2_POP
 
         private void dgvPerformance_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvPerformance.SelectedRows[0].Cells[7].Value != null)
-                lblWorker.Text = "작업자명 : " + dgvPerformance.SelectedRows[0].Cells[7].Value.ToString();
+            if (e.RowIndex > -1 && e.ColumnIndex > -1)
+            {
+                if (dgvPerformance.SelectedRows[0].Cells[8].Value != null)
+                    lblWorker.Text = "작업자명 : " + dgvPerformance.SelectedRows[0].Cells[8].Value.ToString();
+            }
         }
 
         #endregion

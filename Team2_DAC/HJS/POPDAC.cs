@@ -218,8 +218,9 @@ namespace Team2_DAC
         #region 삽입
 
         // 작업자 설정
-        public void SetWorkerForPerformance(string produceID , int empID)
+        public bool SetWorkerForPerformance(string produceID , int empID)
         {
+            int iResult = 0;
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -231,13 +232,15 @@ namespace Team2_DAC
                     FillParameter(cmd, new string[] { "@ProduceID", "@Employee_ID" }, new object[] { produceID, empID });
 
                     conn.Open();
-                    cmd.ExecuteNonQuery();
+                    iResult = cmd.ExecuteNonQuery();
                     conn.Close();
                 }
+                return iResult > 0;
             }
+
             catch
             {
-                
+                return false;
             }
         }
 

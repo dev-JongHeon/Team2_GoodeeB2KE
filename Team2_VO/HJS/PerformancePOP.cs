@@ -18,5 +18,6 @@ namespace Team2_VO
         public string Employees_Name { get; set; }
         public double Performance_DefectiveRate { get; set; }
         public string Performance_ElapsedTime { get; set; }
+        public DateTime? Performance_Date { get; set; }
     }
 }
