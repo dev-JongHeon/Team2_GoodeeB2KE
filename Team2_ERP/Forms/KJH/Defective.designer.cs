@@ -49,7 +49,6 @@
             this.searchUserControl2 = new Team2_ERP.SearchUserControl();
             this.searchUserControl4 = new Team2_ERP.SearchUserControl();
             this.searchPeriodControl1 = new Team2_ERP.SearchPeriodControl();
-            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel_Search.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -74,13 +73,6 @@
             this.panel5.Controls.Add(this.searchUserControl1);
             this.panel5.Controls.Add(this.searchUserControl3);
             this.panel5.Controls.Add(this.searchUserControl5);
-            // 
-            // panel_Title
-            // 
-            this.panel_Title.Controls.Add(this.button2);
-            this.panel_Title.Controls.SetChildIndex(this.linepanel1, 0);
-            this.panel_Title.Controls.SetChildIndex(this.panel8, 0);
-            this.panel_Title.Controls.SetChildIndex(this.button2, 0);
             // 
             // dgvDefective
             // 
@@ -240,16 +232,6 @@
             this.searchPeriodControl1.Size = new System.Drawing.Size(312, 30);
             this.searchPeriodControl1.TabIndex = 11;
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(277, 8);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(174, 34);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // Defective
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -291,6 +273,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
-        private System.Windows.Forms.Button button2;
     }
 }
