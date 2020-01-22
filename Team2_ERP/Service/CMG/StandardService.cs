@@ -12,37 +12,37 @@ namespace Team2_ERP.Service.CMG
     {
         public List<ResourceVO> GetAllResource()
         {
-            StandardDAC dac = new StandardDAC();
+            ResourceDAC dac = new ResourceDAC();
             return dac.GetAllResource();
         }
 
         public bool InsertResource(ResourceVO item)
         {
-            StandardDAC dac = new StandardDAC();
+            ResourceDAC dac = new ResourceDAC();
             return dac.InsertResource(item);
         }
 
         public bool UpdateResource(ResourceVO item)
         {
-            StandardDAC dac = new StandardDAC();
+            ResourceDAC dac = new ResourceDAC();
             return dac.UpdateResource(item);
         }
 
         public bool DeleteResource(string code)
         {
-            StandardDAC dac = new StandardDAC();
+            ResourceDAC dac = new ResourceDAC();
             return dac.DeleteResource(code);
         }
 
         public List<ComboItemVO> GetComboWarehouse()
         {
-            StandardDAC dac = new StandardDAC();
+            ResourceDAC dac = new ResourceDAC();
             return dac.GetComboWarehouse();
         }
 
         public List<ComboItemVO> GetComboMeterial()
         {
-            StandardDAC dac = new StandardDAC();
+            ResourceDAC dac = new ResourceDAC();
             return dac.GetComboMeterial();
         }
     }

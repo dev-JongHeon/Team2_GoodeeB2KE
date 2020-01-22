@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CMG\ResourceVO.cs" />
+    <Compile Include="CMG\WarehouseVO.cs" />
     <Compile Include="CodeTableVO.cs" />
     <Compile Include="Common\ComboItemVO.cs" />
     <Compile Include="Common\SearchedInfoVO.cs" />

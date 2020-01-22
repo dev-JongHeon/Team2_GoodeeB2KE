@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Team2_VO;
-using System.Data;
 
 namespace Team2_DAC
 {
-    public class StandardDAC : ConnectionInfo
+    public class ResourceDAC : ConnectionInfo
     {
         SqlConnection conn = null;
 
-        public StandardDAC()
+        public ResourceDAC()
         {
             conn = new SqlConnection();
             conn.ConnectionString = this.ConnectionString;
