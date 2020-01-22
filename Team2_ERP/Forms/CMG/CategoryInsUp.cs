@@ -81,7 +81,14 @@ namespace Team2_ERP
 
         private void CategoryInsUp_Load(object sender, EventArgs e)
         {
-            lblName.Text = "카테고리";
+            if (mode.Equals("Insert"))
+            {
+                lblName.Text = "카테고리 등록";
+            }
+            else if (mode.Equals("Update"))
+            {
+                lblName.Text = "카테고리 수정";
+            }
         }
     }
 }

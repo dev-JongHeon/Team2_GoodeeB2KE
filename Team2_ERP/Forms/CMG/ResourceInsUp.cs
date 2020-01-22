@@ -16,6 +16,7 @@ namespace Team2_ERP
     {
         List<ResourceVO> list;
         string mode = string.Empty;
+        string code = string.Empty;
 
         public enum EditMode { Insert, Update }
 
@@ -23,17 +24,18 @@ namespace Team2_ERP
         {
             InitializeComponent();
 
-            if(editMode == EditMode.Update)
+            if (editMode == EditMode.Update)
             {
-                mode = "update";
+                mode = "Update";
+                code = item.Product_ID;
                 txtResourceName.Text = item.Product_Name;
                 txtResourceMoney.Text = item.Product_Price.ToString();
                 numResourceNum.Value = item.Product_Qty;
                 txtResourceSafe.Text = item.Product_Safety.ToString();
             }
-            else if(editMode == EditMode.Insert)
+            else if (editMode == EditMode.Insert)
             {
-                mode = "insert";
+                mode = "Insert";
             }
         }
 
@@ -46,6 +48,7 @@ namespace Team2_ERP
         {
             LoadData();
             InitCombo();
+            LabelName();
         }
 
         private void LoadData()
@@ -63,22 +66,62 @@ namespace Team2_ERP
             UtilClass.ComboBinding(cboResourceCategory, meterialList, "선택");
         }
 
+        private void InsertResource()
+        {
+            ResourceVO item = new ResourceVO
+            {
+                Product_Name = txtResourceName.Text,
+                Warehouse_ID = cboResourceWarehouse.SelectedValue.ToString(),
+                Product_Price = Convert.ToInt32(txtResourceMoney.Text),
+                Product_Qty = Convert.ToInt32(numResourceNum.Value),
+                Product_Safety = Convert.ToInt32(txtResourceSafe.Text),
+                Product_Category = cboResourceCategory.SelectedValue.ToString()
+            };
+
+            StandardService service = new StandardService();
+            service.InsertResource(item);
+        }
+
+        private void UpdateResource()
+        {
+            ResourceVO item = new ResourceVO
+            {
+                Product_ID = code,
+                Product_Name = txtResourceName.Text,
+                Warehouse_ID = cboResourceWarehouse.SelectedValue.ToString(),
+                Product_Price = Convert.ToInt32(txtResourceMoney.Text),
+                Product_Qty = Convert.ToInt32(numResourceNum.Value),
+                Product_Safety = Convert.ToInt32(txtResourceSafe.Text),
+                Product_Category = cboResourceCategory.SelectedValue.ToString()
+            };
+
+            StandardService service = new StandardService();
+            service.UpdateResource(item);
+        }
+
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if(mode == "insert")
+            if(mode.Equals("Insert"))
             {
-                ResourceVO item = new ResourceVO
-                {
-                    Product_Name = txtResourceName.Text,
-                    Warehouse_ID = Convert.ToInt32(cboResourceWarehouse.SelectedValue),
-                    Product_Price = Convert.ToInt32(txtResourceMoney.Text),
-                    Product_Qty = Convert.ToInt32(numResourceNum.Value),
-                    Product_Safety = Convert.ToInt32(txtResourceSafe.Text),
-                    Product_Category = cboResourceCategory.SelectedValue.ToString()
-                };
+                InsertResource();
+            }
+            else if(mode.Equals("Update"))
+            {
+                UpdateResource();
+            }
 
-                StandardService service = new StandardService();
-                service.InsertResource(item);
+            this.DialogResult = DialogResult.OK;
+        }
+
+        private void LabelName()
+        {
+            if(mode.Equals("Insert"))
+            {
+                lblName.Text = "자재 등록";
+            }
+            else if(mode.Equals("Update"))
+            {
+                lblName.Text = "자재 수정";
             }
         }
     }

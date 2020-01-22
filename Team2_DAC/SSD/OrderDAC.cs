@@ -41,6 +41,7 @@ namespace Team2_DAC
                 return null;
             }
         }
+         
 
         public List<OrderDetail> GetOrderDetailList()  // 뷰사용
         {
@@ -50,9 +51,33 @@ namespace Team2_DAC
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "select * from Order_bottom";
+                    cmd.CommandText = "SELECT * FROM Order_Details ";
+
                     conn.Open();
                     List<OrderDetail> list = Helper.DataReaderMapToList<OrderDetail>(cmd.ExecuteReader());
+                    conn.Close();
+
+                    return list;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public List<Order> GetOrderCompletedList()  // 뷰 사용
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "SELECT * FROM OrderCompleted_top ";
+
+                    conn.Open();
+                    List<Order> list = Helper.DataReaderMapToList<Order>(cmd.ExecuteReader());
                     conn.Close();
 
                     return list;

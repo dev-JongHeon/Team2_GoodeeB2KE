@@ -7,13 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Team2_DAC;
+using Team2_ERP.Service;
 using Team2_VO;
 
 namespace Team2_ERP
 {
     public partial class BaljuList : Base2Dgv
     {
-        BaljuDAC dac = new BaljuDAC();
+        BaljuService service = new BaljuService();
         List<BaljuDetail> BaljuDetail_AllList = null;
 
         public BaljuList()
@@ -36,14 +37,14 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Balju, "등록사원", "Employees_Name", true);
             UtilClass.AddNewColum(dgv_Balju, "삭제여부", "Balju_DeletedYN", false);
             UtilClass.AddNewColum(dgv_Balju, "X", "Balju_ReceiptDate", false);
-            dgv_Balju.DataSource = dac.GetBaljuList(); // 발주리스트 갱신
+            dgv_Balju.DataSource = service.GetBaljuList(); // 발주리스트 갱신
 
             UtilClass.SettingDgv(dgv_BaljuDetail);
             UtilClass.AddNewColum(dgv_BaljuDetail, "발주지시번호", "Balju_ID", true);
             UtilClass.AddNewColum(dgv_BaljuDetail, "품목코드", "Product_ID", true);
             UtilClass.AddNewColum(dgv_BaljuDetail, "품목명", "Product_Name", true);
             UtilClass.AddNewColum(dgv_BaljuDetail, "발주요청수량", "BaljuDetail_Qty", true);
-            BaljuDetail_AllList = dac.GetBalju_DetailList(); // 발주디테일 AllList 갱신
+            BaljuDetail_AllList = service.GetBalju_DetailList(); // 발주디테일 AllList 갱신
         }
 
         private void dgv_Balju_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

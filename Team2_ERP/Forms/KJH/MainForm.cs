@@ -637,6 +637,7 @@ namespace Team2_ERP
             //pad the rectangle to cover the 1 pixel line between the top of the tabpage and the start of the tabs
             background.Size = new Size(tabControl1.Right - background.Left, lasttabrect.Height + 1);
             e.Graphics.FillRectangle(fillbrush, background);
+            string s = string.Empty;
         }
 
         #endregion

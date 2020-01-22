@@ -123,15 +123,20 @@ namespace Team2_DAC
         public List<ComboItemVO> GetFactory()
         {
             List<ComboItemVO> list = null;
+
+            StringBuilder qrySelect = new StringBuilder();
+            qrySelect.Append(" SELECT CONVERT(NVARCHAR(2), Factory_ID) AS ID, Factory_Name AS Name ");
+            qrySelect.Append(" ,CONVERT(NVARCHAR(1), Factory_Division) AS CodeType ");
+            qrySelect.Append(" FROM Factory ");
+
+
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.Connection = conn;
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "GetInfo";
-
-                    FillParameter(cmd, new string[] { "@div"}, new object[] { "Factory" });
+                    cmd.Connection = conn;                    
+                    
+                    cmd.CommandText = qrySelect.ToString();
 
                     conn.Open();
                     list = Helper.DataReaderMapToList<ComboItemVO>(cmd.ExecuteReader());
@@ -179,6 +184,34 @@ namespace Team2_DAC
         }
 
         #endregion
+
+        public List<ComboItemVO> GetWorker(int factoryDivision)
+        {
+            List<ComboItemVO> list = null;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "GetInfo";
+
+                    string div = factoryDivision == 0 ? "DepProd1" : "DepProd2";
+
+                    FillParameter(cmd, new string[] { "@div" }, new object[] { div });
+
+                    conn.Open();
+                    list = Helper.DataReaderMapToList<ComboItemVO>(cmd.ExecuteReader());
+                    conn.Close();
+
+                    return list;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
 
 

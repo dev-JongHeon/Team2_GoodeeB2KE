@@ -38,7 +38,7 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dgv_OrderDetail = new System.Windows.Forms.DataGridView();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,7 +58,7 @@
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Order)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_OrderDetail)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -70,7 +70,7 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.dataGridView2);
+            this.panel3.Controls.Add(this.dgv_OrderDetail);
             // 
             // panel5
             // 
@@ -161,21 +161,21 @@
             this.Column8.HeaderText = "주문총액";
             this.Column8.Name = "Column8";
             // 
-            // dataGridView2
+            // dgv_OrderDetail
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgv_OrderDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_OrderDetail.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column9,
             this.Column10,
             this.Column11,
             this.Column12,
             this.Column7});
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 23;
-            this.dataGridView2.Size = new System.Drawing.Size(1364, 290);
-            this.dataGridView2.TabIndex = 1;
+            this.dgv_OrderDetail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_OrderDetail.Location = new System.Drawing.Point(0, 0);
+            this.dgv_OrderDetail.Name = "dgv_OrderDetail";
+            this.dgv_OrderDetail.RowTemplate.Height = 23;
+            this.dgv_OrderDetail.Size = new System.Drawing.Size(1364, 290);
+            this.dgv_OrderDetail.TabIndex = 1;
             // 
             // Column9
             // 
@@ -231,7 +231,7 @@
             this.panel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Order)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_OrderDetail)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -242,7 +242,7 @@
         private SearchUserControl searchUserControl2;
         private SearchUserControl searchUserControl1;
         private System.Windows.Forms.DataGridView dgv_Order;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dgv_OrderDetail;
         private SearchPeriodControl searchPeriodControl2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
