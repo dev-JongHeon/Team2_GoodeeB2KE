@@ -408,7 +408,7 @@
             // 
             this.splitContainer6.Panel2.Controls.Add(this.dgvPerformance);
             this.splitContainer6.Size = new System.Drawing.Size(1264, 459);
-            this.splitContainer6.SplitterDistance = 654;
+            this.splitContainer6.SplitterDistance = 683;
             this.splitContainer6.TabIndex = 0;
             // 
             // dgvProduce
@@ -419,7 +419,7 @@
             this.dgvProduce.Location = new System.Drawing.Point(0, 0);
             this.dgvProduce.Name = "dgvProduce";
             this.dgvProduce.RowTemplate.Height = 23;
-            this.dgvProduce.Size = new System.Drawing.Size(654, 459);
+            this.dgvProduce.Size = new System.Drawing.Size(683, 459);
             this.dgvProduce.TabIndex = 2;
             this.dgvProduce.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProduce_CellClick);
             // 
@@ -431,7 +431,7 @@
             this.dgvPerformance.Location = new System.Drawing.Point(0, 0);
             this.dgvPerformance.Name = "dgvPerformance";
             this.dgvPerformance.RowTemplate.Height = 23;
-            this.dgvPerformance.Size = new System.Drawing.Size(606, 459);
+            this.dgvPerformance.Size = new System.Drawing.Size(577, 459);
             this.dgvPerformance.TabIndex = 0;
             this.dgvPerformance.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPerformance_CellClick);
             // 
@@ -512,12 +512,11 @@
             // lblWorker
             // 
             this.lblWorker.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblWorker.Font = new System.Drawing.Font("나눔고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblWorker.Font = new System.Drawing.Font("나눔고딕", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblWorker.Location = new System.Drawing.Point(0, 0);
             this.lblWorker.Name = "lblWorker";
             this.lblWorker.Size = new System.Drawing.Size(1264, 26);
             this.lblWorker.TabIndex = 0;
-            this.lblWorker.Text = "작업자명 : xxx";
             this.lblWorker.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // PopMain
