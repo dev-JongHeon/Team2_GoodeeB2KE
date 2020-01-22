@@ -139,5 +139,10 @@ namespace Team2_ERP
                 txtCode.Tag = string.Empty;
             }
         }
+
+        private void txtCode_MouseClick(object sender, MouseEventArgs e)
+        {
+            txtCode.SelectAll();
+        }
     }
 }

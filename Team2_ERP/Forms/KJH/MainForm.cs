@@ -297,192 +297,181 @@ namespace Team2_ERP
         {
             if (e.Node.Name == "UserAuth")
             {
-                OpenBaseForm<UserAuth>("사용자권한설정");
+                MenuByAuth(e);
+                OpenBaseForm<UserAuth>("사용자권한설정");                
             }
             else if (e.Node.Name == "Work")
             {
-                OpenBaseForm<Work>("작업대기현황");
+                MenuByAuth(e);
+                OpenBaseForm<Work>("작업대기현황");                
             }
             else if (e.Node.Name == "Produce")
             {
-                OpenBaseForm<Produce>("생산실적현황");
+                MenuByAuth(e);
+                OpenBaseForm<Produce>("생산실적현황");                
             }
             else if (e.Node.Name == "DowntimeType")
             {
-                OpenBaseForm<DowntimeType>("비가동유형");
+                MenuByAuth(e);
+                OpenBaseForm<DowntimeType>("비가동유형");                
             }
             else if (e.Node.Name == "Downtime")
             {
-                OpenBaseForm<Downtime>("비가동현황");
+                MenuByAuth(e);
+                OpenBaseForm<Downtime>("비가동현황");                
             }
             else if (e.Node.Name == "DefectiveType")
             {
-                OpenBaseForm<DefectiveType>("불량유형");
+                MenuByAuth(e);
+                OpenBaseForm<DefectiveType>("불량유형");               
             }
             else if (e.Node.Name == "DefectiveHandle")
             {
-                OpenBaseForm<DefectiveHandle>("불량처리유형");
+                MenuByAuth(e);
+                OpenBaseForm<DefectiveHandle>("불량처리유형");                
             }
             else if (e.Node.Name == "Defective")
             {
-                OpenBaseForm<Defective>("불량현황");
+                MenuByAuth(e);
+                OpenBaseForm<Defective>("불량현황");                
             }
             else if (e.Node.Name == "StockStatus")
             {
-                OpenBaseForm<StockStatus>("재고현황");
+                MenuByAuth(e);
+                OpenBaseForm<StockStatus>("재고현황");                
             }
             else if (e.Node.Name == "InOutList_MaterialWarehouse")
             {
-                OpenBaseForm<InOutList_MaterialWarehouse>("자재수불현황");
+                MenuByAuth(e);
+                OpenBaseForm<InOutList_MaterialWarehouse>("자재수불현황");                
             }
             else if (e.Node.Name == "InOutList_SemiProductWarehouse")
             {
-                OpenBaseForm<InOutList_SemiProductWarehouse>("반제품수불현황");
+                MenuByAuth(e);
+                OpenBaseForm<InOutList_SemiProductWarehouse>("반제품수불현황");                
             }
             else if (e.Node.Name == "BaljuList")
             {
-                OpenBaseForm<BaljuList>("발주현황");
+                MenuByAuth(e);
+                OpenBaseForm<BaljuList>("발주현황");               
             }
             else if (e.Node.Name == "BaljuList_Completed")
             {
-                OpenBaseForm<BaljuList_Completed>("발주완료현황");
+                MenuByAuth(e);
+                OpenBaseForm<BaljuList_Completed>("발주완료현황");                
             }
             else if (e.Node.Name == "OrderMainForm")
             {
-                OpenBaseForm<OrderMainForm>("주문현황");
+                MenuByAuth(e);
+                OpenBaseForm<OrderMainForm>("주문현황");                
             }
             else if (e.Node.Name == "OrderCompleteForm")
             {
-                OpenBaseForm<OrderCompleteForm>("발주완료현황");              
+                MenuByAuth(e);
+                OpenBaseForm<OrderCompleteForm>("발주완료현황");                
             }
             else if (e.Node.Name == "ShipmentMainForm")
             {
-                OpenBaseForm<ShipmentMainForm>("출하현황");
+                MenuByAuth(e);
+                OpenBaseForm<ShipmentMainForm>("출하현황");                
             }
             else if (e.Node.Name == "ShipmentCompleteForm")
             {
-                OpenBaseForm<ShipmentCompleteForm>("출하완료현황");
+                MenuByAuth(e);
+                OpenBaseForm<ShipmentCompleteForm>("출하완료현황");                
             }
             else if (e.Node.Name == "SalesMainForm")
             {
-                OpenBaseForm<SalesMainForm>("매출현황");
+                MenuByAuth(e);
+                OpenBaseForm<SalesMainForm>("매출현황");                
             }
             else if (e.Node.Name == "Department")
             {
-                OpenBaseForm<Department>("부서관리");
+                MenuByAuth(e);
+                OpenBaseForm<Department>("부서관리");                
             }
             else if (e.Node.Name == "Employees")
             {
-                OpenBaseForm<Employees>("사원관리");
+                MenuByAuth(e);
+                OpenBaseForm<Employees>("사원관리");                
             }
             else if (e.Node.Name == "Company")
             {
-                OpenBaseForm<Company>("거래처관리");
+                MenuByAuth(e);
+                OpenBaseForm<Company>("거래처관리");                
             }
             else if (e.Node.Name == "Customer")
             {
-                OpenBaseForm<Customer>("고객관리");
+                MenuByAuth(e);
+                OpenBaseForm<Customer>("고객관리");                
             }
             else if (e.Node.Name == "Category")
             {
-                OpenBaseForm<Category>("카테고리관리");
+                MenuByAuth(e);
+                OpenBaseForm<Category>("카테고리관리");                
             }
             else if (e.Node.Name == "Factory")
             {
-                OpenBaseForm<Factory>("공장&공정관리");
+                MenuByAuth(e);
+                OpenBaseForm<Factory>("공장&공정관리");                
             }
             else if (e.Node.Name == "Resource")
             {
-                OpenBaseForm<Resource>("원자재관리");
+                MenuByAuth(e);
+                OpenBaseForm<Resource>("원자재관리");                
             }
             else if (e.Node.Name == "Warehouse")
             {
-                OpenBaseForm<Warehouse>("창고 관리");
+                MenuByAuth(e);
+                OpenBaseForm<Warehouse>("창고 관리");                
             }
             else if (e.Node.Name == "BOM")
             {
-                OpenBaseForm<BOM>("BOM 관리");
+                MenuByAuth(e);
+                OpenBaseForm<BOM>("BOM 관리");                
             }
 
+
+        }
+
+        private void MenuByAuth(TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Node.Tag.ToString() == "1")
+            {
+                MenuStripONOFF(true);
+            }
+            else if (e.Node.Tag.ToString() == "0")
+            {
+                MenuStripONOFF(false);
+            }
+        }
+
+        private void MenuStripONOFF(bool flag)
+        {
+            신규ToolStripMenuItem.Visible = flag;
+            수정ToolStripMenuItem.Visible = flag;
+            삭제ToolStripMenuItem.Visible = flag;
+            인쇄ToolStripMenuItem.Visible = flag;
         }
 
         private void SettingAuth()
         {
             string[] authlist = Session.Auth.Split(',');
             List<TreeNode> mlist = new List<TreeNode>();
-            
-            foreach (TreeNode item in treeView_Production.Nodes)
+            GetMenuNodes(mlist, treeView_System.Nodes);
+            GetMenuNodes(mlist, treeView_Production.Nodes);
+            GetMenuNodes(mlist, treeView_Stock.Nodes);
+            GetMenuNodes(mlist, treeView_Sales.Nodes);
+            GetMenuNodes(mlist, treeView_Info.Nodes);
+            for(int i = 0; i < mlist.Count; i++)
             {
-
-                if (item.Parent != null)
-                {
-                    foreach (string frmname in menulist.Keys)
-                    {
-                        if (item.Name == frmname)
-                        {
-                            mlist.Add(item);
-                        }
-                    }
-                }
-            }
-            foreach (TreeNode item in treeView_Stock.Nodes)
-            {
-                if (item.Parent != null)
-                {
-                    foreach (string frmname in menulist.Keys)
-                    {
-                        if (item.Name == frmname)
-                        {
-                            mlist.Add(item);
-                        }
-                    }
-                }
-            }
-            foreach (TreeNode item in treeView_Sales.Nodes)
-            {
-                if (item.Parent != null)
-                {
-                    foreach (string frmname in menulist.Keys)
-                    {
-                        if (item.Name == frmname)
-                        {
-                            mlist.Add(item);
-                            break;
-                        }
-                    }
-                }
-            }
-            foreach (TreeNode item in treeView_Info.Nodes)
-            {
-                if (item.Parent != null)
-                {
-                    foreach (string frmname in menulist.Keys)
-                    {
-                        if (item.Name == frmname)
-                        {
-                            mlist.Add(item);
-                        }
-                    }
-                }
+                mlist[i].Tag = authlist[i];
             }
         }
 
-        private void NewMethod(List<TreeNode> mlist,TreeNode node)
+        private void GetMenuNodes(List<TreeNode> mlist,TreeNodeCollection node)
         {
-            foreach (TreeNode item in treeView_System.Nodes)
-            {
-                foreach (TreeNode item2 in item.Nodes)
-                {
-                    foreach (string frmname in menulist.Keys)
-                    {
-                        if (item2.Name == frmname)
-                        {
-                            mlist.Add(item2);
-                        }
-                    }
-                }
-            }
-            foreach (TreeNode item in treeView_Production.Nodes)
+            foreach (TreeNode item in node)
             {
                 foreach (TreeNode item2 in item.Nodes)
                 {
