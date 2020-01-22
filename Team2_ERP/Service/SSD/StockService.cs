@@ -16,10 +16,10 @@ namespace Team2_ERP.Service
             return dac.GetStockReceipts();
         }
 
-        public List<StockStatus> GetStockStatus() // 뷰 사용
-        {
-            StockDAC dac = new StockDAC();
-            return dac.GetStockStatus();
-        }
+        //public List<StockStatus> GetStockStatus() // 뷰 사용
+        //{
+        //    StockDAC dac = new StockDAC();
+        //    return dac.GetStockStatus();
+        //}
     }
 }
