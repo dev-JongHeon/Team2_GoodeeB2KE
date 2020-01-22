@@ -11,6 +11,36 @@ namespace Team2_DAC
 {
     public class LoginDAC :ConnectionInfo
     {
+        public static Dictionary<string, string> menulist = new Dictionary<string, string>
+        {
+            {"UserAuth","사용자권한설정" },
+            {"Work","작업대기현황" },
+            {"Produce","생산실적현황" },
+            {"DowntimeType","비가동유형" },
+            {"Downtime","비가동현황" },
+            {"DefectiveType","불량유형" },
+            {"DefectiveHandle","불량처리유형" },
+            {"Defective","불량현황" },
+            {"StockStatus","재고현황" },
+            {"InOutList_MaterialWarehouse","자재수불현황" },
+            {"InOutList_SemiProductWarehouse","반제품수불현황" },
+            {"BaljuList","발주현황" },
+            {"BaljuList_Completed","발주완료현황" },
+            {"OrderMainForm","주문현황" },
+            {"OrderCompleteForm","주문처리완료현황" },
+            {"ShipmentMainForm","출하현황" },
+            {"ShipmentCompleteForm","출하완료현황" },
+            {"SalesMainForm","매출현황" },
+            {"Department","부서관리" },
+            {"Employees","사원관리" },
+            {"Company","거래처관리" },
+            {"Customer","고객관리" },
+            {"Category","카테고리관리" },
+            {"Factory","공장&공정관리" },
+            {"Resource","원자재관리" },
+            {"Warehouse","창고 관리" },
+            {"BOM","BOM 관리" },
+        };
         SqlConnection conn;
         public LoginDAC()
         {
@@ -55,6 +85,33 @@ namespace Team2_DAC
                     int result = Convert.ToInt32(cmd.ExecuteNonQuery());
                     conn.Close();
                     return result>0;
+                }
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+        }
+
+        public bool InsertAuth(int id)
+        {
+            try
+            {
+                string sql = "InsertUserAuth";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    int result = 0;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    conn.Open();
+                    foreach (string name in menulist.Keys)
+                    {
+                        cmd.Parameters.AddWithValue("@ID", id);
+                        cmd.Parameters.AddWithValue("@Form", name);
+                        result=Convert.ToInt32(cmd.ExecuteNonQuery());
+                        cmd.Parameters.Clear();
+                    }
+                    conn.Close();
+                    return result > 0;
                 }
             }
             catch (Exception err)
