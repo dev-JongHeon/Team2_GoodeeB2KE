@@ -45,5 +45,11 @@ namespace Team2_ERP.Service.CMG
             ResourceDAC dac = new ResourceDAC();
             return dac.GetComboMeterial();
         }
+
+        public List<WarehouseVO> GetAllWarehouse()
+        {
+            WarehouseDAC dac = new WarehouseDAC();
+            return dac.GetAllWarehouse();
+        }
     }
 }

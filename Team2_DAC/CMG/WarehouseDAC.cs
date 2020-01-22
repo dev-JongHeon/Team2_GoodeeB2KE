@@ -18,26 +18,27 @@ namespace Team2_DAC
             conn.ConnectionString = this.ConnectionString;
         }
 
-        //public List<WarehouseVO> GetAllWarehouse()
-        //{
-        //    string sql = "Warehouse_ID, Warehouse_Name, (Warehouse_Address1 + ' ' + Warehouse_Address2) as Warehouse_Address, Warehouse_Number, Warehouse_Fax, Warehouse_DeletedYN, Warehouse_Division ";
+        public List<WarehouseVO> GetAllWarehouse()
+        {
+            string sql = "select Warehouse_ID, Warehouse_Name, (Warehouse_Address1 + '　' + Warehouse_Address2) as Warehouse_Address, Warehouse_Number, Warehouse_Fax, Warehouse_DeletedYN, Warehouse_Division from Warehouse ";
 
-        //    try
-        //    {
-        //        using (SqlCommand cmd = new SqlCommand(sql, conn))
-        //        {
-        //            conn.Open();
-        //            List<WarehouseVO> list = Helper.DataReaderMapToList<WarehouseVO>(cmd.ExecuteReader());
-        //        }
-        //    }
-        //    catch(Exception err)
-        //    {
-        //        throw new Exception(err.Message);
-        //    }
-        //    finally
-        //    {
-        //        conn.Close();
-        //    }
-        //}
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    List<WarehouseVO> list = Helper.DataReaderMapToList<WarehouseVO>(cmd.ExecuteReader());
+                    return list;
+                }
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }

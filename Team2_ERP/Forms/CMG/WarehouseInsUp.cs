@@ -12,6 +12,9 @@ namespace Team2_ERP
 {
     public partial class WarehouseInsUp : BasePopup
     {
+        public string Address1 { get; set; }
+        public string Address2 { get; set; }
+
         public WarehouseInsUp()
         {
             InitializeComponent();
