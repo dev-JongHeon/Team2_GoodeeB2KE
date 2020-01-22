@@ -229,7 +229,7 @@ namespace Team2_DAC
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "proc_SetWorkerForPerformancePOP";
 
-                    FillParameter(cmd, new string[] { "@ProduceID", "@Employee_ID" }, new object[] { produceID, empID });
+                    FillParameter(cmd, new string[] { "@Produce_ID", "@Employee_ID" }, new object[] { produceID, empID });
 
                     conn.Open();
                     iResult = cmd.ExecuteNonQuery();
