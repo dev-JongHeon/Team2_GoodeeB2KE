@@ -33,11 +33,13 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dataGridView1, "제품코드", "Product_ID", true, 100);
             UtilClass.AddNewColum(dataGridView1, "제품이름", "Product_Name", true, 100);
             UtilClass.AddNewColum(dataGridView1, "제품보관창고", "Warehouse_Name", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "제품가격", "Product_Price", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "제품개수", "Product_Qty", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "안전재고량", "Product_Safety", true, 100);
+            UtilClass.AddNewColum(dataGridView1, "제품가격", "Product_Price", true, 100, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dataGridView1, "제품개수", "Product_Qty", true, 100, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dataGridView1, "안전재고량", "Product_Safety", true, 100, DataGridViewContentAlignment.MiddleRight);
             UtilClass.AddNewColum(dataGridView1, "제품카테고리", "CodeTable_CodeName", true, 100);
             dataGridView1.Columns[3].DefaultCellStyle.Format = "#,###원";
+            dataGridView1.Columns[4].DefaultCellStyle.Format = "#,###개";
+            dataGridView1.Columns[5].DefaultCellStyle.Format = "#,###개";
 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;

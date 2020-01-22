@@ -53,7 +53,7 @@ namespace Team2_POP
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-           this.DialogResult = DialogResult.OK;
+           DialogResult = DialogResult.OK;
         }
 
         private void btnSelect_Click(object sender, EventArgs e)

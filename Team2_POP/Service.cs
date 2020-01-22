@@ -42,5 +42,10 @@ namespace Team2_POP
         {
             return new POPDAC().GetWorker(factoryDivision);
         }
+
+        public bool SetWorker(string produceID, int empID)
+        {
+            return new POPDAC().SetWorkerForPerformance(produceID, empID);
+        }
     }
 }
