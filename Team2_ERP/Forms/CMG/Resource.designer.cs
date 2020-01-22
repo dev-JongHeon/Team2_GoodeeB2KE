@@ -80,6 +80,8 @@
             this.ClientSize = new System.Drawing.Size(1364, 820);
             this.Name = "Resource";
             this.Text = "Resource";
+            this.Activated += new System.EventHandler(this.Resource_Activated);
+            this.Deactivate += new System.EventHandler(this.Resource_Deactivate);
             this.Load += new System.EventHandler(this.Resource_Load);
             this.panel1.ResumeLayout(false);
             this.panel_Search.ResumeLayout(false);

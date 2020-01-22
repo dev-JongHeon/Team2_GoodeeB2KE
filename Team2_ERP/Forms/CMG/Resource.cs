@@ -148,5 +148,16 @@ namespace Team2_ERP
                 Product_Safety = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString())
             };
         }
+
+        private void Resource_Deactivate(object sender, EventArgs e)
+        {
+            ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = true;
+            new SettingMenuStrip().UnsetMenu(this);
+        }
+
+        private void Resource_Activated(object sender, EventArgs e)
+        {
+            ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = false;
+        }
     }
 }
