@@ -13,6 +13,7 @@ namespace Team2_POP
 {
     public partial class PopMain : Form
     {
+        List<ComboItemVO> listFactory = null;
         public PopMain()
         {
             InitializeComponent();
@@ -20,6 +21,7 @@ namespace Team2_POP
 
         private void PopMain_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
             SettingControl();
             InitData();
         }
@@ -31,7 +33,8 @@ namespace Team2_POP
             // =============================================
 
             splitContainer1.IsSplitterFixed = splitContainer2.IsSplitterFixed = splitContainer3.IsSplitterFixed
-                = splitContainer4.IsSplitterFixed = splitContainer5.IsSplitterFixed = true;
+                = splitContainer4.IsSplitterFixed = splitContainer5.IsSplitterFixed =
+                splitContainer6.IsSplitterFixed = true;
 
             // =============================================
             //                라벨 초기값 
@@ -53,40 +56,43 @@ namespace Team2_POP
             // 작업 그리드뷰
             UtilClass.SettingDgv(dgvWork);
 
-            UtilClass.AddNewColum(dgvWork, "작업지시번호", "Work_ID", true, 150);
+            UtilClass.AddNewColum(dgvWork, "작업지시번호", "Work_ID", true, 170);
             UtilClass.AddNewColum(dgvWork, "작업 시작날짜", "Work_StartDate", true, 150);
             UtilClass.AddNewColum(dgvWork, "작업 종료날짜", "Work_EndDate", true, 150);
-            UtilClass.AddNewColum(dgvWork, "출하지시번호", "Shipment_ID", true);
+            UtilClass.AddNewColum(dgvWork, "출하지시번호", "Shipment_ID", true, 170);
             UtilClass.AddNewColum(dgvWork, "작업 현황", "Work_State", true);
             UtilClass.AddNewColum(dgvWork, "작업지시자 사번", "Employees_ID", false);
             UtilClass.AddNewColum(dgvWork, "작업지시자 이름", "Employees_Name", true, 120);
-            UtilClass.AddNewColum(dgvWork, "출하 요청날짜", "Shipment_RequiredDate", true, 150);
+            UtilClass.AddNewColum(dgvWork, "출하 요청날짜", "Shipment_RequiredDate", true, 130);
 
             // 생산 그리드뷰
             UtilClass.SettingDgv(dgvProduce);
 
-            UtilClass.AddNewColum(dgvProduce, "생산지시번호", "Produce_ID", true, 150);
-            UtilClass.AddNewColum(dgvProduce, "상품코드", "Product_ID", true, 150);
-            UtilClass.AddNewColum(dgvProduce, "상품명", "Product_Name", true, 150);
-            UtilClass.AddNewColum(dgvProduce, "생산요청수량", "Produce_QtyRequested", true);
-            UtilClass.AddNewColum(dgvProduce, "불량품 수", "Performance_QtyDefectiveItem", true);
+            UtilClass.AddNewColum(dgvProduce, "생산지시번호", "Produce_ID", true, 170);
+            UtilClass.AddNewColum(dgvProduce, "상품코드", "Product_ID", true, 135);
+            UtilClass.AddNewColum(dgvProduce, "상품명", "Product_Name", true, 380);
+            UtilClass.AddNewColum(dgvProduce, "생산요청수량", "Produce_QtyRequested", true, 100, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dgvProduce, "불량품 수", "Performance_QtyDefectiveItem", true, 100, DataGridViewContentAlignment.MiddleRight);
             UtilClass.AddNewColum(dgvProduce, "생산 상태", "Produce_State", true);
-            
-            
+
+
             // 실적 그리드뷰
             UtilClass.SettingDgv(dgvPerformance);
 
-            UtilClass.AddNewColum(dgvPerformance, "생산실적번호", "Performance_ID", true, 150);
+            UtilClass.AddNewColum(dgvPerformance, "생산실적번호", "Performance_ID", true, 170);
             UtilClass.AddNewColum(dgvPerformance, "생산지시번호", "Produce_ID", false, 150);
-            UtilClass.AddNewColum(dgvPerformance, "양품수", "Performance_QtySuccessItem", true, 150);
-            UtilClass.AddNewColum(dgvPerformance, "불량수", "Performance_QtyDefectiveItem", true);
-            UtilClass.AddNewColum(dgvPerformance, "시작 날짜", "Performance_StartDate", true);
-            UtilClass.AddNewColum(dgvPerformance, "종료 날짜", "Performance_EndDate", true);
+            UtilClass.AddNewColum(dgvPerformance, "양품수", "Performance_QtySuccessItem", true, 90, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dgvPerformance, "불량수", "Performance_QtyDefectiveItem", true, 90, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dgvPerformance, "시작 날짜", "Performance_StartDate", true, 130);
+            UtilClass.AddNewColum(dgvPerformance, "종료 날짜", "Performance_EndDate", true, 130);
             UtilClass.AddNewColum(dgvPerformance, "사원번호", "Employees_ID", false);
-            UtilClass.AddNewColum(dgvPerformance, "사원이름", "Employees_Name", true);
-            UtilClass.AddNewColum(dgvPerformance, "불량률", "Performance_DefectiveRate", true);
-            UtilClass.AddNewColum(dgvPerformance, "가동시간", "Performance_ElapsedTime", true);
+            UtilClass.AddNewColum(dgvPerformance, "작업자 명", "Employees_Name", true);
+            UtilClass.AddNewColum(dgvPerformance, "불량률", "Performance_DefectiveRate", true, 100, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dgvPerformance, "가동시간", "Performance_ElapsedTime", true, 100, DataGridViewContentAlignment.MiddleRight);
 
+
+            
+            dgvPerformance.Columns[8].DefaultCellStyle.Format = "##0.0#%";
         }
 
         private void InitData()
@@ -96,10 +102,30 @@ namespace Team2_POP
             // =============================================
             try
             {
-                UtilClass.ComboBinding(cboFactory, new Service().GetFactoryList(), "공장 선택");
+                listFactory = new Service().GetFactoryList();
+                UtilClass.ComboBinding(cboFactory, listFactory , "공장 선택");
             }
             catch
             {
+
+            }
+        }
+
+        private void GetWork(string data)
+        {
+            if (cboLine.SelectedValue != null && char.IsDigit(Convert.ToChar(cboLine.SelectedValue)))
+            {
+                List<Work> list = new Service().GetWorks(data, Convert.ToInt32(cboLine.SelectedValue));
+
+                if (list.Count > 0)
+                {
+                    dgvWork.DataSource = null;
+                    dgvWork.DataSource = list;
+                }
+                else
+                {
+                    MessageBox.Show($"작업날짜 : {data} \n공정 : {cboLine.Text} \n 위의 작업내역이 존재하지 않습니다.");
+                }
 
             }
         }
@@ -114,8 +140,26 @@ namespace Team2_POP
         // 작업자 설정버튼을 누른 경우
         private void btnWorker_Click(object sender, EventArgs e)
         {
-            WorkRegister work = new WorkRegister();
-            work.ShowDialog();
+            try
+            {
+                if (cboFactory.Tag == null || dgvProduce.SelectedRows[0].Cells[0].Value == null)
+                    return;
+            }
+            catch
+            {
+                return;
+            }
+
+            using (WorkRegister work = new WorkRegister())
+            {
+                work.ProduceID = dgvProduce.SelectedRows[0].Cells[0].Value.ToString();
+                work.FactoryDivision = Convert.ToInt32(cboFactory.Tag);
+                if (work.ShowDialog() == DialogResult.OK)
+                {
+                    // 생산실적추가 프로시저 
+                }
+            }
+                
         }
 
         // 불량유형 버튼을 누른 경우
@@ -130,47 +174,44 @@ namespace Team2_POP
         {
             // DAC단에서 오늘날짜의 작업을 가져옴
             //dgvWork.DataSource = new Service().GetWorks(lblDate.Text);
-
-            if (cboLine.SelectedValue != null && char.IsDigit(Convert.ToChar(cboLine.SelectedValue)))
-            {                
-                List<Work> list = new Service().GetWorks("2020-01-26", Convert.ToInt32(cboLine.SelectedValue));
-
-                if (list.Count > 0)
-                {
-                    dgvWork.DataSource = null;
-                    dgvWork.DataSource = list;
-                }
-                else
-                {
-                    MessageBox.Show($"작업날짜 : {"2020-01-26"} \n공정 : {cboLine.Text} \n 위의 작업내역이 존재하지 않습니다.");
-                }
-
-            }
+            GetWork(lblDate.Text);
         }
+        #region 날짜 관련 버튼 ( 날짜조회버튼 , 이전버튼 , 다음버튼)
 
+        //날짜조회 버튼을 누른 경우
         private void btnDate_Click(object sender, EventArgs e)
         {
-            // DAC단에서 해당 날짜의 작업을 가져옴
+            GetWork(lblDate.Text);
         }
 
         private void btnPreDate_Click(object sender, EventArgs e)
         {
             // DAC단에서 어제 날짜의 작업을 가져옴
             // 라벨 날짜를 어제 날짜로 변경
+            lblDate.Text = DateTime.Parse(lblDate.Text).AddDays(-1).ToShortDateString();
         }
 
         private void btnNextDate_Click(object sender, EventArgs e)
         {
             // DAC단에서 내일 날짜의 작업을 가져옴
             // 라벨 날짜를 내일 날짜로 변경
+            lblDate.Text = DateTime.Parse(lblDate.Text).AddDays(1).ToShortDateString();
         }
 
+        #endregion
+
+
+        // 공정 콤보박스가 변경될때
         private void cboFactory_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                if (cboFactory.SelectedIndex != 0 && cboFactory.SelectedValue != null)
-                    UtilClass.ComboBinding(cboLine, new Service().GetLineList(Convert.ToInt32(cboFactory.SelectedValue)), "공정 선택");
+                object value = cboFactory.SelectedValue;
+                if (cboFactory.SelectedIndex != 0 && value != null)
+                {
+                    UtilClass.ComboBinding(cboLine, new Service().GetLineList(Convert.ToInt32(value)), "공정 선택");
+                    cboFactory.Tag = (listFactory.Find(f => f.ID == value.ToString())).CodeType;
+                }
 
 
             }
@@ -180,14 +221,16 @@ namespace Team2_POP
             }
         }
 
+        #region 그리드뷰 클릭 이벤트
+
         private void dgvWork_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                if(e.RowIndex > -1 && e.ColumnIndex > -1)
+                if (e.RowIndex > -1 && e.ColumnIndex > -1)
                 {
                     dgvProduce.DataSource = null;
-                    dgvProduce.DataSource = new Service().GetProduce(dgvWork.SelectedRows[e.RowIndex].Cells[0].Value.ToString());
+                    dgvProduce.DataSource = new Service().GetProduce(dgvWork.SelectedRows[0].Cells[0].Value.ToString());
                     dgvProduce.ClearSelection();
                 }
             }
@@ -213,5 +256,13 @@ namespace Team2_POP
 
             }
         }
+
+        private void dgvPerformance_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvPerformance.SelectedRows[0].Cells[7].Value != null)
+                lblWorker.Text = "작업자명 : " + dgvPerformance.SelectedRows[0].Cells[7].Value.ToString();
+        }
+
+        #endregion
     }
 }

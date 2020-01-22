@@ -22,6 +22,18 @@ namespace Team2_ERP.Service.CMG
             return dac.InsertResource(item);
         }
 
+        public bool UpdateResource(ResourceVO item)
+        {
+            StandardDAC dac = new StandardDAC();
+            return dac.UpdateResource(item);
+        }
+
+        public bool DeleteResource(string code)
+        {
+            StandardDAC dac = new StandardDAC();
+            return dac.DeleteResource(code);
+        }
+
         public List<ComboItemVO> GetComboWarehouse()
         {
             StandardDAC dac = new StandardDAC();

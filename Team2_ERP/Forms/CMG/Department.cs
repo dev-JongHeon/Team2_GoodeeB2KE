@@ -15,6 +15,7 @@ namespace Team2_ERP
     public partial class Department : BaseForm
     {
         List<CodeTableVO> list;
+        MainForm frm;
         string code = string.Empty;
         string name = string.Empty;
         string context = string.Empty;
@@ -42,32 +43,39 @@ namespace Team2_ERP
         {
             CodeTableService service = new CodeTableService();
             list = service.GetAllCodeTable();
-            List<CodeTableVO> departmentList = (from item in list where item.CodeTable_CodeID.Contains("Depart") select item).ToList();
+            List<CodeTableVO> departmentList = (from item in list where item.CodeTable_CodeID.Contains("Depart") && item.CodeTable_DeletedYN==false select item).ToList();
             dataGridView1.DataSource = departmentList;
         }
 
-        private void Refresh(object sender, EventArgs e)
+        // 메인 폼 메세지 초기화
+        private void InitMessage()
         {
+            frm.NoticeMessage = "메세지";
+        }
+
+        public override void Refresh(object sender, EventArgs e)
+        {
+            InitMessage();
             dataGridView1.DataSource = null;
+            searchUserControl1.CodeTextBox.Text = "";
             LoadGridView();
         }
 
-        private void New(object sender, EventArgs e)
+        public override void New(object sender, EventArgs e)
         {
-            CategoryInsUp frm = new CategoryInsUp(CategoryInsUp.EditMode.Insert, null, null, null);
+            DepartmentInsUp frm = new DepartmentInsUp(DepartmentInsUp.EditMode.Insert, null, null, null);
             frm.ShowDialog();
         }
 
-        private void Modify(object sender, EventArgs e)
+        public override void Modify(object sender, EventArgs e)
         {
             if (code == string.Empty)
             {
-                MainForm frm = (MainForm)this.ParentForm;
-                frm.NoticeMessage = "수정할 부서를 선택해 주세요.";
+                frm.NoticeMessage = "수정할 부서를 선택해주세요.";
             }
             else
             {
-                CategoryInsUp frm = new CategoryInsUp(CategoryInsUp.EditMode.Update, code, name, context);
+                DepartmentInsUp frm = new DepartmentInsUp(DepartmentInsUp.EditMode.Update, code, name, context);
 
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
@@ -78,43 +86,55 @@ namespace Team2_ERP
             }
         }
 
-        private void Delete(object sender, EventArgs e)
+        public override void Delete(object sender, EventArgs e)
         {
+            InitMessage();
 
+            if (code == string.Empty)
+            {
+                frm.NoticeMessage = "삭제할 부서를 선택해주세요.";
+            }
+            else
+            {
+                 if (MessageBox.Show("삭제하시겠습니까?", "확인", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    CodeTableService service = new CodeTableService();
+                    service.DeleteCodeTable(code);
+                    dataGridView1.DataSource = null;
+                    LoadGridView();
+                }
+            }
         }
 
-        private void Search(object sender, EventArgs e)
+        public override void Search(object sender, EventArgs e)
         {
-
-        }
-
-        private void Print(object sender, EventArgs e)
-        {
-
+            dataGridView1.DataSource = null;
+            List<CodeTableVO> deptList = (from item in list where item.CodeTable_CodeID.Contains(searchUserControl1.CodeTextBox.Tag.ToString()) && item.CodeTable_DeletedYN == false select item).ToList();
+            dataGridView1.DataSource = deptList;
         }
 
         private void Department_Load(object sender, EventArgs e)
         {
             InitGridView();
+            frm = (MainForm)this.ParentForm;
             LoadGridView();
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            code = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-            name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
-            context = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
         }
 
         private void Department_Activated(object sender, EventArgs e)
         {
-            new SettingMenuStrip().SetMenu(this, Refresh, New, Modify, Delete, Search, Print);
             ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = false;
         }
 
         private void Department_Deactivate(object sender, EventArgs e)
         {
             new SettingMenuStrip().UnsetMenu(this);
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            code = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+            name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+            context = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
         }
     }
 }
