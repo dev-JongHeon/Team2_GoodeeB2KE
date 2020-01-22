@@ -33,26 +33,26 @@ namespace Team2_ERP
             frm.ShowDialog();
         }
 
-        private void dtpStart_ValueChanged(object sender, EventArgs e)
-        {
-            if (dtpStart.Value > dtpEnd.Value)
-            {
-                DateTime starttmp = dtpStart.Value;
-                DateTime endtmp = dtpEnd.Value;
-                dtpEnd.Value = starttmp;
-                dtpStart.Value = endtmp;
-            }
-        }
+        //private void dtpStart_ValueChanged(object sender, EventArgs e)
+        //{
+        //    if (dtpStart.Value > dtpEnd.Value)
+        //    {
+        //        DateTime starttmp = dtpStart.Value;
+        //        DateTime endtmp = dtpEnd.Value;
+        //        dtpEnd.Value = starttmp;
+        //        dtpStart.Value = endtmp;
+        //    }
+        //}
 
-        private void dtpEnd_ValueChanged(object sender, EventArgs e)
-        {
-            if (dtpStart.Value > dtpEnd.Value)
-            {
-                DateTime starttmp = dtpStart.Value;
-                DateTime endtmp = dtpEnd.Value;
-                dtpEnd.Value = starttmp;
-                dtpStart.Value = endtmp;
-            }
-        }
+        //private void dtpEnd_ValueChanged(object sender, EventArgs e)
+        //{
+        //    if (dtpStart.Value > dtpEnd.Value)
+        //    {
+        //        DateTime starttmp = dtpStart.Value;
+        //        DateTime endtmp = dtpEnd.Value;
+        //        dtpEnd.Value = starttmp;
+        //        dtpStart.Value = endtmp;
+        //    }
+        //}
     }
 }

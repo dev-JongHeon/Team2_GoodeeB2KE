@@ -30,7 +30,7 @@ namespace Team2_ERP
             UtilClass.SettingDgv(dgv_Order);
             UtilClass.AddNewColum(dgv_Order, "주문번호", "Order_ID", true);
             UtilClass.AddNewColum(dgv_Order, "고객ID", "Customer_UserID", true);
-            UtilClass.AddNewColum(dgv_Order, "주문일자", "Order_Date", true);
+            UtilClass.AddNewColum(dgv_Order, "주문일시", "Order_Date", true);
             UtilClass.AddNewColum(dgv_Order, "배송지주소", "Order_Address1", true);
             UtilClass.AddNewColum(dgv_Order, "배송지상세주소", "Order_Address2", true);
             UtilClass.AddNewColum(dgv_Order, "주문총액", "TotalPrice", true);
@@ -42,7 +42,7 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_OrderDetail, "주문번호", "Order_ID", true);
             UtilClass.AddNewColum(dgv_OrderDetail, "제품ID", "Product_ID", true);
             UtilClass.AddNewColum(dgv_OrderDetail, "제품명", "Product_Name", true);
-            UtilClass.AddNewColum(dgv_OrderDetail, "주문갯수", "OrderDetail_Qty", true);
+            UtilClass.AddNewColum(dgv_OrderDetail, "주문수량", "OrderDetail_Qty", true);
             OrderDetail_AllList = service.GetOrderDetailList();
         }
 

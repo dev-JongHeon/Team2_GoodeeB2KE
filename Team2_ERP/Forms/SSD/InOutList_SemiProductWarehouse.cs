@@ -7,13 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Team2_DAC;
+using Team2_ERP.Service;
 using Team2_VO;
 
 namespace Team2_ERP
 {
     public partial class InOutList_SemiProductWarehouse : Base1Dgv
     {
-        StockDAC dac = new StockDAC();
+        StockService service = new StockService();
         List<StockReceipt> StockReceipt_AllList = null;
         public InOutList_SemiProductWarehouse()
         {
@@ -39,7 +40,7 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Stock, "등록사원", "Employees_Name", true);
             UtilClass.AddNewColum(dgv_Stock, "창고유형", "Warehouse_Division", false);
 
-            StockReceipt_AllList = dac.GetStockReceipts(); // 수불내역 갱신
+            StockReceipt_AllList = service.GetStockReceipts(); // 수불내역 갱신
 
             // LINQ로 반제품창고에 속한 수불현황만 가져옴
             List<StockReceipt> StockReceipt_list = (from list_Stock in StockReceipt_AllList
