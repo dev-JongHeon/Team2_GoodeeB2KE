@@ -318,7 +318,6 @@
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(267, 76);
             this.lblDate.TabIndex = 2;
-            this.lblDate.Text = "2020-01-05";
             this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnDate
@@ -409,7 +408,7 @@
             // 
             this.splitContainer6.Panel2.Controls.Add(this.dgvPerformance);
             this.splitContainer6.Size = new System.Drawing.Size(1264, 459);
-            this.splitContainer6.SplitterDistance = 793;
+            this.splitContainer6.SplitterDistance = 654;
             this.splitContainer6.TabIndex = 0;
             // 
             // dgvProduce
@@ -420,7 +419,7 @@
             this.dgvProduce.Location = new System.Drawing.Point(0, 0);
             this.dgvProduce.Name = "dgvProduce";
             this.dgvProduce.RowTemplate.Height = 23;
-            this.dgvProduce.Size = new System.Drawing.Size(793, 459);
+            this.dgvProduce.Size = new System.Drawing.Size(654, 459);
             this.dgvProduce.TabIndex = 2;
             this.dgvProduce.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProduce_CellClick);
             // 
@@ -432,8 +431,9 @@
             this.dgvPerformance.Location = new System.Drawing.Point(0, 0);
             this.dgvPerformance.Name = "dgvPerformance";
             this.dgvPerformance.RowTemplate.Height = 23;
-            this.dgvPerformance.Size = new System.Drawing.Size(467, 459);
+            this.dgvPerformance.Size = new System.Drawing.Size(606, 459);
             this.dgvPerformance.TabIndex = 0;
+            this.dgvPerformance.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPerformance_CellClick);
             // 
             // splitContainer5
             // 

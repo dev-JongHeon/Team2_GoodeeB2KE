@@ -54,7 +54,7 @@ namespace Team2_POP
             dgv.AllowUserToAddRows = false;
             dgv.MultiSelect = false;
             dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            //dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dgv.RowsDefaultCellStyle.BackColor = Color.White;
             dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
             dgv.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
@@ -73,13 +73,14 @@ namespace Team2_POP
             dgv.AllowUserToResizeRows = false;
             dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgv.RowHeadersVisible = false;
+            dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         }
 
         #region comboBox 바인딩 관련 유틸리티
         public static void ComboBinding(ComboBox combo, List<ComboItemVO> list)
         {
-            combo.ValueMember = "Name";
-            combo.DisplayMember = "ID";
+            combo.ValueMember = "ID";
+            combo.DisplayMember = "Name";
             combo.DataSource = list;
         }
 
