@@ -1,4 +1,4 @@
-﻿namespace Team2_ERP.Forms
+﻿namespace Team2_ERP
 {
     partial class DepartmentInsUp
     {
@@ -73,11 +73,13 @@
             // 
             this.btnCancel.FlatAppearance.BorderSize = 0;
             this.btnCancel.Location = new System.Drawing.Point(366, 3);
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOK
             // 
             this.btnOK.FlatAppearance.BorderSize = 0;
             this.btnOK.Location = new System.Drawing.Point(169, 3);
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // label2
             // 
@@ -119,6 +121,7 @@
             this.ClientSize = new System.Drawing.Size(641, 408);
             this.Name = "DepartmentInsUp";
             this.Text = "DepartmentInsUp";
+            this.Load += new System.EventHandler(this.DepartmentInsUp_Load);
             this.panel1.ResumeLayout(false);
             this.panel_Title.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).EndInit();
