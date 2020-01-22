@@ -120,15 +120,20 @@ namespace Team2_ERP
             search.Mode = this.Modes;
             if (search.ShowDialog() == DialogResult.OK)
             {
-                txtCode.Text = info.ID + " " + info.Name;
+                txtCode.Text =  info.Name;
+                txtCode.Tag = info.ID;
             }
         }
 
         private void txtCode_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(e.KeyChar == Convert.ToChar(Keys.Back)))
+          if (!(e.KeyChar == Convert.ToChar(Keys.Back)))
             {
                 e.Handled = true;
+            }
+            else
+            {
+                txtCode.Tag = string.Empty;
             }
         }
     }

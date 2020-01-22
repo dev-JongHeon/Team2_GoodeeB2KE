@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -29,37 +28,6 @@ namespace Team2_ERP
         LoginVO logininfo = new LoginVO();
         public LoginVO Logininfo { get => logininfo; set => logininfo = value; }
         public string NoticeMessage { get => lblNoticeMsg.Text; set => lblNoticeMsg.Text = value; }
-
-        private Dictionary<string, string> menulist = new Dictionary<string, string>
-        {
-            {"UserAuth","사용자권한설정" },
-            {"Work","작업대기현황" },
-            {"Produce","생산실적현황" },
-            {"DowntimeType","비가동유형" },
-            {"Downtime","비가동현황" },
-            {"DefectiveType","불량유형" },
-            {"DefectiveHandle","불량처리유형" },
-            {"Defective","불량현황" },
-            {"StockStatus","재고현황" },
-            {"InOutList_MaterialWarehouse","자재수불현황" },
-            {"InOutList_SemiProductWarehouse","반제품수불현황" },
-            {"BaljuList","발주현황" },
-            {"BaljuList_Completed","발주완료현황" },
-            {"OrderMainForm","주문현황" },
-            {"OrderCompleteForm","주문처리완료현황" },
-            {"ShipmentMainForm","출하현황" },
-            {"ShipmentCompleteForm","출하완료현황" },
-            {"SalesMainForm","매출현황" },
-            {"Department","부서관리" },
-            {"Employees","사원관리" },
-            {"Company","거래처관리" },
-            {"Customer","고객관리" },
-            {"Category","카테고리관리" },
-            {"Factory","공장&공정관리" },
-            {"Resource","원자재관리" },
-            {"Warehouse","창고 관리" },
-            {"BOM","BOM 관리" },
-        };
         #endregion
 
         #region 메인폼
@@ -92,11 +60,6 @@ namespace Team2_ERP
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
-            if (!logininfo.Employee_IsAdmin)
-            {
-                menu_System.Visible = false;
-                panel_System.Visible = false;
-            }
             //SettingTreeView();
             tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
             foreach (Panel p in mpanel.Controls)
@@ -107,7 +70,6 @@ namespace Team2_ERP
                 }
             }
             OpenTabForm<MainTab>("메인화면");
-            NoticeMessage = "환영합니다!";
         }
         #endregion
 
@@ -127,13 +89,13 @@ namespace Team2_ERP
             }
 
         }
-
+        
         private void splitter1_SplitterMoved(object sender, SplitterEventArgs e)
         {
             button1.Location = new Point(splitter1.Location.X, button1.Location.Y);
         }
 
-
+        
 
         private void label_Click(object sender, EventArgs e)
         {
@@ -185,14 +147,7 @@ namespace Team2_ERP
                     }
                     else if (tmp.Tag.ToString() == string.Empty)
                     {
-                        if (tmp.Name=="menu_System"&&!logininfo.Employee_IsAdmin)
-                        {
-                            tmp.Visible = false;
-                        }
-                        else
-                        {
-                            tmp.Visible = true;
-                        }
+                        tmp.Visible = true;
                         foreach (var pa in tmp.Controls)
                         {
                             if (pa is Panel)
@@ -239,7 +194,7 @@ namespace Team2_ERP
                 if (item is Panel)
                 {
                     Panel tmp = (Panel)item;
-                    if (tmp.Tag.ToString() == string.Empty&&tmp.Visible)
+                    if (tmp.Tag.ToString() == string.Empty)
                     {
                         sumheight += tmp.Height;
                     }
@@ -295,49 +250,33 @@ namespace Team2_ERP
 
         private void treeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            if (e.Node.Name == "UserAuth")
+            if (e.Node.Name == "Category")
             {
-                OpenBaseForm<UserAuth>("사용자권한설정");
+                OpenBaseForm<Category>("카테고리관리");
             }
-            else if (e.Node.Name == "Work")
+            else if (e.Node.Name == "UserAuth")
             {
-                OpenBaseForm<Work>("작업대기현황");
+                MessageBox.Show(e.Node.Tag.ToString());
             }
-            else if (e.Node.Name == "Produce")
+            else if(e.Node.Name== "Resource")
             {
-                OpenBaseForm<Produce>("생산실적현황");
+                OpenBaseForm<Resource> ("원자재관리");
             }
-            else if (e.Node.Name == "DowntimeType")
+            else if(e.Node.Name== "InOutList_SemiProductWarehouse")
             {
-                OpenBaseForm<DowntimeType>("비가동유형");
-            }
-            else if (e.Node.Name == "Downtime")
-            {
-                OpenBaseForm<Downtime>("비가동현황");
-            }
-            else if (e.Node.Name == "DefectiveType")
-            {
-                OpenBaseForm<DefectiveType>("불량유형");
-            }
-            else if (e.Node.Name == "DefectiveHandle")
-            {
-                OpenBaseForm<DefectiveHandle>("불량처리유형");
-            }
-            else if (e.Node.Name == "Defective")
-            {
-                OpenBaseForm<Defective>("불량현황");
-            }
-            else if (e.Node.Name == "StockStatus")
-            {
-                OpenBaseForm<StockStatus>("재고현황");
+                OpenBaseForm<InOutList_SemiProductWarehouse>("반제품수불현황");
             }
             else if (e.Node.Name == "InOutList_MaterialWarehouse")
             {
                 OpenBaseForm<InOutList_MaterialWarehouse>("자재수불현황");
             }
-            else if (e.Node.Name == "InOutList_SemiProductWarehouse")
+            else if (e.Node.Name == "StockStatus")
             {
-                OpenBaseForm<InOutList_SemiProductWarehouse>("반제품수불현황");
+                OpenBaseForm<StockStatus>("재고현황");
+            }
+            else if (e.Node.Name == "OrderMainForm")
+            {
+                OpenBaseForm<OrderMainForm>("주문현황");
             }
             else if (e.Node.Name == "BaljuList")
             {
@@ -347,66 +286,10 @@ namespace Team2_ERP
             {
                 OpenBaseForm<BaljuList_Completed>("발주완료현황");
             }
-            else if (e.Node.Name == "OrderMainForm")
-            {
-                OpenBaseForm<OrderMainForm>("주문현황");
-            }
-            else if (e.Node.Name == "OrderCompleteForm")
-            {
-                OpenBaseForm<OrderCompleteForm>("발주완료현황");              
-            }
-            else if (e.Node.Name == "ShipmentMainForm")
-            {
-                OpenBaseForm<ShipmentMainForm>("출하현황");
-            }
-            else if (e.Node.Name == "ShipmentCompleteForm")
-            {
-                OpenBaseForm<ShipmentCompleteForm>("출하완료현황");
-            }
-            else if (e.Node.Name == "SalesMainForm")
-            {
-                OpenBaseForm<SalesMainForm>("매출현황");
-            }
-            else if (e.Node.Name == "Department")
-            {
-                OpenBaseForm<Department>("부서관리");
-            }
-            else if (e.Node.Name == "Employees")
-            {
-                OpenBaseForm<Employees>("사원관리");
-            }
-            else if (e.Node.Name == "Company")
-            {
-                OpenBaseForm<Company>("거래처관리");
-            }
-            else if (e.Node.Name == "Customer")
-            {
-                OpenBaseForm<Customer>("고객관리");
-            }
-            else if (e.Node.Name == "Category")
-            {
-                OpenBaseForm<Category>("카테고리관리");
-            }
-            else if (e.Node.Name == "Factory")
-            {
-                OpenBaseForm<Factory>("공장&공정관리");
-            }
-            else if (e.Node.Name == "Resource")
-            {
-                OpenBaseForm<Resource>("원자재관리");
-            }
-            else if (e.Node.Name == "Warehouse")
-            {
-                OpenBaseForm<Warehouse>("창고 관리");
-            }
-            else if (e.Node.Name == "BOM")
-            {
-                OpenBaseForm<BOM>("BOM 관리");
-            }
 
         }
 
-        private void SettingAuth()
+        private void SettingTreeView()
         {
             foreach (TreeView item in mpanel.Controls)
             {
@@ -421,7 +304,7 @@ namespace Team2_ERP
             }
         }
 
-
+        
         #endregion
 
         #region MDI 자식폼 열기
@@ -487,15 +370,7 @@ namespace Team2_ERP
                     if (tmp.TabPag == tabControl1.SelectedTab)
                     {
                         tmp.Select();
-                        break;
-                    }
-                }
-                else if (Child is BaseForm)
-                {
-                    BaseForm tmp = (BaseForm)Child;
-                    if (tmp.TabPag == tabControl1.SelectedTab)
-                    {
-                        tmp.Select();
+
                         break;
                     }
                 }
@@ -505,18 +380,11 @@ namespace Team2_ERP
                     if (tmp.TabPag == tabControl1.SelectedTab)
                     {
                         tmp.Select();
+
                         break;
                     }
                 }
-                else if (Child is Base2Dgv)
-                {
-                    Base2Dgv tmp = (Base2Dgv)Child;
-                    if (tmp.TabPag == tabControl1.SelectedTab)
-                    {
-                        tmp.Select();
-                        break;
-                    }
-                }
+
             }
         }
 
@@ -603,35 +471,11 @@ namespace Team2_ERP
 
         private void 닫기ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CloseTab();
-        }
-
-        private void CloseTab()
-        {
-            tindex = tabControl1.SelectedIndex;
             foreach (Form Child in Application.OpenForms)
             {
-                if (Child is BaseForm)
+                if (Child is Category)
                 {
-                    BaseForm tmp = (BaseForm)Child;
-                    if (tmp.TabPag == tabControl1.SelectedTab)
-                    {
-                        tmp.Close();
-                        break;
-                    }
-                }
-                else if (Child is Base1Dgv)
-                {
-                    Base1Dgv tmp = (Base1Dgv)Child;
-                    if (tmp.TabPag == tabControl1.SelectedTab)
-                    {
-                        tmp.Close();
-                        break;
-                    }
-                }
-                else if (Child is Base2Dgv)
-                {
-                    Base2Dgv tmp = (Base2Dgv)Child;
+                    Category tmp = (Category)Child;
                     if (tmp.TabPag == tabControl1.SelectedTab)
                     {
                         tmp.Close();
@@ -642,8 +486,13 @@ namespace Team2_ERP
             if (tindex != 0)
             {
                 tabControl1.SelectedIndex = tindex - 1;
-                tabControl1.Invalidate();
             }
+            else
+            {
+                tabControl1.SelectedIndex = tindex;
+
+            }
+            tabControl1.Invalidate();
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)
@@ -654,141 +503,9 @@ namespace Team2_ERP
         }
         #endregion
 
-        private void tabControl1_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left) // 마우스 왼쪽 클릭시
-            {
-                TabControl tc = (TabControl)sender;
-                int hover_index = this.getHoverTabIndex(tc);
-                if (hover_index >= 0)
-                {
-                    tc.Tag = tc.TabPages[hover_index];
-                }
-                tindex = tabControl1.SelectedIndex;
-            }
-        }
 
-        private int getHoverTabIndex(TabControl tc)
-        {
-            for (int i = 0; i < tc.TabPages.Count; i++)
-            {
-                if (tc.GetTabRect(i).Contains(tc.PointToClient(Cursor.Position)))
-                    return i;
-            }
 
-            return -1;
-        }
 
-        private void tabControl1_MouseMove(object sender, MouseEventArgs e)
-        {
-            // mouse button down? tab was clicked?
-            TabControl tc = (TabControl)sender;
-            if ((e.Button != MouseButtons.Left) || (tc.Tag == null)) return;
-            TabPage clickedTab = (TabPage)tc.Tag;
-            int clicked_index = tc.TabPages.IndexOf(clickedTab);
 
-            // start drag n drop
-            tc.DoDragDrop(clickedTab, DragDropEffects.All);
-        }
-
-        private void tabControl1_MouseUp(object sender, MouseEventArgs e)
-        {
-            TabControl tc = (TabControl)sender;
-            tc.Tag = null;
-        }
-
-        private void tabControl1_DragOver(object sender, DragEventArgs e)
-        {
-            TabControl tc = (TabControl)sender;
-
-            // a tab is draged?
-            if (e.Data.GetData(typeof(TabPage)) == null) return;
-            TabPage dragTab = (TabPage)e.Data.GetData(typeof(TabPage));
-            int dragTab_index = tc.TabPages.IndexOf(dragTab);
-
-            // hover over a tab?
-            int hoverTab_index = this.getHoverTabIndex(tc);
-            if (hoverTab_index < 0) { e.Effect = DragDropEffects.None; return; }
-            TabPage hoverTab = tc.TabPages[hoverTab_index];
-            e.Effect = DragDropEffects.Move;
-
-            // start of drag?
-            if (dragTab == hoverTab) return;
-
-            // swap dragTab & hoverTab - avoids toggeling
-            Rectangle dragTabRect = tc.GetTabRect(dragTab_index);
-            Rectangle hoverTabRect = tc.GetTabRect(hoverTab_index);
-
-            if (dragTabRect.Width < hoverTabRect.Width)
-            {
-                Point tcLocation = tc.PointToScreen(tc.Location);
-
-                if (dragTab_index < hoverTab_index)
-                {
-                    if ((e.X - tcLocation.X) > ((hoverTabRect.X + hoverTabRect.Width) - dragTabRect.Width))
-                        this.swapTabPages(tc, dragTab, hoverTab);
-                }
-                else if (dragTab_index > hoverTab_index)
-                {
-                    if ((e.X - tcLocation.X) < (hoverTabRect.X + dragTabRect.Width))
-                        this.swapTabPages(tc, dragTab, hoverTab);
-                }
-            }
-            else this.swapTabPages(tc, dragTab, hoverTab);
-
-            // select new pos of dragTab
-            tc.SelectedIndex = tc.TabPages.IndexOf(dragTab);
-        }
-
-        private void swapTabPages(TabControl tc, TabPage dragTab, TabPage hoverTab)
-        {
-            int index_src = tc.TabPages.IndexOf(dragTab);
-            int index_dst = tc.TabPages.IndexOf(hoverTab);
-            tc.TabPages[index_dst] = dragTab;
-            tc.TabPages[index_src] = hoverTab;
-            tc.Refresh();
-        }
-
-        private void 닫기ToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            CloseTab();
-        }
-
-        private void 모든창닫기ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            foreach (Form Child in this.MdiChildren)
-            {
-                if (Child.Text != "메인화면")
-                {
-                    Child.Close();
-                }
-                
-            }
-            tabControl1.Invalidate();
-        }
-
-        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
-        {
-            Point p = this.tabControl1.PointToClient(Cursor.Position);
-            for (int i = 0; i < this.tabControl1.TabCount; i++)
-            {
-                Rectangle r = this.tabControl1.GetTabRect(i);
-                if (r.Contains(p))
-                {
-                    tindex = i;
-                    this.tabControl1.SelectedIndex = i; // i is the index of tab under cursor
-                    return;
-                }
-            }
-            e.Cancel = true;
-        }
-
-        private void tabControl1_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right&&tabControl1.SelectedIndex!=0)
-            {
-                contextMenuStrip1.Show(tabControl1, e.Location);
-            }
-        }
     }
 }

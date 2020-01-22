@@ -133,5 +133,12 @@ namespace Team2_ERP
             ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = false;
             ((MainForm)MdiParent).검색toolStripMenuItem.Visible = false;
         }
+
+        private void Category_Deactivate(object sender, EventArgs e)
+        {
+            ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = true;
+            ((MainForm)MdiParent).검색toolStripMenuItem.Visible = true;
+            new SettingMenuStrip().UnsetMenu(this);
+        }
     }
 }

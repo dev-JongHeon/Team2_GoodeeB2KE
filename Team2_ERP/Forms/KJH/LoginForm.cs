@@ -156,7 +156,10 @@ namespace Team2_ERP
 
         private void txtEmpName_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if (!(e.KeyChar == Convert.ToChar(Keys.Back)))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
