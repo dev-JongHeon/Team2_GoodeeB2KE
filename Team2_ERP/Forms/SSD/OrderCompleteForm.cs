@@ -35,6 +35,12 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Order, "주문상태", "Order_State", false);
 
             dgv_Order.DataSource = dac.GetOrderList();
+
+            UtilClass.SettingDgv(dgv_OrderDetail);
+            UtilClass.AddNewColum(dgv_OrderDetail, "주문번호", "Order_ID", true);
+            UtilClass.AddNewColum(dgv_OrderDetail, "제품ID", "Product_ID", true);
+            UtilClass.AddNewColum(dgv_OrderDetail, "제품명", "Product_Name", true);
+            UtilClass.AddNewColum(dgv_OrderDetail, "주문갯수", "OrderDetail_Qty", true);
         }
 
 

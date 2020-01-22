@@ -41,6 +41,7 @@ namespace Team2_DAC
                 return null;
             }
         }
+         
 
         public List<OrderDetail> GetOrderDetailList()  // 뷰사용
         {
@@ -50,7 +51,54 @@ namespace Team2_DAC
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "select * from Order_bottom";
+                    cmd.CommandText = "SELECT * FROM Order_bottom " + 
+                                      "WHERE Order_State = 1";
+                    conn.Open();
+                    List<OrderDetail> list = Helper.DataReaderMapToList<OrderDetail>(cmd.ExecuteReader());
+                    conn.Close();
+
+                    return list;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public List<Order> GetOrderCompletedList()  // 뷰 사용
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "SELECT * FROM Order_bottom " +
+                                      "WHERE Order_State = 1";
+                    conn.Open();
+                    List<Order> list = Helper.DataReaderMapToList<Order>(cmd.ExecuteReader());
+                    conn.Close();
+
+                    return list;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public List<OrderDetail> GetOrderDetailCompletedList()  // 뷰사용
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "SELECT * FROM Order_bottom " +
+                                      "WHERE Order_State = 1";
                     conn.Open();
                     List<OrderDetail> list = Helper.DataReaderMapToList<OrderDetail>(cmd.ExecuteReader());
                     conn.Close();
