@@ -33,16 +33,6 @@
             this.searchPeriodControl1 = new Team2_ERP.SearchPeriodControl();
             this.searchPeriodControl2 = new Team2_ERP.SearchPeriodControl();
             this.searchUserControl2 = new Team2_ERP.SearchUserControl();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -86,28 +76,17 @@
             // dgv_Shipment
             // 
             this.dgv_Shipment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_Shipment.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column5,
-            this.Column9,
-            this.Column4,
-            this.Column3,
-            this.Column2});
             this.dgv_Shipment.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_Shipment.Location = new System.Drawing.Point(0, 0);
             this.dgv_Shipment.Name = "dgv_Shipment";
             this.dgv_Shipment.RowTemplate.Height = 23;
             this.dgv_Shipment.Size = new System.Drawing.Size(1364, 280);
             this.dgv_Shipment.TabIndex = 36;
+            this.dgv_Shipment.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Shipment_CellDoubleClick);
             // 
             // dgv_ShipmentDetail
             // 
             this.dgv_ShipmentDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_ShipmentDetail.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column6,
-            this.Column12,
-            this.Column10,
-            this.Column11});
             this.dgv_ShipmentDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_ShipmentDetail.Location = new System.Drawing.Point(0, 0);
             this.dgv_ShipmentDetail.Name = "dgv_ShipmentDetail";
@@ -144,56 +123,6 @@
             this.searchUserControl2.Size = new System.Drawing.Size(312, 25);
             this.searchUserControl2.TabIndex = 2;
             // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "출하번호";
-            this.Column6.Name = "Column6";
-            // 
-            // Column12
-            // 
-            this.Column12.HeaderText = "제품ID";
-            this.Column12.Name = "Column12";
-            // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "제품명";
-            this.Column10.Name = "Column10";
-            // 
-            // Column11
-            // 
-            this.Column11.HeaderText = "수량";
-            this.Column11.Name = "Column11";
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "출하번호";
-            this.Column1.Name = "Column1";
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "주문일시";
-            this.Column5.Name = "Column5";
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "주문번호";
-            this.Column9.Name = "Column9";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "주문자ID";
-            this.Column4.Name = "Column4";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "출하지시일";
-            this.Column3.Name = "Column3";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "출하지시자";
-            this.Column2.Name = "Column2";
-            // 
             // ShipmentMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -226,15 +155,5 @@
         private SearchPeriodControl searchPeriodControl2;
         private SearchPeriodControl searchPeriodControl1;
         private SearchUserControl searchUserControl2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
     }
 }

@@ -400,6 +400,7 @@
     <Compile Include="Service\KJH\SearchService.cs" />
     <Compile Include="Service\SSD\BaljuService.cs" />
     <Compile Include="Service\SSD\OrderService.cs" />
+    <Compile Include="Service\SSD\ShipmentService.cs" />
     <Compile Include="Service\SSD\StockService.cs" />
     <Compile Include="Util\LoggingUtility.cs" />
     <Compile Include="Util\SettingMenuStrip.cs" />
