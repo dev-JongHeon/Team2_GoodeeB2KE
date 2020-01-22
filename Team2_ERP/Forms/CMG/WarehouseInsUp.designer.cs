@@ -36,7 +36,7 @@
             this.txtWarehouseNumber = new System.Windows.Forms.TextBox();
             this.txtWarehouseFaxNumber = new System.Windows.Forms.TextBox();
             this.addressControl1 = new Team2_ERP.AddressControl();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cboWarehouseDivision = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).BeginInit();
@@ -47,7 +47,7 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.comboBox1);
+            this.panel5.Controls.Add(this.cboWarehouseDivision);
             this.panel5.Controls.Add(this.addressControl1);
             this.panel5.Controls.Add(this.txtWarehouseFaxNumber);
             this.panel5.Controls.Add(this.txtWarehouseNumber);
@@ -60,10 +60,12 @@
             // btnCancel
             // 
             this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOK
             // 
             this.btnOK.FlatAppearance.BorderSize = 0;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // label2
             // 
@@ -133,13 +135,13 @@
             this.addressControl1.Size = new System.Drawing.Size(505, 106);
             this.addressControl1.TabIndex = 2;
             // 
-            // comboBox1
+            // cboWarehouseDivision
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(125, 81);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(143, 22);
-            this.comboBox1.TabIndex = 3;
+            this.cboWarehouseDivision.FormattingEnabled = true;
+            this.cboWarehouseDivision.Location = new System.Drawing.Point(125, 81);
+            this.cboWarehouseDivision.Name = "cboWarehouseDivision";
+            this.cboWarehouseDivision.Size = new System.Drawing.Size(143, 22);
+            this.cboWarehouseDivision.TabIndex = 3;
             // 
             // WarehouseInsUp
             // 
@@ -148,6 +150,7 @@
             this.ClientSize = new System.Drawing.Size(800, 525);
             this.Name = "WarehouseInsUp";
             this.Text = "WarehouseInsUp";
+            this.Load += new System.EventHandler(this.WarehouseInsUp_Load);
             this.panel1.ResumeLayout(false);
             this.panel_Title.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).EndInit();
@@ -168,6 +171,6 @@
         private System.Windows.Forms.TextBox txtWarehouseNumber;
         private System.Windows.Forms.TextBox txtWarehouseName;
         private AddressControl addressControl1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cboWarehouseDivision;
     }
 }

@@ -31,7 +31,7 @@
             this.lblProduceID = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.cboCompany = new System.Windows.Forms.ComboBox();
+            this.cboWorker = new System.Windows.Forms.ComboBox();
             this.btnSelect = new System.Windows.Forms.Button();
             this.lblWork = new System.Windows.Forms.Label();
             this.btnRegister = new System.Windows.Forms.Button();
@@ -68,13 +68,13 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "생산 작업 번호";
             // 
-            // cboCompany
+            // cboWorker
             // 
-            this.cboCompany.FormattingEnabled = true;
-            this.cboCompany.Location = new System.Drawing.Point(22, 210);
-            this.cboCompany.Name = "cboCompany";
-            this.cboCompany.Size = new System.Drawing.Size(216, 39);
-            this.cboCompany.TabIndex = 1;
+            this.cboWorker.FormattingEnabled = true;
+            this.cboWorker.Location = new System.Drawing.Point(22, 210);
+            this.cboWorker.Name = "cboWorker";
+            this.cboWorker.Size = new System.Drawing.Size(216, 39);
+            this.cboWorker.TabIndex = 1;
             // 
             // btnSelect
             // 
@@ -85,6 +85,7 @@
             this.btnSelect.TabIndex = 2;
             this.btnSelect.Text = "선택";
             this.btnSelect.UseVisualStyleBackColor = true;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // lblWork
             // 
@@ -104,6 +105,7 @@
             this.btnRegister.TabIndex = 4;
             this.btnRegister.Text = "작업자 등록";
             this.btnRegister.UseVisualStyleBackColor = true;
+            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
             // btnClose
             // 
@@ -126,7 +128,7 @@
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.lblWork);
             this.Controls.Add(this.btnSelect);
-            this.Controls.Add(this.cboCompany);
+            this.Controls.Add(this.cboWorker);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblProduceID);
@@ -146,7 +148,7 @@
         private System.Windows.Forms.Label lblProduceID;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cboCompany;
+        private System.Windows.Forms.ComboBox cboWorker;
         private System.Windows.Forms.Button btnSelect;
         private System.Windows.Forms.Label lblWork;
         private System.Windows.Forms.Button btnRegister;

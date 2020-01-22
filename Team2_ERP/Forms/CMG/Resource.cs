@@ -32,12 +32,14 @@ namespace Team2_ERP
 
             UtilClass.AddNewColum(dataGridView1, "제품코드", "Product_ID", true, 100);
             UtilClass.AddNewColum(dataGridView1, "제품이름", "Product_Name", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "제품보관창고", "Warehouse_ID", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "제품가격", "Product_Price", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "제품개수", "Product_Qty", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "안전재고량", "Product_Safety", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "제품카테고리", "Product_Category", true, 100);
+            UtilClass.AddNewColum(dataGridView1, "제품보관창고", "Warehouse_Name", true, 100);
+            UtilClass.AddNewColum(dataGridView1, "제품가격", "Product_Price", true, 100, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dataGridView1, "제품개수", "Product_Qty", true, 100, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dataGridView1, "안전재고량", "Product_Safety", true, 100, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dataGridView1, "제품카테고리", "CodeTable_CodeName", true, 100);
             dataGridView1.Columns[3].DefaultCellStyle.Format = "#,###원";
+            dataGridView1.Columns[4].DefaultCellStyle.Format = "#,###개";
+            dataGridView1.Columns[5].DefaultCellStyle.Format = "#,###개";
 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -48,6 +50,8 @@ namespace Team2_ERP
         {
             StandardService service = new StandardService();
             list = service.GetAllResource();
+            List<ResourceVO> resourceList = (from item in list where item.Product_ID.Contains("M") && item.Product_DeletedYN == false select item).ToList();
+            dataGridView1.DataSource = resourceList;
         }
 
         private void Resource_Load(object sender, EventArgs e)
@@ -66,6 +70,7 @@ namespace Team2_ERP
         {
             InitMessage();
             dataGridView1.DataSource = null;
+            searchUserControl1.CodeTextBox.Text = "";
             LoadGridView();
         }
 
@@ -73,7 +78,7 @@ namespace Team2_ERP
         {
             InitMessage();
 
-            ResourceInsUp frm = new ResourceInsUp(ResourceInsUp.EditMode.Insert, item);
+            ResourceInsUp frm = new ResourceInsUp(ResourceInsUp.EditMode.Insert, null);
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 frm.Close();
@@ -106,7 +111,7 @@ namespace Team2_ERP
         {
             InitMessage();
 
-            if (item == null)
+            if (item.Product_ID == null)
             {
                 frm.NoticeMessage = "삭제할 제품을 선택해주세요.";
             }
@@ -114,34 +119,37 @@ namespace Team2_ERP
             {
                 if (MessageBox.Show("삭제하시겠습니까?", "확인", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    //CodeTableService service = new CodeTableService();
-                    //service.DeleteCodeTable(code);
-                    //dataGridView1.DataSource = null;
-                    //LoadGridView();
+                    StandardService service = new StandardService();
+                    service.DeleteResource(item.Product_ID);
+                    dataGridView1.DataSource = null;
+                    LoadGridView();
                 }
             }
         }
 
         public override void Search(object sender, EventArgs e)
         {
-            if(searchUserControl1.CodeTextBox.Text.Length < 1)
-            {
-                dataGridView1.DataSource = null;
-                List<ResourceVO> resourceList = (from item in list where item.Product_ID.Contains("M") && item.Product_DeletedYN == false select item).ToList();
-                dataGridView1.DataSource = resourceList;
-            }
-            else
-            {
-                dataGridView1.DataSource = null;
-                List<ResourceVO> searchList = (from item in list where item.Product_Name == searchUserControl1.CodeTextBox.Text && item.Product_DeletedYN == false select item).ToList();
-                dataGridView1.DataSource = searchList;
-            }
+            dataGridView1.DataSource = null;
+            List<ResourceVO> searchList = (from item in list where item.Product_ID.Contains(searchUserControl1.CodeTextBox.Tag.ToString()) && item.Product_DeletedYN == false select item).ToList();
+            dataGridView1.DataSource = searchList;
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void Resource_Deactivate(object sender, EventArgs e)
+        {
+            ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = true;
+            new SettingMenuStrip().UnsetMenu(this);
+        }
+
+        private void Resource_Activated(object sender, EventArgs e)
+        {
+            ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = false;
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             item = new ResourceVO
             {
+                Product_ID = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(),
                 Product_Name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(),
                 Product_Price = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString().Replace(",", "").Replace("원", "")),
                 Product_Qty = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString()),

@@ -21,5 +21,11 @@ namespace Team2_ERP
             LoginDAC dac = new LoginDAC();
             return dac.ChangePwd(login, newpwd);
         }
+
+        public bool InsertAuth(int id)
+        {
+            LoginDAC dac = new LoginDAC();
+            return dac.InsertAuth(id);
+        }
     }
 }

@@ -1,44 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Team2_VO;
-using System.Data;
 
 namespace Team2_DAC
 {
-    public class StandardDAC : ConnectionInfo
+    public class ResourceDAC : ConnectionInfo
     {
         SqlConnection conn = null;
 
-        public StandardDAC()
+        public ResourceDAC()
         {
             conn = new SqlConnection();
             conn.ConnectionString = this.ConnectionString;
         }
 
-        private void FillParameter(SqlCommand cmd, string[] paramArr, object[] valueArr)
-        {
-            for (int i = 0; i < paramArr.Length; i++)
-            {
-                if (valueArr[i] != null)
-                    cmd.Parameters.AddWithValue(paramArr[i], valueArr[i]);
-                else
-                    cmd.Parameters.AddWithValue(paramArr[i], DBNull.Value);
-            }
-        }
-
         public List<ResourceVO> GetAllResource()
         {
-            string sql = "select Product_ID, Product_Name, Warehouse_ID, Product_Price, Product_Qty, Product_Safety, Product_DeletedYN, Product_Category from Product ";
+            string sql = "GetAllResource";
 
             try
             {
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     conn.Open();
+                    cmd.CommandType = CommandType.StoredProcedure;
                     List<ResourceVO> list = Helper.DataReaderMapToList<ResourceVO>(cmd.ExecuteReader());
                     return list;
                 }
@@ -74,7 +64,7 @@ namespace Team2_DAC
                     return rowsAffected > 0;
                 }
             }
-            catch(Exception err)
+            catch (Exception err)
             {
                 throw new Exception(err.Message);
             }
@@ -83,6 +73,63 @@ namespace Team2_DAC
                 conn.Close();
             }
         }
+
+        public bool UpdateResource(ResourceVO item)
+        {
+            string sql = "Update Product set Product_Name = @Product_Name, Warehouse_ID = @Warehouse_ID, Product_Price = @Product_Price, Product_Qty = @Product_Qty, Product_Safety = @Product_Safety, Product_Category = @Product_Category where Product_ID = @Product_ID ";
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Product_Name", item.Product_Name);
+                    cmd.Parameters.AddWithValue("@Warehouse_ID", item.Warehouse_ID);
+                    cmd.Parameters.AddWithValue("@Product_Price", item.Product_Price);
+                    cmd.Parameters.AddWithValue("@Product_Qty", item.Product_Qty);
+                    cmd.Parameters.AddWithValue("@Product_Safety", item.Product_Safety);
+                    cmd.Parameters.AddWithValue("@Product_Category", item.Product_Category);
+                    cmd.Parameters.AddWithValue("@Product_ID", item.Product_ID);
+
+                    conn.Open();
+                    var rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public bool DeleteResource(string code)
+        {
+            string sql = $"Update Product set Product_DeletedYN = {1} where Product_ID = @Product_ID ";
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Product_ID", code);
+
+                    conn.Open();
+                    var rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
 
         public List<ComboItemVO> GetComboWarehouse()
         {
@@ -103,7 +150,7 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch(Exception err)
+            catch (Exception err)
             {
                 throw new Exception(err.Message);
             }

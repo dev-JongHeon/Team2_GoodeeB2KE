@@ -14,7 +14,7 @@ namespace Team2_ERP
     public partial class SearchUserControl : UserControl
     {
 
-        public TextBox CodeTextBox 
+        public TextBox CodeTextBox
         {
             get { return txtCode; }
             set { txtCode = value; }
@@ -31,11 +31,14 @@ namespace Team2_ERP
             get { return btnSearch; }
             set { btnSearch = value; }
         }
-        
-        public string Labelname { get => lblName.Text; set => lblName.Text=value; }
 
-        public enum Mode { Employee,DepOperation,DepMaterial,DepSales,DepProd1,DepProd2, Defective, Product, Downtime, Company,
-            Factory, Line, Meterial, SemiProduct,Customer, Warehouse, Department, ProductCategory };
+        public string Labelname { get => lblName.Text; set => lblName.Text = value; }
+
+        public enum Mode
+        {
+            Employee, DepOperation, DepMaterial, DepSales, DepProd1, DepProd2, Defective, Product, Downtime, Company,
+            Factory, Line, Meterial, SemiProduct, Customer, Warehouse, Department, ProductCategory
+        };
 
         Mode Modes = Mode.Employee;
 
@@ -120,7 +123,8 @@ namespace Team2_ERP
             search.Mode = this.Modes;
             if (search.ShowDialog() == DialogResult.OK)
             {
-                txtCode.Text = info.ID + " " + info.Name;
+                txtCode.Text = info.Name;
+                txtCode.Tag = info.ID;
             }
         }
 
@@ -130,6 +134,15 @@ namespace Team2_ERP
             {
                 e.Handled = true;
             }
+            else
+            {
+                txtCode.Tag = string.Empty;
+            }
+        }
+
+        private void txtCode_MouseClick(object sender, MouseEventArgs e)
+        {
+            txtCode.SelectAll();
         }
     }
 }

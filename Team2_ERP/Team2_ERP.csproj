@@ -241,6 +241,18 @@
     <Compile Include="Forms\HJS\SearchForm.designer.cs">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\KJH\CalendarForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KJH\CalendarForm.Designer.cs">
+      <DependentUpon>CalendarForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KJH\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KJH\MainForm.designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SSD\OrderCompleteForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -270,12 +282,6 @@
     </Compile>
     <Compile Include="Forms\SSD\ShipmentMainForm.designer.cs">
       <DependentUpon>ShipmentMainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\KJH\CalendarForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\KJH\CalendarForm.designer.cs">
-      <DependentUpon>CalendarForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\KJH\ChangePwd.cs">
       <SubType>Form</SubType>
@@ -330,12 +336,6 @@
     </Compile>
     <Compile Include="Forms\KJH\LoginForm.designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\KJH\MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\KJH\MainForm.designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\KJH\MainTab.cs">
       <SubType>Form</SubType>
@@ -399,6 +399,8 @@
     <Compile Include="Service\KJH\LoginService.cs" />
     <Compile Include="Service\KJH\SearchService.cs" />
     <Compile Include="Service\SSD\BaljuService.cs" />
+    <Compile Include="Service\SSD\OrderService.cs" />
+    <Compile Include="Service\SSD\ShipmentService.cs" />
     <Compile Include="Service\SSD\StockService.cs" />
     <Compile Include="Util\LoggingUtility.cs" />
     <Compile Include="Util\SettingMenuStrip.cs" />
@@ -496,6 +498,12 @@
     <EmbeddedResource Include="Forms\HJS\SearchForm.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KJH\CalendarForm.resx">
+      <DependentUpon>CalendarForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KJH\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SSD\OrderCompleteForm.resx">
       <DependentUpon>OrderCompleteForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -510,9 +518,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SSD\ShipmentMainForm.resx">
       <DependentUpon>ShipmentMainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\KJH\CalendarForm.resx">
-      <DependentUpon>CalendarForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\KJH\ChangePwd.resx">
       <DependentUpon>ChangePwd.cs</DependentUpon>
@@ -540,9 +545,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\KJH\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\KJH\MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\KJH\MainTab.resx">
       <DependentUpon>MainTab.cs</DependentUpon>

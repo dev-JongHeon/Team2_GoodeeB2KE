@@ -33,5 +33,10 @@ namespace Team2_ERP
             new SettingMenuStrip().SetMenu(this, a, a, a, a, a, a);
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            LoginService service = new LoginService();
+            service.InsertAuth(Session.Employee_ID);
+        }
     }
 }

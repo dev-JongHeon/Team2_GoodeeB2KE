@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CMG\EmployeeVO.cs" />
     <Compile Include="CMG\ResourceVO.cs" />
+    <Compile Include="CMG\WarehouseVO.cs" />
     <Compile Include="CodeTableVO.cs" />
     <Compile Include="Common\ComboItemVO.cs" />
     <Compile Include="Common\SearchedInfoVO.cs" />
@@ -53,6 +55,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SSD\Balju.cs" />
     <Compile Include="SSD\Order.cs" />
+    <Compile Include="SSD\Shipment.cs" />
     <Compile Include="SSD\Stock.cs" />
   </ItemGroup>
   <ItemGroup />

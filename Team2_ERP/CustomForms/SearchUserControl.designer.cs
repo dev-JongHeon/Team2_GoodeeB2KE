@@ -95,9 +95,9 @@
             this.txtCode.BackColor = System.Drawing.Color.White;
             this.txtCode.Location = new System.Drawing.Point(84, 2);
             this.txtCode.Name = "txtCode";
-            this.txtCode.ReadOnly = true;
             this.txtCode.Size = new System.Drawing.Size(198, 21);
             this.txtCode.TabIndex = 4;
+            this.txtCode.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtCode_MouseClick);
             this.txtCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCode_KeyPress);
             // 
             // SearchUserControl

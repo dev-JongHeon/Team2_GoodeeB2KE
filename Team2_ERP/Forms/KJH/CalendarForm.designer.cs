@@ -3,14 +3,14 @@
     partial class CalendarForm
     {
         /// <summary>
-        /// Required designer variable.
+        /// 필수 디자이너 변수입니다.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Clean up any resources being used.
+        /// 사용 중인 모든 리소스를 정리합니다.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,20 +20,14 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Windows Form 디자이너에서 생성한 코드
 
         /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
+        /// 디자이너 지원에 필요한 메서드입니다. 
+        /// 이 메서드의 내용을 코드 편집기로 수정하지 마세요.
         /// </summary>
         private void InitializeComponent()
         {
-            this.EndCalendar = new System.Windows.Forms.MonthCalendar();
-            this.StartCalendar = new System.Windows.Forms.MonthCalendar();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
@@ -58,90 +52,58 @@
             this.btnWeek = new System.Windows.Forms.Button();
             this.btnLastweek = new System.Windows.Forms.Button();
             this.btnToday = new System.Windows.Forms.Button();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.EndCalendar = new System.Windows.Forms.MonthCalendar();
+            this.StartCalendar = new System.Windows.Forms.MonthCalendar();
             this.panel1.SuspendLayout();
+            this.panel_Title.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).BeginInit();
+            this.panel3.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // EndCalendar
-            // 
-            this.EndCalendar.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.EndCalendar.Location = new System.Drawing.Point(395, 100);
-            this.EndCalendar.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
-            this.EndCalendar.MaxSelectionCount = 1;
-            this.EndCalendar.Name = "EndCalendar";
-            this.EndCalendar.TabIndex = 7;
-            this.EndCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.EndCalendar_DateChanged);
-            // 
-            // StartCalendar
-            // 
-            this.StartCalendar.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.StartCalendar.Location = new System.Drawing.Point(10, 100);
-            this.StartCalendar.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
-            this.StartCalendar.MaxSelectionCount = 1;
-            this.StartCalendar.Name = "StartCalendar";
-            this.StartCalendar.TabIndex = 6;
-            this.StartCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.StartCalendar_DateChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 54F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(269, 135);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 83);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "~";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(162, 275);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(138, 23);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "확인";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button2.Location = new System.Drawing.Point(324, 275);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(138, 23);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "취소";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button21);
-            this.panel1.Controls.Add(this.button22);
-            this.panel1.Controls.Add(this.button23);
-            this.panel1.Controls.Add(this.button24);
-            this.panel1.Controls.Add(this.button25);
-            this.panel1.Controls.Add(this.button26);
-            this.panel1.Controls.Add(this.button15);
-            this.panel1.Controls.Add(this.button16);
-            this.panel1.Controls.Add(this.button17);
-            this.panel1.Controls.Add(this.button18);
-            this.panel1.Controls.Add(this.button19);
-            this.panel1.Controls.Add(this.button20);
-            this.panel1.Controls.Add(this.button13);
-            this.panel1.Controls.Add(this.button14);
-            this.panel1.Controls.Add(this.button11);
-            this.panel1.Controls.Add(this.button12);
-            this.panel1.Controls.Add(this.button9);
-            this.panel1.Controls.Add(this.button10);
-            this.panel1.Controls.Add(this.button7);
-            this.panel1.Controls.Add(this.btn);
-            this.panel1.Controls.Add(this.btnLastMonth);
-            this.panel1.Controls.Add(this.btnWeek);
-            this.panel1.Controls.Add(this.btnLastweek);
-            this.panel1.Controls.Add(this.btnToday);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(624, 94);
-            this.panel1.TabIndex = 13;
+            this.panel1.Size = new System.Drawing.Size(626, 401);
+            // 
+            // panel_Title
+            // 
+            this.panel_Title.Size = new System.Drawing.Size(624, 32);
+            // 
+            // panel3
+            // 
+            this.panel3.Location = new System.Drawing.Point(424, 0);
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.panel6);
+            this.panel5.Controls.Add(this.label1);
+            this.panel5.Controls.Add(this.EndCalendar);
+            this.panel5.Controls.Add(this.StartCalendar);
+            this.panel5.Size = new System.Drawing.Size(624, 285);
+            // 
+            // panel4
+            // 
+            this.panel4.Location = new System.Drawing.Point(0, 349);
+            this.panel4.Size = new System.Drawing.Size(624, 50);
+            // 
+            // panel2
+            // 
+            this.panel2.Size = new System.Drawing.Size(624, 32);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.Location = new System.Drawing.Point(365, 3);
+            // 
+            // btnOK
+            // 
+            this.btnOK.FlatAppearance.BorderSize = 0;
+            this.btnOK.Location = new System.Drawing.Point(174, 3);
+            this.btnOK.Text = "확인";
             // 
             // button21
             // 
@@ -359,38 +321,87 @@
             this.btnToday.Text = "오늘";
             this.btnToday.UseVisualStyleBackColor = true;
             // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.button21);
+            this.panel6.Controls.Add(this.button22);
+            this.panel6.Controls.Add(this.button23);
+            this.panel6.Controls.Add(this.button24);
+            this.panel6.Controls.Add(this.button25);
+            this.panel6.Controls.Add(this.button26);
+            this.panel6.Controls.Add(this.button15);
+            this.panel6.Controls.Add(this.button16);
+            this.panel6.Controls.Add(this.button17);
+            this.panel6.Controls.Add(this.button18);
+            this.panel6.Controls.Add(this.button19);
+            this.panel6.Controls.Add(this.button20);
+            this.panel6.Controls.Add(this.button13);
+            this.panel6.Controls.Add(this.button14);
+            this.panel6.Controls.Add(this.button11);
+            this.panel6.Controls.Add(this.button12);
+            this.panel6.Controls.Add(this.button9);
+            this.panel6.Controls.Add(this.button10);
+            this.panel6.Controls.Add(this.button7);
+            this.panel6.Controls.Add(this.btn);
+            this.panel6.Controls.Add(this.btnLastMonth);
+            this.panel6.Controls.Add(this.btnWeek);
+            this.panel6.Controls.Add(this.btnLastweek);
+            this.panel6.Controls.Add(this.btnToday);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(624, 96);
+            this.panel6.TabIndex = 19;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 54F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label1.Location = new System.Drawing.Point(268, 144);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 83);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "~";
+            // 
+            // EndCalendar
+            // 
+            this.EndCalendar.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.EndCalendar.Location = new System.Drawing.Point(394, 109);
+            this.EndCalendar.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.EndCalendar.MaxSelectionCount = 1;
+            this.EndCalendar.Name = "EndCalendar";
+            this.EndCalendar.TabIndex = 15;
+            // 
+            // StartCalendar
+            // 
+            this.StartCalendar.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.StartCalendar.Location = new System.Drawing.Point(9, 109);
+            this.StartCalendar.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.StartCalendar.MaxSelectionCount = 1;
+            this.StartCalendar.Name = "StartCalendar";
+            this.StartCalendar.TabIndex = 14;
+            // 
             // CalendarForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 307);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.EndCalendar);
-            this.Controls.Add(this.StartCalendar);
-            this.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
+            this.ClientSize = new System.Drawing.Size(626, 401);
             this.Name = "CalendarForm";
-            this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "CalenderForm";
             this.panel1.ResumeLayout(false);
+            this.panel_Title.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.MonthCalendar EndCalendar;
-        private System.Windows.Forms.MonthCalendar StartCalendar;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Panel panel1;
+
+        private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button22;
         private System.Windows.Forms.Button button23;
@@ -415,5 +426,8 @@
         private System.Windows.Forms.Button btnWeek;
         private System.Windows.Forms.Button btnLastweek;
         private System.Windows.Forms.Button btnToday;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.MonthCalendar EndCalendar;
+        private System.Windows.Forms.MonthCalendar StartCalendar;
     }
 }

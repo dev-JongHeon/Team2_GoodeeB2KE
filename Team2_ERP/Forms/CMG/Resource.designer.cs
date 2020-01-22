@@ -60,7 +60,7 @@
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.Size = new System.Drawing.Size(1364, 662);
             this.dataGridView1.TabIndex = 7;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // searchUserControl1
             // 
@@ -80,6 +80,8 @@
             this.ClientSize = new System.Drawing.Size(1364, 820);
             this.Name = "Resource";
             this.Text = "Resource";
+            this.Activated += new System.EventHandler(this.Resource_Activated);
+            this.Deactivate += new System.EventHandler(this.Resource_Deactivate);
             this.Load += new System.EventHandler(this.Resource_Load);
             this.panel1.ResumeLayout(false);
             this.panel_Search.ResumeLayout(false);

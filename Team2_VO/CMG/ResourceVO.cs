@@ -10,11 +10,13 @@ namespace Team2_VO
     {
         public string Product_ID { get; set; }
         public string Product_Name { get; set; }
-        public int Warehouse_ID { get; set; }
+        public string Warehouse_ID { get; set; }
+        public string Warehouse_Name { get; set; }
         public int Product_Price { get; set; }
         public int Product_Qty { get; set; }
         public int Product_Safety { get; set; }
         public bool Product_DeletedYN { get; set; }
         public string Product_Category { get; set; }
+        public string CodeTable_CodeName { get; set; }
     }
 }

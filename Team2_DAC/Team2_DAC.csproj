@@ -42,7 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CMG\CodeTableDAC.cs" />
-    <Compile Include="CMG\StandardDAC.cs" />
+    <Compile Include="CMG\ResourceDAC.cs" />
+    <Compile Include="CMG\WarehouseDAC.cs" />
     <Compile Include="ConnectionInfo.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="HJS\POPDAC.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="KJH\SearchDAC.cs" />
     <Compile Include="SSD\BaljuDAC.cs" />
     <Compile Include="SSD\OrderDAC.cs" />
+    <Compile Include="SSD\ShipmentDAC.cs" />
     <Compile Include="SSD\StockDAC.cs" />
   </ItemGroup>
   <ItemGroup>
