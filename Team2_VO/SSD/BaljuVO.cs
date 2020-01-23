@@ -15,9 +15,6 @@ namespace Team2_VO
         public DateTime Balju_ReceiptDate { get; set; }
         public string Employees_Name { get; set; }
         public bool Balju_DeletedYN { get; set; }
-
-        //public bool Balju_Processed { get; set; }
-        //public DateTime Balju_ReceiptDate { get; set; }
     }
 
     public class BaljuDetail

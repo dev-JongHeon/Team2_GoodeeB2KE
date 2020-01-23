@@ -52,15 +52,18 @@ namespace Team2_ERP
             dgv.AllowUserToAddRows = false;
             dgv.MultiSelect = false;
             dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgv.RowsDefaultCellStyle.BackColor = Color.White;
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
+            //dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
             dgv.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
-            dgv.DefaultCellStyle.SelectionBackColor = Color.DodgerBlue;
-            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(234, 242, 255);
+            dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dgv.RowHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(234, 242, 255);
             dgv.DefaultCellStyle.WrapMode = DataGridViewTriState.NotSet;
             dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(55, 113, 138);
-            dgv.ColumnHeadersDefaultCellStyle.Font = new Font(dgv.Font, FontStyle.Bold);
+            Font headerfont = new Font("나눔고딕", 12);
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font(headerfont, FontStyle.Bold);
             dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(55, 113, 138);
             dgv.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
@@ -69,6 +72,7 @@ namespace Team2_ERP
             dgv.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dgv.AllowUserToResizeColumns = false;
             dgv.AllowUserToResizeRows = false;
+            dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
         #region Excel 유틸리티

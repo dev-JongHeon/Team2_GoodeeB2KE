@@ -29,7 +29,7 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Shipment, "고객ID", "Customer_userID", true);
             UtilClass.AddNewColum(dgv_Shipment, "출하지시일시", "Shipment_RequiredDate", true);
             UtilClass.AddNewColum(dgv_Shipment, "출하지시자", "Employees_Name", true);
-            UtilClass.AddNewColum(dgv_Shipment, "출하처리일시", "Shipment_DoneDate", false);
+            UtilClass.AddNewColum(dgv_Shipment, "출하처리일시", "Shipment_DoneDate", true);
             dgv_Shipment.DataSource = service.GetShipmentCompletedList();
 
             UtilClass.SettingDgv(dgv_ShipmentDetail);

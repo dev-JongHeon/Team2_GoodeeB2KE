@@ -104,7 +104,7 @@ namespace Team2_ERP
                 case "Line":
                     this.Text = "공정";
                     col1 = this.Text + "번호";
-                    col2 = this.txtSearch + "명";
+                    col2 = this.Text + "명";
                     break;
                 case "Customer":
                     this.Text = "고객";
@@ -131,15 +131,22 @@ namespace Team2_ERP
                     col1 = this.Text + "번호";
                     col2 = this.Text + "명";
                     break;
-
             }
-            // Mode값에 따라 그리드뷰 컬럼명 및 검색 결과 
-            
-            UtilClass.AddNewColum(dgvSearch, col1, "ID");
-            UtilClass.AddNewColum(dgvSearch, col2, "Name");            
-            SearchService service = new SearchService();
-            dgvSearch.DataSource = service.GetInfo(Mode.ToString());
+
             txtSearch.PlaceHolderText = string.Concat(this.Text, " ", "키워드 입력");
+            // Mode값에 따라 그리드뷰 컬럼명 및 검색 결과 
+            UtilClass.SettingDgv(dgvSearch);
+            UtilClass.AddNewColum(dgvSearch, col1, "ID");
+            UtilClass.AddNewColum(dgvSearch, col2, "Name");
+            try
+            {
+                SearchService service = new SearchService();
+                dgvSearch.DataSource = service.GetInfo(Mode.ToString());
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
         }
 
         private void btnOK_Click(object sender, EventArgs e)

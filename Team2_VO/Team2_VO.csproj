@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KJH\AuthVO.cs" />
     <Compile Include="CMG\EmployeeVO.cs" />
     <Compile Include="CMG\ResourceVO.cs" />
     <Compile Include="CMG\WarehouseVO.cs" />
@@ -53,10 +54,11 @@
     <Compile Include="HJS\WorkPOP.cs" />
     <Compile Include="KJH\LoginVO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SSD\Balju.cs" />
-    <Compile Include="SSD\Order.cs" />
-    <Compile Include="SSD\Shipment.cs" />
-    <Compile Include="SSD\Stock.cs" />
+    <Compile Include="SSD\BaljuVO.cs" />
+    <Compile Include="SSD\OrderVO.cs" />
+    <Compile Include="SSD\SalesVO.cs" />
+    <Compile Include="SSD\ShipmentVO.cs" />
+    <Compile Include="SSD\StockVO.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
