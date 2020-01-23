@@ -24,7 +24,8 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgvEmpList, "사원명", "Name");
 
             UtilClass.SettingDgv(dgvAuthList);
-
+            UtilClass.AddNewColum(dgvAuthList, "메뉴명", "Form");
+            UtilClass.AddNewColum(dgvAuthList, "권한", "Auth");
             try
             {
                 SearchService service = new SearchService();

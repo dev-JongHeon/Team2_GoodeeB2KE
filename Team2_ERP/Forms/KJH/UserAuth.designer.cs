@@ -30,9 +30,6 @@
         {
             this.dgvEmpList = new System.Windows.Forms.DataGridView();
             this.dgvAuthList = new System.Windows.Forms.DataGridView();
-            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.searchUserControl1 = new Team2_ERP.SearchUserControl();
             this.searchUserControl2 = new Team2_ERP.SearchUserControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -89,31 +86,12 @@
             // 
             this.dgvAuthList.BackgroundColor = System.Drawing.Color.White;
             this.dgvAuthList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAuthList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewCheckBoxColumn1,
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewCheckBoxColumn2});
             this.dgvAuthList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvAuthList.Location = new System.Drawing.Point(0, 0);
             this.dgvAuthList.Name = "dgvAuthList";
             this.dgvAuthList.RowTemplate.Height = 23;
             this.dgvAuthList.Size = new System.Drawing.Size(992, 662);
             this.dgvAuthList.TabIndex = 1;
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            this.dataGridViewCheckBoxColumn1.HeaderText = "선택";
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "메뉴명";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewCheckBoxColumn2
-            // 
-            this.dataGridViewCheckBoxColumn2.HeaderText = "권한여부";
-            this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
             // 
             // searchUserControl1
             // 
@@ -168,9 +146,6 @@
 
         private System.Windows.Forms.DataGridView dgvEmpList;
         private System.Windows.Forms.DataGridView dgvAuthList;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn2;
         private SearchUserControl searchUserControl2;
         private SearchUserControl searchUserControl1;
     }
