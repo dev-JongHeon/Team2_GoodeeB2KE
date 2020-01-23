@@ -28,13 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dgvEmpList = new System.Windows.Forms.DataGridView();
+            this.dgvAuthList = new System.Windows.Forms.DataGridView();
             this.searchUserControl1 = new Team2_ERP.SearchUserControl();
             this.searchUserControl2 = new Team2_ERP.SearchUserControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -49,8 +44,8 @@
             this.panel_Title.SuspendLayout();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmpList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAuthList)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -59,12 +54,12 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.dataGridView1);
+            this.panel2.Controls.Add(this.dgvEmpList);
             this.panel2.Size = new System.Drawing.Size(368, 662);
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.dataGridView2);
+            this.panel3.Controls.Add(this.dgvAuthList);
             this.panel3.Size = new System.Drawing.Size(992, 662);
             // 
             // panel5
@@ -76,57 +71,27 @@
             // 
             this.lblFormName.Text = "사용자권한설정";
             // 
-            // dataGridView1
+            // dgvEmpList
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(368, 662);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvEmpList.BackgroundColor = System.Drawing.Color.White;
+            this.dgvEmpList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEmpList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvEmpList.Location = new System.Drawing.Point(0, 0);
+            this.dgvEmpList.Name = "dgvEmpList";
+            this.dgvEmpList.RowTemplate.Height = 23;
+            this.dgvEmpList.Size = new System.Drawing.Size(368, 662);
+            this.dgvEmpList.TabIndex = 0;
             // 
-            // Column1
+            // dgvAuthList
             // 
-            this.Column1.HeaderText = "사원코드";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "사원명";
-            this.Column2.Name = "Column2";
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewCheckBoxColumn1,
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewCheckBoxColumn2});
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 23;
-            this.dataGridView2.Size = new System.Drawing.Size(992, 662);
-            this.dataGridView2.TabIndex = 1;
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            this.dataGridViewCheckBoxColumn1.HeaderText = "선택";
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "메뉴명";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewCheckBoxColumn2
-            // 
-            this.dataGridViewCheckBoxColumn2.HeaderText = "권한여부";
-            this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
+            this.dgvAuthList.BackgroundColor = System.Drawing.Color.White;
+            this.dgvAuthList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAuthList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvAuthList.Location = new System.Drawing.Point(0, 0);
+            this.dgvAuthList.Name = "dgvAuthList";
+            this.dgvAuthList.RowTemplate.Height = 23;
+            this.dgvAuthList.Size = new System.Drawing.Size(992, 662);
+            this.dgvAuthList.TabIndex = 1;
             // 
             // searchUserControl1
             // 
@@ -156,6 +121,9 @@
             this.ClientSize = new System.Drawing.Size(1364, 820);
             this.FormName = "사용자권한설정";
             this.Name = "UserAuth";
+            this.Activated += new System.EventHandler(this.UserAuth_Activated);
+            this.Deactivate += new System.EventHandler(this.UserAuth_Deactivate);
+            this.Load += new System.EventHandler(this.UserAuth_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -168,21 +136,16 @@
             this.panel_Title.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmpList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAuthList)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn2;
+        private System.Windows.Forms.DataGridView dgvEmpList;
+        private System.Windows.Forms.DataGridView dgvAuthList;
         private SearchUserControl searchUserControl2;
         private SearchUserControl searchUserControl1;
     }

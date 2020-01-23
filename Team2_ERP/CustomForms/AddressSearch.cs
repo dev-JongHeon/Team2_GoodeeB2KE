@@ -72,6 +72,7 @@ namespace Team2_ERP
 
         private void AddressSearch_Load(object sender, EventArgs e)
         {
+            lblName.Text = "주소 검색";
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.MultiSelect = false;
@@ -137,6 +138,11 @@ namespace Team2_ERP
             }
             else
                 MessageBox.Show("상세주소를 입력하여 주세요.");
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

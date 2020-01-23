@@ -30,6 +30,14 @@ namespace Team2_DAC
             }
         }
 
+        private SqlParameter OutParameter(SqlCommand cmd, string p)
+        {
+            SqlParameter param = new SqlParameter(p ,SqlDbType.NVarChar,8);
+            param.Direction = ParameterDirection.Output;
+            cmd.Parameters.Add(param);
+            return param;
+        }
+
         #region 조회 (작업 - 생산 - 생산 실적)
 
         // 작업조회 (날짜 Default = 오늘 날짜)
@@ -105,8 +113,9 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch(Exception err)
+            catch (Exception err)
             {
+                string sss = err.Message;
                 return null;
             }
         }
@@ -134,8 +143,8 @@ namespace Team2_DAC
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.Connection = conn;                    
-                    
+                    cmd.Connection = conn;
+
                     cmd.CommandText = qrySelect.ToString();
 
                     conn.Open();
@@ -185,6 +194,8 @@ namespace Team2_DAC
 
         #endregion
 
+
+        //작업자 불러오기
         public List<ComboItemVO> GetWorker(int factoryDivision)
         {
             List<ComboItemVO> list = null;
@@ -214,11 +225,38 @@ namespace Team2_DAC
         }
 
 
+        public string StartProduce(string produceID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "proc_StartProduce";
+
+                    FillParameter(cmd, new string[] { "@Produce_ID" }, new object[] { produceID });
+                    SqlParameter outputParam = OutParameter(cmd, "@ReturnMsg");
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+
+                    return outputParam.Value.ToString();
+                }
+            }
+            catch
+            {
+                return null;
+            }
+
+        }
+
 
         #region 삽입
 
         // 작업자 설정
-        public bool SetWorkerForPerformance(string produceID , int empID)
+        public bool SetWorkerForPerformance(string produceID, int empID)
         {
             int iResult = 0;
             try
@@ -244,8 +282,8 @@ namespace Team2_DAC
             }
         }
 
-        
-        // 비가동 처리
+
+        // 비가동 처리 - 미구현
         public void ToggleDowntime(DowntimePOP downtime, bool isDowntime)
         {
             try
@@ -256,7 +294,7 @@ namespace Team2_DAC
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "proc_SetWorkerForPerformancePOP";
 
-                    FillParameter(cmd, new string[] { "@LineID" }, new object[] {  });
+                    FillParameter(cmd, new string[] { "@LineID" }, new object[] { isDowntime });
 
                     conn.Open();
                     cmd.ExecuteNonQuery();

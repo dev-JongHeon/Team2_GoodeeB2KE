@@ -80,7 +80,7 @@ namespace Team2_ERP
                             else
                             {
                                 this.Show();
-                                txtEmpID.Text = logininfo.Employee_ID.ToString();
+                                txtEmpID.Text = logininfo.Employee_ID.ToString("0000");
                                 txtEmpName.Text = logininfo.Employee_Name;
                                 txtEmpPwd.Text = "";
                             }

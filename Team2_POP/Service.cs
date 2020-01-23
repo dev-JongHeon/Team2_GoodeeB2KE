@@ -47,5 +47,10 @@ namespace Team2_POP
         {
             return new POPDAC().SetWorkerForPerformance(produceID, empID);
         }
+
+        public string StartProduce(string produceID)
+        {
+            return new POPDAC().StartProduce(produceID);
+        }
     }
 }

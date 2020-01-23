@@ -33,6 +33,7 @@
             this.searchPeriodControl1 = new Team2_ERP.SearchPeriodControl();
             this.searchUserControl4 = new Team2_ERP.SearchUserControl();
             this.dgv_BaljuDetail = new System.Windows.Forms.DataGridView();
+            this.searchUserControl2 = new Team2_ERP.SearchUserControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -62,6 +63,7 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.searchUserControl2);
             this.panel5.Controls.Add(this.searchUserControl4);
             this.panel5.Controls.Add(this.searchUserControl1);
             this.panel5.Controls.Add(this.searchPeriodControl1);
@@ -85,9 +87,9 @@
             // searchUserControl1
             // 
             this.searchUserControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl1.ControlType = Team2_ERP.SearchUserControl.Mode.Product;
+            this.searchUserControl1.ControlType = Team2_ERP.SearchUserControl.Mode.Meterial;
             this.searchUserControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl1.Labelname = "제품";
+            this.searchUserControl1.Labelname = "원자재";
             this.searchUserControl1.Location = new System.Drawing.Point(92, 39);
             this.searchUserControl1.Name = "searchUserControl1";
             this.searchUserControl1.Size = new System.Drawing.Size(312, 25);
@@ -124,6 +126,17 @@
             this.dgv_BaljuDetail.Size = new System.Drawing.Size(1364, 290);
             this.dgv_BaljuDetail.TabIndex = 1;
             // 
+            // searchUserControl2
+            // 
+            this.searchUserControl2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.searchUserControl2.ControlType = Team2_ERP.SearchUserControl.Mode.Employee;
+            this.searchUserControl2.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchUserControl2.Labelname = "작업자";
+            this.searchUserControl2.Location = new System.Drawing.Point(452, 8);
+            this.searchUserControl2.Name = "searchUserControl2";
+            this.searchUserControl2.Size = new System.Drawing.Size(312, 25);
+            this.searchUserControl2.TabIndex = 81;
+            // 
             // BaljuList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -157,5 +170,6 @@
         private SearchPeriodControl searchPeriodControl1;
         private SearchUserControl searchUserControl4;
         private System.Windows.Forms.DataGridView dgv_BaljuDetail;
+        private SearchUserControl searchUserControl2;
     }
 }

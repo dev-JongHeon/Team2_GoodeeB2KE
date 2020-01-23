@@ -56,7 +56,9 @@
             this.btnDefective = new System.Windows.Forms.Button();
             this.btnWorker = new System.Windows.Forms.Button();
             this.btnProduceStart = new System.Windows.Forms.Button();
+            this.splitContainer7 = new System.Windows.Forms.SplitContainer();
             this.lblWorker = new System.Windows.Forms.Label();
+            this.lblTime = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -87,6 +89,10 @@
             this.splitContainer5.Panel2.SuspendLayout();
             this.splitContainer5.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer7)).BeginInit();
+            this.splitContainer7.Panel1.SuspendLayout();
+            this.splitContainer7.Panel2.SuspendLayout();
+            this.splitContainer7.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -313,12 +319,13 @@
             // 
             this.lblDate.AutoSize = true;
             this.lblDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDate.Font = new System.Drawing.Font("나눔고딕", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblDate.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 24.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblDate.Location = new System.Drawing.Point(336, 0);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(267, 76);
             this.lblDate.TabIndex = 2;
             this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblDate.Click += new System.EventHandler(this.lblDate_Click);
             // 
             // btnDate
             // 
@@ -448,7 +455,7 @@
             // 
             // splitContainer5.Panel2
             // 
-            this.splitContainer5.Panel2.Controls.Add(this.lblWorker);
+            this.splitContainer5.Panel2.Controls.Add(this.splitContainer7);
             this.splitContainer5.Size = new System.Drawing.Size(1264, 113);
             this.splitContainer5.SplitterDistance = 83;
             this.splitContainer5.TabIndex = 0;
@@ -508,6 +515,24 @@
             this.btnProduceStart.TabIndex = 0;
             this.btnProduceStart.Text = "생산 시작";
             this.btnProduceStart.UseVisualStyleBackColor = true;
+            this.btnProduceStart.Click += new System.EventHandler(this.btnProduceStart_Click);
+            // 
+            // splitContainer7
+            // 
+            this.splitContainer7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer7.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer7.Name = "splitContainer7";
+            // 
+            // splitContainer7.Panel1
+            // 
+            this.splitContainer7.Panel1.Controls.Add(this.lblTime);
+            // 
+            // splitContainer7.Panel2
+            // 
+            this.splitContainer7.Panel2.Controls.Add(this.lblWorker);
+            this.splitContainer7.Size = new System.Drawing.Size(1264, 26);
+            this.splitContainer7.SplitterDistance = 421;
+            this.splitContainer7.TabIndex = 0;
             // 
             // lblWorker
             // 
@@ -515,9 +540,18 @@
             this.lblWorker.Font = new System.Drawing.Font("나눔고딕", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblWorker.Location = new System.Drawing.Point(0, 0);
             this.lblWorker.Name = "lblWorker";
-            this.lblWorker.Size = new System.Drawing.Size(1264, 26);
-            this.lblWorker.TabIndex = 0;
+            this.lblWorker.Size = new System.Drawing.Size(839, 26);
+            this.lblWorker.TabIndex = 1;
             this.lblWorker.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblTime
+            // 
+            this.lblTime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTime.Font = new System.Drawing.Font("나눔고딕", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTime.Location = new System.Drawing.Point(0, 0);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(421, 26);
+            this.lblTime.TabIndex = 0;
             // 
             // PopMain
             // 
@@ -562,6 +596,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
             this.splitContainer5.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
+            this.splitContainer7.Panel1.ResumeLayout(false);
+            this.splitContainer7.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer7)).EndInit();
+            this.splitContainer7.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -593,10 +631,12 @@
         private System.Windows.Forms.Button btnDefective;
         private System.Windows.Forms.Button btnWorker;
         private System.Windows.Forms.Button btnProduceStart;
-        private System.Windows.Forms.Label lblWorker;
         private System.Windows.Forms.SplitContainer splitContainer6;
         private System.Windows.Forms.DataGridView dgvProduce;
         private System.Windows.Forms.DataGridView dgvPerformance;
+        private System.Windows.Forms.SplitContainer splitContainer7;
+        private System.Windows.Forms.Label lblWorker;
+        private System.Windows.Forms.Label lblTime;
     }
 }
 

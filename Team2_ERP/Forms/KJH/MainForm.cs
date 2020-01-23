@@ -71,7 +71,7 @@ namespace Team2_ERP
         {
             InitializeComponent();
             Logininfo = info;
-            lblUserName.Text = Session.Employee_ID.ToString() + " " + Session.Employee_Name;
+            lblUserName.Text = Session.Employee_ID.ToString("0000") + " " + Session.Employee_Name;
             lblUserDept.Text = Session.Employee_Depart;
         }
 
@@ -368,7 +368,7 @@ namespace Team2_ERP
             else if (e.Node.Name == "OrderCompleteForm")
             {
                 MenuByAuth(e);
-                OpenBaseForm<OrderCompleteForm>("발주완료현황");                
+                OpenBaseForm<OrderCompleteForm>("주문처리완료현황");                
             }
             else if (e.Node.Name == "ShipmentMainForm")
             {
@@ -856,6 +856,13 @@ namespace Team2_ERP
             {
                 contextMenuStrip1.Show(tabControl1, e.Location);
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            LoginService service = new LoginService();
+            service.InsertAuth(Session.Employee_ID);
+            MessageBox.Show("완료");
         }
     }
 }

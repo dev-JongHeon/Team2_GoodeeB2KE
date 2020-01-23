@@ -28,5 +28,11 @@ namespace Team2_ERP.Service
             OrderDAC dac = new OrderDAC();
             return dac.GetOrderCompletedList();
         }
+
+        public List<Sales> GetSalesStatus()  // 뷰 사용
+        {
+            OrderDAC dac = new OrderDAC();
+            return dac.GetSalesStatus();
+        }
     }
 }
