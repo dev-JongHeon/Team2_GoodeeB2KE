@@ -8,12 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Team2_VO;
+using System.Threading;
+using System.Timers;
 
 namespace Team2_POP
 {
     public partial class PopMain : Form
     {
         List<ComboItemVO> listFactory = null;
+        System.Timers.Timer timer = new System.Timers.Timer();
+        delegate void DTimer();
+
         public PopMain()
         {
             InitializeComponent();
@@ -24,10 +29,26 @@ namespace Team2_POP
             this.WindowState = FormWindowState.Maximized;
             SettingControl();
             InitData();
+
+            timer.Elapsed += Timer_Elapsed;
+            timer.Start();
+            DTimer dTimer = k;
+        }
+
+        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            timer.Interval = 1000;            
+        }
+
+        private void k()
+        {
+            lblTime.Text = DateTime.Now.ToString();
         }
 
         private void SettingControl()
         {
+           
+
             // =============================================
             //               스플릿 컨테이너 디자인
             // =============================================
