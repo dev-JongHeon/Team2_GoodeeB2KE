@@ -63,5 +63,11 @@ namespace Team2_ERP.Service.CMG
             WarehouseDAC dac = new WarehouseDAC();
             return dac.UpdateWarehouse(item);
         }
+
+        public bool DeleteWarehouse(int code)
+        {
+            WarehouseDAC dac = new WarehouseDAC();
+            return dac.DeleteWarehouse(code);
+        }
     }
 }

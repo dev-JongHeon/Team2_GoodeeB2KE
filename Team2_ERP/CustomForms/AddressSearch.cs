@@ -72,6 +72,7 @@ namespace Team2_ERP
 
         private void AddressSearch_Load(object sender, EventArgs e)
         {
+            lblName.Text = "주소 검색";
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.MultiSelect = false;

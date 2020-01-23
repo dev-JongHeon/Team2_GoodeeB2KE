@@ -119,5 +119,30 @@ namespace Team2_DAC
                 conn.Close();
             }
         }
+
+        public bool DeleteWarehouse(int code)
+        {
+            string sql = $"Update Warehouse set Warehouse_DeletedYN = {1} where Warehouse_ID = @Warehouse_ID ";
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Warehouse_ID", code);
+
+                    conn.Open();
+                    var rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }

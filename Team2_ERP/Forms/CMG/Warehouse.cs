@@ -25,6 +25,7 @@ namespace Team2_ERP
             InitializeComponent();
         }
 
+        // 그리드 뷰 디자인
         private void InitGridView()
         {
             UtilClass.SettingDgv(dataGridView1);
@@ -117,37 +118,39 @@ namespace Team2_ERP
             }
         }
 
-        //public override void Delete(object sender, EventArgs e)
-        //{
-        //    InitMessage();
+        public override void Delete(object sender, EventArgs e)
+        {
+            InitMessage();
 
-        //    if (item.Product_ID == null)
-        //    {
-        //        frm.NoticeMessage = "삭제할 제품을 선택해주세요.";
-        //    }
-        //    else
-        //    {
-        //        if (MessageBox.Show("삭제하시겠습니까?", "확인", MessageBoxButtons.YesNo) == DialogResult.Yes)
-        //        {
-        //            StandardService service = new StandardService();
-        //            service.DeleteResource(item.Product_ID);
-        //            dataGridView1.DataSource = null;
-        //            LoadGridView();
-        //        }
-        //    }
-        //}
+            if (item == null)
+            {
+                frm.NoticeMessage = "삭제할 창고를 선택해주세요.";
+            }
+            else
+            {
+                if (MessageBox.Show("삭제하시겠습니까?", "확인", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    StandardService service = new StandardService();
+                    service.DeleteWarehouse(item.Warehouse_ID);
+                    dataGridView1.DataSource = null;
+                    LoadGridView();
+                }
+            }
+        }
 
-        //public override void Search(object sender, EventArgs e)
-        //{
-        //    dataGridView1.DataSource = null;
-        //    List<ResourceVO> searchList = (from item in list where item.Product_ID.Contains(searchUserControl1.CodeTextBox.Tag.ToString()) && item.Product_DeletedYN == false select item).ToList();
-        //    dataGridView1.DataSource = searchList;
-        //}
+        public override void Search(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = null;
+            List<WarehouseVO> searchList = (from item in list where item.Warehouse_ID == Convert.ToInt32(searchUserControl1.CodeTextBox.Tag) && item.Warehouse_DeletedYN == false select item).ToList();
+            dataGridView1.DataSource = searchList;
+        }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            // 전화번호가 없을 때
             if(dataGridView1.Rows[e.RowIndex].Cells[3].Value == null)
             {
+                // 전화번호와 FAX번호 둘 다 없을 때
                 if(dataGridView1.Rows[e.RowIndex].Cells[4].Value == null)
                 {
                     item = new WarehouseVO
@@ -156,6 +159,7 @@ namespace Team2_ERP
                         Warehouse_Name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString()
                     };
                 }
+                // 전화번호는 없고 FAX번호만 있을 때
                 else
                 {
                     item = new WarehouseVO
@@ -166,6 +170,7 @@ namespace Team2_ERP
                     };
                 }
             }
+            // 전화번호와 FAX번호 둘 다 있을 때
             else
             {
                 item = new WarehouseVO
