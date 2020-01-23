@@ -68,13 +68,13 @@
             // 
             // panel1
             // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.btnOK);
             this.panel1.Controls.Add(this.txtSearch);
             this.panel1.Controls.Add(this.btnSearch);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(273, 104);
+            this.panel1.Size = new System.Drawing.Size(267, 98);
             this.panel1.TabIndex = 0;
             // 
             // btnOK
@@ -110,14 +110,13 @@
             // 
             // dgvSearch
             // 
-            this.dgvSearch.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dgvSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvSearch.BackgroundColor = System.Drawing.Color.White;
             this.dgvSearch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvSearch.Location = new System.Drawing.Point(0, 0);
+            this.dgvSearch.Location = new System.Drawing.Point(3, 3);
             this.dgvSearch.Name = "dgvSearch";
+            this.dgvSearch.RowHeadersVisible = false;
             this.dgvSearch.RowTemplate.Height = 23;
-            this.dgvSearch.Size = new System.Drawing.Size(273, 412);
+            this.dgvSearch.Size = new System.Drawing.Size(267, 406);
             this.dgvSearch.TabIndex = 1;
             this.dgvSearch.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSearch_CellDoubleClick);
             // 
@@ -139,6 +138,8 @@
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "SearchForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "검색";
@@ -162,7 +163,7 @@
         private PlaceHolderTextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.DataGridView dgvSearch;
         private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.DataGridView dgvSearch;
     }
 }

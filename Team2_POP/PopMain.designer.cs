@@ -319,6 +319,7 @@
             this.lblDate.Size = new System.Drawing.Size(267, 76);
             this.lblDate.TabIndex = 2;
             this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblDate.Click += new System.EventHandler(this.lblDate_Click);
             // 
             // btnDate
             // 
@@ -508,6 +509,7 @@
             this.btnProduceStart.TabIndex = 0;
             this.btnProduceStart.Text = "생산 시작";
             this.btnProduceStart.UseVisualStyleBackColor = true;
+            this.btnProduceStart.Click += new System.EventHandler(this.btnProduceStart_Click);
             // 
             // lblWorker
             // 
