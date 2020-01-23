@@ -106,7 +106,7 @@ namespace Team2_POP
             try
             {
                 listFactory = new Service().GetFactoryList();
-                UtilClass.ComboBinding(cboFactory, listFactory , "공장 선택");
+                UtilClass.ComboBinding(cboFactory, listFactory, "공장 선택");
             }
             catch
             {
@@ -140,6 +140,24 @@ namespace Team2_POP
             downtime.ShowDialog();
         }
 
+        #region 하단 버튼 - 생산시작, 작업자설정, 불량유형
+
+        //생산시작
+        private void btnProduceStart_Click(object sender, EventArgs e)
+        {
+            string result = string.Empty;
+            // 생산 아이디를 넘김
+            if (dgvProduce.SelectedRows[0].Cells[0].Value != null)
+                result = new Service().StartProduce(dgvProduce.SelectedRows[0].Cells[0].Value.ToString());
+
+            if (string.IsNullOrEmpty(result) || result == "Error")
+                MessageBox.Show("작업자를 등록해주세요");
+            else
+                //생산 할당
+                MessageBox.Show("생산 서비스 할당");
+        }
+
+
         // 작업자 설정버튼을 누른 경우
         private void btnWorker_Click(object sender, EventArgs e)
         {
@@ -161,11 +179,12 @@ namespace Team2_POP
                 {
                     // 생산실적 추가 프로시저 
                     new Service().SetWorker(work.ProduceID, work.EmployeeID);
-                    new Service().GetPerformance(work.ProduceID);
+                    dgvPerformance.DataSource = new Service().GetPerformance(work.ProduceID);
                 }
             }
-                
+
         }
+
 
         // 불량유형 버튼을 누른 경우
         private void btnDefective_Click(object sender, EventArgs e)
@@ -173,6 +192,9 @@ namespace Team2_POP
             DefectiveRegister defective = new DefectiveRegister();
             defective.ShowDialog();
         }
+
+        #endregion
+
 
         // 공정조회 버튼을 누른 경우
         private void btnLineSearch_Click(object sender, EventArgs e)
@@ -227,7 +249,9 @@ namespace Team2_POP
         }
 
         #region 그리드뷰 클릭 이벤트
-
+        //=====================
+        //    작업 그리드뷰
+        //=====================
         private void dgvWork_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -244,7 +268,9 @@ namespace Team2_POP
 
             }
         }
-
+        //=====================
+        //    생산 그리드뷰
+        //=====================
         private void dgvProduce_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -262,6 +288,9 @@ namespace Team2_POP
             }
         }
 
+        //=====================
+        //    실적 그리드뷰
+        //=====================
         private void dgvPerformance_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > -1 && e.ColumnIndex > -1)
@@ -272,5 +301,16 @@ namespace Team2_POP
         }
 
         #endregion
+
+        // 날짜를 클릭한 경우
+        private void lblDate_Click(object sender, EventArgs e)
+        {
+            using (MonthCalandarForm calandarForm = new MonthCalandarForm())
+            {
+                calandarForm.DSelected = DateTime.Parse(lblDate.Text);
+                if (DialogResult.OK == calandarForm.ShowDialog())
+                    lblDate.Text = calandarForm.DSelected.ToShortDateString();
+            }
+        }
     }
 }
