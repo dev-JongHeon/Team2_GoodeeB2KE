@@ -138,5 +138,10 @@ namespace Team2_ERP
             else
                 MessageBox.Show("상세주소를 입력하여 주세요.");
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

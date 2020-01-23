@@ -172,6 +172,7 @@ namespace Team2_ERP
                 {
                     Warehouse_ID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value),
                     Warehouse_Name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                    Warehouse_Address = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString(),
                     Warehouse_Number = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString(),
                     Warehouse_Fax = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString()
                 };

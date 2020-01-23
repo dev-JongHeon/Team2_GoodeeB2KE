@@ -14,10 +14,7 @@ namespace Team2_ERP
 {
     public partial class WarehouseInsUp : BasePopup
     {
-        public string Address1 { get; set; }
-        public string Address2 { get; set; }
-
-        public string Name { get; set; }
+        public string WName { get; set; }
         public string Value { get; set; }
 
         string mode = string.Empty;
@@ -51,50 +48,64 @@ namespace Team2_ERP
 
         private void InsertWarehouse()
         {
-            WarehouseVO item = new WarehouseVO
+            if (cboWarehouseDivision.SelectedIndex != 0)
             {
-                Warehouse_Name = txtWarehouseName.Text,
-                Warehouse_Division = Convert.ToInt32(cboWarehouseDivision.SelectedValue),
-                Warehouse_Number = txtWarehouseNumber.Text,
-                Warehouse_Fax = txtWarehouseFaxNumber.Text,
-                Warehouse_Address = addressControl1.Address1 + "　" + addressControl1.Address2
-            };
+                WarehouseVO item = new WarehouseVO
+                {
+                    Warehouse_Name = txtWarehouseName.Text,
+                    Warehouse_Division = Convert.ToInt32(cboWarehouseDivision.SelectedValue),
+                    Warehouse_Number = txtWarehouseNumber.Text,
+                    Warehouse_Fax = txtWarehouseFaxNumber.Text,
+                    Warehouse_Address = addressControl1.Address1 + "　" + addressControl1.Address2
+                };
 
-            StandardService service = new StandardService();
-            service.InsertWarehouse(item);
+                StandardService service = new StandardService();
+                service.InsertWarehouse(item);
+            }
         }
 
         private void UpdateWarehouse()
         {
-            WarehouseVO item = new WarehouseVO
+            if (cboWarehouseDivision.SelectedIndex != 0)
             {
-                Warehouse_ID = code,
-                Warehouse_Division = Convert.ToInt32(cboWarehouseDivision.SelectedValue),
-                Warehouse_Name = txtWarehouseName.Text,
-                Warehouse_Number = txtWarehouseNumber.Text,
-                Warehouse_Fax = txtWarehouseFaxNumber.Text,
-                Warehouse_Address = addressControl1.Address1 + "　" + addressControl1.Address2
-            };
+                WarehouseVO item = new WarehouseVO
+                {
+                    Warehouse_ID = code,
+                    Warehouse_Division = Convert.ToInt32(cboWarehouseDivision.SelectedValue),
+                    Warehouse_Name = txtWarehouseName.Text,
+                    Warehouse_Number = txtWarehouseNumber.Text,
+                    Warehouse_Fax = txtWarehouseFaxNumber.Text,
+                    Warehouse_Address = addressControl1.Address1 + "　" + addressControl1.Address2
+                };
+
+                StandardService service = new StandardService();
+                service.UpdateWarehouse(item);
+            }
         }
 
         private void InitCombo()
         {
             DataTable dt = new DataTable();
-            dt.Columns.Add(new DataColumn("Name", typeof(string)));
+            dt.Columns.Add(new DataColumn("WName", typeof(string)));
             dt.Columns.Add(new DataColumn("Value", typeof(int)));
 
             DataRow dr = dt.NewRow();
-            dr["Name"] = "원자재 창고";
+            dr["WName"] = "선택";
             dr["Value"] = 0;
             dt.Rows.Add(dr);
 
             dr = dt.NewRow();
-            dr["Name"] = "반제품 창고";
+            dr["WName"] = "원자재 창고";
+            dr["Value"] = 0;
+            dt.Rows.Add(dr);
+
+            dr = dt.NewRow();
+            dr["WName"] = "반제품 창고";
             dr["Value"] = 1;
             dt.Rows.Add(dr);
 
             cboWarehouseDivision.DataSource = dt;
-            cboWarehouseDivision.DisplayMember = "Name";
+            cboWarehouseDivision.DisplayMember = "WName";
             cboWarehouseDivision.ValueMember = "Value";
         }
 
@@ -106,9 +117,14 @@ namespace Team2_ERP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if(mode == "Insert")
+            if(mode.Equals("Insert"))
             {
                 InsertWarehouse();
+            }
+
+            else if(mode.Equals("Update"))
+            {
+                UpdateWarehouse();
             }
 
             this.DialogResult = DialogResult.OK;

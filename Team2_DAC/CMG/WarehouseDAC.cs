@@ -55,7 +55,7 @@ namespace Team2_DAC
                     cmd.Parameters.AddWithValue("@Warehouse_Name", item.Warehouse_Name);
                     cmd.Parameters.AddWithValue("@Warehouse_Address1", str[0]);
                     cmd.Parameters.AddWithValue("@Warehouse_Address2", str[1]);
-                    if (item.Warehouse_Number == "")
+                    if (item.Warehouse_Number == string.Empty)
                     {
                         cmd.Parameters.AddWithValue("@Warehouse_Number", DBNull.Value);
                     }
@@ -63,7 +63,7 @@ namespace Team2_DAC
                     {
                         cmd.Parameters.AddWithValue("@Warehouse_Number", item.Warehouse_Number);
                     }
-                    if(item.Warehouse_Fax == "")
+                    if(item.Warehouse_Fax == string.Empty)
                     {
                         cmd.Parameters.AddWithValue("@Warehouse_Fax", DBNull.Value);
                     }
@@ -72,6 +72,38 @@ namespace Team2_DAC
                         cmd.Parameters.AddWithValue("@Warehouse_Fax", item.Warehouse_Fax);
                     }
                     cmd.Parameters.AddWithValue("@Warehouse_Division", item.Warehouse_Division);
+
+                    conn.Open();
+                    var rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public bool UpdateWarehouse(WarehouseVO item)
+        {
+            string sql = "Update Warehouse set Warehouse_Name = @Warehouse_Name, Warehouse_Address1 = @Warehouse_Address1, Warehouse_Address2 = @Warehouse_Address2, Warehouse_Number = @Warehouse_Number, Warehouse_Fax = @Warehouse_Fax, Warehouse_Division = @Warehouse_Division where Warehouse_ID = @Warehouse_ID ";
+
+            string[] str = item.Warehouse_Address.Split('　');
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Warehouse_Name", item.Warehouse_Name);
+                    cmd.Parameters.AddWithValue("@Warehouse_Address1", str[0]);
+                    cmd.Parameters.AddWithValue("@Warehouse_Address2", str[1]);
+                    cmd.Parameters.AddWithValue("@Warehouse_Number", item.Warehouse_Number);
+                    cmd.Parameters.AddWithValue("@Warehouse_Fax", item.Warehouse_Fax);
+                    cmd.Parameters.AddWithValue("@Warehouse_Division", item.Warehouse_Division);
+                    cmd.Parameters.AddWithValue("@Warehouse_ID", item.Warehouse_ID);
 
                     conn.Open();
                     var rowsAffected = cmd.ExecuteNonQuery();
