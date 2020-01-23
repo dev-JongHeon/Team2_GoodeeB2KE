@@ -89,6 +89,7 @@ namespace Team2_ERP
                     else
                     {
                         MessageBox.Show("입력한 비밀번호가 잘못되었습니다.", "비밀번호 오류", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtEmpPwd.Focus();
                     }
                 }
                 catch (Exception err)
