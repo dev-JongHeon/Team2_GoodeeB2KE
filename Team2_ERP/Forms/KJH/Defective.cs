@@ -38,5 +38,11 @@ namespace Team2_ERP
             LoginService service = new LoginService();
             service.InsertAuth(Session.Employee_ID);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            LoginService service = new LoginService();
+            service.InsertAuth(Session.Employee_ID);
+        }
     }
 }

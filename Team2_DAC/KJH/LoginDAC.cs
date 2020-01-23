@@ -107,6 +107,7 @@ namespace Team2_DAC
                     {
                         cmd.Parameters.AddWithValue("@ID", id);
                         cmd.Parameters.AddWithValue("@Form", name);
+                        cmd.Parameters.AddWithValue("@FormDescribtion", menulist[name]);
                         result=Convert.ToInt32(cmd.ExecuteNonQuery());
                         cmd.Parameters.Clear();
                     }
