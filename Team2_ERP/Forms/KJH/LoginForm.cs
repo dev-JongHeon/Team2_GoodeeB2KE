@@ -71,7 +71,6 @@ namespace Team2_ERP
                         this.Hide();
                         if (frm.ShowDialog() == DialogResult.Cancel)
                         {
-                            
                             logininfo = frm.Logininfo;
                             if (!logininfo.IsLogout)
                             {

@@ -40,14 +40,14 @@ namespace Team2_ERP
             {
                 MessageBox.Show(err.Message);
             }
-            frm.신규ToolStripMenuItem.Visible = true;
+            frm.신규ToolStripMenuItem.Visible = false;
             frm.삭제ToolStripMenuItem.Visible = false;
-            frm.수정ToolStripMenuItem.Visible = false;
+            frm.수정ToolStripMenuItem.Visible = true;
             frm.인쇄ToolStripMenuItem.Visible = false;
-            frm.신규ToolStripMenuItem.Text = "권한설정";
+            frm.수정ToolStripMenuItem.Text = "권한설정";
         }
 
-        public override void New(object sender, EventArgs e)
+        public override void Modify(object sender, EventArgs e)
         {
             if (dgvAuthList.DataSource != null)
             {
@@ -57,7 +57,7 @@ namespace Team2_ERP
                     authlist.Add(new AuthVO { Form = item.Cells[0].Value.ToString(), Auth = Convert.ToBoolean(item.Cells[1].EditedFormattedValue) });
                 }
                 AuthService service = new AuthService();
-                if(service.UpdateAuth(uid, authlist))
+                if (service.UpdateAuth(uid, authlist))
                 {
                     frm.NoticeMessage = "권한설정 완료!";
                 }
@@ -69,7 +69,7 @@ namespace Team2_ERP
             }
             else
             {
-                frm.NoticeMessage = "권한설정할 메뉴를 선택하지 않으셨습니다.";
+                frm.NoticeMessage = "권한설정할 사원을 선택하지 않으셨습니다.";
             }
         }
 
@@ -125,17 +125,19 @@ namespace Team2_ERP
 
         private void UserAuth_Activated(object sender, EventArgs e)
         {
-            frm.신규ToolStripMenuItem.Visible = true;
+            frm.신규ToolStripMenuItem.Visible = false;
             frm.삭제ToolStripMenuItem.Visible = false;
-            frm.수정ToolStripMenuItem.Visible = false;
+            frm.수정ToolStripMenuItem.Visible = true;
             frm.인쇄ToolStripMenuItem.Visible = false;
-            frm.신규ToolStripMenuItem.Text = "권한설정";
+            frm.수정ToolStripMenuItem.Text = "권한설정";
+            frm.수정ToolStripMenuItem.ToolTipText = "권한설정(Ctrl+M)";
             frm.NoticeMessage = "권한설정 화면입니다.";
         }
 
         private void UserAuth_Deactivate(object sender, EventArgs e)
         {
-            frm.신규ToolStripMenuItem.Text = "신규";
+            frm.수정ToolStripMenuItem.Text = "수정";
+            frm.수정ToolStripMenuItem.ToolTipText = "수정(Ctrl+M)";
             new SettingMenuStrip().UnsetMenu(this);
         }
 

@@ -106,222 +106,319 @@
             this.btnOK.FlatAppearance.BorderSize = 0;
             this.btnOK.Location = new System.Drawing.Point(174, 3);
             this.btnOK.Text = "확인";
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // button21
             // 
+            this.button21.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button21.Location = new System.Drawing.Point(570, 64);
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(45, 23);
             this.button21.TabIndex = 37;
+            this.button21.Tag = "23";
             this.button21.Text = "12월";
-            this.button21.UseVisualStyleBackColor = true;
+            this.button21.UseVisualStyleBackColor = false;
+            this.button21.Click += new System.EventHandler(this.ButtonClick);
             // 
             // button22
             // 
+            this.button22.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button22.Location = new System.Drawing.Point(468, 64);
             this.button22.Name = "button22";
             this.button22.Size = new System.Drawing.Size(45, 23);
             this.button22.TabIndex = 36;
+            this.button22.Tag = "21";
             this.button22.Text = "10월";
-            this.button22.UseVisualStyleBackColor = true;
+            this.button22.UseVisualStyleBackColor = false;
+            this.button22.Click += new System.EventHandler(this.ButtonClick);
             // 
             // button23
             // 
+            this.button23.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button23.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button23.Location = new System.Drawing.Point(366, 64);
             this.button23.Name = "button23";
             this.button23.Size = new System.Drawing.Size(45, 23);
             this.button23.TabIndex = 35;
+            this.button23.Tag = "19";
             this.button23.Text = "8월";
-            this.button23.UseVisualStyleBackColor = true;
+            this.button23.UseVisualStyleBackColor = false;
+            this.button23.Click += new System.EventHandler(this.ButtonClick);
             // 
             // button24
             // 
+            this.button24.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button24.Location = new System.Drawing.Point(264, 64);
             this.button24.Name = "button24";
             this.button24.Size = new System.Drawing.Size(45, 23);
             this.button24.TabIndex = 34;
+            this.button24.Tag = "17";
             this.button24.Text = "6월";
-            this.button24.UseVisualStyleBackColor = true;
+            this.button24.UseVisualStyleBackColor = false;
+            this.button24.Click += new System.EventHandler(this.ButtonClick);
             // 
             // button25
             // 
+            this.button25.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button25.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button25.Location = new System.Drawing.Point(111, 64);
             this.button25.Name = "button25";
             this.button25.Size = new System.Drawing.Size(45, 23);
             this.button25.TabIndex = 33;
+            this.button25.Tag = "14";
             this.button25.Text = "3월";
-            this.button25.UseVisualStyleBackColor = true;
+            this.button25.UseVisualStyleBackColor = false;
+            this.button25.Click += new System.EventHandler(this.ButtonClick);
             // 
             // button26
             // 
+            this.button26.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button26.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button26.Location = new System.Drawing.Point(60, 64);
             this.button26.Name = "button26";
             this.button26.Size = new System.Drawing.Size(45, 23);
             this.button26.TabIndex = 32;
+            this.button26.Tag = "13";
             this.button26.Text = "2월";
-            this.button26.UseVisualStyleBackColor = true;
+            this.button26.UseVisualStyleBackColor = false;
+            this.button26.Click += new System.EventHandler(this.ButtonClick);
             // 
             // button15
             // 
+            this.button15.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button15.Location = new System.Drawing.Point(519, 64);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(45, 23);
             this.button15.TabIndex = 31;
+            this.button15.Tag = "22";
             this.button15.Text = "11월";
-            this.button15.UseVisualStyleBackColor = true;
+            this.button15.UseVisualStyleBackColor = false;
+            this.button15.Click += new System.EventHandler(this.ButtonClick);
             // 
             // button16
             // 
+            this.button16.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button16.Location = new System.Drawing.Point(417, 64);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(45, 23);
             this.button16.TabIndex = 30;
+            this.button16.Tag = "20";
             this.button16.Text = "9월";
-            this.button16.UseVisualStyleBackColor = true;
+            this.button16.UseVisualStyleBackColor = false;
+            this.button16.Click += new System.EventHandler(this.ButtonClick);
             // 
             // button17
             // 
+            this.button17.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button17.Location = new System.Drawing.Point(315, 64);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(45, 23);
             this.button17.TabIndex = 29;
+            this.button17.Tag = "18";
             this.button17.Text = "7월";
-            this.button17.UseVisualStyleBackColor = true;
+            this.button17.UseVisualStyleBackColor = false;
+            this.button17.Click += new System.EventHandler(this.ButtonClick);
             // 
             // button18
             // 
+            this.button18.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button18.Location = new System.Drawing.Point(213, 64);
             this.button18.Name = "button18";
             this.button18.Size = new System.Drawing.Size(45, 23);
             this.button18.TabIndex = 28;
+            this.button18.Tag = "16";
             this.button18.Text = "5월";
-            this.button18.UseVisualStyleBackColor = true;
+            this.button18.UseVisualStyleBackColor = false;
+            this.button18.Click += new System.EventHandler(this.ButtonClick);
             // 
             // button19
             // 
+            this.button19.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button19.Location = new System.Drawing.Point(162, 64);
             this.button19.Name = "button19";
             this.button19.Size = new System.Drawing.Size(45, 23);
             this.button19.TabIndex = 27;
+            this.button19.Tag = "15";
             this.button19.Text = "4월";
-            this.button19.UseVisualStyleBackColor = true;
+            this.button19.UseVisualStyleBackColor = false;
+            this.button19.Click += new System.EventHandler(this.ButtonClick);
             // 
             // button20
             // 
+            this.button20.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button20.Location = new System.Drawing.Point(9, 64);
             this.button20.Name = "button20";
             this.button20.Size = new System.Drawing.Size(45, 23);
             this.button20.TabIndex = 26;
+            this.button20.Tag = "12";
             this.button20.Text = "1월";
-            this.button20.UseVisualStyleBackColor = true;
+            this.button20.UseVisualStyleBackColor = false;
+            this.button20.Click += new System.EventHandler(this.ButtonClick);
             // 
             // button13
             // 
+            this.button13.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button13.Location = new System.Drawing.Point(520, 35);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(96, 23);
             this.button13.TabIndex = 25;
+            this.button13.Tag = "11";
             this.button13.Text = "하반기";
-            this.button13.UseVisualStyleBackColor = true;
+            this.button13.UseVisualStyleBackColor = false;
+            this.button13.Click += new System.EventHandler(this.ButtonClick);
             // 
             // button14
             // 
+            this.button14.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button14.Location = new System.Drawing.Point(418, 35);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(96, 23);
             this.button14.TabIndex = 24;
+            this.button14.Tag = "10";
             this.button14.Text = "상반기";
-            this.button14.UseVisualStyleBackColor = true;
+            this.button14.UseVisualStyleBackColor = false;
+            this.button14.Click += new System.EventHandler(this.ButtonClick);
             // 
             // button11
             // 
+            this.button11.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button11.Location = new System.Drawing.Point(315, 35);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(97, 23);
             this.button11.TabIndex = 23;
+            this.button11.Tag = "9";
             this.button11.Text = "4/4 분기";
-            this.button11.UseVisualStyleBackColor = true;
+            this.button11.UseVisualStyleBackColor = false;
+            this.button11.Click += new System.EventHandler(this.ButtonClick);
             // 
             // button12
             // 
+            this.button12.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button12.Location = new System.Drawing.Point(213, 35);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(96, 23);
             this.button12.TabIndex = 22;
+            this.button12.Tag = "8";
             this.button12.Text = "3/4 분기";
-            this.button12.UseVisualStyleBackColor = true;
+            this.button12.UseVisualStyleBackColor = false;
+            this.button12.Click += new System.EventHandler(this.ButtonClick);
             // 
             // button9
             // 
+            this.button9.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button9.Location = new System.Drawing.Point(111, 35);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(96, 23);
             this.button9.TabIndex = 21;
+            this.button9.Tag = "7";
             this.button9.Text = "2/4 분기";
-            this.button9.UseVisualStyleBackColor = true;
+            this.button9.UseVisualStyleBackColor = false;
+            this.button9.Click += new System.EventHandler(this.ButtonClick);
             // 
             // button10
             // 
+            this.button10.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button10.Location = new System.Drawing.Point(9, 35);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(96, 23);
             this.button10.TabIndex = 20;
+            this.button10.Tag = "6";
             this.button10.Text = "1/4 분기";
-            this.button10.UseVisualStyleBackColor = true;
+            this.button10.UseVisualStyleBackColor = false;
+            this.button10.Click += new System.EventHandler(this.ButtonClick);
             // 
             // button7
             // 
+            this.button7.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button7.Location = new System.Drawing.Point(520, 6);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(96, 23);
             this.button7.TabIndex = 19;
+            this.button7.Tag = "5";
             this.button7.Text = "올해";
-            this.button7.UseVisualStyleBackColor = true;
+            this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.ButtonClick);
             // 
             // btn
             // 
+            this.btn.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn.Location = new System.Drawing.Point(418, 6);
             this.btn.Name = "btn";
             this.btn.Size = new System.Drawing.Size(96, 23);
             this.btn.TabIndex = 18;
+            this.btn.Tag = "4";
             this.btn.Text = "당월";
-            this.btn.UseVisualStyleBackColor = true;
+            this.btn.UseVisualStyleBackColor = false;
+            this.btn.Click += new System.EventHandler(this.ButtonClick);
             // 
             // btnLastMonth
             // 
+            this.btnLastMonth.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnLastMonth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLastMonth.Location = new System.Drawing.Point(315, 6);
             this.btnLastMonth.Name = "btnLastMonth";
             this.btnLastMonth.Size = new System.Drawing.Size(97, 23);
             this.btnLastMonth.TabIndex = 17;
+            this.btnLastMonth.Tag = "3";
             this.btnLastMonth.Text = "전월";
-            this.btnLastMonth.UseVisualStyleBackColor = true;
+            this.btnLastMonth.UseVisualStyleBackColor = false;
+            this.btnLastMonth.Click += new System.EventHandler(this.ButtonClick);
             // 
             // btnWeek
             // 
+            this.btnWeek.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnWeek.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnWeek.Location = new System.Drawing.Point(213, 6);
             this.btnWeek.Name = "btnWeek";
             this.btnWeek.Size = new System.Drawing.Size(96, 23);
             this.btnWeek.TabIndex = 16;
+            this.btnWeek.Tag = "2";
             this.btnWeek.Text = "주간";
-            this.btnWeek.UseVisualStyleBackColor = true;
+            this.btnWeek.UseVisualStyleBackColor = false;
+            this.btnWeek.Click += new System.EventHandler(this.ButtonClick);
             // 
             // btnLastweek
             // 
+            this.btnLastweek.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnLastweek.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLastweek.Location = new System.Drawing.Point(111, 6);
             this.btnLastweek.Name = "btnLastweek";
             this.btnLastweek.Size = new System.Drawing.Size(96, 23);
             this.btnLastweek.TabIndex = 15;
+            this.btnLastweek.Tag = "1";
             this.btnLastweek.Text = "전주";
-            this.btnLastweek.UseVisualStyleBackColor = true;
+            this.btnLastweek.UseVisualStyleBackColor = false;
+            this.btnLastweek.Click += new System.EventHandler(this.ButtonClick);
             // 
             // btnToday
             // 
+            this.btnToday.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnToday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnToday.Location = new System.Drawing.Point(9, 6);
             this.btnToday.Name = "btnToday";
             this.btnToday.Size = new System.Drawing.Size(96, 23);
             this.btnToday.TabIndex = 14;
+            this.btnToday.Tag = "0";
             this.btnToday.Text = "오늘";
-            this.btnToday.UseVisualStyleBackColor = true;
+            this.btnToday.UseVisualStyleBackColor = false;
+            this.btnToday.Click += new System.EventHandler(this.ButtonClick);
             // 
             // panel6
             // 
@@ -352,7 +449,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(0, 0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(624, 96);
+            this.panel6.Size = new System.Drawing.Size(622, 96);
             this.panel6.TabIndex = 19;
             // 
             // label1
@@ -362,7 +459,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label1.Location = new System.Drawing.Point(268, 144);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 83);
+            this.label1.Size = new System.Drawing.Size(83, 83);
             this.label1.TabIndex = 16;
             this.label1.Text = "~";
             // 
@@ -373,6 +470,7 @@
             this.EndCalendar.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
             this.EndCalendar.MaxSelectionCount = 1;
             this.EndCalendar.Name = "EndCalendar";
+            this.EndCalendar.ShowTodayCircle = false;
             this.EndCalendar.TabIndex = 15;
             // 
             // StartCalendar
@@ -382,6 +480,7 @@
             this.StartCalendar.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
             this.StartCalendar.MaxSelectionCount = 1;
             this.StartCalendar.Name = "StartCalendar";
+            this.StartCalendar.ShowTodayCircle = false;
             this.StartCalendar.TabIndex = 14;
             // 
             // CalendarForm
@@ -389,6 +488,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.ClientSize = new System.Drawing.Size(626, 401);
             this.Name = "CalendarForm";
+            this.Load += new System.EventHandler(this.CalendarForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel_Title.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).EndInit();

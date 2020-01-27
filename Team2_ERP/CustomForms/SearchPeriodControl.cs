@@ -19,7 +19,19 @@ namespace Team2_ERP
             get { return lblName.Text; }
             set { lblName.Text = value; }
         }
+        public MaskedTextBox Startdate
+        {
+            set { txtStart = value; }
+            get { return txtStart; }
+        }
+        public MaskedTextBox Enddate
+        {
+            set { txtEnd = value; }
+            get { return txtEnd; }
+        }
 
+        public DateTime sdate { set => txtStart.Text = value.ToString(); }
+        public DateTime edate { set => txtEnd.Text = value.ToString(); }
 
         public SearchPeriodControl()
         {
@@ -30,7 +42,11 @@ namespace Team2_ERP
         private void btnSearch_Click(object sender, EventArgs e)
         {
             CalendarForm frm = new CalendarForm();
-            frm.ShowDialog();
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                sdate = frm.Startdate;
+                edate = frm.Enddate;
+            }
         }
 
         //private void dtpStart_ValueChanged(object sender, EventArgs e)

@@ -30,12 +30,12 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.txtEnd = new System.Windows.Forms.MaskedTextBox();
+            this.txtStart = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblName = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -53,8 +53,8 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.maskedTextBox2);
-            this.panel3.Controls.Add(this.maskedTextBox1);
+            this.panel3.Controls.Add(this.txtEnd);
+            this.panel3.Controls.Add(this.txtStart);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.btnSearch);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -63,13 +63,31 @@
             this.panel3.Size = new System.Drawing.Size(234, 25);
             this.panel3.TabIndex = 1;
             // 
+            // txtEnd
+            // 
+            this.txtEnd.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtEnd.Location = new System.Drawing.Point(120, 2);
+            this.txtEnd.Mask = "9999/99/99";
+            this.txtEnd.Name = "txtEnd";
+            this.txtEnd.Size = new System.Drawing.Size(84, 22);
+            this.txtEnd.TabIndex = 15;
+            // 
+            // txtStart
+            // 
+            this.txtStart.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtStart.Location = new System.Drawing.Point(6, 2);
+            this.txtStart.Mask = "9999/99/99";
+            this.txtStart.Name = "txtStart";
+            this.txtStart.Size = new System.Drawing.Size(83, 22);
+            this.txtStart.TabIndex = 14;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.Location = new System.Drawing.Point(95, 2);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(19, 19);
+            this.label1.Size = new System.Drawing.Size(20, 19);
             this.label1.TabIndex = 12;
             this.label1.Text = "~";
             // 
@@ -105,24 +123,6 @@
             this.lblName.TabIndex = 8;
             this.lblName.Text = "기간 선택";
             // 
-            // maskedTextBox1
-            // 
-            this.maskedTextBox1.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.maskedTextBox1.Location = new System.Drawing.Point(6, 2);
-            this.maskedTextBox1.Mask = "9999/99/99";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(83, 22);
-            this.maskedTextBox1.TabIndex = 14;
-            // 
-            // maskedTextBox2
-            // 
-            this.maskedTextBox2.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.maskedTextBox2.Location = new System.Drawing.Point(120, 2);
-            this.maskedTextBox2.Mask = "9999/99/99";
-            this.maskedTextBox2.Name = "maskedTextBox2";
-            this.maskedTextBox2.Size = new System.Drawing.Size(84, 22);
-            this.maskedTextBox2.TabIndex = 15;
-            // 
             // SearchPeriodControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -148,7 +148,7 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox2;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox txtEnd;
+        private System.Windows.Forms.MaskedTextBox txtStart;
     }
 }
