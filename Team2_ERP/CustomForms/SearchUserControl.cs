@@ -136,13 +136,21 @@ namespace Team2_ERP
             }
             else
             {
-                txtCode.Tag = string.Empty;
+                txtCode.Tag = null;
             }
         }
 
         private void txtCode_MouseClick(object sender, MouseEventArgs e)
         {
             txtCode.SelectAll();
+        }
+
+        private void txtCode_TextChanged(object sender, EventArgs e)
+        {
+            if (txtCode.TextLength == 0)
+            {
+                txtCode.Tag = null;
+            }
         }
     }
 }
