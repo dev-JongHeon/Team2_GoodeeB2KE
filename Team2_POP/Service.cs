@@ -48,9 +48,19 @@ namespace Team2_POP
             return new POPDAC().SetWorkerForPerformance(produceID, empID);
         }
 
-        public string StartProduce(string produceID)
+        public string[] StartProduce(string produceID)
         {
             return new POPDAC().StartProduce(produceID);
+        }
+
+        public void Producing(string performanceID, int success, int bad)
+        {
+            new POPDAC().InProduction(performanceID, success, bad);
+        }
+
+        public void EndProduce(string performanceID)
+        {
+            new POPDAC().EndProduce(performanceID);
         }
     }
 }
