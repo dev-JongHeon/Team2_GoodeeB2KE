@@ -36,6 +36,12 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Order, "주문총액", "TotalPrice", true);
             UtilClass.AddNewColum(dgv_Order, "삭제여부", "Order_DeletedYN", false);
             UtilClass.AddNewColum(dgv_Order, "주문상태", "Order_State", false);
+            dgv_Order.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv_Order.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgv_Order.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgv_Order.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgv_Order.Columns[5].DefaultCellStyle.Format = "#,#0원";
+            dgv_Order.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgv_Order.DataSource = service.GetOrderList();
 
             UtilClass.SettingDgv(dgv_OrderDetail);
@@ -43,6 +49,10 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_OrderDetail, "제품ID", "Product_ID", true);
             UtilClass.AddNewColum(dgv_OrderDetail, "제품명", "Product_Name", true);
             UtilClass.AddNewColum(dgv_OrderDetail, "주문수량", "OrderDetail_Qty", true);
+            dgv_OrderDetail.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv_OrderDetail.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgv_OrderDetail.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgv_OrderDetail.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             OrderDetail_AllList = service.GetOrderDetailList();
         }
 

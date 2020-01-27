@@ -18,10 +18,10 @@ namespace Team2_ERP.Service
             return dac.GetShipmentCompletedList();
         }
 
-        public List<OrderDetail> GetOrderDetailList()  // 뷰사용
+        public List<ShipmentDetail> GetShipmentDetailList()  // 뷰사용
         {
             ShipmentDAC dac = new ShipmentDAC();
-            return dac.GetOrderDetailList();
+            return dac.GetShipmentDetailList();
         }
     }
 

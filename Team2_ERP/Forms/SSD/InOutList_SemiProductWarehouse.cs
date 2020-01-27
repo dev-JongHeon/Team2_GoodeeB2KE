@@ -39,6 +39,13 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Stock, "수불수량", "StockReceipt_Quantity", true);
             UtilClass.AddNewColum(dgv_Stock, "등록사원", "Employees_Name", true);
             UtilClass.AddNewColum(dgv_Stock, "창고유형", "Warehouse_Division", false);
+            dgv_Stock.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv_Stock.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgv_Stock.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgv_Stock.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgv_Stock.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgv_Stock.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgv_Stock.Columns[8].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 
             StockReceipt_AllList = service.GetStockReceipts(); // 수불내역 갱신
 
