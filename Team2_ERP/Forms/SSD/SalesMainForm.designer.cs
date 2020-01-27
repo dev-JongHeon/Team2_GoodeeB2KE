@@ -52,6 +52,12 @@
             // 
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.dgv_SalesStatus);
+            this.panel2.Location = new System.Drawing.Point(0, 158);
+            this.panel2.Size = new System.Drawing.Size(1754, 838);
+            // 
+            // panel1
+            // 
+            this.panel1.Size = new System.Drawing.Size(1754, 996);
             // 
             // panel5
             // 
@@ -62,6 +68,7 @@
             // 
             // lblFormName
             // 
+            this.lblFormName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFormName.Text = "매출현황";
             // 
             // searchUserControl1
@@ -70,9 +77,10 @@
             this.searchUserControl1.ControlType = Team2_ERP.SearchUserControl.Mode.Customer;
             this.searchUserControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.searchUserControl1.Labelname = "고객ID";
-            this.searchUserControl1.Location = new System.Drawing.Point(12, 19);
+            this.searchUserControl1.Location = new System.Drawing.Point(15, 23);
+            this.searchUserControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.searchUserControl1.Name = "searchUserControl1";
-            this.searchUserControl1.Size = new System.Drawing.Size(312, 25);
+            this.searchUserControl1.Size = new System.Drawing.Size(401, 30);
             this.searchUserControl1.TabIndex = 0;
             // 
             // searchUserControl2
@@ -81,27 +89,30 @@
             this.searchUserControl2.ControlType = Team2_ERP.SearchUserControl.Mode.Company;
             this.searchUserControl2.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.searchUserControl2.Labelname = "작업자";
-            this.searchUserControl2.Location = new System.Drawing.Point(12, 50);
+            this.searchUserControl2.Location = new System.Drawing.Point(15, 61);
+            this.searchUserControl2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.searchUserControl2.Name = "searchUserControl2";
-            this.searchUserControl2.Size = new System.Drawing.Size(312, 25);
+            this.searchUserControl2.Size = new System.Drawing.Size(401, 30);
             this.searchUserControl2.TabIndex = 1;
             // 
             // searchPeriodControl1
             // 
             this.searchPeriodControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.searchPeriodControl1.Labelname = "주문일자";
-            this.searchPeriodControl1.Location = new System.Drawing.Point(330, 19);
+            this.searchPeriodControl1.Location = new System.Drawing.Point(424, 23);
+            this.searchPeriodControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.searchPeriodControl1.Name = "searchPeriodControl1";
-            this.searchPeriodControl1.Size = new System.Drawing.Size(312, 25);
+            this.searchPeriodControl1.Size = new System.Drawing.Size(401, 30);
             this.searchPeriodControl1.TabIndex = 2;
             // 
             // searchPeriodControl2
             // 
             this.searchPeriodControl2.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.searchPeriodControl2.Labelname = "발송일자";
-            this.searchPeriodControl2.Location = new System.Drawing.Point(330, 50);
+            this.searchPeriodControl2.Location = new System.Drawing.Point(424, 61);
+            this.searchPeriodControl2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.searchPeriodControl2.Name = "searchPeriodControl2";
-            this.searchPeriodControl2.Size = new System.Drawing.Size(312, 25);
+            this.searchPeriodControl2.Size = new System.Drawing.Size(401, 30);
             this.searchPeriodControl2.TabIndex = 3;
             // 
             // dgv_SalesStatus
@@ -109,9 +120,11 @@
             this.dgv_SalesStatus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_SalesStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_SalesStatus.Location = new System.Drawing.Point(0, 0);
+            this.dgv_SalesStatus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgv_SalesStatus.Name = "dgv_SalesStatus";
+            this.dgv_SalesStatus.RowHeadersWidth = 51;
             this.dgv_SalesStatus.RowTemplate.Height = 23;
-            this.dgv_SalesStatus.Size = new System.Drawing.Size(1364, 662);
+            this.dgv_SalesStatus.Size = new System.Drawing.Size(1754, 838);
             this.dgv_SalesStatus.TabIndex = 0;
             // 
             // panel3
@@ -120,18 +133,20 @@
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 617);
+            this.panel3.Location = new System.Drawing.Point(0, 783);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1364, 45);
+            this.panel3.Size = new System.Drawing.Size(1754, 55);
             this.panel3.TabIndex = 1;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.Location = new System.Drawing.Point(1224, 12);
+            this.label3.Location = new System.Drawing.Point(1574, 15);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 21);
+            this.label3.Size = new System.Drawing.Size(117, 28);
             this.label3.TabIndex = 10;
             this.label3.Text = "0000000";
             // 
@@ -139,9 +154,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(1324, 12);
+            this.label2.Location = new System.Drawing.Point(1702, 15);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(28, 21);
+            this.label2.Size = new System.Drawing.Size(35, 28);
             this.label2.TabIndex = 9;
             this.label2.Text = "원";
             // 
@@ -149,17 +165,20 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(1055, 12);
+            this.label1.Location = new System.Drawing.Point(1356, 15);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 21);
+            this.label1.Size = new System.Drawing.Size(104, 28);
             this.label1.TabIndex = 8;
             this.label1.Text = "매출총액";
             // 
             // SalesMainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
-            this.ClientSize = new System.Drawing.Size(1364, 820);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
+            this.ClientSize = new System.Drawing.Size(1754, 996);
+            this.Font = new System.Drawing.Font("나눔고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.FormName = "매출현황";
+            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.Name = "SalesMainForm";
             this.Load += new System.EventHandler(this.SalesMainForm_Load);
             this.panel2.ResumeLayout(false);
