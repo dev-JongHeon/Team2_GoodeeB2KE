@@ -16,7 +16,7 @@ namespace Team2_ERP
         public SearchUserControl.Mode Mode { get; set; }
 
         public SearchedInfoVO info { get; set; }
-        
+        List<SearchedInfoVO> list;
         public SearchForm()
         {
             InitializeComponent();
@@ -31,7 +31,6 @@ namespace Team2_ERP
         private void SearchForm_Load(object sender, EventArgs e)
         {
             UtilClass.SettingDgv(dgvSearch);
-            
             SettingData();
         }
 
@@ -141,7 +140,8 @@ namespace Team2_ERP
             try
             {
                 SearchService service = new SearchService();
-                dgvSearch.DataSource = service.GetInfo(Mode.ToString());
+                list = service.GetInfo(Mode.ToString());
+                dgvSearch.DataSource = list;
             }
             catch (Exception err)
             {
@@ -151,7 +151,7 @@ namespace Team2_ERP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (dgvSearch.SelectedRows.Count > 0&&info!=null)
+            if (dgvSearch.SelectedRows.Count > 0 && info != null)
             {
                 info.ID = dgvSearch.SelectedRows[0].Cells[0].Value.ToString();
                 info.Name = dgvSearch.SelectedRows[0].Cells[1].Value.ToString();
@@ -161,6 +161,39 @@ namespace Team2_ERP
         private void dgvSearch_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             btnOK.PerformClick();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            if (txtSearch.isPlaceHolder)
+            {
+                dgvSearch.DataSource = list;
+            }
+            else
+            {
+                List<SearchedInfoVO> searchedInfo = (from item in list
+                                                     where item.Name.Contains                                         (txtSearch.Text)
+                                                     select item).ToList();
+                dgvSearch.DataSource = searchedInfo;
+            }
+        }
+
+        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                btnSearch.PerformClick();
+            }
+        }
+
+        private void dgvSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                int row = dgvSearch.CurrentCell.RowIndex;
+                dgvSearch.CurrentCell = dgvSearch[0, row - 1];
+                btnOK.PerformClick();
+            }
         }
     }
 }

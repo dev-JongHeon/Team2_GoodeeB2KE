@@ -44,8 +44,8 @@ namespace Team2_ERP
                 info = frm.info;
                 txtEmpID.Text = info.ID.ToString();
                 txtEmpName.Text = info.Name.ToString();
+                txtEmpPwd.Clear();
                 this.ActiveControl = txtEmpPwd;
-                
             }
 
         }

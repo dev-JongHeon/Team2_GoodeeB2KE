@@ -51,6 +51,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "MainTab";
             this.Text = "Base2Dgv";
+            this.Activated += new System.EventHandler(this.MainTab_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 

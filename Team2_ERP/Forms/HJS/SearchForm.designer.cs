@@ -65,6 +65,7 @@
             this.splitContainer1.SplitterDistance = 106;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 0;
+            this.splitContainer1.TabStop = false;
             // 
             // panel1
             // 
@@ -84,7 +85,7 @@
             this.btnOK.Location = new System.Drawing.Point(173, 57);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 27);
-            this.btnOK.TabIndex = 8;
+            this.btnOK.TabIndex = 1;
             this.btnOK.Text = "확인";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -95,9 +96,10 @@
             this.btnSearch.Location = new System.Drawing.Point(92, 57);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 27);
-            this.btnSearch.TabIndex = 6;
+            this.btnSearch.TabIndex = 0;
             this.btnSearch.Text = "조회";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // panel2
             // 
@@ -117,8 +119,9 @@
             this.dgvSearch.RowHeadersVisible = false;
             this.dgvSearch.RowTemplate.Height = 23;
             this.dgvSearch.Size = new System.Drawing.Size(267, 406);
-            this.dgvSearch.TabIndex = 1;
+            this.dgvSearch.TabIndex = 2;
             this.dgvSearch.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSearch_CellDoubleClick);
+            this.dgvSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvSearch_KeyPress);
             // 
             // txtSearch
             // 
@@ -128,7 +131,8 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PlaceHolderText = "";
             this.txtSearch.Size = new System.Drawing.Size(224, 21);
-            this.txtSearch.TabIndex = 7;
+            this.txtSearch.TabIndex = 3;
+            this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
             // 
             // SearchForm
             // 

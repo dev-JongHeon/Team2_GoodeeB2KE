@@ -30,8 +30,7 @@
         {
             this.dgvEmpList = new System.Windows.Forms.DataGridView();
             this.dgvAuthList = new System.Windows.Forms.DataGridView();
-            this.searchUserControl1 = new Team2_ERP.SearchUserControl();
-            this.searchUserControl2 = new Team2_ERP.SearchUserControl();
+            this.txtSearch = new Team2_ERP.SearchUserControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -64,8 +63,7 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.searchUserControl2);
-            this.panel5.Controls.Add(this.searchUserControl1);
+            this.panel5.Controls.Add(this.txtSearch);
             // 
             // lblFormName
             // 
@@ -81,6 +79,7 @@
             this.dgvEmpList.RowTemplate.Height = 23;
             this.dgvEmpList.Size = new System.Drawing.Size(368, 662);
             this.dgvEmpList.TabIndex = 0;
+            this.dgvEmpList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmpList_CellDoubleClick);
             // 
             // dgvAuthList
             // 
@@ -92,38 +91,31 @@
             this.dgvAuthList.RowTemplate.Height = 23;
             this.dgvAuthList.Size = new System.Drawing.Size(992, 662);
             this.dgvAuthList.TabIndex = 1;
+            this.dgvAuthList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAuthList_CellContentClick);
+            this.dgvAuthList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvAuthList_DataBindingComplete);
             // 
-            // searchUserControl1
+            // txtSearch
             // 
-            this.searchUserControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl1.ControlType = Team2_ERP.SearchUserControl.Mode.Company;
-            this.searchUserControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl1.Labelname = "사원";
-            this.searchUserControl1.Location = new System.Drawing.Point(12, 57);
-            this.searchUserControl1.Name = "searchUserControl1";
-            this.searchUserControl1.Size = new System.Drawing.Size(312, 25);
-            this.searchUserControl1.TabIndex = 0;
-            // 
-            // searchUserControl2
-            // 
-            this.searchUserControl2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl2.ControlType = Team2_ERP.SearchUserControl.Mode.Department;
-            this.searchUserControl2.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl2.Labelname = "부서";
-            this.searchUserControl2.Location = new System.Drawing.Point(12, 26);
-            this.searchUserControl2.Name = "searchUserControl2";
-            this.searchUserControl2.Size = new System.Drawing.Size(312, 25);
-            this.searchUserControl2.TabIndex = 1;
+            this.txtSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.txtSearch.ControlType = Team2_ERP.SearchUserControl.Mode.Employee;
+            this.txtSearch.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtSearch.Labelname = "사원";
+            this.txtSearch.Location = new System.Drawing.Point(12, 41);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(312, 25);
+            this.txtSearch.TabIndex = 0;
             // 
             // UserAuth
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.ClientSize = new System.Drawing.Size(1364, 820);
+            this.DoubleBuffered = true;
             this.FormName = "사용자권한설정";
             this.Name = "UserAuth";
             this.Activated += new System.EventHandler(this.UserAuth_Activated);
             this.Deactivate += new System.EventHandler(this.UserAuth_Deactivate);
             this.Load += new System.EventHandler(this.UserAuth_Load);
+            this.Shown += new System.EventHandler(this.UserAuth_Shown);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -146,7 +138,6 @@
 
         private System.Windows.Forms.DataGridView dgvEmpList;
         private System.Windows.Forms.DataGridView dgvAuthList;
-        private SearchUserControl searchUserControl2;
-        private SearchUserControl searchUserControl1;
+        private SearchUserControl txtSearch;
     }
 }
