@@ -820,5 +820,12 @@ namespace Team2_ERP
             tabControl1.Invalidate();
         }
 
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.L)
+            {
+                btnLogOut.PerformClick();
+            }
+        }
     }
 }
