@@ -36,14 +36,24 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_BaljuCompleted, "등록사원", "Employees_Name", true);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "수령일시", "Balju_ReceiptDate", true);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "삭제여부", "Balju_DeletedYN", false);
+            dgv_BaljuCompleted.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv_BaljuCompleted.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgv_BaljuCompleted.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgv_BaljuCompleted.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             dgv_BaljuCompleted.DataSource = service.GetBalju_CompletedList(); // 발주리스트 갱신
+
 
             UtilClass.SettingDgv(dgv_BaljuDetail);
             UtilClass.AddNewColum(dgv_BaljuDetail, "발주지시번호", "Balju_ID", true);
             UtilClass.AddNewColum(dgv_BaljuDetail, "품목코드", "Product_ID", true);
             UtilClass.AddNewColum(dgv_BaljuDetail, "품목명", "Product_Name", true);
             UtilClass.AddNewColum(dgv_BaljuDetail, "발주요청수량", "BaljuDetail_Qty", true);
+            dgv_BaljuDetail.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv_BaljuDetail.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgv_BaljuDetail.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgv_BaljuDetail.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             BaljuDetail_AllList = service.GetBalju_DetailList(); // 발주디테일 AllList 갱신
+
         }
 
         private void dgv_BaljuCompleted_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

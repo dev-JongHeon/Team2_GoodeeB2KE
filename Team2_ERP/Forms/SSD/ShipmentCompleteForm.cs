@@ -14,7 +14,7 @@ namespace Team2_ERP
     public partial class ShipmentCompleteForm : Base2Dgv
     {
         ShipmentService service = new ShipmentService();
-        List<OrderDetail> ShipmentDetail_AllList = null;
+        List<ShipmentDetail> ShipmentDetail_AllList = null;
         public ShipmentCompleteForm()
         {
             InitializeComponent();
@@ -30,13 +30,23 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Shipment, "출하지시일시", "Shipment_RequiredDate", true);
             UtilClass.AddNewColum(dgv_Shipment, "출하지시자", "Employees_Name", true);
             UtilClass.AddNewColum(dgv_Shipment, "출하처리일시", "Shipment_DoneDate", true);
+            dgv_Shipment.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv_Shipment.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgv_Shipment.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgv_Shipment.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgv_Shipment.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             dgv_Shipment.DataSource = service.GetShipmentCompletedList();
 
             UtilClass.SettingDgv(dgv_ShipmentDetail);
+            UtilClass.AddNewColum(dgv_ShipmentDetail, "출하번호", "Shipment_ID", true);
             UtilClass.AddNewColum(dgv_ShipmentDetail, "제품ID", "Product_ID", true);
             UtilClass.AddNewColum(dgv_ShipmentDetail, "제품명", "Product_Name", true);
             UtilClass.AddNewColum(dgv_ShipmentDetail, "주문수량", "OrderDetail_Qty", true);
-            ShipmentDetail_AllList = service.GetOrderDetailList();
+            dgv_ShipmentDetail.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv_ShipmentDetail.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgv_ShipmentDetail.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgv_ShipmentDetail.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            ShipmentDetail_AllList = service.GetShipmentDetailList();
         }
 
         private void ShipmentCompleteForm_Load(object sender, EventArgs e)
@@ -46,10 +56,10 @@ namespace Team2_ERP
 
         private void dgv_Shipment_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string Order_ID = dgv_Shipment.CurrentRow.Cells[1].Value.ToString();
-            List<OrderDetail> ShipmentDetail_List = (from list_detail in ShipmentDetail_AllList
-                                                     where list_detail.Order_ID == Order_ID
-                                                     select list_detail).ToList();
+            string shipment_id = dgv_Shipment.CurrentRow.Cells[0].Value.ToString();
+            List<ShipmentDetail> ShipmentDetail_List = (from list_detail in ShipmentDetail_AllList
+                                                        where list_detail.Shipment_ID == shipment_id
+                                                        select list_detail).ToList();
             dgv_ShipmentDetail.DataSource = ShipmentDetail_List;
         }
     }

@@ -34,6 +34,15 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_StockStatus, "안전재고량", "Product_Safety", true);
             UtilClass.AddNewColum(dgv_StockStatus, "차이수량", "Count_Subtract", true);
             UtilClass.AddNewColum(dgv_StockStatus, "삭제여부", "Product_DeletedYN", false);
+            dgv_StockStatus.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dgv_StockStatus.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgv_StockStatus.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgv_StockStatus.Columns[5].DefaultCellStyle.Format = "#,#0원";
+            dgv_StockStatus.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv_StockStatus.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv_StockStatus.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv_StockStatus.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
             dgv_StockStatus.DataSource = service.GetStockStatus();
         }
     }
