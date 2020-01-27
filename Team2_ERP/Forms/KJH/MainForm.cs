@@ -297,141 +297,112 @@ namespace Team2_ERP
         {
             if (e.Node.Name == "UserAuth")
             {
-                MenuByAuth(e);
-                OpenBaseForm<UserAuth>("사용자권한설정");                
+                OpenBaseForm<UserAuth>("사용자권한설정",e);                
             }
             else if (e.Node.Name == "Work")
             {
-                MenuByAuth(e);
-                OpenBaseForm<Work>("작업대기현황");                
+                OpenBaseForm<Work>("작업대기현황",e);                
             }
             else if (e.Node.Name == "Produce")
             {
-                MenuByAuth(e);
-                OpenBaseForm<Produce>("생산실적현황");                
+                OpenBaseForm<Produce>("생산실적현황",e);                
             }
             else if (e.Node.Name == "DowntimeType")
             {
-                MenuByAuth(e);
-                OpenBaseForm<DowntimeType>("비가동유형");                
+                OpenBaseForm<DowntimeType>("비가동유형",e);                
             }
             else if (e.Node.Name == "Downtime")
             {
-                MenuByAuth(e);
-                OpenBaseForm<Downtime>("비가동현황");                
+                OpenBaseForm<Downtime>("비가동현황",e);                
             }
             else if (e.Node.Name == "DefectiveType")
             {
-                MenuByAuth(e);
-                OpenBaseForm<DefectiveType>("불량유형");               
+                OpenBaseForm<DefectiveType>("불량유형",e);               
             }
             else if (e.Node.Name == "DefectiveHandle")
             {
-                MenuByAuth(e);
-                OpenBaseForm<DefectiveHandle>("불량처리유형");                
+                OpenBaseForm<DefectiveHandle>("불량처리유형",e);                
             }
             else if (e.Node.Name == "Defective")
             {
-                MenuByAuth(e);
-                OpenBaseForm<Defective>("불량현황");                
+                OpenBaseForm<Defective>("불량현황",e);                
             }
             else if (e.Node.Name == "StockStatus")
             {
-                MenuByAuth(e);
-                OpenBaseForm<StockStatus>("재고현황");                
+                OpenBaseForm<StockStatus>("재고현황",e);                
             }
             else if (e.Node.Name == "InOutList_MaterialWarehouse")
             {
-                MenuByAuth(e);
-                OpenBaseForm<InOutList_MaterialWarehouse>("자재수불현황");                
+                OpenBaseForm<InOutList_MaterialWarehouse>("자재수불현황",e);  
             }
             else if (e.Node.Name == "InOutList_SemiProductWarehouse")
             {
-                MenuByAuth(e);
-                OpenBaseForm<InOutList_SemiProductWarehouse>("반제품수불현황");                
+                OpenBaseForm<InOutList_SemiProductWarehouse>("반제품수불현황",e); 
             }
             else if (e.Node.Name == "BaljuList")
             {
-                MenuByAuth(e);
-                OpenBaseForm<BaljuList>("발주현황");               
+                OpenBaseForm<BaljuList>("발주현황",e);               
             }
             else if (e.Node.Name == "BaljuList_Completed")
             {
-                MenuByAuth(e);
-                OpenBaseForm<BaljuList_Completed>("발주완료현황");                
+                OpenBaseForm<BaljuList_Completed>("발주완료현황",e);                
             }
             else if (e.Node.Name == "OrderMainForm")
             {
-                MenuByAuth(e);
-                OpenBaseForm<OrderMainForm>("주문현황");                
+                OpenBaseForm<OrderMainForm>("주문현황",e);                
             }
             else if (e.Node.Name == "OrderCompleteForm")
             {
-                MenuByAuth(e);
-                OpenBaseForm<OrderCompleteForm>("주문처리완료현황");                
+                OpenBaseForm<OrderCompleteForm>("주문처리완료현황",e);                
             }
             else if (e.Node.Name == "ShipmentMainForm")
             {
-                MenuByAuth(e);
-                OpenBaseForm<ShipmentMainForm>("출하현황");                
+                OpenBaseForm<ShipmentMainForm>("출하현황",e);                
             }
             else if (e.Node.Name == "ShipmentCompleteForm")
             {
-                MenuByAuth(e);
-                OpenBaseForm<ShipmentCompleteForm>("출하완료현황");                
+                OpenBaseForm<ShipmentCompleteForm>("출하완료현황",e);                
             }
             else if (e.Node.Name == "SalesMainForm")
             {
-                MenuByAuth(e);
-                OpenBaseForm<SalesMainForm>("매출현황");                
+                OpenBaseForm<SalesMainForm>("매출현황",e);                
             }
             else if (e.Node.Name == "Department")
             {
-                MenuByAuth(e);
-                OpenBaseForm<Department>("부서관리");                
+                OpenBaseForm<Department>("부서관리",e);                
             }
             else if (e.Node.Name == "Employees")
             {
-                MenuByAuth(e);
-                OpenBaseForm<Employees>("사원관리");                
+                OpenBaseForm<Employees>("사원관리",e);                
             }
             else if (e.Node.Name == "Company")
             {
-                MenuByAuth(e);
-                OpenBaseForm<Company>("거래처관리");                
+                OpenBaseForm<Company>("거래처관리",e);                
             }
             else if (e.Node.Name == "Customer")
             {
-                MenuByAuth(e);
-                OpenBaseForm<Customer>("고객관리");                
+                OpenBaseForm<Customer>("고객관리",e);                
             }
             else if (e.Node.Name == "Category")
             {
-                MenuByAuth(e);
-                OpenBaseForm<Category>("카테고리관리");                
+                OpenBaseForm<Category>("카테고리관리",e);                
             }
             else if (e.Node.Name == "Factory")
             {
-                MenuByAuth(e);
-                OpenBaseForm<Factory>("공장&공정관리");                
+                OpenBaseForm<Factory>("공장&공정관리",e);                
             }
             else if (e.Node.Name == "Resource")
             {
-                MenuByAuth(e);
-                OpenBaseForm<Resource>("원자재관리");                
+                OpenBaseForm<Resource>("원자재관리",e);                
             }
             else if (e.Node.Name == "Warehouse")
             {
-                MenuByAuth(e);
-                OpenBaseForm<Warehouse>("창고 관리");                
+                OpenBaseForm<Warehouse>("창고관리",e);                
             }
             else if (e.Node.Name == "BOM")
             {
-                MenuByAuth(e);
-                OpenBaseForm<BOM>("BOM 관리");                
+                OpenBaseForm<BOM>("BOM관리",e);                
             }
-
-
         }
 
         private void MenuByAuth(TreeNodeMouseClickEventArgs e)
@@ -485,14 +456,10 @@ namespace Team2_ERP
                 }
             }
         }
-
-
-
-
         #endregion
 
         #region MDI 자식폼 열기
-        private void OpenBaseForm<T>(string name) where T : BaseForm, new()
+        private void OpenBaseForm<T>(string name, TreeNodeMouseClickEventArgs e) where T : BaseForm, new()
         {
             foreach (Form Child in Application.OpenForms)
             {
@@ -502,6 +469,7 @@ namespace Team2_ERP
                     return;
                 }
             }
+            MenuByAuth(e);
             T frm = new T();
             frm.Text = name;
             frm.MdiParent = this;
@@ -516,6 +484,7 @@ namespace Team2_ERP
             tabControl1.SelectedTab = tp;
             frm.FormName = name;
             frm.Show();
+            
         }
         private void OpenTabForm<T>(string name) where T : TabForm, new()
         {
@@ -762,6 +731,23 @@ namespace Team2_ERP
         {
             TabControl tc = (TabControl)sender;
             tc.Tag = null;
+            Point p = this.tabControl1.PointToClient(Cursor.Position);
+            for (int i = 0; i < this.tabControl1.TabCount; i++)
+            {
+                Rectangle r = this.tabControl1.GetTabRect(i);
+                if (r.Contains(p))
+                {
+                    tindex = i;
+                    this.tabControl1.SelectedIndex = i; // i is the index of tab under cursor
+                }
+            }
+            if (e.Button == MouseButtons.Right)
+            {
+                if (tabControl1.SelectedTab.Text != "메인화면")
+                {
+                    contextMenuStrip1.Show(tabControl1, e.Location);
+                }
+            }
         }
 
         private void tabControl1_DragOver(object sender, DragEventArgs e)
@@ -834,35 +820,5 @@ namespace Team2_ERP
             tabControl1.Invalidate();
         }
 
-        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
-        {
-            Point p = this.tabControl1.PointToClient(Cursor.Position);
-            for (int i = 0; i < this.tabControl1.TabCount; i++)
-            {
-                Rectangle r = this.tabControl1.GetTabRect(i);
-                if (r.Contains(p))
-                {
-                    tindex = i;
-                    this.tabControl1.SelectedIndex = i; // i is the index of tab under cursor
-                    return;
-                }
-            }
-            e.Cancel = true;
-        }
-
-        private void tabControl1_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right&&tabControl1.SelectedIndex!=0)
-            {
-                contextMenuStrip1.Show(tabControl1, e.Location);
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            LoginService service = new LoginService();
-            service.InsertAuth(Session.Employee_ID);
-            MessageBox.Show("완료");
-        }
     }
 }
