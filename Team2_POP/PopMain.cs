@@ -16,8 +16,6 @@ namespace Team2_POP
     public partial class PopMain : Form
     {
         List<ComboItemVO> listFactory = null;
-        System.Timers.Timer timer = new System.Timers.Timer();
-        delegate void DTimer();
 
         public PopMain()
         {
@@ -29,25 +27,15 @@ namespace Team2_POP
             this.WindowState = FormWindowState.Maximized;
             SettingControl();
             InitData();
-
-            timer.Elapsed += Timer_Elapsed;
-            timer.Start();
-            DTimer dTimer = k;
+            GetTime();
         }
 
-        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            timer.Interval = 1000;            
-        }
 
-        private void k()
-        {
-            lblTime.Text = DateTime.Now.ToString();
-        }
+        #region 디자인
 
         private void SettingControl()
         {
-           
+
 
             // =============================================
             //               스플릿 컨테이너 디자인
@@ -119,6 +107,8 @@ namespace Team2_POP
             dgvPerformance.Columns[9].DefaultCellStyle.Format = "##0.0#%";
         }
 
+        #endregion
+
         private void InitData()
         {
             // =============================================
@@ -135,6 +125,7 @@ namespace Team2_POP
             }
         }
 
+        // 작업을 가져오는 메서드
         private void GetWork(string data)
         {
             if (cboLine.SelectedValue != null && char.IsDigit(Convert.ToChar(cboLine.SelectedValue)))
@@ -153,6 +144,18 @@ namespace Team2_POP
 
             }
         }
+        #region 상단 버튼 - 날짜 클릭, 비가동
+
+        // 날짜를 클릭한 경우
+        private void lblDate_Click(object sender, EventArgs e)
+        {
+            using (MonthCalandarForm calandarForm = new MonthCalandarForm())
+            {
+                calandarForm.DSelected = DateTime.Parse(lblDate.Text);
+                if (DialogResult.OK == calandarForm.ShowDialog())
+                    lblDate.Text = calandarForm.DSelected.ToShortDateString();
+            }
+        }
 
         // 비가동 전환버튼을 누른경우
         private void btnDownTime_Click(object sender, EventArgs e)
@@ -161,21 +164,33 @@ namespace Team2_POP
             downtime.ShowDialog();
         }
 
+        #endregion
+
         #region 하단 버튼 - 생산시작, 작업자설정, 불량유형
 
         //생산시작
         private void btnProduceStart_Click(object sender, EventArgs e)
         {
-            string result = string.Empty;
+            string[] result = null;
             // 생산 아이디를 넘김
             if (dgvProduce.SelectedRows[0].Cells[0].Value != null)
                 result = new Service().StartProduce(dgvProduce.SelectedRows[0].Cells[0].Value.ToString());
 
-            if (string.IsNullOrEmpty(result) || result == "Error")
+            if (result.Length < 2 || result[0] == "Error")
                 MessageBox.Show("작업자를 등록해주세요");
             else
-                //생산 할당
-                MessageBox.Show("생산 서비스 할당");
+            {
+                //생산 할당 -- 생산실적번호를 가져옴
+                MessageBox.Show("생산 시작 할당");
+                
+                using(ProduceMachine machine = new ProduceMachine())
+                {                    
+                    machine.PerformanceID = result[1];
+                    machine.ProduceID = result[2];
+                    machine.RequestQty = Convert.ToInt32(result[3]);
+                    machine.LineID = result[4];
+                }
+            }
         }
 
 
@@ -321,17 +336,33 @@ namespace Team2_POP
             }
         }
 
+
+
         #endregion
 
-        // 날짜를 클릭한 경우
-        private void lblDate_Click(object sender, EventArgs e)
+        #region 시간관련
+
+        private void GetTime()
         {
-            using (MonthCalandarForm calandarForm = new MonthCalandarForm())
-            {
-                calandarForm.DSelected = DateTime.Parse(lblDate.Text);
-                if (DialogResult.OK == calandarForm.ShowDialog())
-                    lblDate.Text = calandarForm.DSelected.ToShortDateString();
-            }
+            System.Timers.Timer timer = new System.Timers.Timer();
+            timer.Interval = 1000;
+            timer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
+            timer.Start();
         }
+
+        private void timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            this.Invoke(new Action(delegate ()
+            { lblTime.Text = DateTime.Now.ToString(); }
+            ));
+        }
+
+        #endregion
+
+        //===================
+        //    테스트 구역
+        //===================
+
+
     }
 }

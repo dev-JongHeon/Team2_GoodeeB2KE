@@ -57,8 +57,8 @@
             this.btnWorker = new System.Windows.Forms.Button();
             this.btnProduceStart = new System.Windows.Forms.Button();
             this.splitContainer7 = new System.Windows.Forms.SplitContainer();
-            this.lblWorker = new System.Windows.Forms.Label();
             this.lblTime = new System.Windows.Forms.Label();
+            this.lblWorker = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -534,6 +534,15 @@
             this.splitContainer7.SplitterDistance = 421;
             this.splitContainer7.TabIndex = 0;
             // 
+            // lblTime
+            // 
+            this.lblTime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTime.Font = new System.Drawing.Font("나눔고딕", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTime.Location = new System.Drawing.Point(0, 0);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(421, 26);
+            this.lblTime.TabIndex = 0;
+            // 
             // lblWorker
             // 
             this.lblWorker.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -543,15 +552,6 @@
             this.lblWorker.Size = new System.Drawing.Size(839, 26);
             this.lblWorker.TabIndex = 1;
             this.lblWorker.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblTime
-            // 
-            this.lblTime.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTime.Font = new System.Drawing.Font("나눔고딕", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTime.Location = new System.Drawing.Point(0, 0);
-            this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(421, 26);
-            this.lblTime.TabIndex = 0;
             // 
             // PopMain
             // 

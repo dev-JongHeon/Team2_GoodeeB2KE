@@ -225,8 +225,10 @@ namespace Team2_DAC
         }
 
 
-        public string StartProduce(string produceID)
+        // 생산시작
+        public string[] StartProduce(string produceID)
         {
+            string[] list = new string[4];
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -236,24 +238,87 @@ namespace Team2_DAC
                     cmd.CommandText = "proc_StartProduce";
 
                     FillParameter(cmd, new string[] { "@Produce_ID" }, new object[] { produceID });
-                    SqlParameter outputParam = OutParameter(cmd, "@ReturnMsg");
-
+                    
                     conn.Open();
-                    cmd.ExecuteNonQuery();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    
+                    while(reader.Read())
+                    {
+                        list[0] = reader.GetString(0);  // Msg [Error Complete]
+                        list[1] = reader.GetString(1);  // If Complete => 생산번호
+                        list[2] = reader.GetString(2);  // If Complete => 생산실적번호
+                        list[3] = reader.GetString(3);  // If Complete => 필요 수량
+                        list[4] = reader.GetString(4);  // If Complete => 라인아이디
+                    }
+                    reader.Close();
                     conn.Close();
 
-                    return outputParam.Value.ToString();
+                    return list;
                 }
             }
             catch
             {
-                return null;
+                list[0] = "Error";
+                return list;
             }
 
         }
 
+        // 생산중
+        public void InProduction(string performanceID, int success, int bad)
+        {
+            string[] param = new string[] { "@PerformanceID", "@Success", "@Bad" };            
 
-        #region 삽입
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "proc_InProduction";
+                    
+                    FillParameter(cmd, param, new object[] { performanceID, success, bad });
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                  
+                }
+            }
+            catch(Exception err)
+            {
+                string msg = err.Message;
+            }
+        }
+
+        // 생산 완료
+        public void EndProduce(string performanceID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "proc_EndProduce";
+
+                    FillParameter(cmd, new string[] { "@Performance_ID" }, new object[] { performanceID });
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+            catch
+            {
+               
+            }
+        }
+
+
+
+
+        #region 삽입 - 작업자설정, 비가동처리
 
         // 작업자 설정
         public bool SetWorkerForPerformance(string produceID, int empID)
