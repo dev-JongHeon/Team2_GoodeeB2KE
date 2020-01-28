@@ -28,11 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.searchUserControl1 = new Team2_ERP.SearchUserControl();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvDefectiveHandle = new System.Windows.Forms.DataGridView();
+            this.txtSearch = new Team2_ERP.SearchUserControl();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel_Search.SuspendLayout();
@@ -40,62 +37,47 @@
             this.panel_Title.SuspendLayout();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDefectiveHandle)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.dataGridView1);
+            this.panel2.Controls.Add(this.dgvDefectiveHandle);
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.searchUserControl1);
+            this.panel5.Controls.Add(this.txtSearch);
             // 
-            // dataGridView1
+            // dgvDefectiveHandle
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1364, 662);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvDefectiveHandle.BackgroundColor = System.Drawing.Color.White;
+            this.dgvDefectiveHandle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDefectiveHandle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvDefectiveHandle.Location = new System.Drawing.Point(0, 0);
+            this.dgvDefectiveHandle.Name = "dgvDefectiveHandle";
+            this.dgvDefectiveHandle.Size = new System.Drawing.Size(1364, 662);
+            this.dgvDefectiveHandle.TabIndex = 0;
             // 
-            // searchUserControl1
+            // txtSearch
             // 
-            this.searchUserControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl1.ControlType = Team2_ERP.SearchUserControl.Mode.Defective;
-            this.searchUserControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl1.Labelname = "불량처리명";
-            this.searchUserControl1.Location = new System.Drawing.Point(12, 38);
-            this.searchUserControl1.Name = "searchUserControl1";
-            this.searchUserControl1.Size = new System.Drawing.Size(312, 25);
-            this.searchUserControl1.TabIndex = 0;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "불량처리코드";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "불량처리명";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "불량처리내용";
-            this.Column3.Name = "Column3";
+            this.txtSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.txtSearch.ControlType = Team2_ERP.SearchUserControl.Mode.Handle;
+            this.txtSearch.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtSearch.Labelname = "불량처리유형";
+            this.txtSearch.Location = new System.Drawing.Point(12, 38);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(312, 25);
+            this.txtSearch.TabIndex = 0;
             // 
             // DefectiveHandle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.ClientSize = new System.Drawing.Size(1364, 820);
             this.Name = "DefectiveHandle";
+            this.Activated += new System.EventHandler(this.DefectiveHandle_Activated);
+            this.Deactivate += new System.EventHandler(this.DefectiveHandle_Deactivate);
+            this.Load += new System.EventHandler(this.DefectiveHandle_Load);
+            this.Shown += new System.EventHandler(this.DefectiveHandle_Shown);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel_Search.ResumeLayout(false);
@@ -103,17 +85,14 @@
             this.panel_Title.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDefectiveHandle)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private SearchUserControl searchUserControl1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridView dgvDefectiveHandle;
+        private SearchUserControl txtSearch;
     }
 }

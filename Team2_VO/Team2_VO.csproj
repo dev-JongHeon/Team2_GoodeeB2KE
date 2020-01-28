@@ -55,6 +55,7 @@
     <Compile Include="HJS\PerformancePOP.cs" />
     <Compile Include="HJS\ProducePOP.cs" />
     <Compile Include="HJS\WorkPOP.cs" />
+    <Compile Include="KJH\DefectiveHandleVO.cs" />
     <Compile Include="KJH\DefectiveTypeVO.cs" />
     <Compile Include="KJH\LoginVO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -146,6 +146,7 @@ namespace Team2_ERP
                 frm.NoticeMessage = "삭제할 불량유형을 선택하지 않으셨습니다.";
             }
         }
+
         private void DefectiveType_Deactivate(object sender, EventArgs e)
         {
             new SettingMenuStrip().UnsetMenu(this);

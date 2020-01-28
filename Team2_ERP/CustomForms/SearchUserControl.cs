@@ -37,7 +37,7 @@ namespace Team2_ERP
         public enum Mode
         {
             Employee, DepOperation, DepMaterial, DepSales, DepProd1, DepProd2, Defective, Product, Downtime, Company,
-            Factory, Line, Meterial, SemiProduct, Customer, Warehouse, Department, ProductCategory,Worker,Handle
+            Factory, Line, Meterial, SemiProduct, Customer, Warehouse, Department, ProductCategory,Worker,Handle,AllProduct
         };
 
         Mode Modes = Mode.Employee;
@@ -110,6 +110,9 @@ namespace Team2_ERP
                         break;
                     case Mode.Handle:
                         this.CodeLabel.Text = "불량처리유형";
+                        break;
+                    case Mode.AllProduct:
+                        this.CodeLabel.Text = "품목";
                         break;
                 }
             }

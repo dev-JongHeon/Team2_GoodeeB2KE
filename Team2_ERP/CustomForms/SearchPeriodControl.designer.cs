@@ -71,6 +71,9 @@
             this.txtEnd.Name = "txtEnd";
             this.txtEnd.Size = new System.Drawing.Size(84, 22);
             this.txtEnd.TabIndex = 15;
+            this.txtEnd.Click += new System.EventHandler(this.txtEnd_Click);
+            this.txtEnd.TextChanged += new System.EventHandler(this.txtEnd_TextChanged);
+            this.txtEnd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStart_KeyPress);
             // 
             // txtStart
             // 
@@ -80,6 +83,9 @@
             this.txtStart.Name = "txtStart";
             this.txtStart.Size = new System.Drawing.Size(83, 22);
             this.txtStart.TabIndex = 14;
+            this.txtStart.Click += new System.EventHandler(this.txtStart_Click);
+            this.txtStart.TextChanged += new System.EventHandler(this.txtStart_TextChanged);
+            this.txtStart.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStart_KeyPress);
             // 
             // label1
             // 
