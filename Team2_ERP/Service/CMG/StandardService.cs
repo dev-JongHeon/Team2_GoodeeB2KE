@@ -75,5 +75,11 @@ namespace Team2_ERP.Service.CMG
             CustomerDAC dac = new CustomerDAC();
             return dac.GetAllCustomer();
         }
+
+        public List<FactoryVO> GetAllFactory()
+        {
+            FactoryDAC dac = new FactoryDAC();
+            return dac.GetAllFactory();
+        }
     }
 }

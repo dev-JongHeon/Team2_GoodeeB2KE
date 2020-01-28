@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="CMG\CodeTableDAC.cs" />
     <Compile Include="CMG\CustomerDAC.cs" />
+    <Compile Include="CMG\FactoryDAC.cs" />
+    <Compile Include="CMG\LineDAC.cs" />
     <Compile Include="CMG\ResourceDAC.cs" />
     <Compile Include="CMG\WarehouseDAC.cs" />
     <Compile Include="ConnectionInfo.cs" />
