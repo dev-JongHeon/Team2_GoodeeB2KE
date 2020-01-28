@@ -93,5 +93,18 @@ namespace Team2_ERP
         {
             new SettingMenuStrip().UnsetMenu(this);
         }
+
+        private void Customer_Activated(object sender, EventArgs e)
+        {
+            MenuByAuth(Auth);
+        }
+
+        public override void MenuStripONOFF(bool flag)
+        {
+            ((MainForm)MdiParent).신규ToolStripMenuItem.Visible = flag;
+            ((MainForm)MdiParent).수정ToolStripMenuItem.Visible = flag;
+            ((MainForm)MdiParent).삭제ToolStripMenuItem.Visible = flag;
+            ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = false;
+        }
     }
 }

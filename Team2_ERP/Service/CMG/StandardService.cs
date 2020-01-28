@@ -81,5 +81,23 @@ namespace Team2_ERP.Service.CMG
             FactoryDAC dac = new FactoryDAC();
             return dac.GetAllFactory();
         }
+
+        public bool InsertFactory(FactoryVO item)
+        {
+            FactoryDAC dac = new FactoryDAC();
+            return dac.InsertFactory(item);
+        }
+
+        public bool UpdateFactory(FactoryVO item)
+        {
+            FactoryDAC dac = new FactoryDAC();
+            return dac.UpdateFactory(item);
+        }
+
+        public List<LineVO> GetAllLine()
+        {
+            LineDAC dac = new LineDAC();
+            return dac.GetAllLine();
+        }
     }
 }
