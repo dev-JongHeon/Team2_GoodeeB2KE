@@ -15,9 +15,8 @@ namespace Team2_ERP
     public partial class BaljuList : Base2Dgv
     {
         BaljuService service = new BaljuService();
-        List<BaljuDetail> BaljuDetail_AllList = null;  // 발주디테일 List
         List<Balju> Balju_AllList = null;  // 발주 List
-        List<Balju> Balju_SearchList = null;  // 검색용 List
+        List<BaljuDetail> BaljuDetail_AllList = null;  // 발주디테일 List
         MainForm main;
 
         public BaljuList()
@@ -71,16 +70,16 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)
         {
-            Balju_SearchList = service.GetBaljuList();  // 발주리스트 갱신
+            Balju_AllList = service.GetBaljuList();  // 발주리스트 갱신
             if (Search_Company.CodeTextBox.Text.Length > 0) // 검색조건 있으면
             {
-                Balju_SearchList = (from   item in Balju_SearchList
+                Balju_AllList = (from   item in Balju_AllList
                                     where  item.Company_Name == Search_Company.CodeTextBox.Text
                                     select item).ToList();
             }
             if (Search_Employee.CodeTextBox.Text.Length > 0)
             {
-                Balju_SearchList = (from   item in Balju_SearchList
+                Balju_AllList = (from   item in Balju_AllList
                                     where  item.Employees_Name == Search_Employee.CodeTextBox.Text
                                     select item).ToList();
             }
@@ -88,19 +87,19 @@ namespace Team2_ERP
             {
                 if (Search_Period.Startdate.Text != Search_Period.Enddate.Text)
                 {
-                    Balju_SearchList = (from   item in Balju_SearchList
+                    Balju_AllList = (from   item in Balju_AllList
                                         where  item.Balju_Date.CompareTo(Convert.ToDateTime(Search_Period.Startdate.Text)) >= 0 &&
                                                item.Balju_Date.CompareTo(Convert.ToDateTime(Search_Period.Enddate.Text)) <= 0
                                         select item).ToList();
                 }
                 else
                 {
-                    Balju_SearchList = (from   item in Balju_SearchList
+                    Balju_AllList = (from   item in Balju_AllList
                                         where  item.Balju_Date.Date == Convert.ToDateTime(Search_Period.Startdate.Text)
                                         select item).ToList();
                 }
             }
-            dgv_Balju.DataSource = Balju_SearchList;
+            dgv_Balju.DataSource = Balju_AllList;
             dgv_BaljuDetail.DataSource = null;
         }
 

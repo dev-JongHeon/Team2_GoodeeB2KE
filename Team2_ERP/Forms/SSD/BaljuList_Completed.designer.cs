@@ -30,11 +30,11 @@
         {
             this.dgv_BaljuCompleted = new System.Windows.Forms.DataGridView();
             this.dgv_BaljuDetail = new System.Windows.Forms.DataGridView();
-            this.label3 = new System.Windows.Forms.Label();
             this.dtp_ReceiptDate = new System.Windows.Forms.DateTimePicker();
             this.Search_Company = new Team2_ERP.SearchUserControl();
             this.Search_Employee = new Team2_ERP.SearchUserControl();
             this.Search_Period = new Team2_ERP.SearchPeriodControl();
+            this.chk_ReceiptDate = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -64,10 +64,10 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.chk_ReceiptDate);
             this.panel5.Controls.Add(this.Search_Company);
             this.panel5.Controls.Add(this.Search_Employee);
             this.panel5.Controls.Add(this.Search_Period);
-            this.panel5.Controls.Add(this.label3);
             this.panel5.Controls.Add(this.dtp_ReceiptDate);
             // 
             // lblFormName
@@ -97,21 +97,12 @@
             this.dgv_BaljuDetail.Size = new System.Drawing.Size(1364, 290);
             this.dgv_BaljuDetail.TabIndex = 3;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.Location = new System.Drawing.Point(456, 13);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 15);
-            this.label3.TabIndex = 73;
-            this.label3.Text = "수령일";
-            // 
             // dtp_ReceiptDate
             // 
+            this.dtp_ReceiptDate.Enabled = false;
             this.dtp_ReceiptDate.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtp_ReceiptDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_ReceiptDate.Location = new System.Drawing.Point(526, 9);
+            this.dtp_ReceiptDate.Location = new System.Drawing.Point(552, 9);
             this.dtp_ReceiptDate.Name = "dtp_ReceiptDate";
             this.dtp_ReceiptDate.Size = new System.Drawing.Size(111, 22);
             this.dtp_ReceiptDate.TabIndex = 75;
@@ -147,6 +138,17 @@
             this.Search_Period.Size = new System.Drawing.Size(312, 26);
             this.Search_Period.TabIndex = 81;
             // 
+            // chk_ReceiptDate
+            // 
+            this.chk_ReceiptDate.AutoSize = true;
+            this.chk_ReceiptDate.Location = new System.Drawing.Point(475, 11);
+            this.chk_ReceiptDate.Name = "chk_ReceiptDate";
+            this.chk_ReceiptDate.Size = new System.Drawing.Size(59, 18);
+            this.chk_ReceiptDate.TabIndex = 86;
+            this.chk_ReceiptDate.Text = "수령일";
+            this.chk_ReceiptDate.UseVisualStyleBackColor = true;
+            this.chk_ReceiptDate.CheckedChanged += new System.EventHandler(this.chk_ReceiptDate_CheckedChanged);
+            // 
             // BaljuList_Completed
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -179,10 +181,10 @@
 
         private System.Windows.Forms.DataGridView dgv_BaljuCompleted;
         private System.Windows.Forms.DataGridView dgv_BaljuDetail;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dtp_ReceiptDate;
         private SearchUserControl Search_Company;
         private SearchUserControl Search_Employee;
         private SearchPeriodControl Search_Period;
+        private System.Windows.Forms.CheckBox chk_ReceiptDate;
     }
 }

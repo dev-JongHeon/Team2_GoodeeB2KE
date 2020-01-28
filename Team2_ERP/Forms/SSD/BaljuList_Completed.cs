@@ -17,7 +17,6 @@ namespace Team2_ERP
         BaljuService service = new BaljuService();
         List<BaljuDetail> BaljuDetail_AllList = null;  // 발주디테일 List
         List<Balju> BaljuCompleted_AllList = null;  // 발주 List
-        List<Balju> BaljuCompleted_SearchList = null;  // 검색용 List
         MainForm main;
 
         public BaljuList_Completed()
@@ -74,36 +73,42 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)
         {
-            BaljuCompleted_SearchList = service.GetBalju_CompletedList();  // 발주리스트 갱신
+            BaljuCompleted_AllList = service.GetBalju_CompletedList();  // 발주리스트 갱신
             if (Search_Company.CodeTextBox.Text.Length > 0) // 검색조건 있으면
             {
-                BaljuCompleted_SearchList = (from item in BaljuCompleted_SearchList
+                BaljuCompleted_AllList = (from item in BaljuCompleted_AllList
                                              where item.Company_Name == Search_Company.CodeTextBox.Text
-                                    select item).ToList();
+                                             select item).ToList();
             }
             if (Search_Employee.CodeTextBox.Text.Length > 0)
             {
-                BaljuCompleted_SearchList = (from item in BaljuCompleted_SearchList
-                                    where item.Employees_Name == Search_Employee.CodeTextBox.Text
-                                    select item).ToList();
+                BaljuCompleted_AllList = (from item in BaljuCompleted_AllList
+                                             where item.Employees_Name == Search_Employee.CodeTextBox.Text
+                                             select item).ToList();
             }
             if (Search_Period.Startdate.Text != "    -  -")   // 시작기간 text가 존재하면
             {
                 if (Search_Period.Startdate.Text != Search_Period.Enddate.Text)
                 {
-                    BaljuCompleted_SearchList = (from item in BaljuCompleted_SearchList
-                                                 where item.Balju_Date.CompareTo(Convert.ToDateTime(Search_Period.Startdate.Text)) >= 0 &&
-                                               item.Balju_Date.CompareTo(Convert.ToDateTime(Search_Period.Enddate.Text)) <= 0
-                                        select item).ToList();
+                    BaljuCompleted_AllList = (from item in BaljuCompleted_AllList
+                                                 where item.Balju_Date.CompareTo(Convert.ToDateTime(Search_Period.Startdate.Text)) >= 0                    && item.Balju_Date.CompareTo(Convert.ToDateTime(Search_Period.Enddate.Text)) <= 0
+                                                 select item).ToList();
                 }
                 else
                 {
-                    BaljuCompleted_SearchList = (from item in BaljuCompleted_SearchList
-                                        where item.Balju_Date.Date == Convert.ToDateTime(Search_Period.Startdate.Text)
-                                        select item).ToList();
+                    BaljuCompleted_AllList = (from item in BaljuCompleted_AllList
+                                                 where item.Balju_Date.Date == Convert.ToDateTime(Search_Period.Startdate.Text)
+                                                 select item).ToList();
                 }
             }
-            dgv_BaljuCompleted.DataSource = BaljuCompleted_SearchList;
+            if (chk_ReceiptDate.Checked)
+            {
+                BaljuCompleted_AllList = (from item in BaljuCompleted_AllList
+                                             where item.Balju_ReceiptDate.Date == dtp_ReceiptDate.Value.Date
+                                             select item).ToList();
+            }
+
+            dgv_BaljuCompleted.DataSource = BaljuCompleted_AllList;
             dgv_BaljuDetail.DataSource = null;
         }
 
@@ -122,6 +127,12 @@ namespace Team2_ERP
         private void BaljuList_Completed_Deactivate(object sender, EventArgs e)
         {
             new SettingMenuStrip().UnsetMenu(this);
+        }
+
+        private void chk_ReceiptDate_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk_ReceiptDate.Checked) dtp_ReceiptDate.Enabled = true;
+            else dtp_ReceiptDate.Enabled = false;
         }
     }
 }
