@@ -69,5 +69,17 @@ namespace Team2_ERP.Service.CMG
             WarehouseDAC dac = new WarehouseDAC();
             return dac.DeleteWarehouse(code);
         }
+
+        public List<CustomerVO> GetAllCustomer()
+        {
+            CustomerDAC dac = new CustomerDAC();
+            return dac.GetAllCustomer();
+        }
+
+        public List<FactoryVO> GetAllFactory()
+        {
+            FactoryDAC dac = new FactoryDAC();
+            return dac.GetAllFactory();
+        }
     }
 }

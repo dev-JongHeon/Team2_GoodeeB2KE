@@ -108,6 +108,9 @@
             this.ClientSize = new System.Drawing.Size(1344, 729);
             this.Name = "Customer";
             this.Text = "Customer";
+            this.Deactivate += new System.EventHandler(this.Customer_Deactivate);
+            this.Load += new System.EventHandler(this.Customer_Load);
+            this.Shown += new System.EventHandler(this.Customer_Shown);
             this.panel1.ResumeLayout(false);
             this.panel_Search.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
