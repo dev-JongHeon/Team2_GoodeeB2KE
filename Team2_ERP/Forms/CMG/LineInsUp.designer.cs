@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.cboLineName = new System.Windows.Forms.ComboBox();
+            this.cboFactoryName = new System.Windows.Forms.ComboBox();
             this.txtLineName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtDownTime = new System.Windows.Forms.TextBox();
+            this.cboDownTime = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).BeginInit();
@@ -56,8 +56,8 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.cboLineName);
-            this.panel5.Controls.Add(this.txtDownTime);
+            this.panel5.Controls.Add(this.cboDownTime);
+            this.panel5.Controls.Add(this.cboFactoryName);
             this.panel5.Controls.Add(this.txtLineName);
             this.panel5.Controls.Add(this.label1);
             this.panel5.Controls.Add(this.label3);
@@ -77,19 +77,21 @@
             // 
             this.btnCancel.FlatAppearance.BorderSize = 0;
             this.btnCancel.Location = new System.Drawing.Point(204, 3);
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOK
             // 
             this.btnOK.FlatAppearance.BorderSize = 0;
             this.btnOK.Location = new System.Drawing.Point(52, 3);
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // cboLineName
+            // cboFactoryName
             // 
-            this.cboLineName.FormattingEnabled = true;
-            this.cboLineName.Location = new System.Drawing.Point(123, 72);
-            this.cboLineName.Name = "cboLineName";
-            this.cboLineName.Size = new System.Drawing.Size(132, 22);
-            this.cboLineName.TabIndex = 9;
+            this.cboFactoryName.FormattingEnabled = true;
+            this.cboFactoryName.Location = new System.Drawing.Point(123, 72);
+            this.cboFactoryName.Name = "cboFactoryName";
+            this.cboFactoryName.Size = new System.Drawing.Size(132, 22);
+            this.cboFactoryName.TabIndex = 9;
             // 
             // txtLineName
             // 
@@ -128,12 +130,13 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "비가동여부";
             // 
-            // txtDownTime
+            // cboDownTime
             // 
-            this.txtDownTime.Location = new System.Drawing.Point(123, 127);
-            this.txtDownTime.Name = "txtDownTime";
-            this.txtDownTime.Size = new System.Drawing.Size(132, 21);
-            this.txtDownTime.TabIndex = 7;
+            this.cboDownTime.FormattingEnabled = true;
+            this.cboDownTime.Location = new System.Drawing.Point(123, 127);
+            this.cboDownTime.Name = "cboDownTime";
+            this.cboDownTime.Size = new System.Drawing.Size(132, 22);
+            this.cboDownTime.TabIndex = 10;
             // 
             // LineInsUp
             // 
@@ -142,6 +145,7 @@
             this.ClientSize = new System.Drawing.Size(332, 290);
             this.Name = "LineInsUp";
             this.Text = "LineInsUp";
+            this.Load += new System.EventHandler(this.LineInsUp_Load);
             this.panel1.ResumeLayout(false);
             this.panel_Title.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).EndInit();
@@ -155,11 +159,11 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox cboLineName;
+        private System.Windows.Forms.ComboBox cboFactoryName;
         private System.Windows.Forms.TextBox txtLineName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtDownTime;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cboDownTime;
     }
 }

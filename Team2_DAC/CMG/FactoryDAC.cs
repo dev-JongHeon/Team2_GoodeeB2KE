@@ -112,5 +112,30 @@ namespace Team2_DAC
                 conn.Close();
             }
         }
+
+        public bool DeleteFactory(int code)
+        {
+            string sql = $"Update Factory set Factory_DeletedYN = {1} where Factory_ID = @Factory_ID ";
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Factory_ID", code);
+
+                    conn.Open();
+                    var rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }

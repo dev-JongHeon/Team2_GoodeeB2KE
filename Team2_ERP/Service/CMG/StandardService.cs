@@ -94,10 +94,40 @@ namespace Team2_ERP.Service.CMG
             return dac.UpdateFactory(item);
         }
 
+        public bool DeleteFactory(int code)
+        {
+            FactoryDAC dac = new FactoryDAC();
+            return dac.DeleteFactory(code);
+        }
+
         public List<LineVO> GetAllLine()
         {
             LineDAC dac = new LineDAC();
             return dac.GetAllLine();
+        }
+
+        public List<ComboItemVO> GetComboFactory()
+        {
+            LineDAC dac = new LineDAC();
+            return dac.GetComboFactory();
+        }
+
+        public bool InsertLine(LineVO item)
+        {
+            LineDAC dac = new LineDAC();
+            return dac.InsertLine(item);
+        }
+
+        public bool UpdateLine(LineVO item)
+        {
+            LineDAC dac = new LineDAC();
+            return dac.UpdateLine(item);
+        }
+
+        public bool DeleteLine(int code)
+        {
+            LineDAC dac = new LineDAC();
+            return dac.DeleteLine(code);
         }
     }
 }

@@ -86,6 +86,7 @@
             this.dgvLine.RowTemplate.Height = 23;
             this.dgvLine.Size = new System.Drawing.Size(1364, 290);
             this.dgvLine.TabIndex = 0;
+            this.dgvLine.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLine_CellClick);
             // 
             // searchUserControl1
             // 

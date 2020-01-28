@@ -19,13 +19,10 @@ namespace Team2_ERP
 
         MainForm frm;
 
-        ToolStripDropDownItem tool1;
-        ToolStripDropDownItem tool2;
+        ToolStripDropDownItem tool;
 
         FactoryVO factoryItem;
         LineVO lineItem;
-
-        string mode = string.Empty;
 
         public Factory()
         {
@@ -49,6 +46,7 @@ namespace Team2_ERP
 
             UtilClass.SettingDgv(dgvLine);
 
+            UtilClass.AddNewColum(dgvLine, "공정코드", "Line_ID", true, 100);
             UtilClass.AddNewColum(dgvLine, "라인이름", "Line_Name", true, 100);
             UtilClass.AddNewColum(dgvLine, "공장이름", "Factory_Name", true, 100);
             UtilClass.AddNewColum(dgvLine, "비가동상태", "Line_Downtome_Name", true, 100);
@@ -89,10 +87,8 @@ namespace Team2_ERP
 
         private void Factory_Deactivate(object sender, EventArgs e)
         {
-            tool1.DropDownItems.Clear();
-            tool1.DropDownItemClicked -= ItemSelect;
-            tool2.DropDownItems.Clear();
-            tool2.DropDownItemClicked -= ItemSelect;
+            tool.DropDownItems.Clear();
+            tool.DropDownItemClicked -= ItemSelect;
             new SettingMenuStrip().UnsetMenu(this);
         }
 
@@ -110,58 +106,92 @@ namespace Team2_ERP
             dgvFactory.DataSource = null;
             searchUserControl1.CodeTextBox.Text = "";
             dgvFactory.CurrentCell = null;
+            dgvLine.CurrentCell = null;
             LoadGridView();
         }
 
         public override void New(object sender, EventArgs e)
         {
-            tool1 = (ToolStripDropDownItem)(((MainForm)MdiParent).신규ToolStripMenuItem);
+            tool = (ToolStripDropDownItem)(((MainForm)MdiParent).신규ToolStripMenuItem);
 
-            if (tool1.DropDownItems.Count < 1)
+            if (tool.DropDownItems.Count < 1)
             {
-                tool1.DropDownItems.Add("공장");
-                tool1.DropDownItems.Add("공정");
+                tool.DropDownItems.Add("공장");
+                tool.DropDownItems.Add("공정");
 
-                tool1.DropDownItemClicked += new ToolStripItemClickedEventHandler(ItemSelect);
+                tool.DropDownItemClicked += new ToolStripItemClickedEventHandler(ItemSelect);
             }
-
-            mode = "Insert";
         }
 
         public override void Modify(object sender, EventArgs e)
         {
-            tool2 = (ToolStripDropDownItem)(((MainForm)MdiParent).수정ToolStripMenuItem);
-
-            if (tool2.DropDownItems.Count < 1)
+            if (dgvFactory.SelectedRows.Count > 0 || dgvLine.SelectedRows.Count > 0)
             {
-                tool2.DropDownItems.Add("공장");
-                tool2.DropDownItems.Add("공정");
-
-                tool2.DropDownItemClicked += new ToolStripItemClickedEventHandler(ItemSelect);
+                if (dgvLine.SelectedRows.Count < 1)
+                {
+                    FactoryInsUp frm = new FactoryInsUp(FactoryInsUp.EditMode.Update, factoryItem);
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        frm.Close();
+                        dgvFactory.DataSource = null;
+                        LoadGridView();
+                    }
+                }
+                else if (dgvFactory.SelectedRows.Count < 1)
+                {
+                    LineInsUp frm = new LineInsUp(LineInsUp.EditMode.Update, lineItem);
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        frm.Close();
+                        dgvFactory.DataSource = null;
+                        LoadGridView();
+                    }
+                }
             }
-
-            mode = "Update";
+            else
+            {
+                frm.NoticeMessage = "수정할 목록을 선택해주세요.";
+            }
         }
 
         public override void Delete(object sender, EventArgs e)
         {
             InitMessage();
 
-            //if (item == null)
-            //{
-            //    frm.NoticeMessage = "삭제할 제품을 선택해주세요.";
-            //}
-
-            //else
-            //{
-            //    if (MessageBox.Show("삭제하시겠습니까?", "확인", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            //    {
-            //        StandardService service = new StandardService();
-            //        service.DeleteResource(item.Product_ID);
-            //        dataGridView1.DataSource = null;
-            //        LoadGridView();
-            //    }
-            //}
+            if (dgvLine.SelectedRows.Count < 1)
+            {
+                if (factoryItem == null)
+                {
+                    frm.NoticeMessage = "삭제할 공장을 선택해주세요.";
+                }
+                else
+                {
+                    if(MessageBox.Show("삭제하시겠습니까?", "안내", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        StandardService service = new StandardService();
+                        service.DeleteFactory(factoryItem.Factory_ID);
+                        dgvFactory.DataSource = null;
+                        LoadGridView();
+                    }
+                }
+            }
+            else if (dgvFactory.SelectedRows.Count < 1)
+            {
+                if(lineItem == null)
+                {
+                    frm.NoticeMessage = "삭제할 공정을 선택해주세요.";
+                }
+                else
+                {
+                    if (MessageBox.Show("삭제하시겠습니까?", "안내", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        StandardService service = new StandardService();
+                        service.DeleteLine(lineItem.Factory_ID);
+                        dgvFactory.DataSource = null;
+                        LoadGridView();
+                    }
+                }
+            }
         }
 
         public override void Search(object sender, EventArgs e)
@@ -180,50 +210,24 @@ namespace Team2_ERP
 
         private void ItemSelect(object sender, ToolStripItemClickedEventArgs e)
         {
-            if(mode.Equals("Insert"))
+            if (e.ClickedItem.Text == "공장")
             {
-                if (e.ClickedItem.Text == "공장")
+                FactoryInsUp frm = new FactoryInsUp(FactoryInsUp.EditMode.Insert, null);
+                if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    FactoryInsUp frm = new FactoryInsUp(FactoryInsUp.EditMode.Insert, null);
-                    if (frm.ShowDialog() == DialogResult.OK)
-                    {
-                        frm.Close();
-                        dgvFactory.DataSource = null;
-                        LoadGridView();
-                    }
-                }
-                else
-                {
-                    LineInsUp frm = new LineInsUp(LineInsUp.EditMode.Insert, null);
-                    if (frm.ShowDialog() == DialogResult.OK)
-                    {
-                        frm.Close();
-                        dgvFactory.DataSource = null;
-                        LoadGridView();
-                    }
+                    frm.Close();
+                    dgvFactory.DataSource = null;
+                    LoadGridView();
                 }
             }
-            else if(mode.Equals("Update"))
+            else
             {
-                if (e.ClickedItem.Text == "공장")
+                LineInsUp frm = new LineInsUp(LineInsUp.EditMode.Insert, null);
+                if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    FactoryInsUp frm = new FactoryInsUp(FactoryInsUp.EditMode.Update, factoryItem);
-                    if (frm.ShowDialog() == DialogResult.OK)
-                    {
-                        frm.Close();
-                        dgvFactory.DataSource = null;
-                        LoadGridView();
-                    }
-                }
-                else
-                {
-                    LineInsUp frm = new LineInsUp(LineInsUp.EditMode.Update, lineItem);
-                    if (frm.ShowDialog() == DialogResult.OK)
-                    {
-                        frm.Close();
-                        dgvFactory.DataSource = null;
-                        LoadGridView();
-                    }
+                    frm.Close();
+                    dgvFactory.DataSource = null;
+                    LoadGridView();
                 }
             }
         }
@@ -231,11 +235,14 @@ namespace Team2_ERP
         private void Factory_Shown(object sender, EventArgs e)
         {
             dgvFactory.CurrentCell = null;
+            dgvLine.CurrentCell = null;
         }
 
         private void dgvFactory_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(dgvFactory.Rows[e.RowIndex].Cells[4].Value == null)
+            dgvLine.CurrentCell = null;
+
+            if (dgvFactory.Rows[e.RowIndex].Cells[4].Value == null)
             {
                 factoryItem = new FactoryVO()
                 {
@@ -254,6 +261,17 @@ namespace Team2_ERP
                     Factory_Fax = dgvFactory.Rows[e.RowIndex].Cells[4].Value.ToString()
                 };
             }
+        }
+
+        private void dgvLine_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dgvFactory.CurrentCell = null;
+
+            lineItem = new LineVO()
+            {
+                Line_ID = Convert.ToInt32(dgvLine.Rows[e.RowIndex].Cells[0].Value),
+                Line_Name = dgvLine.Rows[e.RowIndex].Cells[1].Value.ToString()
+            };
         }
     }
 }
