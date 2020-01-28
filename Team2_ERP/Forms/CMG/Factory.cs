@@ -51,8 +51,8 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgvLine, "공장이름", "Factory_Name", true, 100);
             UtilClass.AddNewColum(dgvLine, "비가동상태", "Line_Downtome_Name", true, 100);
 
-            dgvFactory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            dgvFactory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvLine.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dgvLine.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         // DataGridView 가져오기
@@ -105,6 +105,7 @@ namespace Team2_ERP
             InitMessage();
             dgvFactory.DataSource = null;
             searchUserControl1.CodeTextBox.Text = "";
+            searchUserControl2.CodeTextBox.Text = "";
             dgvFactory.CurrentCell = null;
             dgvLine.CurrentCell = null;
             LoadGridView();
@@ -196,11 +197,27 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)
         {
-            if (searchUserControl1.CodeTextBox.Text.Length > 0)
+            if(searchUserControl1.CodeTextBox.Text.Length > 0 && searchUserControl2.CodeTextBox.Text.Length > 0)
+            {
+                dgvFactory.DataSource = null;
+                List<FactoryVO> searchFList = (from item in FList where item.Factory_ID == Convert.ToInt32(searchUserControl1.CodeTextBox.Tag) && item.Factory_DeletedYN == false select item).ToList();
+                dgvFactory.DataSource = searchFList;
+
+                dgvLine.DataSource = null;
+                List<LineVO> searchLList = (from item in LList where item.Line_ID == Convert.ToInt32(searchUserControl2.CodeTextBox.Tag) && item.Line_DeletedYN == false select item).ToList();
+                dgvLine.DataSource = searchLList;
+            }
+            else if (searchUserControl1.CodeTextBox.Text.Length > 0)
             {
                 dgvFactory.DataSource = null;
                 List<FactoryVO> searchList = (from item in FList where item.Factory_ID == Convert.ToInt32(searchUserControl1.CodeTextBox.Tag) && item.Factory_DeletedYN == false select item).ToList();
                 dgvFactory.DataSource = searchList;
+            }
+            else if(searchUserControl2.CodeTextBox.Text.Length > 0)
+            {
+                dgvLine.DataSource = null;
+                List<LineVO> searchLList = (from item in LList where item.Line_ID == Convert.ToInt32(searchUserControl2.CodeTextBox.Tag) && item.Line_DeletedYN == false select item).ToList();
+                dgvLine.DataSource = searchLList;
             }
             else
             {

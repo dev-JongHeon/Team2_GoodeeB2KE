@@ -73,7 +73,7 @@ namespace Team2_DAC
 
         public bool InsertLine(LineVO item)
         {
-            string sql = "insert into Line(Line_Name, Factory_ID, Line_Downtime) values (@Line_Name, @Factory_ID, @Line_Downtime) ";
+            string sql = "insert into Line(Line_Name, Factory_ID) values (@Line_Name, @Factory_ID) ";
 
             try
             {
@@ -81,7 +81,6 @@ namespace Team2_DAC
                 {
                     cmd.Parameters.AddWithValue("@Line_Name", item.Line_Name);
                     cmd.Parameters.AddWithValue("@Factory_ID", item.Factory_ID);
-                    cmd.Parameters.AddWithValue("@Line_Downtime", item.Line_Downtime);
 
                     conn.Open();
                     var rowsAffected = cmd.ExecuteNonQuery();
@@ -100,7 +99,7 @@ namespace Team2_DAC
 
         public bool UpdateLine(LineVO item)
         {
-            string sql = "Update Line set Line_Name = @Line_Name, Factory_ID = @Factory_ID, Line_Downtime = @Line_Downtime where Line_ID = @Line_ID ";
+            string sql = "Update Line set Line_Name = @Line_Name, Factory_ID = @Factory_ID where Line_ID = @Line_ID ";
 
             try
             {
@@ -108,7 +107,6 @@ namespace Team2_DAC
                 {
                     cmd.Parameters.AddWithValue("@Line_Name", item.Line_Name);
                     cmd.Parameters.AddWithValue("@Factory_ID", item.Factory_ID);
-                    cmd.Parameters.AddWithValue("@Line_Downtime", item.Line_Downtime);
                     cmd.Parameters.AddWithValue("@Line_ID", item.Line_ID);
 
                     conn.Open();
