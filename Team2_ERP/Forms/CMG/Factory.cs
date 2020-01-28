@@ -93,6 +93,30 @@ namespace Team2_ERP
             //    dgvFactory.DataSource = null;
             //    LoadGridView();
             //}
+
+            ToolStripDropDownItem tool = (ToolStripDropDownItem)(((MainForm)MdiParent).신규ToolStripMenuItem);
+
+            if (tool.DropDownItems.Count < 1)
+            {
+                tool.DropDownItems.Add("공장");
+                tool.DropDownItems.Add("공정");
+
+                tool.DropDownItemClicked += new ToolStripItemClickedEventHandler(ItemSelect);
+            }
+        }
+
+        private void ItemSelect(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (e.ClickedItem.Text == "공장")
+            {
+                FactoryInsUp frm = new FactoryInsUp();
+                frm.ShowDialog();
+            }
+            else
+            {
+                LineInsUp frm = new LineInsUp();
+                frm.ShowDialog();
+            }
         }
 
         public override void Modify(object sender, EventArgs e)
