@@ -18,6 +18,7 @@ namespace Team2_ERP
         List<BaljuDetail> BaljuDetail_AllList = null;  // 발주디테일 List
         List<Balju> Balju_AllList = null;  // 발주 List
         List<Balju> Balju_SearchList = null;  // 검색용 List
+        MainForm main;
 
         public BaljuList()
         {
@@ -27,6 +28,7 @@ namespace Team2_ERP
         private void BaljuList_Load(object sender, EventArgs e)
         {
             LoadData();
+            main = (MainForm)this.MdiParent;
         }
 
         private void LoadData()
@@ -38,13 +40,12 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Balju, "발주요청일시", "Balju_Date", true);
             UtilClass.AddNewColum(dgv_Balju, "등록사원", "Employees_Name", true);
             UtilClass.AddNewColum(dgv_Balju, "삭제여부", "Balju_DeletedYN", false);
-            //UtilClass.AddNewColum(dgv_Balju, "X", "Balju_ReceiptDate", false);
             dgv_Balju.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv_Balju.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             dgv_Balju.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             dgv_Balju.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             Balju_AllList = service.GetBaljuList();  // 발주리스트 갱신
-            dgv_Balju.DataSource = Balju_AllList; 
+            dgv_Balju.DataSource = Balju_AllList;
 
             UtilClass.SettingDgv(dgv_BaljuDetail);
             UtilClass.AddNewColum(dgv_BaljuDetail, "발주지시번호", "Balju_ID", true);
@@ -62,24 +63,67 @@ namespace Team2_ERP
         private void dgv_Balju_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string Balju_ID = dgv_Balju.CurrentRow.Cells[0].Value.ToString();
-            List<BaljuDetail> BaljuDetail_List = (from list_detail in BaljuDetail_AllList
-                                                  where list_detail.Balju_ID == Balju_ID
+            List<BaljuDetail> BaljuDetail_List = (from   list_detail in BaljuDetail_AllList
+                                                  where  list_detail.Balju_ID == Balju_ID
                                                   select list_detail).ToList();
             dgv_BaljuDetail.DataSource = BaljuDetail_List;
         }
 
-        private void Search()
+        public override void Search(object sender, EventArgs e)
         {
-            if (!Search_Company.CodeTextBox.Tag.Equals("")) // Tag값 존재하면 = 검색조건 들어가 있으면
+            Balju_SearchList = service.GetBaljuList();  // 발주리스트 갱신
+            if (Search_Company.CodeTextBox.Text.Length > 0) // 검색조건 있으면
             {
-                Balju_SearchList = (from item in Balju_AllList
-                                    where item.Company_Name == Search_Company.CodeTextBox.Text
+                Balju_SearchList = (from   item in Balju_SearchList
+                                    where  item.Company_Name == Search_Company.CodeTextBox.Text
                                     select item).ToList();
             }
-            if (true)
+            if (Search_Employee.CodeTextBox.Text.Length > 0)
             {
-
+                Balju_SearchList = (from   item in Balju_SearchList
+                                    where  item.Employees_Name == Search_Employee.CodeTextBox.Text
+                                    select item).ToList();
             }
+            if (Search_Period.Startdate.Text != "    -  -")   // 시작기간 text가 존재하면
+            {
+                if (Search_Period.Startdate.Text != Search_Period.Enddate.Text)
+                {
+                    Balju_SearchList = (from   item in Balju_SearchList
+                                        where  item.Balju_Date.CompareTo(Convert.ToDateTime(Search_Period.Startdate.Text)) >= 0 &&
+                                               item.Balju_Date.CompareTo(Convert.ToDateTime(Search_Period.Enddate.Text)) <= 0
+                                        select item).ToList();
+                }
+                else
+                {
+                    Balju_SearchList = (from   item in Balju_SearchList
+                                        where  item.Balju_Date.Date == Convert.ToDateTime(Search_Period.Startdate.Text)
+                                        select item).ToList();
+                }
+            }
+            dgv_Balju.DataSource = Balju_SearchList;
+            dgv_BaljuDetail.DataSource = null;
+        }
+
+        private void BaljuList_Activated(object sender, EventArgs e)
+        {
+            MenuByAuth(Auth);
+            main.수정ToolStripMenuItem.Text = "처리";
+            main.수정ToolStripMenuItem.ToolTipText = "처리(Ctrl+M)";
+        }
+
+        public override void MenuStripONOFF(bool flag)
+        {
+            main.신규ToolStripMenuItem.Visible = false;
+            main.수정ToolStripMenuItem.Visible = flag;
+            main.인쇄ToolStripMenuItem.Visible = flag;
+        }
+
+
+        private void BaljuList_Deactivate(object sender, EventArgs e)
+        {
+            main.수정ToolStripMenuItem.Text = "수정";
+            main.수정ToolStripMenuItem.ToolTipText = "수정(Ctrl+M)";
+            new SettingMenuStrip().UnsetMenu(this);
         }
     }
 }
