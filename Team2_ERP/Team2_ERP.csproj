@@ -246,6 +246,12 @@
     <Compile Include="Forms\KJH\CalendarForm.Designer.cs">
       <DependentUpon>CalendarForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\KJH\DefectiveHandleAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KJH\DefectiveHandleAdd.designer.cs">
+      <DependentUpon>DefectiveHandleAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\KJH\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -391,6 +397,7 @@
       <DependentUpon>StockStatus.cs</DependentUpon>
     </Compile>
     <Compile Include="Service\KJH\AuthService.cs" />
+    <Compile Include="Service\KJH\DefectiveHandleService.cs" />
     <Compile Include="Service\KJH\DefectiveTypeService.cs" />
     <Compile Include="Service\KJH\Session.cs" />
     <Compile Include="Program.cs" />
@@ -501,6 +508,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\KJH\CalendarForm.resx">
       <DependentUpon>CalendarForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KJH\DefectiveHandleAdd.resx">
+      <DependentUpon>DefectiveHandleAdd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\KJH\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

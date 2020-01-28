@@ -10,6 +10,8 @@ namespace Team2_ERP
 {
     public partial class Defective : BaseForm
     {
+        MainForm frm;
+
         public Defective()
         {
             InitializeComponent();
@@ -17,32 +19,33 @@ namespace Team2_ERP
 
         private void Defective_Load(object sender, EventArgs e)
         {
-            SettingData();
+            frm = (MainForm)this.ParentForm;
+            UtilClass.SettingDgv(dgvDefective);
+            UtilClass.AddNewColum(dgvDefective, "불량번호", "Defective_ID");
+            UtilClass.AddNewColum(dgvDefective, "공정번호", "Line_ID",false);
+            UtilClass.AddNewColum(dgvDefective, "공정명", "Line_Name");
+            
+
+
+
         }
 
-        private void SettingData()
+        private void Defective_Activated(object sender, EventArgs e)
         {
-            //this.lblFormName.Text = "불량유형";        
-
-            new SettingMenuStrip().SetMenu(this, a, a, a, a, a, a);
-            ((MainForm)MdiParent).수정ToolStripMenuItem.Visible = false;
+            MenuByAuth(Auth);
         }
 
-        private void a(object sender, EventArgs e)
+        public override void MenuStripONOFF(bool flag)
         {
-            new SettingMenuStrip().SetMenu(this, a, a, a, a, a, a);
+            frm.신규ToolStripMenuItem.Visible = false;
+            frm.수정ToolStripMenuItem.Visible = false;
+            frm.삭제ToolStripMenuItem.Visible = false;
+            frm.인쇄ToolStripMenuItem.Visible = flag;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Defective_Deactivate(object sender, EventArgs e)
         {
-            LoginService service = new LoginService();
-            service.InsertAuth(Session.Employee_ID);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            LoginService service = new LoginService();
-            service.InsertAuth(Session.Employee_ID);
+            new SettingMenuStrip().UnsetMenu(this);
         }
     }
 }

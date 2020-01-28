@@ -49,6 +49,40 @@ namespace Team2_ERP
             }
         }
 
+        private void txtEnd_Click(object sender, EventArgs e)
+        {
+            txtEnd.SelectAll();
+        }
+
+        private void txtStart_Click(object sender, EventArgs e)
+        {
+            txtStart.SelectAll();
+        }
+
+        private void txtStart_TextChanged(object sender, EventArgs e)
+        {
+            if (txtStart.TextLength == 0)
+            {
+                txtEnd.Clear();
+            }
+        }
+
+        private void txtEnd_TextChanged(object sender, EventArgs e)
+        {
+            if (txtEnd.TextLength == 0)
+            {
+                txtStart.Clear();
+            }
+        }
+
+        private void txtStart_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(e.KeyChar == Convert.ToChar(Keys.Back)))
+            {
+                e.Handled = true;
+            }
+        }
+
         //private void dtpStart_ValueChanged(object sender, EventArgs e)
         //{
         //    if (dtpStart.Value > dtpEnd.Value)

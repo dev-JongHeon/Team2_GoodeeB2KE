@@ -13,19 +13,36 @@ namespace Team2_ERP
 {
     public partial class LoginForm : Form
     {
+        #region 전역변수
         private Point mousePoint;
         SearchedInfoVO info = new SearchedInfoVO();
         LoginVO logininfo = new LoginVO();
+        #endregion
+
+        #region 폼 관련
+        /// <summary>
+        /// 생성자
+        /// </summary>
         public LoginForm()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// 로그인폼 누르면 현재위치저장
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
             mousePoint = new Point(e.X, e.Y);
         }
 
+        /// <summary>
+        /// 마우스 누르고 이동시 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void panel1_MouseMove(object sender, MouseEventArgs e)
         {
             if ((e.Button & MouseButtons.Left) == MouseButtons.Left)
@@ -35,6 +52,25 @@ namespace Team2_ERP
             }
         }
 
+        /// <summary>
+        /// 세션에 로그인정보 저장
+        /// </summary>
+        private void SetSession()
+        {
+            Session.Employee_ID = logininfo.Employee_ID;
+            Session.Employee_Name = logininfo.Employee_Name;
+            Session.Employee_IsAdmin = logininfo.Employee_IsAdmin;
+            Session.Employee_Depart = logininfo.Employee_Depart;
+            Session.Auth = logininfo.Auth;
+        }
+        #endregion
+
+        #region 버튼관련
+        /// <summary>
+        /// 돋보기아이콘 클릭시 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
             SearchForm frm = new SearchForm(info);
@@ -50,11 +86,21 @@ namespace Team2_ERP
 
         }
 
+        /// <summary>
+        /// 취소버튼 클릭 시
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// 로그인 버튼 클릭 시
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLogin_Click(object sender, EventArgs e)
         {
             if (txtEmpID.TextLength > 0)
@@ -104,15 +150,11 @@ namespace Team2_ERP
             }
         }
 
-        private void SetSession()
-        {
-            Session.Employee_ID = logininfo.Employee_ID;
-            Session.Employee_Name = logininfo.Employee_Name;
-            Session.Employee_IsAdmin = logininfo.Employee_IsAdmin;
-            Session.Employee_Depart = logininfo.Employee_Depart;
-            Session.Auth = logininfo.Auth;
-        }
-
+        /// <summary>
+        /// 암호변경 클릭시
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnPwdChange_Click(object sender, EventArgs e)
         {
             if (txtEmpID.TextLength > 0 && txtEmpName.TextLength > 0)
@@ -138,7 +180,14 @@ namespace Team2_ERP
             }
 
         }
+        #endregion
 
+        #region KeyPress클릭
+        /// <summary>
+        /// 암호텍스트 상자에서 엔터 클릭 시
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtEmpPwd_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 13)
@@ -147,6 +196,11 @@ namespace Team2_ERP
             }
         }
 
+        /// <summary>
+        /// 사원번호 텍스트박스 백스페이스만 가능하게
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtEmpID_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!(e.KeyChar == Convert.ToChar(Keys.Back))) 
@@ -155,6 +209,11 @@ namespace Team2_ERP
             }
         }
 
+        /// <summary>
+        /// 사원명 텍스트박스 백스페이스만 가능하게
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtEmpName_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!(e.KeyChar == Convert.ToChar(Keys.Back)))
@@ -162,5 +221,6 @@ namespace Team2_ERP
                 e.Handled = true;
             }
         }
+        #endregion
     }
 }

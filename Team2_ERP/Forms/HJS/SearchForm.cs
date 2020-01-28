@@ -140,6 +140,11 @@ namespace Team2_ERP
                     col1 = this.Text + "번호";
                     col2 = this.Text + "명";
                     break;
+                case "AllProduct":
+                    this.Text = "품목";
+                    col1 = this.Text + "번호";
+                    col2 = this.Text + "명";
+                    break;
             }
 
             txtSearch.PlaceHolderText = string.Concat(this.Text, " ", "키워드 입력");

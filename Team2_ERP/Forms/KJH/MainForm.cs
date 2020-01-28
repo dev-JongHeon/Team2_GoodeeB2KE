@@ -17,7 +17,6 @@ namespace Team2_ERP
     public partial class MainForm : Form
     {
         #region 전역변수
-        int tick = 0;
         public EventHandler M_Refresh;
         public EventHandler M_New;
         public EventHandler M_Modify;
