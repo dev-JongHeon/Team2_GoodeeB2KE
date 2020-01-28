@@ -22,7 +22,7 @@ namespace Team2_ERP
         private TabPage tabPag;
         public TabControl TabCtrl { get => tabCtrl; set => tabCtrl = value; }
         public TabPage TabPag { get => tabPag; set => tabPag = value; }
-
+        public string Auth { get; set; }
         public void Form_Activated(object sender, EventArgs e)
         {
             tabCtrl.SelectedTab = tabPag;
@@ -61,6 +61,22 @@ namespace Team2_ERP
         {
             
         }
+        public void MenuByAuth(string auth)
+        {
+            if (auth == "1")
+            {
+                MenuStripONOFF(true);
+            }
+            else if (auth == "0")
+            {
+                MenuStripONOFF(false);
+            }
+        }
+
+        public virtual void MenuStripONOFF(bool flag)
+        {
+
+        }
 
         public void Form_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -82,9 +98,5 @@ namespace Team2_ERP
         {
             InitializeComponent();
         }
-
-       
-        
-
     }
 }

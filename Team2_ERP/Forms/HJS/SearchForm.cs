@@ -130,6 +130,11 @@ namespace Team2_ERP
                     col1 = this.Text + "번호";
                     col2 = this.Text + "명";
                     break;
+                case "Worker":
+                    this.Text = "작업자";
+                    col1 = this.Text + "번호";
+                    col2 = this.Text + "명";
+                    break;
             }
 
             txtSearch.PlaceHolderText = string.Concat(this.Text, " ", "키워드 입력");

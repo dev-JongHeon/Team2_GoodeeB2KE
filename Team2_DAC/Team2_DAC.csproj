@@ -50,6 +50,7 @@
     <Compile Include="Helper.cs" />
     <Compile Include="HJS\POPDAC.cs" />
     <Compile Include="KJH\AuthDAC.cs" />
+    <Compile Include="KJH\DefectiveTypeDAC.cs" />
     <Compile Include="KJH\LoginDAC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="KJH\SearchDAC.cs" />

@@ -391,6 +391,7 @@
       <DependentUpon>StockStatus.cs</DependentUpon>
     </Compile>
     <Compile Include="Service\KJH\AuthService.cs" />
+    <Compile Include="Service\KJH\DefectiveTypeService.cs" />
     <Compile Include="Service\KJH\Session.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
