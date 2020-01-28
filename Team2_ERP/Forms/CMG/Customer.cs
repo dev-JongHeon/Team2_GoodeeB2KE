@@ -66,14 +66,22 @@ namespace Team2_ERP
             InitMessage();
             dataGridView1.DataSource = null;
             searchUserControl1.CodeTextBox.Text = "";
+            dataGridView1.CurrentCell = null;
             LoadGridView();
         }
 
         public override void Search(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = null;
-            List<CustomerVO> searchList = (from item in list where item.Customer_ID == Convert.ToInt32(searchUserControl1.CodeTextBox.Tag) && item.Customer_DeletedYN == false select item).ToList();
-            dataGridView1.DataSource = searchList;
+            if (searchUserControl1.CodeTextBox.Text.Length > 0)
+            {
+                dataGridView1.DataSource = null;
+                List<CustomerVO> searchList = (from item in list where item.Customer_ID == Convert.ToInt32(searchUserControl1.CodeTextBox.Tag) && item.Customer_DeletedYN == false select item).ToList();
+                dataGridView1.DataSource = searchList;
+            }
+            else
+            {
+                frm.NoticeMessage = "검색할 고객을 선택해주세요.";
+            }
         }
 
         private void Customer_Shown(object sender, EventArgs e)

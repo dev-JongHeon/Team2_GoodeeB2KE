@@ -58,6 +58,7 @@ namespace Team2_ERP
             InitMessage();
             dataGridView1.DataSource = null;
             searchUserControl1.CodeTextBox.Text = "";
+            dataGridView1.CurrentCell = null;
             LoadGridView();
         }
 
@@ -108,9 +109,16 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = null;
-            List<CodeTableVO> deptList = (from item in list where item.CodeTable_CodeID.Contains(searchUserControl1.CodeTextBox.Tag.ToString()) && item.CodeTable_DeletedYN == false select item).ToList();
-            dataGridView1.DataSource = deptList;
+            if (searchUserControl1.CodeTextBox.Text.Length > 0)
+            {
+                dataGridView1.DataSource = null;
+                List<CodeTableVO> deptList = (from item in list where item.CodeTable_CodeID.Contains(searchUserControl1.CodeTextBox.Tag.ToString()) && item.CodeTable_DeletedYN == false select item).ToList();
+                dataGridView1.DataSource = deptList;
+            }
+            else
+            {
+                frm.NoticeMessage = "검색할 부서를 선택해주세요.";
+            }
         }
 
         private void Department_Load(object sender, EventArgs e)
@@ -122,11 +130,15 @@ namespace Team2_ERP
 
         private void Department_Activated(object sender, EventArgs e)
         {
+            ((MainForm)MdiParent).신규ToolStripMenuItem.Visible = true;
+            ((MainForm)MdiParent).수정ToolStripMenuItem.Visible = true;
+            ((MainForm)MdiParent).삭제ToolStripMenuItem.Visible = true;
             ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = false;
         }
 
         private void Department_Deactivate(object sender, EventArgs e)
         {
+            ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = true;
             new SettingMenuStrip().UnsetMenu(this);
         }
 
@@ -135,6 +147,11 @@ namespace Team2_ERP
             code = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
             name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             context = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+        }
+
+        private void Department_Shown(object sender, EventArgs e)
+        {
+            dataGridView1.CurrentCell = null;
         }
     }
 }
