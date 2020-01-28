@@ -27,5 +27,17 @@ namespace Team2_ERP.Service
             BaljuDAC dac = new BaljuDAC();
             return dac.GetBalju_DetailList();
         }
+
+        public void UpdateBalju_Processed(string balju_ID)
+        {
+            BaljuDAC dac = new BaljuDAC();
+            dac.UpdateBalju_Processed(balju_ID);
+        }
+
+        public void DeleteBalju(string balju_ID)
+        {
+            BaljuDAC dac = new BaljuDAC();
+            dac.DeleteBalju(balju_ID);
+        }
     }
 }

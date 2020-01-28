@@ -71,13 +71,13 @@ namespace Team2_ERP
         public override void Search(object sender, EventArgs e)
         {
             Balju_AllList = service.GetBaljuList();  // 발주리스트 갱신
-            if (Search_Company.CodeTextBox.Text.Length > 0) // 검색조건 있으면
+            if (Search_Company.CodeTextBox.Text.Length > 0)  // 회사 검색조건 있으면
             {
                 Balju_AllList = (from   item in Balju_AllList
                                     where  item.Company_Name == Search_Company.CodeTextBox.Text
                                     select item).ToList();
             }
-            if (Search_Employee.CodeTextBox.Text.Length > 0)
+            if (Search_Employee.CodeTextBox.Text.Length > 0)  // 사원 검색조건 있으면
             {
                 Balju_AllList = (from   item in Balju_AllList
                                     where  item.Employees_Name == Search_Employee.CodeTextBox.Text
@@ -85,14 +85,14 @@ namespace Team2_ERP
             }
             if (Search_Period.Startdate.Text != "    -  -")   // 시작기간 text가 존재하면
             {
-                if (Search_Period.Startdate.Text != Search_Period.Enddate.Text)
+                if (Search_Period.Startdate.Text != Search_Period.Enddate.Text)  // 시작~끝 날짜 다른경우
                 {
                     Balju_AllList = (from   item in Balju_AllList
                                         where  item.Balju_Date.CompareTo(Convert.ToDateTime(Search_Period.Startdate.Text)) >= 0 &&
                                                item.Balju_Date.CompareTo(Convert.ToDateTime(Search_Period.Enddate.Text)) <= 0
                                         select item).ToList();
                 }
-                else
+                else   // 같은경우
                 {
                     Balju_AllList = (from   item in Balju_AllList
                                         where  item.Balju_Date.Date == Convert.ToDateTime(Search_Period.Startdate.Text)
@@ -101,6 +101,49 @@ namespace Team2_ERP
             }
             dgv_Balju.DataSource = Balju_AllList;
             dgv_BaljuDetail.DataSource = null;
+        }
+
+        public override void Refresh(object sender, EventArgs e)  // 새로고침
+        {
+            Func_Refresh();
+        }
+
+        public override void Modify(object sender, EventArgs e)  // 발주완료(수령)처리
+        {
+            if (MessageBox.Show("정말로 발주완료 처리하시겠습니까?", "알림", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                string Balju_ID = dgv_Balju.CurrentRow.Cells[0].Value.ToString();
+                service.UpdateBalju_Processed(Balju_ID);
+                Func_Refresh();  // 새로고침
+            }
+        }
+
+        public override void Delete(object sender, EventArgs e)  // 삭제
+        {
+            if (MessageBox.Show("정말로 해당 발주요청을 삭제하시겠습니까?", "알림", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                string Balju_ID = dgv_Balju.CurrentRow.Cells[0].Value.ToString();
+                service.DeleteBalju(Balju_ID);
+                Func_Refresh();  // 새로고침
+            }
+        }
+
+        public override void Print(object sender, EventArgs e)  // 인쇄
+        {
+
+        }
+
+        private void Func_Refresh()  // 새로고침 기능
+        {
+            Balju_AllList = service.GetBaljuList();
+            dgv_Balju.DataSource = Balju_AllList;
+            BaljuDetail_AllList = service.GetBalju_DetailList();
+
+            // 검색조건 초기화
+            Search_Period.Startdate.Text = "";
+            Search_Period.Enddate.Text = "";
+            Search_Company.CodeTextBox.Text = "";
+            Search_Employee.CodeTextBox.Text = "";
         }
 
         private void BaljuList_Activated(object sender, EventArgs e)
@@ -114,6 +157,7 @@ namespace Team2_ERP
         {
             main.신규ToolStripMenuItem.Visible = false;
             main.수정ToolStripMenuItem.Visible = flag;
+            main.삭제ToolStripMenuItem.Visible = flag;
             main.인쇄ToolStripMenuItem.Visible = flag;
         }
 

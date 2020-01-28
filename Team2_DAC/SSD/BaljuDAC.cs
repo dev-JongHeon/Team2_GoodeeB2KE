@@ -84,5 +84,64 @@ namespace Team2_DAC
                 return null;
             }
         }
+
+        public void UpdateBalju_Processed(string balju_ID)
+        {
+            int check = 0;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "UpdateBalju_Processed";
+                    cmd.Parameters.AddWithValue("@Balju_ID", balju_ID);
+                    conn.Open();
+                    check = cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+            catch (Exception err)
+            {
+                System.Windows.Forms.MessageBox.Show(err.Message);
+            }
+            finally
+            {
+                if (check >= 1)
+                {
+                    System.Windows.Forms.MessageBox.Show("발주처리완료!");
+                }
+            }
+        }
+
+        public void DeleteBalju(string balju_ID)
+        {
+            int check = 0;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "DeleteBalju";
+                    cmd.Parameters.AddWithValue("@Balju_ID", balju_ID);
+                    conn.Open();
+                    check = cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+            catch (Exception err)
+            {
+                System.Windows.Forms.MessageBox.Show(err.Message);
+            }
+            finally
+            {
+                if (check >= 1)
+                {
+                    System.Windows.Forms.MessageBox.Show("삭제완료!");
+                }
+            }
+
+        }
     }
 }

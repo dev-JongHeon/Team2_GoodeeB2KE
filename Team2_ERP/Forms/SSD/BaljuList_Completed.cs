@@ -44,7 +44,7 @@ namespace Team2_ERP
             dgv_BaljuCompleted.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv_BaljuCompleted.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             dgv_BaljuCompleted.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dgv_BaljuCompleted.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgv_BaljuCompleted.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             BaljuCompleted_AllList = service.GetBalju_CompletedList(); // 발주리스트 갱신
             dgv_BaljuCompleted.DataSource = BaljuCompleted_AllList;
 
@@ -74,13 +74,13 @@ namespace Team2_ERP
         public override void Search(object sender, EventArgs e)
         {
             BaljuCompleted_AllList = service.GetBalju_CompletedList();  // 발주리스트 갱신
-            if (Search_Company.CodeTextBox.Text.Length > 0) // 검색조건 있으면
+            if (Search_Company.CodeTextBox.Text.Length > 0)   // 회사 검색조건 있으면
             {
                 BaljuCompleted_AllList = (from item in BaljuCompleted_AllList
                                              where item.Company_Name == Search_Company.CodeTextBox.Text
                                              select item).ToList();
             }
-            if (Search_Employee.CodeTextBox.Text.Length > 0)
+            if (Search_Employee.CodeTextBox.Text.Length > 0)   // 사원 검색조건 있으면
             {
                 BaljuCompleted_AllList = (from item in BaljuCompleted_AllList
                                              where item.Employees_Name == Search_Employee.CodeTextBox.Text
@@ -112,6 +112,40 @@ namespace Team2_ERP
             dgv_BaljuDetail.DataSource = null;
         }
 
+        public override void Refresh(object sender, EventArgs e)  // 새로고침
+        {
+            Func_Refresh();
+        }
+
+        public override void Delete(object sender, EventArgs e)  // 삭제
+        {
+            if (MessageBox.Show("정말로 해당 발주완료목록을 삭제하시겠습니까?", "알림", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                string Balju_ID = dgv_BaljuCompleted.CurrentRow.Cells[0].Value.ToString();
+                service.DeleteBalju(Balju_ID);
+                Func_Refresh();  // 새로고침
+            }
+        }
+
+        public override void Print(object sender, EventArgs e)  // 인쇄
+        {
+
+        }
+
+        private void Func_Refresh()  // 새로고침 기능
+        {
+            BaljuCompleted_AllList = service.GetBalju_CompletedList();
+            dgv_BaljuCompleted.DataSource = BaljuCompleted_AllList;
+            BaljuDetail_AllList = service.GetBalju_DetailList();
+
+            // 검색조건 초기화
+            chk_ReceiptDate.Checked = false;
+            Search_Period.Startdate.Text = "";
+            Search_Period.Enddate.Text = "";
+            Search_Company.CodeTextBox.Text = "";
+            Search_Employee.CodeTextBox.Text = "";
+        }
+
         private void BaljuList_Completed_Activated(object sender, EventArgs e)
         {
             MenuByAuth(Auth);
@@ -119,8 +153,9 @@ namespace Team2_ERP
 
         public override void MenuStripONOFF(bool flag)
         {
-            main.수정ToolStripMenuItem.Visible = false;
             main.신규ToolStripMenuItem.Visible = false;
+            main.수정ToolStripMenuItem.Visible = false;
+            main.삭제ToolStripMenuItem.Visible = flag;
             main.인쇄ToolStripMenuItem.Visible = flag;
         }
 
