@@ -50,7 +50,7 @@
             // 
             // panel3
             // 
-            this.panel3.Location = new System.Drawing.Point(130, 0);
+            this.panel3.Location = new System.Drawing.Point(128, 0);
             // 
             // panel5
             // 
@@ -73,12 +73,14 @@
             // 
             this.btnCancel.FlatAppearance.BorderSize = 0;
             this.btnCancel.Location = new System.Drawing.Point(204, 3);
+            this.btnCancel.TabIndex = 3;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOK
             // 
             this.btnOK.FlatAppearance.BorderSize = 0;
             this.btnOK.Location = new System.Drawing.Point(52, 3);
+            this.btnOK.TabIndex = 2;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // cboFactoryName
@@ -87,14 +89,14 @@
             this.cboFactoryName.Location = new System.Drawing.Point(123, 99);
             this.cboFactoryName.Name = "cboFactoryName";
             this.cboFactoryName.Size = new System.Drawing.Size(132, 22);
-            this.cboFactoryName.TabIndex = 9;
+            this.cboFactoryName.TabIndex = 1;
             // 
             // txtLineName
             // 
             this.txtLineName.Location = new System.Drawing.Point(122, 37);
             this.txtLineName.Name = "txtLineName";
             this.txtLineName.Size = new System.Drawing.Size(132, 21);
-            this.txtLineName.TabIndex = 7;
+            this.txtLineName.TabIndex = 0;
             // 
             // label3
             // 

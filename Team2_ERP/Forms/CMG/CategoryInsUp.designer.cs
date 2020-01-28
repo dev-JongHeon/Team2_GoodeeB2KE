@@ -50,7 +50,7 @@
             // 
             // panel3
             // 
-            this.panel3.Location = new System.Drawing.Point(439, 0);
+            this.panel3.Location = new System.Drawing.Point(437, 0);
             // 
             // panel5
             // 
@@ -73,12 +73,14 @@
             // 
             this.btnCancel.FlatAppearance.BorderSize = 0;
             this.btnCancel.Location = new System.Drawing.Point(367, 3);
+            this.btnCancel.TabIndex = 3;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOK
             // 
             this.btnOK.FlatAppearance.BorderSize = 0;
             this.btnOK.Location = new System.Drawing.Point(170, 3);
+            this.btnOK.TabIndex = 2;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // txtContext

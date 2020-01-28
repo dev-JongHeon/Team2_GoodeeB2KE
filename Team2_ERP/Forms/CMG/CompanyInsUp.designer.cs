@@ -60,10 +60,12 @@
             // btnCancel
             // 
             this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.TabIndex = 6;
             // 
             // btnOK
             // 
             this.btnOK.FlatAppearance.BorderSize = 0;
+            this.btnOK.TabIndex = 5;
             // 
             // label2
             // 
@@ -110,14 +112,14 @@
             this.txtCompanyName.Location = new System.Drawing.Point(126, 34);
             this.txtCompanyName.Name = "txtCompanyName";
             this.txtCompanyName.Size = new System.Drawing.Size(133, 21);
-            this.txtCompanyName.TabIndex = 2;
+            this.txtCompanyName.TabIndex = 0;
             // 
             // txtCompanyNumber
             // 
             this.txtCompanyNumber.Location = new System.Drawing.Point(126, 96);
             this.txtCompanyNumber.Name = "txtCompanyNumber";
             this.txtCompanyNumber.Size = new System.Drawing.Size(133, 21);
-            this.txtCompanyNumber.TabIndex = 2;
+            this.txtCompanyNumber.TabIndex = 1;
             // 
             // txtCompanyFaxNumber
             // 
@@ -133,7 +135,7 @@
             this.addressControl1.Location = new System.Drawing.Point(52, 279);
             this.addressControl1.Name = "addressControl1";
             this.addressControl1.Size = new System.Drawing.Size(505, 106);
-            this.addressControl1.TabIndex = 3;
+            this.addressControl1.TabIndex = 4;
             // 
             // cboCompanyDivision
             // 
@@ -141,7 +143,7 @@
             this.cboCompanyDivision.Location = new System.Drawing.Point(126, 220);
             this.cboCompanyDivision.Name = "cboCompanyDivision";
             this.cboCompanyDivision.Size = new System.Drawing.Size(133, 22);
-            this.cboCompanyDivision.TabIndex = 4;
+            this.cboCompanyDivision.TabIndex = 3;
             // 
             // CompanyInsUp
             // 

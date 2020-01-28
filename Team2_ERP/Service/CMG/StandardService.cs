@@ -129,5 +129,11 @@ namespace Team2_ERP.Service.CMG
             LineDAC dac = new LineDAC();
             return dac.DeleteLine(code);
         }
+
+        public List<CompanyVO> GetAllCompany()
+        {
+            CompanyDAC dac = new CompanyDAC();
+            return dac.GetAllCompany();
+        }
     }
 }

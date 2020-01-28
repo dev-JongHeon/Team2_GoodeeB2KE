@@ -67,11 +67,13 @@
             // btnCancel
             // 
             this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.TabIndex = 7;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOK
             // 
             this.btnOK.FlatAppearance.BorderSize = 0;
+            this.btnOK.TabIndex = 6;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // txtResourceSafe
@@ -79,21 +81,21 @@
             this.txtResourceSafe.Location = new System.Drawing.Point(129, 278);
             this.txtResourceSafe.Name = "txtResourceSafe";
             this.txtResourceSafe.Size = new System.Drawing.Size(133, 21);
-            this.txtResourceSafe.TabIndex = 7;
+            this.txtResourceSafe.TabIndex = 4;
             // 
             // txtResourceMoney
             // 
             this.txtResourceMoney.Location = new System.Drawing.Point(129, 149);
             this.txtResourceMoney.Name = "txtResourceMoney";
             this.txtResourceMoney.Size = new System.Drawing.Size(133, 21);
-            this.txtResourceMoney.TabIndex = 9;
+            this.txtResourceMoney.TabIndex = 2;
             // 
             // txtResourceName
             // 
             this.txtResourceName.Location = new System.Drawing.Point(129, 27);
             this.txtResourceName.Name = "txtResourceName";
             this.txtResourceName.Size = new System.Drawing.Size(133, 21);
-            this.txtResourceName.TabIndex = 11;
+            this.txtResourceName.TabIndex = 0;
             // 
             // label5
             // 
@@ -151,14 +153,14 @@
             this.cboResourceWarehouse.Location = new System.Drawing.Point(129, 86);
             this.cboResourceWarehouse.Name = "cboResourceWarehouse";
             this.cboResourceWarehouse.Size = new System.Drawing.Size(133, 22);
-            this.cboResourceWarehouse.TabIndex = 12;
+            this.cboResourceWarehouse.TabIndex = 1;
             // 
             // numResourceNum
             // 
             this.numResourceNum.Location = new System.Drawing.Point(129, 216);
             this.numResourceNum.Name = "numResourceNum";
             this.numResourceNum.Size = new System.Drawing.Size(52, 21);
-            this.numResourceNum.TabIndex = 13;
+            this.numResourceNum.TabIndex = 3;
             // 
             // label6
             // 
@@ -176,7 +178,7 @@
             this.cboResourceCategory.Location = new System.Drawing.Point(129, 340);
             this.cboResourceCategory.Name = "cboResourceCategory";
             this.cboResourceCategory.Size = new System.Drawing.Size(133, 22);
-            this.cboResourceCategory.TabIndex = 14;
+            this.cboResourceCategory.TabIndex = 5;
             // 
             // ResourceInsUp
             // 
