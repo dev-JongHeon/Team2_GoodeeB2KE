@@ -34,7 +34,7 @@
             this.cboDefItem = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.lblProduce = new System.Windows.Forms.Label();
+            this.lblPerformance = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.cboDefectiveName = new System.Windows.Forms.ComboBox();
             this.btnDefNameSelect = new System.Windows.Forms.Button();
@@ -56,6 +56,7 @@
             this.btnSave.TabIndex = 11;
             this.btnSave.Text = "불량 등록";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // lblDefItem
             // 
@@ -78,6 +79,7 @@
             // 
             // cboDefItem
             // 
+            this.cboDefItem.BackColor = System.Drawing.Color.White;
             this.cboDefItem.FormattingEnabled = true;
             this.cboDefItem.Location = new System.Drawing.Point(22, 175);
             this.cboDefItem.Name = "cboDefItem";
@@ -104,15 +106,15 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "생산 실적 번호";
             // 
-            // lblProduce
+            // lblPerformance
             // 
-            this.lblProduce.AutoSize = true;
-            this.lblProduce.Location = new System.Drawing.Point(16, 62);
-            this.lblProduce.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.lblProduce.Name = "lblProduce";
-            this.lblProduce.Size = new System.Drawing.Size(222, 31);
-            this.lblProduce.TabIndex = 0;
-            this.lblProduce.Text = "2020010500001";
+            this.lblPerformance.AutoSize = true;
+            this.lblPerformance.Location = new System.Drawing.Point(16, 62);
+            this.lblPerformance.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblPerformance.Name = "lblPerformance";
+            this.lblPerformance.Size = new System.Drawing.Size(222, 31);
+            this.lblPerformance.TabIndex = 0;
+            this.lblPerformance.Text = "2020010500001";
             // 
             // label5
             // 
@@ -126,6 +128,7 @@
             // 
             // cboDefectiveName
             // 
+            this.cboDefectiveName.BackColor = System.Drawing.Color.White;
             this.cboDefectiveName.FormattingEnabled = true;
             this.cboDefectiveName.Location = new System.Drawing.Point(22, 335);
             this.cboDefectiveName.Name = "cboDefectiveName";
@@ -163,6 +166,7 @@
             // 
             // cboHandle
             // 
+            this.cboHandle.BackColor = System.Drawing.Color.White;
             this.cboHandle.FormattingEnabled = true;
             this.cboHandle.Location = new System.Drawing.Point(22, 493);
             this.cboHandle.Name = "cboHandle";
@@ -208,6 +212,7 @@
             this.btnSaveAs.TabIndex = 10;
             this.btnSaveAs.Text = "불량 추가 등록";
             this.btnSaveAs.UseVisualStyleBackColor = true;
+            this.btnSaveAs.Click += new System.EventHandler(this.btnSaveAs_Click);
             // 
             // DefectiveRegister
             // 
@@ -231,13 +236,14 @@
             this.Controls.Add(this.cboDefItem);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.lblProduce);
+            this.Controls.Add(this.lblPerformance);
             this.Font = new System.Drawing.Font("나눔고딕", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             this.Name = "DefectiveRegister";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "불량 품목 등록";
+            this.Load += new System.EventHandler(this.DefectiveRegister_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -251,7 +257,7 @@
         private System.Windows.Forms.ComboBox cboDefItem;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lblProduce;
+        private System.Windows.Forms.Label lblPerformance;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cboDefectiveName;
         private System.Windows.Forms.Button btnDefNameSelect;

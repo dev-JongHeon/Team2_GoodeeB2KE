@@ -30,11 +30,11 @@
         {
             this.dgv_BaljuCompleted = new System.Windows.Forms.DataGridView();
             this.dgv_BaljuDetail = new System.Windows.Forms.DataGridView();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
-            this.searchUserControl4 = new Team2_ERP.SearchUserControl();
-            this.searchUserControl3 = new Team2_ERP.SearchUserControl();
-            this.searchPeriodControl1 = new Team2_ERP.SearchPeriodControl();
+            this.dtp_ReceiptDate = new System.Windows.Forms.DateTimePicker();
+            this.Search_Company = new Team2_ERP.SearchUserControl();
+            this.Search_Employee = new Team2_ERP.SearchUserControl();
+            this.Search_Period = new Team2_ERP.SearchPeriodControl();
+            this.chk_ReceiptDate = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -64,11 +64,11 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.searchUserControl4);
-            this.panel5.Controls.Add(this.searchUserControl3);
-            this.panel5.Controls.Add(this.searchPeriodControl1);
-            this.panel5.Controls.Add(this.label3);
-            this.panel5.Controls.Add(this.dateTimePicker3);
+            this.panel5.Controls.Add(this.chk_ReceiptDate);
+            this.panel5.Controls.Add(this.Search_Company);
+            this.panel5.Controls.Add(this.Search_Employee);
+            this.panel5.Controls.Add(this.Search_Period);
+            this.panel5.Controls.Add(this.dtp_ReceiptDate);
             // 
             // lblFormName
             // 
@@ -97,55 +97,57 @@
             this.dgv_BaljuDetail.Size = new System.Drawing.Size(1364, 290);
             this.dgv_BaljuDetail.TabIndex = 3;
             // 
-            // label3
+            // dtp_ReceiptDate
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.Location = new System.Drawing.Point(456, 13);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 15);
-            this.label3.TabIndex = 73;
-            this.label3.Text = "수령일";
+            this.dtp_ReceiptDate.Enabled = false;
+            this.dtp_ReceiptDate.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.dtp_ReceiptDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtp_ReceiptDate.Location = new System.Drawing.Point(552, 9);
+            this.dtp_ReceiptDate.Name = "dtp_ReceiptDate";
+            this.dtp_ReceiptDate.Size = new System.Drawing.Size(111, 22);
+            this.dtp_ReceiptDate.TabIndex = 75;
             // 
-            // dateTimePicker3
+            // Search_Company
             // 
-            this.dateTimePicker3.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker3.Location = new System.Drawing.Point(526, 9);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(111, 22);
-            this.dateTimePicker3.TabIndex = 75;
+            this.Search_Company.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.Search_Company.ControlType = Team2_ERP.SearchUserControl.Mode.Company;
+            this.Search_Company.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Search_Company.Labelname = "회사";
+            this.Search_Company.Location = new System.Drawing.Point(89, 38);
+            this.Search_Company.Name = "Search_Company";
+            this.Search_Company.Size = new System.Drawing.Size(312, 25);
+            this.Search_Company.TabIndex = 84;
             // 
-            // searchUserControl4
+            // Search_Employee
             // 
-            this.searchUserControl4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl4.ControlType = Team2_ERP.SearchUserControl.Mode.Company;
-            this.searchUserControl4.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl4.Labelname = "회사";
-            this.searchUserControl4.Location = new System.Drawing.Point(89, 38);
-            this.searchUserControl4.Name = "searchUserControl4";
-            this.searchUserControl4.Size = new System.Drawing.Size(312, 25);
-            this.searchUserControl4.TabIndex = 84;
+            this.Search_Employee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.Search_Employee.ControlType = Team2_ERP.SearchUserControl.Mode.Employee;
+            this.Search_Employee.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Search_Employee.Labelname = "사원";
+            this.Search_Employee.Location = new System.Drawing.Point(89, 6);
+            this.Search_Employee.Name = "Search_Employee";
+            this.Search_Employee.Size = new System.Drawing.Size(312, 25);
+            this.Search_Employee.TabIndex = 83;
             // 
-            // searchUserControl3
+            // Search_Period
             // 
-            this.searchUserControl3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl3.ControlType = Team2_ERP.SearchUserControl.Mode.Company;
-            this.searchUserControl3.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl3.Labelname = "작업자";
-            this.searchUserControl3.Location = new System.Drawing.Point(89, 6);
-            this.searchUserControl3.Name = "searchUserControl3";
-            this.searchUserControl3.Size = new System.Drawing.Size(312, 25);
-            this.searchUserControl3.TabIndex = 83;
+            this.Search_Period.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Search_Period.Labelname = "기간 선택";
+            this.Search_Period.Location = new System.Drawing.Point(89, 69);
+            this.Search_Period.Name = "Search_Period";
+            this.Search_Period.Size = new System.Drawing.Size(312, 26);
+            this.Search_Period.TabIndex = 81;
             // 
-            // searchPeriodControl1
+            // chk_ReceiptDate
             // 
-            this.searchPeriodControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchPeriodControl1.Labelname = "기간 선택";
-            this.searchPeriodControl1.Location = new System.Drawing.Point(89, 69);
-            this.searchPeriodControl1.Name = "searchPeriodControl1";
-            this.searchPeriodControl1.Size = new System.Drawing.Size(312, 26);
-            this.searchPeriodControl1.TabIndex = 81;
+            this.chk_ReceiptDate.AutoSize = true;
+            this.chk_ReceiptDate.Location = new System.Drawing.Point(475, 11);
+            this.chk_ReceiptDate.Name = "chk_ReceiptDate";
+            this.chk_ReceiptDate.Size = new System.Drawing.Size(59, 18);
+            this.chk_ReceiptDate.TabIndex = 86;
+            this.chk_ReceiptDate.Text = "수령일";
+            this.chk_ReceiptDate.UseVisualStyleBackColor = true;
+            this.chk_ReceiptDate.CheckedChanged += new System.EventHandler(this.chk_ReceiptDate_CheckedChanged);
             // 
             // BaljuList_Completed
             // 
@@ -153,6 +155,8 @@
             this.ClientSize = new System.Drawing.Size(1364, 820);
             this.FormName = "발주완료현황";
             this.Name = "BaljuList_Completed";
+            this.Activated += new System.EventHandler(this.BaljuList_Completed_Activated);
+            this.Deactivate += new System.EventHandler(this.BaljuList_Completed_Deactivate);
             this.Load += new System.EventHandler(this.BaljuList_Completed_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -177,10 +181,10 @@
 
         private System.Windows.Forms.DataGridView dgv_BaljuCompleted;
         private System.Windows.Forms.DataGridView dgv_BaljuDetail;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
-        private SearchUserControl searchUserControl4;
-        private SearchUserControl searchUserControl3;
-        private SearchPeriodControl searchPeriodControl1;
+        private System.Windows.Forms.DateTimePicker dtp_ReceiptDate;
+        private SearchUserControl Search_Company;
+        private SearchUserControl Search_Employee;
+        private SearchPeriodControl Search_Period;
+        private System.Windows.Forms.CheckBox chk_ReceiptDate;
     }
 }

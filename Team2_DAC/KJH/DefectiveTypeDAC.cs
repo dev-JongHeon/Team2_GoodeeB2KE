@@ -37,5 +37,54 @@ namespace Team2_DAC
                 throw new Exception(err.Message);
             }
         }
+
+        public bool UpdateDefectiveType(DefectiveTypeVO item)
+        {
+            try
+            {
+                string sql = "UpdateDefectiveType";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    
+                    cmd.Parameters.AddWithValue("@DefecID", item.DefecID);
+                    cmd.Parameters.AddWithValue("@DefecName", item.DefecName);
+                    cmd.Parameters.AddWithValue("@DefecExplain", item.DefecExplain);
+                    conn.Open();
+                    int result = cmd.ExecuteNonQuery();
+                    conn.Close();
+                    return result > 0;
+                }
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+        }
+
+        public bool DeleteDefectiveType(string id)
+        {
+            try
+            {
+                string sql = "DeleteDefectiveType";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@DefecID", id);
+                    
+                    conn.Open();
+                    int result = cmd.ExecuteNonQuery();
+                    conn.Close();
+                    return result > 0;
+                }
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+        }
     }
 }

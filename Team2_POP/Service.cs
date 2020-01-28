@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Team2_VO;
 using Team2_DAC;
+using System.Data;
 
 namespace Team2_POP
 {
@@ -61,6 +62,22 @@ namespace Team2_POP
         public void EndProduce(string performanceID)
         {
             new POPDAC().EndProduce(performanceID);
+        }
+
+        public DataTable GetDefectiveCode()
+        {
+            return new POPDAC().GetDefectiveCode();
+        }
+
+        public List<string> GetDefective(string performanceID)
+        {
+            return new POPDAC().GetDefective(performanceID);
+        }
+
+        public bool SetDefective(string defectiveID, string handleCode, string defecCode)
+        {
+            return new POPDAC().SetDefective(defectiveID, handleCode, defecCode);
+
         }
     }
 }

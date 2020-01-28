@@ -31,10 +31,10 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnOK = new System.Windows.Forms.Button();
+            this.txtSearch = new Team2_ERP.PlaceHolderTextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgvSearch = new System.Windows.Forms.DataGridView();
-            this.txtSearch = new Team2_ERP.PlaceHolderTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -90,6 +90,17 @@
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
+            // txtSearch
+            // 
+            this.txtSearch.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Italic);
+            this.txtSearch.ForeColor = System.Drawing.Color.Gray;
+            this.txtSearch.Location = new System.Drawing.Point(24, 21);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.PlaceHolderText = "";
+            this.txtSearch.Size = new System.Drawing.Size(224, 21);
+            this.txtSearch.TabIndex = 3;
+            this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
+            // 
             // btnSearch
             // 
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -123,17 +134,6 @@
             this.dgvSearch.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSearch_CellDoubleClick);
             this.dgvSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvSearch_KeyPress);
             // 
-            // txtSearch
-            // 
-            this.txtSearch.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Italic);
-            this.txtSearch.ForeColor = System.Drawing.Color.Gray;
-            this.txtSearch.Location = new System.Drawing.Point(24, 21);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.PlaceHolderText = "";
-            this.txtSearch.Size = new System.Drawing.Size(224, 21);
-            this.txtSearch.TabIndex = 3;
-            this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
-            // 
             // SearchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -145,6 +145,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SearchForm";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "검색";
             this.Load += new System.EventHandler(this.SearchForm_Load);

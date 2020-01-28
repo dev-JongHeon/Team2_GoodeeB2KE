@@ -119,7 +119,7 @@
             this.Search_Employee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
             this.Search_Employee.ControlType = Team2_ERP.SearchUserControl.Mode.Employee;
             this.Search_Employee.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Search_Employee.Labelname = "작업자";
+            this.Search_Employee.Labelname = "사원";
             this.Search_Employee.Location = new System.Drawing.Point(92, 39);
             this.Search_Employee.Name = "Search_Employee";
             this.Search_Employee.Size = new System.Drawing.Size(312, 25);
@@ -132,6 +132,8 @@
             this.FormName = "발주현황";
             this.Name = "BaljuList";
             this.Text = "발주현황";
+            this.Activated += new System.EventHandler(this.BaljuList_Activated);
+            this.Deactivate += new System.EventHandler(this.BaljuList_Deactivate);
             this.Load += new System.EventHandler(this.BaljuList_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
