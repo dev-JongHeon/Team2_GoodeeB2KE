@@ -42,29 +42,6 @@ namespace Team2_ERP
 
         private void InitCombo()
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add(new DataColumn("LName", typeof(string)));
-            dt.Columns.Add(new DataColumn("Value", typeof(int)));
-
-            DataRow dr = dt.NewRow();
-            dr["LName"] = "선택";
-            dr["Value"] = 0;
-            dt.Rows.Add(dr);
-
-            dr = dt.NewRow();
-            dr["LName"] = "가동";
-            dr["Value"] = 0;
-            dt.Rows.Add(dr);
-
-            dr = dt.NewRow();
-            dr["LName"] = "비가동";
-            dr["Value"] = 1;
-            dt.Rows.Add(dr);
-
-            cboDownTime.DataSource = dt;
-            cboDownTime.DisplayMember = "LName";
-            cboDownTime.ValueMember = "Value";
-
             StandardService service = new StandardService();
             List<ComboItemVO> factoryList = service.GetComboFactory();
             UtilClass.ComboBinding(cboFactoryName, factoryList, "선택");
@@ -75,8 +52,7 @@ namespace Team2_ERP
             LineVO item = new LineVO
             {
                 Line_Name = txtLineName.Text,
-                Factory_ID = Convert.ToInt32(cboFactoryName.SelectedValue),
-                Line_Downtime = Convert.ToInt32(cboDownTime.SelectedValue)
+                Factory_ID = Convert.ToInt32(cboFactoryName.SelectedValue)
             };
 
             StandardService service = new StandardService();
@@ -89,8 +65,7 @@ namespace Team2_ERP
             {
                 Line_ID = code,
                 Line_Name = txtLineName.Text,
-                Factory_ID = Convert.ToInt32(cboFactoryName.SelectedValue),
-                Line_Downtime = Convert.ToInt32(cboDownTime.SelectedValue)
+                Factory_ID = Convert.ToInt32(cboFactoryName.SelectedValue)
             };
 
             StandardService service = new StandardService();

@@ -60,11 +60,13 @@
             // btnCancel
             // 
             this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.TabIndex = 6;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOK
             // 
             this.btnOK.FlatAppearance.BorderSize = 0;
+            this.btnOK.TabIndex = 5;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // label2
@@ -111,21 +113,21 @@
             this.txtFactoryName.Location = new System.Drawing.Point(110, 35);
             this.txtFactoryName.Name = "txtFactoryName";
             this.txtFactoryName.Size = new System.Drawing.Size(133, 21);
-            this.txtFactoryName.TabIndex = 1;
+            this.txtFactoryName.TabIndex = 0;
             // 
             // txtFactoryNumber
             // 
             this.txtFactoryNumber.Location = new System.Drawing.Point(110, 147);
             this.txtFactoryNumber.Name = "txtFactoryNumber";
             this.txtFactoryNumber.Size = new System.Drawing.Size(133, 21);
-            this.txtFactoryNumber.TabIndex = 1;
+            this.txtFactoryNumber.TabIndex = 2;
             // 
             // txtFactoryFaxNumber
             // 
             this.txtFactoryFaxNumber.Location = new System.Drawing.Point(110, 205);
             this.txtFactoryFaxNumber.Name = "txtFactoryFaxNumber";
             this.txtFactoryFaxNumber.Size = new System.Drawing.Size(133, 21);
-            this.txtFactoryFaxNumber.TabIndex = 1;
+            this.txtFactoryFaxNumber.TabIndex = 3;
             // 
             // addressControl1
             // 
@@ -134,7 +136,7 @@
             this.addressControl1.Location = new System.Drawing.Point(36, 260);
             this.addressControl1.Name = "addressControl1";
             this.addressControl1.Size = new System.Drawing.Size(505, 106);
-            this.addressControl1.TabIndex = 2;
+            this.addressControl1.TabIndex = 4;
             // 
             // cboFactoryDivision
             // 
@@ -142,7 +144,7 @@
             this.cboFactoryDivision.Location = new System.Drawing.Point(110, 92);
             this.cboFactoryDivision.Name = "cboFactoryDivision";
             this.cboFactoryDivision.Size = new System.Drawing.Size(133, 22);
-            this.cboFactoryDivision.TabIndex = 3;
+            this.cboFactoryDivision.TabIndex = 1;
             // 
             // FactoryInsUp
             // 

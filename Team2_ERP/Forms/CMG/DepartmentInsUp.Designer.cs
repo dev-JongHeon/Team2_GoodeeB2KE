@@ -50,7 +50,7 @@
             // 
             // panel3
             // 
-            this.panel3.Location = new System.Drawing.Point(439, 0);
+            this.panel3.Location = new System.Drawing.Point(437, 0);
             // 
             // panel5
             // 
@@ -73,12 +73,14 @@
             // 
             this.btnCancel.FlatAppearance.BorderSize = 0;
             this.btnCancel.Location = new System.Drawing.Point(366, 3);
+            this.btnCancel.TabIndex = 3;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOK
             // 
             this.btnOK.FlatAppearance.BorderSize = 0;
             this.btnOK.Location = new System.Drawing.Point(169, 3);
+            this.btnOK.TabIndex = 2;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // label2
@@ -105,14 +107,14 @@
             this.txtContext.Multiline = true;
             this.txtContext.Name = "txtContext";
             this.txtContext.Size = new System.Drawing.Size(390, 137);
-            this.txtContext.TabIndex = 8;
+            this.txtContext.TabIndex = 1;
             // 
             // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(119, 42);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(143, 21);
-            this.txtName.TabIndex = 9;
+            this.txtName.TabIndex = 0;
             // 
             // DepartmentInsUp
             // 

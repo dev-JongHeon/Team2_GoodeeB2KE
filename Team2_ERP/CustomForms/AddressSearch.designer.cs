@@ -67,11 +67,13 @@
             // btnCancel
             // 
             this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.TabIndex = 11;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOK
             // 
             this.btnOK.FlatAppearance.BorderSize = 0;
+            this.btnOK.TabIndex = 10;
             // 
             // panel6
             // 
@@ -81,7 +83,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(0, 0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(798, 70);
+            this.panel6.Size = new System.Drawing.Size(796, 70);
             this.panel6.TabIndex = 0;
             // 
             // btnSearch
@@ -89,7 +91,7 @@
             this.btnSearch.Location = new System.Drawing.Point(443, 26);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 5;
+            this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "검색";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -99,7 +101,7 @@
             this.txtSearch.Location = new System.Drawing.Point(170, 26);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(256, 21);
-            this.txtSearch.TabIndex = 4;
+            this.txtSearch.TabIndex = 0;
             this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
             // 
             // label1
@@ -118,9 +120,9 @@
             this.panel7.Controls.Add(this.txtJibunAddr1);
             this.panel7.Controls.Add(this.btnJibun);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel7.Location = new System.Drawing.Point(0, 331);
+            this.panel7.Location = new System.Drawing.Point(0, 329);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(798, 78);
+            this.panel7.Size = new System.Drawing.Size(796, 78);
             this.panel7.TabIndex = 1;
             // 
             // txtJibunAddr2
@@ -128,28 +130,28 @@
             this.txtJibunAddr2.Location = new System.Drawing.Point(222, 44);
             this.txtJibunAddr2.Name = "txtJibunAddr2";
             this.txtJibunAddr2.Size = new System.Drawing.Size(289, 21);
-            this.txtJibunAddr2.TabIndex = 9;
+            this.txtJibunAddr2.TabIndex = 8;
             // 
             // txtJibunZipCode
             // 
             this.txtJibunZipCode.Location = new System.Drawing.Point(115, 44);
             this.txtJibunZipCode.Name = "txtJibunZipCode";
             this.txtJibunZipCode.Size = new System.Drawing.Size(100, 21);
-            this.txtJibunZipCode.TabIndex = 10;
+            this.txtJibunZipCode.TabIndex = 7;
             // 
             // txtJibunAddr1
             // 
             this.txtJibunAddr1.Location = new System.Drawing.Point(116, 17);
             this.txtJibunAddr1.Name = "txtJibunAddr1";
             this.txtJibunAddr1.Size = new System.Drawing.Size(395, 21);
-            this.txtJibunAddr1.TabIndex = 8;
+            this.txtJibunAddr1.TabIndex = 6;
             // 
             // btnJibun
             // 
             this.btnJibun.Location = new System.Drawing.Point(50, 17);
             this.btnJibun.Name = "btnJibun";
             this.btnJibun.Size = new System.Drawing.Size(59, 48);
-            this.btnJibun.TabIndex = 7;
+            this.btnJibun.TabIndex = 9;
             this.btnJibun.Text = "지번주소 확인";
             this.btnJibun.UseVisualStyleBackColor = true;
             this.btnJibun.Click += new System.EventHandler(this.btnJibun_Click);
@@ -161,9 +163,9 @@
             this.panel8.Controls.Add(this.txtLoadaddr1);
             this.panel8.Controls.Add(this.btnLoad);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel8.Location = new System.Drawing.Point(0, 252);
+            this.panel8.Location = new System.Drawing.Point(0, 250);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(798, 79);
+            this.panel8.Size = new System.Drawing.Size(796, 79);
             this.panel8.TabIndex = 2;
             // 
             // txtLoadAddr2
@@ -171,28 +173,28 @@
             this.txtLoadAddr2.Location = new System.Drawing.Point(233, 42);
             this.txtLoadAddr2.Name = "txtLoadAddr2";
             this.txtLoadAddr2.Size = new System.Drawing.Size(289, 21);
-            this.txtLoadAddr2.TabIndex = 9;
+            this.txtLoadAddr2.TabIndex = 4;
             // 
             // txtLoadZipCode
             // 
             this.txtLoadZipCode.Location = new System.Drawing.Point(127, 43);
             this.txtLoadZipCode.Name = "txtLoadZipCode";
             this.txtLoadZipCode.Size = new System.Drawing.Size(100, 21);
-            this.txtLoadZipCode.TabIndex = 10;
+            this.txtLoadZipCode.TabIndex = 3;
             // 
             // txtLoadaddr1
             // 
             this.txtLoadaddr1.Location = new System.Drawing.Point(127, 15);
             this.txtLoadaddr1.Name = "txtLoadaddr1";
             this.txtLoadaddr1.Size = new System.Drawing.Size(395, 21);
-            this.txtLoadaddr1.TabIndex = 8;
+            this.txtLoadaddr1.TabIndex = 2;
             // 
             // btnLoad
             // 
             this.btnLoad.Location = new System.Drawing.Point(50, 15);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(70, 49);
-            this.btnLoad.TabIndex = 7;
+            this.btnLoad.TabIndex = 5;
             this.btnLoad.Text = "도로명주소 확인";
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
@@ -203,7 +205,7 @@
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel9.Location = new System.Drawing.Point(0, 70);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(798, 182);
+            this.panel9.Size = new System.Drawing.Size(796, 180);
             this.panel9.TabIndex = 3;
             // 
             // dataGridView1
@@ -214,7 +216,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(798, 182);
+            this.dataGridView1.Size = new System.Drawing.Size(796, 180);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 

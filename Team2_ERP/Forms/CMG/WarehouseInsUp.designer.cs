@@ -60,11 +60,13 @@
             // btnCancel
             // 
             this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.TabIndex = 6;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOK
             // 
             this.btnOK.FlatAppearance.BorderSize = 0;
+            this.btnOK.TabIndex = 5;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // label2
@@ -110,21 +112,21 @@
             this.txtWarehouseName.Location = new System.Drawing.Point(125, 27);
             this.txtWarehouseName.Name = "txtWarehouseName";
             this.txtWarehouseName.Size = new System.Drawing.Size(143, 21);
-            this.txtWarehouseName.TabIndex = 1;
+            this.txtWarehouseName.TabIndex = 0;
             // 
             // txtWarehouseNumber
             // 
             this.txtWarehouseNumber.Location = new System.Drawing.Point(125, 139);
             this.txtWarehouseNumber.Name = "txtWarehouseNumber";
             this.txtWarehouseNumber.Size = new System.Drawing.Size(143, 21);
-            this.txtWarehouseNumber.TabIndex = 1;
+            this.txtWarehouseNumber.TabIndex = 2;
             // 
             // txtWarehouseFaxNumber
             // 
             this.txtWarehouseFaxNumber.Location = new System.Drawing.Point(125, 197);
             this.txtWarehouseFaxNumber.Name = "txtWarehouseFaxNumber";
             this.txtWarehouseFaxNumber.Size = new System.Drawing.Size(143, 21);
-            this.txtWarehouseFaxNumber.TabIndex = 1;
+            this.txtWarehouseFaxNumber.TabIndex = 3;
             // 
             // addressControl1
             // 
@@ -133,7 +135,7 @@
             this.addressControl1.Location = new System.Drawing.Point(51, 242);
             this.addressControl1.Name = "addressControl1";
             this.addressControl1.Size = new System.Drawing.Size(505, 106);
-            this.addressControl1.TabIndex = 2;
+            this.addressControl1.TabIndex = 4;
             // 
             // cboWarehouseDivision
             // 
@@ -141,7 +143,7 @@
             this.cboWarehouseDivision.Location = new System.Drawing.Point(125, 81);
             this.cboWarehouseDivision.Name = "cboWarehouseDivision";
             this.cboWarehouseDivision.Size = new System.Drawing.Size(143, 22);
-            this.cboWarehouseDivision.TabIndex = 3;
+            this.cboWarehouseDivision.TabIndex = 1;
             // 
             // WarehouseInsUp
             // 

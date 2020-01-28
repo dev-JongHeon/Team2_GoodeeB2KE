@@ -101,9 +101,9 @@ namespace Team2_ERP
 
         public override void MenuStripONOFF(bool flag)
         {
-            ((MainForm)MdiParent).신규ToolStripMenuItem.Visible = flag;
-            ((MainForm)MdiParent).수정ToolStripMenuItem.Visible = flag;
-            ((MainForm)MdiParent).삭제ToolStripMenuItem.Visible = flag;
+            ((MainForm)MdiParent).신규ToolStripMenuItem.Visible = false;
+            ((MainForm)MdiParent).수정ToolStripMenuItem.Visible = false;
+            ((MainForm)MdiParent).삭제ToolStripMenuItem.Visible = false;
             ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = false;
         }
     }

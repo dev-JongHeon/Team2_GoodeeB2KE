@@ -103,7 +103,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(422, 21);
-            this.textBox2.TabIndex = 22;
+            this.textBox2.TabIndex = 2;
             // 
             // panel6
             // 
@@ -121,7 +121,7 @@
             this.button1.Location = new System.Drawing.Point(164, 5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 27);
-            this.button1.TabIndex = 26;
+            this.button1.TabIndex = 1;
             this.button1.Text = "주소검색";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -133,7 +133,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(125, 21);
-            this.textBox1.TabIndex = 25;
+            this.textBox1.TabIndex = 0;
             // 
             // panel5
             // 
@@ -150,7 +150,7 @@
             this.textBox3.Location = new System.Drawing.Point(16, 6);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(422, 21);
-            this.textBox3.TabIndex = 26;
+            this.textBox3.TabIndex = 3;
             // 
             // panel2
             // 
