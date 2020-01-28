@@ -15,7 +15,9 @@ namespace Team2_ERP
     public partial class BaljuList : Base2Dgv
     {
         BaljuService service = new BaljuService();
-        List<BaljuDetail> BaljuDetail_AllList = null;
+        List<BaljuDetail> BaljuDetail_AllList = null;  // 발주디테일 List
+        List<Balju> Balju_AllList = null;  // 발주 List
+        List<Balju> Balju_SearchList = null;  // 검색용 List
 
         public BaljuList()
         {
@@ -41,12 +43,8 @@ namespace Team2_ERP
             dgv_Balju.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             dgv_Balju.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             dgv_Balju.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dgv_Balju.DataSource = service.GetBaljuList(); // 발주리스트 갱신
-
-
-
-
-            dgv_Balju.RowHeadersVisible = false;
+            Balju_AllList = service.GetBaljuList();  // 발주리스트 갱신
+            dgv_Balju.DataSource = Balju_AllList; 
 
             UtilClass.SettingDgv(dgv_BaljuDetail);
             UtilClass.AddNewColum(dgv_BaljuDetail, "발주지시번호", "Balju_ID", true);
@@ -68,6 +66,20 @@ namespace Team2_ERP
                                                   where list_detail.Balju_ID == Balju_ID
                                                   select list_detail).ToList();
             dgv_BaljuDetail.DataSource = BaljuDetail_List;
+        }
+
+        private void Search()
+        {
+            if (!Search_Company.CodeTextBox.Tag.Equals("")) // Tag값 존재하면 = 검색조건 들어가 있으면
+            {
+                Balju_SearchList = (from item in Balju_AllList
+                                    where item.Company_Name == Search_Company.CodeTextBox.Text
+                                    select item).ToList();
+            }
+            if (true)
+            {
+
+            }
         }
     }
 }

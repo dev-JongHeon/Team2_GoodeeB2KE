@@ -52,9 +52,31 @@ namespace Team2_ERP
 
             // LINQ로 원자재창고에 속한것만 가져옴
             List<StockReceipt> StockReceipt_list = (from list_Stock in StockReceipt_AllList
-                                             where list_Stock.Warehouse_Division == false
-                                             select list_Stock).ToList();
+                                                    where list_Stock.Warehouse_Division == false
+                                                    select list_Stock).ToList();
             dgv_Stock.DataSource = StockReceipt_list;
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e) // 라디오버튼 체크상황 별 검색조건
+        {
+            if (rdo_All.Checked)
+            {
+                dgv_Stock.DataSource = (from list_Stock in StockReceipt_AllList
+                                        where list_Stock.Warehouse_Division == false
+                                        select list_Stock).ToList();
+            }
+            else if (rdo_In.Checked)
+            {
+                dgv_Stock.DataSource = (from list_Stock in StockReceipt_AllList
+                                        where list_Stock.Warehouse_Division == false && list_Stock.StockReceipt_Division1 == "입고"
+                                        select list_Stock).ToList();
+            }
+            else if (rdo_Out.Checked)
+            {
+                dgv_Stock.DataSource = (from list_Stock in StockReceipt_AllList
+                                        where list_Stock.Warehouse_Division == false && list_Stock.StockReceipt_Division1 == "출고"
+                                        select list_Stock).ToList();
+            }
         }
     }
 }

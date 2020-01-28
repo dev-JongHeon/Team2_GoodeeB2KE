@@ -29,11 +29,10 @@
         private void InitializeComponent()
         {
             this.dgv_Balju = new System.Windows.Forms.DataGridView();
-            this.searchUserControl1 = new Team2_ERP.SearchUserControl();
-            this.searchPeriodControl1 = new Team2_ERP.SearchPeriodControl();
-            this.searchUserControl4 = new Team2_ERP.SearchUserControl();
+            this.Search_Period = new Team2_ERP.SearchPeriodControl();
+            this.Search_Company = new Team2_ERP.SearchUserControl();
             this.dgv_BaljuDetail = new System.Windows.Forms.DataGridView();
-            this.searchUserControl2 = new Team2_ERP.SearchUserControl();
+            this.Search_Employee = new Team2_ERP.SearchUserControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -63,10 +62,9 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.searchUserControl2);
-            this.panel5.Controls.Add(this.searchUserControl4);
-            this.panel5.Controls.Add(this.searchUserControl1);
-            this.panel5.Controls.Add(this.searchPeriodControl1);
+            this.panel5.Controls.Add(this.Search_Employee);
+            this.panel5.Controls.Add(this.Search_Company);
+            this.panel5.Controls.Add(this.Search_Period);
             // 
             // lblFormName
             // 
@@ -84,36 +82,26 @@
             this.dgv_Balju.TabIndex = 2;
             this.dgv_Balju.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Balju_CellDoubleClick);
             // 
-            // searchUserControl1
+            // Search_Period
             // 
-            this.searchUserControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl1.ControlType = Team2_ERP.SearchUserControl.Mode.Meterial;
-            this.searchUserControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl1.Labelname = "원자재";
-            this.searchUserControl1.Location = new System.Drawing.Point(92, 39);
-            this.searchUserControl1.Name = "searchUserControl1";
-            this.searchUserControl1.Size = new System.Drawing.Size(312, 25);
-            this.searchUserControl1.TabIndex = 77;
+            this.Search_Period.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Search_Period.Labelname = "기간 선택";
+            this.Search_Period.Location = new System.Drawing.Point(92, 70);
+            this.Search_Period.Name = "Search_Period";
+            this.Search_Period.Size = new System.Drawing.Size(312, 26);
+            this.Search_Period.TabIndex = 76;
+            this.Search_Period.UseWaitCursor = true;
             // 
-            // searchPeriodControl1
+            // Search_Company
             // 
-            this.searchPeriodControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchPeriodControl1.Labelname = "기간 선택";
-            this.searchPeriodControl1.Location = new System.Drawing.Point(92, 70);
-            this.searchPeriodControl1.Name = "searchPeriodControl1";
-            this.searchPeriodControl1.Size = new System.Drawing.Size(312, 26);
-            this.searchPeriodControl1.TabIndex = 76;
-            // 
-            // searchUserControl4
-            // 
-            this.searchUserControl4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl4.ControlType = Team2_ERP.SearchUserControl.Mode.Company;
-            this.searchUserControl4.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl4.Labelname = "회사";
-            this.searchUserControl4.Location = new System.Drawing.Point(92, 8);
-            this.searchUserControl4.Name = "searchUserControl4";
-            this.searchUserControl4.Size = new System.Drawing.Size(312, 25);
-            this.searchUserControl4.TabIndex = 80;
+            this.Search_Company.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.Search_Company.ControlType = Team2_ERP.SearchUserControl.Mode.Company;
+            this.Search_Company.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Search_Company.Labelname = "회사";
+            this.Search_Company.Location = new System.Drawing.Point(92, 8);
+            this.Search_Company.Name = "Search_Company";
+            this.Search_Company.Size = new System.Drawing.Size(312, 25);
+            this.Search_Company.TabIndex = 80;
             // 
             // dgv_BaljuDetail
             // 
@@ -126,16 +114,16 @@
             this.dgv_BaljuDetail.Size = new System.Drawing.Size(1364, 290);
             this.dgv_BaljuDetail.TabIndex = 1;
             // 
-            // searchUserControl2
+            // Search_Employee
             // 
-            this.searchUserControl2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl2.ControlType = Team2_ERP.SearchUserControl.Mode.Employee;
-            this.searchUserControl2.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl2.Labelname = "작업자";
-            this.searchUserControl2.Location = new System.Drawing.Point(452, 8);
-            this.searchUserControl2.Name = "searchUserControl2";
-            this.searchUserControl2.Size = new System.Drawing.Size(312, 25);
-            this.searchUserControl2.TabIndex = 81;
+            this.Search_Employee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.Search_Employee.ControlType = Team2_ERP.SearchUserControl.Mode.Employee;
+            this.Search_Employee.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Search_Employee.Labelname = "작업자";
+            this.Search_Employee.Location = new System.Drawing.Point(92, 39);
+            this.Search_Employee.Name = "Search_Employee";
+            this.Search_Employee.Size = new System.Drawing.Size(312, 25);
+            this.Search_Employee.TabIndex = 81;
             // 
             // BaljuList
             // 
@@ -166,10 +154,9 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgv_Balju;
-        private SearchUserControl searchUserControl1;
-        private SearchPeriodControl searchPeriodControl1;
-        private SearchUserControl searchUserControl4;
+        private SearchPeriodControl Search_Period;
+        private SearchUserControl Search_Company;
         private System.Windows.Forms.DataGridView dgv_BaljuDetail;
-        private SearchUserControl searchUserControl2;
+        private SearchUserControl Search_Employee;
     }
 }

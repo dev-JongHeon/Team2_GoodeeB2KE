@@ -26,7 +26,7 @@ namespace Team2_ERP
             UtilClass.SettingDgv(dgv_StockStatus);
             UtilClass.AddNewColum(dgv_StockStatus, "품번", "Product_ID", true);
             UtilClass.AddNewColum(dgv_StockStatus, "품명", "Product_Name", true);
-            UtilClass.AddNewColum(dgv_StockStatus, "카테고리", "Product_Category", true);
+            UtilClass.AddNewColum(dgv_StockStatus, "카테고리", "CodeTable_CodeName", true);
             UtilClass.AddNewColum(dgv_StockStatus, "창고코드", "Warehouse_ID", true);
             UtilClass.AddNewColum(dgv_StockStatus, "창고명", "Warehouse_Name", true);
             UtilClass.AddNewColum(dgv_StockStatus, "단가", "Product_Price", true);

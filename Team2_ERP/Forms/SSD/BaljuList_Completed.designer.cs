@@ -34,7 +34,6 @@
             this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
             this.searchUserControl4 = new Team2_ERP.SearchUserControl();
             this.searchUserControl3 = new Team2_ERP.SearchUserControl();
-            this.searchUserControl1 = new Team2_ERP.SearchUserControl();
             this.searchPeriodControl1 = new Team2_ERP.SearchPeriodControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -67,7 +66,6 @@
             // 
             this.panel5.Controls.Add(this.searchUserControl4);
             this.panel5.Controls.Add(this.searchUserControl3);
-            this.panel5.Controls.Add(this.searchUserControl1);
             this.panel5.Controls.Add(this.searchPeriodControl1);
             this.panel5.Controls.Add(this.label3);
             this.panel5.Controls.Add(this.dateTimePicker3);
@@ -103,7 +101,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.Location = new System.Drawing.Point(454, 39);
+            this.label3.Location = new System.Drawing.Point(456, 13);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 15);
             this.label3.TabIndex = 73;
@@ -113,7 +111,7 @@
             // 
             this.dateTimePicker3.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker3.Location = new System.Drawing.Point(524, 35);
+            this.dateTimePicker3.Location = new System.Drawing.Point(526, 9);
             this.dateTimePicker3.Name = "dateTimePicker3";
             this.dateTimePicker3.Size = new System.Drawing.Size(111, 22);
             this.dateTimePicker3.TabIndex = 75;
@@ -140,22 +138,11 @@
             this.searchUserControl3.Size = new System.Drawing.Size(312, 25);
             this.searchUserControl3.TabIndex = 83;
             // 
-            // searchUserControl1
-            // 
-            this.searchUserControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl1.ControlType = Team2_ERP.SearchUserControl.Mode.Meterial;
-            this.searchUserControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl1.Labelname = "원자재";
-            this.searchUserControl1.Location = new System.Drawing.Point(89, 69);
-            this.searchUserControl1.Name = "searchUserControl1";
-            this.searchUserControl1.Size = new System.Drawing.Size(312, 25);
-            this.searchUserControl1.TabIndex = 82;
-            // 
             // searchPeriodControl1
             // 
             this.searchPeriodControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.searchPeriodControl1.Labelname = "기간 선택";
-            this.searchPeriodControl1.Location = new System.Drawing.Point(441, 6);
+            this.searchPeriodControl1.Location = new System.Drawing.Point(89, 69);
             this.searchPeriodControl1.Name = "searchPeriodControl1";
             this.searchPeriodControl1.Size = new System.Drawing.Size(312, 26);
             this.searchPeriodControl1.TabIndex = 81;
@@ -194,7 +181,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker3;
         private SearchUserControl searchUserControl4;
         private SearchUserControl searchUserControl3;
-        private SearchUserControl searchUserControl1;
         private SearchPeriodControl searchPeriodControl1;
     }
 }
