@@ -8,8 +8,8 @@ namespace Team2_VO
 {
     public class DefectiveTypeVO
     {
-        public string ID { get; set; }
-        public string Name { get; set; }
-        public string Explain { get; set; }
+        public string DefecID { get; set; }
+        public string DefecName { get; set; }
+        public string DefecExplain { get; set; }
     }
 }

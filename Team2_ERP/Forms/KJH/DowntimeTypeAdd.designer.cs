@@ -93,6 +93,7 @@
             // 
             this.btnOK.FlatAppearance.BorderSize = 0;
             this.btnOK.Location = new System.Drawing.Point(35, 3);
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // label2
             // 
@@ -110,7 +111,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(0, 0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(283, 35);
+            this.panel6.Size = new System.Drawing.Size(281, 35);
             this.panel6.TabIndex = 9;
             // 
             // label1

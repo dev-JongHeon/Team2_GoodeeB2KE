@@ -15,5 +15,17 @@ namespace Team2_ERP
             DefectiveTypeDAC dac = new DefectiveTypeDAC();
             return dac.GetAllDefectiveTypes();
         }
+
+        public bool UpdateDefectiveType(DefectiveTypeVO item)
+        {
+            DefectiveTypeDAC dac = new DefectiveTypeDAC();
+            return dac.UpdateDefectiveType(item);
+        }
+
+        public bool DeleteDefectiveType(string id)
+        {
+            DefectiveTypeDAC dac = new DefectiveTypeDAC();
+            return dac.DeleteDefectiveType(id);
+        }
     }
 }

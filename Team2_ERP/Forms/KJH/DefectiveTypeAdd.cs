@@ -19,7 +19,7 @@ namespace Team2_ERP
             InitializeComponent();
         }
 
-        public DefectiveTypeAdd(EditMode mode , DefectiveTypeVO item)
+        public DefectiveTypeAdd(EditMode mode, DefectiveTypeVO item)
         {
             InitializeComponent();
             switch (mode)
@@ -29,19 +29,68 @@ namespace Team2_ERP
                     lblName.Text = "불량유형등록";
                     btnOK.Text = "등록";
                     panel_Modi.Visible = false;
+                    txtID.Text = "0";
+                    pbxTitle.Image = Properties.Resources.AddFile_32x32;
                     break;
                 case EditMode.Update:
                     currentMode = mode;
                     lblName.Text = "불량유형수정";
                     btnOK.Text = "수정";
                     panel_Modi.Visible = true;
-                    txtExplain.Text = item.Explain;
-                    txtID.Text = item.ID;
-                    txtName.Text = item.Name;
+                    txtExplain.Text = item.DefecExplain;
+                    txtID.Text = item.DefecID;
+                    txtName.Text = item.DefecName;
+                    pbxTitle.Image = Properties.Resources.Edit_32x32;
                     break;
                 default:
                     break;
             }
+            this.ActiveControl = txtName;
         }
+
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            if (txtExplain.TextLength > 0 && txtName.TextLength > 0)
+            {
+                try
+                {
+                    DefectiveTypeVO vo = new DefectiveTypeVO { DefecID = txtID.Text, DefecName = txtName.Text.Trim(), DefecExplain = txtExplain.Text.Trim() };
+                    DefectiveTypeService service = new DefectiveTypeService();
+                    if (service.UpdateDefectiveType(vo))
+                    {
+                        if (vo.DefecID != "0")
+                        {
+                            MessageBox.Show("수정성공", "수정성공", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("등록성공", "등록성공", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    else
+                    {
+                        if (vo.DefecID != "0")
+                        {
+                            MessageBox.Show("수정실패", "수정실패", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("등록실패", "등록실패", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("필수항목을 입력하지 않으셨습니다.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
     }
 }
+
