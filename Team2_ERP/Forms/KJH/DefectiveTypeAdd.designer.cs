@@ -28,19 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtCustomerID = new System.Windows.Forms.TextBox();
+            this.txtID = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.panel_Modi = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtExplain = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel_Modi.SuspendLayout();
             this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,11 +70,8 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.label3);
-            this.panel5.Controls.Add(this.textBox2);
-            this.panel5.Controls.Add(this.label2);
-            this.panel5.Controls.Add(this.textBox1);
             this.panel5.Controls.Add(this.panel6);
+            this.panel5.Controls.Add(this.panel_Modi);
             this.panel5.Size = new System.Drawing.Size(283, 157);
             // 
             // panel4
@@ -86,72 +85,89 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.FlatAppearance.BorderSize = 0;
             this.btnCancel.Location = new System.Drawing.Point(170, 3);
             // 
             // btnOK
             // 
+            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.FlatAppearance.BorderSize = 0;
             this.btnOK.Location = new System.Drawing.Point(35, 3);
             // 
-            // txtCustomerID
+            // txtID
             // 
-            this.txtCustomerID.Location = new System.Drawing.Point(112, 9);
-            this.txtCustomerID.Name = "txtCustomerID";
-            this.txtCustomerID.Size = new System.Drawing.Size(160, 21);
-            this.txtCustomerID.TabIndex = 3;
+            this.txtID.Enabled = false;
+            this.txtID.Location = new System.Drawing.Point(105, 8);
+            this.txtID.Name = "txtID";
+            this.txtID.ReadOnly = true;
+            this.txtID.Size = new System.Drawing.Size(160, 21);
+            this.txtID.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 12);
+            this.label1.Location = new System.Drawing.Point(15, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 14);
             this.label1.TabIndex = 2;
             this.label1.Text = "불량유형코드";
             // 
+            // panel_Modi
+            // 
+            this.panel_Modi.Controls.Add(this.label1);
+            this.panel_Modi.Controls.Add(this.txtID);
+            this.panel_Modi.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel_Modi.Location = new System.Drawing.Point(0, 0);
+            this.panel_Modi.Name = "panel_Modi";
+            this.panel_Modi.Size = new System.Drawing.Size(281, 35);
+            this.panel_Modi.TabIndex = 4;
+            // 
             // panel6
             // 
-            this.panel6.Controls.Add(this.label1);
-            this.panel6.Controls.Add(this.txtCustomerID);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Controls.Add(this.label3);
+            this.panel6.Controls.Add(this.txtExplain);
+            this.panel6.Controls.Add(this.label2);
+            this.panel6.Controls.Add(this.txtName);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Location = new System.Drawing.Point(0, 35);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(283, 35);
-            this.panel6.TabIndex = 4;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 52);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 14);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "불량유형명";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(112, 49);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(160, 21);
-            this.textBox1.TabIndex = 5;
+            this.panel6.Size = new System.Drawing.Size(281, 120);
+            this.panel6.TabIndex = 5;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 90);
+            this.label3.Location = new System.Drawing.Point(15, 50);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(73, 14);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "불량유형내용";
+            this.label3.TabIndex = 10;
+            this.label3.Text = "불량유형설명";
             // 
-            // textBox2
+            // txtExplain
             // 
-            this.textBox2.Location = new System.Drawing.Point(112, 87);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(160, 64);
-            this.textBox2.TabIndex = 7;
+            this.txtExplain.Location = new System.Drawing.Point(105, 47);
+            this.txtExplain.Multiline = true;
+            this.txtExplain.Name = "txtExplain";
+            this.txtExplain.Size = new System.Drawing.Size(160, 64);
+            this.txtExplain.TabIndex = 8;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label2.Location = new System.Drawing.Point(15, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(62, 14);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "불량유형명";
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(105, 9);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(160, 21);
+            this.txtName.TabIndex = 7;
             // 
             // DefectiveTypeAdd
             // 
@@ -164,8 +180,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
             this.panel4.ResumeLayout(false);
+            this.panel_Modi.ResumeLayout(false);
+            this.panel_Modi.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.ResumeLayout(false);
@@ -173,13 +190,13 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel_Modi;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtCustomerID;
+        private System.Windows.Forms.TextBox txtID;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtExplain;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtName;
     }
 }

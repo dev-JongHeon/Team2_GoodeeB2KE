@@ -101,6 +101,7 @@
             this.Activated += new System.EventHandler(this.Warehouse_Activated);
             this.Deactivate += new System.EventHandler(this.Warehouse_Deactivate);
             this.Load += new System.EventHandler(this.Warehouse_Load);
+            this.Shown += new System.EventHandler(this.Warehouse_Shown);
             this.panel1.ResumeLayout(false);
             this.panel_Search.ResumeLayout(false);
             this.panel5.ResumeLayout(false);

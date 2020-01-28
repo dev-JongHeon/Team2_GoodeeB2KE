@@ -58,6 +58,7 @@ namespace Team2_ERP
             InitMessage();
             dataGridView1.DataSource = null;
             LoadGridView();
+            dataGridView1.CurrentCell = null;
         }
 
         public override void New(object sender, EventArgs e)
@@ -130,6 +131,9 @@ namespace Team2_ERP
 
         private void Category_Activated(object sender, EventArgs e)
         {
+            ((MainForm)MdiParent).신규ToolStripMenuItem.Visible = true;
+            ((MainForm)MdiParent).수정ToolStripMenuItem.Visible = true;
+            ((MainForm)MdiParent).삭제ToolStripMenuItem.Visible = true;
             ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = false;
             ((MainForm)MdiParent).검색toolStripMenuItem.Visible = false;
         }
@@ -139,6 +143,11 @@ namespace Team2_ERP
             ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = true;
             ((MainForm)MdiParent).검색toolStripMenuItem.Visible = true;
             new SettingMenuStrip().UnsetMenu(this);
+        }
+
+        private void Category_Shown(object sender, EventArgs e)
+        {
+            dataGridView1.CurrentCell = null;
         }
     }
 }

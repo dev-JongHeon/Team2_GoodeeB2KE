@@ -82,6 +82,7 @@ namespace Team2_ERP
             InitMessage();
             dataGridView1.DataSource = null;
             searchUserControl1.CodeTextBox.Text = "";
+            dataGridView1.CurrentCell = null;
             LoadGridView();
         }
 
@@ -140,9 +141,16 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = null;
-            List<WarehouseVO> searchList = (from item in list where item.Warehouse_ID == Convert.ToInt32(searchUserControl1.CodeTextBox.Tag) && item.Warehouse_DeletedYN == false select item).ToList();
-            dataGridView1.DataSource = searchList;
+            if (searchUserControl1.CodeTextBox.Text.Length > 0)
+            {
+                dataGridView1.DataSource = null;
+                List<WarehouseVO> searchList = (from item in list where item.Warehouse_ID == Convert.ToInt32(searchUserControl1.CodeTextBox.Tag) && item.Warehouse_DeletedYN == false select item).ToList();
+                dataGridView1.DataSource = searchList;
+            }
+            else
+            {
+                frm.NoticeMessage = "검색할 창고를 선택해주세요.";
+            }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -182,6 +190,11 @@ namespace Team2_ERP
                     Warehouse_Fax = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString()
                 };
             }
+        }
+
+        private void Warehouse_Shown(object sender, EventArgs e)
+        {
+            dataGridView1.CurrentCell = null;
         }
     }
 }

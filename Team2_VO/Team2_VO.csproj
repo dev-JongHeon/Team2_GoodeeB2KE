@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CMG\CustomerVO.cs" />
+    <Compile Include="CMG\FactoryVO.cs" />
+    <Compile Include="CMG\LineVO.cs" />
     <Compile Include="KJH\AuthVO.cs" />
     <Compile Include="CMG\EmployeeVO.cs" />
     <Compile Include="CMG\ResourceVO.cs" />
@@ -52,6 +55,7 @@
     <Compile Include="HJS\PerformancePOP.cs" />
     <Compile Include="HJS\ProducePOP.cs" />
     <Compile Include="HJS\WorkPOP.cs" />
+    <Compile Include="KJH\DefectiveTypeVO.cs" />
     <Compile Include="KJH\LoginVO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SSD\BaljuVO.cs" />
