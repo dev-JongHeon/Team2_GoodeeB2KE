@@ -228,7 +228,7 @@ namespace Team2_DAC
         // 생산시작
         public string[] StartProduce(string produceID)
         {
-            string[] list = new string[4];
+            string[] list = new string[5];
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -245,10 +245,10 @@ namespace Team2_DAC
                     while(reader.Read())
                     {
                         list[0] = reader.GetString(0);  // Msg [Error Complete]
-                        list[1] = reader.GetString(1);  // If Complete => 생산번호
-                        list[2] = reader.GetString(2);  // If Complete => 생산실적번호
-                        list[3] = reader.GetString(3);  // If Complete => 필요 수량
-                        list[4] = reader.GetString(4);  // If Complete => 라인아이디
+                        list[1] = reader.GetString(1);  // If Complete => 생산실적번호
+                        list[2] = reader.GetString(2);  // If Complete => 생산번호
+                        list[3] = reader.GetInt32(3).ToString();  // If Complete => 필요 수량
+                        list[4] = reader.GetInt32(4).ToString();  // If Complete => 라인아이디
                     }
                     reader.Close();
                     conn.Close();
@@ -265,7 +265,7 @@ namespace Team2_DAC
         }
 
         // 생산중
-        public void InProduction(string performanceID, int success, int bad)
+        public async void InProduction(string performanceID, int success, int bad)
         {
             string[] param = new string[] { "@PerformanceID", "@Success", "@Bad" };            
 
@@ -279,8 +279,8 @@ namespace Team2_DAC
                     
                     FillParameter(cmd, param, new object[] { performanceID, success, bad });
 
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                    await conn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
                     conn.Close();
                   
                 }
@@ -373,6 +373,106 @@ namespace Team2_DAC
         }
 
         // 불량 처리
+
+        #endregion
+
+
+        #region POP창 - 불량처리 & 불량 유형
+
+        #region Select 
+
+            // 불량유형 & 처리코드
+        public DataTable GetDefectiveCode()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;                    
+                    cmd.CommandText = "SELECT ID, Name, DIV FROM View_SearchInfo WHERE Div in ('Defective','handle')";
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    conn.Open();
+                    adapter.Fill(dt);
+                    conn.Close();
+                    adapter.Dispose();
+                }
+
+                return dt;
+            }
+            catch
+            {
+                return dt;
+            }
+        }
+
+        //해당하는 생산실적중 불량 코드 가져오기
+        public List<string> GetDefective(string performanceID)
+        {
+            List<string> list = new List<string>();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "SELECT Defective_ID FROM Defective WHERE Performance_ID = @Performance_ID AND Defective_HandleDate IS NULL";
+
+                    FillParameter(cmd, new string[] { "Performance_ID" }, new object[] { performanceID });
+
+                    conn.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while(reader.Read())
+                    {
+                      list.Add(reader.GetString(0));
+                    }
+                    reader.Close();
+                    conn.Close();
+                }
+
+                return list;
+            }
+            catch
+            {
+                return list;
+            }
+        }
+
+        #endregion
+
+        #region Update - 불량등록
+        public bool SetDefective(string defectiveID, string handleCode, string defecCode)
+        {
+            StringBuilder qryUpdate = new StringBuilder();
+            qryUpdate.Append(" UPDATE Defective SET Defective_HandleDate = GETDATE() ");
+            qryUpdate.Append(" ,Defective_handle = @HandleCode, Defective_Code = @DefectiveCode ");
+            qryUpdate.Append(" WHERE Defective_ID = @defectiveID ");
+
+            int iResult = 0;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = qryUpdate.ToString();
+
+                    FillParameter(cmd, new string[] { "@HandleCode, DefectiveCode, defectiveID" },
+                                       new object[] { handleCode, defecCode, defectiveID });
+
+                    conn.Open();
+                    iResult = cmd.ExecuteNonQuery();
+                    conn.Close();
+
+                    return iResult > 0;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        #endregion
 
         #endregion
     }

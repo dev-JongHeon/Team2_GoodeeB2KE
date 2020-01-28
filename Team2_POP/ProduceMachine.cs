@@ -18,21 +18,38 @@ namespace Team2_POP
         public string ProduceID { get; set; }
         public int RequestQty { get; set; }
 
-        
-
         public ProduceMachine()
-        {   
-            Task.Factory.StartNew(OperationMachine).ContinueWith(t => { this.Dispose(); }, TaskScheduler.FromCurrentSynchronizationContext());
+        {
+
+        }
+
+        //public async Task<bool> Start()
+        //{
+        //    bool s = await Task.Factory.StartNew(OperationMachine).ContinueWith(t => t.IsCompleted);
+        //    return s;
+        //}
+
+        public bool Start()
+        {
+            try
+            {
+                OperationMachine();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         // 불량인지 양품인지 뽑는 함수
         private bool IsSuccessItem()
         {
-            int iResult = new Random(unchecked(Convert.ToInt32(DateTime.Now.Ticks))).Next(1, 101);
+            int iResult = new Random().Next(1, 101);
 
             return iResult > 5;
         }
-        
+
         // 생산
         private void OperationMachine()
         {
@@ -40,9 +57,10 @@ namespace Team2_POP
             {
                 Service service = new Service();
 
-                for (int i = 0; i < RequestQty; i++)
+                for (int i = 0; i < 10; i++)
                 {
-                    if (IsSuccessItem())
+                    bool b = IsSuccessItem();
+                    if (b)
                         service.Producing(PerformanceID, 1, 0);
                     else
                         service.Producing(PerformanceID, 0, 1);
