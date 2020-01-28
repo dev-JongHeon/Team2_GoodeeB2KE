@@ -15,8 +15,17 @@ namespace Team2_ERP
     public partial class Factory : Base2Dgv
     {
         List<FactoryVO> FList;
+        List<LineVO> LList;
 
         MainForm frm;
+
+        ToolStripDropDownItem tool1;
+        ToolStripDropDownItem tool2;
+
+        FactoryVO factoryItem;
+        LineVO lineItem;
+
+        string mode = string.Empty;
 
         public Factory()
         {
@@ -28,11 +37,21 @@ namespace Team2_ERP
         {
             UtilClass.SettingDgv(dgvFactory);
 
+            UtilClass.AddNewColum(dgvFactory, "공장코드", "Factory_ID", true, 100);
             UtilClass.AddNewColum(dgvFactory, "공장이름", "Factory_Name", true, 100);
             UtilClass.AddNewColum(dgvFactory, "공장구분", "Factory_Division_Name", true, 100);
             UtilClass.AddNewColum(dgvFactory, "전화번호", "Factory_Number", true, 100);
             UtilClass.AddNewColum(dgvFactory, "FAX번호", "Factory_Fax", true, 100);
             UtilClass.AddNewColum(dgvFactory, "주소", "Factory_Address", true, 100);
+
+            dgvFactory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dgvFactory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            UtilClass.SettingDgv(dgvLine);
+
+            UtilClass.AddNewColum(dgvLine, "라인이름", "Line_Name", true, 100);
+            UtilClass.AddNewColum(dgvLine, "공장이름", "Factory_Name", true, 100);
+            UtilClass.AddNewColum(dgvLine, "비가동상태", "Line_Downtome_Name", true, 100);
 
             dgvFactory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dgvFactory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -45,6 +64,10 @@ namespace Team2_ERP
             FList = service.GetAllFactory();
             List<FactoryVO> factoryList = (from item in FList where item.Factory_DeletedYN == false select item).ToList();
             dgvFactory.DataSource = factoryList;
+
+            LList = service.GetAllLine();
+            List<LineVO> lineList = (from item in LList where item.Line_DeletedYN == false select item).ToList();
+            dgvLine.DataSource = lineList;
         }
 
         private void Factory_Load(object sender, EventArgs e)
@@ -61,16 +84,24 @@ namespace Team2_ERP
 
         private void Factory_Activated(object sender, EventArgs e)
         {
-            ((MainForm)MdiParent).신규ToolStripMenuItem.Visible = true;
-            ((MainForm)MdiParent).수정ToolStripMenuItem.Visible = true;
-            ((MainForm)MdiParent).삭제ToolStripMenuItem.Visible = true;
-            ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = false;
+            MenuByAuth(Auth);
         }
 
         private void Factory_Deactivate(object sender, EventArgs e)
         {
-            ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = true;
+            tool1.DropDownItems.Clear();
+            tool1.DropDownItemClicked -= ItemSelect;
+            tool2.DropDownItems.Clear();
+            tool2.DropDownItemClicked -= ItemSelect;
             new SettingMenuStrip().UnsetMenu(this);
+        }
+
+        public override void MenuStripONOFF(bool flag)
+        {
+            ((MainForm)MdiParent).신규ToolStripMenuItem.Visible = flag;
+            ((MainForm)MdiParent).수정ToolStripMenuItem.Visible = flag;
+            ((MainForm)MdiParent).삭제ToolStripMenuItem.Visible = flag;
+            ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = false;
         }
 
         public override void Refresh(object sender, EventArgs e)
@@ -84,59 +115,32 @@ namespace Team2_ERP
 
         public override void New(object sender, EventArgs e)
         {
-            //InitMessage();
+            tool1 = (ToolStripDropDownItem)(((MainForm)MdiParent).신규ToolStripMenuItem);
 
-            //ResourceInsUp frm = new ResourceInsUp(ResourceInsUp.EditMode.Insert, null);
-            //if (frm.ShowDialog() == DialogResult.OK)
-            //{
-            //    frm.Close();
-            //    dgvFactory.DataSource = null;
-            //    LoadGridView();
-            //}
-
-            ToolStripDropDownItem tool = (ToolStripDropDownItem)(((MainForm)MdiParent).신규ToolStripMenuItem);
-
-            if (tool.DropDownItems.Count < 1)
+            if (tool1.DropDownItems.Count < 1)
             {
-                tool.DropDownItems.Add("공장");
-                tool.DropDownItems.Add("공정");
+                tool1.DropDownItems.Add("공장");
+                tool1.DropDownItems.Add("공정");
 
-                tool.DropDownItemClicked += new ToolStripItemClickedEventHandler(ItemSelect);
+                tool1.DropDownItemClicked += new ToolStripItemClickedEventHandler(ItemSelect);
             }
-        }
 
-        private void ItemSelect(object sender, ToolStripItemClickedEventArgs e)
-        {
-            if (e.ClickedItem.Text == "공장")
-            {
-                FactoryInsUp frm = new FactoryInsUp();
-                frm.ShowDialog();
-            }
-            else
-            {
-                LineInsUp frm = new LineInsUp();
-                frm.ShowDialog();
-            }
+            mode = "Insert";
         }
 
         public override void Modify(object sender, EventArgs e)
         {
-            //InitMessage();
+            tool2 = (ToolStripDropDownItem)(((MainForm)MdiParent).수정ToolStripMenuItem);
 
-            //if (item == null)
-            //{
-            //    frm.NoticeMessage = "수정할 제품을 선택해주세요.";
-            //}
-            //else
-            //{
-            //    ResourceInsUp frm = new ResourceInsUp(ResourceInsUp.EditMode.Update, item);
-            //    if (frm.ShowDialog() == DialogResult.OK)
-            //    {
-            //        frm.Close();
-            //        dataGridView1.DataSource = null;
-            //        LoadGridView();
-            //    }
-            //}
+            if (tool2.DropDownItems.Count < 1)
+            {
+                tool2.DropDownItems.Add("공장");
+                tool2.DropDownItems.Add("공정");
+
+                tool2.DropDownItemClicked += new ToolStripItemClickedEventHandler(ItemSelect);
+            }
+
+            mode = "Update";
         }
 
         public override void Delete(object sender, EventArgs e)
@@ -174,9 +178,82 @@ namespace Team2_ERP
             }
         }
 
+        private void ItemSelect(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if(mode.Equals("Insert"))
+            {
+                if (e.ClickedItem.Text == "공장")
+                {
+                    FactoryInsUp frm = new FactoryInsUp(FactoryInsUp.EditMode.Insert, null);
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        frm.Close();
+                        dgvFactory.DataSource = null;
+                        LoadGridView();
+                    }
+                }
+                else
+                {
+                    LineInsUp frm = new LineInsUp(LineInsUp.EditMode.Insert, null);
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        frm.Close();
+                        dgvFactory.DataSource = null;
+                        LoadGridView();
+                    }
+                }
+            }
+            else if(mode.Equals("Update"))
+            {
+                if (e.ClickedItem.Text == "공장")
+                {
+                    FactoryInsUp frm = new FactoryInsUp(FactoryInsUp.EditMode.Update, factoryItem);
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        frm.Close();
+                        dgvFactory.DataSource = null;
+                        LoadGridView();
+                    }
+                }
+                else
+                {
+                    LineInsUp frm = new LineInsUp(LineInsUp.EditMode.Update, lineItem);
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        frm.Close();
+                        dgvFactory.DataSource = null;
+                        LoadGridView();
+                    }
+                }
+            }
+        }
+
         private void Factory_Shown(object sender, EventArgs e)
         {
             dgvFactory.CurrentCell = null;
+        }
+
+        private void dgvFactory_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(dgvFactory.Rows[e.RowIndex].Cells[4].Value == null)
+            {
+                factoryItem = new FactoryVO()
+                {
+                    Factory_ID = Convert.ToInt32(dgvFactory.Rows[e.RowIndex].Cells[0].Value),
+                    Factory_Name = dgvFactory.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                    Factory_Number = dgvFactory.Rows[e.RowIndex].Cells[3].Value.ToString()
+                };
+            }
+            else
+            {
+                factoryItem = new FactoryVO()
+                {
+                    Factory_ID = Convert.ToInt32(dgvFactory.Rows[e.RowIndex].Cells[0].Value),
+                    Factory_Name = dgvFactory.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                    Factory_Number = dgvFactory.Rows[e.RowIndex].Cells[3].Value.ToString(),
+                    Factory_Fax = dgvFactory.Rows[e.RowIndex].Cells[4].Value.ToString()
+                };
+            }
         }
     }
 }

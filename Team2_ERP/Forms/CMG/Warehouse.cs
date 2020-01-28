@@ -65,16 +65,20 @@ namespace Team2_ERP
 
         private void Warehouse_Activated(object sender, EventArgs e)
         {
-            ((MainForm)MdiParent).신규ToolStripMenuItem.Visible = true;
-            ((MainForm)MdiParent).수정ToolStripMenuItem.Visible = true;
-            ((MainForm)MdiParent).삭제ToolStripMenuItem.Visible = true;
-            ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = false;
+            MenuByAuth(Auth);
         }
 
         private void Warehouse_Deactivate(object sender, EventArgs e)
         {
-            ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = true;
             new SettingMenuStrip().UnsetMenu(this);
+        }
+
+        public override void MenuStripONOFF(bool flag)
+        {
+            ((MainForm)MdiParent).신규ToolStripMenuItem.Visible = flag;
+            ((MainForm)MdiParent).수정ToolStripMenuItem.Visible = flag;
+            ((MainForm)MdiParent).삭제ToolStripMenuItem.Visible = flag;
+            ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = false;
         }
 
         public override void Refresh(object sender, EventArgs e)

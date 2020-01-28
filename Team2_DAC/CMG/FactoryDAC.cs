@@ -42,5 +42,75 @@ namespace Team2_DAC
                 conn.Close();
             }
         }
+
+        public bool InsertFactory(FactoryVO item)
+        {
+            string sql = "insert into Factory(Factory_Name, Factory_Division, Factory_Number, Factory_Fax, Factory_Address1, Factory_Address2) values (@Factory_Name, @Factory_Division, @Factory_Number, @Factory_Fax, @Factory_Address1, @Factory_Address2) ";
+
+            string[] str = item.Factory_Address.Split('　');
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Factory_Name", item.Factory_Name);
+                    cmd.Parameters.AddWithValue("@Factory_Address1", str[0]);
+                    cmd.Parameters.AddWithValue("@Factory_Address2", str[1]);
+                    cmd.Parameters.AddWithValue("@Factory_Division", item.Factory_Division);
+                    cmd.Parameters.AddWithValue("@Factory_Number", item.Factory_Number);
+                    if (item.Factory_Fax == string.Empty)
+                    {
+                        cmd.Parameters.AddWithValue("@Factory_Fax", DBNull.Value);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@Factory_Fax", item.Factory_Fax);
+                    }
+
+                    conn.Open();
+                    var rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public bool UpdateFactory(FactoryVO item)
+        {
+            string sql = "Update Factory set Factory_Name = @Factory_Name, Factory_Address1 = @Factory_Address1, Factory_Address2 = @Factory_Address2, Factory_Division = @Factory_Division, Factory_Number = @Factory_Number, Factory_Fax = @Factory_Fax where Factory_ID = @Factory_ID ";
+
+            string[] str = item.Factory_Address.Split('　');
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Factory_Name", item.Factory_Name);
+                    cmd.Parameters.AddWithValue("@Factory_Address1", str[0]);
+                    cmd.Parameters.AddWithValue("@Factory_Address2", str[1]);
+                    cmd.Parameters.AddWithValue("@Factory_Number", item.Factory_Number);
+                    cmd.Parameters.AddWithValue("@Factory_Fax", item.Factory_Fax);
+                    cmd.Parameters.AddWithValue("@Factory_Division", item.Factory_Division);
+                    cmd.Parameters.AddWithValue("@Factory_ID", item.Factory_ID);
+
+                    conn.Open();
+                    var rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }
