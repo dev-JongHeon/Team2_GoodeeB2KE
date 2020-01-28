@@ -111,10 +111,11 @@ namespace Team2_ERP
         {
             InitMessage();
 
-            if (item.Product_ID == null)
+            if (item == null)
             {
                 frm.NoticeMessage = "삭제할 제품을 선택해주세요.";
             }
+
             else
             {
                 if (MessageBox.Show("삭제하시겠습니까?", "확인", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -142,6 +143,9 @@ namespace Team2_ERP
 
         private void Resource_Activated(object sender, EventArgs e)
         {
+            ((MainForm)MdiParent).신규ToolStripMenuItem.Visible = true;
+            ((MainForm)MdiParent).수정ToolStripMenuItem.Visible = true;
+            ((MainForm)MdiParent).삭제ToolStripMenuItem.Visible = true;
             ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = false;
         }
 
@@ -155,6 +159,11 @@ namespace Team2_ERP
                 Product_Qty = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString()),
                 Product_Safety = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString())
             };
+        }
+
+        private void Resource_Shown(object sender, EventArgs e)
+        {
+            dataGridView1.CurrentCell = null;
         }
     }
 }
