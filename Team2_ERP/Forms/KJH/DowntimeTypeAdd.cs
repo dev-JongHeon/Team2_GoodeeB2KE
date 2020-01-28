@@ -14,5 +14,10 @@ namespace Team2_ERP
         {
             InitializeComponent();
         }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

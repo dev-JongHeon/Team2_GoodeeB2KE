@@ -108,6 +108,7 @@
             this.ClientSize = new System.Drawing.Size(1344, 729);
             this.Name = "Customer";
             this.Text = "Customer";
+            this.Activated += new System.EventHandler(this.Customer_Activated);
             this.Deactivate += new System.EventHandler(this.Customer_Deactivate);
             this.Load += new System.EventHandler(this.Customer_Load);
             this.Shown += new System.EventHandler(this.Customer_Shown);

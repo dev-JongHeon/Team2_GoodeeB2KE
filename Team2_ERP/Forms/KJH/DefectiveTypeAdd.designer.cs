@@ -53,6 +53,7 @@
             // btnClose
             // 
             this.btnClose.Location = new System.Drawing.Point(84, 2);
+            this.btnClose.TabStop = false;
             // 
             // panel_Title
             // 
@@ -72,28 +73,32 @@
             // 
             this.panel5.Controls.Add(this.panel6);
             this.panel5.Controls.Add(this.panel_Modi);
-            this.panel5.Size = new System.Drawing.Size(283, 157);
+            this.panel5.Location = new System.Drawing.Point(0, 62);
+            this.panel5.Size = new System.Drawing.Size(283, 174);
             // 
             // panel4
             // 
-            this.panel4.Location = new System.Drawing.Point(0, 221);
-            this.panel4.Size = new System.Drawing.Size(283, 50);
+            this.panel4.Location = new System.Drawing.Point(0, 236);
+            this.panel4.Size = new System.Drawing.Size(283, 35);
             // 
             // panel2
             // 
-            this.panel2.Size = new System.Drawing.Size(283, 32);
+            this.panel2.Size = new System.Drawing.Size(283, 30);
             // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.FlatAppearance.BorderSize = 0;
             this.btnCancel.Location = new System.Drawing.Point(170, 3);
+            this.btnCancel.Size = new System.Drawing.Size(83, 28);
             // 
             // btnOK
             // 
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.FlatAppearance.BorderSize = 0;
             this.btnOK.Location = new System.Drawing.Point(35, 3);
+            this.btnOK.Size = new System.Drawing.Size(83, 27);
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // txtID
             // 
@@ -132,12 +137,13 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(0, 35);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(281, 120);
+            this.panel6.Size = new System.Drawing.Size(281, 137);
             this.panel6.TabIndex = 5;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.label3.Location = new System.Drawing.Point(15, 50);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(73, 14);

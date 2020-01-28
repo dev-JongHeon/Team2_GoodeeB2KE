@@ -30,10 +30,6 @@
         {
             this.dgvFactory = new System.Windows.Forms.DataGridView();
             this.dgvLine = new System.Windows.Forms.DataGridView();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.searchUserControl1 = new Team2_ERP.SearchUserControl();
             this.searchUserControl2 = new Team2_ERP.SearchUserControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -78,42 +74,18 @@
             this.dgvFactory.RowTemplate.Height = 23;
             this.dgvFactory.Size = new System.Drawing.Size(1364, 368);
             this.dgvFactory.TabIndex = 8;
+            this.dgvFactory.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFactory_CellClick);
             // 
             // dgvLine
             // 
             this.dgvLine.BackgroundColor = System.Drawing.Color.White;
             this.dgvLine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLine.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column7,
-            this.Column8,
-            this.Column9,
-            this.Column10});
             this.dgvLine.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvLine.Location = new System.Drawing.Point(0, 0);
             this.dgvLine.Name = "dgvLine";
             this.dgvLine.RowTemplate.Height = 23;
             this.dgvLine.Size = new System.Drawing.Size(1364, 290);
             this.dgvLine.TabIndex = 0;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "공정이름";
-            this.Column7.Name = "Column7";
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "공장이름";
-            this.Column8.Name = "Column8";
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "비가동여부";
-            this.Column9.Name = "Column9";
-            // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "공정삭제여부";
-            this.Column10.Name = "Column10";
             // 
             // searchUserControl1
             // 
@@ -172,9 +144,5 @@
         private System.Windows.Forms.DataGridView dgvLine;
         private SearchUserControl searchUserControl2;
         private SearchUserControl searchUserControl1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
     }
 }

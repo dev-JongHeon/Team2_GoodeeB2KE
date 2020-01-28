@@ -60,10 +60,12 @@
             // btnCancel
             // 
             this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOK
             // 
             this.btnOK.FlatAppearance.BorderSize = 0;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // label2
             // 
@@ -149,6 +151,7 @@
             this.ClientSize = new System.Drawing.Size(800, 525);
             this.Name = "FactoryInsUp";
             this.Text = "FactoryInsUp";
+            this.Load += new System.EventHandler(this.FactoryInsUp_Load);
             this.panel1.ResumeLayout(false);
             this.panel_Title.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).EndInit();

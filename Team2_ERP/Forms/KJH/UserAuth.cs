@@ -40,11 +40,6 @@ namespace Team2_ERP
             {
                 MessageBox.Show(err.Message);
             }
-            frm.신규ToolStripMenuItem.Visible = false;
-            frm.삭제ToolStripMenuItem.Visible = false;
-            frm.수정ToolStripMenuItem.Visible = true;
-            frm.인쇄ToolStripMenuItem.Visible = false;
-            frm.수정ToolStripMenuItem.Text = "권한설정";
         }
 
         public override void Modify(object sender, EventArgs e)
@@ -104,6 +99,7 @@ namespace Team2_ERP
         {
             btnRefresh();
             txtSearch.CodeTextBox.Clear();
+            frm.NoticeMessage = "권한설정 화면입니다.";
         }
 
         private void btnRefresh()
@@ -123,6 +119,7 @@ namespace Team2_ERP
             {
                 MessageBox.Show(err.Message);
             }
+            
         }
 
         private void headerbox_Click(object sender, EventArgs e)

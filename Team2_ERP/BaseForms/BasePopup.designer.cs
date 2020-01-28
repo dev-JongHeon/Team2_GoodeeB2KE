@@ -121,6 +121,7 @@
             // panel_Title
             // 
             this.panel_Title.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(145)))), ((int)(((byte)(165)))));
+            this.panel_Title.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_Title.Controls.Add(this.panel3);
             this.panel_Title.Controls.Add(this.lblName);
             this.panel_Title.Controls.Add(this.pbxTitle);
@@ -136,9 +137,9 @@
             // 
             this.panel3.Controls.Add(this.btnClose);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(598, 0);
+            this.panel3.Location = new System.Drawing.Point(596, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(200, 32);
+            this.panel3.Size = new System.Drawing.Size(200, 30);
             this.panel3.TabIndex = 13;
             this.panel3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_Title_MouseDown);
             this.panel3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel_Title_MouseMove);
@@ -162,7 +163,7 @@
             this.lblName.ForeColor = System.Drawing.Color.White;
             this.lblName.Location = new System.Drawing.Point(32, 0);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(360, 32);
+            this.lblName.Size = new System.Drawing.Size(360, 30);
             this.lblName.TabIndex = 12;
             this.lblName.Text = "label1";
             this.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -175,7 +176,7 @@
             this.pbxTitle.Image = global::Team2_ERP.Properties.Resources.NewSales_16x16;
             this.pbxTitle.Location = new System.Drawing.Point(0, 0);
             this.pbxTitle.Name = "pbxTitle";
-            this.pbxTitle.Size = new System.Drawing.Size(32, 32);
+            this.pbxTitle.Size = new System.Drawing.Size(32, 30);
             this.pbxTitle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbxTitle.TabIndex = 11;
             this.pbxTitle.TabStop = false;

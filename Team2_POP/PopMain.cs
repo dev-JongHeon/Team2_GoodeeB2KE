@@ -16,6 +16,7 @@ namespace Team2_POP
     public partial class PopMain : Form
     {
         List<ComboItemVO> listFactory = null;
+        string WorkID = string.Empty;
 
         public PopMain()
         {
@@ -83,6 +84,7 @@ namespace Team2_POP
             UtilClass.AddNewColum(dgvProduce, "생산완료날짜", "Produce_DoneDate", true, 135);
             UtilClass.AddNewColum(dgvProduce, "상품명", "Product_Name", true, 200);
             UtilClass.AddNewColum(dgvProduce, "생산요청수량", "Produce_QtyRequested", true, 100, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dgvProduce, "생산진행수량", "Produce_QtyReleased", true, 100, DataGridViewContentAlignment.MiddleRight);
             UtilClass.AddNewColum(dgvProduce, "불량수", "Performance_QtyDefectiveItem", true, 80, DataGridViewContentAlignment.MiddleRight);
             UtilClass.AddNewColum(dgvProduce, "생산 상태", "Produce_State", true);
 
@@ -128,22 +130,36 @@ namespace Team2_POP
         // 작업을 가져오는 메서드
         private void GetWork(string data)
         {
+            StringBuilder msg = new StringBuilder();
+
             if (cboLine.SelectedValue != null && char.IsDigit(Convert.ToChar(cboLine.SelectedValue)))
             {
                 List<Work> list = new Service().GetWorks(data, Convert.ToInt32(cboLine.SelectedValue));
 
-                if (list.Count > 0)
-                {
-                    dgvWork.DataSource = null;
-                    dgvWork.DataSource = list;
-                }
-                else
-                {
-                    MessageBox.Show($"작업날짜 : {data} \n공정 : {cboLine.Text} \n 위의 작업내역이 존재하지 않습니다.");
-                }
+                dgvWork.DataSource = null;
+                dgvProduce.DataSource = null;
+                dgvPerformance.DataSource = null;
 
+                if (list.Count > 0)
+                    dgvWork.DataSource = list;
+                else
+                    MessageBox.Show($"작업날짜 : {data} \n공정 : {cboLine.Text} \n 위의 작업내역이 존재하지 않습니다.");
             }
+            else if (cboFactory.SelectedValue == null)
+            {
+                msg.Append("공장을 선택해주세요.");
+            }
+            else if (cboLine.SelectedValue == null)
+            {
+                msg.AppendLine("공정을 선택해주세요.");
+            }
+
+            if (msg.Length > 0)
+                MessageBox.Show(msg.ToString());
+
+
         }
+
         #region 상단 버튼 - 날짜 클릭, 비가동
 
         // 날짜를 클릭한 경우
@@ -182,16 +198,22 @@ namespace Team2_POP
             {
                 //생산 할당 -- 생산실적번호를 가져옴
                 MessageBox.Show("생산 시작 할당");
-                
-                using(ProduceMachine machine = new ProduceMachine())
-                {                    
-                    machine.PerformanceID = result[1];
-                    machine.ProduceID = result[2];
-                    machine.RequestQty = Convert.ToInt32(result[3]);
-                    machine.LineID = result[4];
-                }
+
+                ProduceMachine machine = new ProduceMachine();
+
+                machine.PerformanceID = result[1];
+                machine.ProduceID = result[2];
+                machine.RequestQty = Convert.ToInt32(result[3]);
+                machine.LineID = result[4];
+
+                bool bResult = machine.Start();
+                if (bResult)
+                    MessageBox.Show("완료");
+                else
+                    MessageBox.Show("실패");
             }
         }
+
 
 
         // 작업자 설정버튼을 누른 경우
@@ -225,8 +247,16 @@ namespace Team2_POP
         // 불량유형 버튼을 누른 경우
         private void btnDefective_Click(object sender, EventArgs e)
         {
-            DefectiveRegister defective = new DefectiveRegister();
-            defective.ShowDialog();
+            try
+            {
+                if (dgvPerformance.SelectedRows[0].Cells[0].Value != null)
+                {
+                    DefectiveRegister defective = new DefectiveRegister();
+                    defective.Performance_ID = dgvPerformance.SelectedRows[0].Cells[0].Value.ToString();
+                    defective.ShowDialog();
+                }
+            }
+            catch { }
         }
 
         #endregion
@@ -292,9 +322,11 @@ namespace Team2_POP
         {
             try
             {
+                dgvProduce.DataSource = null;
+                dgvPerformance.DataSource = null;
+
                 if (e.RowIndex > -1 && e.ColumnIndex > -1)
                 {
-                    dgvProduce.DataSource = null;
                     dgvProduce.DataSource = new Service().GetProduce(dgvWork.SelectedRows[0].Cells[0].Value.ToString());
                     dgvProduce.ClearSelection();
                 }
@@ -311,11 +343,18 @@ namespace Team2_POP
         {
             try
             {
+                dgvPerformance.DataSource = null;
+
                 if (e.RowIndex > -1 && e.ColumnIndex > -1)
                 {
-                    dgvPerformance.DataSource = null;
                     dgvPerformance.DataSource = new Service().GetPerformance(dgvProduce.SelectedRows[0].Cells[0].Value.ToString());
                     dgvPerformance.ClearSelection();
+
+
+                    if (dgvProduce.SelectedRows[0].Cells[7].Value.ToString() == "생산완료")
+                        btnProduceStart.Enabled = btnWorker.Enabled = false;
+                    else
+                        btnProduceStart.Enabled = btnWorker.Enabled = true;
                 }
             }
             catch
@@ -352,9 +391,13 @@ namespace Team2_POP
 
         private void timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            this.Invoke(new Action(delegate ()
-            { lblTime.Text = DateTime.Now.ToString(); }
-            ));
+            try
+            {
+                this.Invoke(new Action(delegate ()
+                { lblTime.Text = DateTime.Now.ToString(); }
+                ));
+            }
+            catch { }
         }
 
         #endregion
