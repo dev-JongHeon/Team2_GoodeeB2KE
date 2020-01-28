@@ -405,25 +405,25 @@ namespace Team2_ERP
             }
         }
 
-        private void MenuByAuth(TreeNodeMouseClickEventArgs e)
-        {
-            if (e.Node.Tag.ToString() == "1")
-            {
-                MenuStripONOFF(true);
-            }
-            else if (e.Node.Tag.ToString() == "0")
-            {
-                MenuStripONOFF(false);
-            }
-        }
+        //private void MenuByAuth(TreeNodeMouseClickEventArgs e)
+        //{
+        //    if (e.Node.Tag.ToString() == "1")
+        //    {
+        //        MenuStripONOFF(true);
+        //    }
+        //    else if (e.Node.Tag.ToString() == "0")
+        //    {
+        //        MenuStripONOFF(false);
+        //    }
+        //}
 
-        private void MenuStripONOFF(bool flag)
-        {
-            신규ToolStripMenuItem.Visible = flag;
-            수정ToolStripMenuItem.Visible = flag;
-            삭제ToolStripMenuItem.Visible = flag;
-            인쇄ToolStripMenuItem.Visible = flag;
-        }
+        //private void MenuStripONOFF(bool flag)
+        //{
+        //    신규ToolStripMenuItem.Visible = flag;
+        //    수정ToolStripMenuItem.Visible = flag;
+        //    삭제ToolStripMenuItem.Visible = flag;
+        //    인쇄ToolStripMenuItem.Visible = flag;
+        //}
 
         private void SettingAuth()
         {
@@ -469,8 +469,8 @@ namespace Team2_ERP
                     return;
                 }
             }
-            MenuByAuth(e);
             T frm = new T();
+            frm.Auth = e.Node.Tag.ToString();
             frm.Text = name;
             frm.MdiParent = this;
             frm.ControlBox = false;

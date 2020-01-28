@@ -108,10 +108,21 @@ namespace Team2_ERP
 
         private void btnRefresh()
         {
-            dgvEmpList.DataSource = list;
             dgvAuthList.DataSource = null;
             headerbox.Checked = false;
             ClearDgv();
+            try
+            {
+                SearchService service = new SearchService();
+                list = service.GetInfo("Employee");
+                dgvEmpList.DataSource = list;
+                dgvEmpList.ClearSelection();
+                dgvEmpList.CurrentCell = null;
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
         }
 
         private void headerbox_Click(object sender, EventArgs e)
@@ -125,13 +136,19 @@ namespace Team2_ERP
 
         private void UserAuth_Activated(object sender, EventArgs e)
         {
-            frm.신규ToolStripMenuItem.Visible = false;
-            frm.삭제ToolStripMenuItem.Visible = false;
-            frm.수정ToolStripMenuItem.Visible = true;
-            frm.인쇄ToolStripMenuItem.Visible = false;
+            MenuByAuth(Auth);
             frm.수정ToolStripMenuItem.Text = "권한설정";
             frm.수정ToolStripMenuItem.ToolTipText = "권한설정(Ctrl+M)";
             frm.NoticeMessage = "권한설정 화면입니다.";
+        }
+
+
+        public override void MenuStripONOFF(bool flag)
+        {
+            frm.신규ToolStripMenuItem.Visible = false;
+            frm.삭제ToolStripMenuItem.Visible = false;
+            frm.수정ToolStripMenuItem.Visible = flag;
+            frm.인쇄ToolStripMenuItem.Visible = false;
         }
 
         private void UserAuth_Deactivate(object sender, EventArgs e)
