@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.dgv_Stock = new System.Windows.Forms.DataGridView();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.searchUserControl1 = new Team2_ERP.SearchUserControl();
             this.searchUserControl2 = new Team2_ERP.SearchUserControl();
             this.searchPeriodControl1 = new Team2_ERP.SearchPeriodControl();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rdo_In = new System.Windows.Forms.RadioButton();
+            this.rdo_Out = new System.Windows.Forms.RadioButton();
+            this.rdo_All = new System.Windows.Forms.RadioButton();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel_Search.SuspendLayout();
@@ -44,6 +44,7 @@
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Stock)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -52,13 +53,10 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.comboBox2);
-            this.panel5.Controls.Add(this.comboBox1);
+            this.panel5.Controls.Add(this.groupBox1);
             this.panel5.Controls.Add(this.searchUserControl1);
             this.panel5.Controls.Add(this.searchUserControl2);
             this.panel5.Controls.Add(this.searchPeriodControl1);
-            this.panel5.Controls.Add(this.label9);
-            this.panel5.Controls.Add(this.label4);
             // 
             // lblFormName
             // 
@@ -74,29 +72,13 @@
             this.dgv_Stock.Size = new System.Drawing.Size(1364, 662);
             this.dgv_Stock.TabIndex = 2;
             // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(149, 12);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(198, 22);
-            this.comboBox2.TabIndex = 71;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(149, 40);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(198, 22);
-            this.comboBox1.TabIndex = 70;
-            // 
             // searchUserControl1
             // 
             this.searchUserControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
             this.searchUserControl1.ControlType = Team2_ERP.SearchUserControl.Mode.SemiProduct;
             this.searchUserControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.searchUserControl1.Labelname = "반제품";
-            this.searchUserControl1.Location = new System.Drawing.Point(65, 68);
+            this.searchUserControl1.Location = new System.Drawing.Point(186, 73);
             this.searchUserControl1.Name = "searchUserControl1";
             this.searchUserControl1.Size = new System.Drawing.Size(312, 25);
             this.searchUserControl1.TabIndex = 69;
@@ -107,7 +89,7 @@
             this.searchUserControl2.ControlType = Team2_ERP.SearchUserControl.Mode.Warehouse;
             this.searchUserControl2.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.searchUserControl2.Labelname = "창고";
-            this.searchUserControl2.Location = new System.Drawing.Point(424, 37);
+            this.searchUserControl2.Location = new System.Drawing.Point(186, 41);
             this.searchUserControl2.Name = "searchUserControl2";
             this.searchUserControl2.Size = new System.Drawing.Size(312, 25);
             this.searchUserControl2.TabIndex = 68;
@@ -116,30 +98,58 @@
             // 
             this.searchPeriodControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.searchPeriodControl1.Labelname = "기간 선택";
-            this.searchPeriodControl1.Location = new System.Drawing.Point(424, 7);
+            this.searchPeriodControl1.Location = new System.Drawing.Point(186, 11);
             this.searchPeriodControl1.Name = "searchPeriodControl1";
             this.searchPeriodControl1.Size = new System.Drawing.Size(312, 35);
             this.searchPeriodControl1.TabIndex = 67;
             // 
-            // label9
+            // groupBox1
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label9.Location = new System.Drawing.Point(40, 43);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(60, 17);
-            this.label9.TabIndex = 66;
-            this.label9.Text = "수불유형";
+            this.groupBox1.Controls.Add(this.rdo_In);
+            this.groupBox1.Controls.Add(this.rdo_Out);
+            this.groupBox1.Controls.Add(this.rdo_All);
+            this.groupBox1.Location = new System.Drawing.Point(33, 9);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(130, 86);
+            this.groupBox1.TabIndex = 70;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "구분";
             // 
-            // label4
+            // rdo_In
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label4.Location = new System.Drawing.Point(40, 14);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 17);
-            this.label4.TabIndex = 65;
-            this.label4.Text = "수불번호";
+            this.rdo_In.AutoSize = true;
+            this.rdo_In.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.rdo_In.Location = new System.Drawing.Point(42, 38);
+            this.rdo_In.Name = "rdo_In";
+            this.rdo_In.Size = new System.Drawing.Size(47, 18);
+            this.rdo_In.TabIndex = 59;
+            this.rdo_In.Text = "입고";
+            this.rdo_In.UseVisualStyleBackColor = true;
+            this.rdo_In.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // rdo_Out
+            // 
+            this.rdo_Out.AutoSize = true;
+            this.rdo_Out.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.rdo_Out.Location = new System.Drawing.Point(42, 62);
+            this.rdo_Out.Name = "rdo_Out";
+            this.rdo_Out.Size = new System.Drawing.Size(47, 18);
+            this.rdo_Out.TabIndex = 60;
+            this.rdo_Out.Text = "출고";
+            this.rdo_Out.UseVisualStyleBackColor = true;
+            this.rdo_Out.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // rdo_All
+            // 
+            this.rdo_All.AutoSize = true;
+            this.rdo_All.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.rdo_All.Location = new System.Drawing.Point(42, 14);
+            this.rdo_All.Name = "rdo_All";
+            this.rdo_All.Size = new System.Drawing.Size(47, 18);
+            this.rdo_All.TabIndex = 58;
+            this.rdo_All.Text = "전체";
+            this.rdo_All.UseVisualStyleBackColor = true;
+            this.rdo_All.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // InOutList_SemiProductWarehouse
             // 
@@ -152,11 +162,12 @@
             this.panel1.ResumeLayout(false);
             this.panel_Search.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
             this.panel_Title.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Stock)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -164,12 +175,12 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgv_Stock;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
         private SearchUserControl searchUserControl1;
         private SearchUserControl searchUserControl2;
         private SearchPeriodControl searchPeriodControl1;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rdo_In;
+        private System.Windows.Forms.RadioButton rdo_Out;
+        private System.Windows.Forms.RadioButton rdo_All;
     }
 }

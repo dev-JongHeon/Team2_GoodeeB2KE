@@ -55,5 +55,27 @@ namespace Team2_ERP
                                              select list_Stock).ToList();
             dgv_Stock.DataSource = StockReceipt_list;
         }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdo_All.Checked)
+            {
+                dgv_Stock.DataSource = (from list_Stock in StockReceipt_AllList
+                                        where list_Stock.Warehouse_Division == true
+                                        select list_Stock).ToList();
+            }
+            else if (rdo_In.Checked)
+            {
+                dgv_Stock.DataSource = (from list_Stock in StockReceipt_AllList
+                                        where list_Stock.Warehouse_Division == true && list_Stock.StockReceipt_Division1 == "입고"
+                                        select list_Stock).ToList();
+            }
+            else if (rdo_Out.Checked)
+            {
+                dgv_Stock.DataSource = (from list_Stock in StockReceipt_AllList
+                                        where list_Stock.Warehouse_Division == true && list_Stock.StockReceipt_Division1 == "출고"
+                                        select list_Stock).ToList();
+            }
+        }
     }
 }
