@@ -622,7 +622,6 @@
         private System.Windows.Forms.ComboBox cboFactory;
         private System.Windows.Forms.Button btnLineSearch;
         private System.Windows.Forms.Label lblState;
-        private System.Windows.Forms.DataGridView dgvWork;
         private System.Windows.Forms.Button btnWorkStart;
         private System.Windows.Forms.Button btnDownTime;
         private System.Windows.Forms.SplitContainer splitContainer4;
@@ -637,6 +636,7 @@
         private System.Windows.Forms.SplitContainer splitContainer7;
         private System.Windows.Forms.Label lblWorker;
         private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.DataGridView dgvWork;
     }
 }
 
