@@ -36,6 +36,7 @@
             this.rdo_In = new System.Windows.Forms.RadioButton();
             this.rdo_Out = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Search_Employees = new Team2_ERP.SearchUserControl();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel_Search.SuspendLayout();
@@ -71,6 +72,7 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.Search_Employees);
             this.panel5.Controls.Add(this.groupBox1);
             this.panel5.Controls.Add(this.Search_Material);
             this.panel5.Controls.Add(this.Search_Warehouse);
@@ -108,6 +110,7 @@
             // 
             // dgv_Stock
             // 
+            this.dgv_Stock.BackgroundColor = System.Drawing.Color.White;
             this.dgv_Stock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_Stock.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_Stock.Location = new System.Drawing.Point(0, 0);
@@ -196,6 +199,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "구분";
             // 
+            // Search_Employees
+            // 
+            this.Search_Employees.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.Search_Employees.ControlType = Team2_ERP.SearchUserControl.Mode.Employee;
+            this.Search_Employees.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Search_Employees.Labelname = "작업자";
+            this.Search_Employees.Location = new System.Drawing.Point(531, 15);
+            this.Search_Employees.Name = "Search_Employees";
+            this.Search_Employees.Size = new System.Drawing.Size(312, 25);
+            this.Search_Employees.TabIndex = 72;
+            // 
             // InOutList_MaterialWarehouse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
@@ -230,5 +244,6 @@
         private System.Windows.Forms.RadioButton rdo_In;
         private System.Windows.Forms.RadioButton rdo_Out;
         private System.Windows.Forms.RadioButton rdo_All;
+        private SearchUserControl Search_Employees;
     }
 }

@@ -14,8 +14,11 @@ namespace Team2_ERP
 {
     public partial class InOutList_SemiProductWarehouse : Base1Dgv
     {
+        #region 전역변수
         StockService service = new StockService();
         List<StockReceipt> StockReceipt_AllList = null;
+        MainForm main;
+        #endregion
         public InOutList_SemiProductWarehouse()
         {
             InitializeComponent();
@@ -24,6 +27,7 @@ namespace Team2_ERP
         private void InOutList_SemiProductWarehouse_Load(object sender, EventArgs e)
         {
             LoadData();
+            main = (MainForm)this.MdiParent;
         }
 
         private void LoadData()
@@ -48,12 +52,31 @@ namespace Team2_ERP
             StockReceipt_AllList = service.GetStockReceipts(); // 수불내역 갱신
 
             // LINQ로 반제품창고에 속한 수불현황만 가져옴
-            List<StockReceipt> StockReceipt_list = (from list_Stock in StockReceipt_AllList
-                                             where list_Stock.Warehouse_Division == true
-                                             select list_Stock).ToList();
-            dgv_Stock.DataSource = StockReceipt_list;
+            StockReceipt_AllList = (from list_Stock in StockReceipt_AllList
+                                    where list_Stock.Warehouse_Division == true
+                                    select list_Stock).ToList();
+            dgv_Stock.DataSource = StockReceipt_AllList;
+        }
+        private void Func_Refresh()  // 새로고침 기능
+        {
+            StockReceipt_AllList = service.GetStockReceipts();  // 수불내역 재조회 후 AllList에 저장
+
+            // LINQ로 반제품창고에 속한것만 바인딩
+            StockReceipt_AllList = (from list_Stock in StockReceipt_AllList
+                                    where list_Stock.Warehouse_Division == true
+                                    select list_Stock).ToList();
+            dgv_Stock.DataSource = StockReceipt_AllList;
+
+            // 검색조건 초기화
+            Search_Period.Startdate.Text = "";
+            Search_Period.Enddate.Text = "";
+            Search_SemiProduct.CodeTextBox.Text = "";
+            Search_Warehouse.CodeTextBox.Text = "";
+
+            rdo_All.Checked = true;
         }
 
+        #region 라디오버튼 검색조건
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             if (rdo_All.Checked)
@@ -75,5 +98,82 @@ namespace Team2_ERP
                                         select list_Stock).ToList();
             }
         }
+        #endregion
+
+        #region ToolStrip 기능정의
+
+        public override void Refresh(object sender, EventArgs e)  // 새로고침
+        {
+            Func_Refresh();
+        }
+        public override void Search(object sender, EventArgs e)  // 검색
+        {
+            StockReceipt_AllList = service.GetStockReceipts();  // 수불리스트 갱신
+            if (Search_Warehouse.CodeTextBox.Text.Length > 0)  // 창고 검색조건 있으면
+            {
+                StockReceipt_AllList = (from item in StockReceipt_AllList
+                                        where item.Warehouse_Name == Search_Warehouse.CodeTextBox.Text
+                                        select item).ToList();
+            }
+
+            if (Search_SemiProduct.CodeTextBox.Text.Length > 0)  // 반제품 검색조건 있으면
+            {
+                StockReceipt_AllList = (from item in StockReceipt_AllList
+                                        where item.Product_Name == Search_SemiProduct.CodeTextBox.Text
+                                        select item).ToList();
+            }
+
+            if (Search_Employees.CodeTextBox.Text.Length > 0)  // 사원 검색조건 있으면
+            {
+                StockReceipt_AllList = (from item in StockReceipt_AllList
+                                        where item.Employees_Name == Search_Employees.CodeTextBox.Text
+                                        select item).ToList();
+            }
+
+            if (Search_Period.Startdate.Text != "    -  -")   // 시작기간 text가 존재하면
+            {
+                if (Search_Period.Startdate.Text != Search_Period.Enddate.Text)  // 시작, 끝 날짜가 다른경우
+                {
+                    StockReceipt_AllList = (from item in StockReceipt_AllList
+                                            where item.StockReceipt_Date.CompareTo(Convert.ToDateTime(Search_Period.Startdate.Text)) >= 0 &&
+                                            item.StockReceipt_Date.CompareTo(Convert.ToDateTime(Search_Period.Enddate.Text)) <= 0
+                                            select item).ToList();
+                }
+                else   // 같은경우
+                {
+                    StockReceipt_AllList = (from item in StockReceipt_AllList
+                                            where item.StockReceipt_Date.Date == Convert.ToDateTime(Search_Period.Startdate.Text)
+                                            select item).ToList();
+                }
+            }
+            dgv_Stock.DataSource = StockReceipt_AllList;
+            rdo_All.Checked = true;  // 라디오버튼 '전체'에 체크
+        }
+
+        public override void Print(object sender, EventArgs e)  // 인쇄
+        {
+
+        } 
+        #endregion
+
+        #region Activated, OnOff, DeActivate
+        private void InOutList_SemiProductWarehouse_Activated(object sender, EventArgs e)
+        {
+            MenuByAuth(Auth);
+        }
+
+        public override void MenuStripONOFF(bool flag)
+        {
+            main.신규ToolStripMenuItem.Visible = false;
+            main.수정ToolStripMenuItem.Visible = false;
+            main.삭제ToolStripMenuItem.Visible = false;
+            main.인쇄ToolStripMenuItem.Visible = flag;
+        }
+
+        private void InOutList_SemiProductWarehouse_Deactivate(object sender, EventArgs e)
+        {
+            new SettingMenuStrip().UnsetMenu(this);
+        } 
+        #endregion
     }
 }
