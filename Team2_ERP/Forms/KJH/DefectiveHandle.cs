@@ -154,6 +154,8 @@ namespace Team2_ERP
         private void DefectiveHandle_Activated(object sender, EventArgs e)
         {
             MenuByAuth(Auth);
+            ActiveControl = txtSearch;
+            txtSearch.Focus();
         }
 
         private void DefectiveHandle_Deactivate(object sender, EventArgs e)

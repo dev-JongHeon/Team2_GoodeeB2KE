@@ -92,6 +92,7 @@
             this.dgvAuthList.Size = new System.Drawing.Size(992, 662);
             this.dgvAuthList.TabIndex = 1;
             this.dgvAuthList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAuthList_CellContentClick);
+            this.dgvAuthList.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvAuthList_ColumnWidthChanged);
             this.dgvAuthList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvAuthList_DataBindingComplete);
             // 
             // txtSearch

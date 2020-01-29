@@ -57,6 +57,7 @@
     <Compile Include="KJH\AuthDAC.cs" />
     <Compile Include="KJH\DefectiveHandleDAC.cs" />
     <Compile Include="KJH\DefectiveDAC.cs" />
+    <Compile Include="KJH\DowntimeTypeDAC.cs" />
     <Compile Include="KJH\DefectiveTypeDAC.cs" />
     <Compile Include="KJH\LoginDAC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

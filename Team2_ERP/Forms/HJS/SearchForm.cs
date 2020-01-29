@@ -150,8 +150,8 @@ namespace Team2_ERP
             txtSearch.PlaceHolderText = string.Concat(this.Text, " ", "키워드 입력");
             // Mode값에 따라 그리드뷰 컬럼명 및 검색 결과 
             UtilClass.SettingDgv(dgvSearch);
-            UtilClass.AddNewColum(dgvSearch, col1, "ID");
-            UtilClass.AddNewColum(dgvSearch, col2, "Name");
+            UtilClass.AddNewColum(dgvSearch, col1, "ID",true,150);
+            UtilClass.AddNewColum(dgvSearch, col2, "Name", true, 150);
             try
             {
                 SearchService service = new SearchService();

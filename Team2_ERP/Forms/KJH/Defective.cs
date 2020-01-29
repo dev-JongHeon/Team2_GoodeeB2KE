@@ -71,6 +71,8 @@ namespace Team2_ERP
         private void Defective_Activated(object sender, EventArgs e)
         {
             MenuByAuth(Auth);
+            ActiveControl = searchFactory;
+            searchFactory.Focus();
         }
 
         public override void MenuStripONOFF(bool flag)
@@ -104,39 +106,47 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)
         {
-            searchedlist = list;
-            if (searchFactory.CodeTextBox.Tag != null)
+            if(searchFactory.CodeTextBox.Tag==null&& searchLine.CodeTextBox.Tag == null&& searchProduct.CodeTextBox.Tag == null&& searchWorker.CodeTextBox.Tag == null&& searchPeriod.Startdate.Tag == null && searchPeriod.Enddate.Tag == null)
             {
-                searchedlist = (from item in searchedlist
-                                where item.Factory_ID == Convert.ToInt32(searchFactory.CodeTextBox.Tag)
-                                select item).ToList();
+                frm.새로고침ToolStripMenuItem.PerformClick();
             }
-            if (searchLine.CodeTextBox.Tag != null)
+            else
             {
-                searchedlist = (from item in searchedlist
-                                where item.Line_ID == Convert.ToInt32(searchLine.CodeTextBox.Tag)
-                                select item).ToList();
+                searchedlist = list;
+                if (searchFactory.CodeTextBox.Tag != null)
+                {
+                    searchedlist = (from item in searchedlist
+                                    where item.Factory_ID == Convert.ToInt32(searchFactory.CodeTextBox.Tag)
+                                    select item).ToList();
+                }
+                if (searchLine.CodeTextBox.Tag != null)
+                {
+                    searchedlist = (from item in searchedlist
+                                    where item.Line_ID == Convert.ToInt32(searchLine.CodeTextBox.Tag)
+                                    select item).ToList();
+                }
+                if (searchProduct.CodeTextBox.Tag != null)
+                {
+                    searchedlist = (from item in searchedlist
+                                    where item.Product_ID == searchProduct.CodeTextBox.Tag.ToString()
+                                    select item).ToList();
+                }
+                if (searchWorker.CodeTextBox.Tag != null)
+                {
+                    searchedlist = (from item in searchedlist
+                                    where item.Employees_ID == Convert.ToInt32(searchWorker.CodeTextBox.Tag)
+                                    select item).ToList();
+                }
+                if (searchPeriod.Startdate.Tag != null && searchPeriod.Enddate.Tag != null)
+                {
+                    searchedlist = (from item in searchedlist
+                                    where Convert.ToDateTime(item.Defective_HandleDate) >= Convert.ToDateTime(searchPeriod.Startdate.Tag.ToString()) && Convert.ToDateTime(item.Defective_HandleDate) <= Convert.ToDateTime(searchPeriod.Enddate.Tag.ToString())
+                                    select item).ToList();
+                }
+                dgvDefective.DataSource = searchedlist;
+                frm.NoticeMessage = "검색 완료";
             }
-            if (searchProduct.CodeTextBox.Tag != null)
-            {
-                searchedlist = (from item in searchedlist
-                                where item.Product_ID == searchProduct.CodeTextBox.Tag.ToString()
-                                select item).ToList();
-            }
-            if (searchWorker.CodeTextBox.Tag != null)
-            {
-                searchedlist = (from item in searchedlist
-                                where item.Employees_ID == Convert.ToInt32(searchWorker.CodeTextBox.Tag)
-                                select item).ToList();
-            }
-            if (searchPeriod.Startdate.Tag != null && searchPeriod.Enddate.Tag != null)
-            {
-                searchedlist = (from item in searchedlist
-                                where Convert.ToDateTime(item.Defective_HandleDate) >=Convert.ToDateTime(searchPeriod.Startdate.Tag.ToString()) && Convert.ToDateTime(item.Defective_HandleDate)<= Convert.ToDateTime(searchPeriod.Enddate.Tag.ToString())
-                                select item).ToList();
-            }
-            dgvDefective.DataSource = searchedlist;
-            frm.NoticeMessage = "검색 완료";
+            
         }
     }
 }
