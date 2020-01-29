@@ -46,6 +46,7 @@
     <Compile Include="CMG\CustomerVO.cs" />
     <Compile Include="CMG\FactoryVO.cs" />
     <Compile Include="CMG\LineVO.cs" />
+    <Compile Include="CMG\ProductVO.cs" />
     <Compile Include="KJH\AuthVO.cs" />
     <Compile Include="CMG\EmployeeVO.cs" />
     <Compile Include="CMG\ResourceVO.cs" />

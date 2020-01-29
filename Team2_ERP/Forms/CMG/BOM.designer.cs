@@ -29,17 +29,13 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.dgvBOM = new System.Windows.Forms.DataGridView();
             this.dgvBOMDetail = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.searchUserControl1 = new Team2_ERP.SearchUserControl();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dgvBOM = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.panel_Search.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -50,9 +46,9 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBOM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBOMDetail)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBOM)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -102,41 +98,29 @@
             this.splitContainer1.SplitterDistance = 617;
             this.splitContainer1.TabIndex = 7;
             // 
+            // dgvBOM
+            // 
+            this.dgvBOM.BackgroundColor = System.Drawing.Color.White;
+            this.dgvBOM.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBOM.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvBOM.Location = new System.Drawing.Point(0, 0);
+            this.dgvBOM.Name = "dgvBOM";
+            this.dgvBOM.RowTemplate.Height = 23;
+            this.dgvBOM.Size = new System.Drawing.Size(617, 571);
+            this.dgvBOM.TabIndex = 0;
+            this.dgvBOM.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBOM_CellClick);
+            this.dgvBOM.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvBOM_CellFormatting);
+            // 
             // dgvBOMDetail
             // 
             this.dgvBOMDetail.BackgroundColor = System.Drawing.Color.White;
             this.dgvBOMDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBOMDetail.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4});
             this.dgvBOMDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvBOMDetail.Location = new System.Drawing.Point(0, 0);
             this.dgvBOMDetail.Name = "dgvBOMDetail";
             this.dgvBOMDetail.RowTemplate.Height = 23;
             this.dgvBOMDetail.Size = new System.Drawing.Size(723, 571);
             this.dgvBOMDetail.TabIndex = 0;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "분류";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "제품명";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "개수";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "가격";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             // 
             // searchUserControl1
             // 
@@ -194,19 +178,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "분류";
             // 
-            // dgvBOM
-            // 
-            this.dgvBOM.BackgroundColor = System.Drawing.Color.White;
-            this.dgvBOM.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBOM.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvBOM.Location = new System.Drawing.Point(0, 0);
-            this.dgvBOM.Name = "dgvBOM";
-            this.dgvBOM.RowTemplate.Height = 23;
-            this.dgvBOM.Size = new System.Drawing.Size(617, 571);
-            this.dgvBOM.TabIndex = 0;
-            this.dgvBOM.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBOM_CellClick);
-            this.dgvBOM.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvBOM_CellFormatting);
-            // 
             // BOM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -217,6 +188,7 @@
             this.Activated += new System.EventHandler(this.BOM_Activated);
             this.Deactivate += new System.EventHandler(this.BOM_Deactivate);
             this.Load += new System.EventHandler(this.BOM_Load);
+            this.Shown += new System.EventHandler(this.BOM_Shown);
             this.panel1.ResumeLayout(false);
             this.panel_Search.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
@@ -227,10 +199,10 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBOM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBOMDetail)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBOM)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -244,10 +216,6 @@
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridView dgvBOM;
     }
 }

@@ -30,7 +30,7 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cboCategoryDetail = new System.Windows.Forms.ComboBox();
             this.cboCategory = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -113,7 +113,7 @@
             // 
             // splitContainer3.Panel1
             // 
-            this.splitContainer3.Panel1.Controls.Add(this.comboBox1);
+            this.splitContainer3.Panel1.Controls.Add(this.cboCategoryDetail);
             this.splitContainer3.Panel1.Controls.Add(this.cboCategory);
             this.splitContainer3.Panel1.Controls.Add(this.label1);
             // 
@@ -124,13 +124,13 @@
             this.splitContainer3.SplitterDistance = 90;
             this.splitContainer3.TabIndex = 0;
             // 
-            // comboBox1
+            // cboCategoryDetail
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(151, 49);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 22);
-            this.comboBox1.TabIndex = 4;
+            this.cboCategoryDetail.FormattingEnabled = true;
+            this.cboCategoryDetail.Location = new System.Drawing.Point(151, 49);
+            this.cboCategoryDetail.Name = "cboCategoryDetail";
+            this.cboCategoryDetail.Size = new System.Drawing.Size(121, 22);
+            this.cboCategoryDetail.TabIndex = 4;
             // 
             // cboCategory
             // 
@@ -139,6 +139,7 @@
             this.cboCategory.Name = "cboCategory";
             this.cboCategory.Size = new System.Drawing.Size(121, 22);
             this.cboCategory.TabIndex = 3;
+            this.cboCategory.SelectedIndexChanged += new System.EventHandler(this.cboCategory_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -348,6 +349,7 @@
             this.ClientSize = new System.Drawing.Size(800, 525);
             this.Name = "SemiProductComp";
             this.Text = "SemiProductComp";
+            this.Load += new System.EventHandler(this.SemiProductComp_Load);
             this.panel1.ResumeLayout(false);
             this.panel_Title.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).EndInit();
@@ -396,7 +398,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cboCategoryDetail;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;

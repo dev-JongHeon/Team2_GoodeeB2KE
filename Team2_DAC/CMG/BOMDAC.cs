@@ -19,7 +19,7 @@ namespace Team2_DAC
             conn.ConnectionString = this.ConnectionString;
         }
 
-        public List<BOMVO> GetAllProduct()
+        public List<ProductVO> GetAllProduct()
         {
             string sql = "GetAllProduct";
 
@@ -29,7 +29,61 @@ namespace Team2_DAC
                 {
                     conn.Open();
                     cmd.CommandType = CommandType.StoredProcedure;
+                    List<ProductVO> list = Helper.DataReaderMapToList<ProductVO>(cmd.ExecuteReader());
+                    return list;
+                }
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public List<BOMVO> GetAllCombination(string code)
+        {
+            string sql = "GetAllCombination";
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@ProductID", code);
+                    cmd.CommandType = CommandType.StoredProcedure;
                     List<BOMVO> list = Helper.DataReaderMapToList<BOMVO>(cmd.ExecuteReader());
+                    return list;
+                }
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public List<ComboItemVO> GetComboProductCategory()
+        {
+            List<ComboItemVO> list = null;
+
+            try
+            {
+                string sql = "GetInfo";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@div", "ProductCategory");
+
+                    conn.Open();
+                    list = Helper.DataReaderMapToList<ComboItemVO>(cmd.ExecuteReader());
+
                     return list;
                 }
             }
