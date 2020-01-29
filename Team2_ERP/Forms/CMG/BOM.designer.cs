@@ -204,6 +204,7 @@
             this.dgvBOM.RowTemplate.Height = 23;
             this.dgvBOM.Size = new System.Drawing.Size(617, 571);
             this.dgvBOM.TabIndex = 0;
+            this.dgvBOM.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBOM_CellClick);
             this.dgvBOM.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvBOM_CellFormatting);
             // 
             // BOM
@@ -213,6 +214,8 @@
             this.ClientSize = new System.Drawing.Size(1344, 729);
             this.Name = "BOM";
             this.Text = "BOM";
+            this.Activated += new System.EventHandler(this.BOM_Activated);
+            this.Deactivate += new System.EventHandler(this.BOM_Deactivate);
             this.Load += new System.EventHandler(this.BOM_Load);
             this.panel1.ResumeLayout(false);
             this.panel_Search.ResumeLayout(false);
