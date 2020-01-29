@@ -78,23 +78,23 @@
             treeNode26});
             System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("작업대기현황", 0, 1);
             System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("생산실적현황", 0, 1);
-            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("생산 관리", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("생산관리", new System.Windows.Forms.TreeNode[] {
             treeNode28,
             treeNode29});
             System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("비가동유형", 0, 1);
             System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("비가동현황", 0, 1);
-            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("비가동 관리", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("비가동관리", new System.Windows.Forms.TreeNode[] {
             treeNode31,
             treeNode32});
             System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("불량유형", 0, 1);
             System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("불량처리유형", 0, 1);
-            System.Windows.Forms.TreeNode treeNode36 = new System.Windows.Forms.TreeNode("불량현황", 0, 1);
-            System.Windows.Forms.TreeNode treeNode37 = new System.Windows.Forms.TreeNode("불량 관리", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode36 = new System.Windows.Forms.TreeNode("불량처리현황", 0, 1);
+            System.Windows.Forms.TreeNode treeNode37 = new System.Windows.Forms.TreeNode("불량관리", new System.Windows.Forms.TreeNode[] {
             treeNode34,
             treeNode35,
             treeNode36});
             System.Windows.Forms.TreeNode treeNode38 = new System.Windows.Forms.TreeNode("사용자권한설정", 0, 1);
-            System.Windows.Forms.TreeNode treeNode39 = new System.Windows.Forms.TreeNode("시스템 메뉴", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode39 = new System.Windows.Forms.TreeNode("시스템메뉴", new System.Windows.Forms.TreeNode[] {
             treeNode38});
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -106,6 +106,8 @@
             this.삭제ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.검색toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.인쇄ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.엑셀로내보내기ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.프린트ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.닫기ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -165,11 +167,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.button1 = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.닫기ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.모든창닫기ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.menuStrip.SuspendLayout();
@@ -332,6 +334,9 @@
             // 
             // 인쇄ToolStripMenuItem
             // 
+            this.인쇄ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.엑셀로내보내기ToolStripMenuItem,
+            this.프린트ToolStripMenuItem});
             this.인쇄ToolStripMenuItem.Font = new System.Drawing.Font("나눔고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.인쇄ToolStripMenuItem.ForeColor = System.Drawing.Color.Gray;
             this.인쇄ToolStripMenuItem.Image = global::Team2_ERP.Properties.Resources.Printer_32x32;
@@ -343,6 +348,22 @@
             this.인쇄ToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.인쇄ToolStripMenuItem.ToolTipText = "인쇄(Ctrl+P)";
             this.인쇄ToolStripMenuItem.Click += new System.EventHandler(this.인쇄ToolStripMenuItem_Click);
+            // 
+            // 엑셀로내보내기ToolStripMenuItem
+            // 
+            this.엑셀로내보내기ToolStripMenuItem.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.엑셀로내보내기ToolStripMenuItem.Image = global::Team2_ERP.Properties.Resources.Action_Export_ToExcel;
+            this.엑셀로내보내기ToolStripMenuItem.Name = "엑셀로내보내기ToolStripMenuItem";
+            this.엑셀로내보내기ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.엑셀로내보내기ToolStripMenuItem.Text = "엑셀로 내보내기";
+            // 
+            // 프린트ToolStripMenuItem
+            // 
+            this.프린트ToolStripMenuItem.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.프린트ToolStripMenuItem.Image = global::Team2_ERP.Properties.Resources.Action_Printing_Print;
+            this.프린트ToolStripMenuItem.Name = "프린트ToolStripMenuItem";
+            this.프린트ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.프린트ToolStripMenuItem.Text = "프린터로 인쇄";
             // 
             // 닫기ToolStripMenuItem
             // 
@@ -998,7 +1019,7 @@
             treeNode29.SelectedImageIndex = 1;
             treeNode29.Text = "생산실적현황";
             treeNode30.Name = "노드1";
-            treeNode30.Text = "생산 관리";
+            treeNode30.Text = "생산관리";
             treeNode31.ImageIndex = 0;
             treeNode31.Name = "DowntimeType";
             treeNode31.SelectedImageIndex = 1;
@@ -1008,7 +1029,7 @@
             treeNode32.SelectedImageIndex = 1;
             treeNode32.Text = "비가동현황";
             treeNode33.Name = "노드0";
-            treeNode33.Text = "비가동 관리";
+            treeNode33.Text = "비가동관리";
             treeNode34.ImageIndex = 0;
             treeNode34.Name = "DefectiveType";
             treeNode34.SelectedImageIndex = 1;
@@ -1020,9 +1041,9 @@
             treeNode36.ImageIndex = 0;
             treeNode36.Name = "Defective";
             treeNode36.SelectedImageIndex = 1;
-            treeNode36.Text = "불량현황";
+            treeNode36.Text = "불량처리현황";
             treeNode37.Name = "노드0";
-            treeNode37.Text = "불량 관리";
+            treeNode37.Text = "불량관리";
             this.treeView_Production.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode30,
             treeNode33,
@@ -1121,7 +1142,7 @@
             treeNode38.SelectedImageIndex = 1;
             treeNode38.Text = "사용자권한설정";
             treeNode39.Name = "노드0";
-            treeNode39.Text = "시스템 메뉴";
+            treeNode39.Text = "시스템메뉴";
             this.treeView_System.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode39});
             this.treeView_System.SelectedImageIndex = 3;
@@ -1226,19 +1247,6 @@
             this.tabControl1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.tabControl1_MouseMove);
             this.tabControl1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.tabControl1_MouseUp);
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = global::Team2_ERP.Properties.Resources.left_arrow__2_;
-            this.button1.Location = new System.Drawing.Point(199, 414);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(5, 100);
-            this.button1.TabIndex = 22;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1260,6 +1268,19 @@
             this.모든창닫기ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.모든창닫기ToolStripMenuItem.Text = "모든 창 닫기";
             this.모든창닫기ToolStripMenuItem.Click += new System.EventHandler(this.모든창닫기ToolStripMenuItem_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Image = global::Team2_ERP.Properties.Resources.left_arrow__2_;
+            this.button1.Location = new System.Drawing.Point(199, 414);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(5, 100);
+            this.button1.TabIndex = 22;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainForm
             // 
@@ -1398,6 +1419,8 @@
         private System.Windows.Forms.Label lblUserDept;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ToolStripMenuItem 엑셀로내보내기ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 프린트ToolStripMenuItem;
     }
 }
 

@@ -20,10 +20,11 @@ namespace Team2_ERP
         public Mode CalendarMode
         {
             get { return calendarmode; }
-            set {
+            set
+            {
                 calendarmode = value;
 
-                    switch (CalendarMode)
+                switch (CalendarMode)
                 {
                     case Mode.Today:
                         StartCalendar.SelectionStart = DateTime.Now;
@@ -31,55 +32,96 @@ namespace Team2_ERP
                         break;
                     case Mode.LastWeek:
                         StartCalendar.SelectionStart = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek - 7);
-                        EndCalendar.SelectionStart = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek-1);
+                        EndCalendar.SelectionStart = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek - 1);
                         break;
                     case Mode.Week:
                         StartCalendar.SelectionStart = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek);
                         EndCalendar.SelectionStart = DateTime.Now;
                         break;
                     case Mode.LastMonth:
-                        StartCalendar.SelectionStart = new DateTime(DateTime.Now.Year, DateTime.Now.AddMonths(-1).Month, 1);
-                        EndCalendar.SelectionStart = new DateTime(DateTime.Now.Year, DateTime.Now.AddMonths(-1).Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.AddMonths(-1).Month));
+                        DateTime dt = DateTime.Now.AddMonths(-1);
+                        StartCalendar.SelectionStart = new DateTime(dt.Year, dt.Month, 1);
+                        EndCalendar.SelectionStart = new DateTime(dt.Year, dt.Month, DateTime.DaysInMonth(dt.Year,dt.Month));
                         break;
                     case Mode.Month:
+                        StartCalendar.SelectionStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                        EndCalendar.SelectionStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
                         break;
                     case Mode.Year:
+                        StartCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 1, 1);
+                        EndCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 12, 31);
                         break;
                     case Mode.Year1_4:
+                        StartCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 1, 1);
+                        EndCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 3, 31);
                         break;
                     case Mode.Year2_4:
+                        StartCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 4, 1);
+                        EndCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 6, 30);
                         break;
                     case Mode.Year3_4:
+                        StartCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 7, 1);
+                        EndCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 9, 30);
                         break;
                     case Mode.Year4_4:
+                        StartCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 10, 1);
+                        EndCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 12, 31);
                         break;
                     case Mode.YearFirstHalf:
+                        StartCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 1, 1);
+                        EndCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 6, 30);
                         break;
                     case Mode.YearSecondHalf:
+                        StartCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 7, 1);
+                        EndCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 12, 31);
                         break;
                     case Mode.Jan:
+                        StartCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 1, 1);
+                        EndCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 1, DateTime.DaysInMonth(DateTime.Now.Year, 1));
                         break;
                     case Mode.Feb:
+                        StartCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 2, 1);
+                        EndCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 2, DateTime.DaysInMonth(DateTime.Now.Year, 2));
                         break;
                     case Mode.Mar:
+                        StartCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 3, 1);
+                        EndCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 3, DateTime.DaysInMonth(DateTime.Now.Year, 3));
                         break;
                     case Mode.Apr:
+                        StartCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 4, 1);
+                        EndCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 4, DateTime.DaysInMonth(DateTime.Now.Year, 4));
                         break;
                     case Mode.May:
+                        StartCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 5, 1);
+                        EndCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 5, DateTime.DaysInMonth(DateTime.Now.Year, 5));
                         break;
                     case Mode.Jun:
+                        StartCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 6, 1);
+                        EndCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 6, DateTime.DaysInMonth(DateTime.Now.Year, 6));
                         break;
                     case Mode.Jul:
+                        StartCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 7, 1);
+                        EndCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 7, DateTime.DaysInMonth(DateTime.Now.Year, 7));
                         break;
                     case Mode.Aug:
+                        StartCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 8, 1);
+                        EndCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 8, DateTime.DaysInMonth(DateTime.Now.Year, 8));
                         break;
                     case Mode.Sep:
+                        StartCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 9, 1);
+                        EndCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 9, DateTime.DaysInMonth(DateTime.Now.Year, 9));
                         break;
                     case Mode.Oct:
+                        StartCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 10, 1);
+                        EndCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 10, DateTime.DaysInMonth(DateTime.Now.Year, 10));
                         break;
                     case Mode.Nov:
+                        StartCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 11, 1);
+                        EndCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 11, DateTime.DaysInMonth(DateTime.Now.Year, 11));
                         break;
                     case Mode.Dec:
+                        StartCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 12, 1);
+                        EndCalendar.SelectionStart = new DateTime(DateTime.Now.Year, 12, DateTime.DaysInMonth(DateTime.Now.Year, 12));
                         break;
                     default:
                         break;
@@ -87,7 +129,7 @@ namespace Team2_ERP
             }
         }
 
-        
+
 
         public CalendarForm()
         {
@@ -102,7 +144,7 @@ namespace Team2_ERP
                 Startdate = start;
                 Enddate = end;
             }
-            
+
         }
 
         private void ButtonClick(object sender, EventArgs e)
@@ -122,7 +164,7 @@ namespace Team2_ERP
         private void CalendarForm_Load(object sender, EventArgs e)
         {
             CalendarMode = Mode.Today;
-            
+
         }
 
         private void btnOK_Click(object sender, EventArgs e)

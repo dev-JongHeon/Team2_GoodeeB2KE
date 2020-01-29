@@ -175,6 +175,7 @@ namespace Team2_ERP
 
         private void dgvSearch_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if(e.RowIndex>-1)
             btnOK.PerformClick();
         }
 

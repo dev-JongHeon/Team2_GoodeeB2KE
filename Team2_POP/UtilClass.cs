@@ -49,7 +49,6 @@ namespace Team2_POP
         {
             dgv.Font = new Font("나눔고딕", 15);
             dgv.ColumnHeadersHeight = 30;
-            
             dgv.AutoGenerateColumns = false;
             dgv.AllowUserToAddRows = false;
             dgv.MultiSelect = false;
@@ -68,10 +67,7 @@ namespace Team2_POP
             dgv.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
             dgv.EnableHeadersVisualStyles = false;
             dgv.AllowUserToResizeColumns = true;
-            dgv.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dgv.AllowUserToResizeColumns = false;
-            dgv.AllowUserToResizeRows = false;
-            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgv.AllowUserToResizeRows = true;
             dgv.RowHeadersVisible = false;
             dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         }

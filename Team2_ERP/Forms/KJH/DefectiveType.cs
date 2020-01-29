@@ -23,9 +23,9 @@ namespace Team2_ERP
         {
             frm = (MainForm)this.ParentForm;
             UtilClass.SettingDgv(dgvDefectiveType);
-            UtilClass.AddNewColum(dgvDefectiveType, "불량유형번호", "DefecID");
-            UtilClass.AddNewColum(dgvDefectiveType, "불량유형명", "DefecName");
-            UtilClass.AddNewColum(dgvDefectiveType, "불량유형설명", "DefecExplain");
+            UtilClass.AddNewColum(dgvDefectiveType, "불량유형번호", "DefecID",true,130);
+            UtilClass.AddNewColum(dgvDefectiveType, "불량유형명", "DefecName", true, 130);
+            UtilClass.AddNewColum(dgvDefectiveType, "불량유형설명", "DefecExplain", true, 130);
 
             RefreshClicked();
 

@@ -52,15 +52,11 @@ namespace Team2_ERP
             dgv.AllowUserToAddRows = false;
             dgv.MultiSelect = false;
             dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgv.RowsDefaultCellStyle.BackColor = Color.White;
-            //dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
             dgv.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
             dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(234, 242, 255);
             dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
             dgv.RowHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(234, 242, 255);
-            dgv.DefaultCellStyle.WrapMode = DataGridViewTriState.NotSet;
             dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(55, 113, 138);
             Font headerfont = new Font("나눔고딕", 12);
             dgv.ColumnHeadersDefaultCellStyle.Font = new Font(headerfont, FontStyle.Bold);
@@ -68,11 +64,15 @@ namespace Team2_ERP
             dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(55, 113, 138);
             dgv.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
             dgv.EnableHeadersVisualStyles = false;
-            dgv.AllowUserToResizeColumns = true;
             dgv.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dgv.AllowUserToResizeColumns = false;
+            dgv.AllowUserToResizeColumns = true;
             dgv.AllowUserToResizeRows = false;
             dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            dgv.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);   
+            dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
+
         }
 
         #region Excel 유틸리티

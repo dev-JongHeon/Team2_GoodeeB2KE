@@ -45,7 +45,9 @@ namespace Team2_ERP
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 sdate = frm.Startdate;
+                txtStart.Tag = frm.Startdate;
                 edate = frm.Enddate;
+                txtEnd.Tag = frm.Enddate;
             }
         }
 
@@ -81,28 +83,11 @@ namespace Team2_ERP
             {
                 e.Handled = true;
             }
+            else
+            {
+                txtStart.Tag = null;
+                txtEnd.Tag = null;
+            }
         }
-
-        //private void dtpStart_ValueChanged(object sender, EventArgs e)
-        //{
-        //    if (dtpStart.Value > dtpEnd.Value)
-        //    {
-        //        DateTime starttmp = dtpStart.Value;
-        //        DateTime endtmp = dtpEnd.Value;
-        //        dtpEnd.Value = starttmp;
-        //        dtpStart.Value = endtmp;
-        //    }
-        //}
-
-        //private void dtpEnd_ValueChanged(object sender, EventArgs e)
-        //{
-        //    if (dtpStart.Value > dtpEnd.Value)
-        //    {
-        //        DateTime starttmp = dtpStart.Value;
-        //        DateTime endtmp = dtpEnd.Value;
-        //        dtpEnd.Value = starttmp;
-        //        dtpStart.Value = endtmp;
-        //    }
-        //}
     }
 }
