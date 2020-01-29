@@ -30,12 +30,17 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.cboCategory = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -48,11 +53,6 @@
             this.txtSemiproductName = new System.Windows.Forms.TextBox();
             this.txtSemiproductMoney = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).BeginInit();
@@ -81,6 +81,7 @@
             // btnCancel
             // 
             this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOK
             // 
@@ -99,8 +100,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(798, 409);
-            this.splitContainer1.SplitterDistance = 290;
+            this.splitContainer1.Size = new System.Drawing.Size(796, 407);
+            this.splitContainer1.SplitterDistance = 289;
             this.splitContainer1.TabIndex = 0;
             // 
             // splitContainer3
@@ -119,9 +120,17 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.dataGridView1);
-            this.splitContainer3.Size = new System.Drawing.Size(290, 409);
-            this.splitContainer3.SplitterDistance = 91;
+            this.splitContainer3.Size = new System.Drawing.Size(289, 407);
+            this.splitContainer3.SplitterDistance = 90;
             this.splitContainer3.TabIndex = 0;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(151, 49);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 22);
+            this.comboBox1.TabIndex = 4;
             // 
             // cboCategory
             // 
@@ -151,7 +160,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(290, 314);
+            this.dataGridView1.Size = new System.Drawing.Size(289, 313);
             this.dataGridView1.TabIndex = 0;
             // 
             // Column1
@@ -192,9 +201,45 @@
             this.splitContainer2.Panel2.Controls.Add(this.txtSemiproductName);
             this.splitContainer2.Panel2.Controls.Add(this.txtSemiproductMoney);
             this.splitContainer2.Panel2.Controls.Add(this.label3);
-            this.splitContainer2.Size = new System.Drawing.Size(504, 409);
-            this.splitContainer2.SplitterDistance = 295;
+            this.splitContainer2.Size = new System.Drawing.Size(503, 407);
+            this.splitContainer2.SplitterDistance = 293;
             this.splitContainer2.TabIndex = 0;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(316, 203);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(18, 14);
+            this.label11.TabIndex = 11;
+            this.label11.Text = "원";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(316, 151);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(18, 14);
+            this.label10.TabIndex = 11;
+            this.label10.Text = "원";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(316, 102);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(18, 14);
+            this.label9.TabIndex = 11;
+            this.label9.Text = "원";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(316, 49);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(18, 14);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "원";
             // 
             // textBox4
             // 
@@ -295,50 +340,6 @@
             this.label3.Size = new System.Drawing.Size(29, 14);
             this.label3.TabIndex = 2;
             this.label3.Text = "단가";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(151, 49);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 22);
-            this.comboBox1.TabIndex = 4;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(316, 49);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(18, 14);
-            this.label8.TabIndex = 11;
-            this.label8.Text = "원";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(316, 102);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(18, 14);
-            this.label9.TabIndex = 11;
-            this.label9.Text = "원";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(316, 151);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(18, 14);
-            this.label10.TabIndex = 11;
-            this.label10.Text = "원";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(316, 203);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(18, 14);
-            this.label11.TabIndex = 11;
-            this.label11.Text = "원";
             // 
             // SemiProductComp
             // 
