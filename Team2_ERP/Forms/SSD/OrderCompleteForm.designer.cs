@@ -29,11 +29,9 @@
         private void InitializeComponent()
         {
             this.searchPeriodControl1 = new Team2_ERP.SearchPeriodControl();
-            this.searchUserControl2 = new Team2_ERP.SearchUserControl();
             this.searchUserControl1 = new Team2_ERP.SearchUserControl();
             this.dgv_Order = new System.Windows.Forms.DataGridView();
             this.dgv_OrderDetail = new System.Windows.Forms.DataGridView();
-            this.searchPeriodControl2 = new Team2_ERP.SearchPeriodControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -63,9 +61,7 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.searchPeriodControl2);
             this.panel5.Controls.Add(this.searchPeriodControl1);
-            this.panel5.Controls.Add(this.searchUserControl2);
             this.panel5.Controls.Add(this.searchUserControl1);
             // 
             // lblFormName
@@ -76,21 +72,10 @@
             // 
             this.searchPeriodControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.searchPeriodControl1.Labelname = "주문일자";
-            this.searchPeriodControl1.Location = new System.Drawing.Point(12, 68);
+            this.searchPeriodControl1.Location = new System.Drawing.Point(70, 56);
             this.searchPeriodControl1.Name = "searchPeriodControl1";
             this.searchPeriodControl1.Size = new System.Drawing.Size(312, 25);
             this.searchPeriodControl1.TabIndex = 5;
-            // 
-            // searchUserControl2
-            // 
-            this.searchUserControl2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl2.ControlType = Team2_ERP.SearchUserControl.Mode.Product;
-            this.searchUserControl2.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl2.Labelname = "제품";
-            this.searchUserControl2.Location = new System.Drawing.Point(12, 37);
-            this.searchUserControl2.Name = "searchUserControl2";
-            this.searchUserControl2.Size = new System.Drawing.Size(312, 25);
-            this.searchUserControl2.TabIndex = 4;
             // 
             // searchUserControl1
             // 
@@ -98,13 +83,14 @@
             this.searchUserControl1.ControlType = Team2_ERP.SearchUserControl.Mode.Customer;
             this.searchUserControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.searchUserControl1.Labelname = "고객";
-            this.searchUserControl1.Location = new System.Drawing.Point(12, 6);
+            this.searchUserControl1.Location = new System.Drawing.Point(70, 22);
             this.searchUserControl1.Name = "searchUserControl1";
             this.searchUserControl1.Size = new System.Drawing.Size(312, 25);
             this.searchUserControl1.TabIndex = 3;
             // 
             // dgv_Order
             // 
+            this.dgv_Order.BackgroundColor = System.Drawing.Color.White;
             this.dgv_Order.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_Order.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_Order.Location = new System.Drawing.Point(0, 0);
@@ -116,6 +102,7 @@
             // 
             // dgv_OrderDetail
             // 
+            this.dgv_OrderDetail.BackgroundColor = System.Drawing.Color.White;
             this.dgv_OrderDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_OrderDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_OrderDetail.Location = new System.Drawing.Point(0, 0);
@@ -123,15 +110,6 @@
             this.dgv_OrderDetail.RowTemplate.Height = 23;
             this.dgv_OrderDetail.Size = new System.Drawing.Size(1364, 290);
             this.dgv_OrderDetail.TabIndex = 1;
-            // 
-            // searchPeriodControl2
-            // 
-            this.searchPeriodControl2.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchPeriodControl2.Labelname = "출하완료날짜";
-            this.searchPeriodControl2.Location = new System.Drawing.Point(348, 68);
-            this.searchPeriodControl2.Name = "searchPeriodControl2";
-            this.searchPeriodControl2.Size = new System.Drawing.Size(312, 25);
-            this.searchPeriodControl2.TabIndex = 5;
             // 
             // OrderCompleteForm
             // 
@@ -161,10 +139,8 @@
         #endregion
 
         private SearchPeriodControl searchPeriodControl1;
-        private SearchUserControl searchUserControl2;
         private SearchUserControl searchUserControl1;
         private System.Windows.Forms.DataGridView dgv_Order;
         private System.Windows.Forms.DataGridView dgv_OrderDetail;
-        private SearchPeriodControl searchPeriodControl2;
     }
 }

@@ -76,6 +76,7 @@
             // 
             // dgv_BaljuCompleted
             // 
+            this.dgv_BaljuCompleted.BackgroundColor = System.Drawing.Color.White;
             this.dgv_BaljuCompleted.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_BaljuCompleted.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_BaljuCompleted.Location = new System.Drawing.Point(0, 0);
@@ -88,6 +89,7 @@
             // 
             // dgv_BaljuDetail
             // 
+            this.dgv_BaljuDetail.BackgroundColor = System.Drawing.Color.White;
             this.dgv_BaljuDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_BaljuDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_BaljuDetail.Location = new System.Drawing.Point(0, 0);
