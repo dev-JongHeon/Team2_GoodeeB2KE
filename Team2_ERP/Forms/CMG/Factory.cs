@@ -83,10 +83,22 @@ namespace Team2_ERP
         private void Factory_Activated(object sender, EventArgs e)
         {
             MenuByAuth(Auth);
+
+            //등록 서브메뉴 이벤트 추가
+            tool = (ToolStripDropDownItem)(((MainForm)MdiParent).신규ToolStripMenuItem);
+
+            if (tool.DropDownItems.Count < 1)
+            {
+                tool.DropDownItems.Add("공장");
+                tool.DropDownItems.Add("공정");
+
+                tool.DropDownItemClicked += new ToolStripItemClickedEventHandler(ItemSelect);
+            }
         }
 
         private void Factory_Deactivate(object sender, EventArgs e)
         {
+            //서브메뉴 이벤트 삭제
             tool.DropDownItems.Clear();
             tool.DropDownItemClicked -= ItemSelect;
             new SettingMenuStrip().UnsetMenu(this);
@@ -113,15 +125,7 @@ namespace Team2_ERP
 
         public override void New(object sender, EventArgs e)
         {
-            tool = (ToolStripDropDownItem)(((MainForm)MdiParent).신규ToolStripMenuItem);
-
-            if (tool.DropDownItems.Count < 1)
-            {
-                tool.DropDownItems.Add("공장");
-                tool.DropDownItems.Add("공정");
-
-                tool.DropDownItemClicked += new ToolStripItemClickedEventHandler(ItemSelect);
-            }
+            
         }
 
         public override void Modify(object sender, EventArgs e)
@@ -197,6 +201,7 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)
         {
+            //공장, 공정 두개 다 검색할 때
             if(searchUserControl1.CodeTextBox.Text.Length > 0 && searchUserControl2.CodeTextBox.Text.Length > 0)
             {
                 dgvFactory.DataSource = null;
@@ -207,12 +212,14 @@ namespace Team2_ERP
                 List<LineVO> searchLList = (from item in LList where item.Line_ID == Convert.ToInt32(searchUserControl2.CodeTextBox.Tag) && item.Line_DeletedYN == false select item).ToList();
                 dgvLine.DataSource = searchLList;
             }
+            //공장만 검색할 때
             else if (searchUserControl1.CodeTextBox.Text.Length > 0)
             {
                 dgvFactory.DataSource = null;
                 List<FactoryVO> searchList = (from item in FList where item.Factory_ID == Convert.ToInt32(searchUserControl1.CodeTextBox.Tag) && item.Factory_DeletedYN == false select item).ToList();
                 dgvFactory.DataSource = searchList;
             }
+            //공정만 검색할 때
             else if(searchUserControl2.CodeTextBox.Text.Length > 0)
             {
                 dgvLine.DataSource = null;
@@ -221,7 +228,7 @@ namespace Team2_ERP
             }
             else
             {
-                frm.NoticeMessage = "검색할 공장을 선택해주세요.";
+                frm.NoticeMessage = "검색할 공장이나 공정을 선택해주세요.";
             }
         }
 
