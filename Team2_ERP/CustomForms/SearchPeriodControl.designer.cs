@@ -70,7 +70,7 @@
             this.txtEnd.Mask = "9999/99/99";
             this.txtEnd.Name = "txtEnd";
             this.txtEnd.Size = new System.Drawing.Size(84, 22);
-            this.txtEnd.TabIndex = 15;
+            this.txtEnd.TabIndex = 1;
             this.txtEnd.Click += new System.EventHandler(this.txtEnd_Click);
             this.txtEnd.TextChanged += new System.EventHandler(this.txtEnd_TextChanged);
             this.txtEnd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStart_KeyPress);
@@ -82,7 +82,7 @@
             this.txtStart.Mask = "9999/99/99";
             this.txtStart.Name = "txtStart";
             this.txtStart.Size = new System.Drawing.Size(83, 22);
-            this.txtStart.TabIndex = 14;
+            this.txtStart.TabIndex = 0;
             this.txtStart.Click += new System.EventHandler(this.txtStart_Click);
             this.txtStart.TextChanged += new System.EventHandler(this.txtStart_TextChanged);
             this.txtStart.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStart_KeyPress);
@@ -106,7 +106,7 @@
             this.btnSearch.Location = new System.Drawing.Point(210, 1);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(21, 21);
-            this.btnSearch.TabIndex = 13;
+            this.btnSearch.TabIndex = 2;
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 

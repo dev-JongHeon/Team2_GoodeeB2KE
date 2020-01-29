@@ -155,6 +155,8 @@ namespace Team2_ERP
         private void DefectiveType_Activated(object sender, EventArgs e)
         {
             MenuByAuth(Auth);
+            ActiveControl = txtSearch;
+            txtSearch.Focus();
         }
     }
 }

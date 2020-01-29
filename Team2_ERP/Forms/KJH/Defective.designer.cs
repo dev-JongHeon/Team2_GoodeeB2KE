@@ -77,7 +77,7 @@
             this.searchWorker.Location = new System.Drawing.Point(342, 38);
             this.searchWorker.Name = "searchWorker";
             this.searchWorker.Size = new System.Drawing.Size(312, 30);
-            this.searchWorker.TabIndex = 4;
+            this.searchWorker.TabIndex = 3;
             // 
             // searchProduct
             // 
@@ -88,7 +88,7 @@
             this.searchProduct.Location = new System.Drawing.Point(12, 38);
             this.searchProduct.Name = "searchProduct";
             this.searchProduct.Size = new System.Drawing.Size(312, 30);
-            this.searchProduct.TabIndex = 7;
+            this.searchProduct.TabIndex = 2;
             // 
             // searchFactory
             // 
@@ -99,7 +99,7 @@
             this.searchFactory.Location = new System.Drawing.Point(12, 6);
             this.searchFactory.Name = "searchFactory";
             this.searchFactory.Size = new System.Drawing.Size(312, 30);
-            this.searchFactory.TabIndex = 9;
+            this.searchFactory.TabIndex = 0;
             // 
             // searchPeriod
             // 
@@ -108,7 +108,7 @@
             this.searchPeriod.Location = new System.Drawing.Point(12, 74);
             this.searchPeriod.Name = "searchPeriod";
             this.searchPeriod.Size = new System.Drawing.Size(312, 30);
-            this.searchPeriod.TabIndex = 11;
+            this.searchPeriod.TabIndex = 4;
             // 
             // searchLine
             // 
@@ -119,7 +119,7 @@
             this.searchLine.Location = new System.Drawing.Point(342, 6);
             this.searchLine.Name = "searchLine";
             this.searchLine.Size = new System.Drawing.Size(312, 30);
-            this.searchLine.TabIndex = 12;
+            this.searchLine.TabIndex = 1;
             // 
             // Defective
             // 

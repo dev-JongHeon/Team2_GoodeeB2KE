@@ -91,7 +91,7 @@ namespace Team2_ERP
             }
             else
             {
-                btnRefresh();
+                frm.새로고침ToolStripMenuItem.PerformClick();
             }
         }
 
@@ -190,9 +190,9 @@ namespace Team2_ERP
             dgvAuthList.Columns.Add(cbx);
 
             Point headerLocation = dgvAuthList.GetCellDisplayRectangle(1, -1, true).Location;
-            headerbox.Location = new Point(headerLocation.X + 26, headerLocation.Y + 4);
+            headerbox.Location = new Point(headerLocation.X+8 , headerLocation.Y +5);
             headerbox.BackColor = Color.FromArgb(55, 113, 138);
-            headerbox.Size = new Size(18, 18);
+            headerbox.Size = new Size(16, 16);
             headerbox.Click += new EventHandler(headerbox_Click);
             dgvAuthList.Controls.Add(headerbox);
             dgvAuthList.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
@@ -242,6 +242,12 @@ namespace Team2_ERP
                 }
                 headerbox.Checked = isChecked;
             }
+
+        private void dgvAuthList_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            Point headerLocation = dgvAuthList.GetCellDisplayRectangle(1, -1, true).Location;
+            headerbox.Location = new Point((headerLocation.X+dgvAuthList.Columns[1].Width / 2)-6, headerLocation.Y+ dgvAuthList.ColumnHeadersHeight / 5+1);
         }
+    }
     }
 
