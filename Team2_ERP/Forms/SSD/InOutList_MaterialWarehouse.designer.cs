@@ -124,7 +124,7 @@
             this.Search_Period.Location = new System.Drawing.Point(185, 15);
             this.Search_Period.Name = "Search_Period";
             this.Search_Period.Size = new System.Drawing.Size(312, 35);
-            this.Search_Period.TabIndex = 55;
+            this.Search_Period.TabIndex = 4;
             // 
             // Search_Material
             // 
@@ -135,7 +135,7 @@
             this.Search_Material.Location = new System.Drawing.Point(185, 76);
             this.Search_Material.Name = "Search_Material";
             this.Search_Material.Size = new System.Drawing.Size(312, 25);
-            this.Search_Material.TabIndex = 57;
+            this.Search_Material.TabIndex = 6;
             // 
             // Search_Warehouse
             // 
@@ -146,7 +146,7 @@
             this.Search_Warehouse.Location = new System.Drawing.Point(185, 45);
             this.Search_Warehouse.Name = "Search_Warehouse";
             this.Search_Warehouse.Size = new System.Drawing.Size(312, 25);
-            this.Search_Warehouse.TabIndex = 56;
+            this.Search_Warehouse.TabIndex = 5;
             // 
             // rdo_All
             // 
@@ -155,7 +155,7 @@
             this.rdo_All.Location = new System.Drawing.Point(42, 14);
             this.rdo_All.Name = "rdo_All";
             this.rdo_All.Size = new System.Drawing.Size(57, 21);
-            this.rdo_All.TabIndex = 58;
+            this.rdo_All.TabIndex = 1;
             this.rdo_All.Text = "전체";
             this.rdo_All.UseVisualStyleBackColor = true;
             this.rdo_All.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
@@ -167,7 +167,7 @@
             this.rdo_In.Location = new System.Drawing.Point(42, 38);
             this.rdo_In.Name = "rdo_In";
             this.rdo_In.Size = new System.Drawing.Size(57, 21);
-            this.rdo_In.TabIndex = 59;
+            this.rdo_In.TabIndex = 2;
             this.rdo_In.Text = "입고";
             this.rdo_In.UseVisualStyleBackColor = true;
             this.rdo_In.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
@@ -179,7 +179,7 @@
             this.rdo_Out.Location = new System.Drawing.Point(42, 62);
             this.rdo_Out.Name = "rdo_Out";
             this.rdo_Out.Size = new System.Drawing.Size(57, 21);
-            this.rdo_Out.TabIndex = 60;
+            this.rdo_Out.TabIndex = 3;
             this.rdo_Out.Text = "출고";
             this.rdo_Out.UseVisualStyleBackColor = true;
             this.rdo_Out.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);

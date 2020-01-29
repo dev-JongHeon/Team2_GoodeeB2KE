@@ -51,6 +51,9 @@
             // 
             // splitContainer1
             // 
+            this.splitContainer1.Location = new System.Drawing.Point(0, 192);
+            this.splitContainer1.Size = new System.Drawing.Size(1754, 804);
+            this.splitContainer1.SplitterDistance = 446;
             // 
             // panel2
             // 
@@ -60,25 +63,45 @@
             // 
             this.panel3.Controls.Add(this.dgv_BaljuDetail);
             // 
+            // panel_Search
+            // 
+            this.panel_Search.Size = new System.Drawing.Size(1754, 134);
+            // 
+            // panel4
+            // 
+            this.panel4.Size = new System.Drawing.Size(1754, 2);
+            // 
             // panel5
             // 
             this.panel5.Controls.Add(this.Search_Employee);
             this.panel5.Controls.Add(this.Search_Company);
             this.panel5.Controls.Add(this.Search_Period);
+            this.panel5.Size = new System.Drawing.Size(1754, 134);
+            // 
+            // panel_Title
+            // 
+            this.panel_Title.Size = new System.Drawing.Size(1754, 58);
             // 
             // lblFormName
             // 
+            this.lblFormName.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblFormName.Text = "발주현황";
+            // 
+            // linepanel1
+            // 
+            this.linepanel1.Size = new System.Drawing.Size(1754, 2);
             // 
             // dgv_Balju
             // 
             this.dgv_Balju.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_Balju.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_Balju.Location = new System.Drawing.Point(0, 0);
+            this.dgv_Balju.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgv_Balju.Name = "dgv_Balju";
+            this.dgv_Balju.RowHeadersWidth = 51;
             this.dgv_Balju.RowTemplate.Height = 23;
             this.dgv_Balju.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_Balju.Size = new System.Drawing.Size(1364, 368);
+            this.dgv_Balju.Size = new System.Drawing.Size(1754, 446);
             this.dgv_Balju.TabIndex = 2;
             this.dgv_Balju.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Balju_CellDoubleClick);
             // 
@@ -86,10 +109,11 @@
             // 
             this.Search_Period.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Search_Period.Labelname = "기간 선택";
-            this.Search_Period.Location = new System.Drawing.Point(92, 70);
+            this.Search_Period.Location = new System.Drawing.Point(118, 85);
+            this.Search_Period.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Search_Period.Name = "Search_Period";
-            this.Search_Period.Size = new System.Drawing.Size(312, 26);
-            this.Search_Period.TabIndex = 76;
+            this.Search_Period.Size = new System.Drawing.Size(401, 32);
+            this.Search_Period.TabIndex = 3;
             this.Search_Period.UseWaitCursor = true;
             // 
             // Search_Company
@@ -98,20 +122,23 @@
             this.Search_Company.ControlType = Team2_ERP.SearchUserControl.Mode.Company;
             this.Search_Company.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Search_Company.Labelname = "회사";
-            this.Search_Company.Location = new System.Drawing.Point(92, 8);
+            this.Search_Company.Location = new System.Drawing.Point(118, 10);
+            this.Search_Company.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Search_Company.Name = "Search_Company";
-            this.Search_Company.Size = new System.Drawing.Size(312, 25);
-            this.Search_Company.TabIndex = 80;
+            this.Search_Company.Size = new System.Drawing.Size(401, 30);
+            this.Search_Company.TabIndex = 1;
             // 
             // dgv_BaljuDetail
             // 
             this.dgv_BaljuDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_BaljuDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_BaljuDetail.Location = new System.Drawing.Point(0, 0);
+            this.dgv_BaljuDetail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgv_BaljuDetail.Name = "dgv_BaljuDetail";
+            this.dgv_BaljuDetail.RowHeadersWidth = 51;
             this.dgv_BaljuDetail.RowTemplate.Height = 23;
             this.dgv_BaljuDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_BaljuDetail.Size = new System.Drawing.Size(1364, 290);
+            this.dgv_BaljuDetail.Size = new System.Drawing.Size(1754, 354);
             this.dgv_BaljuDetail.TabIndex = 1;
             // 
             // Search_Employee
@@ -120,16 +147,18 @@
             this.Search_Employee.ControlType = Team2_ERP.SearchUserControl.Mode.Employee;
             this.Search_Employee.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Search_Employee.Labelname = "사원";
-            this.Search_Employee.Location = new System.Drawing.Point(92, 39);
+            this.Search_Employee.Location = new System.Drawing.Point(118, 47);
+            this.Search_Employee.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Search_Employee.Name = "Search_Employee";
-            this.Search_Employee.Size = new System.Drawing.Size(312, 25);
-            this.Search_Employee.TabIndex = 81;
+            this.Search_Employee.Size = new System.Drawing.Size(401, 30);
+            this.Search_Employee.TabIndex = 2;
             // 
             // BaljuList
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
-            this.ClientSize = new System.Drawing.Size(1364, 820);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
+            this.ClientSize = new System.Drawing.Size(1754, 996);
             this.FormName = "발주현황";
+            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.Name = "BaljuList";
             this.Text = "발주현황";
             this.Activated += new System.EventHandler(this.BaljuList_Activated);
