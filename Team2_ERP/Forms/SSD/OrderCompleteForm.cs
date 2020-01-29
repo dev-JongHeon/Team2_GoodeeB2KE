@@ -14,9 +14,11 @@ namespace Team2_ERP
 {
     public partial class OrderCompleteForm : Base2Dgv
     {
+        #region 전역변수
         OrderService service = new OrderService();
         List<OrderDetail> OrderDetail_AllList = null;
-        MainForm main;
+        MainForm main; 
+        #endregion
         public OrderCompleteForm()
         {
             InitializeComponent();
@@ -69,13 +71,9 @@ namespace Team2_ERP
                                                   where list_detail.Order_ID == Order_ID
                                                   select list_detail).ToList();
             dgv_OrderDetail.DataSource = OrderDetail_List;
-        }
+        }  // Master 더블클릭 이벤트
 
-
-
-
-
-
+        #region Activated, OnOff, DeActivate
         private void BaljuList_Activated(object sender, EventArgs e)
         {
             MenuByAuth(Auth);
@@ -89,10 +87,10 @@ namespace Team2_ERP
             main.인쇄ToolStripMenuItem.Visible = flag;
         }
 
-
         private void BaljuList_Deactivate(object sender, EventArgs e)
         {
             new SettingMenuStrip().UnsetMenu(this);
-        }
+        } 
+        #endregion
     }
 }

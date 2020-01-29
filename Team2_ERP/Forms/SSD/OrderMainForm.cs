@@ -13,10 +13,12 @@ namespace Team2_ERP
 {
     public partial class OrderMainForm : Base2Dgv
     {
+        #region 전역변수
         OrderService service = new OrderService();
         List<Order> Order_AllList = null;
         List<OrderDetail> OrderDetail_AllList = null;
-        MainForm main;
+        MainForm main; 
+        #endregion
         public OrderMainForm()
         {
             InitializeComponent();
@@ -62,24 +64,13 @@ namespace Team2_ERP
             OrderDetail_AllList = service.GetOrderDetailList();
         }
 
-        private void dgv_Order_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgv_Order_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
         {
             string Order_ID = dgv_Order.CurrentRow.Cells[0].Value.ToString();
             List<OrderDetail> OrderDetail_List = (from list_detail in OrderDetail_AllList
                                                   where list_detail.Order_ID == Order_ID
                                                   select list_detail).ToList();
             dgv_OrderDetail.DataSource = OrderDetail_List;
-        }
-
-        public override void Modify(object sender, EventArgs e)  // 발주완료(수령)처리 및 출하대기목록 Insert
-        {
-            if (MessageBox.Show("정말 해당주문을 처리하시겠습니까?", "알림", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                string orderID = dgv_Order.CurrentRow.Cells[0].Value.ToString();
-                service.UpOrder_InsShipment(orderID, Session.Employee_ID);
-                
-                Func_Refresh();  // 새로고침
-            }
         }
 
         private void Func_Refresh()  // 새로고침 기능
@@ -96,7 +87,25 @@ namespace Team2_ERP
             Search_Period.Enddate.Text = "";
         }
 
+        #region ToolStrip 기능정의
+        public override void Refresh(object sender, EventArgs e)  // 새로고침
+        {
+            Func_Refresh();
+        }
 
+        public override void Modify(object sender, EventArgs e)  // 발주완료(수령)처리 및 출하대기목록 Insert
+        {
+            if (MessageBox.Show("정말 해당주문을 처리하시겠습니까?", "알림", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                string orderID = dgv_Order.CurrentRow.Cells[0].Value.ToString();
+                service.UpOrder_InsShipment(orderID, Session.Employee_ID);
+
+                Func_Refresh();  // 새로고침
+            }
+        }
+        #endregion
+
+        #region Activated, OnOff, DeActivate
         public override void MenuStripONOFF(bool flag)
         {
             main.신규ToolStripMenuItem.Visible = false;
@@ -117,6 +126,7 @@ namespace Team2_ERP
             main.수정ToolStripMenuItem.Text = "수정";
             main.수정ToolStripMenuItem.ToolTipText = "수정(Ctrl+M)";
             new SettingMenuStrip().UnsetMenu(this);
-        }
+        } 
+        #endregion
     }
 }

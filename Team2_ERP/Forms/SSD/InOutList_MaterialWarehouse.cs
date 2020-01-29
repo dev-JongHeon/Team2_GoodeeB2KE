@@ -14,9 +14,11 @@ namespace Team2_ERP
 {
     public partial class InOutList_MaterialWarehouse : Base1Dgv
     {
+        #region 전역변수
         StockService service = new StockService();
         List<StockReceipt> StockReceipt_AllList = null;
-        MainForm main;
+        MainForm main; 
+        #endregion
         public InOutList_MaterialWarehouse()
         {
             InitializeComponent();
@@ -50,12 +52,31 @@ namespace Team2_ERP
             StockReceipt_AllList = service.GetStockReceipts(); //  자재, 반제품 수불내역 전체 갱신
 
             // LINQ로 원자재창고에 속한것만 가져옴
-            List<StockReceipt> StockReceipt_list = (from list_Stock in StockReceipt_AllList
-                                                    where list_Stock.Warehouse_Division == false
-                                                    select list_Stock).ToList();
-            dgv_Stock.DataSource = StockReceipt_list;
+            StockReceipt_AllList = (from list_Stock in StockReceipt_AllList
+                                    where list_Stock.Warehouse_Division == false
+                                    select list_Stock).ToList();
+            dgv_Stock.DataSource = StockReceipt_AllList;
+        }
+        private void Func_Refresh()  // 새로고침 기능
+        {
+            StockReceipt_AllList = service.GetStockReceipts();  // 수불내역 재조회 후 AllList에 저장
+
+            // LINQ로 원자재창고에 속한것만 바인딩
+            StockReceipt_AllList = (from list_Stock in StockReceipt_AllList
+                                    where list_Stock.Warehouse_Division == true
+                                    select list_Stock).ToList();
+            dgv_Stock.DataSource = StockReceipt_AllList;
+
+            // 검색조건 초기화
+            Search_Period.Startdate.Text = "";
+            Search_Period.Enddate.Text = "";
+            Search_Material.CodeTextBox.Text = "";
+            Search_Warehouse.CodeTextBox.Text = "";
+
+            rdo_All.Checked = true;
         }
 
+        #region 라디오버튼 검색조건
         private void radioButton1_CheckedChanged(object sender, EventArgs e) // 라디오버튼 체크상황 별 검색조건
         {
             if (rdo_All.Checked)
@@ -77,28 +98,45 @@ namespace Team2_ERP
                                         select list_Stock).ToList();
             }
         }
+        #endregion
 
-        public override void Search(object sender, EventArgs e)
+        #region ToolStrip 기능정의
+
+        public override void Refresh(object sender, EventArgs e)  // 새로고침
         {
-            StockReceipt_AllList = service.GetStockReceipts();  // 발주리스트 갱신
+            Func_Refresh();
+        }
+        public override void Search(object sender, EventArgs e)  // 검색
+        {
+            StockReceipt_AllList = service.GetStockReceipts();  // 수불리스트 갱신
+
             if (Search_Warehouse.CodeTextBox.Text.Length > 0)  // 창고 검색조건 있으면
             {
                 StockReceipt_AllList = (from item in StockReceipt_AllList
                                         where item.Warehouse_Name == Search_Warehouse.CodeTextBox.Text
                                         select item).ToList();
             }
+
             if (Search_Material.CodeTextBox.Text.Length > 0)  // 원자재명 검색조건 있으면
             {
                 StockReceipt_AllList = (from item in StockReceipt_AllList
                                         where item.Product_Name == Search_Material.CodeTextBox.Text
                                         select item).ToList();
             }
+
+            if (Search_Employees.CodeTextBox.Text.Length > 0)  // 사원 검색조건 있으면
+            {
+                StockReceipt_AllList = (from item in StockReceipt_AllList
+                                        where item.Employees_Name == Search_Employees.CodeTextBox.Text
+                                        select item).ToList();
+            }
+
             if (Search_Period.Startdate.Text != "    -  -")   // 시작기간 text가 존재하면
             {
-                if (Search_Period.Startdate.Text != Search_Period.Enddate.Text)  // 시작~끝 날짜 다른경우
+                if (Search_Period.Startdate.Text != Search_Period.Enddate.Text)  // 시작, 끝 날짜가 다른경우
                 {
                     StockReceipt_AllList = (from item in StockReceipt_AllList
-                                            where item.StockReceipt_Date.CompareTo(Convert.ToDateTime(Search_Period.Startdate.Text))>= 0        &&
+                                            where item.StockReceipt_Date.CompareTo(Convert.ToDateTime(Search_Period.Startdate.Text)) >= 0 &&
                                             item.StockReceipt_Date.CompareTo(Convert.ToDateTime(Search_Period.Enddate.Text)) <= 0
                                             select item).ToList();
                 }
@@ -113,52 +151,13 @@ namespace Team2_ERP
             rdo_All.Checked = true;  // 라디오버튼 '전체'에 체크
         }
 
-        public override void Refresh(object sender, EventArgs e)  // 새로고침
-        {
-            Func_Refresh();
-        }
-
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
 
         }
+        #endregion
 
-        private void Func_Refresh()  // 새로고침 기능
-        {
-            StockReceipt_AllList = service.GetStockReceipts();
-            // LINQ로 원자재창고에 속한것만 가져옴
-            List<StockReceipt> StockReceipt_list = (from list_Stock in StockReceipt_AllList
-                                                    where list_Stock.Warehouse_Division == false
-                                                    select list_Stock).ToList();
-            dgv_Stock.DataSource = StockReceipt_list;
-
-            // 검색조건 초기화
-            Search_Period.Startdate.Text = "";
-            Search_Period.Enddate.Text = "";
-            Search_Material.CodeTextBox.Text = "";
-            Search_Warehouse.CodeTextBox.Text = "";
-
-            #region 선도
-            //foreach (SearchUserControl control in this.Controls)
-            //{
-            //    control.CodeTextBox.Text = "";
-            //}
-
-            //foreach (SearchPeriodControl control in this.Controls)
-            //{
-            //    control.Startdate.Text = "";
-            //    control.Enddate.Text = "";
-            //} 
-            #endregion
-        }
-
-       
-
-        private void BaljuList_Deactivate(object sender, EventArgs e)
-        {
-            
-        }
-
+        #region Activated, OnOff, DeActivate
         private void InOutList_MaterialWarehouse_Activated(object sender, EventArgs e)
         {
             MenuByAuth(Auth);
@@ -175,6 +174,7 @@ namespace Team2_ERP
         private void InOutList_MaterialWarehouse_Deactivate(object sender, EventArgs e)
         {
             new SettingMenuStrip().UnsetMenu(this);
-        }
+        } 
+        #endregion
     }
 }

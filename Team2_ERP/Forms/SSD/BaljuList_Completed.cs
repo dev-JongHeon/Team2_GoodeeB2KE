@@ -14,10 +14,12 @@ namespace Team2_ERP
 {
     public partial class BaljuList_Completed : Base2Dgv
     {
+        #region 전역변수
         BaljuService service = new BaljuService();
         List<BaljuDetail> BaljuDetail_AllList = null;  // 발주디테일 List
         List<Balju> BaljuCompleted_AllList = null;  // 발주 List
-        MainForm main;
+        MainForm main; 
+        #endregion
 
         public BaljuList_Completed()
         {
@@ -48,7 +50,6 @@ namespace Team2_ERP
             BaljuCompleted_AllList = service.GetBalju_CompletedList(); // 발주리스트 갱신
             dgv_BaljuCompleted.DataSource = BaljuCompleted_AllList;
 
-
             UtilClass.SettingDgv(dgv_BaljuDetail);
             UtilClass.AddNewColum(dgv_BaljuDetail, "발주지시번호", "Balju_ID", true);
             UtilClass.AddNewColum(dgv_BaljuDetail, "품목코드", "Product_ID", true);
@@ -62,74 +63,13 @@ namespace Team2_ERP
 
         }
 
-        private void dgv_BaljuCompleted_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgv_BaljuCompleted_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
         {
             string Balju_ID = dgv_BaljuCompleted.CurrentRow.Cells[0].Value.ToString();
             List<BaljuDetail> BaljuDetail_List = (from list_detail in BaljuDetail_AllList
                                                   where list_detail.Balju_ID == Balju_ID
                                                   select list_detail).ToList();
             dgv_BaljuDetail.DataSource = BaljuDetail_List;
-        }
-
-        public override void Search(object sender, EventArgs e)
-        {
-            BaljuCompleted_AllList = service.GetBalju_CompletedList();  // 발주리스트 갱신
-            if (Search_Company.CodeTextBox.Text.Length > 0)   // 회사 검색조건 있으면
-            {
-                BaljuCompleted_AllList = (from item in BaljuCompleted_AllList
-                                             where item.Company_Name == Search_Company.CodeTextBox.Text
-                                             select item).ToList();
-            }
-            if (Search_Employee.CodeTextBox.Text.Length > 0)   // 사원 검색조건 있으면
-            {
-                BaljuCompleted_AllList = (from item in BaljuCompleted_AllList
-                                             where item.Employees_Name == Search_Employee.CodeTextBox.Text
-                                             select item).ToList();
-            }
-            if (Search_Period.Startdate.Text != "    -  -")   // 시작기간 text가 존재하면
-            {
-                if (Search_Period.Startdate.Text != Search_Period.Enddate.Text)
-                {
-                    BaljuCompleted_AllList = (from item in BaljuCompleted_AllList
-                                                 where item.Balju_Date.CompareTo(Convert.ToDateTime(Search_Period.Startdate.Text)) >= 0                    && item.Balju_Date.CompareTo(Convert.ToDateTime(Search_Period.Enddate.Text)) <= 0
-                                                 select item).ToList();
-                }
-                else
-                {
-                    BaljuCompleted_AllList = (from item in BaljuCompleted_AllList
-                                                 where item.Balju_Date.Date == Convert.ToDateTime(Search_Period.Startdate.Text)
-                                                 select item).ToList();
-                }
-            }
-            if (chk_ReceiptDate.Checked)
-            {
-                BaljuCompleted_AllList = (from item in BaljuCompleted_AllList
-                                             where item.Balju_ReceiptDate.Date == dtp_ReceiptDate.Value.Date
-                                             select item).ToList();
-            }
-
-            dgv_BaljuCompleted.DataSource = BaljuCompleted_AllList;
-            dgv_BaljuDetail.DataSource = null;
-        }
-
-        public override void Refresh(object sender, EventArgs e)  // 새로고침
-        {
-            Func_Refresh();
-        }
-
-        public override void Delete(object sender, EventArgs e)  // 삭제
-        {
-            if (MessageBox.Show("정말로 해당 발주완료목록을 삭제하시겠습니까?", "알림", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                string Balju_ID = dgv_BaljuCompleted.CurrentRow.Cells[0].Value.ToString();
-                service.DeleteBalju(Balju_ID);
-                Func_Refresh();  // 새로고침
-            }
-        }
-
-        public override void Print(object sender, EventArgs e)  // 인쇄
-        {
-
         }
 
         private void Func_Refresh()  // 새로고침 기능
@@ -146,6 +86,76 @@ namespace Team2_ERP
             Search_Employee.CodeTextBox.Text = "";
         }
 
+        private void chk_ReceiptDate_CheckedChanged(object sender, EventArgs e)  // 수령일 체크박스 상태 바뀔 때 이벤트
+        {
+            if (chk_ReceiptDate.Checked) dtp_ReceiptDate.Enabled = true;
+            else dtp_ReceiptDate.Enabled = false;
+        }
+
+        #region ToolStrip 기능정의
+        public override void Refresh(object sender, EventArgs e)  // 새로고침
+        {
+            Func_Refresh();
+        }
+
+        public override void Search(object sender, EventArgs e)  // 검색
+        {
+            BaljuCompleted_AllList = service.GetBalju_CompletedList();  // 발주리스트 갱신
+            if (Search_Company.CodeTextBox.Text.Length > 0)   // 회사 검색조건 있으면
+            {
+                BaljuCompleted_AllList = (from item in BaljuCompleted_AllList
+                                          where item.Company_Name == Search_Company.CodeTextBox.Text
+                                          select item).ToList();
+            }
+            if (Search_Employee.CodeTextBox.Text.Length > 0)   // 사원 검색조건 있으면
+            {
+                BaljuCompleted_AllList = (from item in BaljuCompleted_AllList
+                                          where item.Employees_Name == Search_Employee.CodeTextBox.Text
+                                          select item).ToList();
+            }
+            if (Search_Period.Startdate.Text != "    -  -")   // 시작기간 text가 존재하면
+            {
+                if (Search_Period.Startdate.Text != Search_Period.Enddate.Text)
+                {
+                    BaljuCompleted_AllList = (from item in BaljuCompleted_AllList
+                                              where item.Balju_Date.CompareTo(Convert.ToDateTime(Search_Period.Startdate.Text)) >= 0 && item.Balju_Date.CompareTo(Convert.ToDateTime(Search_Period.Enddate.Text)) <= 0
+                                              select item).ToList();
+                }
+                else
+                {
+                    BaljuCompleted_AllList = (from item in BaljuCompleted_AllList
+                                              where item.Balju_Date.Date == Convert.ToDateTime(Search_Period.Startdate.Text)
+                                              select item).ToList();
+                }
+            }
+            if (chk_ReceiptDate.Checked)
+            {
+                BaljuCompleted_AllList = (from item in BaljuCompleted_AllList
+                                          where item.Balju_ReceiptDate.Date == dtp_ReceiptDate.Value.Date
+                                          select item).ToList();
+            }
+
+            dgv_BaljuCompleted.DataSource = BaljuCompleted_AllList;
+            dgv_BaljuDetail.DataSource = null;
+        }
+
+        public override void Delete(object sender, EventArgs e)  // 삭제
+        {
+            if (MessageBox.Show("정말로 해당 발주완료목록을 삭제하시겠습니까?", "알림", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                string Balju_ID = dgv_BaljuCompleted.CurrentRow.Cells[0].Value.ToString();
+                service.DeleteBalju(Balju_ID);
+                Func_Refresh();  // 새로고침
+            }
+        }
+
+        public override void Print(object sender, EventArgs e)  // 인쇄
+        {
+
+        }
+        #endregion
+
+        #region Activated, OnOff, DeActivate
         private void BaljuList_Completed_Activated(object sender, EventArgs e)
         {
             MenuByAuth(Auth);
@@ -162,12 +172,7 @@ namespace Team2_ERP
         private void BaljuList_Completed_Deactivate(object sender, EventArgs e)
         {
             new SettingMenuStrip().UnsetMenu(this);
-        }
-
-        private void chk_ReceiptDate_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chk_ReceiptDate.Checked) dtp_ReceiptDate.Enabled = true;
-            else dtp_ReceiptDate.Enabled = false;
-        }
+        } 
+        #endregion
     }
 }
