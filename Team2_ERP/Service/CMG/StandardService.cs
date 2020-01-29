@@ -135,5 +135,11 @@ namespace Team2_ERP.Service.CMG
             CompanyDAC dac = new CompanyDAC();
             return dac.GetAllCompany();
         }
+
+        public List<BOMVO> GetAllProduct()
+        {
+            BOMDAC dac = new BOMDAC();
+            return dac.GetAllProduct();
+        }
     }
 }
