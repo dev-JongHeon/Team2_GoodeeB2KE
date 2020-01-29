@@ -20,7 +20,7 @@ namespace Team2_DAC
             {"Downtime","비가동현황" },
             {"DefectiveType","불량유형" },
             {"DefectiveHandle","불량처리유형" },
-            {"Defective","불량현황" },
+            {"Defective","불량처리현황" },
             {"StockStatus","재고현황" },
             {"InOutList_MaterialWarehouse","자재수불현황" },
             {"InOutList_SemiProductWarehouse","반제품수불현황" },

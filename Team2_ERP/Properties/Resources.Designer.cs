@@ -73,6 +73,26 @@ namespace Team2_ERP.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap Action_Export_ToExcel {
+            get {
+                object obj = ResourceManager.GetObject("Action_Export_ToExcel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Action_Export_ToExcel_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("Action_Export_ToExcel_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap Action_Logoff {
             get {
                 object obj = ResourceManager.GetObject("Action_Logoff", resourceCulture);
@@ -86,6 +106,16 @@ namespace Team2_ERP.Properties {
         internal static System.Drawing.Bitmap Action_Logoff_32x32 {
             get {
                 object obj = ResourceManager.GetObject("Action_Logoff_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Action_Printing_Print {
+            get {
+                object obj = ResourceManager.GetObject("Action_Printing_Print", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -386,6 +416,16 @@ namespace Team2_ERP.Properties {
         internal static System.Drawing.Bitmap Printer_32x32 {
             get {
                 object obj = ResourceManager.GetObject("Printer_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Report_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("Report_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
