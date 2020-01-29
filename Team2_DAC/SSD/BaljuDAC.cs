@@ -136,7 +136,7 @@ namespace Team2_DAC
             }
             finally
             {
-                if (check >= 1)
+                if (check > 0)
                 {
                     System.Windows.Forms.MessageBox.Show("삭제완료!");
                 }

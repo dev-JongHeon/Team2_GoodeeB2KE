@@ -36,6 +36,12 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.lblFrameMoney = new System.Windows.Forms.Label();
+            this.lblBrakeMoney = new System.Windows.Forms.Label();
+            this.lblSaddleMoney = new System.Windows.Forms.Label();
+            this.lblSteeringMoney = new System.Windows.Forms.Label();
+            this.lblRunMoney = new System.Windows.Forms.Label();
+            this.lblDriveMoney = new System.Windows.Forms.Label();
             this.txtFrame = new System.Windows.Forms.TextBox();
             this.txtBrake = new System.Windows.Forms.TextBox();
             this.txtSaddle = new System.Windows.Forms.TextBox();
@@ -56,12 +62,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.lblDriveMoney = new System.Windows.Forms.Label();
-            this.lblRunMoney = new System.Windows.Forms.Label();
-            this.lblSteeringMoney = new System.Windows.Forms.Label();
-            this.lblSaddleMoney = new System.Windows.Forms.Label();
-            this.lblBrakeMoney = new System.Windows.Forms.Label();
-            this.lblFrameMoney = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).BeginInit();
@@ -91,6 +91,7 @@
             // btnCancel
             // 
             this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOK
             // 
@@ -109,8 +110,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(798, 409);
-            this.splitContainer1.SplitterDistance = 243;
+            this.splitContainer1.Size = new System.Drawing.Size(796, 407);
+            this.splitContainer1.SplitterDistance = 242;
             this.splitContainer1.TabIndex = 0;
             // 
             // splitContainer3
@@ -128,8 +129,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.dataGridView1);
-            this.splitContainer3.Size = new System.Drawing.Size(243, 409);
-            this.splitContainer3.SplitterDistance = 81;
+            this.splitContainer3.Size = new System.Drawing.Size(242, 407);
+            this.splitContainer3.SplitterDistance = 80;
             this.splitContainer3.TabIndex = 0;
             // 
             // cboCategory
@@ -160,7 +161,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(243, 324);
+            this.dataGridView1.Size = new System.Drawing.Size(242, 323);
             this.dataGridView1.TabIndex = 0;
             // 
             // Column1
@@ -211,9 +212,63 @@
             this.splitContainer2.Panel2.Controls.Add(this.label3);
             this.splitContainer2.Panel2.Controls.Add(this.txtProductName);
             this.splitContainer2.Panel2.Controls.Add(this.label2);
-            this.splitContainer2.Size = new System.Drawing.Size(551, 409);
-            this.splitContainer2.SplitterDistance = 304;
+            this.splitContainer2.Size = new System.Drawing.Size(550, 407);
+            this.splitContainer2.SplitterDistance = 302;
             this.splitContainer2.TabIndex = 0;
+            // 
+            // lblFrameMoney
+            // 
+            this.lblFrameMoney.AutoSize = true;
+            this.lblFrameMoney.Location = new System.Drawing.Point(284, 224);
+            this.lblFrameMoney.Name = "lblFrameMoney";
+            this.lblFrameMoney.Size = new System.Drawing.Size(18, 14);
+            this.lblFrameMoney.TabIndex = 15;
+            this.lblFrameMoney.Text = "원";
+            // 
+            // lblBrakeMoney
+            // 
+            this.lblBrakeMoney.AutoSize = true;
+            this.lblBrakeMoney.Location = new System.Drawing.Point(284, 182);
+            this.lblBrakeMoney.Name = "lblBrakeMoney";
+            this.lblBrakeMoney.Size = new System.Drawing.Size(18, 14);
+            this.lblBrakeMoney.TabIndex = 15;
+            this.lblBrakeMoney.Text = "원";
+            // 
+            // lblSaddleMoney
+            // 
+            this.lblSaddleMoney.AutoSize = true;
+            this.lblSaddleMoney.Location = new System.Drawing.Point(284, 140);
+            this.lblSaddleMoney.Name = "lblSaddleMoney";
+            this.lblSaddleMoney.Size = new System.Drawing.Size(18, 14);
+            this.lblSaddleMoney.TabIndex = 15;
+            this.lblSaddleMoney.Text = "원";
+            // 
+            // lblSteeringMoney
+            // 
+            this.lblSteeringMoney.AutoSize = true;
+            this.lblSteeringMoney.Location = new System.Drawing.Point(284, 99);
+            this.lblSteeringMoney.Name = "lblSteeringMoney";
+            this.lblSteeringMoney.Size = new System.Drawing.Size(18, 14);
+            this.lblSteeringMoney.TabIndex = 15;
+            this.lblSteeringMoney.Text = "원";
+            // 
+            // lblRunMoney
+            // 
+            this.lblRunMoney.AutoSize = true;
+            this.lblRunMoney.Location = new System.Drawing.Point(284, 58);
+            this.lblRunMoney.Name = "lblRunMoney";
+            this.lblRunMoney.Size = new System.Drawing.Size(18, 14);
+            this.lblRunMoney.TabIndex = 15;
+            this.lblRunMoney.Text = "원";
+            // 
+            // lblDriveMoney
+            // 
+            this.lblDriveMoney.AutoSize = true;
+            this.lblDriveMoney.Location = new System.Drawing.Point(284, 19);
+            this.lblDriveMoney.Name = "lblDriveMoney";
+            this.lblDriveMoney.Size = new System.Drawing.Size(18, 14);
+            this.lblDriveMoney.TabIndex = 15;
+            this.lblDriveMoney.Text = "원";
             // 
             // txtFrame
             // 
@@ -382,60 +437,6 @@
             this.label2.Size = new System.Drawing.Size(51, 14);
             this.label2.TabIndex = 4;
             this.label2.Text = "완제품명";
-            // 
-            // lblDriveMoney
-            // 
-            this.lblDriveMoney.AutoSize = true;
-            this.lblDriveMoney.Location = new System.Drawing.Point(284, 19);
-            this.lblDriveMoney.Name = "lblDriveMoney";
-            this.lblDriveMoney.Size = new System.Drawing.Size(18, 14);
-            this.lblDriveMoney.TabIndex = 15;
-            this.lblDriveMoney.Text = "원";
-            // 
-            // lblRunMoney
-            // 
-            this.lblRunMoney.AutoSize = true;
-            this.lblRunMoney.Location = new System.Drawing.Point(284, 58);
-            this.lblRunMoney.Name = "lblRunMoney";
-            this.lblRunMoney.Size = new System.Drawing.Size(18, 14);
-            this.lblRunMoney.TabIndex = 15;
-            this.lblRunMoney.Text = "원";
-            // 
-            // lblSteeringMoney
-            // 
-            this.lblSteeringMoney.AutoSize = true;
-            this.lblSteeringMoney.Location = new System.Drawing.Point(284, 99);
-            this.lblSteeringMoney.Name = "lblSteeringMoney";
-            this.lblSteeringMoney.Size = new System.Drawing.Size(18, 14);
-            this.lblSteeringMoney.TabIndex = 15;
-            this.lblSteeringMoney.Text = "원";
-            // 
-            // lblSaddleMoney
-            // 
-            this.lblSaddleMoney.AutoSize = true;
-            this.lblSaddleMoney.Location = new System.Drawing.Point(284, 140);
-            this.lblSaddleMoney.Name = "lblSaddleMoney";
-            this.lblSaddleMoney.Size = new System.Drawing.Size(18, 14);
-            this.lblSaddleMoney.TabIndex = 15;
-            this.lblSaddleMoney.Text = "원";
-            // 
-            // lblBrakeMoney
-            // 
-            this.lblBrakeMoney.AutoSize = true;
-            this.lblBrakeMoney.Location = new System.Drawing.Point(284, 182);
-            this.lblBrakeMoney.Name = "lblBrakeMoney";
-            this.lblBrakeMoney.Size = new System.Drawing.Size(18, 14);
-            this.lblBrakeMoney.TabIndex = 15;
-            this.lblBrakeMoney.Text = "원";
-            // 
-            // lblFrameMoney
-            // 
-            this.lblFrameMoney.AutoSize = true;
-            this.lblFrameMoney.Location = new System.Drawing.Point(284, 224);
-            this.lblFrameMoney.Name = "lblFrameMoney";
-            this.lblFrameMoney.Size = new System.Drawing.Size(18, 14);
-            this.lblFrameMoney.TabIndex = 15;
-            this.lblFrameMoney.Text = "원";
             // 
             // ProductComp
             // 

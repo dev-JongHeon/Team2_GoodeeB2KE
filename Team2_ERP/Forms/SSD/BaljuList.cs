@@ -136,8 +136,10 @@ namespace Team2_ERP
         private void Func_Refresh()  // 새로고침 기능
         {
             Balju_AllList = service.GetBaljuList();
-            dgv_Balju.DataSource = Balju_AllList;
             BaljuDetail_AllList = service.GetBalju_DetailList();
+
+            dgv_Balju.DataSource = Balju_AllList;
+            dgv_BaljuDetail.DataSource = null;
 
             // 검색조건 초기화
             Search_Period.Startdate.Text = "";

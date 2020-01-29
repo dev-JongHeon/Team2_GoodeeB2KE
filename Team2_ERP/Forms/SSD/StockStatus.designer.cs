@@ -58,6 +58,7 @@
             // 
             // dgv_StockStatus
             // 
+            this.dgv_StockStatus.BackgroundColor = System.Drawing.Color.White;
             this.dgv_StockStatus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_StockStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_StockStatus.Location = new System.Drawing.Point(0, 0);

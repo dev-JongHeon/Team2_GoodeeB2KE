@@ -62,7 +62,7 @@ namespace Team2_DAC
             }
         }
 
-        public List<ShipmentDetail> GetShipmentDetailList()  // 뷰사용
+        public List<ShipmentDetail> GetShipmentDetailList()
         {
             try
             {
@@ -71,7 +71,7 @@ namespace Team2_DAC
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandText = "SELECT Shipment_ID, c.Product_ID, Product_Name, OrderDetail_Qty " +
-                                      "FROM Shipment a JOIN [Order] b ON a.Order_ID = b.Order_ID " +
+                                      "FROM Shipment a JOIN Orders b ON a.Order_ID = b.Order_ID " +
                                                       "JOIN OrderDetail c ON b.Order_ID = c.Order_ID " +
                                                       "JOIN Product d ON c.Product_ID = d.Product_ID ";
 

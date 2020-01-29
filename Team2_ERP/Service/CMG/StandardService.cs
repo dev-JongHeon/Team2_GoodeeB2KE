@@ -135,5 +135,23 @@ namespace Team2_ERP.Service.CMG
             CompanyDAC dac = new CompanyDAC();
             return dac.GetAllCompany();
         }
+
+        public List<ProductVO> GetAllProduct()
+        {
+            BOMDAC dac = new BOMDAC();
+            return dac.GetAllProduct();
+        }
+
+        public List<BOMVO> GetAllCombination(string code)
+        {
+            BOMDAC dac = new BOMDAC();
+            return dac.GetAllCombination(code);
+        }
+
+        public List<ComboItemVO> GetComboProductCategory()
+        {
+            BOMDAC dac = new BOMDAC();
+            return dac.GetComboProductCategory();
+        }
     }
 }

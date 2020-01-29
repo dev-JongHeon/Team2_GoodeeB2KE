@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.searchUserControl1 = new Team2_ERP.SearchUserControl();
-            this.searchUserControl2 = new Team2_ERP.SearchUserControl();
+            this.Search_Customer = new Team2_ERP.SearchUserControl();
             this.dgv_Order = new System.Windows.Forms.DataGridView();
             this.dgv_OrderDetail = new System.Windows.Forms.DataGridView();
-            this.searchPeriodControl1 = new Team2_ERP.SearchPeriodControl();
+            this.Search_Period = new Team2_ERP.SearchPeriodControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -62,38 +61,27 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.searchPeriodControl1);
-            this.panel5.Controls.Add(this.searchUserControl2);
-            this.panel5.Controls.Add(this.searchUserControl1);
+            this.panel5.Controls.Add(this.Search_Period);
+            this.panel5.Controls.Add(this.Search_Customer);
             // 
             // lblFormName
             // 
             this.lblFormName.Text = "주문현황";
             // 
-            // searchUserControl1
+            // Search_Customer
             // 
-            this.searchUserControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl1.ControlType = Team2_ERP.SearchUserControl.Mode.Customer;
-            this.searchUserControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl1.Labelname = "고객";
-            this.searchUserControl1.Location = new System.Drawing.Point(13, 7);
-            this.searchUserControl1.Name = "searchUserControl1";
-            this.searchUserControl1.Size = new System.Drawing.Size(312, 25);
-            this.searchUserControl1.TabIndex = 0;
-            // 
-            // searchUserControl2
-            // 
-            this.searchUserControl2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl2.ControlType = Team2_ERP.SearchUserControl.Mode.Product;
-            this.searchUserControl2.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl2.Labelname = "제품";
-            this.searchUserControl2.Location = new System.Drawing.Point(13, 38);
-            this.searchUserControl2.Name = "searchUserControl2";
-            this.searchUserControl2.Size = new System.Drawing.Size(312, 25);
-            this.searchUserControl2.TabIndex = 1;
+            this.Search_Customer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.Search_Customer.ControlType = Team2_ERP.SearchUserControl.Mode.Customer;
+            this.Search_Customer.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Search_Customer.Labelname = "고객";
+            this.Search_Customer.Location = new System.Drawing.Point(59, 22);
+            this.Search_Customer.Name = "Search_Customer";
+            this.Search_Customer.Size = new System.Drawing.Size(312, 25);
+            this.Search_Customer.TabIndex = 0;
             // 
             // dgv_Order
             // 
+            this.dgv_Order.BackgroundColor = System.Drawing.Color.White;
             this.dgv_Order.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_Order.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_Order.Location = new System.Drawing.Point(0, 0);
@@ -105,6 +93,7 @@
             // 
             // dgv_OrderDetail
             // 
+            this.dgv_OrderDetail.BackgroundColor = System.Drawing.Color.White;
             this.dgv_OrderDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_OrderDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_OrderDetail.Location = new System.Drawing.Point(0, 0);
@@ -113,14 +102,14 @@
             this.dgv_OrderDetail.Size = new System.Drawing.Size(1364, 290);
             this.dgv_OrderDetail.TabIndex = 0;
             // 
-            // searchPeriodControl1
+            // Search_Period
             // 
-            this.searchPeriodControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchPeriodControl1.Labelname = "기간 선택";
-            this.searchPeriodControl1.Location = new System.Drawing.Point(13, 69);
-            this.searchPeriodControl1.Name = "searchPeriodControl1";
-            this.searchPeriodControl1.Size = new System.Drawing.Size(312, 25);
-            this.searchPeriodControl1.TabIndex = 2;
+            this.Search_Period.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Search_Period.Labelname = "주문일자";
+            this.Search_Period.Location = new System.Drawing.Point(59, 56);
+            this.Search_Period.Name = "Search_Period";
+            this.Search_Period.Size = new System.Drawing.Size(312, 25);
+            this.Search_Period.TabIndex = 2;
             // 
             // OrderMainForm
             // 
@@ -128,6 +117,8 @@
             this.ClientSize = new System.Drawing.Size(1364, 820);
             this.FormName = "주문현황";
             this.Name = "OrderMainForm";
+            this.Activated += new System.EventHandler(this.OrderMainForm_Activated);
+            this.Deactivate += new System.EventHandler(this.OrderMainForm_Deactivate);
             this.Load += new System.EventHandler(this.OrderMainForm_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -151,8 +142,7 @@
 
         private System.Windows.Forms.DataGridView dgv_Order;
         private System.Windows.Forms.DataGridView dgv_OrderDetail;
-        private SearchPeriodControl searchPeriodControl1;
-        private SearchUserControl searchUserControl2;
-        private SearchUserControl searchUserControl1;
+        private SearchPeriodControl Search_Period;
+        private SearchUserControl Search_Customer;
     }
 }

@@ -41,10 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CMG\BOMVO.cs" />
     <Compile Include="CMG\CompanyVO.cs" />
     <Compile Include="CMG\CustomerVO.cs" />
     <Compile Include="CMG\FactoryVO.cs" />
     <Compile Include="CMG\LineVO.cs" />
+    <Compile Include="CMG\ProductVO.cs" />
     <Compile Include="KJH\AuthVO.cs" />
     <Compile Include="CMG\EmployeeVO.cs" />
     <Compile Include="CMG\ResourceVO.cs" />

@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CMG\BOMDAC.cs" />
     <Compile Include="CMG\CodeTableDAC.cs" />
     <Compile Include="CMG\CompanyDAC.cs" />
     <Compile Include="CMG\CustomerDAC.cs" />
