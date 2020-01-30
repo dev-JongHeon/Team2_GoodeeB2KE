@@ -63,6 +63,16 @@ namespace Team2_POP.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap facebook_cover_photo_1 {
+            get {
+                object obj = ResourceManager.GetObject("facebook_cover_photo_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap iconfinder_back_126585__2_ {
             get {
                 object obj = ResourceManager.GetObject("iconfinder_back_126585__2_", resourceCulture);
@@ -76,6 +86,16 @@ namespace Team2_POP.Properties {
         internal static System.Drawing.Bitmap iconfinder_forward_126569__2_ {
             get {
                 object obj = ResourceManager.GetObject("iconfinder_forward_126569__2_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap logo {
+            get {
+                object obj = ResourceManager.GetObject("logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -246,8 +246,8 @@ namespace Team2_ERP
         private void dgvAuthList_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         {
             Point headerLocation = dgvAuthList.GetCellDisplayRectangle(1, -1, true).Location;
-            headerbox.Location = new Point((headerLocation.X+dgvAuthList.Columns[1].Width / 2)-6, headerLocation.Y+ dgvAuthList.ColumnHeadersHeight / 5+1);
+            headerbox.Location = new Point((headerLocation.X+dgvAuthList.Columns[1].Width / 2)-7, headerLocation.Y+ dgvAuthList.ColumnHeadersHeight / 5+1);
         }
     }
-    }
+}
 

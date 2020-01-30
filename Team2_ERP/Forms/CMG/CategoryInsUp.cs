@@ -18,45 +18,59 @@ namespace Team2_ERP
         string mode = string.Empty;
         string code = string.Empty;
 
-        public CategoryInsUp(EditMode editMode, string prod, string name, string context)
+        public CategoryInsUp(EditMode editMode, CodeTableVO item)
         {
             InitializeComponent();
 
             if(editMode == EditMode.Update)
             {
                 mode = "Update";
-                code = prod;
-                txtName.Text = name;
-                txtContext.Text = context;
+                lblName.Text = "카테고리 수정";
+                code = item.CodeTable_CodeID;
+                txtName.Text = item.CodeTable_CodeName;
             }
             
             else if(editMode == EditMode.Insert)
             {
                 mode = "Insert";
+                lblName.Text = "카테고리 등록";
             }
         }
 
-        // 반제품 등록
         private void InsertCategory()
         {
             CodeTableVO category = new CodeTableVO();
-            CodeTableService service = new CodeTableService();
 
             category.CodeTable_CodeName = txtName.Text;
-            category.CodeTable_CodeExplain = txtContext.Text;
+            if (txtContext.Text.Length > 0)
+            {
+                category.CodeTable_CodeExplain = txtContext.Text;
+            }
+            else
+            {
+                category.CodeTable_CodeExplain = cboContext.SelectedValue.ToString();
+            }
 
+            CodeTableService service = new CodeTableService();
             service.InsertCategory(category);
         }
 
         public void UpdateCategory()
         {
             CodeTableVO category = new CodeTableVO();
-            CodeTableService service = new CodeTableService();
 
             category.CodeTable_CodeName = txtName.Text;
-            category.CodeTable_CodeExplain = txtContext.Text;
+            if (txtContext.Text.Length > 0)
+            {
+                category.CodeTable_CodeExplain = txtContext.Text;
+            }
+            else
+            {
+                category.CodeTable_CodeExplain = cboContext.SelectedValue.ToString();
+            }
             category.CodeTable_CodeID = code;
 
+            CodeTableService service = new CodeTableService();
             service.UpdateCodeTable(category);
         }
 
@@ -81,13 +95,46 @@ namespace Team2_ERP
 
         private void CategoryInsUp_Load(object sender, EventArgs e)
         {
-            if (mode.Equals("Insert"))
+            if(mode.Equals("Update"))
             {
-                lblName.Text = "카테고리 등록";
+                if (code.Substring(0, 2).Equals("CM"))
+                {
+                    rdoSemiProduct.Enabled = false;
+                    rdoResource.Checked = true;
+                    InitCombo();
+                }
+                else if(code.Substring(0, 2).Equals("CS"))
+                {
+                    rdoResource.Enabled = false;
+                    rdoSemiProduct.Checked = true;
+                }
             }
-            else if (mode.Equals("Update"))
+            else
             {
-                lblName.Text = "카테고리 수정";
+                rdoResource.Checked = true;
+                txtContext.Visible = false;
+                InitCombo();
+            }
+        }
+
+        private void InitCombo()
+        {
+            StandardService service = new StandardService();
+            List<ComboItemVO> categoryList = (from item in service.GetComboProductCategory() where item.ID.Contains("CS") select item).ToList();
+            UtilClass.ComboBinding(cboContext, categoryList, "선택");
+        }
+
+        private void rdo_CheckedChanged(object sender, EventArgs e)
+        {
+            if(rdoResource.Checked)
+            {
+                cboContext.Visible = true;
+                txtContext.Visible = false;
+            }
+            else
+            {
+                txtContext.Visible = true;
+                cboContext.Visible = false;
             }
         }
     }

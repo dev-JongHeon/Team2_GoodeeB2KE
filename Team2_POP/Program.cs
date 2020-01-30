@@ -17,7 +17,7 @@ namespace Team2_POP
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new PopMain());
+            Application.Run(new LoginPOP());
         }
     }
 }

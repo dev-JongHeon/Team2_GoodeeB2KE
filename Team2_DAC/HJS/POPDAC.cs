@@ -224,31 +224,29 @@ namespace Team2_DAC
             }
         }
 
+        #region 생산
 
         // 생산시작
         public string[] StartProduce(string produceID)
         {
-            string[] list = new string[5];
+            string[] list = new string[2];
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "proc_StartProduce";
+                    cmd.CommandText = "proc_StartProduction";
 
-                    FillParameter(cmd, new string[] { "@Produce_ID" }, new object[] { produceID });
+                    FillParameter(cmd, new string[] { "@ProduceID" }, new object[] { produceID });
                     
                     conn.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
                     
                     while(reader.Read())
                     {
-                        list[0] = reader.GetString(0);  // Msg [Error Complete]
-                        list[1] = reader.GetString(1);  // If Complete => 생산실적번호
-                        list[2] = reader.GetString(2);  // If Complete => 생산번호
-                        list[3] = reader.GetInt32(3).ToString();  // If Complete => 필요 수량
-                        list[4] = reader.GetInt32(4).ToString();  // If Complete => 라인아이디
+                        list[0] = reader["Performance_ID"].ToString();  // 생산실적번호 
+                        list[1] = reader["Qty"].ToString();  // 생산 수량                       
                     }
                     reader.Close();
                     conn.Close();
@@ -256,9 +254,9 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch
+            catch(Exception err)
             {
-                list[0] = "Error";
+                string sss = err.Message;
                 return list;
             }
 
@@ -275,7 +273,7 @@ namespace Team2_DAC
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "proc_InProduction";
+                    cmd.CommandText = "proc_Operation";
                     
                     FillParameter(cmd, param, new object[] { performanceID, success, bad });
 
@@ -292,7 +290,7 @@ namespace Team2_DAC
         }
 
         // 생산 완료
-        public void EndProduce(string performanceID)
+        public void EndProduce(string performanceID, string produceID)
         {
             try
             {
@@ -300,22 +298,22 @@ namespace Team2_DAC
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "proc_EndProduce";
+                    cmd.CommandText = "proc_EndProduction";
 
-                    FillParameter(cmd, new string[] { "@Performance_ID" }, new object[] { performanceID });
-
+                    FillParameter(cmd, new string[] { "@Performance_ID", "@Produce_ID" }, new object[] { performanceID, produceID });
+                    
                     conn.Open();
                     cmd.ExecuteNonQuery();
                     conn.Close();
                 }
             }
-            catch
+            catch(Exception err)
             {
-               
+                string sss = err.Message;
             }
         }
 
-
+        #endregion
 
 
         #region 삽입 - 작업자설정, 비가동처리
@@ -330,9 +328,9 @@ namespace Team2_DAC
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "proc_SetWorkerForPerformancePOP";
+                    cmd.CommandText = "proc_SetPerformance";
 
-                    FillParameter(cmd, new string[] { "@Produce_ID", "@Employee_ID" }, new object[] { produceID, empID });
+                    FillParameter(cmd, new string[] { "@ProduceID", "@EmployeeID" }, new object[] { produceID, empID });
 
                     conn.Open();
                     iResult = cmd.ExecuteNonQuery();
@@ -475,5 +473,37 @@ namespace Team2_DAC
         #endregion
 
         #endregion
+
+
+        public List<ComboItemVO> GetDowntimeCode()
+        {
+            List<ComboItemVO> list = null;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "GetInfo";
+
+                    FillParameter(cmd, new string[] { "@div" }, new object[] { "Downtime" });
+
+                    conn.Open();
+                    list = Helper.DataReaderMapToList<ComboItemVO>(cmd.ExecuteReader());
+                    conn.Close();
+
+                    return list;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public void SetDowntime(int lineID, string downtimeCode)
+        {
+
+        }
     }
 }

@@ -222,6 +222,12 @@
     <Compile Include="Forms\CMG\SemiProductComp.designer.cs">
       <DependentUpon>SemiProductComp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CMG\SemiProductCompControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\CMG\SemiProductCompControl.Designer.cs">
+      <DependentUpon>SemiProductCompControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CMG\Warehouse.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -398,6 +404,8 @@
     </Compile>
     <Compile Include="Service\KJH\AuthService.cs" />
     <Compile Include="Service\KJH\DefectiveHandleService.cs" />
+    <Compile Include="Service\KJH\WorkService.cs" />
+    <Compile Include="Service\KJH\DowntimeService.cs" />
     <Compile Include="Service\KJH\DefectiveService.cs" />
     <Compile Include="Service\KJH\DowntimeTypeService.cs" />
     <Compile Include="Service\KJH\DefectiveTypeService.cs" />
@@ -498,6 +506,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CMG\SemiProductComp.resx">
       <DependentUpon>SemiProductComp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CMG\SemiProductCompControl.resx">
+      <DependentUpon>SemiProductCompControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CMG\Warehouse.resx">
       <DependentUpon>Warehouse.cs</DependentUpon>

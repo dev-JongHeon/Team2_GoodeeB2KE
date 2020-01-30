@@ -53,8 +53,12 @@
     <Compile Include="CMG\WarehouseDAC.cs" />
     <Compile Include="ConnectionInfo.cs" />
     <Compile Include="Helper.cs" />
-    <Compile Include="HJS\POPDAC.cs" />
+    <Compile Include="HJS\POPDAC.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="KJH\AuthDAC.cs" />
+    <Compile Include="KJH\WorkDAC.cs" />
+    <Compile Include="KJH\DowntimeDAC.cs" />
     <Compile Include="KJH\DefectiveHandleDAC.cs" />
     <Compile Include="KJH\DefectiveDAC.cs" />
     <Compile Include="KJH\DowntimeTypeDAC.cs" />

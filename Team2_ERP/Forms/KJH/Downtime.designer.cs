@@ -29,23 +29,11 @@
         private void InitializeComponent()
         {
             this.dgvDowntime = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.searchUserControl1 = new Team2_ERP.SearchUserControl();
-            this.searchUserControl2 = new Team2_ERP.SearchUserControl();
-            this.searchUserControl3 = new Team2_ERP.SearchUserControl();
-            this.searchUserControl4 = new Team2_ERP.SearchUserControl();
-            this.searchPeriodControl1 = new Team2_ERP.SearchPeriodControl();
-            this.searchPeriodControl2 = new Team2_ERP.SearchPeriodControl();
+            this.searchFactory = new Team2_ERP.SearchUserControl();
+            this.searchLine = new Team2_ERP.SearchUserControl();
+            this.searchDowntime = new Team2_ERP.SearchUserControl();
+            this.searchWorker = new Team2_ERP.SearchUserControl();
+            this.searchPeriod = new Team2_ERP.SearchPeriodControl();
             this.panel1.SuspendLayout();
             this.panel_Search.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -64,28 +52,16 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.searchPeriodControl2);
-            this.panel5.Controls.Add(this.searchPeriodControl1);
-            this.panel5.Controls.Add(this.searchUserControl3);
-            this.panel5.Controls.Add(this.searchUserControl4);
-            this.panel5.Controls.Add(this.searchUserControl2);
-            this.panel5.Controls.Add(this.searchUserControl1);
+            this.panel5.Controls.Add(this.searchPeriod);
+            this.panel5.Controls.Add(this.searchDowntime);
+            this.panel5.Controls.Add(this.searchWorker);
+            this.panel5.Controls.Add(this.searchLine);
+            this.panel5.Controls.Add(this.searchFactory);
             // 
             // dgvDowntime
             // 
+            this.dgvDowntime.BackgroundColor = System.Drawing.Color.White;
             this.dgvDowntime.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDowntime.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column8,
-            this.Column9,
-            this.Column10,
-            this.Column11,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column6,
-            this.Column7});
             this.dgvDowntime.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDowntime.Location = new System.Drawing.Point(0, 158);
             this.dgvDowntime.Name = "dgvDowntime";
@@ -93,116 +69,58 @@
             this.dgvDowntime.Size = new System.Drawing.Size(1364, 662);
             this.dgvDowntime.TabIndex = 7;
             // 
-            // Column1
+            // searchFactory
             // 
-            this.Column1.HeaderText = "비가동코드번호";
-            this.Column1.Name = "Column1";
+            this.searchFactory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.searchFactory.ControlType = Team2_ERP.SearchUserControl.Mode.Factory;
+            this.searchFactory.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchFactory.Labelname = "공장";
+            this.searchFactory.Location = new System.Drawing.Point(23, 11);
+            this.searchFactory.Name = "searchFactory";
+            this.searchFactory.Size = new System.Drawing.Size(312, 25);
+            this.searchFactory.TabIndex = 0;
             // 
-            // Column8
+            // searchLine
             // 
-            this.Column8.HeaderText = "공장코드";
-            this.Column8.Name = "Column8";
+            this.searchLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.searchLine.ControlType = Team2_ERP.SearchUserControl.Mode.Line;
+            this.searchLine.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchLine.Labelname = "공정";
+            this.searchLine.Location = new System.Drawing.Point(23, 42);
+            this.searchLine.Name = "searchLine";
+            this.searchLine.Size = new System.Drawing.Size(312, 25);
+            this.searchLine.TabIndex = 0;
             // 
-            // Column9
+            // searchDowntime
             // 
-            this.Column9.HeaderText = "공장명";
-            this.Column9.Name = "Column9";
+            this.searchDowntime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.searchDowntime.ControlType = Team2_ERP.SearchUserControl.Mode.Downtime;
+            this.searchDowntime.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchDowntime.Labelname = "비가동유형";
+            this.searchDowntime.Location = new System.Drawing.Point(23, 73);
+            this.searchDowntime.Name = "searchDowntime";
+            this.searchDowntime.Size = new System.Drawing.Size(312, 25);
+            this.searchDowntime.TabIndex = 0;
             // 
-            // Column10
+            // searchWorker
             // 
-            this.Column10.HeaderText = "공정코드";
-            this.Column10.Name = "Column10";
+            this.searchWorker.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.searchWorker.ControlType = Team2_ERP.SearchUserControl.Mode.Worker;
+            this.searchWorker.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchWorker.Labelname = "작업자";
+            this.searchWorker.Location = new System.Drawing.Point(353, 10);
+            this.searchWorker.Name = "searchWorker";
+            this.searchWorker.Size = new System.Drawing.Size(312, 25);
+            this.searchWorker.TabIndex = 0;
             // 
-            // Column11
+            // searchPeriod
             // 
-            this.Column11.HeaderText = "공정명";
-            this.Column11.Name = "Column11";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "비가동유형코드";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "비가동유형명";
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "작업자코드";
-            this.Column4.Name = "Column4";
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "작업자명";
-            this.Column5.Name = "Column5";
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "비가동시작";
-            this.Column6.Name = "Column6";
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "비가동종료";
-            this.Column7.Name = "Column7";
-            // 
-            // searchUserControl1
-            // 
-            this.searchUserControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl1.ControlType = Team2_ERP.SearchUserControl.Mode.Factory;
-            this.searchUserControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl1.Location = new System.Drawing.Point(23, 42);
-            this.searchUserControl1.Name = "searchUserControl1";
-            this.searchUserControl1.Size = new System.Drawing.Size(312, 25);
-            this.searchUserControl1.TabIndex = 0;
-            // 
-            // searchUserControl2
-            // 
-            this.searchUserControl2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl2.ControlType = Team2_ERP.SearchUserControl.Mode.Line;
-            this.searchUserControl2.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl2.Location = new System.Drawing.Point(23, 73);
-            this.searchUserControl2.Name = "searchUserControl2";
-            this.searchUserControl2.Size = new System.Drawing.Size(312, 25);
-            this.searchUserControl2.TabIndex = 0;
-            // 
-            // searchUserControl3
-            // 
-            this.searchUserControl3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl3.ControlType = Team2_ERP.SearchUserControl.Mode.Downtime;
-            this.searchUserControl3.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl3.Location = new System.Drawing.Point(355, 73);
-            this.searchUserControl3.Name = "searchUserControl3";
-            this.searchUserControl3.Size = new System.Drawing.Size(312, 25);
-            this.searchUserControl3.TabIndex = 0;
-            // 
-            // searchUserControl4
-            // 
-            this.searchUserControl4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl4.ControlType = Team2_ERP.SearchUserControl.Mode.Company;
-            this.searchUserControl4.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl4.Location = new System.Drawing.Point(355, 42);
-            this.searchUserControl4.Name = "searchUserControl4";
-            this.searchUserControl4.Size = new System.Drawing.Size(312, 25);
-            this.searchUserControl4.TabIndex = 0;
-            // 
-            // searchPeriodControl1
-            // 
-            this.searchPeriodControl1.Labelname = "비가동 시작";
-            this.searchPeriodControl1.Location = new System.Drawing.Point(23, 10);
-            this.searchPeriodControl1.Name = "searchPeriodControl1";
-            this.searchPeriodControl1.Size = new System.Drawing.Size(312, 31);
-            this.searchPeriodControl1.TabIndex = 1;
-            // 
-            // searchPeriodControl2
-            // 
-            this.searchPeriodControl2.Labelname = "비가동 종료";
-            this.searchPeriodControl2.Location = new System.Drawing.Point(355, 10);
-            this.searchPeriodControl2.Name = "searchPeriodControl2";
-            this.searchPeriodControl2.Size = new System.Drawing.Size(312, 31);
-            this.searchPeriodControl2.TabIndex = 1;
+            this.searchPeriod.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchPeriod.Labelname = "비가동일자";
+            this.searchPeriod.Location = new System.Drawing.Point(353, 42);
+            this.searchPeriod.Name = "searchPeriod";
+            this.searchPeriod.Size = new System.Drawing.Size(312, 31);
+            this.searchPeriod.TabIndex = 1;
             // 
             // Downtime
             // 
@@ -210,6 +128,10 @@
             this.ClientSize = new System.Drawing.Size(1364, 820);
             this.Name = "Downtime";
             this.Text = "비가동 조회";
+            this.Activated += new System.EventHandler(this.Downtime_Activated);
+            this.Deactivate += new System.EventHandler(this.Downtime_Deactivate);
+            this.Load += new System.EventHandler(this.Downtime_Load);
+            this.Shown += new System.EventHandler(this.Downtime_Shown);
             this.panel1.ResumeLayout(false);
             this.panel_Search.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
@@ -224,22 +146,10 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgvDowntime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private SearchPeriodControl searchPeriodControl2;
-        private SearchPeriodControl searchPeriodControl1;
-        private SearchUserControl searchUserControl3;
-        private SearchUserControl searchUserControl4;
-        private SearchUserControl searchUserControl2;
-        private SearchUserControl searchUserControl1;
+        private SearchPeriodControl searchPeriod;
+        private SearchUserControl searchDowntime;
+        private SearchUserControl searchWorker;
+        private SearchUserControl searchLine;
+        private SearchUserControl searchFactory;
     }
 }

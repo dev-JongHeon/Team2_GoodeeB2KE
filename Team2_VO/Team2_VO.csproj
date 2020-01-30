@@ -47,6 +47,8 @@
     <Compile Include="CMG\FactoryVO.cs" />
     <Compile Include="CMG\LineVO.cs" />
     <Compile Include="CMG\ProductVO.cs" />
+    <Compile Include="HJS\WorkerInfoPOP.cs" />
+    <Compile Include="KJH\WorkVO.cs" />
     <Compile Include="KJH\AuthVO.cs" />
     <Compile Include="CMG\EmployeeVO.cs" />
     <Compile Include="CMG\ResourceVO.cs" />
@@ -59,6 +61,7 @@
     <Compile Include="HJS\ProducePOP.cs" />
     <Compile Include="HJS\WorkPOP.cs" />
     <Compile Include="KJH\DefectiveHandleVO.cs" />
+    <Compile Include="KJH\DowntimeVO.cs" />
     <Compile Include="KJH\DowntimeTypeVO.cs" />
     <Compile Include="KJH\DefectiveVO.cs" />
     <Compile Include="KJH\DefectiveTypeVO.cs" />
