@@ -25,7 +25,7 @@ namespace Team2_ERP
             UtilClass.SettingDgv(dgvDowntimeType);
             UtilClass.AddNewColum(dgvDowntimeType, "비가동유형번호", "DownID", true, 170);
             UtilClass.AddNewColum(dgvDowntimeType, "비가동유형명", "DownName", true, 130);
-            UtilClass.AddNewColum(dgvDowntimeType, "비가동유형설명", "DownExplain", true, 200);
+            UtilClass.AddNewColum(dgvDowntimeType, "비가동유형설명", "DownExplain", true, 300);
 
             RefreshClicked();
         }

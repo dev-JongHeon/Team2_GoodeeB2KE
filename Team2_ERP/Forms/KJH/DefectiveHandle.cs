@@ -26,7 +26,7 @@ namespace Team2_ERP
             UtilClass.SettingDgv(dgvDefectiveHandle);
             UtilClass.AddNewColum(dgvDefectiveHandle, "불량처리유형번호", "HandleID",true,170);
             UtilClass.AddNewColum(dgvDefectiveHandle, "불량처리유형명", "HandleName",true,150);
-            UtilClass.AddNewColum(dgvDefectiveHandle, "불량처리유형설명", "HandleExplain",true,200);
+            UtilClass.AddNewColum(dgvDefectiveHandle, "불량처리유형설명", "HandleExplain",true,300);
             dgvDefectiveHandle.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             dgvDefectiveHandle.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             dgvDefectiveHandle.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
