@@ -36,6 +36,10 @@
             this.lblDowntimeName = new System.Windows.Forms.Label();
             this.btnToggle = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cboWorker = new System.Windows.Forms.ComboBox();
+            this.btnWorker = new System.Windows.Forms.Button();
+            this.lblWorker = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -68,7 +72,7 @@
             // cboDowntime
             // 
             this.cboDowntime.FormattingEnabled = true;
-            this.cboDowntime.Location = new System.Drawing.Point(18, 176);
+            this.cboDowntime.Location = new System.Drawing.Point(19, 176);
             this.cboDowntime.Name = "cboDowntime";
             this.cboDowntime.Size = new System.Drawing.Size(285, 39);
             this.cboDowntime.TabIndex = 2;
@@ -82,11 +86,12 @@
             this.btnSelect.TabIndex = 3;
             this.btnSelect.Text = "선택";
             this.btnSelect.UseVisualStyleBackColor = true;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // lblDowntimeName
             // 
             this.lblDowntimeName.AutoSize = true;
-            this.lblDowntimeName.Location = new System.Drawing.Point(12, 235);
+            this.lblDowntimeName.Location = new System.Drawing.Point(12, 233);
             this.lblDowntimeName.Name = "lblDowntimeName";
             this.lblDowntimeName.Size = new System.Drawing.Size(172, 31);
             this.lblDowntimeName.TabIndex = 4;
@@ -95,17 +100,18 @@
             // btnToggle
             // 
             this.btnToggle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnToggle.Location = new System.Drawing.Point(19, 307);
+            this.btnToggle.Location = new System.Drawing.Point(19, 487);
             this.btnToggle.Name = "btnToggle";
             this.btnToggle.Size = new System.Drawing.Size(165, 62);
             this.btnToggle.TabIndex = 5;
             this.btnToggle.Text = "비가동 전환";
             this.btnToggle.UseVisualStyleBackColor = true;
+            this.btnToggle.Click += new System.EventHandler(this.btnToggle_Click);
             // 
             // btnClose
             // 
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Location = new System.Drawing.Point(281, 307);
+            this.btnClose.Location = new System.Drawing.Point(281, 487);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(165, 62);
             this.btnClose.TabIndex = 6;
@@ -113,17 +119,58 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 308);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(147, 31);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "비가동 유형";
+            // 
+            // cboWorker
+            // 
+            this.cboWorker.FormattingEnabled = true;
+            this.cboWorker.Location = new System.Drawing.Point(19, 356);
+            this.cboWorker.Name = "cboWorker";
+            this.cboWorker.Size = new System.Drawing.Size(285, 39);
+            this.cboWorker.TabIndex = 2;
+            // 
+            // btnWorker
+            // 
+            this.btnWorker.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnWorker.Location = new System.Drawing.Point(328, 355);
+            this.btnWorker.Name = "btnWorker";
+            this.btnWorker.Size = new System.Drawing.Size(119, 39);
+            this.btnWorker.TabIndex = 3;
+            this.btnWorker.Text = "선택";
+            this.btnWorker.UseVisualStyleBackColor = true;
+            this.btnWorker.Click += new System.EventHandler(this.btnSelect_Click);
+            // 
+            // lblWorker
+            // 
+            this.lblWorker.AutoSize = true;
+            this.lblWorker.Location = new System.Drawing.Point(12, 416);
+            this.lblWorker.Name = "lblWorker";
+            this.lblWorker.Size = new System.Drawing.Size(172, 31);
+            this.lblWorker.TabIndex = 4;
+            this.lblWorker.Text = "비가동 유형명";
+            // 
             // DowntimeRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(458, 404);
+            this.ClientSize = new System.Drawing.Size(458, 576);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnToggle);
+            this.Controls.Add(this.lblWorker);
+            this.Controls.Add(this.btnWorker);
             this.Controls.Add(this.lblDowntimeName);
+            this.Controls.Add(this.cboWorker);
             this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.cboDowntime);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.lblFairName);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
@@ -133,6 +180,7 @@
             this.Name = "DowntimeRegister";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "비가동 등록";
+            this.Load += new System.EventHandler(this.DowntimeRegister_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -148,5 +196,9 @@
         private System.Windows.Forms.Label lblDowntimeName;
         private System.Windows.Forms.Button btnToggle;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cboWorker;
+        private System.Windows.Forms.Button btnWorker;
+        private System.Windows.Forms.Label lblWorker;
     }
 }

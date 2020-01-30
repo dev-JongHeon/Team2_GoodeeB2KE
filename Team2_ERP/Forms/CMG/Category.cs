@@ -16,9 +16,8 @@ namespace Team2_ERP
     {
         List<CodeTableVO> list;
 
-        string code = string.Empty;
-        string name = string.Empty;
-        string context = string.Empty;
+        CodeTableVO item;
+
         MainForm frm;
         public Category()
         {
@@ -35,7 +34,6 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dataGridView1, "카테고리설명", "CodeTable_CodeExplain", true, 100);
 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         // DataGridView 가져오기
@@ -43,7 +41,7 @@ namespace Team2_ERP
         {
             CodeTableService service = new CodeTableService();
             list = service.GetAllCodeTable();
-            List<CodeTableVO> categoryList = (from item in list where item.CodeTable_CodeID.Contains("S") && !item.CodeTable_CodeID.Contains("e") || item.CodeTable_CodeID.Contains("M") && item.CodeTable_DeletedYN == false select item).ToList();
+            List<CodeTableVO> categoryList = (from item in list where item.CodeTable_CodeID.Contains("CS") || item.CodeTable_CodeID.Contains("CM") && item.CodeTable_DeletedYN == false select item).ToList();
             dataGridView1.DataSource = categoryList;
         }
 
@@ -65,8 +63,8 @@ namespace Team2_ERP
         {
             InitMessage();
 
-            CategoryInsUp frm = new CategoryInsUp(CategoryInsUp.EditMode.Insert, null, null, null);
-            if(frm.ShowDialog() == DialogResult.OK)
+            CategoryInsUp frm = new CategoryInsUp(CategoryInsUp.EditMode.Insert, null);
+            if (frm.ShowDialog() == DialogResult.OK)
             {
                 frm.Close();
                 dataGridView1.DataSource = null;
@@ -78,13 +76,13 @@ namespace Team2_ERP
         {
             InitMessage();
 
-            if (code == string.Empty)
+            if (item.CodeTable_CodeID == string.Empty)
             {
                 frm.NoticeMessage = "수정할 카테고리를 선택해주세요.";
             }
             else
             {
-                CategoryInsUp frm = new CategoryInsUp(CategoryInsUp.EditMode.Update, code, name, context);
+                CategoryInsUp frm = new CategoryInsUp(CategoryInsUp.EditMode.Update, item);
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     frm.Close();
@@ -98,7 +96,7 @@ namespace Team2_ERP
         {
             InitMessage();
 
-            if (code == string.Empty)
+            if (item.CodeTable_CodeID == string.Empty)
             {
                 frm.NoticeMessage = "삭제할 카테고리를 선택해주세요.";
             }
@@ -107,7 +105,7 @@ namespace Team2_ERP
                 if (MessageBox.Show("삭제하시겠습니까?", "확인", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     CodeTableService service = new CodeTableService();
-                    service.DeleteCodeTable(code);
+                    service.DeleteCodeTable(item.CodeTable_CodeID);
                     dataGridView1.DataSource = null;
                     LoadGridView();
                 }
@@ -124,9 +122,11 @@ namespace Team2_ERP
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            code = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-            name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
-            context = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            item = new CodeTableVO
+            {
+                CodeTable_CodeID = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(),
+                CodeTable_CodeName = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString()
+            };
         }
 
         private void Category_Activated(object sender, EventArgs e)

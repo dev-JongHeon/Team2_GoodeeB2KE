@@ -32,12 +32,17 @@
             this.txtName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rdoSemiProduct = new System.Windows.Forms.RadioButton();
+            this.rdoResource = new System.Windows.Forms.RadioButton();
+            this.cboContext = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -54,6 +59,8 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.cboContext);
+            this.panel5.Controls.Add(this.groupBox1);
             this.panel5.Controls.Add(this.label2);
             this.panel5.Controls.Add(this.label1);
             this.panel5.Controls.Add(this.txtContext);
@@ -85,15 +92,14 @@
             // 
             // txtContext
             // 
-            this.txtContext.Location = new System.Drawing.Point(131, 100);
-            this.txtContext.Multiline = true;
+            this.txtContext.Location = new System.Drawing.Point(156, 181);
             this.txtContext.Name = "txtContext";
-            this.txtContext.Size = new System.Drawing.Size(390, 137);
+            this.txtContext.Size = new System.Drawing.Size(143, 21);
             this.txtContext.TabIndex = 1;
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(131, 38);
+            this.txtName.Location = new System.Drawing.Point(156, 122);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(143, 21);
             this.txtName.TabIndex = 0;
@@ -101,7 +107,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(33, 41);
+            this.label1.Location = new System.Drawing.Point(58, 125);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 14);
             this.label1.TabIndex = 7;
@@ -110,11 +116,53 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(33, 100);
+            this.label2.Location = new System.Drawing.Point(58, 184);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 14);
             this.label2.TabIndex = 7;
             this.label2.Text = "카테고리설명";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rdoSemiProduct);
+            this.groupBox1.Controls.Add(this.rdoResource);
+            this.groupBox1.Location = new System.Drawing.Point(61, 19);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(175, 66);
+            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabStop = false;
+            // 
+            // rdoSemiProduct
+            // 
+            this.rdoSemiProduct.AutoSize = true;
+            this.rdoSemiProduct.Location = new System.Drawing.Point(100, 29);
+            this.rdoSemiProduct.Name = "rdoSemiProduct";
+            this.rdoSemiProduct.Size = new System.Drawing.Size(58, 18);
+            this.rdoSemiProduct.TabIndex = 0;
+            this.rdoSemiProduct.TabStop = true;
+            this.rdoSemiProduct.Text = "반제품";
+            this.rdoSemiProduct.UseVisualStyleBackColor = true;
+            this.rdoSemiProduct.CheckedChanged += new System.EventHandler(this.rdo_CheckedChanged);
+            // 
+            // rdoResource
+            // 
+            this.rdoResource.AutoSize = true;
+            this.rdoResource.Location = new System.Drawing.Point(20, 29);
+            this.rdoResource.Name = "rdoResource";
+            this.rdoResource.Size = new System.Drawing.Size(58, 18);
+            this.rdoResource.TabIndex = 0;
+            this.rdoResource.TabStop = true;
+            this.rdoResource.Text = "원자재";
+            this.rdoResource.UseVisualStyleBackColor = true;
+            this.rdoResource.CheckedChanged += new System.EventHandler(this.rdo_CheckedChanged);
+            // 
+            // cboContext
+            // 
+            this.cboContext.FormattingEnabled = true;
+            this.cboContext.Location = new System.Drawing.Point(156, 181);
+            this.cboContext.Name = "cboContext";
+            this.cboContext.Size = new System.Drawing.Size(143, 22);
+            this.cboContext.TabIndex = 9;
             // 
             // CategoryInsUp
             // 
@@ -131,6 +179,8 @@
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.panel4.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -141,5 +191,9 @@
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cboContext;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rdoSemiProduct;
+        private System.Windows.Forms.RadioButton rdoResource;
     }
 }

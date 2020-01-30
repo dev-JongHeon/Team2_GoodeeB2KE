@@ -153,5 +153,11 @@ namespace Team2_ERP.Service.CMG
             BOMDAC dac = new BOMDAC();
             return dac.GetComboProductCategory();
         }
+
+        public List<ComboItemVO> GetComboResourceCategory(string div)
+        {
+            BOMDAC dac = new BOMDAC();
+            return dac.GetComboResourceCategory(div);
+        }
     }
 }
