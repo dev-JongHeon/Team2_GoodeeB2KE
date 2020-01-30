@@ -32,11 +32,14 @@
             this.lblMoney = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.numericUpDown1);
             this.panel1.Controls.Add(this.lblMoney);
             this.panel1.Controls.Add(this.txtName);
             this.panel1.Controls.Add(this.lblName);
@@ -44,16 +47,17 @@
             this.panel1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(300, 39);
+            this.panel1.Size = new System.Drawing.Size(408, 39);
             this.panel1.TabIndex = 0;
             // 
             // lblMoney
             // 
             this.lblMoney.AutoSize = true;
-            this.lblMoney.Location = new System.Drawing.Point(271, 13);
+            this.lblMoney.Location = new System.Drawing.Point(328, 12);
             this.lblMoney.Name = "lblMoney";
-            this.lblMoney.Size = new System.Drawing.Size(0, 14);
+            this.lblMoney.Size = new System.Drawing.Size(29, 14);
             this.lblMoney.TabIndex = 23;
+            this.lblMoney.Text = "가격";
             // 
             // txtName
             // 
@@ -68,8 +72,22 @@
             this.lblName.AutoSize = true;
             this.lblName.Location = new System.Drawing.Point(12, 13);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(0, 14);
+            this.lblName.Size = new System.Drawing.Size(51, 14);
             this.lblName.TabIndex = 12;
+            this.lblName.Text = "카테고리";
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(258, 9);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(39, 21);
+            this.numericUpDown1.TabIndex = 24;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // SemiProductCompControl
             // 
@@ -78,9 +96,10 @@
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Name = "SemiProductCompControl";
-            this.Size = new System.Drawing.Size(300, 39);
+            this.Size = new System.Drawing.Size(408, 39);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -91,5 +110,6 @@
         private System.Windows.Forms.Label lblMoney;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }

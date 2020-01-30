@@ -18,9 +18,9 @@ namespace Team2_ERP
 
         List<ProductVO> list;
 
-        SemiProductCompControl[] spc;
+        SemiProductCompControl spc;
 
-        ProductVO item;
+        CombinationVO item;
 
         public SemiProductComp(EditMode editMode, BOMVO item)
         {
@@ -46,6 +46,7 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dataGridView1, "제품이름", "Product_Name", true, 100);
             UtilClass.AddNewColum(dataGridView1, "제품가격", "Product_Price", true, 100, DataGridViewContentAlignment.MiddleRight);
             UtilClass.AddNewColum(dataGridView1, "제품카테고리", "Product_Category", false, 100);
+            UtilClass.AddNewColum(dataGridView1, "제품카테고리", "Product_Category", false, 100);
             dataGridView1.Columns[1].DefaultCellStyle.Format = "#,###원";
 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
@@ -62,23 +63,13 @@ namespace Team2_ERP
 
         private void CategoryLabelName(List<ComboItemVO> countList)
         {
-            spc = new SemiProductCompControl[countList.Count];
-
             for (int i = 1; i < countList.Count; i++)
             {
-                spc[i] = new SemiProductCompControl();
-                spc[i].Location = new Point(0, i * 40);
-                spc[i].CategoryName = countList[i].Name;
-                spc[i].CategoryTag = countList[i].ID;
-                splitContainer2.Panel1.Controls.Add(spc[i]);
-            }
-        }
-
-        private void SelectResourceInfo()
-        {
-            for(int i = 0; i < spc.Length; i++)
-            {
-               
+                spc = new SemiProductCompControl();
+                spc.Location = new Point(0, i * 40);
+                spc.LblName.Text = countList[i].Name;
+                spc.LblName.Tag = countList[i].ID;
+                splitContainer2.Panel1.Controls.Add(spc);
             }
         }
 
@@ -95,6 +86,9 @@ namespace Team2_ERP
 
         private void cboCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cboCategory.SelectedIndex < 1)
+                return;
+
             if (!cboCategory.SelectedValue.ToString().Contains("CS"))
                 return;
 
@@ -119,14 +113,34 @@ namespace Team2_ERP
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            item = new ProductVO
+            if (e.RowIndex > -1 && dataGridView1.SelectedRows.Count > 0)
             {
-                Product_Name = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(),
-                Product_Price = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[1].Value),
-                Product_Category = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString()
-            };
+                foreach (Control control in splitContainer2.Panel1.Controls)
+                {
+                    if (control is SemiProductCompControl)
+                    {
+                        SemiProductCompControl spc = (SemiProductCompControl)control;
 
-            SelectResourceInfo();
+                        if (spc.LblName.Tag.ToString() == dataGridView1.SelectedRows[0].Cells[2].Value.ToString())
+                        {
+                            spc.TxtName.Text = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+                            spc.LblMoney.Text = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+                            spc.Qty.Tag = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+                        }
+                    }
+                }
+            }
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            for(int i = 0; i < splitContainer2.Panel1.Controls.Count; i++)
+            {
+                item = new CombinationVO
+                {
+                    Product_ID = cboCategory.SelectedValue.ToString()
+                };
+            }
         }
     }
 }

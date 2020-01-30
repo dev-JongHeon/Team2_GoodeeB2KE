@@ -71,6 +71,7 @@
             // btnOK
             // 
             this.btnOK.FlatAppearance.BorderSize = 0;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // splitContainer1
             // 

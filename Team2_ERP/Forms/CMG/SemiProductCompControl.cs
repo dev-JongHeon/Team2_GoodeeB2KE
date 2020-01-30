@@ -12,29 +12,42 @@ namespace Team2_ERP
 {
     public partial class SemiProductCompControl : UserControl
     {
-        public string CategoryName
+        public Label LblName
         {
-            get { return lblName.Text; }
-            set { lblName.Text = value; }
+            get { return lblName; }
+            set { lblName = value; }
         }
-        public string CategoryTag
+        public TextBox TxtName
         {
-            get { return lblName.Tag.ToString(); }
-            set { lblName.Tag = value; }
+            get { return txtName; }
+            set { txtName = value; }
         }
-        public string ResourceName
+        public Label LblMoney
         {
-            get { return txtName.Text; }
-            set { txtName.Text = value; }
+            get { return lblMoney; }
+            set { lblMoney = value; }
         }
-        public string ResourceMoney
+
+        public NumericUpDown Qty
         {
-            get { return lblMoney.Text; }
-            set { lblMoney.Text = value; }
+            get { return numericUpDown1; }
+            set { numericUpDown1 = value; }
         }
         public SemiProductCompControl()
         {
             InitializeComponent();
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            if(numericUpDown1.Value > 0)
+            {
+                lblMoney.Text = (int.Parse(numericUpDown1.Tag.ToString()) * Convert.ToInt32(numericUpDown1.Value)).ToString("#,##0") + "원";
+            }
+            else
+            {
+                lblMoney.Text = "0원";
+            }
         }
     }
 }
