@@ -34,19 +34,15 @@ namespace Team2_ERP
         {
             UtilClass.SettingDgv(dgv_Order);
             UtilClass.AddNewColum(dgv_Order, "주문번호", "Order_ID", true);
-            UtilClass.AddNewColum(dgv_Order, "고객ID", "Customer_UserID", true);
+            UtilClass.AddNewColum(dgv_Order, "고객ID", "Customer_UserID", true, 90);
             UtilClass.AddNewColum(dgv_Order, "고객성명", "Customer_Name", true);
-            UtilClass.AddNewColum(dgv_Order, "주문일시", "Order_Date", true);
-            UtilClass.AddNewColum(dgv_Order, "배송지주소", "Order_Address1", true);
-            UtilClass.AddNewColum(dgv_Order, "배송지상세주소", "Order_Address2", true);
+            UtilClass.AddNewColum(dgv_Order, "주문일시", "Order_Date", true, 140);
+            UtilClass.AddNewColum(dgv_Order, "배송지주소", "Order_Address1", true, 300);
+            UtilClass.AddNewColum(dgv_Order, "배송지상세주소", "Order_Address2", true, 250);
             UtilClass.AddNewColum(dgv_Order, "주문총액", "TotalPrice", true);
             UtilClass.AddNewColum(dgv_Order, "삭제여부", "Order_DeletedYN", false);
             UtilClass.AddNewColum(dgv_Order, "주문상태", "Order_State", false);
-            dgv_Order.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgv_Order.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dgv_Order.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dgv_Order.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dgv_Order.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgv_Order.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd hh:mm:ss";
             dgv_Order.Columns[6].DefaultCellStyle.Format = "#,#0원";
             dgv_Order.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             Order_AllList = service.GetOrderList();
@@ -55,12 +51,8 @@ namespace Team2_ERP
             UtilClass.SettingDgv(dgv_OrderDetail);
             UtilClass.AddNewColum(dgv_OrderDetail, "주문번호", "Order_ID", true);
             UtilClass.AddNewColum(dgv_OrderDetail, "제품ID", "Product_ID", true);
-            UtilClass.AddNewColum(dgv_OrderDetail, "제품명", "Product_Name", true);
+            UtilClass.AddNewColum(dgv_OrderDetail, "제품명", "Product_Name", true, 300);
             UtilClass.AddNewColum(dgv_OrderDetail, "주문수량", "OrderDetail_Qty", true);
-            dgv_OrderDetail.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgv_OrderDetail.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dgv_OrderDetail.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dgv_OrderDetail.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             OrderDetail_AllList = service.GetOrderDetailList();
         }
 
@@ -93,7 +85,7 @@ namespace Team2_ERP
             Func_Refresh();
         }
 
-        public override void Modify(object sender, EventArgs e)  // 발주완료(수령)처리 및 출하대기목록 Insert
+        public override void Modify(object sender, EventArgs e)  // 발주완료(수령)처리, 출하대기목록 Insert, 작업insert, 생산insert 
         {
             if (MessageBox.Show("정말 해당주문을 처리하시겠습니까?", "알림", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
@@ -103,6 +95,48 @@ namespace Team2_ERP
                 Func_Refresh();  // 새로고침
             }
         }
+
+        public override void Delete(object sender, EventArgs e)  // 삭제
+        {
+            string order_ID = dgv_Order.CurrentRow.Cells[0].Value.ToString();
+            service.DeleteOrder(order_ID);
+            Func_Refresh();
+        }
+
+        public override void Search(object sender, EventArgs e)  // 검색
+        {
+            Order_AllList = service.GetOrderList();  // 주문리스트 갱신
+            if (Search_Customer.CodeTextBox.Text.Length > 0)  // 고객명 검색조건 있으면
+            {
+                Order_AllList = (from item in Order_AllList
+                                 where item.Customer_Name == Search_Customer.CodeTextBox.Text
+                                 select item).ToList();
+            }
+
+            if (Search_Period.Startdate.Text != "    -  -")   // 시작기간 text가 존재하면
+            {
+                if (Search_Period.Startdate.Text != Search_Period.Enddate.Text)  // 시작, 끝 날짜가 다른경우
+                {
+                    Order_AllList = (from item in Order_AllList
+                                     where item.Order_Date.Date.CompareTo(Convert.ToDateTime(Search_Period.Startdate.Text)) >= 0 &&
+                                            item.Order_Date.Date.CompareTo(Convert.ToDateTime(Search_Period.Enddate.Text)) <= 0
+                                     select item).ToList();
+                }
+                else   // 같은경우
+                {
+                    Order_AllList = (from item in Order_AllList
+                                     where item.Order_Date.Date == Convert.ToDateTime(Search_Period.Startdate.Text)
+                                     select item).ToList();
+                }
+            }
+            dgv_Order.DataSource = Order_AllList;
+            dgv_OrderDetail.DataSource = null;
+        }
+
+        public override void Print(object sender, EventArgs e)  // 인쇄
+        {
+
+        }  
         #endregion
 
         #region Activated, OnOff, DeActivate

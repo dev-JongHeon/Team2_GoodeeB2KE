@@ -42,7 +42,6 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Balju, "발주요청일시", "Balju_Date", true, 140);
             UtilClass.AddNewColum(dgv_Balju, "등록사원", "Employees_Name", true, 100);
             UtilClass.AddNewColum(dgv_Balju, "삭제여부", "Balju_DeletedYN", false);
-
             Balju_AllList = service.GetBaljuList();  // 발주리스트 갱신
             dgv_Balju.DataSource = Balju_AllList;
 
@@ -52,7 +51,6 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_BaljuDetail, "품목명", "Product_Name", true, 500);
             UtilClass.AddNewColum(dgv_BaljuDetail, "발주요청수량", "BaljuDetail_Qty", true, 130);
             BaljuDetail_AllList = service.GetBalju_DetailList(); // 발주디테일 AllList 갱신
-
         }
 
         private void dgv_Balju_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
@@ -103,8 +101,8 @@ namespace Team2_ERP
                 if (Search_Period.Startdate.Text != Search_Period.Enddate.Text)  // 시작~끝 날짜 다른경우
                 {
                     Balju_AllList = (from item in Balju_AllList
-                                     where item.Balju_Date.CompareTo(Convert.ToDateTime(Search_Period.Startdate.Text)) >= 0 &&
-                                            item.Balju_Date.CompareTo(Convert.ToDateTime(Search_Period.Enddate.Text)) <= 0
+                                     where item.Balju_Date.Date.CompareTo(Convert.ToDateTime(Search_Period.Startdate.Text)) >= 0 &&
+                                            item.Balju_Date.Date.CompareTo(Convert.ToDateTime(Search_Period.Enddate.Text)) <= 0
                                      select item).ToList();
                 }
                 else   // 같은경우
@@ -117,8 +115,6 @@ namespace Team2_ERP
             dgv_Balju.DataSource = Balju_AllList;
             dgv_BaljuDetail.DataSource = null;
         }
-
-
 
         public override void Modify(object sender, EventArgs e)  // 발주완료(수령)처리
         {
