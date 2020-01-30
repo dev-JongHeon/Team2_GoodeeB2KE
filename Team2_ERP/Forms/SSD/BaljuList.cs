@@ -28,8 +28,8 @@ namespace Team2_ERP
 
         private void BaljuList_Load(object sender, EventArgs e)
         {
-            LoadData();
             main = (MainForm)this.MdiParent;
+            LoadData();
         }
 
         private void LoadData()
@@ -51,6 +51,8 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_BaljuDetail, "품목명", "Product_Name", true, 500);
             UtilClass.AddNewColum(dgv_BaljuDetail, "발주요청수량", "BaljuDetail_Qty", true, 130);
             BaljuDetail_AllList = service.GetBalju_DetailList(); // 발주디테일 AllList 갱신
+
+            main.NoticeMessage = "발주현황 화면입니다.";
         }
 
         private void dgv_Balju_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
@@ -70,16 +72,17 @@ namespace Team2_ERP
             dgv_BaljuDetail.DataSource = null;
 
             // 검색조건 초기화
-            Search_Period.Startdate.Text = "";
-            Search_Period.Enddate.Text = "";
-            Search_Company.CodeTextBox.Text = "";
-            Search_Employee.CodeTextBox.Text = "";
+            Search_Period.Startdate.Clear(); 
+            Search_Period.Enddate.Clear();
+            Search_Company.CodeTextBox.Clear();
+            Search_Employee.CodeTextBox.Clear();
         }
 
         #region ToolStrip 기능정의
         public override void Refresh(object sender, EventArgs e)  // 새로고침
         {
             Func_Refresh();
+            main.NoticeMessage = "새로고침(갱신) 되었습니다.";
         }
         public override void Search(object sender, EventArgs e)
         {
@@ -114,6 +117,7 @@ namespace Team2_ERP
             }
             dgv_Balju.DataSource = Balju_AllList;
             dgv_BaljuDetail.DataSource = null;
+            main.NoticeMessage = "검색 되었습니다.";
         }
 
         public override void Modify(object sender, EventArgs e)  // 발주완료(수령)처리
@@ -123,6 +127,7 @@ namespace Team2_ERP
                 string Balju_ID = dgv_Balju.CurrentRow.Cells[0].Value.ToString();
                 service.UpdateBalju_Processed(Balju_ID);
                 Func_Refresh();  // 새로고침
+                main.NoticeMessage = "";
             }
         }
 
@@ -134,6 +139,7 @@ namespace Team2_ERP
                 service.DeleteBalju(Balju_ID);
                 Func_Refresh();  // 새로고침
             }
+            main.NoticeMessage = "";
         }
 
         public override void Print(object sender, EventArgs e)  // 인쇄

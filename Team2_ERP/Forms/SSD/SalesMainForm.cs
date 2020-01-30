@@ -25,8 +25,8 @@ namespace Team2_ERP
 
         private void SalesMainForm_Load(object sender, EventArgs e)
         {
-            LoadData();
             main = (MainForm)this.MdiParent;
+            LoadData();
         }
 
         private void LoadData()
@@ -52,12 +52,15 @@ namespace Team2_ERP
             }
 
             label3.Text = total.ToString("#,#0원");
+
+            main.NoticeMessage = "매출현황 화면입니다.";
         }
 
         #region ToolStrip 기능정의
         public override void Refresh(object sender, EventArgs e)  // 새로고침
         {
             LoadData();
+            main.NoticeMessage = "새로고침(갱신) 되었습니다.";
         }
 
         public override void Search(object sender, EventArgs e)  // 검색
@@ -104,6 +107,7 @@ namespace Team2_ERP
                 }
             }// 주문일시 검색조건 존재한다면
             dgv_SalesStatus.DataSource = Order_AllList;
+            main.NoticeMessage = "검색 되었습니다.";
         }
 
         public override void Print(object sender, EventArgs e)  // 인쇄

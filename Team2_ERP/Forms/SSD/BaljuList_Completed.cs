@@ -29,8 +29,8 @@ namespace Team2_ERP
 
         private void BaljuList_Completed_Load(object sender, EventArgs e)
         {
-            LoadData();
             main = (MainForm)this.MdiParent;
+            LoadData();
         }
 
         private void LoadData()
@@ -53,6 +53,7 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_BaljuDetail, "발주요청수량", "BaljuDetail_Qty", true, 130);
             BaljuDetail_AllList = service.GetBalju_DetailList(); // 발주디테일 AllList 갱신
 
+            main.NoticeMessage = "발주완료현황 화면입니다.";
         }
 
         private void dgv_BaljuCompleted_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
@@ -88,6 +89,7 @@ namespace Team2_ERP
         public override void Refresh(object sender, EventArgs e)  // 새로고침
         {
             Func_Refresh();
+            main.NoticeMessage = "새로고침(갱신) 되었습니다.";
         }
 
         public override void Search(object sender, EventArgs e)  // 검색
@@ -129,6 +131,7 @@ namespace Team2_ERP
 
             dgv_BaljuCompleted.DataSource = BaljuCompleted_AllList;
             dgv_BaljuDetail.DataSource = null;
+            main.NoticeMessage = "검색 되었습니다.";
         }
 
         public override void Delete(object sender, EventArgs e)  // 삭제

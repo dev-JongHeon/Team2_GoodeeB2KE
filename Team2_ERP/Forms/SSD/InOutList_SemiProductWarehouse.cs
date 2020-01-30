@@ -26,8 +26,8 @@ namespace Team2_ERP
 
         private void InOutList_SemiProductWarehouse_Load(object sender, EventArgs e)
         {
-            LoadData();
             main = (MainForm)this.MdiParent;
+            LoadData();
         }
 
         private void LoadData()
@@ -50,6 +50,8 @@ namespace Team2_ERP
                                     where list_Stock.Warehouse_Division == true
                                     select list_Stock).ToList();
             dgv_Stock.DataSource = StockReceipt_AllList;
+
+            main.NoticeMessage = "반제품수불현황 화면입니다.";
         }
         private void Func_Refresh()  // 새로고침 기능
         {
@@ -62,10 +64,10 @@ namespace Team2_ERP
             dgv_Stock.DataSource = StockReceipt_AllList;
 
             // 검색조건 초기화
-            Search_Period.Startdate.Text = "";
-            Search_Period.Enddate.Text = "";
-            Search_SemiProduct.CodeTextBox.Text = "";
-            Search_Warehouse.CodeTextBox.Text = "";
+            Search_Period.Startdate.Clear();
+            Search_Period.Enddate.Clear();
+            Search_SemiProduct.CodeTextBox.Clear();
+            Search_Warehouse.CodeTextBox.Clear();
 
             rdo_All.Checked = true;
         }
@@ -99,10 +101,16 @@ namespace Team2_ERP
         public override void Refresh(object sender, EventArgs e)  // 새로고침
         {
             Func_Refresh();
+            main.NoticeMessage = "새로고침(갱신) 되었습니다.";
         }
         public override void Search(object sender, EventArgs e)  // 검색
         {
-            StockReceipt_AllList = service.GetStockReceipts();  // 수불리스트 갱신
+            // 반제품에 해당하는 수불리스트 갱신
+            StockReceipt_AllList = service.GetStockReceipts();              
+            StockReceipt_AllList = (from list_Stock in StockReceipt_AllList
+                                    where list_Stock.Warehouse_Division == true
+                                    select list_Stock).ToList();
+
             if (Search_Warehouse.CodeTextBox.Text.Length > 0)  // 창고 검색조건 있으면
             {
                 StockReceipt_AllList = (from item in StockReceipt_AllList
@@ -142,6 +150,7 @@ namespace Team2_ERP
             }
             dgv_Stock.DataSource = StockReceipt_AllList;
             rdo_All.Checked = true;  // 라디오버튼 '전체'에 체크
+            main.NoticeMessage = "검색 되었습니다.";
         }
 
         public override void Print(object sender, EventArgs e)  // 인쇄

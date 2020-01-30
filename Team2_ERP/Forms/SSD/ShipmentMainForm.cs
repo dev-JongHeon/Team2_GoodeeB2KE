@@ -26,8 +26,8 @@ namespace Team2_ERP
 
         private void ShipmentMainForm_Load(object sender, EventArgs e)
         {
-            LoadData();
             main = (MainForm)this.MdiParent;
+            LoadData();
         }
 
         private void LoadData()
@@ -49,6 +49,8 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_ShipmentDetail, "제품명", "Product_Name", true, 300);
             UtilClass.AddNewColum(dgv_ShipmentDetail, "주문수량", "OrderDetail_Qty", true);
             ShipmentDetail_AllList = service.GetShipmentDetailList();
+
+            main.NoticeMessage = "출하현황 화면입니다.";
         } 
 
         private void dgv_Shipment_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -81,6 +83,7 @@ namespace Team2_ERP
         public override void Refresh(object sender, EventArgs e)  // 새로고침
         {
             Func_Refresh();
+            main.NoticeMessage = "새로고침(갱신) 되었습니다.";
         }
 
         public override void Search(object sender, EventArgs e)  // 검색
@@ -138,6 +141,7 @@ namespace Team2_ERP
             }
             dgv_Shipment.DataSource = Shipment_AllList;
             dgv_ShipmentDetail.DataSource = null;
+            main.NoticeMessage = "검색 되었습니다.";
         }
 
         public override void Print(object sender, EventArgs e)  // 인쇄

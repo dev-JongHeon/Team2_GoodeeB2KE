@@ -27,8 +27,8 @@ namespace Team2_ERP
 
         private void OrderCompleteForm_Load(object sender, EventArgs e)
         {
-            LoadData();
             main = (MainForm)this.MdiParent;
+            LoadData();
         }
 
         private void LoadData()
@@ -54,6 +54,8 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_OrderDetail, "제품명", "Product_Name", true, 300);
             UtilClass.AddNewColum(dgv_OrderDetail, "주문수량", "OrderDetail_Qty", true);
             OrderDetail_AllList = service.GetOrderDetailList();
+
+            main.NoticeMessage = "주문완료현황 화면입니다.";
         }
 
         private void dgv_Order_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
@@ -83,6 +85,7 @@ namespace Team2_ERP
         public override void Refresh(object sender, EventArgs e)  // 새로고침
         {
             Func_Refresh();
+            main.NoticeMessage = "새로고침(갱신) 되었습니다.";
         }
 
         public override void Delete(object sender, EventArgs e)  // 삭제
@@ -120,6 +123,7 @@ namespace Team2_ERP
             }
             dgv_Order.DataSource = Order_AllList;
             dgv_OrderDetail.DataSource = null;
+            main.NoticeMessage = "검색 되었습니다.";
         }
 
         public override void Print(object sender, EventArgs e)  // 인쇄

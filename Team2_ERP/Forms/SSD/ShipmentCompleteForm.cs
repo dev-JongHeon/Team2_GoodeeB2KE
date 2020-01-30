@@ -15,9 +15,16 @@ namespace Team2_ERP
     {
         ShipmentService service = new ShipmentService();
         List<ShipmentDetail> ShipmentDetail_AllList = null;
+        MainForm main;
         public ShipmentCompleteForm()
         {
             InitializeComponent();
+        }
+
+        private void ShipmentCompleteForm_Load(object sender, EventArgs e)
+        {
+            main = (MainForm)this.MdiParent;
+            LoadData();
         }
 
         private void LoadData()
@@ -39,11 +46,8 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_ShipmentDetail, "제품명", "Product_Name", true, 300);
             UtilClass.AddNewColum(dgv_ShipmentDetail, "주문수량", "OrderDetail_Qty", true);
             ShipmentDetail_AllList = service.GetShipmentDetailList();
-        }
 
-        private void ShipmentCompleteForm_Load(object sender, EventArgs e)
-        {
-            LoadData();
+            main.NoticeMessage = "출하완료현황 화면입니다.";
         }
 
         private void dgv_Shipment_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

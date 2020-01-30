@@ -26,8 +26,8 @@ namespace Team2_ERP
 
         private void InOutList_MaterialWarehouse_Load(object sender, EventArgs e)
         {
-            LoadData();
             main = (MainForm)this.MdiParent;
+            LoadData();
         }
         
 
@@ -51,6 +51,8 @@ namespace Team2_ERP
                                     where list_Stock.Warehouse_Division == false
                                     select list_Stock).ToList();
             dgv_Stock.DataSource = StockReceipt_AllList;
+
+            main.NoticeMessage = "자재수불현황 화면입니다.";
         }
         private void Func_Refresh()  // 새로고침 기능
         {
@@ -100,6 +102,7 @@ namespace Team2_ERP
         public override void Refresh(object sender, EventArgs e)  // 새로고침
         {
             Func_Refresh();
+            main.NoticeMessage = "새로고침(갱신) 되었습니다.";
         }
         public override void Search(object sender, EventArgs e)  // 검색
         {
@@ -144,6 +147,7 @@ namespace Team2_ERP
             }
             dgv_Stock.DataSource = StockReceipt_AllList;
             rdo_All.Checked = true;  // 라디오버튼 '전체'에 체크
+            main.NoticeMessage = "검색 되었습니다.";
         }
 
         public override void Print(object sender, EventArgs e)  // 인쇄

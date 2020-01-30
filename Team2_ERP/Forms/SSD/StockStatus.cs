@@ -13,12 +13,14 @@ namespace Team2_ERP
     public partial class StockStatus : Base1Dgv
     {
         StockService service = new StockService();
+        MainForm main;
         public StockStatus()
         {
             InitializeComponent();
         }
         private void StockStatus_Load(object sender, EventArgs e)
         {
+            main = (MainForm)this.MdiParent;
             LoadData();
         }
         public void LoadData()
@@ -39,8 +41,9 @@ namespace Team2_ERP
             dgv_StockStatus.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgv_StockStatus.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgv_StockStatus.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
             dgv_StockStatus.DataSource = service.GetStockStatus();
+
+            main.NoticeMessage = "재고현황 화면입니다.";
         }
     }
 }
