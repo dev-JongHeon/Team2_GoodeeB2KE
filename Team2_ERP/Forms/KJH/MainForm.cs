@@ -303,7 +303,7 @@ namespace Team2_ERP
             }
             else if (e.Node.Name == "Work")
             {
-                OpenBaseForm<Work>("작업대기현황",e);                
+                OpenBaseForm<Work>("작업지시현황",e);                
             }
             else if (e.Node.Name == "Produce")
             {

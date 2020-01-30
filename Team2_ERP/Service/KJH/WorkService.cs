@@ -16,10 +16,5 @@ namespace Team2_ERP
             return dac.GetAllWork();
         }
 
-        public List<ProduceVO> GetProduceByWorkID(string id)
-        {
-            WorkDAC dac = new WorkDAC();
-            return dac.GetProduceByWorkID(id);
-        }
     }
 }

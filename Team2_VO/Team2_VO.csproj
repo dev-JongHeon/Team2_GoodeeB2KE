@@ -49,6 +49,7 @@
     <Compile Include="CMG\LineVO.cs" />
     <Compile Include="CMG\ProductVO.cs" />
     <Compile Include="HJS\WorkerInfoPOP.cs" />
+    <Compile Include="KJH\PerformanceVO.cs" />
     <Compile Include="KJH\ProduceVO.cs" />
     <Compile Include="KJH\WorkVO.cs" />
     <Compile Include="KJH\AuthVO.cs" />

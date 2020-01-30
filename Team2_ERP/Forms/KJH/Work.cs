@@ -221,7 +221,7 @@ namespace Team2_ERP
 
                 try
                 {
-                    WorkService service = new WorkService();
+                    ProduceService service = new ProduceService();
                     dgvProduce.DataSource = service.GetProduceByWorkID(id);
                     dgvProduce.ClearSelection();
                     dgvProduce.CurrentCell = null;

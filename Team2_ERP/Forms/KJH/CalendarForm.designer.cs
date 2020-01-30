@@ -129,8 +129,10 @@
             // 
             // button21
             // 
-            this.button21.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button21.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button21.ForeColor = System.Drawing.Color.White;
             this.button21.Location = new System.Drawing.Point(570, 64);
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(45, 23);
@@ -142,8 +144,10 @@
             // 
             // button22
             // 
-            this.button22.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.button22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button22.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button22.ForeColor = System.Drawing.Color.White;
             this.button22.Location = new System.Drawing.Point(468, 64);
             this.button22.Name = "button22";
             this.button22.Size = new System.Drawing.Size(45, 23);
@@ -155,8 +159,10 @@
             // 
             // button23
             // 
-            this.button23.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.button23.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button23.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button23.ForeColor = System.Drawing.Color.White;
             this.button23.Location = new System.Drawing.Point(366, 64);
             this.button23.Name = "button23";
             this.button23.Size = new System.Drawing.Size(45, 23);
@@ -168,8 +174,10 @@
             // 
             // button24
             // 
-            this.button24.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.button24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button24.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button24.ForeColor = System.Drawing.Color.White;
             this.button24.Location = new System.Drawing.Point(264, 64);
             this.button24.Name = "button24";
             this.button24.Size = new System.Drawing.Size(45, 23);
@@ -181,8 +189,10 @@
             // 
             // button25
             // 
-            this.button25.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.button25.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button25.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button25.ForeColor = System.Drawing.Color.White;
             this.button25.Location = new System.Drawing.Point(111, 64);
             this.button25.Name = "button25";
             this.button25.Size = new System.Drawing.Size(45, 23);
@@ -194,8 +204,10 @@
             // 
             // button26
             // 
-            this.button26.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.button26.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button26.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button26.ForeColor = System.Drawing.Color.White;
             this.button26.Location = new System.Drawing.Point(60, 64);
             this.button26.Name = "button26";
             this.button26.Size = new System.Drawing.Size(45, 23);
@@ -207,8 +219,10 @@
             // 
             // button15
             // 
-            this.button15.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button15.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button15.ForeColor = System.Drawing.Color.White;
             this.button15.Location = new System.Drawing.Point(519, 64);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(45, 23);
@@ -220,8 +234,10 @@
             // 
             // button16
             // 
-            this.button16.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button16.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button16.ForeColor = System.Drawing.Color.White;
             this.button16.Location = new System.Drawing.Point(417, 64);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(45, 23);
@@ -233,8 +249,10 @@
             // 
             // button17
             // 
-            this.button17.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button17.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button17.ForeColor = System.Drawing.Color.White;
             this.button17.Location = new System.Drawing.Point(315, 64);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(45, 23);
@@ -246,8 +264,10 @@
             // 
             // button18
             // 
-            this.button18.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button18.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button18.ForeColor = System.Drawing.Color.White;
             this.button18.Location = new System.Drawing.Point(213, 64);
             this.button18.Name = "button18";
             this.button18.Size = new System.Drawing.Size(45, 23);
@@ -259,8 +279,10 @@
             // 
             // button19
             // 
-            this.button19.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.button19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button19.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button19.ForeColor = System.Drawing.Color.White;
             this.button19.Location = new System.Drawing.Point(162, 64);
             this.button19.Name = "button19";
             this.button19.Size = new System.Drawing.Size(45, 23);
@@ -272,8 +294,10 @@
             // 
             // button20
             // 
-            this.button20.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.button20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button20.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button20.ForeColor = System.Drawing.Color.White;
             this.button20.Location = new System.Drawing.Point(9, 64);
             this.button20.Name = "button20";
             this.button20.Size = new System.Drawing.Size(45, 23);
@@ -285,8 +309,10 @@
             // 
             // button13
             // 
-            this.button13.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button13.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button13.ForeColor = System.Drawing.Color.White;
             this.button13.Location = new System.Drawing.Point(520, 35);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(96, 23);
@@ -298,8 +324,10 @@
             // 
             // button14
             // 
-            this.button14.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button14.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button14.ForeColor = System.Drawing.Color.White;
             this.button14.Location = new System.Drawing.Point(418, 35);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(96, 23);
@@ -311,8 +339,10 @@
             // 
             // button11
             // 
-            this.button11.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button11.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button11.ForeColor = System.Drawing.Color.White;
             this.button11.Location = new System.Drawing.Point(315, 35);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(97, 23);
@@ -324,8 +354,10 @@
             // 
             // button12
             // 
-            this.button12.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button12.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button12.ForeColor = System.Drawing.Color.White;
             this.button12.Location = new System.Drawing.Point(213, 35);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(96, 23);
@@ -337,8 +369,10 @@
             // 
             // button9
             // 
-            this.button9.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button9.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button9.ForeColor = System.Drawing.Color.White;
             this.button9.Location = new System.Drawing.Point(111, 35);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(96, 23);
@@ -350,8 +384,10 @@
             // 
             // button10
             // 
-            this.button10.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button10.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button10.ForeColor = System.Drawing.Color.White;
             this.button10.Location = new System.Drawing.Point(9, 35);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(96, 23);
@@ -363,8 +399,10 @@
             // 
             // button7
             // 
-            this.button7.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button7.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button7.ForeColor = System.Drawing.Color.White;
             this.button7.Location = new System.Drawing.Point(520, 6);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(96, 23);
@@ -376,8 +414,10 @@
             // 
             // btn
             // 
-            this.btn.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btn.ForeColor = System.Drawing.Color.White;
             this.btn.Location = new System.Drawing.Point(418, 6);
             this.btn.Name = "btn";
             this.btn.Size = new System.Drawing.Size(96, 23);
@@ -389,8 +429,10 @@
             // 
             // btnLastMonth
             // 
-            this.btnLastMonth.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnLastMonth.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnLastMonth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLastMonth.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnLastMonth.ForeColor = System.Drawing.Color.White;
             this.btnLastMonth.Location = new System.Drawing.Point(315, 6);
             this.btnLastMonth.Name = "btnLastMonth";
             this.btnLastMonth.Size = new System.Drawing.Size(97, 23);
@@ -402,8 +444,10 @@
             // 
             // btnWeek
             // 
-            this.btnWeek.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnWeek.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnWeek.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnWeek.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnWeek.ForeColor = System.Drawing.Color.White;
             this.btnWeek.Location = new System.Drawing.Point(213, 6);
             this.btnWeek.Name = "btnWeek";
             this.btnWeek.Size = new System.Drawing.Size(96, 23);
@@ -415,8 +459,10 @@
             // 
             // btnLastweek
             // 
-            this.btnLastweek.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnLastweek.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnLastweek.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLastweek.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnLastweek.ForeColor = System.Drawing.Color.White;
             this.btnLastweek.Location = new System.Drawing.Point(111, 6);
             this.btnLastweek.Name = "btnLastweek";
             this.btnLastweek.Size = new System.Drawing.Size(96, 23);
@@ -428,8 +474,10 @@
             // 
             // btnToday
             // 
-            this.btnToday.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnToday.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnToday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnToday.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnToday.ForeColor = System.Drawing.Color.White;
             this.btnToday.Location = new System.Drawing.Point(9, 6);
             this.btnToday.Name = "btnToday";
             this.btnToday.Size = new System.Drawing.Size(96, 23);
@@ -441,6 +489,7 @@
             // 
             // panel6
             // 
+            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel6.Controls.Add(this.button21);
             this.panel6.Controls.Add(this.button22);
             this.panel6.Controls.Add(this.button23);
@@ -478,7 +527,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label1.Location = new System.Drawing.Point(268, 144);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 83);
+            this.label1.Size = new System.Drawing.Size(83, 83);
             this.label1.TabIndex = 16;
             this.label1.Text = "~";
             // 

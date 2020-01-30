@@ -57,6 +57,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="KJH\AuthDAC.cs" />
+    <Compile Include="KJH\ProduceDAC.cs" />
     <Compile Include="KJH\WorkDAC.cs" />
     <Compile Include="KJH\DowntimeDAC.cs" />
     <Compile Include="KJH\DefectiveHandleDAC.cs" />
