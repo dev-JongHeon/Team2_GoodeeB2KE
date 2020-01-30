@@ -55,19 +55,19 @@ namespace Team2_ERP
                         this.CodeLabel.Text = "사원";
                         break;
                     case Mode.DepOperation:
-                        this.CodeLabel.Text = "운영기획부";
+                        this.CodeLabel.Text = "운영기획부사원";
                         break;
                     case Mode.DepMaterial:
-                        this.CodeLabel.Text = "자재부";
+                        this.CodeLabel.Text = "자재부사원";
                         break;
                     case Mode.DepProd1:
-                        this.CodeLabel.Text = "생산1부";
+                        this.CodeLabel.Text = "생산1부사원";
                         break;
                     case Mode.DepProd2:
-                        this.CodeLabel.Text = "생산2부";
+                        this.CodeLabel.Text = "생산2부사원";
                         break;
                     case Mode.DepSales:
-                        this.CodeLabel.Text = "영업부";
+                        this.CodeLabel.Text = "영업부사원";
                         break;
                     case Mode.Defective:
                         this.CodeLabel.Text = "불량유형";
@@ -100,7 +100,7 @@ namespace Team2_ERP
                         this.CodeLabel.Text = "창고";
                         break;
                     case Mode.Company:
-                        this.CodeLabel.Text = "회사";
+                        this.CodeLabel.Text = "거래처";
                         break;
                     case Mode.ProductCategory:
                         this.CodeLabel.Text = "제품카테고리";
