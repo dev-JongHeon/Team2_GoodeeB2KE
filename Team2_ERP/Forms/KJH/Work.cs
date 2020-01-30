@@ -36,6 +36,27 @@ namespace Team2_ERP
             dgvWorkList.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvWorkList.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvWorkList.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            UtilClass.SettingDgv(dgvProduce);
+            UtilClass.AddNewColum(dgvProduce, "생산지시번호", "Produce_ID", true, 130);
+            UtilClass.AddNewColum(dgvProduce, "생산시작일", "Produce_StartDate", true, 180);
+            UtilClass.AddNewColum(dgvProduce, "생산완료일", "Produce_DoneDate", true, 180);
+            UtilClass.AddNewColum(dgvProduce, "공장번호", "Factory_ID", false);
+            UtilClass.AddNewColum(dgvProduce, "공장명", "Factory_Name", true, 130);
+            UtilClass.AddNewColum(dgvProduce, "공정번호", "Line_ID", false);
+            UtilClass.AddNewColum(dgvProduce, "공정명", "Line_Name", true, 130);
+            UtilClass.AddNewColum(dgvProduce, "품목번호", "Product_ID", false);
+            UtilClass.AddNewColum(dgvProduce, "품목명", "Product_Name", true, 150);
+            UtilClass.AddNewColum(dgvProduce, "요청수량", "Produce_QtyRequested", true);
+            UtilClass.AddNewColum(dgvProduce, "생산수량", "Produce_QtyReleased", true);
+            UtilClass.AddNewColum(dgvProduce, "생산상태", "Produce_State", true);
+
+            dgvProduce.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvProduce.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvProduce.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvProduce.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvProduce.Columns[9].DefaultCellStyle.Format = "#0개";
+            dgvProduce.Columns[10].DefaultCellStyle.Format = "#0개";
             RefreshClicked();
         }
 
@@ -58,7 +79,9 @@ namespace Team2_ERP
             searchPeriodRequire.Enddate.Clear();
             searchPeriodwork.Startdate.Clear();
             searchPeriodwork.Enddate.Clear();
+            rbx0.Checked = false;
             rbx0.Checked = true;
+            dgvProduce.DataSource = null;
             frm.NoticeMessage = "작업지시현황 화면입니다.";
         }
 
@@ -98,6 +121,7 @@ namespace Team2_ERP
         public override void Refresh(object sender, EventArgs e)
         {
             RefreshClicked();
+
         }
 
         public override void Search(object sender, EventArgs e)
@@ -112,24 +136,29 @@ namespace Team2_ERP
                 if (searchSales.CodeTextBox.Tag != null)
                 {
                     searchedlist = (from item in searchedlist
-                                    where item.Employees_ID == Convert.ToInt32(searchSales.CodeTextBox.Tag)
+                                    where item.Employees_ID == Convert.ToInt32(searchSales.CodeTextBox.Tag)                                    
                                     select item).ToList();
                 }
+                if (searchPeriodRequire.Startdate.Tag != null && searchPeriodRequire.Enddate.Tag != null)
+                {
+                    searchedlist = (from item in searchedlist
+                                    where Convert.ToDateTime(item.Shipment_RequiredDate) >= Convert.ToDateTime(searchPeriodRequire.Startdate.Tag.ToString()) && Convert.ToDateTime(item.Shipment_RequiredDate) <= Convert.ToDateTime(searchPeriodRequire.Enddate.Tag.ToString())
+                                    orderby item.Shipment_RequiredDate
+                                    select item
+                                    ).ToList();
+                }
+                if (searchPeriodwork.Startdate.Tag != null && searchPeriodwork.Enddate.Tag != null)
+                {
+                    searchedlist = (from item in searchedlist
+                                    where Convert.ToDateTime(item.Work_StartDate) >= Convert.ToDateTime(searchPeriodwork.Startdate.Tag.ToString()) && Convert.ToDateTime(item.Work_StartDate) <= Convert.ToDateTime(searchPeriodwork.Enddate.Tag.ToString())
+                                    orderby item.Work_StartDate
+                                    select item).ToList();
+                }
+                dgvWorkList.DataSource = searchedlist;
+                frm.NoticeMessage = "검색 완료";
+                GetProduce();
             }
-            if (searchPeriodRequire.Startdate.Tag != null && searchPeriodRequire.Enddate.Tag != null)
-            {
-                searchedlist = (from item in searchedlist
-                                where Convert.ToDateTime(item.Shipment_RequiredDate) >= Convert.ToDateTime(searchPeriodRequire.Startdate.Tag.ToString()) && Convert.ToDateTime(item.Shipment_RequiredDate) <= Convert.ToDateTime(searchPeriodRequire.Enddate.Tag.ToString())
-                                select item).ToList();
-            }
-            if (searchPeriodwork.Startdate.Tag != null && searchPeriodwork.Enddate.Tag != null)
-            {
-                searchedlist = (from item in searchedlist
-                                where Convert.ToDateTime(item.Work_StartDate) >= Convert.ToDateTime(searchPeriodwork.Startdate.Tag.ToString()) && Convert.ToDateTime(item.Work_StartDate) <= Convert.ToDateTime(searchPeriodwork.Enddate.Tag.ToString())
-                                select item).ToList();
-            }
-            dgvWorkList.DataSource = searchedlist;
-            frm.NoticeMessage = "검색 완료";
+
         }
 
         public override void Excel(object sender, EventArgs e)
@@ -176,6 +205,32 @@ namespace Team2_ERP
             searchPeriodwork.Startdate.Clear();
             searchPeriodwork.Enddate.Clear();
             ClearDgv();
+        }
+
+        private void dgvWorkList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            GetProduce();
+        }
+
+        private void GetProduce()
+        {
+            dgvProduce.DataSource = null;
+            if (dgvWorkList.SelectedRows.Count > 0)
+            {
+                string id = dgvWorkList.SelectedRows[0].Cells[0].Value.ToString();
+
+                try
+                {
+                    WorkService service = new WorkService();
+                    dgvProduce.DataSource = service.GetProduceByWorkID(id);
+                    dgvProduce.ClearSelection();
+                    dgvProduce.CurrentCell = null;
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message);
+                }
+            }
         }
     }
 }

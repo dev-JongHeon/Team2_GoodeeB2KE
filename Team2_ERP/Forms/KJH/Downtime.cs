@@ -25,15 +25,15 @@ namespace Team2_ERP
             frm = (MainForm)this.ParentForm;
             UtilClass.SettingDgv(dgvDowntime);
             UtilClass.AddNewColum(dgvDowntime, "공장번호", "Factory_ID", false);
-            UtilClass.AddNewColum(dgvDowntime, "공장명", "Factory_Name", true, 100);
+            UtilClass.AddNewColum(dgvDowntime, "공장명", "Factory_Name", true, 130);
             UtilClass.AddNewColum(dgvDowntime, "공정번호", "Line_ID", false);
-            UtilClass.AddNewColum(dgvDowntime, "공정명", "Line_Name", true, 100);
+            UtilClass.AddNewColum(dgvDowntime, "공정명", "Line_Name", true, 130);
             UtilClass.AddNewColum(dgvDowntime, "비가동유형번호", "DowntimeType_ID", false);
             UtilClass.AddNewColum(dgvDowntime, "비가동유형", "DowntimeType_Name", true, 150);
             UtilClass.AddNewColum(dgvDowntime, "작업자번호", "Employees_ID", false);
-            UtilClass.AddNewColum(dgvDowntime, "작업자", "Employees_Name", true, 100);
-            UtilClass.AddNewColum(dgvDowntime, "시작", "Downtime_StartDate", true,150);
-            UtilClass.AddNewColum(dgvDowntime, "종료", "Downtime_EndDate", true, 150);
+            UtilClass.AddNewColum(dgvDowntime, "작업자", "Employees_Name", true, 130);
+            UtilClass.AddNewColum(dgvDowntime, "시작", "Downtime_StartDate", true,180);
+            UtilClass.AddNewColum(dgvDowntime, "종료", "Downtime_EndDate", true, 180);
             UtilClass.AddNewColum(dgvDowntime, "비가동시간", "Downtime_TotalTime", true,100);
 
             dgvDowntime.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

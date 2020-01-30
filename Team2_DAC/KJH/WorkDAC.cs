@@ -38,5 +38,27 @@ namespace Team2_DAC
             }
 
         }
+
+        public List<ProduceVO> GetProduceByWorkID(string id)
+        {
+            try
+            {
+                List<ProduceVO> list = new List<ProduceVO>();
+                string sql = "GetProduceByWorkID";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    conn.Open();
+                    list = Helper.DataReaderMapToList<ProduceVO>(cmd.ExecuteReader());
+                    conn.Close();
+                }
+                return list;
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+        }
     }
 }
