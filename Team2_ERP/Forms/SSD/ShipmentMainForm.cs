@@ -20,6 +20,11 @@ namespace Team2_ERP
             InitializeComponent();
         }
 
+        private void ShipmentMainForm_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
         private void LoadData()
         {
             UtilClass.SettingDgv(dgv_Shipment);
@@ -27,6 +32,7 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Shipment, "주문번호", "Order_ID", true);
             UtilClass.AddNewColum(dgv_Shipment, "주문일시", "Order_Date", true);
             UtilClass.AddNewColum(dgv_Shipment, "고객ID", "Customer_userID", true);
+            UtilClass.AddNewColum(dgv_Shipment, "고객성명", "Customer_Name", true);
             UtilClass.AddNewColum(dgv_Shipment, "출하지시일시", "Shipment_RequiredDate", true);
             UtilClass.AddNewColum(dgv_Shipment, "출하지시자", "Employees_Name", true);
             dgv_Shipment.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -48,10 +54,7 @@ namespace Team2_ERP
             ShipmentDetail_AllList = service.GetShipmentDetailList();
         }
 
-        private void ShipmentMainForm_Load(object sender, EventArgs e)
-        {
-            LoadData();
-        }
+        
 
         private void dgv_Shipment_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {

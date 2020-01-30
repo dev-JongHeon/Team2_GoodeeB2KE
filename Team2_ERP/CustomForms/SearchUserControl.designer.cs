@@ -86,7 +86,7 @@
             this.btnSearch.Location = new System.Drawing.Point(288, 3);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(21, 21);
-            this.btnSearch.TabIndex = 5;
+            this.btnSearch.TabIndex = 1;
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
@@ -96,7 +96,7 @@
             this.txtCode.Location = new System.Drawing.Point(84, 2);
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(198, 21);
-            this.txtCode.TabIndex = 4;
+            this.txtCode.TabIndex = 0;
             this.txtCode.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtCode_MouseClick);
             this.txtCode.TextChanged += new System.EventHandler(this.txtCode_TextChanged);
             this.txtCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCode_KeyPress);

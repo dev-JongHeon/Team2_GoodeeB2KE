@@ -28,11 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.searchUserControl1 = new Team2_ERP.SearchUserControl();
+            this.dgvDowntimeType = new System.Windows.Forms.DataGridView();
+            this.searchDowntimeType = new Team2_ERP.SearchUserControl();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel_Search.SuspendLayout();
@@ -40,61 +37,42 @@
             this.panel_Title.SuspendLayout();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDowntimeType)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.dataGridView1);
+            this.panel2.Controls.Add(this.dgvDowntimeType);
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.searchUserControl1);
+            this.panel5.Controls.Add(this.searchDowntimeType);
             // 
             // lblFormName
             // 
             this.lblFormName.Text = "비가동 유형";
             // 
-            // dataGridView1
+            // dgvDowntimeType
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(1364, 662);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvDowntimeType.BackgroundColor = System.Drawing.Color.White;
+            this.dgvDowntimeType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDowntimeType.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvDowntimeType.Location = new System.Drawing.Point(0, 0);
+            this.dgvDowntimeType.Name = "dgvDowntimeType";
+            this.dgvDowntimeType.RowTemplate.Height = 23;
+            this.dgvDowntimeType.Size = new System.Drawing.Size(1364, 662);
+            this.dgvDowntimeType.TabIndex = 0;
             // 
-            // Column1
+            // searchDowntimeType
             // 
-            this.Column1.HeaderText = "비가동유형코드";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "비가동유형명";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "비가동유형설명";
-            this.Column3.Name = "Column3";
-            // 
-            // searchUserControl1
-            // 
-            this.searchUserControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl1.ControlType = Team2_ERP.SearchUserControl.Mode.Downtime;
-            this.searchUserControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl1.Labelname = "비가동유형명";
-            this.searchUserControl1.Location = new System.Drawing.Point(12, 42);
-            this.searchUserControl1.Name = "searchUserControl1";
-            this.searchUserControl1.Size = new System.Drawing.Size(312, 25);
-            this.searchUserControl1.TabIndex = 0;
+            this.searchDowntimeType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.searchDowntimeType.ControlType = Team2_ERP.SearchUserControl.Mode.Downtime;
+            this.searchDowntimeType.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchDowntimeType.Labelname = "비가동유형명";
+            this.searchDowntimeType.Location = new System.Drawing.Point(12, 42);
+            this.searchDowntimeType.Name = "searchDowntimeType";
+            this.searchDowntimeType.Size = new System.Drawing.Size(312, 25);
+            this.searchDowntimeType.TabIndex = 0;
             // 
             // DowntimeType
             // 
@@ -102,6 +80,10 @@
             this.ClientSize = new System.Drawing.Size(1364, 820);
             this.FormName = "비가동 유형";
             this.Name = "DowntimeType";
+            this.Activated += new System.EventHandler(this.DowntimeType_Activated);
+            this.Deactivate += new System.EventHandler(this.DowntimeType_Deactivate);
+            this.Load += new System.EventHandler(this.DowntimeType_Load);
+            this.Shown += new System.EventHandler(this.DowntimeType_Shown);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel_Search.ResumeLayout(false);
@@ -109,16 +91,13 @@
             this.panel_Title.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDowntimeType)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private SearchUserControl searchUserControl1;
+        private System.Windows.Forms.DataGridView dgvDowntimeType;
+        private SearchUserControl searchDowntimeType;
     }
 }

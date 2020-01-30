@@ -24,9 +24,9 @@ namespace Team2_ERP
         {
             frm = (MainForm)this.ParentForm;
             UtilClass.SettingDgv(dgvDefectiveHandle);
-            UtilClass.AddNewColum(dgvDefectiveHandle, "불량처리유형번호", "HandleID",true,250);
-            UtilClass.AddNewColum(dgvDefectiveHandle, "불량처리유형명", "HandleName",true,250);
-            UtilClass.AddNewColum(dgvDefectiveHandle, "불량처리유형설명", "HandleExplain",true,400);
+            UtilClass.AddNewColum(dgvDefectiveHandle, "불량처리유형번호", "HandleID",true,170);
+            UtilClass.AddNewColum(dgvDefectiveHandle, "불량처리유형명", "HandleName",true,150);
+            UtilClass.AddNewColum(dgvDefectiveHandle, "불량처리유형설명", "HandleExplain",true,200);
             dgvDefectiveHandle.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             dgvDefectiveHandle.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             dgvDefectiveHandle.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
@@ -154,6 +154,8 @@ namespace Team2_ERP
         private void DefectiveHandle_Activated(object sender, EventArgs e)
         {
             MenuByAuth(Auth);
+            ActiveControl = txtSearch;
+            txtSearch.Focus();
         }
 
         private void DefectiveHandle_Deactivate(object sender, EventArgs e)

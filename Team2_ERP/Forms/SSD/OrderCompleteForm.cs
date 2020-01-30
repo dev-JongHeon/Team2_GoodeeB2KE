@@ -14,8 +14,11 @@ namespace Team2_ERP
 {
     public partial class OrderCompleteForm : Base2Dgv
     {
+        #region 전역변수
         OrderService service = new OrderService();
         List<OrderDetail> OrderDetail_AllList = null;
+        MainForm main; 
+        #endregion
         public OrderCompleteForm()
         {
             InitializeComponent();
@@ -24,6 +27,7 @@ namespace Team2_ERP
         private void OrderCompleteForm_Load(object sender, EventArgs e)
         {
             LoadData();
+            main = (MainForm)this.MdiParent;
         }
 
         private void LoadData()
@@ -31,6 +35,7 @@ namespace Team2_ERP
             UtilClass.SettingDgv(dgv_Order);
             UtilClass.AddNewColum(dgv_Order, "주문번호", "Order_ID", true);
             UtilClass.AddNewColum(dgv_Order, "고객ID", "Customer_UserID", true);
+            UtilClass.AddNewColum(dgv_Order, "고객성명", "Customer_Name", true);
             UtilClass.AddNewColum(dgv_Order, "주문일시", "Order_Date", true);
             UtilClass.AddNewColum(dgv_Order, "배송지주소", "Order_Address1", true);
             UtilClass.AddNewColum(dgv_Order, "배송지상세주소", "Order_Address2", true);
@@ -40,9 +45,10 @@ namespace Team2_ERP
             dgv_Order.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv_Order.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             dgv_Order.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dgv_Order.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dgv_Order.Columns[5].DefaultCellStyle.Format = "#,#0원";
-            dgv_Order.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv_Order.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgv_Order.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgv_Order.Columns[6].DefaultCellStyle.Format = "#,#0원";
+            dgv_Order.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
             dgv_Order.DataSource = service.GetOrderCompletedList();
 
@@ -65,6 +71,26 @@ namespace Team2_ERP
                                                   where list_detail.Order_ID == Order_ID
                                                   select list_detail).ToList();
             dgv_OrderDetail.DataSource = OrderDetail_List;
+        }  // Master 더블클릭 이벤트
+
+        #region Activated, OnOff, DeActivate
+        private void BaljuList_Activated(object sender, EventArgs e)
+        {
+            MenuByAuth(Auth);
         }
+
+        public override void MenuStripONOFF(bool flag)
+        {
+            main.신규ToolStripMenuItem.Visible = false;
+            main.수정ToolStripMenuItem.Visible = false;
+            main.삭제ToolStripMenuItem.Visible = false;
+            main.인쇄ToolStripMenuItem.Visible = flag;
+        }
+
+        private void BaljuList_Deactivate(object sender, EventArgs e)
+        {
+            new SettingMenuStrip().UnsetMenu(this);
+        } 
+        #endregion
     }
 }

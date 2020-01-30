@@ -10,6 +10,7 @@ namespace Team2_VO
     {
         public string Order_ID { get; set; }  // 주문번호
         public string Customer_UserID { get; set; }  // 고객ID
+        public string Customer_Name { get; set; }  // 고객이름
         public DateTime Order_Date { get; set; }  // 주문일자
         public string Order_Address1 { get; set; }  // 배송지주소
         public string Order_Address2 { get; set; }  // 배송지상세주소

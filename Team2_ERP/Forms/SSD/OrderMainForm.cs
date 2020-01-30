@@ -13,8 +13,12 @@ namespace Team2_ERP
 {
     public partial class OrderMainForm : Base2Dgv
     {
+        #region 전역변수
         OrderService service = new OrderService();
+        List<Order> Order_AllList = null;
         List<OrderDetail> OrderDetail_AllList = null;
+        MainForm main; 
+        #endregion
         public OrderMainForm()
         {
             InitializeComponent();
@@ -23,6 +27,7 @@ namespace Team2_ERP
         private void OrderMainForm_Load(object sender, EventArgs e)
         {
             LoadData();
+            main = (MainForm)this.MdiParent;
         }
 
         private void LoadData()
@@ -30,6 +35,7 @@ namespace Team2_ERP
             UtilClass.SettingDgv(dgv_Order);
             UtilClass.AddNewColum(dgv_Order, "주문번호", "Order_ID", true);
             UtilClass.AddNewColum(dgv_Order, "고객ID", "Customer_UserID", true);
+            UtilClass.AddNewColum(dgv_Order, "고객성명", "Customer_Name", true);
             UtilClass.AddNewColum(dgv_Order, "주문일시", "Order_Date", true);
             UtilClass.AddNewColum(dgv_Order, "배송지주소", "Order_Address1", true);
             UtilClass.AddNewColum(dgv_Order, "배송지상세주소", "Order_Address2", true);
@@ -39,10 +45,12 @@ namespace Team2_ERP
             dgv_Order.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv_Order.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             dgv_Order.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dgv_Order.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dgv_Order.Columns[5].DefaultCellStyle.Format = "#,#0원";
-            dgv_Order.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgv_Order.DataSource = service.GetOrderList();
+            dgv_Order.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgv_Order.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgv_Order.Columns[6].DefaultCellStyle.Format = "#,#0원";
+            dgv_Order.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            Order_AllList = service.GetOrderList();
+            dgv_Order.DataSource = Order_AllList;
 
             UtilClass.SettingDgv(dgv_OrderDetail);
             UtilClass.AddNewColum(dgv_OrderDetail, "주문번호", "Order_ID", true);
@@ -56,7 +64,7 @@ namespace Team2_ERP
             OrderDetail_AllList = service.GetOrderDetailList();
         }
 
-        private void dgv_Order_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgv_Order_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
         {
             string Order_ID = dgv_Order.CurrentRow.Cells[0].Value.ToString();
             List<OrderDetail> OrderDetail_List = (from list_detail in OrderDetail_AllList
@@ -64,5 +72,61 @@ namespace Team2_ERP
                                                   select list_detail).ToList();
             dgv_OrderDetail.DataSource = OrderDetail_List;
         }
+
+        private void Func_Refresh()  // 새로고침 기능
+        {
+            Order_AllList = service.GetOrderList();
+            OrderDetail_AllList = service.GetOrderDetailList();
+
+            dgv_Order.DataSource = Order_AllList;
+            dgv_OrderDetail.DataSource = null;
+
+            // 검색조건 초기화
+            Search_Customer.CodeTextBox.Text = "";
+            Search_Period.Startdate.Text = "";
+            Search_Period.Enddate.Text = "";
+        }
+
+        #region ToolStrip 기능정의
+        public override void Refresh(object sender, EventArgs e)  // 새로고침
+        {
+            Func_Refresh();
+        }
+
+        public override void Modify(object sender, EventArgs e)  // 발주완료(수령)처리 및 출하대기목록 Insert
+        {
+            if (MessageBox.Show("정말 해당주문을 처리하시겠습니까?", "알림", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                string orderID = dgv_Order.CurrentRow.Cells[0].Value.ToString();
+                service.UpOrder_InsShipment(orderID, Session.Employee_ID);
+
+                Func_Refresh();  // 새로고침
+            }
+        }
+        #endregion
+
+        #region Activated, OnOff, DeActivate
+        public override void MenuStripONOFF(bool flag)
+        {
+            main.신규ToolStripMenuItem.Visible = false;
+            main.수정ToolStripMenuItem.Visible = flag;
+            main.삭제ToolStripMenuItem.Visible = flag;
+            main.인쇄ToolStripMenuItem.Visible = flag;
+        }
+
+        private void OrderMainForm_Activated(object sender, EventArgs e)
+        {
+            MenuByAuth(Auth);
+            main.수정ToolStripMenuItem.Text = "주문처리";
+            main.수정ToolStripMenuItem.ToolTipText = "주문처리(Ctrl+M)";
+        }
+
+        private void OrderMainForm_Deactivate(object sender, EventArgs e)
+        {
+            main.수정ToolStripMenuItem.Text = "수정";
+            main.수정ToolStripMenuItem.ToolTipText = "수정(Ctrl+M)";
+            new SettingMenuStrip().UnsetMenu(this);
+        } 
+        #endregion
     }
 }

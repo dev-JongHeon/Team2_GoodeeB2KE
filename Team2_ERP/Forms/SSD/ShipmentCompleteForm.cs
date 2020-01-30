@@ -27,6 +27,7 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Shipment, "주문번호", "Order_ID", true);
             UtilClass.AddNewColum(dgv_Shipment, "주문일시", "Order_Date", true);
             UtilClass.AddNewColum(dgv_Shipment, "고객ID", "Customer_userID", true);
+            UtilClass.AddNewColum(dgv_Shipment, "고객성명", "Customer_Name", true);
             UtilClass.AddNewColum(dgv_Shipment, "출하지시일시", "Shipment_RequiredDate", true);
             UtilClass.AddNewColum(dgv_Shipment, "출하지시자", "Employees_Name", true);
             UtilClass.AddNewColum(dgv_Shipment, "출하처리일시", "Shipment_DoneDate", true);

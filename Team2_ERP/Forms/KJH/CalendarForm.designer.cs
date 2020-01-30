@@ -75,7 +75,7 @@
             // 
             // panel3
             // 
-            this.panel3.Location = new System.Drawing.Point(424, 0);
+            this.panel3.Location = new System.Drawing.Point(422, 0);
             // 
             // panel5
             // 
@@ -83,28 +83,31 @@
             this.panel5.Controls.Add(this.label1);
             this.panel5.Controls.Add(this.EndCalendar);
             this.panel5.Controls.Add(this.StartCalendar);
-            this.panel5.Size = new System.Drawing.Size(624, 285);
+            this.panel5.Location = new System.Drawing.Point(0, 67);
+            this.panel5.Size = new System.Drawing.Size(624, 297);
             // 
             // panel4
             // 
-            this.panel4.Location = new System.Drawing.Point(0, 349);
-            this.panel4.Size = new System.Drawing.Size(624, 50);
+            this.panel4.Location = new System.Drawing.Point(0, 364);
+            this.panel4.Size = new System.Drawing.Size(624, 35);
             // 
             // panel2
             // 
-            this.panel2.Size = new System.Drawing.Size(624, 32);
+            this.panel2.Size = new System.Drawing.Size(624, 35);
             // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.FlatAppearance.BorderSize = 0;
             this.btnCancel.Location = new System.Drawing.Point(365, 3);
+            this.btnCancel.Size = new System.Drawing.Size(83, 28);
             // 
             // btnOK
             // 
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.FlatAppearance.BorderSize = 0;
             this.btnOK.Location = new System.Drawing.Point(174, 3);
+            this.btnOK.Size = new System.Drawing.Size(83, 28);
             this.btnOK.Text = "확인";
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 

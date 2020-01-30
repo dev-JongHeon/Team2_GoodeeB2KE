@@ -114,6 +114,7 @@
             // 
             // dgv_Shipment
             // 
+            this.dgv_Shipment.BackgroundColor = System.Drawing.Color.White;
             this.dgv_Shipment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_Shipment.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_Shipment.Location = new System.Drawing.Point(0, 0);
@@ -125,6 +126,7 @@
             // 
             // dgv_ShipmentDetail
             // 
+            this.dgv_ShipmentDetail.BackgroundColor = System.Drawing.Color.White;
             this.dgv_ShipmentDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_ShipmentDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_ShipmentDetail.Location = new System.Drawing.Point(0, 0);

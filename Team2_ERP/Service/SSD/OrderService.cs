@@ -34,5 +34,11 @@ namespace Team2_ERP.Service
             OrderDAC dac = new OrderDAC();
             return dac.GetSalesStatus();
         }
+
+        public void UpOrder_InsShipment(string orderID, int employeeID)
+        {
+            OrderDAC dac = new OrderDAC();
+            dac.UpOrder_InsShipment(orderID, employeeID);
+        }
     }
 }

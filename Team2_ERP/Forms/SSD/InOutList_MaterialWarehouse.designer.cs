@@ -36,6 +36,7 @@
             this.rdo_In = new System.Windows.Forms.RadioButton();
             this.rdo_Out = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Search_Employees = new Team2_ERP.SearchUserControl();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel_Search.SuspendLayout();
@@ -71,6 +72,7 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.Search_Employees);
             this.panel5.Controls.Add(this.groupBox1);
             this.panel5.Controls.Add(this.Search_Material);
             this.panel5.Controls.Add(this.Search_Warehouse);
@@ -108,6 +110,7 @@
             // 
             // dgv_Stock
             // 
+            this.dgv_Stock.BackgroundColor = System.Drawing.Color.White;
             this.dgv_Stock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_Stock.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_Stock.Location = new System.Drawing.Point(0, 0);
@@ -124,7 +127,7 @@
             this.Search_Period.Location = new System.Drawing.Point(185, 15);
             this.Search_Period.Name = "Search_Period";
             this.Search_Period.Size = new System.Drawing.Size(312, 35);
-            this.Search_Period.TabIndex = 55;
+            this.Search_Period.TabIndex = 4;
             // 
             // Search_Material
             // 
@@ -135,7 +138,7 @@
             this.Search_Material.Location = new System.Drawing.Point(185, 76);
             this.Search_Material.Name = "Search_Material";
             this.Search_Material.Size = new System.Drawing.Size(312, 25);
-            this.Search_Material.TabIndex = 57;
+            this.Search_Material.TabIndex = 6;
             // 
             // Search_Warehouse
             // 
@@ -146,7 +149,7 @@
             this.Search_Warehouse.Location = new System.Drawing.Point(185, 45);
             this.Search_Warehouse.Name = "Search_Warehouse";
             this.Search_Warehouse.Size = new System.Drawing.Size(312, 25);
-            this.Search_Warehouse.TabIndex = 56;
+            this.Search_Warehouse.TabIndex = 5;
             // 
             // rdo_All
             // 
@@ -155,7 +158,7 @@
             this.rdo_All.Location = new System.Drawing.Point(42, 14);
             this.rdo_All.Name = "rdo_All";
             this.rdo_All.Size = new System.Drawing.Size(57, 21);
-            this.rdo_All.TabIndex = 58;
+            this.rdo_All.TabIndex = 1;
             this.rdo_All.Text = "전체";
             this.rdo_All.UseVisualStyleBackColor = true;
             this.rdo_All.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
@@ -167,7 +170,7 @@
             this.rdo_In.Location = new System.Drawing.Point(42, 38);
             this.rdo_In.Name = "rdo_In";
             this.rdo_In.Size = new System.Drawing.Size(57, 21);
-            this.rdo_In.TabIndex = 59;
+            this.rdo_In.TabIndex = 2;
             this.rdo_In.Text = "입고";
             this.rdo_In.UseVisualStyleBackColor = true;
             this.rdo_In.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
@@ -179,7 +182,7 @@
             this.rdo_Out.Location = new System.Drawing.Point(42, 62);
             this.rdo_Out.Name = "rdo_Out";
             this.rdo_Out.Size = new System.Drawing.Size(57, 21);
-            this.rdo_Out.TabIndex = 60;
+            this.rdo_Out.TabIndex = 3;
             this.rdo_Out.Text = "출고";
             this.rdo_Out.UseVisualStyleBackColor = true;
             this.rdo_Out.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
@@ -195,6 +198,17 @@
             this.groupBox1.TabIndex = 61;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "구분";
+            // 
+            // Search_Employees
+            // 
+            this.Search_Employees.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.Search_Employees.ControlType = Team2_ERP.SearchUserControl.Mode.Employee;
+            this.Search_Employees.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Search_Employees.Labelname = "작업자";
+            this.Search_Employees.Location = new System.Drawing.Point(531, 15);
+            this.Search_Employees.Name = "Search_Employees";
+            this.Search_Employees.Size = new System.Drawing.Size(312, 25);
+            this.Search_Employees.TabIndex = 72;
             // 
             // InOutList_MaterialWarehouse
             // 
@@ -230,5 +244,6 @@
         private System.Windows.Forms.RadioButton rdo_In;
         private System.Windows.Forms.RadioButton rdo_Out;
         private System.Windows.Forms.RadioButton rdo_All;
+        private SearchUserControl Search_Employees;
     }
 }

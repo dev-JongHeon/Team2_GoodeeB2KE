@@ -398,6 +398,8 @@
     </Compile>
     <Compile Include="Service\KJH\AuthService.cs" />
     <Compile Include="Service\KJH\DefectiveHandleService.cs" />
+    <Compile Include="Service\KJH\DefectiveService.cs" />
+    <Compile Include="Service\KJH\DowntimeTypeService.cs" />
     <Compile Include="Service\KJH\DefectiveTypeService.cs" />
     <Compile Include="Service\KJH\Session.cs" />
     <Compile Include="Program.cs" />
@@ -592,6 +594,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -619,8 +622,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\1486564410-chat_81504.png" />
+    <None Include="Resources\Action_Export_ToExcel_32x32.png" />
+    <None Include="Resources\Action_Export_ToExcel.png" />
     <Content Include="Resources\Action_Logoff.png" />
     <Content Include="Resources\Action_Logoff_32x32.png" />
+    <None Include="Resources\Action_Printing_Print.png" />
     <Content Include="Resources\Action_Refresh_32x32.png" />
     <Content Include="Resources\Action_Refresh_64x64.png" />
     <Content Include="Resources\AddFile_32x32.png" />
@@ -651,6 +657,7 @@
     <Content Include="Resources\Prev_16x16.png" />
     <Content Include="Resources\Prev_16x161.png" />
     <Content Include="Resources\Printer_32x32.png" />
+    <None Include="Resources\Report_32x32.png" />
     <Content Include="Resources\right-arrow.png" />
     <Content Include="Resources\Search_16x16.png" />
     <Content Include="Resources\ViewSetting_16x16.png" />

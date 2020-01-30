@@ -14,9 +14,13 @@ namespace Team2_ERP
 {
     public partial class BOM : BaseForm
     {
-        List<BOMVO> list;
+        List<ProductVO> list;
 
         ToolStripDropDownItem tool;
+
+        MainForm frm;
+
+        ProductVO item;
 
         public BOM()
         {
@@ -30,9 +34,10 @@ namespace Team2_ERP
 
             UtilClass.AddNewColum(dgvBOM, "분류", "Category_Division", false, 100);
             UtilClass.AddNewColum(dgvBOM, "품목명", "CodeTable_CodeName", true, 100);
+            UtilClass.AddNewColum(dgvBOM, "제품ID", "Product_ID", false, 100);
             UtilClass.AddNewColum(dgvBOM, "제품명", "Product_Name", true, 100);
             UtilClass.AddNewColum(dgvBOM, "가격", "Product_Price", true, 100, DataGridViewContentAlignment.MiddleRight);
-            dgvBOM.Columns[3].DefaultCellStyle.Format = "#,###원";
+            dgvBOM.Columns[4].DefaultCellStyle.Format = "#,###원";
 
             dgvBOM.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dgvBOM.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -41,8 +46,20 @@ namespace Team2_ERP
             btn.HeaderText = "전개";
             btn.Width = 100;
             dgvBOM.Columns.Add(btn);
-            dgvBOM.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dgvBOM.Columns[4].Width = 70;
+            dgvBOM.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dgvBOM.Columns[5].Width = 70;
+
+            UtilClass.SettingDgv(dgvBOMDetail);
+
+            UtilClass.AddNewColum(dgvBOMDetail, "분류", "Category_Division", true, 100);
+            UtilClass.AddNewColum(dgvBOMDetail, "제품명", "Product_Name", true, 100);
+            UtilClass.AddNewColum(dgvBOMDetail, "개수", "Combination_RequiredQty", true, 100, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dgvBOMDetail, "가격", "Product_Price", true, 100, DataGridViewContentAlignment.MiddleRight);
+            dgvBOMDetail.Columns[2].DefaultCellStyle.Format = "#,###개";
+            dgvBOMDetail.Columns[3].DefaultCellStyle.Format = "#,###원";
+
+            dgvBOMDetail.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dgvBOMDetail.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         // DataGridView 가져오기
@@ -50,19 +67,20 @@ namespace Team2_ERP
         {
             StandardService service = new StandardService();
             list = service.GetAllProduct();
-            List<BOMVO> productList = (from item in list where item.Product_DeletedYN == false select item).ToList();
+            List<ProductVO> productList = (from item in list where item.Product_DeletedYN == false select item).ToList();
             dgvBOM.DataSource = productList;
         }
 
         private void BOM_Load(object sender, EventArgs e)
         {
             InitGridView();
+            frm = (MainForm)this.ParentForm;
             LoadGridView();
         }
 
         private void dgvBOM_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if(e.ColumnIndex == 4)
+            if(e.ColumnIndex == 5)
             {
                 string str = dgvBOM.Rows[e.RowIndex].Cells[0].Value.ToString();
 
@@ -106,6 +124,11 @@ namespace Team2_ERP
             new SettingMenuStrip().UnsetMenu(this);
         }
 
+        private void InitMessage()
+        {
+            frm.NoticeMessage = "메세지";
+        }
+
         private void ItemSelect(object sender, ToolStripItemClickedEventArgs e)
         {
             if (e.ClickedItem.Text == "반제품")
@@ -140,13 +163,13 @@ namespace Team2_ERP
 
         public override void Refresh(object sender, EventArgs e)
         {
-            //InitMessage();
-            //dgvFactory.DataSource = null;
-            //searchUserControl1.CodeTextBox.Text = "";
-            //searchUserControl2.CodeTextBox.Text = "";
-            //dgvFactory.CurrentCell = null;
-            //dgvLine.CurrentCell = null;
-            //LoadGridView();
+            InitMessage();
+            dgvBOM.DataSource = null;
+            dgvBOMDetail.DataSource = null;
+            searchUserControl1.CodeTextBox.Text = "";
+            dgvBOM.CurrentCell = null;
+            dgvBOMDetail.CurrentCell = null;
+            LoadGridView();
         }
 
         public override void New(object sender, EventArgs e)
@@ -260,10 +283,31 @@ namespace Team2_ERP
 
         private void dgvBOM_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.ColumnIndex == 4 && dgvBOM.CurrentRow.Cells[0].Value.ToString().Equals("완제품"))
+            item = new ProductVO
             {
+                Product_ID = dgvBOM.Rows[e.RowIndex].Cells[2].Value.ToString()
+            };
 
+            if(e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[0].Value.ToString().Equals("원자재"))
+            {
+                dgvBOMDetail.DataSource = null;
             }
+            else if(e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[0].Value.ToString().Equals("반제품"))
+            {
+                StandardService service = new StandardService();
+                List<BOMVO> bomList = service.GetAllCombination(item.Product_ID);
+                bomList = (from item in bomList where item.Combination_DeletedYN == false select item).ToList();
+                dgvBOMDetail.DataSource = bomList;
+            }
+            else if(e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[0].Value.ToString().Equals("완제품"))
+            {
+                dgvBOMDetail.DataSource = null;
+            }
+        }
+
+        private void BOM_Shown(object sender, EventArgs e)
+        {
+            dgvBOM.CurrentCell = null;
         }
     }
 }
