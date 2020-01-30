@@ -104,17 +104,9 @@ namespace Team2_POP
             UtilClass.AddNewColum(dgvPerformance, "불량률", "Performance_DefectiveRate", true, 100, DataGridViewContentAlignment.MiddleRight);
             UtilClass.AddNewColum(dgvPerformance, "가동시간", "Performance_ElapsedTime", true, 100, DataGridViewContentAlignment.MiddleRight);
 
-            dgvWork.Columns[1].DefaultCellStyle.Format = "yyyy-MM-dd";
-            dgvWork.Columns[2].DefaultCellStyle.Format = "yyyy-MM-dd";
-
-            dgvProduce.Columns[2].DefaultCellStyle.Format = "yyyy-MM-dd";
-            dgvProduce.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd";
-
-            dgvPerformance.Columns[1].DefaultCellStyle.Format = "yyyy-MM-dd";
             dgvPerformance.Columns[5].DefaultCellStyle.Format = "HH:mm:ss";
             dgvPerformance.Columns[6].DefaultCellStyle.Format = "HH:mm:ss";
-
-            dgvPerformance.Columns[9].DefaultCellStyle.Format = "0.0#\\%";
+            dgvPerformance.Columns[9].DefaultCellStyle.Format = "##0.0#%";
         }
 
         #endregion
@@ -195,38 +187,30 @@ namespace Team2_POP
         //생산시작
         private void btnProduceStart_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string[] result = null;
-                // 생산 아이디를 넘김
-                if (dgvProduce.SelectedRows.Count < 1 || dgvProduce.SelectedRows[0].Cells[0].Value != null)
-                    result = new Service().StartProduce(dgvProduce.SelectedRows[0].Cells[0].Value.ToString());
+            string[] result = null;
+            // 생산 아이디를 넘김
+            if (dgvProduce.SelectedRows[0].Cells[0].Value != null)
+                result = new Service().StartProduce(dgvProduce.SelectedRows[0].Cells[0].Value.ToString());
 
-                if (result.Length < 2 || result[0] == "Error")
-                    MessageBox.Show("작업자를 등록해주세요");
+            if (result.Length < 2 || result[0] == "Error")
+                MessageBox.Show("작업자를 등록해주세요");
+            else
+            {
+                //생산 할당 -- 생산실적번호를 가져옴
+                MessageBox.Show("생산 시작 할당");
+
+                ProduceMachine machine = new ProduceMachine();
+
+                machine.PerformanceID = result[1];
+                machine.ProduceID = result[2];
+                machine.RequestQty = Convert.ToInt32(result[3]);
+                machine.LineID = result[4];
+
+                bool bResult = machine.Start();
+                if (bResult)
+                    MessageBox.Show("완료");
                 else
-                {
-                    //생산 할당 -- 생산실적번호를 가져옴
-                    MessageBox.Show("생산 시작 할당");
-
-                    ProduceMachine machine = new ProduceMachine();
-
-                    machine.PerformanceID = result[1];
-                    machine.ProduceID = result[2];
-                    machine.RequestQty = Convert.ToInt32(result[3]);
-                    machine.LineID = result[4];
-
-                    bool bResult = machine.Start();
-                    if (bResult)
-                        MessageBox.Show("완료");
-                    else
-                        MessageBox.Show("실패");
-                }
-            }
-            catch
-            {
-
-                return;
+                    MessageBox.Show("실패");
             }
         }
 
@@ -367,7 +351,6 @@ namespace Team2_POP
                     dgvPerformance.ClearSelection();
 
 
-                    // 생산완료 or 생산중인경우 생산시작, 작업자 막는 코드
                     if (dgvProduce.SelectedRows[0].Cells[7].Value.ToString() == "생산완료")
                         btnProduceStart.Enabled = btnWorker.Enabled = false;
                     else

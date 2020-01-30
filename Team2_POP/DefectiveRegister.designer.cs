@@ -76,7 +76,6 @@
             this.btnDefProSelect.TabIndex = 2;
             this.btnDefProSelect.Text = "선택";
             this.btnDefProSelect.UseVisualStyleBackColor = true;
-            this.btnDefProSelect.Click += new System.EventHandler(this.btnDefProSelect_Click);
             // 
             // cboDefItem
             // 
@@ -145,7 +144,6 @@
             this.btnDefNameSelect.TabIndex = 5;
             this.btnDefNameSelect.Text = "선택";
             this.btnDefNameSelect.UseVisualStyleBackColor = true;
-            this.btnDefNameSelect.Click += new System.EventHandler(this.btnDefNameSelect_Click);
             // 
             // lblDefectiveName
             // 
@@ -184,7 +182,6 @@
             this.btnHandle.TabIndex = 8;
             this.btnHandle.Text = "선택";
             this.btnHandle.UseVisualStyleBackColor = true;
-            this.btnHandle.Click += new System.EventHandler(this.btnHandle_Click);
             // 
             // lblHandle
             // 

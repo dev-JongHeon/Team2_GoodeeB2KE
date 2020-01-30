@@ -456,7 +456,7 @@ namespace Team2_DAC
                     cmd.Connection = conn;
                     cmd.CommandText = qryUpdate.ToString();
 
-                    FillParameter(cmd, new string[] { "@HandleCode", "@DefectiveCode", "@defectiveID" },
+                    FillParameter(cmd, new string[] { "@HandleCode, DefectiveCode, defectiveID" },
                                        new object[] { handleCode, defecCode, defectiveID });
 
                     conn.Open();

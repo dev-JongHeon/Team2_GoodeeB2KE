@@ -68,33 +68,9 @@ namespace Team2_POP
 
         private bool Save()
         {
-            StringBuilder msg = new StringBuilder();
-
-            if (char.IsDigit(Convert.ToChar(lblDefItem.Text)))
-                msg.Append("불량번호를 선택해주세요");
-
-            if (lblDefectiveName.Tag == null)
-                msg.Append("불량품목을 선택해주세요.");
-
-            if (lblHandle.Tag == null)
-                msg.Append("불량처리유형을 선택해주세요");
-
-            if (msg.Length > 1)
-            {
-                MessageBox.Show(msg.ToString());
-                return false;
-            }
-
-            string defectiveID = lblDefItem.Text;
-            string defecCode = lblDefectiveName.Tag.ToString();
-            string handleCode = lblHandle.Tag.ToString();
-
-            lblDefectiveName.Text = "선택된 불량유형";
-            lblDefItem.Text = "선택된 불량품목";
-            lblHandle.Text = "선택된 불량 처리유형";
-
-            lblDefectiveName.Tag = null;
-            lblHandle.Tag = null;
+            string defectiveID = cboDefItem.Text;
+            string defecCode = cboDefectiveName.SelectedValue.ToString();
+            string handleCode = cboHandle.SelectedValue.ToString();
 
             return new Service().SetDefective(defectiveID, handleCode, defecCode);
         }
@@ -113,23 +89,6 @@ namespace Team2_POP
                 InitData();
             else
                 MessageBox.Show("정상처리되지 않았습니다. 다시 시도해주세요.");
-        }
-
-        private void btnDefProSelect_Click(object sender, EventArgs e)
-        {
-            lblDefItem.Text = cboDefItem.Text;
-        }
-
-        private void btnDefNameSelect_Click(object sender, EventArgs e)
-        {
-            lblDefectiveName.Tag = cboDefectiveName.SelectedValue.ToString();
-            lblDefectiveName.Text = cboDefectiveName.Text;
-        }
-
-        private void btnHandle_Click(object sender, EventArgs e)
-        {
-            lblHandle.Tag = cboHandle.SelectedValue.ToString();
-            lblHandle.Text = cboDefectiveName.Text;
         }
     }
 }
