@@ -148,5 +148,15 @@ namespace Team2_ERP
             }
             
         }
+
+        public override void Excel(object sender, EventArgs e)
+        {
+            MessageBox.Show("엑셀");
+        }
+
+        public override void Print(object sender, EventArgs e)
+        {
+            MessageBox.Show("프린트");
+        }
     }
 }

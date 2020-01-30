@@ -634,6 +634,7 @@
     <Content Include="Resources\BOProductGroup_16x16.png" />
     <Content Include="Resources\BOReport_16x16.png" />
     <Content Include="Resources\Calendar_16x16.png" />
+    <None Include="Resources\Calendar_32x32.png" />
     <Content Include="Resources\chat-26_icon-icons.com_65943.png" />
     <Content Include="Resources\close %281%29.png" />
     <Content Include="Resources\Close_32x32.png" />

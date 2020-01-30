@@ -25,7 +25,8 @@ namespace Team2_ERP
             Action<object, EventArgs> e_modify,
             Action<object, EventArgs> e_delete,
             Action<object, EventArgs> e_search,
-            Action<object, EventArgs> e_print) where T : BaseForm, new()
+            Action<object, EventArgs> e_print,
+            Action<object, EventArgs> e_excel) where T : BaseForm, new()
         {
             MainForm m = (MainForm)frm.MdiParent;
             if (e_refresh != null)
@@ -52,6 +53,10 @@ namespace Team2_ERP
             {
                 m.M_Print += new EventHandler(e_print); 
             }
+            if (e_excel != null)
+            {
+                m.M_Print_Excel += new EventHandler(e_excel);
+            }
         }
 
         public void UnsetMenu<T>(T frm) where T : BaseForm, new()
@@ -63,7 +68,8 @@ namespace Team2_ERP
             m.M_Modify -= m.M_Modify;
             m.M_Delete -= m.M_Delete;
             m.M_Search -= m.M_Search;
-            m.M_Print -= m.M_Print;           
+            m.M_Print -= m.M_Print;
+            m.M_Print_Excel -= m.M_Print_Excel;
         }
     }
 }
