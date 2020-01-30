@@ -15,7 +15,6 @@ namespace Team2_ERP
         MainForm frm;
         CheckBox headerbox = new CheckBox();
         int uid = 0;
-        bool ftime = true;
         List<SearchedInfoVO> list = new List<SearchedInfoVO>();
         public UserAuth()
         {
@@ -28,6 +27,29 @@ namespace Team2_ERP
             UtilClass.SettingDgv(dgvEmpList);
             UtilClass.AddNewColum(dgvEmpList, "사원번호", "ID");
             UtilClass.AddNewColum(dgvEmpList, "사원명", "Name");
+
+            UtilClass.SettingDgv(dgvAuthList);
+            UtilClass.AddNewColum(dgvAuthList, "메뉴명", "Form");
+            DataGridViewCheckBoxColumn cbx = new DataGridViewCheckBoxColumn();
+            cbx.DataPropertyName = "Auth";
+            cbx.Width = 30;
+            dgvAuthList.Columns.Add(cbx);
+
+            Point headerLocation = dgvAuthList.GetCellDisplayRectangle(1, -1, true).Location;
+            headerbox.Location = new Point(headerLocation.X + 8, headerLocation.Y + 5);
+            headerbox.BackColor = Color.FromArgb(55, 113, 138);
+            headerbox.Size = new Size(16, 16);
+            headerbox.Click += new EventHandler(headerbox_Click);
+            dgvAuthList.Controls.Add(headerbox);
+            dgvAuthList.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+
+            RefreshClicked();
+            
+        }
+
+        private void RefreshClicked()
+        {
+            
             try
             {
                 SearchService service = new SearchService();
@@ -40,6 +62,10 @@ namespace Team2_ERP
             {
                 MessageBox.Show(err.Message);
             }
+            txtSearch.CodeTextBox.Clear();
+            headerbox.Checked = false;
+            ClearDgv();
+            frm.NoticeMessage = "권한설정 화면입니다.";
         }
 
         public override void Modify(object sender, EventArgs e)
@@ -77,10 +103,6 @@ namespace Team2_ERP
                                                      select item).ToList();
                 dgvAuthList.DataSource = null;
                 dgvEmpList.DataSource = SearchedInfo;
-                if (ftime)
-                {
-                    SettingAuthDgv();
-                }
                 int id = Convert.ToInt32(dgvEmpList.SelectedRows[0].Cells[0].Value);
                 uid = id;
                 AuthService service = new AuthService();
@@ -97,29 +119,8 @@ namespace Team2_ERP
 
         public override void Refresh(object sender, EventArgs e)
         {
-            btnRefresh();
-            txtSearch.CodeTextBox.Clear();
-            frm.NoticeMessage = "권한설정 화면입니다.";
-        }
-
-        private void btnRefresh()
-        {
+            RefreshClicked();
             dgvAuthList.DataSource = null;
-            headerbox.Checked = false;
-            ClearDgv();
-            try
-            {
-                SearchService service = new SearchService();
-                list = service.GetInfo("Employee");
-                dgvEmpList.DataSource = list;
-                dgvEmpList.ClearSelection();
-                dgvEmpList.CurrentCell = null;
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message);
-            }
-            
         }
 
         private void headerbox_Click(object sender, EventArgs e)
@@ -157,10 +158,6 @@ namespace Team2_ERP
 
         private void dgvEmpList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (ftime)
-            {
-                SettingAuthDgv();
-            }
             dgvAuthList.DataSource = null;
             if (dgvEmpList.SelectedRows.Count > 0)
             {
@@ -178,25 +175,6 @@ namespace Team2_ERP
                     MessageBox.Show(err.Message);
                 }
             }
-        }
-
-        private void SettingAuthDgv()
-        {
-            UtilClass.SettingDgv(dgvAuthList);
-            UtilClass.AddNewColum(dgvAuthList, "메뉴명", "Form");
-            DataGridViewCheckBoxColumn cbx = new DataGridViewCheckBoxColumn();
-            cbx.DataPropertyName = "Auth";
-            cbx.Width = 30;
-            dgvAuthList.Columns.Add(cbx);
-
-            Point headerLocation = dgvAuthList.GetCellDisplayRectangle(1, -1, true).Location;
-            headerbox.Location = new Point(headerLocation.X+8 , headerLocation.Y +5);
-            headerbox.BackColor = Color.FromArgb(55, 113, 138);
-            headerbox.Size = new Size(16, 16);
-            headerbox.Click += new EventHandler(headerbox_Click);
-            dgvAuthList.Controls.Add(headerbox);
-            dgvAuthList.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            ftime = false;
         }
 
         private void dgvAuthList_CellContentClick(object sender, DataGridViewCellEventArgs e)
