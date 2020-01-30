@@ -87,9 +87,14 @@ namespace Team2_POP
             return new POPDAC().GetDowntimeCode();
         }
 
-        public void SetDowntime(int lineID, string downtimeCode)
+        public void SetDowntime(int lineID, string downtimeCode, int employeeID)
         {
-            new POPDAC().SetDowntime(lineID, downtimeCode);
+            new POPDAC().SetDowntime(lineID, downtimeCode, employeeID);
+        }
+
+        public bool IsDowntime(int lineID)
+        {
+            return new POPDAC().IsDowntime(lineID);
         }
     }
 }

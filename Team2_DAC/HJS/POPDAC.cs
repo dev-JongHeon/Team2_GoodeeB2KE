@@ -32,7 +32,7 @@ namespace Team2_DAC
 
         private SqlParameter OutParameter(SqlCommand cmd, string p)
         {
-            SqlParameter param = new SqlParameter(p ,SqlDbType.NVarChar,8);
+            SqlParameter param = new SqlParameter(p, SqlDbType.NVarChar, 8);
             param.Direction = ParameterDirection.Output;
             cmd.Parameters.Add(param);
             return param;
@@ -123,6 +123,34 @@ namespace Team2_DAC
         #endregion
 
         #region 공정 조회 (가동 비가동)
+
+        // 가동상태 조회 (True(0) : 가동 False(1): 비가동)
+        public bool IsDowntime(int lineID)
+        {
+            try
+            {
+                bool bResult = false;
+
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "SELECT Line_Downtime FROM LINE WHERE Line_ID = @Line_ID";
+
+                    FillParameter(cmd, new string[] { "@Line_ID" }, new object[] { lineID });
+
+                    conn.Open();
+                    bResult = Convert.ToBoolean(cmd.ExecuteScalar());
+                    conn.Close();
+
+                    return !bResult;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
 
         #endregion
 
@@ -239,11 +267,11 @@ namespace Team2_DAC
                     cmd.CommandText = "proc_StartProduction";
 
                     FillParameter(cmd, new string[] { "@ProduceID" }, new object[] { produceID });
-                    
+
                     conn.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
-                    
-                    while(reader.Read())
+
+                    while (reader.Read())
                     {
                         list[0] = reader["Performance_ID"].ToString();  // 생산실적번호 
                         list[1] = reader["Qty"].ToString();  // 생산 수량                       
@@ -254,7 +282,7 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch(Exception err)
+            catch (Exception err)
             {
                 string sss = err.Message;
                 return list;
@@ -265,7 +293,7 @@ namespace Team2_DAC
         // 생산중
         public async void InProduction(string performanceID, int success, int bad)
         {
-            string[] param = new string[] { "@PerformanceID", "@Success", "@Bad" };            
+            string[] param = new string[] { "@PerformanceID", "@Success", "@Bad" };
 
             try
             {
@@ -274,16 +302,16 @@ namespace Team2_DAC
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "proc_Operation";
-                    
+
                     FillParameter(cmd, param, new object[] { performanceID, success, bad });
 
                     await conn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();
                     conn.Close();
-                  
+
                 }
             }
-            catch(Exception err)
+            catch (Exception err)
             {
                 string msg = err.Message;
             }
@@ -301,13 +329,13 @@ namespace Team2_DAC
                     cmd.CommandText = "proc_EndProduction";
 
                     FillParameter(cmd, new string[] { "@Performance_ID", "@Produce_ID" }, new object[] { performanceID, produceID });
-                    
+
                     conn.Open();
                     cmd.ExecuteNonQuery();
                     conn.Close();
                 }
             }
-            catch(Exception err)
+            catch (Exception err)
             {
                 string sss = err.Message;
             }
@@ -379,7 +407,7 @@ namespace Team2_DAC
 
         #region Select 
 
-            // 불량유형 & 처리코드
+        // 불량유형 & 처리코드
         public DataTable GetDefectiveCode()
         {
             DataTable dt = new DataTable();
@@ -387,7 +415,7 @@ namespace Team2_DAC
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.Connection = conn;                    
+                    cmd.Connection = conn;
                     cmd.CommandText = "SELECT ID, Name, DIV FROM View_SearchInfo WHERE Div in ('Defective','handle')";
 
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -420,9 +448,9 @@ namespace Team2_DAC
 
                     conn.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
-                    while(reader.Read())
+                    while (reader.Read())
                     {
-                      list.Add(reader.GetString(0));
+                        list.Add(reader.GetString(0));
                     }
                     reader.Close();
                     conn.Close();
@@ -501,9 +529,32 @@ namespace Team2_DAC
             }
         }
 
-        public void SetDowntime(int lineID, string downtimeCode)
+        public void SetDowntime(int lineID, string downtimeCode, int employeeID)
         {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "proc_SetDowntime";
 
+                    string[] param = new string[3];
+                    param[0] = "LineID";
+                    param[1] = "DowntimeCode";
+                    param[2] = "EmployeeID";
+
+                    FillParameter(cmd, param, new object[] { lineID, downtimeCode, employeeID });
+                    //FillParameter(cmd, new string[] { "@LineID", "@DowntimeCode", "@EmployeeID"}, new object[] {lineID ,downtimeCode, employeeID});
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+            catch (Exception err)
+            {
+                string sss = err.Message;
+            }
         }
     }
 }

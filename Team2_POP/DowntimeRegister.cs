@@ -14,6 +14,7 @@ namespace Team2_POP
     {
         public int LineID { get; set; }
         public string LineName { get; set; }
+        public int EmployeeID { get; set; }
 
         public DowntimeRegister()
         {
@@ -48,7 +49,9 @@ namespace Team2_POP
             if(lblDowntimeName.Tag !=null)
             {
                 // 비가동 처리
-                new Service().SetDowntime(LineID, lblDowntimeName.Tag.ToString());
+                new Service().SetDowntime(LineID, lblDowntimeName.Tag.ToString(), EmployeeID);
+
+                DialogResult = DialogResult.OK;
             }
         }
     }

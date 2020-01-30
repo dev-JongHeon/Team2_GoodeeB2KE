@@ -126,7 +126,30 @@ namespace Team2_POP
 
             lblWorkerName.Text = WorkerInfo.Worker;
             lblWorkerName.Tag = WorkerInfo.WorkID;
+
+            IsDowntime();
         }
+
+        private void IsDowntime()
+        {
+            bool bResult = new Service().IsDowntime(WorkerInfo.LineID);
+            pictureBox1.Tag = bResult;
+
+            if (bResult)
+            {
+                pictureBox1.BackColor = Color.LightGreen;
+                lblDowntimeState.Text = "가동";
+                btnDownTime.Text = "비가동 전환";
+            }
+            else
+            {
+                pictureBox1.BackColor = Color.PaleVioletRed;
+                lblDowntimeState.Text = "비가동";
+                btnDownTime.Text = "가동 전환";
+            }
+        }
+
+
 
         // 작업을 가져오는 메서드
         private void GetWork(string data)
@@ -166,13 +189,24 @@ namespace Team2_POP
         // 비가동 전환버튼을 누른경우
         private void btnDownTime_Click(object sender, EventArgs e)
         {
+            if (Convert.ToBoolean(pictureBox1.Tag) == true)
+            {
+                DowntimeRegister downtime = new DowntimeRegister();
 
-            DowntimeRegister downtime = new DowntimeRegister();
+                downtime.LineName = WorkerInfo.LineName;
+                downtime.LineID = WorkerInfo.LineID;
+                downtime.EmployeeID = WorkerInfo.WorkID;
 
-            downtime.LineName = lblLine.Text;
-            downtime.LineID = Convert.ToInt32(lblLine.Tag);
-
-            downtime.ShowDialog();
+                if (downtime.ShowDialog() == DialogResult.OK)
+                {
+                    IsDowntime();
+                }
+            }
+            else
+            {
+                new Service().SetDowntime(WorkerInfo.LineID, "kkk", WorkerInfo.WorkID);
+                IsDowntime();
+            }
 
         }
 
@@ -445,6 +479,14 @@ namespace Team2_POP
             btn.ForeColor = Color.DarkGray;
         }
 
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
