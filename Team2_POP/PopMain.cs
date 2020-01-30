@@ -15,8 +15,9 @@ namespace Team2_POP
 {
     public partial class PopMain : Form
     {
-        List<ComboItemVO> listFactory = null;
-        string WorkID = string.Empty;
+        // 프로퍼티
+        public WorkerInfoPOP WorkerInfo { get; set; }
+        string workID = string.Empty;
 
         public PopMain()
         {
@@ -36,7 +37,9 @@ namespace Team2_POP
 
         private void SettingControl()
         {
-
+            BtnDisable(btnDefective);
+            BtnDisable(btnWorker);
+            BtnDisable(btnProduceStart);
 
             // =============================================
             //               스플릿 컨테이너 디자인
@@ -45,17 +48,6 @@ namespace Team2_POP
             splitContainer1.IsSplitterFixed = splitContainer2.IsSplitterFixed = splitContainer3.IsSplitterFixed
                 = splitContainer4.IsSplitterFixed = splitContainer5.IsSplitterFixed =
                 splitContainer6.IsSplitterFixed = true;
-
-            // =============================================
-            //                라벨 초기값 
-            // =============================================
-            lblDate.Text = DateTime.Now.ToShortDateString();
-
-
-            // =============================================
-            //                콤보박스 디자인
-            // =============================================
-            cboFactory.DropDownStyle = cboLine.DropDownStyle = ComboBoxStyle.DropDownList;
 
 
             // =============================================
@@ -122,17 +114,18 @@ namespace Team2_POP
         private void InitData()
         {
             // =============================================
-            //                콤보박스 바인딩 
+            //                라벨 초기값 
             // =============================================
-            try
-            {
-                listFactory = new Service().GetFactoryList();
-                UtilClass.ComboBinding(cboFactory, listFactory, "공장 선택");
-            }
-            catch
-            {
+            lblDate.Text = DateTime.Now.ToShortDateString();
 
-            }
+            lblFactory.Text = WorkerInfo.FactoryName;
+            lblFactory.Tag = WorkerInfo.FactoryID;
+
+            lblLine.Text = WorkerInfo.LineName;
+            lblLine.Tag = WorkerInfo.LineID;
+
+            lblWorkerName.Text = WorkerInfo.Worker;
+            lblWorkerName.Tag = WorkerInfo.WorkID;
         }
 
         // 작업을 가져오는 메서드
@@ -140,32 +133,21 @@ namespace Team2_POP
         {
             StringBuilder msg = new StringBuilder();
 
-            if (cboLine.SelectedValue != null && char.IsDigit(Convert.ToChar(cboLine.SelectedValue)))
-            {
-                List<Work> list = new Service().GetWorks(data, Convert.ToInt32(cboLine.SelectedValue));
 
-                dgvWork.DataSource = null;
-                dgvProduce.DataSource = null;
-                dgvPerformance.DataSource = null;
+            List<Work> list = new Service().GetWorks(data, Convert.ToInt32(lblLine.Tag));
 
-                if (list.Count > 0)
-                    dgvWork.DataSource = list;
-                else
-                    MessageBox.Show($"작업날짜 : {data} \n공정 : {cboLine.Text} \n 위의 작업내역이 존재하지 않습니다.");
-            }
-            else if (cboFactory.SelectedValue == null)
-            {
-                msg.Append("공장을 선택해주세요.");
-            }
-            else if (cboLine.SelectedValue == null)
-            {
-                msg.AppendLine("공정을 선택해주세요.");
-            }
+            dgvWork.DataSource = null;
+            dgvProduce.DataSource = null;
+            dgvPerformance.DataSource = null;
+
+            if (list.Count > 0)
+                dgvWork.DataSource = list;
+            else
+                MessageBox.Show($"작업날짜 : {data} \n공정 : {lblLine.Text} \n 위의 작업내역이 존재하지 않습니다.");
+
 
             if (msg.Length > 0)
                 MessageBox.Show(msg.ToString());
-
-
         }
 
         #region 상단 버튼 - 날짜 클릭, 비가동
@@ -184,8 +166,14 @@ namespace Team2_POP
         // 비가동 전환버튼을 누른경우
         private void btnDownTime_Click(object sender, EventArgs e)
         {
+
             DowntimeRegister downtime = new DowntimeRegister();
+
+            downtime.LineName = lblLine.Text;
+            downtime.LineID = Convert.ToInt32(lblLine.Tag);
+
             downtime.ShowDialog();
+
         }
 
         #endregion
@@ -195,38 +183,75 @@ namespace Team2_POP
         //생산시작
         private void btnProduceStart_Click(object sender, EventArgs e)
         {
+            //try
+            //{
+            //    string[] result = null;
+            //    // 생산 아이디를 넘김
+            //    if (dgvProduce.SelectedRows.Count < 1 || dgvProduce.SelectedRows[0].Cells[0].Value != null)
+            //        result = new Service().StartProduce(dgvProduce.SelectedRows[0].Cells[0].Value.ToString());
+
+            //    if (result.Length < 2 || result[0] == "Error")
+            //        MessageBox.Show("작업자를 등록해주세요");
+            //    else
+            //    {
+            //        //생산 할당 -- 생산실적번호를 가져옴
+            //        MessageBox.Show("생산 시작 할당");
+
+            //        ProduceMachine machine = new ProduceMachine();
+
+            //        machine.PerformanceID = result[1];
+            //        machine.ProduceID = result[2];
+            //        machine.RequestQty = Convert.ToInt32(result[3]);
+            //        machine.LineID = result[4];
+
+            //        bool bResult = machine.Start();
+            //        if (bResult)
+            //            MessageBox.Show("완료");
+            //        else
+            //            MessageBox.Show("실패");
+            //    }
+            //}
+            //catch
+            //{
+
+            //    return;
+            //}
+
             try
             {
                 string[] result = null;
-                // 생산 아이디를 넘김
-                if (dgvProduce.SelectedRows.Count < 1 || dgvProduce.SelectedRows[0].Cells[0].Value != null)
-                    result = new Service().StartProduce(dgvProduce.SelectedRows[0].Cells[0].Value.ToString());
 
-                if (result.Length < 2 || result[0] == "Error")
-                    MessageBox.Show("작업자를 등록해주세요");
-                else
+
+                if (dgvProduce.SelectedRows.Count < 1)
                 {
-                    //생산 할당 -- 생산실적번호를 가져옴
-                    MessageBox.Show("생산 시작 할당");
+                    return;
+                }
+                else
+                {                   
+                    string produceID = dgvProduce.SelectedRows[0].Cells[0].Value.ToString();
+                    result = new Service().StartProduce(produceID);
+                    
 
-                    ProduceMachine machine = new ProduceMachine();
+                    ProduceMachine machine = new ProduceMachine
+                    {
+                        PerformanceID = result[0],
+                        ProduceID = produceID,
+                        LineID = Convert.ToInt32(lblLine.Tag),
+                        RequestQty = Convert.ToInt32(result[1])
+                    };
 
-                    machine.PerformanceID = result[1];
-                    machine.ProduceID = result[2];
-                    machine.RequestQty = Convert.ToInt32(result[3]);
-                    machine.LineID = result[4];
+                    if(machine.Start())
+                    {
+                        dgvProduce.DataSource = dgvPerformance.DataSource = null;
+                        dgvProduce.DataSource = new Service().GetProduce(workID);
+                        dgvPerformance.DataSource = new Service().GetPerformance(produceID);
+                    }
 
-                    bool bResult = machine.Start();
-                    if (bResult)
-                        MessageBox.Show("완료");
-                    else
-                        MessageBox.Show("실패");
                 }
             }
             catch
             {
 
-                return;
             }
         }
 
@@ -235,28 +260,15 @@ namespace Team2_POP
         // 작업자 설정버튼을 누른 경우
         private void btnWorker_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (cboFactory.Tag == null || dgvProduce.SelectedRows[0].Cells[0].Value == null)
-                    return;
-            }
-            catch
-            {
+            if (dgvProduce.SelectedRows.Count < 1)
                 return;
-            }
 
-            using (WorkRegister work = new WorkRegister())
-            {
-                work.ProduceID = dgvProduce.SelectedRows[0].Cells[0].Value.ToString();
-                work.FactoryDivision = Convert.ToInt32(cboFactory.Tag);
-                if (work.ShowDialog() == DialogResult.OK)
-                {
-                    // 생산실적 추가 프로시저 
-                    new Service().SetWorker(work.ProduceID, work.EmployeeID);
-                    dgvPerformance.DataSource = new Service().GetPerformance(work.ProduceID);
-                }
-            }
 
+            string produceID = dgvProduce.SelectedRows[0].Cells[0].Value.ToString();
+
+            bool bResult = new Service().SetWorker(produceID, Convert.ToInt32(lblWorkerName.Tag));
+
+            dgvPerformance.DataSource = new Service().GetPerformance(produceID);
         }
 
 
@@ -310,25 +322,6 @@ namespace Team2_POP
         #endregion
 
 
-        // 공정 콤보박스가 변경될때
-        private void cboFactory_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                object value = cboFactory.SelectedValue;
-                if (cboFactory.SelectedIndex != 0 && value != null)
-                {
-                    UtilClass.ComboBinding(cboLine, new Service().GetLineList(Convert.ToInt32(value)), "공정 선택");
-                    cboFactory.Tag = (listFactory.Find(f => f.ID == value.ToString())).CodeType;
-                }
-
-
-            }
-            catch (Exception err)
-            {
-                string ss = err.Message;
-            }
-        }
 
         #region 그리드뷰 클릭 이벤트
         //=====================
@@ -343,7 +336,8 @@ namespace Team2_POP
 
                 if (e.RowIndex > -1 && e.ColumnIndex > -1)
                 {
-                    dgvProduce.DataSource = new Service().GetProduce(dgvWork.SelectedRows[0].Cells[0].Value.ToString());
+                    workID = dgvWork.SelectedRows[0].Cells[0].Value.ToString();
+                    dgvProduce.DataSource = new Service().GetProduce(workID);
                     dgvProduce.ClearSelection();
                 }
             }
@@ -366,12 +360,27 @@ namespace Team2_POP
                     dgvPerformance.DataSource = new Service().GetPerformance(dgvProduce.SelectedRows[0].Cells[0].Value.ToString());
                     dgvPerformance.ClearSelection();
 
+                    if (dgvProduce.SelectedRows[0].Cells[7].Value == null || Convert.ToInt32(dgvProduce.SelectedRows[0].Cells[7].Value) == 0)
+                    {
+                        BtnDisable(btnDefective);
+                    }
+                    else
+                    {
+                        BtnEnable(btnDefective);
+                    }
+
 
                     // 생산완료 or 생산중인경우 생산시작, 작업자 막는 코드
-                    if (dgvProduce.SelectedRows[0].Cells[7].Value.ToString() == "생산완료")
-                        btnProduceStart.Enabled = btnWorker.Enabled = false;
+                    if (dgvProduce.SelectedRows[0].Cells[8].Value.ToString() == "생산완료")
+                    {
+                        BtnDisable(btnProduceStart);
+                        BtnDisable(btnWorker);
+                    }
                     else
-                        btnProduceStart.Enabled = btnWorker.Enabled = true;
+                    {
+                        BtnEnable(btnProduceStart);
+                        BtnEnable(btnWorker);
+                    }
                 }
             }
             catch
@@ -422,6 +431,19 @@ namespace Team2_POP
         //===================
         //    테스트 구역
         //===================
+        private void BtnEnable(Button btn)
+        {
+            btn.Enabled = true;
+            btn.BackColor = Color.FromArgb(232, 236, 241);
+            btn.ForeColor = Color.Black;
+        }
+
+        private void BtnDisable(Button btn)
+        {
+            btn.Enabled = false;
+            btn.BackColor = Color.LightGray;
+            btn.ForeColor = Color.DarkGray;
+        }
 
 
     }

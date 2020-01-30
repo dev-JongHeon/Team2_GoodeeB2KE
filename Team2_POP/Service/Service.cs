@@ -44,11 +44,13 @@ namespace Team2_POP
             return new POPDAC().GetWorker(factoryDivision);
         }
 
+        // 작업할당 메서드
         public bool SetWorker(string produceID, int empID)
         {
             return new POPDAC().SetWorkerForPerformance(produceID, empID);
         }
 
+        // 생산 시작 메서드
         public string[] StartProduce(string produceID)
         {
             return new POPDAC().StartProduce(produceID);
@@ -59,9 +61,9 @@ namespace Team2_POP
             new POPDAC().InProduction(performanceID, success, bad);
         }
 
-        public void EndProduce(string performanceID)
+        public void EndProduce(string performanceID, string produceID)
         {
-            new POPDAC().EndProduce(performanceID);
+            new POPDAC().EndProduce(performanceID, produceID);
         }
 
         public DataTable GetDefectiveCode()
@@ -78,6 +80,16 @@ namespace Team2_POP
         {
             return new POPDAC().SetDefective(defectiveID, handleCode, defecCode);
 
+        }
+
+        public List<ComboItemVO> GetDowntimeCode()
+        {
+            return new POPDAC().GetDowntimeCode();
+        }
+
+        public void SetDowntime(int lineID, string downtimeCode)
+        {
+            new POPDAC().SetDowntime(lineID, downtimeCode);
         }
     }
 }

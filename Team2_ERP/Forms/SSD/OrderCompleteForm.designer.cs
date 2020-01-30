@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.searchPeriodControl1 = new Team2_ERP.SearchPeriodControl();
-            this.searchUserControl1 = new Team2_ERP.SearchUserControl();
+            this.Search_Period = new Team2_ERP.SearchPeriodControl();
+            this.Search_Customer = new Team2_ERP.SearchUserControl();
             this.dgv_Order = new System.Windows.Forms.DataGridView();
             this.dgv_OrderDetail = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -61,32 +61,32 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.searchPeriodControl1);
-            this.panel5.Controls.Add(this.searchUserControl1);
+            this.panel5.Controls.Add(this.Search_Period);
+            this.panel5.Controls.Add(this.Search_Customer);
             // 
             // lblFormName
             // 
             this.lblFormName.Text = "주문처리완료현황";
             // 
-            // searchPeriodControl1
+            // Search_Period
             // 
-            this.searchPeriodControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchPeriodControl1.Labelname = "주문일자";
-            this.searchPeriodControl1.Location = new System.Drawing.Point(70, 56);
-            this.searchPeriodControl1.Name = "searchPeriodControl1";
-            this.searchPeriodControl1.Size = new System.Drawing.Size(312, 25);
-            this.searchPeriodControl1.TabIndex = 5;
+            this.Search_Period.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Search_Period.Labelname = "주문일자";
+            this.Search_Period.Location = new System.Drawing.Point(70, 56);
+            this.Search_Period.Name = "Search_Period";
+            this.Search_Period.Size = new System.Drawing.Size(312, 25);
+            this.Search_Period.TabIndex = 5;
             // 
-            // searchUserControl1
+            // Search_Customer
             // 
-            this.searchUserControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl1.ControlType = Team2_ERP.SearchUserControl.Mode.Customer;
-            this.searchUserControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl1.Labelname = "고객";
-            this.searchUserControl1.Location = new System.Drawing.Point(70, 22);
-            this.searchUserControl1.Name = "searchUserControl1";
-            this.searchUserControl1.Size = new System.Drawing.Size(312, 25);
-            this.searchUserControl1.TabIndex = 3;
+            this.Search_Customer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.Search_Customer.ControlType = Team2_ERP.SearchUserControl.Mode.Customer;
+            this.Search_Customer.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Search_Customer.Labelname = "고객";
+            this.Search_Customer.Location = new System.Drawing.Point(70, 22);
+            this.Search_Customer.Name = "Search_Customer";
+            this.Search_Customer.Size = new System.Drawing.Size(312, 25);
+            this.Search_Customer.TabIndex = 3;
             // 
             // dgv_Order
             // 
@@ -138,8 +138,8 @@
 
         #endregion
 
-        private SearchPeriodControl searchPeriodControl1;
-        private SearchUserControl searchUserControl1;
+        private SearchPeriodControl Search_Period;
+        private SearchUserControl Search_Customer;
         private System.Windows.Forms.DataGridView dgv_Order;
         private System.Windows.Forms.DataGridView dgv_OrderDetail;
     }

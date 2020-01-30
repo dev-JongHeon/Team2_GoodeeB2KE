@@ -404,6 +404,8 @@
     </Compile>
     <Compile Include="Service\KJH\AuthService.cs" />
     <Compile Include="Service\KJH\DefectiveHandleService.cs" />
+    <Compile Include="Service\KJH\WorkService.cs" />
+    <Compile Include="Service\KJH\DowntimeService.cs" />
     <Compile Include="Service\KJH\DefectiveService.cs" />
     <Compile Include="Service\KJH\DowntimeTypeService.cs" />
     <Compile Include="Service\KJH\DefectiveTypeService.cs" />

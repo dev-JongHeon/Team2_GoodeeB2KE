@@ -138,5 +138,35 @@ namespace Team2_DAC
                 }
             }
         }
+
+        public void DeleteOrder(string order_ID)
+        {
+            int check = 0;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "DeleteOrder";
+                    cmd.Parameters.AddWithValue("@Order_ID", order_ID);
+                    conn.Open();
+                    check = cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+            catch (Exception err)
+            {
+                System.Windows.Forms.MessageBox.Show(err.Message);
+            }
+            finally
+            {
+                if (check > 0)
+                {
+                    System.Windows.Forms.MessageBox.Show("삭제완료!");
+                }
+            }
+
+        }
     }
 }

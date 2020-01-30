@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Team2_POP
@@ -13,7 +14,7 @@ namespace Team2_POP
 
         // 1 ~ 100 난수를 뽑아 5 이하일 경우 불량 발생 
         //
-        public string LineID { get; set; }
+        public int LineID { get; set; }
         public string PerformanceID { get; set; }
         public string ProduceID { get; set; }
         public int RequestQty { get; set; }
@@ -57,17 +58,22 @@ namespace Team2_POP
             {
                 Service service = new Service();
 
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < RequestQty; i++)
                 {
                     bool b = IsSuccessItem();
+                    //Thread.Sleep(5000);
+
                     if (b)
                         service.Producing(PerformanceID, 1, 0);
                     else
+                    {
                         service.Producing(PerformanceID, 0, 1);
+                        i--;
+                    }
                 }
 
                 // 생산 완료 ( 재고 감소 )
-                service.EndProduce(PerformanceID);
+                service.EndProduce(PerformanceID, ProduceID);
             }
             catch
             {
