@@ -69,13 +69,28 @@
             // 
             this.panel1.Size = new System.Drawing.Size(626, 401);
             // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(174, 3);
+            // 
             // panel_Title
             // 
-            this.panel_Title.Size = new System.Drawing.Size(624, 32);
+            this.panel_Title.Size = new System.Drawing.Size(624, 34);
+            // 
+            // lblName
+            // 
+            this.lblName.Size = new System.Drawing.Size(360, 32);
+            this.lblName.Text = "기간선택";
+            // 
+            // pbxTitle
+            // 
+            this.pbxTitle.Image = global::Team2_ERP.Properties.Resources.Calendar_32x32;
+            this.pbxTitle.Size = new System.Drawing.Size(32, 32);
             // 
             // panel3
             // 
             this.panel3.Location = new System.Drawing.Point(422, 0);
+            this.panel3.Size = new System.Drawing.Size(200, 32);
             // 
             // panel5
             // 
@@ -83,8 +98,8 @@
             this.panel5.Controls.Add(this.label1);
             this.panel5.Controls.Add(this.EndCalendar);
             this.panel5.Controls.Add(this.StartCalendar);
-            this.panel5.Location = new System.Drawing.Point(0, 67);
-            this.panel5.Size = new System.Drawing.Size(624, 297);
+            this.panel5.Location = new System.Drawing.Point(0, 69);
+            this.panel5.Size = new System.Drawing.Size(624, 295);
             // 
             // panel4
             // 
@@ -93,6 +108,7 @@
             // 
             // panel2
             // 
+            this.panel2.Location = new System.Drawing.Point(0, 34);
             this.panel2.Size = new System.Drawing.Size(624, 35);
             // 
             // btnCancel
@@ -462,7 +478,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label1.Location = new System.Drawing.Point(268, 144);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 83);
+            this.label1.Size = new System.Drawing.Size(82, 83);
             this.label1.TabIndex = 16;
             this.label1.Text = "~";
             // 
@@ -490,7 +506,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.ClientSize = new System.Drawing.Size(626, 401);
+            this.Labelname = "기간선택";
             this.Name = "CalendarForm";
+            this.Titleimg = global::Team2_ERP.Properties.Resources.Calendar_32x32;
             this.Load += new System.EventHandler(this.CalendarForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel_Title.ResumeLayout(false);

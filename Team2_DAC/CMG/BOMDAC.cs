@@ -96,5 +96,34 @@ namespace Team2_DAC
                 conn.Close();
             }
         }
+
+        public List<ComboItemVO> GetComboResourceCategory(string div)
+        {
+            List<ComboItemVO> list = null;
+
+            try
+            {
+                string sql = "GetComboResourceCategory";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@div", div);
+
+                    conn.Open();
+                    list = Helper.DataReaderMapToList<ComboItemVO>(cmd.ExecuteReader());
+
+                    return list;
+                }
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }
