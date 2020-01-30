@@ -70,17 +70,17 @@
     <Compile Include="PopMain.designer.cs">
       <DependentUpon>PopMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProduceMachine.cs" />
+    <Compile Include="Back\ProduceMachine.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service.cs" />
-    <Compile Include="SingleMonthCalandar.cs">
+    <Compile Include="Service\Service.cs" />
+    <Compile Include="Custom\SingleMonthCalandar.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="SingleMonthCalandar.Designer.cs">
+    <Compile Include="Custom\SingleMonthCalandar.Designer.cs">
       <DependentUpon>SingleMonthCalandar.cs</DependentUpon>
     </Compile>
-    <Compile Include="UtilClass.cs" />
+    <Compile Include="Util\UtilClass.cs" />
     <Compile Include="WorkRegister.cs">
       <SubType>Form</SubType>
     </Compile>

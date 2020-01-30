@@ -49,6 +49,7 @@ namespace Team2_POP
         {
             dgv.Font = new Font("나눔고딕", 15);
             dgv.ColumnHeadersHeight = 30;
+
             dgv.AutoGenerateColumns = false;
             dgv.AllowUserToAddRows = false;
             dgv.MultiSelect = false;
@@ -59,15 +60,18 @@ namespace Team2_POP
             dgv.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
             dgv.DefaultCellStyle.SelectionBackColor = Color.DodgerBlue;
             dgv.DefaultCellStyle.SelectionForeColor = Color.White;
-            dgv.DefaultCellStyle.WrapMode = DataGridViewTriState.NotSet;
+            //dgv.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(55, 113, 138);
             dgv.ColumnHeadersDefaultCellStyle.Font = new Font(dgv.Font, FontStyle.Bold);
             dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(55, 113, 138);
             dgv.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
             dgv.EnableHeadersVisualStyles = false;
-            dgv.AllowUserToResizeColumns = true;
-            dgv.AllowUserToResizeRows = true;
+            dgv.AllowUserToResizeColumns = false;
+            dgv.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dgv.AllowUserToResizeColumns = false;
+            dgv.AllowUserToResizeRows = false;
+            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgv.RowHeadersVisible = false;
             dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         }
