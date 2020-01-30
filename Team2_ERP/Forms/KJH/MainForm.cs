@@ -24,6 +24,8 @@ namespace Team2_ERP
         public EventHandler M_Search;
         public EventHandler M_Print;
         public EventHandler M_Close;
+        public EventHandler M_Print_Excel;
+        public EventHandler M_Print_Printer;
         int tindex;
         bool isLogout = false;
         LoginVO logininfo = new LoginVO();
@@ -631,7 +633,14 @@ namespace Team2_ERP
                 M_Search.Invoke(this, null);
         }
 
-        private void 인쇄ToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void 엑셀로내보내기ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (M_Print_Excel != null)
+                M_Print_Excel.Invoke(this, null);
+        }
+
+        private void 프린트ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (M_Print != null)
                 M_Print.Invoke(this, null);
@@ -641,6 +650,7 @@ namespace Team2_ERP
         {
             CloseTab();
         }
+
 
         private void CloseTab()
         {

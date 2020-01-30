@@ -193,6 +193,16 @@ namespace Team2_ERP.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap Calendar_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("Calendar_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap chat_26_icon_icons_com_65943 {
             get {
                 object obj = ResourceManager.GetObject("chat-26_icon-icons.com_65943", resourceCulture);

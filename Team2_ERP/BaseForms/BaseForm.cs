@@ -30,7 +30,7 @@ namespace Team2_ERP
             {
                 tabCtrl.Visible = true;
             }
-            new SettingMenuStrip().SetMenu(this, Refresh, New, Modify, Delete, Search, Print);
+            new SettingMenuStrip().SetMenu(this, Refresh, New, Modify, Delete, Search, Print,Excel);
         }
         public virtual void Refresh(object sender, EventArgs e)
         {
@@ -61,6 +61,12 @@ namespace Team2_ERP
         {
             
         }
+
+        public virtual void Excel(object sender, EventArgs e)
+        {
+
+        }
+
         public void MenuByAuth(string auth)
         {
             if (auth == "1")
