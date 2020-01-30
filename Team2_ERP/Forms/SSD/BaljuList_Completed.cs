@@ -36,29 +36,21 @@ namespace Team2_ERP
         private void LoadData()
         {
             UtilClass.SettingDgv(dgv_BaljuCompleted);
-            UtilClass.AddNewColum(dgv_BaljuCompleted, "발주지시번호", "Balju_ID", true);
-            UtilClass.AddNewColum(dgv_BaljuCompleted, "거래처코드", "Company_ID", true);
-            UtilClass.AddNewColum(dgv_BaljuCompleted, "거래처명칭", "Company_Name", true);
-            UtilClass.AddNewColum(dgv_BaljuCompleted, "발주요청일시", "Balju_Date", true);
+            UtilClass.AddNewColum(dgv_BaljuCompleted, "발주지시번호", "Balju_ID", true, 130);
+            UtilClass.AddNewColum(dgv_BaljuCompleted, "거래처코드", "Company_ID", true, 110);
+            UtilClass.AddNewColum(dgv_BaljuCompleted, "거래처명칭", "Company_Name", true, 500);
+            UtilClass.AddNewColum(dgv_BaljuCompleted, "발주요청일시", "Balju_Date", true, 140);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "등록사원", "Employees_Name", true);
-            UtilClass.AddNewColum(dgv_BaljuCompleted, "수령일시", "Balju_ReceiptDate", true);
+            UtilClass.AddNewColum(dgv_BaljuCompleted, "수령일시", "Balju_ReceiptDate", true, 120);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "삭제여부", "Balju_DeletedYN", false);
-            dgv_BaljuCompleted.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgv_BaljuCompleted.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dgv_BaljuCompleted.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dgv_BaljuCompleted.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             BaljuCompleted_AllList = service.GetBalju_CompletedList(); // 발주리스트 갱신
             dgv_BaljuCompleted.DataSource = BaljuCompleted_AllList;
 
             UtilClass.SettingDgv(dgv_BaljuDetail);
-            UtilClass.AddNewColum(dgv_BaljuDetail, "발주지시번호", "Balju_ID", true);
+            UtilClass.AddNewColum(dgv_BaljuDetail, "발주지시번호", "Balju_ID", true, 130);
             UtilClass.AddNewColum(dgv_BaljuDetail, "품목코드", "Product_ID", true);
-            UtilClass.AddNewColum(dgv_BaljuDetail, "품목명", "Product_Name", true);
-            UtilClass.AddNewColum(dgv_BaljuDetail, "발주요청수량", "BaljuDetail_Qty", true);
-            dgv_BaljuDetail.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgv_BaljuDetail.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dgv_BaljuDetail.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dgv_BaljuDetail.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            UtilClass.AddNewColum(dgv_BaljuDetail, "품목명", "Product_Name", true, 500);
+            UtilClass.AddNewColum(dgv_BaljuDetail, "발주요청수량", "BaljuDetail_Qty", true, 130);
             BaljuDetail_AllList = service.GetBalju_DetailList(); // 발주디테일 AllList 갱신
 
         }
@@ -118,7 +110,7 @@ namespace Team2_ERP
                 if (Search_Period.Startdate.Text != Search_Period.Enddate.Text)
                 {
                     BaljuCompleted_AllList = (from item in BaljuCompleted_AllList
-                                              where item.Balju_Date.CompareTo(Convert.ToDateTime(Search_Period.Startdate.Text)) >= 0 && item.Balju_Date.CompareTo(Convert.ToDateTime(Search_Period.Enddate.Text)) <= 0
+                                              where item.Balju_Date.Date.CompareTo(Convert.ToDateTime(Search_Period.Startdate.Text)) >= 0 &&                  item.Balju_Date.Date.CompareTo(Convert.ToDateTime(Search_Period.Enddate.Text)) <= 0
                                               select item).ToList();
                 }
                 else

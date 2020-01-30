@@ -16,7 +16,6 @@ namespace Team2_ERP.Service
             return dac.GetOrderList();
         }
 
-
         public List<OrderDetail> GetOrderDetailList()
         {
             OrderDAC dac = new OrderDAC();
@@ -39,6 +38,12 @@ namespace Team2_ERP.Service
         {
             OrderDAC dac = new OrderDAC();
             dac.UpOrder_InsShipment(orderID, employeeID);
+        }
+
+        public void DeleteOrder(string order_ID)
+        {
+            OrderDAC dac = new OrderDAC();
+            dac.DeleteOrder(order_ID);
         }
     }
 }

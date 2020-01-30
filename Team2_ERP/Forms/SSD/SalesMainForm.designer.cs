@@ -28,10 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.searchUserControl1 = new Team2_ERP.SearchUserControl();
-            this.searchUserControl2 = new Team2_ERP.SearchUserControl();
-            this.searchPeriodControl1 = new Team2_ERP.SearchPeriodControl();
-            this.searchPeriodControl2 = new Team2_ERP.SearchPeriodControl();
+            this.Search_Customer = new Team2_ERP.SearchUserControl();
+            this.Search_OrderIndexPeriod = new Team2_ERP.SearchPeriodControl();
+            this.Search_ShipmentPeriod = new Team2_ERP.SearchPeriodControl();
             this.dgv_SalesStatus = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
@@ -57,38 +56,37 @@
             // 
             // panel1
             // 
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Size = new System.Drawing.Size(1754, 996);
             // 
             // panel_Search
             // 
             this.panel_Search.Location = new System.Drawing.Point(0, 40);
-            this.panel_Search.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel_Search.Margin = new System.Windows.Forms.Padding(2);
             this.panel_Search.Size = new System.Drawing.Size(1754, 91);
             // 
             // panel4
             // 
             this.panel4.Location = new System.Drawing.Point(0, 89);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Size = new System.Drawing.Size(1754, 2);
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.searchPeriodControl2);
-            this.panel5.Controls.Add(this.searchPeriodControl1);
-            this.panel5.Controls.Add(this.searchUserControl2);
-            this.panel5.Controls.Add(this.searchUserControl1);
-            this.panel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel5.Controls.Add(this.Search_ShipmentPeriod);
+            this.panel5.Controls.Add(this.Search_OrderIndexPeriod);
+            this.panel5.Controls.Add(this.Search_Customer);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.Size = new System.Drawing.Size(1754, 91);
             // 
             // panel_Title
             // 
-            this.panel_Title.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel_Title.Margin = new System.Windows.Forms.Padding(2);
             this.panel_Title.Size = new System.Drawing.Size(1754, 40);
             // 
             // panel8
             // 
-            this.panel8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel8.Margin = new System.Windows.Forms.Padding(2);
             this.panel8.Size = new System.Drawing.Size(147, 38);
             // 
             // lblFormName
@@ -99,58 +97,47 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Size = new System.Drawing.Size(36, 38);
             // 
             // linepanel1
             // 
             this.linepanel1.Location = new System.Drawing.Point(0, 38);
-            this.linepanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.linepanel1.Margin = new System.Windows.Forms.Padding(2);
             this.linepanel1.Size = new System.Drawing.Size(1754, 2);
             // 
-            // searchUserControl1
+            // Search_Customer
             // 
-            this.searchUserControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl1.ControlType = Team2_ERP.SearchUserControl.Mode.Customer;
-            this.searchUserControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl1.Labelname = "고객ID";
-            this.searchUserControl1.Location = new System.Drawing.Point(15, 23);
-            this.searchUserControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.searchUserControl1.Name = "searchUserControl1";
-            this.searchUserControl1.Size = new System.Drawing.Size(401, 30);
-            this.searchUserControl1.TabIndex = 0;
+            this.Search_Customer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.Search_Customer.ControlType = Team2_ERP.SearchUserControl.Mode.Customer;
+            this.Search_Customer.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Search_Customer.Labelname = "고객ID";
+            this.Search_Customer.Location = new System.Drawing.Point(58, 14);
+            this.Search_Customer.Margin = new System.Windows.Forms.Padding(4);
+            this.Search_Customer.Name = "Search_Customer";
+            this.Search_Customer.Size = new System.Drawing.Size(401, 30);
+            this.Search_Customer.TabIndex = 0;
             // 
-            // searchUserControl2
+            // Search_OrderIndexPeriod
             // 
-            this.searchUserControl2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl2.ControlType = Team2_ERP.SearchUserControl.Mode.Company;
-            this.searchUserControl2.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl2.Labelname = "작업자";
-            this.searchUserControl2.Location = new System.Drawing.Point(15, 61);
-            this.searchUserControl2.Margin = new System.Windows.Forms.Padding(4);
-            this.searchUserControl2.Name = "searchUserControl2";
-            this.searchUserControl2.Size = new System.Drawing.Size(401, 30);
-            this.searchUserControl2.TabIndex = 1;
+            this.Search_OrderIndexPeriod.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Search_OrderIndexPeriod.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.Search_OrderIndexPeriod.Labelname = "주문일시";
+            this.Search_OrderIndexPeriod.Location = new System.Drawing.Point(58, 43);
+            this.Search_OrderIndexPeriod.Margin = new System.Windows.Forms.Padding(4);
+            this.Search_OrderIndexPeriod.Name = "Search_OrderIndexPeriod";
+            this.Search_OrderIndexPeriod.Size = new System.Drawing.Size(401, 30);
+            this.Search_OrderIndexPeriod.TabIndex = 2;
             // 
-            // searchPeriodControl1
+            // Search_ShipmentPeriod
             // 
-            this.searchPeriodControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchPeriodControl1.Labelname = "주문일자";
-            this.searchPeriodControl1.Location = new System.Drawing.Point(424, 23);
-            this.searchPeriodControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.searchPeriodControl1.Name = "searchPeriodControl1";
-            this.searchPeriodControl1.Size = new System.Drawing.Size(401, 30);
-            this.searchPeriodControl1.TabIndex = 2;
-            // 
-            // searchPeriodControl2
-            // 
-            this.searchPeriodControl2.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchPeriodControl2.Labelname = "발송일자";
-            this.searchPeriodControl2.Location = new System.Drawing.Point(424, 61);
-            this.searchPeriodControl2.Margin = new System.Windows.Forms.Padding(4);
-            this.searchPeriodControl2.Name = "searchPeriodControl2";
-            this.searchPeriodControl2.Size = new System.Drawing.Size(401, 30);
-            this.searchPeriodControl2.TabIndex = 3;
+            this.Search_ShipmentPeriod.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Search_ShipmentPeriod.Labelname = "출하처리일시";
+            this.Search_ShipmentPeriod.Location = new System.Drawing.Point(405, 14);
+            this.Search_ShipmentPeriod.Margin = new System.Windows.Forms.Padding(4);
+            this.Search_ShipmentPeriod.Name = "Search_ShipmentPeriod";
+            this.Search_ShipmentPeriod.Size = new System.Drawing.Size(401, 30);
+            this.Search_ShipmentPeriod.TabIndex = 3;
             // 
             // dgv_SalesStatus
             // 
@@ -235,11 +222,10 @@
 
         #endregion
 
-        private SearchUserControl searchUserControl1;
+        private SearchUserControl Search_Customer;
         private System.Windows.Forms.DataGridView dgv_SalesStatus;
-        private SearchPeriodControl searchPeriodControl2;
-        private SearchPeriodControl searchPeriodControl1;
-        private SearchUserControl searchUserControl2;
+        private SearchPeriodControl Search_ShipmentPeriod;
+        private SearchPeriodControl Search_OrderIndexPeriod;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;

@@ -36,19 +36,14 @@ namespace Team2_ERP
             UtilClass.SettingDgv(dgv_Stock);
             UtilClass.AddNewColum(dgv_Stock, "수불번호", "StockReceipt_ID", true);
             UtilClass.AddNewColum(dgv_Stock, "수불유형", "StockReceipt_Division1", true);
-            UtilClass.AddNewColum(dgv_Stock, "처리일시", "StockReceipt_Date", true);
+            UtilClass.AddNewColum(dgv_Stock, "처리일시", "StockReceipt_Date", true, 140);
             UtilClass.AddNewColum(dgv_Stock, "창고코드", "Warehouse_ID", true);
-            UtilClass.AddNewColum(dgv_Stock, "창고명", "Warehouse_Name", true);
-            UtilClass.AddNewColum(dgv_Stock, "품번", "Product_ID", true);
-            UtilClass.AddNewColum(dgv_Stock, "품명", "Product_Name", true);
+            UtilClass.AddNewColum(dgv_Stock, "창고명", "Warehouse_Name", true, 160);
+            UtilClass.AddNewColum(dgv_Stock, "품번", "Product_ID", true, 70);
+            UtilClass.AddNewColum(dgv_Stock, "품명", "Product_Name", true, 300);
             UtilClass.AddNewColum(dgv_Stock, "수불수량", "StockReceipt_Quantity", true);
             UtilClass.AddNewColum(dgv_Stock, "등록사원", "Employees_Name", true);
             UtilClass.AddNewColum(dgv_Stock, "창고유형", "Warehouse_Division", false);
-            dgv_Stock.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            dgv_Stock.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgv_Stock.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgv_Stock.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
             StockReceipt_AllList = service.GetStockReceipts(); //  자재, 반제품 수불내역 전체 갱신
 
             // LINQ로 원자재창고에 속한것만 가져옴
@@ -136,8 +131,8 @@ namespace Team2_ERP
                 if (Search_Period.Startdate.Text != Search_Period.Enddate.Text)  // 시작, 끝 날짜가 다른경우
                 {
                     StockReceipt_AllList = (from item in StockReceipt_AllList
-                                            where item.StockReceipt_Date.CompareTo(Convert.ToDateTime(Search_Period.Startdate.Text)) >= 0 &&
-                                            item.StockReceipt_Date.CompareTo(Convert.ToDateTime(Search_Period.Enddate.Text)) <= 0
+                                            where item.StockReceipt_Date.Date.CompareTo(Convert.ToDateTime(Search_Period.Startdate.Text)) >= 0 &&
+                                            item.StockReceipt_Date.Date.CompareTo(Convert.ToDateTime(Search_Period.Enddate.Text)) <= 0
                                             select item).ToList();
                 }
                 else   // 같은경우
