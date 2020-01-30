@@ -28,16 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.searchUserControl1 = new Team2_ERP.SearchUserControl();
-            this.searchPeriodControl2 = new Team2_ERP.SearchPeriodControl();
-            this.searchPeriodControl1 = new Team2_ERP.SearchPeriodControl();
             this.dgvWorkList = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvProduce = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,6 +42,14 @@
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.searchSales = new Team2_ERP.SearchUserControl();
+            this.searchPeriodwork = new Team2_ERP.SearchPeriodControl();
+            this.searchPeriodRequire = new Team2_ERP.SearchPeriodControl();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rbx2 = new System.Windows.Forms.RadioButton();
+            this.rbx0 = new System.Windows.Forms.RadioButton();
+            this.rbx1 = new System.Windows.Forms.RadioButton();
+            this.rbxAll = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -65,6 +64,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWorkList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProduce)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -80,85 +80,21 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.searchUserControl1);
-            this.panel5.Controls.Add(this.searchPeriodControl2);
-            this.panel5.Controls.Add(this.searchPeriodControl1);
-            // 
-            // searchUserControl1
-            // 
-            this.searchUserControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl1.ControlType = Team2_ERP.SearchUserControl.Mode.Company;
-            this.searchUserControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl1.Labelname = "작업자";
-            this.searchUserControl1.Location = new System.Drawing.Point(3, 3);
-            this.searchUserControl1.Name = "searchUserControl1";
-            this.searchUserControl1.Size = new System.Drawing.Size(312, 30);
-            this.searchUserControl1.TabIndex = 6;
-            // 
-            // searchPeriodControl2
-            // 
-            this.searchPeriodControl2.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchPeriodControl2.Labelname = "납기일";
-            this.searchPeriodControl2.Location = new System.Drawing.Point(3, 69);
-            this.searchPeriodControl2.Name = "searchPeriodControl2";
-            this.searchPeriodControl2.Size = new System.Drawing.Size(312, 48);
-            this.searchPeriodControl2.TabIndex = 4;
-            // 
-            // searchPeriodControl1
-            // 
-            this.searchPeriodControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchPeriodControl1.Labelname = "작업 시작일";
-            this.searchPeriodControl1.Location = new System.Drawing.Point(3, 33);
-            this.searchPeriodControl1.Name = "searchPeriodControl1";
-            this.searchPeriodControl1.Size = new System.Drawing.Size(312, 41);
-            this.searchPeriodControl1.TabIndex = 5;
+            this.panel5.Controls.Add(this.groupBox1);
+            this.panel5.Controls.Add(this.searchPeriodRequire);
+            this.panel5.Controls.Add(this.searchPeriodwork);
+            this.panel5.Controls.Add(this.searchSales);
             // 
             // dgvWorkList
             // 
+            this.dgvWorkList.BackgroundColor = System.Drawing.Color.White;
             this.dgvWorkList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvWorkList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column5,
-            this.Column4,
-            this.Column6});
             this.dgvWorkList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvWorkList.Location = new System.Drawing.Point(0, 0);
             this.dgvWorkList.Name = "dgvWorkList";
             this.dgvWorkList.RowTemplate.Height = 23;
             this.dgvWorkList.Size = new System.Drawing.Size(1364, 368);
             this.dgvWorkList.TabIndex = 8;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "작업지시번호";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "작업지시자";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "작업시작일";
-            this.Column3.Name = "Column3";
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "작업종료일";
-            this.Column5.Name = "Column5";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "납기일";
-            this.Column4.Name = "Column4";
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "주문번호";
-            this.Column6.Name = "Column6";
             // 
             // dgvProduce
             // 
@@ -243,11 +179,105 @@
             this.Column12.HeaderText = "작업 현황";
             this.Column12.Name = "Column12";
             // 
+            // searchSales
+            // 
+            this.searchSales.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.searchSales.ControlType = Team2_ERP.SearchUserControl.Mode.DepSales;
+            this.searchSales.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchSales.Labelname = "작업지시자";
+            this.searchSales.Location = new System.Drawing.Point(153, 14);
+            this.searchSales.Name = "searchSales";
+            this.searchSales.Size = new System.Drawing.Size(312, 25);
+            this.searchSales.TabIndex = 0;
+            // 
+            // searchPeriodwork
+            // 
+            this.searchPeriodwork.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchPeriodwork.Labelname = "작업지시일";
+            this.searchPeriodwork.Location = new System.Drawing.Point(153, 45);
+            this.searchPeriodwork.Name = "searchPeriodwork";
+            this.searchPeriodwork.Size = new System.Drawing.Size(312, 25);
+            this.searchPeriodwork.TabIndex = 1;
+            // 
+            // searchPeriodRequire
+            // 
+            this.searchPeriodRequire.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchPeriodRequire.Labelname = "납기일";
+            this.searchPeriodRequire.Location = new System.Drawing.Point(153, 76);
+            this.searchPeriodRequire.Name = "searchPeriodRequire";
+            this.searchPeriodRequire.Size = new System.Drawing.Size(312, 25);
+            this.searchPeriodRequire.TabIndex = 2;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rbx2);
+            this.groupBox1.Controls.Add(this.rbx0);
+            this.groupBox1.Controls.Add(this.rbx1);
+            this.groupBox1.Controls.Add(this.rbxAll);
+            this.groupBox1.Location = new System.Drawing.Point(12, 4);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(135, 100);
+            this.groupBox1.TabIndex = 62;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "작업상태";
+            // 
+            // rbx2
+            // 
+            this.rbx2.AutoSize = true;
+            this.rbx2.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.rbx2.Location = new System.Drawing.Point(6, 68);
+            this.rbx2.Name = "rbx2";
+            this.rbx2.Size = new System.Drawing.Size(69, 18);
+            this.rbx2.TabIndex = 4;
+            this.rbx2.Text = "작업완료";
+            this.rbx2.UseVisualStyleBackColor = true;
+            this.rbx2.CheckedChanged += new System.EventHandler(this.rbxAll_CheckedChanged);
+            // 
+            // rbx0
+            // 
+            this.rbx0.AutoSize = true;
+            this.rbx0.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.rbx0.Location = new System.Drawing.Point(6, 20);
+            this.rbx0.Name = "rbx0";
+            this.rbx0.Size = new System.Drawing.Size(69, 18);
+            this.rbx0.TabIndex = 2;
+            this.rbx0.Text = "작업대기";
+            this.rbx0.UseVisualStyleBackColor = true;
+            this.rbx0.CheckedChanged += new System.EventHandler(this.rbxAll_CheckedChanged);
+            // 
+            // rbx1
+            // 
+            this.rbx1.AutoSize = true;
+            this.rbx1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.rbx1.Location = new System.Drawing.Point(6, 44);
+            this.rbx1.Name = "rbx1";
+            this.rbx1.Size = new System.Drawing.Size(58, 18);
+            this.rbx1.TabIndex = 3;
+            this.rbx1.Text = "작업중";
+            this.rbx1.UseVisualStyleBackColor = true;
+            this.rbx1.CheckedChanged += new System.EventHandler(this.rbxAll_CheckedChanged);
+            // 
+            // rbxAll
+            // 
+            this.rbxAll.AutoSize = true;
+            this.rbxAll.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.rbxAll.Location = new System.Drawing.Point(81, 20);
+            this.rbxAll.Name = "rbxAll";
+            this.rbxAll.Size = new System.Drawing.Size(47, 18);
+            this.rbxAll.TabIndex = 1;
+            this.rbxAll.Text = "전체";
+            this.rbxAll.UseVisualStyleBackColor = true;
+            this.rbxAll.CheckedChanged += new System.EventHandler(this.rbxAll_CheckedChanged);
+            // 
             // Work
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.ClientSize = new System.Drawing.Size(1364, 820);
             this.Name = "Work";
+            this.Activated += new System.EventHandler(this.Work_Activated);
+            this.Deactivate += new System.EventHandler(this.Work_Deactivate);
+            this.Load += new System.EventHandler(this.Work_Load);
+            this.Shown += new System.EventHandler(this.Work_Shown);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -262,14 +292,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWorkList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProduce)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private SearchUserControl searchUserControl1;
-        private SearchPeriodControl searchPeriodControl2;
-        private SearchPeriodControl searchPeriodControl1;
         private System.Windows.Forms.DataGridView dgvWorkList;
         private System.Windows.Forms.DataGridView dgvProduce;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
@@ -284,11 +313,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private SearchPeriodControl searchPeriodwork;
+        private SearchUserControl searchSales;
+        private SearchPeriodControl searchPeriodRequire;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rbx2;
+        private System.Windows.Forms.RadioButton rbx0;
+        private System.Windows.Forms.RadioButton rbx1;
+        private System.Windows.Forms.RadioButton rbxAll;
     }
 }

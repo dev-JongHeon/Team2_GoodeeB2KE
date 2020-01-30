@@ -35,7 +35,7 @@ namespace Team2_ERP
         public static Dictionary<string, string> menulist = new Dictionary<string, string>
         {
             {"UserAuth","사용자권한설정" },
-            {"Work","작업대기현황" },
+            {"Work","작업지시현황" },
             {"Produce","생산실적현황" },
             {"DowntimeType","비가동유형" },
             {"Downtime","비가동현황" },

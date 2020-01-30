@@ -63,14 +63,16 @@ namespace Team2_ERP
             dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(55, 113, 138);
             dgv.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
+            dgv.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
             dgv.EnableHeadersVisualStyles = false;
             dgv.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dgv.AllowUserToResizeColumns = true;
             dgv.AllowUserToResizeRows = false;
             dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
-            dgv.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);   
-            dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgv.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.DisplayedCells);   
+            dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
+            
 
 
         }
