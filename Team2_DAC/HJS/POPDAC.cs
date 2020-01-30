@@ -301,15 +301,15 @@ namespace Team2_DAC
                     cmd.CommandText = "proc_EndProduction";
 
                     FillParameter(cmd, new string[] { "@Performance_ID", "@Produce_ID" }, new object[] { performanceID, produceID });
-
+                    
                     conn.Open();
                     cmd.ExecuteNonQuery();
                     conn.Close();
                 }
             }
-            catch
+            catch(Exception err)
             {
-               
+                string sss = err.Message;
             }
         }
 
