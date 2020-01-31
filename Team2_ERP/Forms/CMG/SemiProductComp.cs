@@ -20,6 +20,7 @@ namespace Team2_ERP
 
         SemiProductCompControl spc;
 
+
         public SemiProductComp(EditMode editMode, BOMVO item)
         {
             InitializeComponent();
@@ -88,9 +89,10 @@ namespace Team2_ERP
                     SemiProductCompControl spc = (SemiProductCompControl)control;
 
                     if (!string.IsNullOrEmpty(spc.LblMoney.Text))
-                        sum += Convert.ToInt32(spc.LblMoney.Text.Replace(",", "").Replace("원", ""));
+                        sum += Convert.ToInt32(list.Find(i => i.Product_ID == spc.TxtName.Tag.ToString()).Product_Price * spc.Qty.Value);
 
-                    txtSemiproductMoney.Text = sum.ToString("#,##0") + "원";
+                    txtSemiproductMoney.Tag = sum;
+                    numericUpDown1_ValueChanged(this, null);
                 }
             }
         }
@@ -198,12 +200,10 @@ namespace Team2_ERP
         //반제품 조합의 개수만큼 단가를 조정한다.
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            if (numericUpDown1.Value > 0)
+            if(numericUpDown1.Value > 0)
             {
-                txtSemiproductMoney.Text = (Convert.ToInt32(txtSemiproductMoney.Text.Replace(",", "").Replace("원", "")) * Convert.ToInt32(numericUpDown1.Value)).ToString("#,##0") + "원";
+                txtSemiproductMoney.Text = (Convert.ToInt32( txtSemiproductMoney.Tag) * Convert.ToInt32(numericUpDown1.Value)).ToString("#,##0") + "원";
             }
-            else
-                txtSemiproductMoney.Text = "0원";
         }
     }
 }
