@@ -38,6 +38,12 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Shipment, "출하지시일시", "Shipment_RequiredDate", true, 140);
             UtilClass.AddNewColum(dgv_Shipment, "출하지시자", "Employees_Name", true, 110);
             UtilClass.AddNewColum(dgv_Shipment, "출하처리일시", "Shipment_DoneDate", true, 140);
+            dgv_Shipment.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_Shipment.Columns[2].DefaultCellStyle.Format = "yyyy-MM-dd   hh:mm:ss";
+            dgv_Shipment.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_Shipment.Columns[5].DefaultCellStyle.Format = "yyyy-MM-dd   hh:mm:ss";
+            dgv_Shipment.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_Shipment.Columns[7].DefaultCellStyle.Format = "yyyy-MM-dd   hh:mm:ss";
             dgv_Shipment.DataSource = service.GetShipmentCompletedList();
 
             UtilClass.SettingDgv(dgv_ShipmentDetail);

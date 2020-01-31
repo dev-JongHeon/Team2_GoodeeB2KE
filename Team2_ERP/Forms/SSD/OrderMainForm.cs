@@ -37,14 +37,17 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Order, "고객ID", "Customer_UserID", true, 90);
             UtilClass.AddNewColum(dgv_Order, "고객성명", "Customer_Name", true);
             UtilClass.AddNewColum(dgv_Order, "주문일시", "Order_Date", true, 140);
+            UtilClass.AddNewColum(dgv_Order, "주문처리일시", "OrderComplete_Date", true, 140);
+
             UtilClass.AddNewColum(dgv_Order, "배송지주소", "Order_Address1", true, 300);
             UtilClass.AddNewColum(dgv_Order, "배송지상세주소", "Order_Address2", true, 250);
             UtilClass.AddNewColum(dgv_Order, "주문총액", "TotalPrice", true);
-            UtilClass.AddNewColum(dgv_Order, "삭제여부", "Order_DeletedYN", false);
-            UtilClass.AddNewColum(dgv_Order, "주문상태", "Order_State", false);
+            dgv_Order.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_Order.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd hh:mm:ss";
-            dgv_Order.Columns[6].DefaultCellStyle.Format = "#,#0원";
+            dgv_Order.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_Order.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd hh:mm:ss";
             dgv_Order.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv_Order.Columns[6].DefaultCellStyle.Format = "#,#0원";
             Order_AllList = service.GetOrderList();
             dgv_Order.DataSource = Order_AllList;
 
@@ -94,16 +97,20 @@ namespace Team2_ERP
             {
                 string orderID = dgv_Order.CurrentRow.Cells[0].Value.ToString();
                 service.UpOrder_InsShipment(orderID, Session.Employee_ID);
-
-                Func_Refresh();  // 새로고침
             }
+            Func_Refresh();  // 새로고침
+            main.NoticeMessage = "주문현황 화면입니다.";
         }
 
         public override void Delete(object sender, EventArgs e)  // 삭제
         {
-            string order_ID = dgv_Order.CurrentRow.Cells[0].Value.ToString();
-            service.DeleteOrder(order_ID);
-            Func_Refresh();
+            if (MessageBox.Show("정말 해당주문을 취소하시겠습니까?", "알림", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                string order_ID = dgv_Order.CurrentRow.Cells[0].Value.ToString();
+                service.DeleteOrder(order_ID);
+            }
+            Func_Refresh();  // 새로고침
+            main.NoticeMessage = "주문현황 화면입니다.";
         }
 
         public override void Search(object sender, EventArgs e)  // 검색
@@ -157,12 +164,16 @@ namespace Team2_ERP
             MenuByAuth(Auth);
             main.수정ToolStripMenuItem.Text = "주문처리";
             main.수정ToolStripMenuItem.ToolTipText = "주문처리(Ctrl+M)";
+            main.삭제ToolStripMenuItem.Text = "주문취소";
+            main.삭제ToolStripMenuItem.ToolTipText = "주문취소(Ctrl+D)";
         }
 
         private void OrderMainForm_Deactivate(object sender, EventArgs e)
         {
             main.수정ToolStripMenuItem.Text = "수정";
             main.수정ToolStripMenuItem.ToolTipText = "수정(Ctrl+M)";
+            main.삭제ToolStripMenuItem.Text = "삭제";
+            main.삭제ToolStripMenuItem.ToolTipText = "삭제(Ctrl+D)";
             new SettingMenuStrip().UnsetMenu(this);
         } 
         #endregion

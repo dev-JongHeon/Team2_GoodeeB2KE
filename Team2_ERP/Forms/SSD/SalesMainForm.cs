@@ -38,10 +38,12 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_SalesStatus, "주문일시", "Order_Date", true, 150);
             UtilClass.AddNewColum(dgv_SalesStatus, "출하처리일시", "Shipment_DoneDate", true, 150);
             UtilClass.AddNewColum(dgv_SalesStatus, "주문총액", "TotalPrice", true, 200);
+            dgv_SalesStatus.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_SalesStatus.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd   hh:mm:ss";
+            dgv_SalesStatus.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_SalesStatus.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd   hh:mm:ss";
-            dgv_SalesStatus.Columns[5].DefaultCellStyle.Format = "#,#0원";
             dgv_SalesStatus.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv_SalesStatus.Columns[5].DefaultCellStyle.Format = "#,#0원";
             Order_AllList = service.GetSalesStatus();
             dgv_SalesStatus.DataSource = Order_AllList;
 
