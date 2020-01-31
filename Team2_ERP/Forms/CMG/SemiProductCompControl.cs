@@ -38,6 +38,7 @@ namespace Team2_ERP
             InitializeComponent();
         }
 
+        //개수를 수정할 때 0보다 크면 해당하는 원자재 제품의 가격과 개수를 곱한다. 만약 개수가 0이면 0원으로 보여준다.
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             if(numericUpDown1.Value > 0)

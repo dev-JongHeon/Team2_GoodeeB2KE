@@ -159,5 +159,11 @@ namespace Team2_ERP.Service.CMG
             BOMDAC dac = new BOMDAC();
             return dac.GetComboResourceCategory(div);
         }
+
+        public void InsertSemiProduct(ProductVO Pitem, List<CombinationVO> citemList, int count)
+        {
+            BOMDAC dac = new BOMDAC();
+            dac.InsertSemiProduct(Pitem, citemList, count);
+        }
     }
 }

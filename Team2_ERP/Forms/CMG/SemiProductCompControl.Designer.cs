@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.lblMoney = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
@@ -50,14 +50,26 @@
             this.panel1.Size = new System.Drawing.Size(408, 39);
             this.panel1.TabIndex = 0;
             // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(258, 9);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(39, 21);
+            this.numericUpDown1.TabIndex = 24;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
             // lblMoney
             // 
             this.lblMoney.AutoSize = true;
             this.lblMoney.Location = new System.Drawing.Point(328, 12);
             this.lblMoney.Name = "lblMoney";
-            this.lblMoney.Size = new System.Drawing.Size(29, 14);
+            this.lblMoney.Size = new System.Drawing.Size(0, 14);
             this.lblMoney.TabIndex = 23;
-            this.lblMoney.Text = "가격";
             // 
             // txtName
             // 
@@ -75,19 +87,6 @@
             this.lblName.Size = new System.Drawing.Size(51, 14);
             this.lblName.TabIndex = 12;
             this.lblName.Text = "카테고리";
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(258, 9);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(39, 21);
-            this.numericUpDown1.TabIndex = 24;
-            this.numericUpDown1.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // SemiProductCompControl
             // 
