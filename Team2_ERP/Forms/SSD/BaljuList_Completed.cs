@@ -43,6 +43,8 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_BaljuCompleted, "등록사원", "Employees_Name", true);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "수령일시", "Balju_ReceiptDate", true, 120);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "삭제여부", "Balju_DeletedYN", false);
+            dgv_BaljuCompleted.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_BaljuCompleted.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             BaljuCompleted_AllList = service.GetBalju_CompletedList(); // 발주리스트 갱신
             dgv_BaljuCompleted.DataSource = BaljuCompleted_AllList;
 
@@ -134,16 +136,6 @@ namespace Team2_ERP
             main.NoticeMessage = "검색 되었습니다.";
         }
 
-        public override void Delete(object sender, EventArgs e)  // 삭제
-        {
-            if (MessageBox.Show("정말로 해당 발주완료목록을 삭제하시겠습니까?", "알림", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                string Balju_ID = dgv_BaljuCompleted.CurrentRow.Cells[0].Value.ToString();
-                service.DeleteBalju(Balju_ID);
-                Func_Refresh();  // 새로고침
-            }
-        }
-
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
 
@@ -160,7 +152,7 @@ namespace Team2_ERP
         {
             main.신규ToolStripMenuItem.Visible = false;
             main.수정ToolStripMenuItem.Visible = false;
-            main.삭제ToolStripMenuItem.Visible = flag;
+            main.삭제ToolStripMenuItem.Visible = false;
             main.인쇄ToolStripMenuItem.Visible = flag;
         }
 

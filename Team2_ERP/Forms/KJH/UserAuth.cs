@@ -137,7 +137,7 @@ namespace Team2_ERP
             MenuByAuth(Auth);
             frm.수정ToolStripMenuItem.Text = "권한설정";
             frm.수정ToolStripMenuItem.ToolTipText = "권한설정(Ctrl+M)";
-            frm.NoticeMessage = "권한설정 화면입니다.";
+            frm.NoticeMessage = notice;
         }
 
 

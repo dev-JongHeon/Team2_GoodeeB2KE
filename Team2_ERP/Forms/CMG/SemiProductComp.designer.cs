@@ -35,6 +35,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtSemiproductName = new System.Windows.Forms.TextBox();
             this.txtSemiproductMoney = new System.Windows.Forms.TextBox();
@@ -57,6 +59,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel5
@@ -158,18 +161,42 @@
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.numericUpDown1);
+            this.splitContainer2.Panel2.Controls.Add(this.label4);
             this.splitContainer2.Panel2.Controls.Add(this.label2);
             this.splitContainer2.Panel2.Controls.Add(this.txtSemiproductName);
             this.splitContainer2.Panel2.Controls.Add(this.txtSemiproductMoney);
             this.splitContainer2.Panel2.Controls.Add(this.label3);
             this.splitContainer2.Size = new System.Drawing.Size(503, 407);
-            this.splitContainer2.SplitterDistance = 293;
+            this.splitContainer2.SplitterDistance = 268;
             this.splitContainer2.TabIndex = 0;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(294, 57);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(42, 21);
+            this.numericUpDown1.TabIndex = 4;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(237, 59);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(29, 14);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "개수";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(237, 30);
+            this.label2.Location = new System.Drawing.Point(237, 20);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 14);
             this.label2.TabIndex = 0;
@@ -177,14 +204,14 @@
             // 
             // txtSemiproductName
             // 
-            this.txtSemiproductName.Location = new System.Drawing.Point(294, 23);
+            this.txtSemiproductName.Location = new System.Drawing.Point(294, 13);
             this.txtSemiproductName.Name = "txtSemiproductName";
             this.txtSemiproductName.Size = new System.Drawing.Size(186, 21);
             this.txtSemiproductName.TabIndex = 1;
             // 
             // txtSemiproductMoney
             // 
-            this.txtSemiproductMoney.Location = new System.Drawing.Point(294, 71);
+            this.txtSemiproductMoney.Location = new System.Drawing.Point(294, 92);
             this.txtSemiproductMoney.Name = "txtSemiproductMoney";
             this.txtSemiproductMoney.Size = new System.Drawing.Size(186, 21);
             this.txtSemiproductMoney.TabIndex = 1;
@@ -192,7 +219,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(237, 74);
+            this.label3.Location = new System.Drawing.Point(237, 95);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 14);
             this.label3.TabIndex = 2;
@@ -226,6 +253,7 @@
             this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -243,5 +271,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ComboBox cboCategoryDetail;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Label label4;
     }
 }

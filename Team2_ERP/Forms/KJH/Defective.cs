@@ -26,13 +26,13 @@ namespace Team2_ERP
             UtilClass.SettingDgv(dgvDefective);
             UtilClass.AddNewColum(dgvDefective, "생산실적번호", "Performance_ID",true,130);
             UtilClass.AddNewColum(dgvDefective, "공장번호", "Factory_ID",false);
-            UtilClass.AddNewColum(dgvDefective, "공장명", "Factory_Name", true, 100);
+            UtilClass.AddNewColum(dgvDefective, "공장명", "Factory_Name", true, 130);
             UtilClass.AddNewColum(dgvDefective, "공정번호", "Line_ID",false);
-            UtilClass.AddNewColum(dgvDefective, "공정명", "Line_Name", true, 100);
+            UtilClass.AddNewColum(dgvDefective, "공정명", "Line_Name", true, 130);
             UtilClass.AddNewColum(dgvDefective, "품목번호", "Product_ID", false);
             UtilClass.AddNewColum(dgvDefective, "품목명", "Product_Name", true, 150);
             UtilClass.AddNewColum(dgvDefective, "불량유형번호", "DefectiveType_ID", false);
-            UtilClass.AddNewColum(dgvDefective, "불량유형", "DefectiveType_Name", true, 100);
+            UtilClass.AddNewColum(dgvDefective, "불량유형", "DefectiveType_Name", true);
             UtilClass.AddNewColum(dgvDefective, "불량처리유형번호", "DefectiveHandle_ID", false);
             UtilClass.AddNewColum(dgvDefective, "불량처리유형", "DefectiveHandle_Name", true, 130);
             UtilClass.AddNewColum(dgvDefective, "작업자번호", "Employees_ID", false);
@@ -73,6 +73,7 @@ namespace Team2_ERP
             MenuByAuth(Auth);
             ActiveControl = searchFactory;
             searchFactory.Focus();
+            frm.NoticeMessage = notice;
         }
 
         public override void MenuStripONOFF(bool flag)
