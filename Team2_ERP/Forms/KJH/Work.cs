@@ -48,7 +48,7 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgvProduce, "품목번호", "Product_ID", false);
             UtilClass.AddNewColum(dgvProduce, "품목명", "Product_Name", true, 150);
             UtilClass.AddNewColum(dgvProduce, "요청수량", "Produce_QtyRequested", true);
-            UtilClass.AddNewColum(dgvProduce, "생산수량", "Produce_QtyReleased", true);
+            UtilClass.AddNewColum(dgvProduce, "투입수량", "Produce_QtyReleased", true);
             UtilClass.AddNewColum(dgvProduce, "생산상태", "Produce_State", true);
 
             dgvProduce.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

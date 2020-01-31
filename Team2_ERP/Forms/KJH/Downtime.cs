@@ -70,6 +70,7 @@ namespace Team2_ERP
             MenuByAuth(Auth);
             ActiveControl = searchFactory;
             searchFactory.Focus();
+            frm.NoticeMessage = notice;
         }
 
         public override void MenuStripONOFF(bool flag)
