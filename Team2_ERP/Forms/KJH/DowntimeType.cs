@@ -137,6 +137,7 @@ namespace Team2_ERP
         private void DowntimeType_Activated(object sender, EventArgs e)
         {
             MenuByAuth(Auth);
+            frm.NoticeMessage = notice;
         }
 
         private void DowntimeType_Shown(object sender, EventArgs e)

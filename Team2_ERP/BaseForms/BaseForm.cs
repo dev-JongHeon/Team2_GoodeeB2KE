@@ -23,6 +23,7 @@ namespace Team2_ERP
         public TabControl TabCtrl { get => tabCtrl; set => tabCtrl = value; }
         public TabPage TabPag { get => tabPag; set => tabPag = value; }
         public string Auth { get; set; }
+        public string notice { get=> $"{this.Text}화면 입니다.";  }
         public void Form_Activated(object sender, EventArgs e)
         {
             tabCtrl.SelectedTab = tabPag;
@@ -30,6 +31,7 @@ namespace Team2_ERP
             {
                 tabCtrl.Visible = true;
             }
+            
             new SettingMenuStrip().SetMenu(this, Refresh, New, Modify, Delete, Search, Print,Excel);
         }
         public virtual void Refresh(object sender, EventArgs e)

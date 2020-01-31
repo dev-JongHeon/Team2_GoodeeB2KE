@@ -157,6 +157,7 @@ namespace Team2_ERP
             MenuByAuth(Auth);
             ActiveControl = txtSearch;
             txtSearch.Focus();
+            frm.NoticeMessage = notice;
         }
     }
 }
