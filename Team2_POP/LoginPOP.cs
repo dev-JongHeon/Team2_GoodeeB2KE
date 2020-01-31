@@ -38,10 +38,11 @@ namespace Team2_POP
             Service service = new Service();
             factory = service.GetFactoryList();
 
+            List<ComboItemVO> list = null;
 
             UtilClass.ComboBinding(cboFactory, factory, "공장 선택");
-            UtilClass.ComboBinding(cboLine, null, "공장을 먼저 선택해주세요");
-            UtilClass.ComboBinding(cboWorker, null, "공장을 먼저 선택해주세요");
+            UtilClass.ComboBinding(cboLine, list, "공장을 먼저 선택해주세요");
+            UtilClass.ComboBinding(cboWorker, list, "공장을 먼저 선택해주세요");
         }
 
         private void btnConnect_Click(object sender, EventArgs e)
@@ -98,8 +99,9 @@ namespace Team2_POP
             }
             else
             {
-                UtilClass.ComboBinding(cboLine, null, "공장을 먼저 선택해주세요");
-                UtilClass.ComboBinding(cboWorker, null, "공장을 먼저 선택해주세요");
+                List<ComboItemVO> list = null;
+                UtilClass.ComboBinding(cboLine, list, "공장을 먼저 선택해주세요");
+                UtilClass.ComboBinding(cboWorker, list, "공장을 먼저 선택해주세요");
             }
 
         }

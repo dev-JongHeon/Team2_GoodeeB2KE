@@ -52,40 +52,45 @@
             // 
             // cboFactory
             // 
+            this.cboFactory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboFactory.FormattingEnabled = true;
             this.cboFactory.Location = new System.Drawing.Point(511, 19);
             this.cboFactory.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
             this.cboFactory.Name = "cboFactory";
             this.cboFactory.Size = new System.Drawing.Size(624, 48);
-            this.cboFactory.TabIndex = 4;
+            this.cboFactory.TabIndex = 0;
             this.cboFactory.SelectedIndexChanged += new System.EventHandler(this.cboFactory_SelectedIndexChanged);
             // 
             // cboLine
             // 
+            this.cboLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboLine.FormattingEnabled = true;
             this.cboLine.Location = new System.Drawing.Point(511, 195);
             this.cboLine.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
             this.cboLine.Name = "cboLine";
             this.cboLine.Size = new System.Drawing.Size(624, 48);
-            this.cboLine.TabIndex = 4;
+            this.cboLine.TabIndex = 2;
             // 
             // cboWorker
             // 
+            this.cboWorker.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboWorker.FormattingEnabled = true;
             this.cboWorker.Location = new System.Drawing.Point(511, 107);
             this.cboWorker.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
             this.cboWorker.Name = "cboWorker";
             this.cboWorker.Size = new System.Drawing.Size(624, 48);
-            this.cboWorker.TabIndex = 4;
+            this.cboWorker.TabIndex = 1;
             // 
             // btnConnect
             // 
+            this.btnConnect.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnConnect.ForeColor = System.Drawing.Color.White;
             this.btnConnect.Location = new System.Drawing.Point(511, 299);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(251, 72);
-            this.btnConnect.TabIndex = 5;
+            this.btnConnect.TabIndex = 3;
             this.btnConnect.Text = "접속";
-            this.btnConnect.UseVisualStyleBackColor = true;
+            this.btnConnect.UseVisualStyleBackColor = false;
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
             // label1
@@ -93,24 +98,27 @@
             this.label1.Location = new System.Drawing.Point(18, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(391, 79);
-            this.label1.TabIndex = 6;
+            this.label1.TabIndex = 5;
             this.label1.Text = "사원카드를 찍어주세요";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnClose
             // 
+            this.btnClose.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Location = new System.Drawing.Point(884, 299);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(251, 72);
-            this.btnClose.TabIndex = 5;
+            this.btnClose.TabIndex = 4;
             this.btnClose.Text = "종료";
-            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // LoginPOP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(20F, 40F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(236)))), ((int)(((byte)(241)))));
             this.ClientSize = new System.Drawing.Size(1166, 408);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnClose);
@@ -120,8 +128,10 @@
             this.Controls.Add(this.cboFactory);
             this.Controls.Add(this.pictureBox2);
             this.Font = new System.Drawing.Font("나눔고딕", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
             this.Name = "LoginPOP";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "로그인 화면";
             this.Load += new System.EventHandler(this.LoginPOP_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

@@ -36,13 +36,13 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.txtEmpID = new Team2_ERP.NumTXT();
             this.txtEmpPwd = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtEmpName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtEmpID = new Team2_ERP.NumTXT();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
@@ -105,6 +105,7 @@
             this.btnPwdChange.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.btnPwdChange.FlatAppearance.BorderSize = 0;
             this.btnPwdChange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPwdChange.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPwdChange.ForeColor = System.Drawing.Color.White;
             this.btnPwdChange.Location = new System.Drawing.Point(2, 117);
             this.btnPwdChange.Name = "btnPwdChange";
@@ -119,6 +120,7 @@
             this.btnClose.BackColor = System.Drawing.Color.Maroon;
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Location = new System.Drawing.Point(2, 70);
             this.btnClose.Name = "btnClose";
@@ -133,6 +135,7 @@
             this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(87)))), ((int)(((byte)(112)))));
             this.btnLogin.FlatAppearance.BorderSize = 0;
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogin.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnLogin.ForeColor = System.Drawing.Color.White;
             this.btnLogin.Location = new System.Drawing.Point(2, 3);
             this.btnLogin.Name = "btnLogin";
@@ -157,6 +160,14 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(207, 148);
             this.panel3.TabIndex = 0;
+            // 
+            // txtEmpID
+            // 
+            this.txtEmpID.Location = new System.Drawing.Point(81, 40);
+            this.txtEmpID.Name = "txtEmpID";
+            this.txtEmpID.Size = new System.Drawing.Size(89, 21);
+            this.txtEmpID.TabIndex = 11;
+            this.txtEmpID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmpID_KeyPress);
             // 
             // txtEmpPwd
             // 
@@ -220,14 +231,6 @@
             this.label1.Size = new System.Drawing.Size(69, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "사원번호";
-            // 
-            // txtEmpID
-            // 
-            this.txtEmpID.Location = new System.Drawing.Point(81, 40);
-            this.txtEmpID.Name = "txtEmpID";
-            this.txtEmpID.Size = new System.Drawing.Size(89, 21);
-            this.txtEmpID.TabIndex = 11;
-            this.txtEmpID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmpID_KeyPress);
             // 
             // LoginForm
             // 

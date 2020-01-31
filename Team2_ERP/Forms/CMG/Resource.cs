@@ -151,6 +151,7 @@ namespace Team2_ERP
         private void Resource_Activated(object sender, EventArgs e)
         {
             MenuByAuth(Auth);
+            frm.NoticeMessage = notice;
         }
 
         public override void MenuStripONOFF(bool flag)

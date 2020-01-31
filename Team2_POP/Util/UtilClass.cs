@@ -105,6 +105,16 @@ namespace Team2_POP
             combo.ValueMember = Code;
         }
 
+        public static void ComboBinding(ComboBox combo, List<string> list, string blankText)
+        {
+            if (list == null)
+                list = new List<string>();
+
+            list.Insert(0, blankText);
+
+            combo.DataSource = list;
+        }
+
         public static void ComboBinding<T>(ComboBox combo, List<T> list, string Code, string CodeNm, string blankText) where T : class, new()
         {
             if (list == null)
@@ -118,6 +128,8 @@ namespace Team2_POP
             combo.DisplayMember = CodeNm;
             combo.ValueMember = Code;
         }
+
+
         #endregion
     }
 }

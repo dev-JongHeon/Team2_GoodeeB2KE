@@ -66,7 +66,7 @@ namespace Team2_POP
             new POPDAC().EndProduce(performanceID, produceID);
         }
 
-        public DataTable GetDefectiveCode()
+        public List<ComboItemVO> GetDefectiveCode()
         {
             return new POPDAC().GetDefectiveCode();
         }
@@ -95,6 +95,11 @@ namespace Team2_POP
         public bool IsDowntime(int lineID)
         {
             return new POPDAC().IsDowntime(lineID);
+        }
+
+        public bool GetDefectiveByProduce(string produceID)
+        {
+            return new POPDAC().GetDefectiveByProduce(produceID);
         }
     }
 }
