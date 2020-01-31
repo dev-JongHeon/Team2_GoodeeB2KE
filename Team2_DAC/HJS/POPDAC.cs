@@ -408,28 +408,28 @@ namespace Team2_DAC
         #region Select 
 
         // 불량유형 & 처리코드
-        public DataTable GetDefectiveCode()
+        public List<ComboItemVO> GetDefectiveCode()
         {
-            DataTable dt = new DataTable();
+            
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = "SELECT ID, Name, DIV FROM View_SearchInfo WHERE Div in ('Defective','handle')";
+                    cmd.CommandText = "SELECT ID, Name, DIV AS CodeType FROM View_SearchInfo WHERE Div in ('Defective','handle')";
 
-                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                     conn.Open();
-                    adapter.Fill(dt);
+                    List<ComboItemVO> list = Helper.DataReaderMapToList<ComboItemVO>(cmd.ExecuteReader());   
                     conn.Close();
-                    adapter.Dispose();
-                }
 
-                return dt;
+                    return list;
+                    
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                return dt;
+                string sss = ex.Message;
+                return null;
             }
         }
 
@@ -442,7 +442,7 @@ namespace Team2_DAC
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = "SELECT Defective_ID FROM Defective WHERE Performance_ID = @Performance_ID AND Defective_HandleDate IS NULL";
+                    cmd.CommandText = "SELECT Defective_ID ID FROM Defective WHERE Performance_ID = @Performance_ID AND Defective_HandleDate IS NULL";
 
                     FillParameter(cmd, new string[] { "Performance_ID" }, new object[] { performanceID });
 
@@ -480,9 +480,9 @@ namespace Team2_DAC
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = qryUpdate.ToString();
+                    cmd.CommandText = qryUpdate.ToString();                    
 
-                    FillParameter(cmd, new string[] { "@HandleCode, DefectiveCode, defectiveID" },
+                    FillParameter(cmd, new string[] { "@HandleCode", "@DefectiveCode", "@defectiveID" },
                                        new object[] { handleCode, defecCode, defectiveID });
 
                     conn.Open();
@@ -495,6 +495,10 @@ namespace Team2_DAC
             catch
             {
                 return false;
+            }
+            finally
+            {
+                conn.Close();
             }
         }
 
@@ -536,15 +540,10 @@ namespace Team2_DAC
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = "proc_SetDowntime";
-
-                    string[] param = new string[3];
-                    param[0] = "LineID";
-                    param[1] = "DowntimeCode";
-                    param[2] = "EmployeeID";
-
-                    FillParameter(cmd, param, new object[] { lineID, downtimeCode, employeeID });
-                    //FillParameter(cmd, new string[] { "@LineID", "@DowntimeCode", "@EmployeeID"}, new object[] {lineID ,downtimeCode, employeeID});
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "proc_SetDowntime";                    
+                   
+                    FillParameter(cmd, new string[] { "@LineID", "@DowntimeCode", "@EmployeeID"}, new object[] {lineID ,downtimeCode, employeeID});
 
                     conn.Open();
                     cmd.ExecuteNonQuery();
@@ -554,6 +553,38 @@ namespace Team2_DAC
             catch (Exception err)
             {
                 string sss = err.Message;
+            }
+        }
+
+        // 불량처리한 개수가 있는지 없는지 체크하는 함수 True => 불량개수가 있음, False => 불량개수가 없음
+        public bool GetDefectiveByProduce(string produceID)
+        {
+            try
+            {
+                int iResult = 0;
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "GetDefectiveByProduce";
+
+                    FillParameter(cmd, new string[] { "@Produce_ID" }, new object[] { produceID });
+
+                    conn.Open();
+                    iResult = Convert.ToInt32(cmd.ExecuteScalar());
+                    conn.Close();
+
+                    return iResult > 0;
+                }
+            }
+            catch (Exception err)
+            {
+                string sss = err.Message;
+                return false;
+            }
+            finally
+            {
+                conn.Close();
             }
         }
     }

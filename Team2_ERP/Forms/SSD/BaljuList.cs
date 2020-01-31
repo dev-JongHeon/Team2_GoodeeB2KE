@@ -155,6 +155,7 @@ namespace Team2_ERP
             MenuByAuth(Auth);
             main.수정ToolStripMenuItem.Text = "처리";
             main.수정ToolStripMenuItem.ToolTipText = "처리(Ctrl+M)";
+            main.NoticeMessage = notice;
         }
 
         public override void MenuStripONOFF(bool flag)

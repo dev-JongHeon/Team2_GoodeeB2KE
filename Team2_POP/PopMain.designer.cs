@@ -29,6 +29,20 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer8 = new System.Windows.Forms.SplitContainer();
+            this.panelHaderLeft = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblFactory = new System.Windows.Forms.Label();
+            this.lblWorkerName = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblLine = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panelHaderRight = new System.Windows.Forms.Panel();
+            this.splitContainer9 = new System.Windows.Forms.SplitContainer();
+            this.lblDowntimeState = new System.Windows.Forms.Label();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnDownTime = new System.Windows.Forms.Button();
@@ -52,24 +66,21 @@
             this.splitContainer7 = new System.Windows.Forms.SplitContainer();
             this.lblTime = new System.Windows.Forms.Label();
             this.lblWorker = new System.Windows.Forms.Label();
-            this.splitContainer8 = new System.Windows.Forms.SplitContainer();
-            this.panelHaderRight = new System.Windows.Forms.Panel();
-            this.panelHaderLeft = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblFactory = new System.Windows.Forms.Label();
-            this.lblWorkerName = new System.Windows.Forms.Label();
-            this.lblDowntimeState = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblLine = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnLogout = new System.Windows.Forms.Button();
-            this.btnExit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer8)).BeginInit();
+            this.splitContainer8.Panel1.SuspendLayout();
+            this.splitContainer8.Panel2.SuspendLayout();
+            this.splitContainer8.SuspendLayout();
+            this.panelHaderLeft.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.panelHaderRight.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer9)).BeginInit();
+            this.splitContainer9.Panel1.SuspendLayout();
+            this.splitContainer9.Panel2.SuspendLayout();
+            this.splitContainer9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -99,14 +110,6 @@
             this.splitContainer7.Panel1.SuspendLayout();
             this.splitContainer7.Panel2.SuspendLayout();
             this.splitContainer7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer8)).BeginInit();
-            this.splitContainer8.Panel1.SuspendLayout();
-            this.splitContainer8.Panel2.SuspendLayout();
-            this.splitContainer8.SuspendLayout();
-            this.panelHaderRight.SuspendLayout();
-            this.panelHaderLeft.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -127,6 +130,203 @@
             this.splitContainer1.Size = new System.Drawing.Size(1904, 1041);
             this.splitContainer1.SplitterDistance = 51;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // splitContainer8
+            // 
+            this.splitContainer8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer8.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer8.Name = "splitContainer8";
+            // 
+            // splitContainer8.Panel1
+            // 
+            this.splitContainer8.Panel1.Controls.Add(this.panelHaderLeft);
+            // 
+            // splitContainer8.Panel2
+            // 
+            this.splitContainer8.Panel2.Controls.Add(this.panelHaderRight);
+            this.splitContainer8.Size = new System.Drawing.Size(1904, 51);
+            this.splitContainer8.SplitterDistance = 1393;
+            this.splitContainer8.TabIndex = 0;
+            // 
+            // panelHaderLeft
+            // 
+            this.panelHaderLeft.Controls.Add(this.tableLayoutPanel2);
+            this.panelHaderLeft.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelHaderLeft.Location = new System.Drawing.Point(0, 0);
+            this.panelHaderLeft.Name = "panelHaderLeft";
+            this.panelHaderLeft.Size = new System.Drawing.Size(1393, 51);
+            this.panelHaderLeft.TabIndex = 0;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(236)))), ((int)(((byte)(241)))));
+            this.tableLayoutPanel2.ColumnCount = 8;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.Controls.Add(this.lblFactory, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lblWorkerName, 5, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label3, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lblLine, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label2, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Font = new System.Drawing.Font("나눔고딕", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1393, 51);
+            this.tableLayoutPanel2.TabIndex = 3;
+            // 
+            // lblFactory
+            // 
+            this.lblFactory.AutoSize = true;
+            this.lblFactory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(236)))), ((int)(((byte)(241)))));
+            this.lblFactory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblFactory.Font = new System.Drawing.Font("나눔고딕", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblFactory.ForeColor = System.Drawing.Color.DimGray;
+            this.lblFactory.Location = new System.Drawing.Point(105, 0);
+            this.lblFactory.Name = "lblFactory";
+            this.lblFactory.Size = new System.Drawing.Size(1, 51);
+            this.lblFactory.TabIndex = 12;
+            this.lblFactory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblWorkerName
+            // 
+            this.lblWorkerName.AutoSize = true;
+            this.lblWorkerName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(236)))), ((int)(((byte)(241)))));
+            this.lblWorkerName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblWorkerName.Font = new System.Drawing.Font("나눔고딕", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblWorkerName.ForeColor = System.Drawing.Color.DimGray;
+            this.lblWorkerName.Location = new System.Drawing.Point(348, 0);
+            this.lblWorkerName.Name = "lblWorkerName";
+            this.lblWorkerName.Size = new System.Drawing.Size(96, 51);
+            this.lblWorkerName.TabIndex = 10;
+            this.lblWorkerName.Text = "허진성";
+            this.lblWorkerName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(236)))), ((int)(((byte)(241)))));
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Font = new System.Drawing.Font("나눔고딕", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(219, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(123, 51);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "작업자명";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblLine
+            // 
+            this.lblLine.AutoSize = true;
+            this.lblLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(236)))), ((int)(((byte)(241)))));
+            this.lblLine.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblLine.Font = new System.Drawing.Font("나눔고딕", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblLine.ForeColor = System.Drawing.Color.DimGray;
+            this.lblLine.Location = new System.Drawing.Point(213, 0);
+            this.lblLine.Name = "lblLine";
+            this.lblLine.Size = new System.Drawing.Size(1, 51);
+            this.lblLine.TabIndex = 7;
+            this.lblLine.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(236)))), ((int)(((byte)(241)))));
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Font = new System.Drawing.Font("나눔고딕", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(111, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(96, 51);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "공정명";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(236)))), ((int)(((byte)(241)))));
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("나눔고딕", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(96, 51);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "공장명";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panelHaderRight
+            // 
+            this.panelHaderRight.Controls.Add(this.splitContainer9);
+            this.panelHaderRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelHaderRight.Location = new System.Drawing.Point(0, 0);
+            this.panelHaderRight.Name = "panelHaderRight";
+            this.panelHaderRight.Size = new System.Drawing.Size(507, 51);
+            this.panelHaderRight.TabIndex = 1;
+            // 
+            // splitContainer9
+            // 
+            this.splitContainer9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer9.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer9.Name = "splitContainer9";
+            // 
+            // splitContainer9.Panel1
+            // 
+            this.splitContainer9.Panel1.Controls.Add(this.lblDowntimeState);
+            // 
+            // splitContainer9.Panel2
+            // 
+            this.splitContainer9.Panel2.Controls.Add(this.btnExit);
+            this.splitContainer9.Panel2.Controls.Add(this.btnLogout);
+            this.splitContainer9.Size = new System.Drawing.Size(507, 51);
+            this.splitContainer9.SplitterDistance = 369;
+            this.splitContainer9.TabIndex = 0;
+            // 
+            // lblDowntimeState
+            // 
+            this.lblDowntimeState.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(236)))), ((int)(((byte)(241)))));
+            this.lblDowntimeState.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblDowntimeState.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblDowntimeState.Font = new System.Drawing.Font("나눔고딕", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblDowntimeState.ForeColor = System.Drawing.Color.Gray;
+            this.lblDowntimeState.Location = new System.Drawing.Point(0, 0);
+            this.lblDowntimeState.Name = "lblDowntimeState";
+            this.lblDowntimeState.Size = new System.Drawing.Size(369, 51);
+            this.lblDowntimeState.TabIndex = 22;
+            this.lblDowntimeState.Text = "가동상태";
+            this.lblDowntimeState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnExit
+            // 
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExit.Location = new System.Drawing.Point(81, 0);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(0);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(50, 50);
+            this.btnExit.TabIndex = 22;
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLogout.Location = new System.Drawing.Point(3, 0);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(50, 50);
+            this.btnLogout.TabIndex = 21;
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // splitContainer2
             // 
@@ -150,13 +350,13 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 7;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.01923F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.42308F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.63461F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.42308F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19F));
             this.tableLayoutPanel1.Controls.Add(this.btnDownTime, 6, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnNextDate, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 0);
@@ -174,25 +374,26 @@
             // 
             // btnDownTime
             // 
+            this.btnDownTime.BackColor = System.Drawing.Color.SteelBlue;
             this.btnDownTime.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnDownTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDownTime.Font = new System.Drawing.Font("나눔고딕", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnDownTime.Location = new System.Drawing.Point(1666, 3);
+            this.btnDownTime.Font = new System.Drawing.Font("나눔고딕", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnDownTime.ForeColor = System.Drawing.Color.White;
+            this.btnDownTime.Location = new System.Drawing.Point(1542, 3);
             this.btnDownTime.Name = "btnDownTime";
-            this.btnDownTime.Size = new System.Drawing.Size(235, 76);
+            this.btnDownTime.Size = new System.Drawing.Size(359, 76);
             this.btnDownTime.TabIndex = 8;
             this.btnDownTime.Text = "비가동 전환";
-            this.btnDownTime.UseVisualStyleBackColor = true;
+            this.btnDownTime.UseVisualStyleBackColor = false;
             this.btnDownTime.Click += new System.EventHandler(this.btnDownTime_Click);
             // 
             // btnNextDate
             // 
             this.btnNextDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnNextDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNextDate.Image = global::Team2_POP.Properties.Resources.iconfinder_forward_126569__2_;
-            this.btnNextDate.Location = new System.Drawing.Point(916, 3);
+            this.btnNextDate.Location = new System.Drawing.Point(630, 3);
             this.btnNextDate.Name = "btnNextDate";
-            this.btnNextDate.Size = new System.Drawing.Size(268, 76);
+            this.btnNextDate.Size = new System.Drawing.Size(184, 76);
             this.btnNextDate.TabIndex = 3;
             this.btnNextDate.UseVisualStyleBackColor = true;
             this.btnNextDate.Click += new System.EventHandler(this.btnNextDate_Click);
@@ -206,7 +407,7 @@
             this.label4.ForeColor = System.Drawing.Color.DimGray;
             this.label4.Location = new System.Drawing.Point(3, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(222, 82);
+            this.label4.Size = new System.Drawing.Size(184, 82);
             this.label4.TabIndex = 0;
             this.label4.Text = "조회일자";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -218,10 +419,9 @@
             this.btnPreDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPreDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPreDate.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnPreDate.Image = global::Team2_POP.Properties.Resources.iconfinder_back_126585__2_;
-            this.btnPreDate.Location = new System.Drawing.Point(231, 3);
+            this.btnPreDate.Location = new System.Drawing.Point(193, 3);
             this.btnPreDate.Name = "btnPreDate";
-            this.btnPreDate.Size = new System.Drawing.Size(268, 76);
+            this.btnPreDate.Size = new System.Drawing.Size(184, 76);
             this.btnPreDate.TabIndex = 1;
             this.btnPreDate.UseVisualStyleBackColor = false;
             this.btnPreDate.Click += new System.EventHandler(this.btnPreDate_Click);
@@ -231,37 +431,41 @@
             this.lblDate.AutoSize = true;
             this.lblDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblDate.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 24.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblDate.Location = new System.Drawing.Point(505, 0);
+            this.lblDate.Location = new System.Drawing.Point(383, 0);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(405, 82);
+            this.lblDate.Size = new System.Drawing.Size(241, 82);
             this.lblDate.TabIndex = 2;
             this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblDate.Click += new System.EventHandler(this.lblDate_Click);
             // 
             // btnDate
             // 
+            this.btnDate.BackColor = System.Drawing.Color.SteelBlue;
             this.btnDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDate.Font = new System.Drawing.Font("나눔고딕", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnDate.Location = new System.Drawing.Point(1190, 3);
+            this.btnDate.Font = new System.Drawing.Font("나눔고딕", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnDate.ForeColor = System.Drawing.Color.White;
+            this.btnDate.Location = new System.Drawing.Point(820, 3);
             this.btnDate.Name = "btnDate";
-            this.btnDate.Size = new System.Drawing.Size(232, 76);
+            this.btnDate.Size = new System.Drawing.Size(355, 76);
             this.btnDate.TabIndex = 6;
             this.btnDate.Text = "날짜 조회";
-            this.btnDate.UseVisualStyleBackColor = true;
+            this.btnDate.UseVisualStyleBackColor = false;
             this.btnDate.Click += new System.EventHandler(this.btnDate_Click);
             // 
             // btnWorkStart
             // 
+            this.btnWorkStart.BackColor = System.Drawing.Color.SteelBlue;
             this.btnWorkStart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnWorkStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnWorkStart.Font = new System.Drawing.Font("나눔고딕", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnWorkStart.Location = new System.Drawing.Point(1428, 3);
+            this.btnWorkStart.Font = new System.Drawing.Font("나눔고딕", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnWorkStart.ForeColor = System.Drawing.Color.White;
+            this.btnWorkStart.Location = new System.Drawing.Point(1181, 3);
             this.btnWorkStart.Name = "btnWorkStart";
-            this.btnWorkStart.Size = new System.Drawing.Size(232, 76);
+            this.btnWorkStart.Size = new System.Drawing.Size(355, 76);
             this.btnWorkStart.TabIndex = 7;
             this.btnWorkStart.Text = "작업시작";
-            this.btnWorkStart.UseVisualStyleBackColor = true;
+            this.btnWorkStart.UseVisualStyleBackColor = false;
             // 
             // splitContainer3
             // 
@@ -309,7 +513,7 @@
             // 
             this.splitContainer4.Panel2.Controls.Add(this.splitContainer5);
             this.splitContainer4.Size = new System.Drawing.Size(1904, 626);
-            this.splitContainer4.SplitterDistance = 498;
+            this.splitContainer4.SplitterDistance = 497;
             this.splitContainer4.TabIndex = 1;
             // 
             // splitContainer6
@@ -325,7 +529,7 @@
             // splitContainer6.Panel2
             // 
             this.splitContainer6.Panel2.Controls.Add(this.dgvPerformance);
-            this.splitContainer6.Size = new System.Drawing.Size(1904, 498);
+            this.splitContainer6.Size = new System.Drawing.Size(1904, 497);
             this.splitContainer6.SplitterDistance = 1028;
             this.splitContainer6.TabIndex = 0;
             // 
@@ -337,7 +541,7 @@
             this.dgvProduce.Location = new System.Drawing.Point(0, 0);
             this.dgvProduce.Name = "dgvProduce";
             this.dgvProduce.RowTemplate.Height = 23;
-            this.dgvProduce.Size = new System.Drawing.Size(1028, 498);
+            this.dgvProduce.Size = new System.Drawing.Size(1028, 497);
             this.dgvProduce.TabIndex = 2;
             this.dgvProduce.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProduce_CellClick);
             // 
@@ -349,7 +553,7 @@
             this.dgvPerformance.Location = new System.Drawing.Point(0, 0);
             this.dgvPerformance.Name = "dgvPerformance";
             this.dgvPerformance.RowTemplate.Height = 23;
-            this.dgvPerformance.Size = new System.Drawing.Size(872, 498);
+            this.dgvPerformance.Size = new System.Drawing.Size(872, 497);
             this.dgvPerformance.TabIndex = 0;
             this.dgvPerformance.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPerformance_CellClick);
             // 
@@ -367,7 +571,7 @@
             // splitContainer5.Panel2
             // 
             this.splitContainer5.Panel2.Controls.Add(this.splitContainer7);
-            this.splitContainer5.Size = new System.Drawing.Size(1904, 124);
+            this.splitContainer5.Size = new System.Drawing.Size(1904, 125);
             this.splitContainer5.SplitterDistance = 91;
             this.splitContainer5.TabIndex = 0;
             // 
@@ -391,41 +595,47 @@
             // 
             // btnDefective
             // 
+            this.btnDefective.BackColor = System.Drawing.Color.SteelBlue;
             this.btnDefective.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnDefective.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDefective.Font = new System.Drawing.Font("나눔고딕", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnDefective.ForeColor = System.Drawing.Color.White;
             this.btnDefective.Location = new System.Drawing.Point(1271, 3);
             this.btnDefective.Name = "btnDefective";
             this.btnDefective.Size = new System.Drawing.Size(630, 85);
             this.btnDefective.TabIndex = 2;
             this.btnDefective.Text = "불량 처리 등록";
-            this.btnDefective.UseVisualStyleBackColor = true;
+            this.btnDefective.UseVisualStyleBackColor = false;
             this.btnDefective.Click += new System.EventHandler(this.btnDefective_Click);
             // 
             // btnWorker
             // 
+            this.btnWorker.BackColor = System.Drawing.Color.SteelBlue;
             this.btnWorker.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnWorker.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnWorker.Font = new System.Drawing.Font("나눔고딕", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnWorker.ForeColor = System.Drawing.Color.White;
             this.btnWorker.Location = new System.Drawing.Point(637, 3);
             this.btnWorker.Name = "btnWorker";
             this.btnWorker.Size = new System.Drawing.Size(628, 85);
             this.btnWorker.TabIndex = 1;
             this.btnWorker.Text = "작업 할당";
-            this.btnWorker.UseVisualStyleBackColor = true;
+            this.btnWorker.UseVisualStyleBackColor = false;
             this.btnWorker.Click += new System.EventHandler(this.btnWorker_Click);
             // 
             // btnProduceStart
             // 
+            this.btnProduceStart.BackColor = System.Drawing.Color.SteelBlue;
             this.btnProduceStart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnProduceStart.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnProduceStart.Font = new System.Drawing.Font("나눔고딕", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnProduceStart.ForeColor = System.Drawing.Color.White;
             this.btnProduceStart.Location = new System.Drawing.Point(3, 3);
             this.btnProduceStart.Name = "btnProduceStart";
             this.btnProduceStart.Size = new System.Drawing.Size(628, 85);
             this.btnProduceStart.TabIndex = 0;
             this.btnProduceStart.Text = "생산 시작";
-            this.btnProduceStart.UseVisualStyleBackColor = true;
+            this.btnProduceStart.UseVisualStyleBackColor = false;
             this.btnProduceStart.Click += new System.EventHandler(this.btnProduceStart_Click);
             // 
             // splitContainer7
@@ -441,7 +651,7 @@
             // splitContainer7.Panel2
             // 
             this.splitContainer7.Panel2.Controls.Add(this.lblWorker);
-            this.splitContainer7.Size = new System.Drawing.Size(1904, 29);
+            this.splitContainer7.Size = new System.Drawing.Size(1904, 30);
             this.splitContainer7.SplitterDistance = 634;
             this.splitContainer7.TabIndex = 0;
             // 
@@ -451,7 +661,7 @@
             this.lblTime.Font = new System.Drawing.Font("나눔고딕", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTime.Location = new System.Drawing.Point(0, 0);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(634, 29);
+            this.lblTime.Size = new System.Drawing.Size(634, 30);
             this.lblTime.TabIndex = 0;
             // 
             // lblWorker
@@ -460,201 +670,9 @@
             this.lblWorker.Font = new System.Drawing.Font("나눔고딕", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblWorker.Location = new System.Drawing.Point(0, 0);
             this.lblWorker.Name = "lblWorker";
-            this.lblWorker.Size = new System.Drawing.Size(1266, 29);
+            this.lblWorker.Size = new System.Drawing.Size(1266, 30);
             this.lblWorker.TabIndex = 1;
             this.lblWorker.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // splitContainer8
-            // 
-            this.splitContainer8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer8.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer8.Name = "splitContainer8";
-            // 
-            // splitContainer8.Panel1
-            // 
-            this.splitContainer8.Panel1.Controls.Add(this.panelHaderLeft);
-            // 
-            // splitContainer8.Panel2
-            // 
-            this.splitContainer8.Panel2.Controls.Add(this.panelHaderRight);
-            this.splitContainer8.Size = new System.Drawing.Size(1904, 51);
-            this.splitContainer8.SplitterDistance = 1393;
-            this.splitContainer8.TabIndex = 0;
-            // 
-            // panelHaderRight
-            // 
-            this.panelHaderRight.Controls.Add(this.btnExit);
-            this.panelHaderRight.Controls.Add(this.btnLogout);
-            this.panelHaderRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelHaderRight.Location = new System.Drawing.Point(0, 0);
-            this.panelHaderRight.Name = "panelHaderRight";
-            this.panelHaderRight.Size = new System.Drawing.Size(507, 51);
-            this.panelHaderRight.TabIndex = 1;
-            // 
-            // panelHaderLeft
-            // 
-            this.panelHaderLeft.Controls.Add(this.tableLayoutPanel2);
-            this.panelHaderLeft.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelHaderLeft.Location = new System.Drawing.Point(0, 0);
-            this.panelHaderLeft.Name = "panelHaderLeft";
-            this.panelHaderLeft.Size = new System.Drawing.Size(1393, 51);
-            this.panelHaderLeft.TabIndex = 0;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(236)))), ((int)(((byte)(241)))));
-            this.tableLayoutPanel2.ColumnCount = 8;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6F));
-            this.tableLayoutPanel2.Controls.Add(this.lblFactory, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.lblWorkerName, 5, 0);
-            this.tableLayoutPanel2.Controls.Add(this.lblDowntimeState, 6, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label3, 4, 0);
-            this.tableLayoutPanel2.Controls.Add(this.lblLine, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label2, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.pictureBox1, 7, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Font = new System.Drawing.Font("나눔고딕", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1393, 51);
-            this.tableLayoutPanel2.TabIndex = 3;
-            // 
-            // lblFactory
-            // 
-            this.lblFactory.AutoSize = true;
-            this.lblFactory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(236)))), ((int)(((byte)(241)))));
-            this.lblFactory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblFactory.Font = new System.Drawing.Font("나눔고딕", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblFactory.ForeColor = System.Drawing.Color.DimGray;
-            this.lblFactory.Location = new System.Drawing.Point(142, 0);
-            this.lblFactory.Name = "lblFactory";
-            this.lblFactory.Size = new System.Drawing.Size(216, 51);
-            this.lblFactory.TabIndex = 12;
-            this.lblFactory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblWorkerName
-            // 
-            this.lblWorkerName.AutoSize = true;
-            this.lblWorkerName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(236)))), ((int)(((byte)(241)))));
-            this.lblWorkerName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblWorkerName.Font = new System.Drawing.Font("나눔고딕", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblWorkerName.ForeColor = System.Drawing.Color.DimGray;
-            this.lblWorkerName.Location = new System.Drawing.Point(864, 0);
-            this.lblWorkerName.Name = "lblWorkerName";
-            this.lblWorkerName.Size = new System.Drawing.Size(216, 51);
-            this.lblWorkerName.TabIndex = 10;
-            this.lblWorkerName.Text = "허진성";
-            this.lblWorkerName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblDowntimeState
-            // 
-            this.lblDowntimeState.AutoSize = true;
-            this.lblDowntimeState.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(236)))), ((int)(((byte)(241)))));
-            this.lblDowntimeState.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDowntimeState.Font = new System.Drawing.Font("나눔고딕", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblDowntimeState.ForeColor = System.Drawing.Color.Gray;
-            this.lblDowntimeState.Location = new System.Drawing.Point(1086, 0);
-            this.lblDowntimeState.Name = "lblDowntimeState";
-            this.lblDowntimeState.Size = new System.Drawing.Size(216, 51);
-            this.lblDowntimeState.TabIndex = 9;
-            this.lblDowntimeState.Text = "생산대기";
-            this.lblDowntimeState.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(236)))), ((int)(((byte)(241)))));
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("나눔고딕", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(725, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(133, 51);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "작업자명";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblLine
-            // 
-            this.lblLine.AutoSize = true;
-            this.lblLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(236)))), ((int)(((byte)(241)))));
-            this.lblLine.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblLine.Font = new System.Drawing.Font("나눔고딕", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblLine.ForeColor = System.Drawing.Color.DimGray;
-            this.lblLine.Location = new System.Drawing.Point(503, 0);
-            this.lblLine.Name = "lblLine";
-            this.lblLine.Size = new System.Drawing.Size(216, 51);
-            this.lblLine.TabIndex = 7;
-            this.lblLine.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(236)))), ((int)(((byte)(241)))));
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("나눔고딕", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(364, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(133, 51);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "공정명";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(236)))), ((int)(((byte)(241)))));
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("나눔고딕", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(133, 51);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "공장명";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(1308, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(82, 45);
-            this.pictureBox1.TabIndex = 11;
-            this.pictureBox1.TabStop = false;
-            // 
-            // btnLogout
-            // 
-            this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLogout.Location = new System.Drawing.Point(379, 4);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(45, 45);
-            this.btnLogout.TabIndex = 0;
-            this.btnLogout.Text = "button1";
-            this.btnLogout.UseVisualStyleBackColor = true;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
-            // 
-            // btnExit
-            // 
-            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExit.Location = new System.Drawing.Point(443, 4);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(45, 45);
-            this.btnExit.TabIndex = 0;
-            this.btnExit.Text = "button1";
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // PopMain
             // 
@@ -672,6 +690,18 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.splitContainer8.Panel1.ResumeLayout(false);
+            this.splitContainer8.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer8)).EndInit();
+            this.splitContainer8.ResumeLayout(false);
+            this.panelHaderLeft.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
+            this.panelHaderRight.ResumeLayout(false);
+            this.splitContainer9.Panel1.ResumeLayout(false);
+            this.splitContainer9.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer9)).EndInit();
+            this.splitContainer9.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -702,15 +732,6 @@
             this.splitContainer7.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer7)).EndInit();
             this.splitContainer7.ResumeLayout(false);
-            this.splitContainer8.Panel1.ResumeLayout(false);
-            this.splitContainer8.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer8)).EndInit();
-            this.splitContainer8.ResumeLayout(false);
-            this.panelHaderRight.ResumeLayout(false);
-            this.panelHaderLeft.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -746,13 +767,13 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label lblFactory;
         private System.Windows.Forms.Label lblWorkerName;
-        private System.Windows.Forms.Label lblDowntimeState;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblLine;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panelHaderRight;
+        private System.Windows.Forms.SplitContainer splitContainer9;
+        private System.Windows.Forms.Label lblDowntimeState;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnLogout;
     }
