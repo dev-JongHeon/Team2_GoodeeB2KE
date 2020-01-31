@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Team2_VO;
 
 namespace Team2_POP
 {
@@ -41,28 +42,23 @@ namespace Team2_POP
 
             #region 콤보박스 바인딩 - 불량유형, 불량처리 유형
 
-            DataTable dt = new Service().GetDefectiveCode();
+            Service service = new Service();
 
-            DataView dvDefect = new DataView();
-            dvDefect = dt.DefaultView;
-            dvDefect.RowFilter = "Div = 'Defective'";
+            List<ComboItemVO> list = service.GetDefectiveCode();
+            
+            UtilClass.ComboBinding(cboDefectiveName, list.FindAll(c => c.CodeType.Contains("Defec")), "불량유형 선택");
+            UtilClass.ComboBinding(cboHandle, list.FindAll(c => c.CodeType.Contains("Handle")), "불량처리유형 선택");
 
-            DataView dvHandle = new DataView();
-            dvHandle = dt.Copy().DefaultView;
-            dvHandle.RowFilter = "Div = 'Handle'";
 
-            cboDefectiveName.DataSource = dvDefect;
-            cboDefectiveName.DisplayMember = "Name";
-            cboDefectiveName.ValueMember = "ID";
-
-            cboHandle.DataSource = dvHandle;
-            cboHandle.DisplayMember = "Name";
-            cboHandle.ValueMember = "ID";
 
             #endregion
 
             #region 콤보박스 바인딩 - 생산실적에 있는 불량 유형
-            cboDefItem.DataSource = new Service().GetDefective(Performance_ID);
+            List<string> listDefective = service.GetDefective(Performance_ID);
+
+            UtilClass.ComboBinding(cboDefItem, listDefective, "코드 선택");
+
+            //cboDefItem.DataSource = new Service().GetDefective(Performance_ID);
             #endregion
         }
 
@@ -70,7 +66,7 @@ namespace Team2_POP
         {
             StringBuilder msg = new StringBuilder();
 
-            if (char.IsDigit(Convert.ToChar(lblDefItem.Text)))
+            if (lblDefItem.Text != cboDefItem.Text)
                 msg.Append("불량번호를 선택해주세요");
 
             if (lblDefectiveName.Tag == null)
@@ -129,7 +125,7 @@ namespace Team2_POP
         private void btnHandle_Click(object sender, EventArgs e)
         {
             lblHandle.Tag = cboHandle.SelectedValue.ToString();
-            lblHandle.Text = cboDefectiveName.Text;
+            lblHandle.Text = cboHandle.Text;
         }
     }
 }

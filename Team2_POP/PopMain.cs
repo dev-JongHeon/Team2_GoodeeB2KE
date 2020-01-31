@@ -41,6 +41,23 @@ namespace Team2_POP
             BtnDisable(btnWorker);
             BtnDisable(btnProduceStart);
 
+            ImageList imageList = new ImageList();
+
+            imageList.Images.Add("close", Properties.Resources.exit);
+            imageList.Images.Add("logout", Properties.Resources.logout);
+            imageList.Images.Add("PreArrow", Properties.Resources.LeftArrow);
+            imageList.Images.Add("NextArrow", Properties.Resources.RightArrow);
+
+            imageList.ImageSize = btnExit.Size;
+
+            btnPreDate.Image = imageList.Images["PreArrow"];
+            btnNextDate.Image = imageList.Images["NextArrow"];
+            btnExit.Image = imageList.Images["close"];
+            btnLogout.Image = imageList.Images["logout"];
+
+            
+
+
             // =============================================
             //               스플릿 컨테이너 디자인
             // =============================================
@@ -75,9 +92,9 @@ namespace Team2_POP
             UtilClass.AddNewColum(dgvProduce, "생산시작날짜", "Produce_StartDate", true, 135);
             UtilClass.AddNewColum(dgvProduce, "생산완료날짜", "Produce_DoneDate", true, 135);
             UtilClass.AddNewColum(dgvProduce, "상품명", "Product_Name", true, 200);
-            UtilClass.AddNewColum(dgvProduce, "생산요청수량", "Produce_QtyRequested", true, 100, DataGridViewContentAlignment.MiddleRight);
-            UtilClass.AddNewColum(dgvProduce, "생산진행수량", "Produce_QtyReleased", true, 100, DataGridViewContentAlignment.MiddleRight);
-            UtilClass.AddNewColum(dgvProduce, "불량수", "Performance_QtyDefectiveItem", true, 80, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dgvProduce, "요청", "Produce_QtyRequested", true, 70, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dgvProduce, "진행", "Produce_QtyReleased", true, 70, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dgvProduce, "불량", "Performance_QtyDefectiveItem", true, 70, DataGridViewContentAlignment.MiddleRight);
             UtilClass.AddNewColum(dgvProduce, "생산 상태", "Produce_State", true);
 
 
@@ -133,17 +150,19 @@ namespace Team2_POP
         private void IsDowntime()
         {
             bool bResult = new Service().IsDowntime(WorkerInfo.LineID);
-            pictureBox1.Tag = bResult;
+            lblDowntimeState.Tag = bResult;
 
             if (bResult)
             {
-                pictureBox1.BackColor = Color.LightGreen;
+                lblDowntimeState.BackColor = Color.LightGreen;
+                lblDowntimeState.ForeColor = Color.DarkGreen;
                 lblDowntimeState.Text = "가동";
                 btnDownTime.Text = "비가동 전환";
             }
             else
             {
-                pictureBox1.BackColor = Color.PaleVioletRed;
+                lblDowntimeState.BackColor = Color.PaleVioletRed;
+                lblDowntimeState.ForeColor = Color.DarkRed;
                 lblDowntimeState.Text = "비가동";
                 btnDownTime.Text = "가동 전환";
             }
@@ -189,7 +208,7 @@ namespace Team2_POP
         // 비가동 전환버튼을 누른경우
         private void btnDownTime_Click(object sender, EventArgs e)
         {
-            if (Convert.ToBoolean(pictureBox1.Tag) == true)
+            if (Convert.ToBoolean(lblDowntimeState.Tag) == true)
             {
                 DowntimeRegister downtime = new DowntimeRegister();
 
@@ -216,41 +235,7 @@ namespace Team2_POP
 
         //생산시작
         private void btnProduceStart_Click(object sender, EventArgs e)
-        {
-            //try
-            //{
-            //    string[] result = null;
-            //    // 생산 아이디를 넘김
-            //    if (dgvProduce.SelectedRows.Count < 1 || dgvProduce.SelectedRows[0].Cells[0].Value != null)
-            //        result = new Service().StartProduce(dgvProduce.SelectedRows[0].Cells[0].Value.ToString());
-
-            //    if (result.Length < 2 || result[0] == "Error")
-            //        MessageBox.Show("작업자를 등록해주세요");
-            //    else
-            //    {
-            //        //생산 할당 -- 생산실적번호를 가져옴
-            //        MessageBox.Show("생산 시작 할당");
-
-            //        ProduceMachine machine = new ProduceMachine();
-
-            //        machine.PerformanceID = result[1];
-            //        machine.ProduceID = result[2];
-            //        machine.RequestQty = Convert.ToInt32(result[3]);
-            //        machine.LineID = result[4];
-
-            //        bool bResult = machine.Start();
-            //        if (bResult)
-            //            MessageBox.Show("완료");
-            //        else
-            //            MessageBox.Show("실패");
-            //    }
-            //}
-            //catch
-            //{
-
-            //    return;
-            //}
-
+        {            
             try
             {
                 string[] result = null;
@@ -391,10 +376,18 @@ namespace Team2_POP
 
                 if (e.RowIndex > -1 && e.ColumnIndex > -1)
                 {
-                    dgvPerformance.DataSource = new Service().GetPerformance(dgvProduce.SelectedRows[0].Cells[0].Value.ToString());
+                    if (dgvProduce.SelectedRows[0].Cells[0].Value == null)
+                        return;
+
+                    string produceID = dgvProduce.SelectedRows[0].Cells[0].Value.ToString();
+
+                    Service service = new Service();
+
+                    dgvPerformance.DataSource = service.GetPerformance(produceID);
                     dgvPerformance.ClearSelection();
 
-                    if (dgvProduce.SelectedRows[0].Cells[7].Value == null || Convert.ToInt32(dgvProduce.SelectedRows[0].Cells[7].Value) == 0)
+                    object dgvDefective = dgvProduce.SelectedRows[0].Cells[7].Value;
+                    if (dgvDefective == null || Convert.ToInt32(dgvDefective) == 0 || !service.GetDefectiveByProduce(produceID))
                     {
                         BtnDisable(btnDefective);
                     }
@@ -443,8 +436,7 @@ namespace Team2_POP
 
         private void GetTime()
         {
-            System.Timers.Timer timer = new System.Timers.Timer();
-            timer.Interval = 1000;
+            System.Timers.Timer timer = new System.Timers.Timer(1000);
             timer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
             timer.Start();
         }
@@ -468,8 +460,8 @@ namespace Team2_POP
         private void BtnEnable(Button btn)
         {
             btn.Enabled = true;
-            btn.BackColor = Color.FromArgb(232, 236, 241);
-            btn.ForeColor = Color.Black;
+            btn.BackColor = Color.SteelBlue;
+            btn.ForeColor = Color.White;           
         }
 
         private void BtnDisable(Button btn)
