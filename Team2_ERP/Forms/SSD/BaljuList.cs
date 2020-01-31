@@ -42,6 +42,7 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Balju, "발주요청일시", "Balju_Date", true, 140);
             UtilClass.AddNewColum(dgv_Balju, "등록사원", "Employees_Name", true, 100);
             UtilClass.AddNewColum(dgv_Balju, "삭제여부", "Balju_DeletedYN", false);
+            dgv_Balju.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             Balju_AllList = service.GetBaljuList();  // 발주리스트 갱신
             dgv_Balju.DataSource = Balju_AllList;
 
@@ -137,9 +138,9 @@ namespace Team2_ERP
             {
                 string Balju_ID = dgv_Balju.CurrentRow.Cells[0].Value.ToString();
                 service.DeleteBalju(Balju_ID);
-                Func_Refresh();  // 새로고침
             }
-            main.NoticeMessage = "";
+            Func_Refresh();  // 새로고침
+            main.NoticeMessage = "발주현황 화면입니다.";
         }
 
         public override void Print(object sender, EventArgs e)  // 인쇄

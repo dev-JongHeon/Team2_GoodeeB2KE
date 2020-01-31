@@ -40,6 +40,10 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Shipment, "고객성명", "Customer_Name", true);
             UtilClass.AddNewColum(dgv_Shipment, "출하지시일시", "Shipment_RequiredDate", true, 140);
             UtilClass.AddNewColum(dgv_Shipment, "출하지시자", "Employees_Name", true, 110);
+            dgv_Shipment.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_Shipment.Columns[2].DefaultCellStyle.Format = "yyyy-MM-dd   hh:mm:ss";
+            dgv_Shipment.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_Shipment.Columns[5].DefaultCellStyle.Format = "yyyy-MM-dd   hh:mm:ss";
             Shipment_AllList = service.GetShipmentList();
             dgv_Shipment.DataSource = Shipment_AllList;
 

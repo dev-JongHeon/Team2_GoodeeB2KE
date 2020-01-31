@@ -36,14 +36,16 @@ namespace Team2_ERP
             UtilClass.SettingDgv(dgv_Stock);
             UtilClass.AddNewColum(dgv_Stock, "수불번호", "StockReceipt_ID", true);
             UtilClass.AddNewColum(dgv_Stock, "수불유형", "StockReceipt_Division1", true);
-            UtilClass.AddNewColum(dgv_Stock, "처리일시", "StockReceipt_Date", true, 140);
+            UtilClass.AddNewColum(dgv_Stock, "처리일시", "StockReceipt_Date", true, 140);  // 2
             UtilClass.AddNewColum(dgv_Stock, "창고코드", "Warehouse_ID", true);
             UtilClass.AddNewColum(dgv_Stock, "창고명", "Warehouse_Name", true, 160);
             UtilClass.AddNewColum(dgv_Stock, "품번", "Product_ID", true, 70);
             UtilClass.AddNewColum(dgv_Stock, "품명", "Product_Name", true, 300);
-            UtilClass.AddNewColum(dgv_Stock, "수불수량", "StockReceipt_Quantity", true);
+            UtilClass.AddNewColum(dgv_Stock, "수불수량", "StockReceipt_Quantity", true);  // 7
             UtilClass.AddNewColum(dgv_Stock, "등록사원", "Employees_Name", true);
             UtilClass.AddNewColum(dgv_Stock, "창고유형", "Warehouse_Division", false);
+            dgv_Stock.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_Stock.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             StockReceipt_AllList = service.GetStockReceipts(); //  자재, 반제품 수불내역 전체 갱신
 
             // LINQ로 원자재창고에 속한것만 가져옴
