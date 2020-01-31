@@ -117,6 +117,8 @@
             this.ClientSize = new System.Drawing.Size(1364, 820);
             this.FormName = "주문처리완료현황";
             this.Name = "OrderCompleteForm";
+            this.Activated += new System.EventHandler(this.OrderCompleteForm_Activated);
+            this.Deactivate += new System.EventHandler(this.OrderCompleteForm_Deactivate);
             this.Load += new System.EventHandler(this.OrderCompleteForm_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

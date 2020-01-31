@@ -35,15 +35,18 @@ namespace Team2_ERP
             UtilClass.SettingDgv(dgv_Shipment);
             UtilClass.AddNewColum(dgv_Shipment, "출하번호", "Shipment_ID", true);
             UtilClass.AddNewColum(dgv_Shipment, "주문번호", "Order_ID", true);
-            UtilClass.AddNewColum(dgv_Shipment, "주문일시", "Order_Date", true, 140);
+            UtilClass.AddNewColum(dgv_Shipment, "주문일시", "Order_Date", true, 170);
+            UtilClass.AddNewColum(dgv_Shipment, "주문처리일시", "OrderCompleted_Date", true, 170);
             UtilClass.AddNewColum(dgv_Shipment, "고객ID", "Customer_userID", true, 90);
             UtilClass.AddNewColum(dgv_Shipment, "고객성명", "Customer_Name", true);
-            UtilClass.AddNewColum(dgv_Shipment, "출하지시일시", "Shipment_RequiredDate", true, 140);
+            UtilClass.AddNewColum(dgv_Shipment, "출하요청날짜", "Shipment_RequiredDate", true, 120);
             UtilClass.AddNewColum(dgv_Shipment, "출하지시자", "Employees_Name", true, 110);
             dgv_Shipment.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_Shipment.Columns[2].DefaultCellStyle.Format = "yyyy-MM-dd   hh:mm:ss";
-            dgv_Shipment.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_Shipment.Columns[5].DefaultCellStyle.Format = "yyyy-MM-dd   hh:mm:ss";
+            dgv_Shipment.Columns[2].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
+            dgv_Shipment.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_Shipment.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
+            dgv_Shipment.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_Shipment.Columns[6].DefaultCellStyle.Format = "yyyy-MM-dd";
             Shipment_AllList = service.GetShipmentList();
             dgv_Shipment.DataSource = Shipment_AllList;
 
@@ -53,8 +56,6 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_ShipmentDetail, "제품명", "Product_Name", true, 300);
             UtilClass.AddNewColum(dgv_ShipmentDetail, "주문수량", "OrderDetail_Qty", true);
             ShipmentDetail_AllList = service.GetShipmentDetailList();
-
-            main.NoticeMessage = "출하현황 화면입니다.";
         } 
 
         private void dgv_Shipment_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -158,6 +159,7 @@ namespace Team2_ERP
         private void ShipmentMainForm_Activated(object sender, EventArgs e)
         {
             MenuByAuth(Auth);
+            main.NoticeMessage = notice;
         }
 
         public override void MenuStripONOFF(bool flag)

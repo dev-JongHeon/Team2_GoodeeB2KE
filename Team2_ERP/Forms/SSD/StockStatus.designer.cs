@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.dgv_StockStatus = new System.Windows.Forms.DataGridView();
-            this.searchUserControl1 = new Team2_ERP.SearchUserControl();
-            this.searchUserControl3 = new Team2_ERP.SearchUserControl();
-            this.searchUserControl2 = new Team2_ERP.SearchUserControl();
+            this.Search_Product = new Team2_ERP.SearchUserControl();
+            this.Search_Warehouse = new Team2_ERP.SearchUserControl();
+            this.Search_Category = new Team2_ERP.SearchUserControl();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel_Search.SuspendLayout();
@@ -48,9 +48,9 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.searchUserControl2);
-            this.panel5.Controls.Add(this.searchUserControl3);
-            this.panel5.Controls.Add(this.searchUserControl1);
+            this.panel5.Controls.Add(this.Search_Category);
+            this.panel5.Controls.Add(this.Search_Warehouse);
+            this.panel5.Controls.Add(this.Search_Product);
             // 
             // lblFormName
             // 
@@ -67,38 +67,38 @@
             this.dgv_StockStatus.Size = new System.Drawing.Size(1364, 662);
             this.dgv_StockStatus.TabIndex = 1;
             // 
-            // searchUserControl1
+            // Search_Product
             // 
-            this.searchUserControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl1.ControlType = Team2_ERP.SearchUserControl.Mode.Product;
-            this.searchUserControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl1.Labelname = "제품";
-            this.searchUserControl1.Location = new System.Drawing.Point(50, 26);
-            this.searchUserControl1.Name = "searchUserControl1";
-            this.searchUserControl1.Size = new System.Drawing.Size(312, 25);
-            this.searchUserControl1.TabIndex = 33;
+            this.Search_Product.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.Search_Product.ControlType = Team2_ERP.SearchUserControl.Mode.Product;
+            this.Search_Product.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Search_Product.Labelname = "제품";
+            this.Search_Product.Location = new System.Drawing.Point(50, 26);
+            this.Search_Product.Name = "Search_Product";
+            this.Search_Product.Size = new System.Drawing.Size(312, 25);
+            this.Search_Product.TabIndex = 33;
             // 
-            // searchUserControl3
+            // Search_Warehouse
             // 
-            this.searchUserControl3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl3.ControlType = Team2_ERP.SearchUserControl.Mode.Warehouse;
-            this.searchUserControl3.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl3.Labelname = "창고";
-            this.searchUserControl3.Location = new System.Drawing.Point(50, 53);
-            this.searchUserControl3.Name = "searchUserControl3";
-            this.searchUserControl3.Size = new System.Drawing.Size(312, 25);
-            this.searchUserControl3.TabIndex = 35;
+            this.Search_Warehouse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.Search_Warehouse.ControlType = Team2_ERP.SearchUserControl.Mode.Warehouse;
+            this.Search_Warehouse.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Search_Warehouse.Labelname = "창고";
+            this.Search_Warehouse.Location = new System.Drawing.Point(50, 53);
+            this.Search_Warehouse.Name = "Search_Warehouse";
+            this.Search_Warehouse.Size = new System.Drawing.Size(312, 25);
+            this.Search_Warehouse.TabIndex = 35;
             // 
-            // searchUserControl2
+            // Search_Category
             // 
-            this.searchUserControl2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl2.ControlType = Team2_ERP.SearchUserControl.Mode.ProductCategory;
-            this.searchUserControl2.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl2.Labelname = "카테고리";
-            this.searchUserControl2.Location = new System.Drawing.Point(388, 26);
-            this.searchUserControl2.Name = "searchUserControl2";
-            this.searchUserControl2.Size = new System.Drawing.Size(312, 25);
-            this.searchUserControl2.TabIndex = 36;
+            this.Search_Category.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.Search_Category.ControlType = Team2_ERP.SearchUserControl.Mode.ProductCategory;
+            this.Search_Category.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Search_Category.Labelname = "카테고리";
+            this.Search_Category.Location = new System.Drawing.Point(388, 26);
+            this.Search_Category.Name = "Search_Category";
+            this.Search_Category.Size = new System.Drawing.Size(312, 25);
+            this.Search_Category.TabIndex = 36;
             // 
             // StockStatus
             // 
@@ -122,8 +122,8 @@
 
         #endregion
         private System.Windows.Forms.DataGridView dgv_StockStatus;
-        private SearchUserControl searchUserControl3;
-        private SearchUserControl searchUserControl1;
-        private SearchUserControl searchUserControl2;
+        private SearchUserControl Search_Warehouse;
+        private SearchUserControl Search_Product;
+        private SearchUserControl Search_Category;
     }
 }

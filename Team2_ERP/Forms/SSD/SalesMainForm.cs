@@ -35,13 +35,13 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_SalesStatus, "주문번호", "Order_ID", true);
             UtilClass.AddNewColum(dgv_SalesStatus, "고객ID", "Customer_userID", true, 90);
             UtilClass.AddNewColum(dgv_SalesStatus, "고객성명", "Customer_Name", true);
-            UtilClass.AddNewColum(dgv_SalesStatus, "주문일시", "Order_Date", true, 150);
-            UtilClass.AddNewColum(dgv_SalesStatus, "출하처리일시", "Shipment_DoneDate", true, 150);
+            UtilClass.AddNewColum(dgv_SalesStatus, "주문일시", "Order_Date", true, 170);
+            UtilClass.AddNewColum(dgv_SalesStatus, "출하처리일시", "Shipment_DoneDate", true, 170);
             UtilClass.AddNewColum(dgv_SalesStatus, "주문총액", "TotalPrice", true, 200);
             dgv_SalesStatus.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_SalesStatus.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd   hh:mm:ss";
+            dgv_SalesStatus.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
             dgv_SalesStatus.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_SalesStatus.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd   hh:mm:ss";
+            dgv_SalesStatus.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
             dgv_SalesStatus.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgv_SalesStatus.Columns[5].DefaultCellStyle.Format = "#,#0원";
             Order_AllList = service.GetSalesStatus();
@@ -54,8 +54,6 @@ namespace Team2_ERP
             }
 
             label3.Text = total.ToString("#,#0원");
-
-            main.NoticeMessage = "매출현황 화면입니다.";
         }
 
         #region ToolStrip 기능정의
@@ -123,6 +121,7 @@ namespace Team2_ERP
         private void OrderMainForm_Activated(object sender, EventArgs e)
         {
             MenuByAuth(Auth);
+            main.NoticeMessage = notice;
         }
         public override void MenuStripONOFF(bool flag)
         {

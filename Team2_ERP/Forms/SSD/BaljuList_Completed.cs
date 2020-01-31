@@ -39,12 +39,14 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_BaljuCompleted, "발주지시번호", "Balju_ID", true, 130);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "거래처코드", "Company_ID", true, 110);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "거래처명칭", "Company_Name", true, 500);
-            UtilClass.AddNewColum(dgv_BaljuCompleted, "발주요청일시", "Balju_Date", true, 140);
+            UtilClass.AddNewColum(dgv_BaljuCompleted, "발주요청일시", "Balju_Date", true, 170);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "등록사원", "Employees_Name", true);
-            UtilClass.AddNewColum(dgv_BaljuCompleted, "수령일시", "Balju_ReceiptDate", true, 120);
+            UtilClass.AddNewColum(dgv_BaljuCompleted, "수령일시", "Balju_ReceiptDate", true, 170);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "삭제여부", "Balju_DeletedYN", false);
             dgv_BaljuCompleted.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_BaljuCompleted.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
             dgv_BaljuCompleted.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_BaljuCompleted.Columns[5].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
             BaljuCompleted_AllList = service.GetBalju_CompletedList(); // 발주리스트 갱신
             dgv_BaljuCompleted.DataSource = BaljuCompleted_AllList;
 
@@ -55,7 +57,7 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_BaljuDetail, "발주요청수량", "BaljuDetail_Qty", true, 130);
             BaljuDetail_AllList = service.GetBalju_DetailList(); // 발주디테일 AllList 갱신
 
-            main.NoticeMessage = "발주완료현황 화면입니다.";
+            
         }
 
         private void dgv_BaljuCompleted_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
@@ -146,8 +148,9 @@ namespace Team2_ERP
         private void BaljuList_Completed_Activated(object sender, EventArgs e)
         {
             MenuByAuth(Auth);
+            main.NoticeMessage = notice;
         }
-
+        
         public override void MenuStripONOFF(bool flag)
         {
             main.신규ToolStripMenuItem.Visible = false;

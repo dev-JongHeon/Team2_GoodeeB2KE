@@ -39,10 +39,12 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Balju, "발주지시번호", "Balju_ID", true, 130);
             UtilClass.AddNewColum(dgv_Balju, "거래처코드", "Company_ID", true, 110);
             UtilClass.AddNewColum(dgv_Balju, "거래처명칭", "Company_Name", true, 500);
-            UtilClass.AddNewColum(dgv_Balju, "발주요청일시", "Balju_Date", true, 140);
+            UtilClass.AddNewColum(dgv_Balju, "발주요청일시", "Balju_Date", true, 170);
             UtilClass.AddNewColum(dgv_Balju, "등록사원", "Employees_Name", true, 100);
             UtilClass.AddNewColum(dgv_Balju, "삭제여부", "Balju_DeletedYN", false);
             dgv_Balju.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_Balju.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
+
             Balju_AllList = service.GetBaljuList();  // 발주리스트 갱신
             dgv_Balju.DataSource = Balju_AllList;
 
@@ -52,8 +54,6 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_BaljuDetail, "품목명", "Product_Name", true, 500);
             UtilClass.AddNewColum(dgv_BaljuDetail, "발주요청수량", "BaljuDetail_Qty", true, 130);
             BaljuDetail_AllList = service.GetBalju_DetailList(); // 발주디테일 AllList 갱신
-
-            main.NoticeMessage = "발주현황 화면입니다.";
         }
 
         private void dgv_Balju_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
@@ -128,7 +128,7 @@ namespace Team2_ERP
                 string Balju_ID = dgv_Balju.CurrentRow.Cells[0].Value.ToString();
                 service.UpdateBalju_Processed(Balju_ID);
                 Func_Refresh();  // 새로고침
-                main.NoticeMessage = "";
+                main.NoticeMessage = "완료 처리되었습니다.";
             }
         }
 
@@ -140,7 +140,7 @@ namespace Team2_ERP
                 service.DeleteBalju(Balju_ID);
             }
             Func_Refresh();  // 새로고침
-            main.NoticeMessage = "발주현황 화면입니다.";
+            main.NoticeMessage = notice;
         }
 
         public override void Print(object sender, EventArgs e)  // 인쇄
@@ -155,6 +155,7 @@ namespace Team2_ERP
             MenuByAuth(Auth);
             main.수정ToolStripMenuItem.Text = "처리";
             main.수정ToolStripMenuItem.ToolTipText = "처리(Ctrl+M)";
+            main.NoticeMessage = notice;
         }
 
         public override void MenuStripONOFF(bool flag)

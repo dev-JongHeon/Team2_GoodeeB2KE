@@ -35,15 +35,16 @@ namespace Team2_ERP
             UtilClass.SettingDgv(dgv_Stock);
             UtilClass.AddNewColum(dgv_Stock, "수불번호", "StockReceipt_ID", true);
             UtilClass.AddNewColum(dgv_Stock, "수불유형", "StockReceipt_Division1", true);
-            UtilClass.AddNewColum(dgv_Stock, "처리일시", "StockReceipt_Date", true, 140);
+            UtilClass.AddNewColum(dgv_Stock, "처리일시", "StockReceipt_Date", true, 170);
             UtilClass.AddNewColum(dgv_Stock, "창고코드", "Warehouse_ID", true);
             UtilClass.AddNewColum(dgv_Stock, "창고명", "Warehouse_Name", true, 160);
             UtilClass.AddNewColum(dgv_Stock, "품번", "Product_ID", true, 70);
             UtilClass.AddNewColum(dgv_Stock, "품명", "Product_Name", true, 300);
             UtilClass.AddNewColum(dgv_Stock, "수불수량", "StockReceipt_Quantity", true);
             UtilClass.AddNewColum(dgv_Stock, "등록사원", "Employees_Name", true);
-            UtilClass.AddNewColum(dgv_Stock, "창고유형", "Warehouse_Division", false);
+            UtilClass.AddNewColum(dgv_Stock, "창고유형", "Warehouse_Division", false); 
             dgv_Stock.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_Stock.Columns[2].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
             dgv_Stock.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             StockReceipt_AllList = service.GetStockReceipts(); // 수불내역 갱신
 
@@ -52,8 +53,6 @@ namespace Team2_ERP
                                     where list_Stock.Warehouse_Division == true
                                     select list_Stock).ToList();
             dgv_Stock.DataSource = StockReceipt_AllList;
-
-            main.NoticeMessage = "반제품수불현황 화면입니다.";
         }
         private void Func_Refresh()  // 새로고침 기능
         {
@@ -165,6 +164,7 @@ namespace Team2_ERP
         private void InOutList_SemiProductWarehouse_Activated(object sender, EventArgs e)
         {
             MenuByAuth(Auth);
+            main.NoticeMessage = notice;
         }
 
         public override void MenuStripONOFF(bool flag)

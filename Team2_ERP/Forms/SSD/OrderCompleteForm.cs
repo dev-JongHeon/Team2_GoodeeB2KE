@@ -38,17 +38,16 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Order, "고객ID", "Customer_UserID", true, 90);
             UtilClass.AddNewColum(dgv_Order, "고객성명", "Customer_Name", true);
             UtilClass.AddNewColum(dgv_Order, "주문일시", "Order_Date", true, 140);
-            UtilClass.AddNewColum(dgv_Order, "주문처리일시", "OrderComplete_Date", true, 140);
-
+            UtilClass.AddNewColum(dgv_Order, "주문처리일시", "OrderCompleted_Date", true, 140);
             UtilClass.AddNewColum(dgv_Order, "배송지주소", "Order_Address1", true, 300);
             UtilClass.AddNewColum(dgv_Order, "배송지상세주소", "Order_Address2", true, 250);
             UtilClass.AddNewColum(dgv_Order, "주문총액", "TotalPrice", true);
             dgv_Order.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_Order.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd hh:mm:ss";
+            dgv_Order.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm";
             dgv_Order.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_Order.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd hh:mm:ss";
-            dgv_Order.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgv_Order.Columns[6].DefaultCellStyle.Format = "#,#0원";
+            dgv_Order.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm";
+            dgv_Order.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv_Order.Columns[7].DefaultCellStyle.Format = "#,#0원";
             dgv_Order.DataSource = service.GetOrderCompletedList();
 
             UtilClass.SettingDgv(dgv_OrderDetail);
@@ -127,10 +126,10 @@ namespace Team2_ERP
         #endregion
 
         #region Activated, OnOff, DeActivate
-        private void BaljuList_Activated(object sender, EventArgs e)
+        private void OrderCompleteForm_Activated(object sender, EventArgs e)
         {
             MenuByAuth(Auth);
-            main.NoticeMessage = "주문완료현황 화면입니다.";
+            main.NoticeMessage = notice;
         }
 
         public override void MenuStripONOFF(bool flag)
@@ -141,7 +140,7 @@ namespace Team2_ERP
             main.인쇄ToolStripMenuItem.Visible = flag;
         }
 
-        private void BaljuList_Deactivate(object sender, EventArgs e)
+        private void OrderCompleteForm_Deactivate(object sender, EventArgs e)
         {
             new SettingMenuStrip().UnsetMenu(this);
         }

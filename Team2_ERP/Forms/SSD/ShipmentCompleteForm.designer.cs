@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.searchUserControl2 = new Team2_ERP.SearchUserControl();
-            this.searchPeriodControl2 = new Team2_ERP.SearchPeriodControl();
-            this.searchUserControl1 = new Team2_ERP.SearchUserControl();
+            this.Search_Employees = new Team2_ERP.SearchUserControl();
+            this.Search_OrderPeriod = new Team2_ERP.SearchPeriodControl();
+            this.Search_Customer = new Team2_ERP.SearchUserControl();
             this.dgv_Shipment = new System.Windows.Forms.DataGridView();
             this.dgv_ShipmentDetail = new System.Windows.Forms.DataGridView();
-            this.searchPeriodControl1 = new Team2_ERP.SearchPeriodControl();
-            this.searchPeriodControl3 = new Team2_ERP.SearchPeriodControl();
+            this.Search_ShipmentIndexPeriod = new Team2_ERP.SearchPeriodControl();
+            this.Search_ShipmentRequiredDate = new Team2_ERP.SearchPeriodControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -64,46 +64,46 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.searchPeriodControl3);
-            this.panel5.Controls.Add(this.searchPeriodControl1);
-            this.panel5.Controls.Add(this.searchUserControl2);
-            this.panel5.Controls.Add(this.searchPeriodControl2);
-            this.panel5.Controls.Add(this.searchUserControl1);
+            this.panel5.Controls.Add(this.Search_ShipmentRequiredDate);
+            this.panel5.Controls.Add(this.Search_ShipmentIndexPeriod);
+            this.panel5.Controls.Add(this.Search_Employees);
+            this.panel5.Controls.Add(this.Search_OrderPeriod);
+            this.panel5.Controls.Add(this.Search_Customer);
             // 
             // lblFormName
             // 
             this.lblFormName.Text = "출하완료현황";
             // 
-            // searchUserControl2
+            // Search_Employees
             // 
-            this.searchUserControl2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl2.ControlType = Team2_ERP.SearchUserControl.Mode.Employee;
-            this.searchUserControl2.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl2.Labelname = "출하지시자";
-            this.searchUserControl2.Location = new System.Drawing.Point(443, 52);
-            this.searchUserControl2.Name = "searchUserControl2";
-            this.searchUserControl2.Size = new System.Drawing.Size(312, 25);
-            this.searchUserControl2.TabIndex = 6;
+            this.Search_Employees.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.Search_Employees.ControlType = Team2_ERP.SearchUserControl.Mode.Employee;
+            this.Search_Employees.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Search_Employees.Labelname = "출하지시자";
+            this.Search_Employees.Location = new System.Drawing.Point(443, 52);
+            this.Search_Employees.Name = "Search_Employees";
+            this.Search_Employees.Size = new System.Drawing.Size(312, 25);
+            this.Search_Employees.TabIndex = 6;
             // 
-            // searchPeriodControl2
+            // Search_OrderPeriod
             // 
-            this.searchPeriodControl2.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchPeriodControl2.Labelname = "주문일시";
-            this.searchPeriodControl2.Location = new System.Drawing.Point(73, 21);
-            this.searchPeriodControl2.Name = "searchPeriodControl2";
-            this.searchPeriodControl2.Size = new System.Drawing.Size(312, 25);
-            this.searchPeriodControl2.TabIndex = 4;
+            this.Search_OrderPeriod.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Search_OrderPeriod.Labelname = "주문일자";
+            this.Search_OrderPeriod.Location = new System.Drawing.Point(73, 21);
+            this.Search_OrderPeriod.Name = "Search_OrderPeriod";
+            this.Search_OrderPeriod.Size = new System.Drawing.Size(312, 25);
+            this.Search_OrderPeriod.TabIndex = 4;
             // 
-            // searchUserControl1
+            // Search_Customer
             // 
-            this.searchUserControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl1.ControlType = Team2_ERP.SearchUserControl.Mode.Customer;
-            this.searchUserControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl1.Labelname = "고객";
-            this.searchUserControl1.Location = new System.Drawing.Point(73, 52);
-            this.searchUserControl1.Name = "searchUserControl1";
-            this.searchUserControl1.Size = new System.Drawing.Size(312, 25);
-            this.searchUserControl1.TabIndex = 3;
+            this.Search_Customer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.Search_Customer.ControlType = Team2_ERP.SearchUserControl.Mode.Customer;
+            this.Search_Customer.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Search_Customer.Labelname = "고객";
+            this.Search_Customer.Location = new System.Drawing.Point(73, 52);
+            this.Search_Customer.Name = "Search_Customer";
+            this.Search_Customer.Size = new System.Drawing.Size(312, 25);
+            this.Search_Customer.TabIndex = 3;
             // 
             // dgv_Shipment
             // 
@@ -128,23 +128,23 @@
             this.dgv_ShipmentDetail.Size = new System.Drawing.Size(1364, 290);
             this.dgv_ShipmentDetail.TabIndex = 38;
             // 
-            // searchPeriodControl1
+            // Search_ShipmentIndexPeriod
             // 
-            this.searchPeriodControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchPeriodControl1.Labelname = "출하지시일시";
-            this.searchPeriodControl1.Location = new System.Drawing.Point(442, 21);
-            this.searchPeriodControl1.Name = "searchPeriodControl1";
-            this.searchPeriodControl1.Size = new System.Drawing.Size(312, 25);
-            this.searchPeriodControl1.TabIndex = 7;
+            this.Search_ShipmentIndexPeriod.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Search_ShipmentIndexPeriod.Labelname = "주문처리일자";
+            this.Search_ShipmentIndexPeriod.Location = new System.Drawing.Point(442, 21);
+            this.Search_ShipmentIndexPeriod.Name = "Search_ShipmentIndexPeriod";
+            this.Search_ShipmentIndexPeriod.Size = new System.Drawing.Size(312, 25);
+            this.Search_ShipmentIndexPeriod.TabIndex = 7;
             // 
-            // searchPeriodControl3
+            // Search_ShipmentRequiredDate
             // 
-            this.searchPeriodControl3.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchPeriodControl3.Labelname = "출하처리일시";
-            this.searchPeriodControl3.Location = new System.Drawing.Point(811, 21);
-            this.searchPeriodControl3.Name = "searchPeriodControl3";
-            this.searchPeriodControl3.Size = new System.Drawing.Size(312, 25);
-            this.searchPeriodControl3.TabIndex = 8;
+            this.Search_ShipmentRequiredDate.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Search_ShipmentRequiredDate.Labelname = "출하요청날짜";
+            this.Search_ShipmentRequiredDate.Location = new System.Drawing.Point(811, 21);
+            this.Search_ShipmentRequiredDate.Name = "Search_ShipmentRequiredDate";
+            this.Search_ShipmentRequiredDate.Size = new System.Drawing.Size(312, 25);
+            this.Search_ShipmentRequiredDate.TabIndex = 8;
             // 
             // ShipmentCompleteForm
             // 
@@ -152,6 +152,8 @@
             this.ClientSize = new System.Drawing.Size(1364, 820);
             this.FormName = "출하완료현황";
             this.Name = "ShipmentCompleteForm";
+            this.Activated += new System.EventHandler(this.ShipmentCompleteForm_Activated);
+            this.Deactivate += new System.EventHandler(this.ShipmentCompleteForm_Deactivate);
             this.Load += new System.EventHandler(this.ShipmentCompleteForm_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -173,12 +175,12 @@
 
         #endregion
 
-        private SearchUserControl searchUserControl2;
-        private SearchPeriodControl searchPeriodControl2;
-        private SearchUserControl searchUserControl1;
+        private SearchUserControl Search_Employees;
+        private SearchPeriodControl Search_OrderPeriod;
+        private SearchUserControl Search_Customer;
         private System.Windows.Forms.DataGridView dgv_Shipment;
         private System.Windows.Forms.DataGridView dgv_ShipmentDetail;
-        private SearchPeriodControl searchPeriodControl1;
-        private SearchPeriodControl searchPeriodControl3;
+        private SearchPeriodControl Search_ShipmentIndexPeriod;
+        private SearchPeriodControl Search_ShipmentRequiredDate;
     }
 }

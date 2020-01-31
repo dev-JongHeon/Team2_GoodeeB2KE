@@ -36,7 +36,7 @@ namespace Team2_ERP
             UtilClass.SettingDgv(dgv_Stock);
             UtilClass.AddNewColum(dgv_Stock, "수불번호", "StockReceipt_ID", true);
             UtilClass.AddNewColum(dgv_Stock, "수불유형", "StockReceipt_Division1", true);
-            UtilClass.AddNewColum(dgv_Stock, "처리일시", "StockReceipt_Date", true, 140);  // 2
+            UtilClass.AddNewColum(dgv_Stock, "처리일시", "StockReceipt_Date", true, 170);  // 2
             UtilClass.AddNewColum(dgv_Stock, "창고코드", "Warehouse_ID", true);
             UtilClass.AddNewColum(dgv_Stock, "창고명", "Warehouse_Name", true, 160);
             UtilClass.AddNewColum(dgv_Stock, "품번", "Product_ID", true, 70);
@@ -45,6 +45,8 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Stock, "등록사원", "Employees_Name", true);
             UtilClass.AddNewColum(dgv_Stock, "창고유형", "Warehouse_Division", false);
             dgv_Stock.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_Stock.Columns[2].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
+
             dgv_Stock.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             StockReceipt_AllList = service.GetStockReceipts(); //  자재, 반제품 수불내역 전체 갱신
 
@@ -54,7 +56,7 @@ namespace Team2_ERP
                                     select list_Stock).ToList();
             dgv_Stock.DataSource = StockReceipt_AllList;
 
-            main.NoticeMessage = "자재수불현황 화면입니다.";
+            
         }
         private void Func_Refresh()  // 새로고침 기능
         {
@@ -62,15 +64,15 @@ namespace Team2_ERP
 
             // LINQ로 원자재창고에 속한것만 바인딩
             StockReceipt_AllList = (from list_Stock in StockReceipt_AllList
-                                    where list_Stock.Warehouse_Division == true
+                                    where list_Stock.Warehouse_Division == false
                                     select list_Stock).ToList();
             dgv_Stock.DataSource = StockReceipt_AllList;
 
             // 검색조건 초기화
-            Search_Period.Startdate.Text = "";
-            Search_Period.Enddate.Text = "";
-            Search_Material.CodeTextBox.Text = "";
-            Search_Warehouse.CodeTextBox.Text = "";
+            Search_Period.Startdate.Clear();
+            Search_Period.Enddate.Clear();
+            Search_Material.CodeTextBox.Clear();
+            Search_Warehouse.CodeTextBox.Clear();
 
             rdo_All.Checked = true;
         }
@@ -162,6 +164,7 @@ namespace Team2_ERP
         private void InOutList_MaterialWarehouse_Activated(object sender, EventArgs e)
         {
             MenuByAuth(Auth);
+            main.NoticeMessage = notice;
         }
 
         public override void MenuStripONOFF(bool flag)

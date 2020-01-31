@@ -36,16 +36,12 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Order, "주문번호", "Order_ID", true);
             UtilClass.AddNewColum(dgv_Order, "고객ID", "Customer_UserID", true, 90);
             UtilClass.AddNewColum(dgv_Order, "고객성명", "Customer_Name", true);
-            UtilClass.AddNewColum(dgv_Order, "주문일시", "Order_Date", true, 140);
-            UtilClass.AddNewColum(dgv_Order, "주문처리일시", "OrderComplete_Date", true, 140);
-
+            UtilClass.AddNewColum(dgv_Order, "주문일시", "Order_Date", true, 170);
             UtilClass.AddNewColum(dgv_Order, "배송지주소", "Order_Address1", true, 300);
             UtilClass.AddNewColum(dgv_Order, "배송지상세주소", "Order_Address2", true, 250);
             UtilClass.AddNewColum(dgv_Order, "주문총액", "TotalPrice", true);
             dgv_Order.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_Order.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd hh:mm:ss";
-            dgv_Order.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_Order.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd hh:mm:ss";
+            dgv_Order.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
             dgv_Order.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgv_Order.Columns[6].DefaultCellStyle.Format = "#,#0원";
             Order_AllList = service.GetOrderList();
@@ -57,8 +53,6 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_OrderDetail, "제품명", "Product_Name", true, 300);
             UtilClass.AddNewColum(dgv_OrderDetail, "주문수량", "OrderDetail_Qty", true);
             OrderDetail_AllList = service.GetOrderDetailList();
-
-            main.NoticeMessage = "주문현황 화면입니다.";
         }
 
         private void dgv_Order_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
@@ -99,7 +93,7 @@ namespace Team2_ERP
                 service.UpOrder_InsShipment(orderID, Session.Employee_ID);
             }
             Func_Refresh();  // 새로고침
-            main.NoticeMessage = "주문현황 화면입니다.";
+            main.NoticeMessage = notice;
         }
 
         public override void Delete(object sender, EventArgs e)  // 삭제
@@ -110,7 +104,7 @@ namespace Team2_ERP
                 service.DeleteOrder(order_ID);
             }
             Func_Refresh();  // 새로고침
-            main.NoticeMessage = "주문현황 화면입니다.";
+            main.NoticeMessage = notice;
         }
 
         public override void Search(object sender, EventArgs e)  // 검색
@@ -166,6 +160,7 @@ namespace Team2_ERP
             main.수정ToolStripMenuItem.ToolTipText = "주문처리(Ctrl+M)";
             main.삭제ToolStripMenuItem.Text = "주문취소";
             main.삭제ToolStripMenuItem.ToolTipText = "주문취소(Ctrl+D)";
+            main.NoticeMessage = notice;
         }
 
         private void OrderMainForm_Deactivate(object sender, EventArgs e)
