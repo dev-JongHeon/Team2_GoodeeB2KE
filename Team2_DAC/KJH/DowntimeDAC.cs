@@ -36,7 +36,73 @@ namespace Team2_DAC
             {
                 throw new Exception(err.Message);
             }
+        }
 
+        public DataSet GetDowntimeByLine(string date)
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                string sql = "GetDowntimeByLine";
+                using (SqlDataAdapter adpt = new SqlDataAdapter(sql,conn))
+                {
+                    adpt.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    adpt.SelectCommand.Parameters.AddWithValue("@Date", date);
+                    conn.Open();
+                    adpt.Fill(ds);
+                    conn.Close();
+                }
+                return ds;
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+        }
+
+        public DataSet GetDowntimeByLine2(string line)
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                string sql = "GetDowntimeByLine2";
+                using (SqlDataAdapter adpt = new SqlDataAdapter(sql, conn))
+                {
+                    adpt.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    adpt.SelectCommand.Parameters.AddWithValue("@line", line);
+                    conn.Open();
+                    adpt.Fill(ds);
+                    conn.Close();
+                }
+                return ds;
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+        }
+
+
+        public DataSet GetDowntimeByType(string date)
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                string sql = "GetDowntimeByType";
+                using (SqlDataAdapter adpt = new SqlDataAdapter(sql, conn))
+                {
+                    adpt.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    adpt.SelectCommand.Parameters.AddWithValue("@Date", date);
+                    conn.Open();
+                    adpt.Fill(ds);
+                    conn.Close();
+                }
+                return ds;
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
         }
     }
 }

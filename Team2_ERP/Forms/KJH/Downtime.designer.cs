@@ -28,41 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.searchFactory = new Team2_ERP.SearchUserControl();
-            this.searchLine = new Team2_ERP.SearchUserControl();
-            this.searchDowntime = new Team2_ERP.SearchUserControl();
-            this.searchWorker = new Team2_ERP.SearchUserControl();
-            this.searchPeriod = new Team2_ERP.SearchPeriodControl();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabDowntime = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgvDowntime = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dgvDowntimeByLine = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvDowntimeByType = new System.Windows.Forms.DataGridView();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.searchPeriodForBy = new Team2_ERP.SearchPeriodControl();
+            this.SearchArea = new System.Windows.Forms.Panel();
+            this.searchPeriod = new Team2_ERP.SearchPeriodControl();
+            this.searchDowntime = new Team2_ERP.SearchUserControl();
+            this.searchWorker = new Team2_ERP.SearchUserControl();
+            this.searchLine = new Team2_ERP.SearchUserControl();
+            this.searchFactory = new Team2_ERP.SearchUserControl();
             this.panel1.SuspendLayout();
             this.panel_Search.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel_Title.SuspendLayout();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.tabControl1.SuspendLayout();
+            this.tabDowntime.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDowntime)).BeginInit();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDowntimeByLine)).BeginInit();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDowntimeByType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.SearchArea.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.tabControl1);
+            this.panel1.Controls.Add(this.tabDowntime);
             this.panel1.Controls.SetChildIndex(this.panel_Title, 0);
             this.panel1.Controls.SetChildIndex(this.panel_Search, 0);
-            this.panel1.Controls.SetChildIndex(this.tabControl1, 0);
+            this.panel1.Controls.SetChildIndex(this.tabDowntime, 0);
             // 
             // panel_Search
             // 
@@ -74,11 +79,8 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.searchPeriod);
-            this.panel5.Controls.Add(this.searchDowntime);
-            this.panel5.Controls.Add(this.searchWorker);
-            this.panel5.Controls.Add(this.searchLine);
-            this.panel5.Controls.Add(this.searchFactory);
+            this.panel5.Controls.Add(this.SearchArea);
+            this.panel5.Controls.Add(this.searchPeriodForBy);
             this.panel5.Size = new System.Drawing.Size(1362, 110);
             // 
             // panel_Title
@@ -89,71 +91,19 @@
             // 
             this.linepanel1.Size = new System.Drawing.Size(1362, 2);
             // 
-            // searchFactory
+            // tabDowntime
             // 
-            this.searchFactory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchFactory.ControlType = Team2_ERP.SearchUserControl.Mode.Factory;
-            this.searchFactory.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchFactory.Labelname = "공장";
-            this.searchFactory.Location = new System.Drawing.Point(23, 11);
-            this.searchFactory.Name = "searchFactory";
-            this.searchFactory.Size = new System.Drawing.Size(312, 25);
-            this.searchFactory.TabIndex = 0;
-            // 
-            // searchLine
-            // 
-            this.searchLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchLine.ControlType = Team2_ERP.SearchUserControl.Mode.Line;
-            this.searchLine.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchLine.Labelname = "공정";
-            this.searchLine.Location = new System.Drawing.Point(23, 42);
-            this.searchLine.Name = "searchLine";
-            this.searchLine.Size = new System.Drawing.Size(312, 25);
-            this.searchLine.TabIndex = 0;
-            // 
-            // searchDowntime
-            // 
-            this.searchDowntime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchDowntime.ControlType = Team2_ERP.SearchUserControl.Mode.Downtime;
-            this.searchDowntime.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchDowntime.Labelname = "비가동유형";
-            this.searchDowntime.Location = new System.Drawing.Point(23, 73);
-            this.searchDowntime.Name = "searchDowntime";
-            this.searchDowntime.Size = new System.Drawing.Size(312, 25);
-            this.searchDowntime.TabIndex = 0;
-            // 
-            // searchWorker
-            // 
-            this.searchWorker.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchWorker.ControlType = Team2_ERP.SearchUserControl.Mode.Worker;
-            this.searchWorker.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchWorker.Labelname = "작업자";
-            this.searchWorker.Location = new System.Drawing.Point(353, 10);
-            this.searchWorker.Name = "searchWorker";
-            this.searchWorker.Size = new System.Drawing.Size(312, 25);
-            this.searchWorker.TabIndex = 0;
-            // 
-            // searchPeriod
-            // 
-            this.searchPeriod.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchPeriod.Labelname = "비가동일자";
-            this.searchPeriod.Location = new System.Drawing.Point(353, 42);
-            this.searchPeriod.Name = "searchPeriod";
-            this.searchPeriod.Size = new System.Drawing.Size(312, 31);
-            this.searchPeriod.TabIndex = 1;
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 158);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1362, 660);
-            this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.tabControl1.TabIndex = 8;
+            this.tabDowntime.Controls.Add(this.tabPage1);
+            this.tabDowntime.Controls.Add(this.tabPage2);
+            this.tabDowntime.Controls.Add(this.tabPage3);
+            this.tabDowntime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabDowntime.Location = new System.Drawing.Point(0, 158);
+            this.tabDowntime.Name = "tabDowntime";
+            this.tabDowntime.SelectedIndex = 0;
+            this.tabDowntime.Size = new System.Drawing.Size(1362, 660);
+            this.tabDowntime.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.tabDowntime.TabIndex = 8;
+            this.tabDowntime.SelectedIndexChanged += new System.EventHandler(this.tabDowntime_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -178,10 +128,12 @@
             this.dgvDowntime.RowTemplate.Height = 23;
             this.dgvDowntime.Size = new System.Drawing.Size(1346, 625);
             this.dgvDowntime.TabIndex = 10;
+            this.dgvDowntime.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDowntime_CellContentClick);
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.dataGridView1);
+            this.tabPage2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabPage2.Controls.Add(this.dgvDowntimeByLine);
             this.tabPage2.Location = new System.Drawing.Point(4, 23);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -190,8 +142,22 @@
             this.tabPage2.Text = "공정별 보기";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // dgvDowntimeByLine
+            // 
+            this.dgvDowntimeByLine.BackgroundColor = System.Drawing.Color.White;
+            this.dgvDowntimeByLine.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvDowntimeByLine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDowntimeByLine.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvDowntimeByLine.Location = new System.Drawing.Point(3, 3);
+            this.dgvDowntimeByLine.Name = "dgvDowntimeByLine";
+            this.dgvDowntimeByLine.RowTemplate.Height = 23;
+            this.dgvDowntimeByLine.Size = new System.Drawing.Size(1346, 625);
+            this.dgvDowntimeByLine.TabIndex = 11;
+            // 
             // tabPage3
             // 
+            this.tabPage3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabPage3.Controls.Add(this.dgvDowntimeByType);
             this.tabPage3.Controls.Add(this.dataGridView2);
             this.tabPage3.Location = new System.Drawing.Point(4, 23);
             this.tabPage3.Name = "tabPage3";
@@ -200,17 +166,17 @@
             this.tabPage3.Text = "유형별 보기";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // dgvDowntimeByType
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(1348, 627);
-            this.dataGridView1.TabIndex = 11;
+            this.dgvDowntimeByType.BackgroundColor = System.Drawing.Color.White;
+            this.dgvDowntimeByType.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvDowntimeByType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDowntimeByType.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvDowntimeByType.Location = new System.Drawing.Point(0, 0);
+            this.dgvDowntimeByType.Name = "dgvDowntimeByType";
+            this.dgvDowntimeByType.RowTemplate.Height = 23;
+            this.dgvDowntimeByType.Size = new System.Drawing.Size(1352, 631);
+            this.dgvDowntimeByType.TabIndex = 12;
             // 
             // dataGridView2
             // 
@@ -221,8 +187,82 @@
             this.dataGridView2.Location = new System.Drawing.Point(0, 0);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 23;
-            this.dataGridView2.Size = new System.Drawing.Size(1354, 633);
+            this.dataGridView2.Size = new System.Drawing.Size(1352, 631);
             this.dataGridView2.TabIndex = 11;
+            // 
+            // searchPeriodForBy
+            // 
+            this.searchPeriodForBy.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchPeriodForBy.Labelname = "기간 선택";
+            this.searchPeriodForBy.Location = new System.Drawing.Point(11, 38);
+            this.searchPeriodForBy.Name = "searchPeriodForBy";
+            this.searchPeriodForBy.Size = new System.Drawing.Size(312, 25);
+            this.searchPeriodForBy.TabIndex = 7;
+            // 
+            // SearchArea
+            // 
+            this.SearchArea.Controls.Add(this.searchPeriod);
+            this.SearchArea.Controls.Add(this.searchDowntime);
+            this.SearchArea.Controls.Add(this.searchWorker);
+            this.SearchArea.Controls.Add(this.searchFactory);
+            this.SearchArea.Controls.Add(this.searchLine);
+            this.SearchArea.Location = new System.Drawing.Point(11, 4);
+            this.SearchArea.Name = "SearchArea";
+            this.SearchArea.Size = new System.Drawing.Size(741, 100);
+            this.SearchArea.TabIndex = 9;
+            // 
+            // searchPeriod
+            // 
+            this.searchPeriod.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchPeriod.Labelname = "비가동일자";
+            this.searchPeriod.Location = new System.Drawing.Point(334, 38);
+            this.searchPeriod.Name = "searchPeriod";
+            this.searchPeriod.Size = new System.Drawing.Size(312, 31);
+            this.searchPeriod.TabIndex = 6;
+            // 
+            // searchDowntime
+            // 
+            this.searchDowntime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.searchDowntime.ControlType = Team2_ERP.SearchUserControl.Mode.Downtime;
+            this.searchDowntime.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchDowntime.Labelname = "비가동유형";
+            this.searchDowntime.Location = new System.Drawing.Point(4, 69);
+            this.searchDowntime.Name = "searchDowntime";
+            this.searchDowntime.Size = new System.Drawing.Size(312, 25);
+            this.searchDowntime.TabIndex = 2;
+            // 
+            // searchWorker
+            // 
+            this.searchWorker.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.searchWorker.ControlType = Team2_ERP.SearchUserControl.Mode.Worker;
+            this.searchWorker.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchWorker.Labelname = "작업자";
+            this.searchWorker.Location = new System.Drawing.Point(334, 6);
+            this.searchWorker.Name = "searchWorker";
+            this.searchWorker.Size = new System.Drawing.Size(312, 25);
+            this.searchWorker.TabIndex = 3;
+            // 
+            // searchLine
+            // 
+            this.searchLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.searchLine.ControlType = Team2_ERP.SearchUserControl.Mode.Line;
+            this.searchLine.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchLine.Labelname = "공정";
+            this.searchLine.Location = new System.Drawing.Point(4, 38);
+            this.searchLine.Name = "searchLine";
+            this.searchLine.Size = new System.Drawing.Size(312, 25);
+            this.searchLine.TabIndex = 4;
+            // 
+            // searchFactory
+            // 
+            this.searchFactory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.searchFactory.ControlType = Team2_ERP.SearchUserControl.Mode.Factory;
+            this.searchFactory.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchFactory.Labelname = "공장";
+            this.searchFactory.Location = new System.Drawing.Point(4, 7);
+            this.searchFactory.Name = "searchFactory";
+            this.searchFactory.Size = new System.Drawing.Size(312, 25);
+            this.searchFactory.TabIndex = 5;
             // 
             // Downtime
             // 
@@ -240,29 +280,34 @@
             this.panel_Title.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.tabControl1.ResumeLayout(false);
+            this.tabDowntime.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDowntime)).EndInit();
             this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDowntimeByLine)).EndInit();
             this.tabPage3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDowntimeByType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.SearchArea.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+        private System.Windows.Forms.TabControl tabDowntime;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.DataGridView dgvDowntime;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.DataGridView dgvDowntimeByLine;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dgvDowntimeByType;
+        private SearchPeriodControl searchPeriodForBy;
+        private System.Windows.Forms.Panel SearchArea;
         private SearchPeriodControl searchPeriod;
         private SearchUserControl searchDowntime;
         private SearchUserControl searchWorker;
         private SearchUserControl searchLine;
         private SearchUserControl searchFactory;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.DataGridView dgvDowntime;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.DataGridView dataGridView2;
     }
 }
