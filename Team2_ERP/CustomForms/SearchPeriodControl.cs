@@ -63,17 +63,21 @@ namespace Team2_ERP
 
         private void txtStart_TextChanged(object sender, EventArgs e)
         {
-            if (txtStart.TextLength == 0)
+            if (txtStart.Text== "    -  -")
             {
                 txtEnd.Clear();
+                txtStart.Tag = null;
+                txtEnd.Tag = null;
             }
         }
 
         private void txtEnd_TextChanged(object sender, EventArgs e)
         {
-            if (txtEnd.TextLength == 0)
+            if (txtEnd.Text == "    -  -")
             {
                 txtStart.Clear();
+                txtStart.Tag = null;
+                txtEnd.Tag = null;
             }
         }
 

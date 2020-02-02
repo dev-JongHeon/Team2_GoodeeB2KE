@@ -72,6 +72,7 @@ namespace Team2_ERP
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             dgv.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.DisplayedCells);   
             dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
+         
             
 
 

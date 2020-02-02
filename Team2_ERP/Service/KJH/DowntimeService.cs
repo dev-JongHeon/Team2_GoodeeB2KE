@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,24 @@ namespace Team2_ERP
         {
             DowntimeDAC dac = new DowntimeDAC();
             return dac.GetAllDowntime();
+        }
+
+        public DataSet GetDowntimeByLine(string date)
+        {
+            DowntimeDAC dac = new DowntimeDAC();
+            return dac.GetDowntimeByLine(date);
+        }
+
+        public DataSet GetDowntimeByLine2(string line)
+        {
+            DowntimeDAC dac = new DowntimeDAC();
+            return dac.GetDowntimeByLine2(line);
+        }
+
+        public DataSet GetDowntimeByType(string date)
+        {
+            DowntimeDAC dac = new DowntimeDAC();
+            return dac.GetDowntimeByType(date);
         }
     }
 }

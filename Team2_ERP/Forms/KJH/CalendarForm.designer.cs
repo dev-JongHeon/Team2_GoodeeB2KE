@@ -540,6 +540,7 @@
             this.EndCalendar.Name = "EndCalendar";
             this.EndCalendar.ShowTodayCircle = false;
             this.EndCalendar.TabIndex = 15;
+            this.EndCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.EndCalendar_DateChanged);
             // 
             // StartCalendar
             // 
@@ -550,6 +551,7 @@
             this.StartCalendar.Name = "StartCalendar";
             this.StartCalendar.ShowTodayCircle = false;
             this.StartCalendar.TabIndex = 14;
+            this.StartCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.StartCalendar_DateChanged);
             // 
             // CalendarForm
             // 
