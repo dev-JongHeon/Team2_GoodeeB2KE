@@ -23,6 +23,7 @@ namespace Team2_POP
 
         private void LoginPOP_Load(object sender, EventArgs e)
         {
+           // CustomMessageBox.hi.Show();
             SettingControl();
             InitData();
 
@@ -74,18 +75,28 @@ namespace Team2_POP
                 FactoryID = cboFactory.SelectedValue.ToString(),
                 FactoryName = cboFactory.Text
             };
-          
+             
+            // 로그인이 완료되면 메인 화면을 띄워주는 코드
             using(PopMain Main = new PopMain())
             {
                 this.Hide();
                 Main.WorkerInfo = workerInfo;
 
-                Main.ShowDialog();
+                // 로그아웃버튼을 누른 경우
+                // 폼을 다시 로드하는 효과를 줌.
+                if(Main.ShowDialog() == DialogResult.OK)
+                {
+                    SettingControl();
+                    InitData();
+                    Show();
+                }
+                // 종료 버튼을 누른 경우
+                // 로그인 화면도 닫음
+                else
+                {
+                    Close();
+                }
             }
-
-
-            // 초기값
-            this.Show();
         }
 
         private void cboFactory_SelectedIndexChanged(object sender, EventArgs e)

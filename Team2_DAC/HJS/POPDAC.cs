@@ -566,7 +566,7 @@ namespace Team2_DAC
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "GetDefectiveByProduce";
+                    cmd.CommandText = "proc_GetDefectiveByProduce";
 
                     FillParameter(cmd, new string[] { "@Produce_ID" }, new object[] { produceID });
 

@@ -77,7 +77,7 @@ namespace Team2_POP
 
             if (msg.Length > 1)
             {
-                MessageBox.Show(msg.ToString());
+                CustomMessageBox.ShowDialog("유효성검사 실패", msg.ToString(), MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -85,10 +85,13 @@ namespace Team2_POP
             string defecCode = lblDefectiveName.Tag.ToString();
             string handleCode = lblHandle.Tag.ToString();
 
+
+            // 초기화
             lblDefectiveName.Text = "선택된 불량유형";
             lblDefItem.Text = "선택된 불량품목";
             lblHandle.Text = "선택된 불량 처리유형";
 
+            
             lblDefectiveName.Tag = null;
             lblHandle.Tag = null;
 
@@ -98,9 +101,9 @@ namespace Team2_POP
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (Save())
-                this.Close();
+                DialogResult = DialogResult.OK;
             else
-                MessageBox.Show("정상처리되지 않았습니다. 다시 시도해주세요.");
+                CustomMessageBox.ShowDialog("불량등록 실패", "정상처리되지 않았습니다.다시 시도해주세요.", MessageBoxIcon.Error);            
         }
 
         private void btnSaveAs_Click(object sender, EventArgs e)
@@ -108,7 +111,7 @@ namespace Team2_POP
             if (Save())
                 InitData();
             else
-                MessageBox.Show("정상처리되지 않았습니다. 다시 시도해주세요.");
+                CustomMessageBox.ShowDialog("불량등록 실패", "정상처리되지 않았습니다.다시 시도해주세요.", MessageBoxIcon.Error);
         }
 
         private void btnDefProSelect_Click(object sender, EventArgs e)

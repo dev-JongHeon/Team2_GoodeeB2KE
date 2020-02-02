@@ -45,13 +45,23 @@ namespace Team2_POP
 
             imageList.Images.Add("close", Properties.Resources.exit);
             imageList.Images.Add("logout", Properties.Resources.logout);
-            imageList.Images.Add("PreArrow", Properties.Resources.LeftArrow);
-            imageList.Images.Add("NextArrow", Properties.Resources.RightArrow);
 
             imageList.ImageSize = btnExit.Size;
 
-            btnPreDate.Image = imageList.Images["PreArrow"];
-            btnNextDate.Image = imageList.Images["NextArrow"];
+            PictureBox picture1 = new PictureBox();
+            PictureBox picture2 = new PictureBox();
+            picture1.SizeMode = PictureBoxSizeMode.StretchImage;
+            picture2.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            picture1.Image = Properties.Resources.LeftArrow;
+            picture2.Image = Properties.Resources.RightArrow;
+
+            btnPreDate.Image = picture1.Image;
+            btnNextDate.Image = picture2.Image;
+
+
+
+
             btnExit.Image = imageList.Images["close"];
             btnLogout.Image = imageList.Images["logout"];
 
@@ -64,7 +74,8 @@ namespace Team2_POP
 
             splitContainer1.IsSplitterFixed = splitContainer2.IsSplitterFixed = splitContainer3.IsSplitterFixed
                 = splitContainer4.IsSplitterFixed = splitContainer5.IsSplitterFixed =
-                splitContainer6.IsSplitterFixed = true;
+                splitContainer6.IsSplitterFixed = splitContainer7.IsSplitterFixed = splitContainer8.IsSplitterFixed
+                = splitContainer9.IsSplitterFixed = splitContainer10.IsSplitterFixed = true;
 
 
             // =============================================
@@ -144,27 +155,31 @@ namespace Team2_POP
             lblWorkerName.Text = WorkerInfo.Worker;
             lblWorkerName.Tag = WorkerInfo.WorkID;
 
-            IsDowntime();
+            IsDowntime(false);
         }
 
-        private void IsDowntime()
+        private void IsDowntime(bool type)
         {
             bool bResult = new Service().IsDowntime(WorkerInfo.LineID);
-            lblDowntimeState.Tag = bResult;
+            pictureBox1.Tag = bResult;
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            if (bResult)
+            if (type)
             {
-                lblDowntimeState.BackColor = Color.LightGreen;
-                lblDowntimeState.ForeColor = Color.DarkGreen;
-                lblDowntimeState.Text = "가동";
-                btnDownTime.Text = "비가동 전환";
-            }
-            else
-            {
-                lblDowntimeState.BackColor = Color.PaleVioletRed;
-                lblDowntimeState.ForeColor = Color.DarkRed;
-                lblDowntimeState.Text = "비가동";
-                btnDownTime.Text = "가동 전환";
+                if (bResult)
+                {
+                    pictureBox1.Image = Properties.Resources.iconfinder_Circle_Green_34211;
+                    btnDownTime.Text = "비가동 전환";
+                    CustomMessageBox.ShowDialog($"{btnDownTime.Text} 완료", $"{lblLine.Text}가 {btnDownTime.Text.Split(' ')[0]}상태로 전환됬습니다.",
+                        MessageBoxIcon.Information);
+                }
+                else
+                {
+                    pictureBox1.Image = Properties.Resources.iconfinder_Circle_Red_34214;
+                    btnDownTime.Text = "가동 전환";
+                    CustomMessageBox.ShowDialog($"{btnDownTime.Text} 완료", $"{lblLine.Text}가 {btnDownTime.Text.Split(' ')[0]}상태로 전환됬습니다.",
+                        MessageBoxIcon.Information);
+                }
             }
         }
 
@@ -173,9 +188,6 @@ namespace Team2_POP
         // 작업을 가져오는 메서드
         private void GetWork(string data)
         {
-            StringBuilder msg = new StringBuilder();
-
-
             List<Work> list = new Service().GetWorks(data, Convert.ToInt32(lblLine.Tag));
 
             dgvWork.DataSource = null;
@@ -185,11 +197,8 @@ namespace Team2_POP
             if (list.Count > 0)
                 dgvWork.DataSource = list;
             else
-                MessageBox.Show($"작업날짜 : {data} \n공정 : {lblLine.Text} \n 위의 작업내역이 존재하지 않습니다.");
+                CustomMessageBox.ShowDialog("작업내역 없음", $"작업날짜 : {data} \n공정 : {lblLine.Text} \n위의 작업내역이 존재하지 않습니다.", MessageBoxIcon.Information);              
 
-
-            if (msg.Length > 0)
-                MessageBox.Show(msg.ToString());
         }
 
         #region 상단 버튼 - 날짜 클릭, 비가동
@@ -208,7 +217,7 @@ namespace Team2_POP
         // 비가동 전환버튼을 누른경우
         private void btnDownTime_Click(object sender, EventArgs e)
         {
-            if (Convert.ToBoolean(lblDowntimeState.Tag) == true)
+            if (Convert.ToBoolean(pictureBox1.Tag) == true)
             {
                 DowntimeRegister downtime = new DowntimeRegister();
 
@@ -218,13 +227,13 @@ namespace Team2_POP
 
                 if (downtime.ShowDialog() == DialogResult.OK)
                 {
-                    IsDowntime();
+                    IsDowntime(true);
                 }
             }
             else
             {
-                new Service().SetDowntime(WorkerInfo.LineID, "kkk", WorkerInfo.WorkID);
-                IsDowntime();
+                new Service().SetDowntime(WorkerInfo.LineID, "none", WorkerInfo.WorkID);
+                IsDowntime(true);
             }
 
         }
@@ -268,9 +277,9 @@ namespace Team2_POP
 
                 }
             }
-            catch
+            catch(Exception ex)
             {
-
+                CustomMessageBox.ShowDialog("에러", ex.Message, MessageBoxIcon.Error);
             }
         }
 
@@ -281,13 +290,18 @@ namespace Team2_POP
         {
             if (dgvProduce.SelectedRows.Count < 1)
                 return;
-
-
+            
             string produceID = dgvProduce.SelectedRows[0].Cells[0].Value.ToString();
 
             bool bResult = new Service().SetWorker(produceID, Convert.ToInt32(lblWorkerName.Tag));
-
+            dgvPerformance.DataSource = null;
             dgvPerformance.DataSource = new Service().GetPerformance(produceID);
+
+            // 작업자 설정을 성공한 경우
+            if (bResult)
+                CustomMessageBox.ShowDialog("작업자 설정 성공", $"{produceID}의 \n작업자 : {lblWorkerName.Text}에게 할당했습니다.", MessageBoxIcon.Question);
+            else
+                CustomMessageBox.ShowDialog("작업자 설정 실패", $"{produceID}의 작업 할당을 실패했습니다.", MessageBoxIcon.Error);
         }
 
 
@@ -300,10 +314,15 @@ namespace Team2_POP
                 {
                     DefectiveRegister defective = new DefectiveRegister();
                     defective.Performance_ID = dgvPerformance.SelectedRows[0].Cells[0].Value.ToString();
-                    defective.ShowDialog();
+
+                    if (defective.ShowDialog() == DialogResult.OK)
+                        CustomMessageBox.ShowDialog("불량등록 성공", "불량등록을 성공했습니다.", MessageBoxIcon.Question);
                 }
             }
-            catch { }
+            catch(Exception ex) 
+            {
+                CustomMessageBox.ShowDialog("에러", ex.Message, MessageBoxIcon.Error);
+            }
         }
 
         #endregion
@@ -360,9 +379,9 @@ namespace Team2_POP
                     dgvProduce.ClearSelection();
                 }
             }
-            catch
+            catch(Exception ex)
             {
-
+                CustomMessageBox.ShowDialog("에러", ex.Message, MessageBoxIcon.Error);
             }
         }
         //=====================
@@ -410,9 +429,9 @@ namespace Team2_POP
                     }
                 }
             }
-            catch
+            catch(Exception ex)
             {
-
+                CustomMessageBox.ShowDialog("에러", ex.Message, MessageBoxIcon.Error);
             }
         }
 
@@ -428,6 +447,31 @@ namespace Team2_POP
             }
         }
 
+        private void BtnEnable(Button btn)
+        {
+            btn.Enabled = true;
+            btn.BackColor = Color.SteelBlue;
+            btn.ForeColor = Color.White;
+        }
+
+        private void BtnDisable(Button btn)
+        {
+            btn.Enabled = false;
+            btn.BackColor = Color.LightGray;
+            btn.ForeColor = Color.DarkGray;
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.No;
+            this.Close();
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
 
 
         #endregion
@@ -457,28 +501,6 @@ namespace Team2_POP
         //===================
         //    테스트 구역
         //===================
-        private void BtnEnable(Button btn)
-        {
-            btn.Enabled = true;
-            btn.BackColor = Color.SteelBlue;
-            btn.ForeColor = Color.White;           
-        }
-
-        private void BtnDisable(Button btn)
-        {
-            btn.Enabled = false;
-            btn.BackColor = Color.LightGray;
-            btn.ForeColor = Color.DarkGray;
-        }
-
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btnLogout_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+       
     }
 }

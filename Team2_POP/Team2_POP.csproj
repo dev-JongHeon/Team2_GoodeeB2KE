@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomMessageBox.Designer.cs">
+      <DependentUpon>CustomMessageBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="DefectiveRegister.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +108,9 @@
     <Compile Include="WorkRegister.designer.cs">
       <DependentUpon>WorkRegister.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CustomMessageBox.resx">
+      <DependentUpon>CustomMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DefectiveRegister.resx">
       <DependentUpon>DefectiveRegister.cs</DependentUpon>
     </EmbeddedResource>
@@ -149,13 +158,25 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Warning.png" />
+    <None Include="Resources\Information.png" />
+    <None Include="Resources\Warning_32x32.png" />
     <None Include="Resources\RightArrow.png" />
     <None Include="Resources\logout.png" />
     <None Include="Resources\LeftArrow.png" />
     <None Include="Resources\logo.png" />
     <None Include="Resources\facebook_cover_photo_1.png" />
     <None Include="Resources\exit.png" />
+    <None Include="Resources\Close_32x32.png" />
+    <None Include="Resources\About_32x32.png" />
+    <None Include="Resources\Error_32x32.png" />
+    <None Include="Resources\Close.png" />
+    <None Include="Resources\Error.png" />
     <Content Include="Resources\iconfinder_back_126585 %281%29.png" />
+    <None Include="Resources\iconfinder_Circle_Green_34211.png" />
+    <None Include="Resources\iconfinder_Circle_Red_34214.png" />
+    <None Include="Resources\iconfinder_Circle_Yellow_34215.png" />
+    <None Include="Resources\iconfinder_check_1930264.png" />
     <Content Include="Resources\iconfinder_forward_126569 %281%29.png" />
     <Content Include="Resources\iconfinder_forward_126569 %282%29.png" />
   </ItemGroup>
