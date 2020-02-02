@@ -60,9 +60,13 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 return null;
+            }
+            finally
+            {
+                conn.Close();
             }
         }
 
@@ -86,9 +90,13 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 return null;
+            }
+            finally
+            {
+                conn.Close();
             }
         }
 
@@ -113,10 +121,14 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch (Exception err)
+            catch (Exception ex)
             {
-                string sss = err.Message;
+                string sss = ex.Message;
                 return null;
+            }
+            finally
+            {
+                conn.Close();
             }
         }
 
@@ -145,9 +157,13 @@ namespace Team2_DAC
                     return !bResult;
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 return false;
+            }
+            finally
+            {
+                conn.Close();
             }
         }
 
@@ -182,9 +198,13 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 return null;
+            }
+            finally
+            {
+                conn.Close();
             }
         }
 
@@ -214,9 +234,13 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 return null;
+            }
+            finally
+            {
+                conn.Close();
             }
         }
 
@@ -246,9 +270,13 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 return null;
+            }
+            finally
+            {
+                conn.Close();
             }
         }
 
@@ -287,6 +315,10 @@ namespace Team2_DAC
                 string sss = err.Message;
                 return list;
             }
+            finally
+            {
+                conn.Close();
+            }
 
         }
 
@@ -315,6 +347,10 @@ namespace Team2_DAC
             {
                 string msg = err.Message;
             }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         // 생산 완료
@@ -338,6 +374,10 @@ namespace Team2_DAC
             catch (Exception err)
             {
                 string sss = err.Message;
+            }
+            finally
+            {
+                conn.Close();
             }
         }
 
@@ -367,9 +407,13 @@ namespace Team2_DAC
                 return iResult > 0;
             }
 
-            catch
+            catch(Exception ex)
             {
                 return false;
+            }
+            finally
+            {
+                conn.Close();
             }
         }
 
@@ -392,9 +436,13 @@ namespace Team2_DAC
                     conn.Close();
                 }
             }
-            catch
+            catch (Exception ex)
             {
 
+            }
+            finally
+            {
+                conn.Close();
             }
         }
 
@@ -431,6 +479,10 @@ namespace Team2_DAC
                 string sss = ex.Message;
                 return null;
             }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         //해당하는 생산실적중 불량 코드 가져오기
@@ -458,9 +510,13 @@ namespace Team2_DAC
 
                 return list;
             }
-            catch
+            catch (Exception ex)
             {
                 return list;
+            }
+            finally
+            {
+                conn.Close();
             }
         }
 
@@ -492,7 +548,7 @@ namespace Team2_DAC
                     return iResult > 0;
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 return false;
             }
@@ -527,9 +583,13 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 return null;
+            }
+            finally
+            {
+                conn.Close();
             }
         }
 
@@ -550,9 +610,13 @@ namespace Team2_DAC
                     conn.Close();
                 }
             }
-            catch (Exception err)
+            catch (Exception ex)
             {
-                string sss = err.Message;
+                string sss = ex.Message;
+            }
+            finally
+            {
+                conn.Close();
             }
         }
 

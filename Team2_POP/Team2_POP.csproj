@@ -76,6 +76,7 @@
     <Compile Include="MonthCalandarForm.Designer.cs">
       <DependentUpon>MonthCalandarForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="POPClient.cs" />
     <Compile Include="PopMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +93,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ReceiveEventArgs.cs" />
     <Compile Include="Service\Service.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>

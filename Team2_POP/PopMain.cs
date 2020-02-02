@@ -25,18 +25,24 @@ namespace Team2_POP
         }
 
         private void PopMain_Load(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Maximized;
-            SettingControl();
+        {            
+            SettingControl();            
             InitData();
             GetTime();
         }
+               
 
+        private void Receive(object sender, ReceiveEventArgs e)
+        {
+
+        }
 
         #region 디자인
 
         private void SettingControl()
         {
+            this.WindowState = FormWindowState.Maximized;
+
             BtnDisable(btnDefective);
             BtnDisable(btnWorker);
             BtnDisable(btnProduceStart);
@@ -65,7 +71,7 @@ namespace Team2_POP
             btnExit.Image = imageList.Images["close"];
             btnLogout.Image = imageList.Images["logout"];
 
-            
+
 
 
             // =============================================
@@ -164,22 +170,21 @@ namespace Team2_POP
             pictureBox1.Tag = bResult;
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
 
+
+            if (bResult)
+            {
+                pictureBox1.Image = Properties.Resources.iconfinder_Circle_Green_34211;
+                btnDownTime.Text = "비가동 전환";
+            }
+            else
+            {
+                pictureBox1.Image = Properties.Resources.iconfinder_Circle_Red_34214;
+                btnDownTime.Text = "가동 전환";
+            }
             if (type)
             {
-                if (bResult)
-                {
-                    pictureBox1.Image = Properties.Resources.iconfinder_Circle_Green_34211;
-                    btnDownTime.Text = "비가동 전환";
-                    CustomMessageBox.ShowDialog($"{btnDownTime.Text} 완료", $"{lblLine.Text}가 {btnDownTime.Text.Split(' ')[0]}상태로 전환됬습니다.",
+                CustomMessageBox.ShowDialog($"{btnDownTime.Text} 완료", $"{lblLine.Text}가 {btnDownTime.Text.Split(' ')[0]}상태로 전환됬습니다.",
                         MessageBoxIcon.Information);
-                }
-                else
-                {
-                    pictureBox1.Image = Properties.Resources.iconfinder_Circle_Red_34214;
-                    btnDownTime.Text = "가동 전환";
-                    CustomMessageBox.ShowDialog($"{btnDownTime.Text} 완료", $"{lblLine.Text}가 {btnDownTime.Text.Split(' ')[0]}상태로 전환됬습니다.",
-                        MessageBoxIcon.Information);
-                }
             }
         }
 
@@ -197,7 +202,7 @@ namespace Team2_POP
             if (list.Count > 0)
                 dgvWork.DataSource = list;
             else
-                CustomMessageBox.ShowDialog("작업내역 없음", $"작업날짜 : {data} \n공정 : {lblLine.Text} \n위의 작업내역이 존재하지 않습니다.", MessageBoxIcon.Information);              
+                CustomMessageBox.ShowDialog("작업내역 없음", $"작업날짜 : {data} \n공정 : {lblLine.Text} \n위의 작업내역이 존재하지 않습니다.", MessageBoxIcon.Information);
 
         }
 
@@ -244,7 +249,7 @@ namespace Team2_POP
 
         //생산시작
         private void btnProduceStart_Click(object sender, EventArgs e)
-        {            
+        {
             try
             {
                 string[] result = null;
@@ -255,10 +260,10 @@ namespace Team2_POP
                     return;
                 }
                 else
-                {                   
+                {
                     string produceID = dgvProduce.SelectedRows[0].Cells[0].Value.ToString();
                     result = new Service().StartProduce(produceID);
-                    
+
 
                     ProduceMachine machine = new ProduceMachine
                     {
@@ -268,7 +273,7 @@ namespace Team2_POP
                         RequestQty = Convert.ToInt32(result[1])
                     };
 
-                    if(machine.Start())
+                    if (machine.Start())
                     {
                         dgvProduce.DataSource = dgvPerformance.DataSource = null;
                         dgvProduce.DataSource = new Service().GetProduce(workID);
@@ -277,7 +282,7 @@ namespace Team2_POP
 
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 CustomMessageBox.ShowDialog("에러", ex.Message, MessageBoxIcon.Error);
             }
@@ -290,7 +295,7 @@ namespace Team2_POP
         {
             if (dgvProduce.SelectedRows.Count < 1)
                 return;
-            
+
             string produceID = dgvProduce.SelectedRows[0].Cells[0].Value.ToString();
 
             bool bResult = new Service().SetWorker(produceID, Convert.ToInt32(lblWorkerName.Tag));
@@ -319,7 +324,7 @@ namespace Team2_POP
                         CustomMessageBox.ShowDialog("불량등록 성공", "불량등록을 성공했습니다.", MessageBoxIcon.Question);
                 }
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 CustomMessageBox.ShowDialog("에러", ex.Message, MessageBoxIcon.Error);
             }
@@ -379,7 +384,7 @@ namespace Team2_POP
                     dgvProduce.ClearSelection();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 CustomMessageBox.ShowDialog("에러", ex.Message, MessageBoxIcon.Error);
             }
@@ -429,7 +434,7 @@ namespace Team2_POP
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 CustomMessageBox.ShowDialog("에러", ex.Message, MessageBoxIcon.Error);
             }
@@ -493,7 +498,10 @@ namespace Team2_POP
                 { lblTime.Text = DateTime.Now.ToString(); }
                 ));
             }
-            catch { }
+            catch (Exception ex)
+            {
+                CustomMessageBox.ShowDialog("에러", ex.Message, MessageBoxIcon.Error);
+            }
         }
 
         #endregion
@@ -501,6 +509,6 @@ namespace Team2_POP
         //===================
         //    테스트 구역
         //===================
-       
+
     }
 }
