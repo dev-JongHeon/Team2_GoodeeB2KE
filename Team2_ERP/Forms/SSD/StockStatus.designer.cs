@@ -107,6 +107,8 @@
             this.FormName = "재고현황";
             this.Name = "StockStatus";
             this.Text = "재고현황";
+            this.Activated += new System.EventHandler(this.StockStatus_Activated);
+            this.Deactivate += new System.EventHandler(this.StockStatus_Deactivate);
             this.Load += new System.EventHandler(this.StockStatus_Load);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);

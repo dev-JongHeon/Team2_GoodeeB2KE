@@ -45,13 +45,15 @@ namespace Team2_ERP
             dgv_Order.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgv_Order.Columns[6].DefaultCellStyle.Format = "#,#0원";
             Order_AllList = service.GetOrderList();
-            dgv_Order.DataSource = Order_AllList;
+            //dgv_Order.DataSource = Order_AllList;
 
             UtilClass.SettingDgv(dgv_OrderDetail);
             UtilClass.AddNewColum(dgv_OrderDetail, "주문번호", "Order_ID", true);
             UtilClass.AddNewColum(dgv_OrderDetail, "제품ID", "Product_ID", true);
             UtilClass.AddNewColum(dgv_OrderDetail, "제품명", "Product_Name", true, 300);
             UtilClass.AddNewColum(dgv_OrderDetail, "주문수량", "OrderDetail_Qty", true);
+            dgv_OrderDetail.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
             OrderDetail_AllList = service.GetOrderDetailList();
         }
 

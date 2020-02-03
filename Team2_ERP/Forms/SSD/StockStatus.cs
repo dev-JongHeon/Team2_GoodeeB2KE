@@ -44,7 +44,7 @@ namespace Team2_ERP
             dgv_StockStatus.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgv_StockStatus.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             StockStatus_AllList = service.GetStockStatus();
-            dgv_StockStatus.DataSource = StockStatus_AllList;
+            //dgv_StockStatus.DataSource = StockStatus_AllList;
         }
 
         private void Func_Refresh()  // 새로고침 기능
@@ -99,12 +99,6 @@ namespace Team2_ERP
         #endregion
 
         #region Activated, OnOff, DeActivate
-        private void ShipmentMainForm_Activated(object sender, EventArgs e)
-        {
-            MenuByAuth(Auth);
-            main.NoticeMessage = notice;
-        }
-
         public override void MenuStripONOFF(bool flag)
         {
             main.신규ToolStripMenuItem.Visible = false;
@@ -113,7 +107,13 @@ namespace Team2_ERP
             main.인쇄ToolStripMenuItem.Visible = flag;
         }
 
-        private void ShipmentMainForm_Deactivate(object sender, EventArgs e)
+        private void StockStatus_Activated(object sender, EventArgs e)
+        {
+            MenuByAuth(Auth);
+            main.NoticeMessage = notice;
+        }
+
+        private void StockStatus_Deactivate(object sender, EventArgs e)
         {
             new SettingMenuStrip().UnsetMenu(this);
         }

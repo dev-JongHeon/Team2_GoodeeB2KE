@@ -52,7 +52,7 @@ namespace Team2_ERP
             StockReceipt_AllList = (from list_Stock in StockReceipt_AllList
                                     where list_Stock.Warehouse_Division == true
                                     select list_Stock).ToList();
-            dgv_Stock.DataSource = StockReceipt_AllList;
+            //dgv_Stock.DataSource = StockReceipt_AllList;
         }
         private void Func_Refresh()  // 새로고침 기능
         {
