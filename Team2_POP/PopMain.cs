@@ -15,12 +15,26 @@ namespace Team2_POP
 {
     public partial class PopMain : Form
     {
-        // 프로퍼티
+
+        #region 프로퍼티 & 전역변수
+        //===============
+        //    프로퍼티
+        //===============
         public WorkerInfoPOP WorkerInfo { get; set; }
+
+        //===============
+        //    전역변수
+        //===============
         string workID = string.Empty;
         System.Timers.Timer timer;
         POPClient client;
 
+        #endregion
+
+
+
+        #region 생성자 & 로드 이벤트
+        // 생성자
         public PopMain()
         {
             InitializeComponent();
@@ -28,19 +42,22 @@ namespace Team2_POP
 
         private void PopMain_Load(object sender, EventArgs e)
         {
-            Test();
+            ConnectServer();
             SettingControl();
             InitData();
             GetTime();
         }
 
+        #endregion
 
         #region 디자인
 
         private void SettingControl()
         {
+            //폼이 뜰때
             this.WindowState = FormWindowState.Maximized;
 
+            //버튼 활성화 관련
             BtnDisable(btnDefective);
             BtnDisable(btnWorker);
             BtnDisable(btnProduceStart);
@@ -48,8 +65,8 @@ namespace Team2_POP
             #region 이미지관련
             ImageList imageList = new ImageList();
 
-            imageList.Images.Add("close", Properties.Resources.exit);
-            imageList.Images.Add("logout", Properties.Resources.logout);
+            imageList.Images.Add("close", Properties.Resources.Img_Exit);
+            imageList.Images.Add("logout", Properties.Resources.Img_Logout);
 
             imageList.ImageSize = btnExit.Size;
 
@@ -58,7 +75,7 @@ namespace Team2_POP
             picture1.SizeMode = PictureBoxSizeMode.StretchImage;
             picture2.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            picture1.Image = Properties.Resources.LeftArrow;
+            picture1.Image = Properties.Resources.Img_LeftArrow;
             picture2.Image = Properties.Resources.RightArrow;
 
             btnPreDate.Image = picture1.Image;
@@ -81,7 +98,7 @@ namespace Team2_POP
                 = splitContainer9.IsSplitterFixed = splitContainer10.IsSplitterFixed =
                 splitContainer11.IsSplitterFixed = true;
 
-
+            #region 그리드뷰 디자인
             // =============================================
             //                그리드뷰 디자인 
             // =============================================
@@ -97,7 +114,7 @@ namespace Team2_POP
             UtilClass.AddNewColum(dgvWork, "작업 현황", "Work_State", true);
             UtilClass.AddNewColum(dgvWork, "작업지시자 사번", "Employees_ID", false);
             UtilClass.AddNewColum(dgvWork, "작업지시자 이름", "Employees_Name", true, 120);
-            UtilClass.AddNewColum(dgvWork, "출하 요청일", "Shipment_RequiredDate", true, 130);
+            UtilClass.AddNewColum(dgvWork, "출하 요청일", "Shipment_RequiredDate", true, 150);
 
             // 생산 그리드뷰
             UtilClass.SettingDgv(dgvProduce);
@@ -108,7 +125,7 @@ namespace Team2_POP
             UtilClass.AddNewColum(dgvProduce, "생산완료날짜", "Produce_DoneDate", true, 135);
             UtilClass.AddNewColum(dgvProduce, "상품명", "Product_Name", true, 200);
             UtilClass.AddNewColum(dgvProduce, "요청", "Produce_QtyRequested", true, 70, DataGridViewContentAlignment.MiddleRight);
-            UtilClass.AddNewColum(dgvProduce, "진행", "Produce_QtyReleased", true, 70, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dgvProduce, "투입", "Produce_QtyReleased", true, 70, DataGridViewContentAlignment.MiddleRight);
             UtilClass.AddNewColum(dgvProduce, "불량", "Performance_QtyDefectiveItem", true, 70, DataGridViewContentAlignment.MiddleRight);
             UtilClass.AddNewColum(dgvProduce, "생산 상태", "Produce_State", true);
 
@@ -128,6 +145,8 @@ namespace Team2_POP
             UtilClass.AddNewColum(dgvPerformance, "불량률", "Performance_DefectiveRate", true, 100, DataGridViewContentAlignment.MiddleRight);
             UtilClass.AddNewColum(dgvPerformance, "가동시간", "Performance_ElapsedTime", true, 100, DataGridViewContentAlignment.MiddleRight);
 
+
+            //그리드뷰 포멧 관련
             dgvWork.Columns[1].DefaultCellStyle.Format = "yyyy-MM-dd";
             dgvWork.Columns[2].DefaultCellStyle.Format = "yyyy-MM-dd";
             dgvWork.Columns[7].DefaultCellStyle.Format = "yyyy-MM-dd";
@@ -140,10 +159,15 @@ namespace Team2_POP
             dgvPerformance.Columns[6].DefaultCellStyle.Format = "HH:mm:ss";
 
             dgvPerformance.Columns[9].DefaultCellStyle.Format = "0.0#\\%";
+
+            #endregion 그리드뷰 디자인
         }
 
         #endregion
 
+
+        #region 기본 데이터 설정
+        // 기본 데이터 불러오기
         private void InitData()
         {
             // =============================================
@@ -160,27 +184,40 @@ namespace Team2_POP
             lblWorkerName.Text = WorkerInfo.Worker;
             lblWorkerName.Tag = WorkerInfo.WorkID;
 
+            // 비가동 상태 가져오기
             IsDowntime(false);
         }
 
-        private void IsDowntime(bool type)
+        #endregion
+
+
+
+        /// <summary>
+        /// 비가동인지 아닌지 여부
+        /// </summary>
+        /// <param name="isNotFirst">(true : 가동상태 false: 비가동상태)</param>
+        private void IsDowntime(bool isNotFirst)
         {
             bool bResult = new Service().IsDowntime(WorkerInfo.LineID);
             pictureBox1.Tag = bResult;
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
 
-
+            // 가동일때
             if (bResult)
             {
-                pictureBox1.Image = Properties.Resources.iconfinder_Circle_Green_34211;
+                pictureBox1.Image = Properties.Resources.Img_CircleGreen;
                 btnDownTime.Text = "비가동 전환";
             }
+            // 비가동일때
             else
             {
-                pictureBox1.Image = Properties.Resources.iconfinder_Circle_Red_34214;
+                pictureBox1.Image = Properties.Resources.Img_CircleRed;
                 btnDownTime.Text = "가동 전환";
             }
-            if (type)
+
+            // true : 처음이 아닐때만 
+            // false: 처음일때 
+            if (isNotFirst)
             {
                 CustomMessageBox.ShowDialog($"{btnDownTime.Text} 완료", $"{lblLine.Text}가 {btnDownTime.Text.Split(' ')[0]}상태로 전환됬습니다.",
                         MessageBoxIcon.Information);
@@ -189,10 +226,13 @@ namespace Team2_POP
 
 
 
-        // 작업을 가져오는 메서드
-        private void GetWork(string data)
+        /// <summary>
+        /// 작업을 가져오는 메서드
+        /// </summary>
+        /// <param name="date">날짜</param>
+        private void GetWork(string date)
         {
-            List<Work> list = new Service().GetWorks(data, Convert.ToInt32(lblLine.Tag));
+            List<Work> list = new Service().GetWorks(date, Convert.ToInt32(lblLine.Tag));
 
             dgvWork.DataSource = null;
             dgvProduce.DataSource = null;
@@ -201,15 +241,21 @@ namespace Team2_POP
             if (list.Count > 0)
                 dgvWork.DataSource = list;
             else
-                CustomMessageBox.ShowDialog("작업내역 없음", $"작업날짜 : {data} \n공정 : {lblLine.Text} \n위의 작업내역이 존재하지 않습니다.", MessageBoxIcon.Information);
+                CustomMessageBox.ShowDialog(Properties.Resources.MsgWorkResultNulllHeader
+                    ,string.Format(Properties.Resources.MsgWorkResultNullContent, date, lblLine.Text), MessageBoxIcon.Information);
 
         }
 
         #region 상단 버튼 - 날짜 클릭, 비가동
 
-        // 날짜를 클릭한 경우
+        /// <summary>
+        /// 날짜를 클릭한 경우
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lblDate_Click(object sender, EventArgs e)
         {
+            // 달력 화면을 보여줌
             using (MonthCalandarForm calandarForm = new MonthCalandarForm())
             {
                 calandarForm.DSelected = DateTime.Parse(lblDate.Text);
@@ -218,7 +264,12 @@ namespace Team2_POP
             }
         }
 
-        // 비가동 전환버튼을 누른경우
+
+        /// <summary>
+        /// 비가동 전환 버튼을 선택한 경우
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDownTime_Click(object sender, EventArgs e)
         {
             if (Convert.ToBoolean(pictureBox1.Tag) == true)
@@ -236,8 +287,12 @@ namespace Team2_POP
             }
             else
             {
-                new Service().SetDowntime(WorkerInfo.LineID, "none", WorkerInfo.WorkID);
-                IsDowntime(true);
+                bool bResult = new Service().SetDowntime(WorkerInfo.LineID, "none", WorkerInfo.WorkID);
+                if (bResult)
+                    IsDowntime(true);
+                else
+                    CustomMessageBox.ShowDialog(Properties.Resources.MsgDowntimeSetResultFailHeader
+                        , Properties.Resources.MsgDowntimeSetResultFailContent, MessageBoxIcon.Error);
             }
 
         }
@@ -250,66 +305,48 @@ namespace Team2_POP
         private void btnProduceStart_Click(object sender, EventArgs e)
         {
             ProduceStart();
-            #region 주석
-
-            //try
-            //{
-            //    string[] result = null;
-
-
-            //    if (dgvProduce.SelectedRows.Count < 1)
-            //    {
-            //        return;
-            //    }
-            //    else
-            //    {
-            //        string produceID = dgvProduce.SelectedRows[0].Cells[0].Value.ToString();
-            //        result = new Service().StartProduce(produceID);
-
-
-            //        ProduceMachine machine = new ProduceMachine
-            //        {
-            //            PerformanceID = result[0],
-            //            ProduceID = produceID,
-            //            LineID = Convert.ToInt32(lblLine.Tag),
-            //            RequestQty = Convert.ToInt32(result[1])
-            //        };
-
-            //        if (machine.Start())
-            //        {
-            //            dgvProduce.DataSource = dgvPerformance.DataSource = null;
-            //            dgvProduce.DataSource = new Service().GetProduce(workID);
-            //            dgvPerformance.DataSource = new Service().GetPerformance(produceID);
-            //        }
-
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    CustomMessageBox.ShowDialog("에러", ex.Message, MessageBoxIcon.Error);
-            //}
-
-            #endregion
         }
 
         private async void ProduceStart()
         {
             string[] result = null;
 
+            // 생산실적의 선택된 데이터가 없는 경우
             if (dgvProduce.SelectedRows.Count < 1)
             {
-                //CustomMessageBox.ShowDialog("오류", ex.Message, MessageBoxIcon.Error);
+                CustomMessageBox.ShowDialog("데이터 오류", "생산목록을 선택해주세요.", MessageBoxIcon.Warning);
                 return;
             }
+
+
             try
             {
                 string produceID = dgvProduce.SelectedRows[0].Cells[0].Value.ToString();
-                result = new Service().StartProduce(produceID);
 
-                client.PerformanceID = result[0];
-                client.RequestQty = Convert.ToInt32(result[1]);
-                client.ProduceID = produceID;
-                await client.Start();
+                // 생산해야할 개수와 생산실적아이디를 가져옴
+                result = new Service().StartProduce(produceID); 
+
+                if (result.Length == 2)
+                {
+                    client.PerformanceID = result[0];
+                    client.RequestQty = Convert.ToInt32(result[1]);
+                    client.ProduceID = produceID;
+
+                    //서버와 연결되어있지 않은경우 
+                    if (!client.Connect().IsCompleted)
+                    {
+                        CustomMessageBox.ShowDialog("기계통신오류", "기계와의 작동이 원할하지 않습니다. \n기계서버의 상태를 점검한후 다시 시도해주세요.", MessageBoxIcon.Error);
+                        ConnectServer();
+                    }
+                    //서버와 연결된 경우
+                    else
+                        await client.Start();
+                }
+                else
+                {
+                    CustomMessageBox.ShowDialog("데이터 통신 오류", "처리하는 과정에서 오류가 발생하였습니다. \n다시 시도해주세요.", MessageBoxIcon.Error);
+                }
+
             }
             catch (Exception ex)
             {
@@ -352,6 +389,12 @@ namespace Team2_POP
         {
             try
             {
+                if (dgvPerformance.SelectedRows.Count < 1)
+                {
+                    CustomMessageBox.ShowDialog("불량 선택 실패", "실적 목록을 선택해주세요.", MessageBoxIcon.Warning);
+                    return;
+                }
+
                 if (dgvPerformance.SelectedRows[0].Cells[0].Value != null || dgvPerformance.SelectedRows.Count < 1)
                 {
                     DefectiveRegister defective = new DefectiveRegister();
@@ -363,7 +406,7 @@ namespace Team2_POP
             }
             catch (Exception ex)
             {
-                CustomMessageBox.ShowDialog("에러", ex.Message, MessageBoxIcon.Error);
+                CustomMessageBox.ShowDialog(ex.InnerException.Message + "에러", ex.Message, MessageBoxIcon.Error);
             }
         }
 
@@ -374,19 +417,19 @@ namespace Team2_POP
         private void btnLineSearch_Click(object sender, EventArgs e)
         {
             // DAC단에서 오늘날짜의 작업을 가져옴
-            //dgvWork.DataSource = new Service().GetWorks(lblDate.Text);
             GetWork(lblDate.Text);
         }
+
         #region 날짜 관련 버튼 ( 날짜조회버튼 , 이전버튼 , 다음버튼)
 
         //날짜조회 버튼을 누른 경우
         private void btnDate_Click(object sender, EventArgs e)
         {
             BtnDisable(btnDefective);
-            BtnDisable(btnWorker);            
+            BtnDisable(btnWorker);
             BtnDisable(btnProduceStart);
             GetWork(lblDate.Text);
-            
+
         }
 
         private void btnPreDate_Click(object sender, EventArgs e)
@@ -404,8 +447,6 @@ namespace Team2_POP
         }
 
         #endregion
-
-
 
         #region 그리드뷰 클릭 이벤트
         //=====================
@@ -464,7 +505,7 @@ namespace Team2_POP
 
                     // 생산완료 or 생산중인경우 생산시작, 작업자 막는 코드
                     if (dgvProduce.SelectedRows[0].Cells[8].Value.ToString() == "생산완료" ||
-                        Convert.ToInt32(dgvProduce.SelectedRows[0].Cells[5].Value) <=  Convert.ToInt32(dgvProduce.SelectedRows[0].Cells[6].Value))
+                        Convert.ToInt32(dgvProduce.SelectedRows[0].Cells[5].Value) <= Convert.ToInt32(dgvProduce.SelectedRows[0].Cells[6].Value))
                     {
                         BtnDisable(btnProduceStart);
                         BtnDisable(btnWorker);
@@ -565,17 +606,24 @@ namespace Team2_POP
         //===================
         //    테스트 구역
         //===================
+        private void WriteLog(Exception ex)
+        {
+
+        }
+
         private void btnWorkStart_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void Test()
+        private void ConnectServer()
         {
             client = new POPClient()
             {
                 LineID = WorkerInfo.LineID
             };
+
+            client.Received -= Receive;
             client.Received += new EventHandler(Receive);
         }
     }

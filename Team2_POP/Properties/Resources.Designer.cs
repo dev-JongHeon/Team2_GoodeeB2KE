@@ -63,9 +63,9 @@ namespace Team2_POP.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap Close {
+        internal static System.Drawing.Bitmap Img_CircleGreen {
             get {
-                object obj = ResourceManager.GetObject("Close", resourceCulture);
+                object obj = ResourceManager.GetObject("Img_CircleGreen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace Team2_POP.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap Error {
+        internal static System.Drawing.Bitmap Img_CircleRed {
             get {
-                object obj = ResourceManager.GetObject("Error", resourceCulture);
+                object obj = ResourceManager.GetObject("Img_CircleRed", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace Team2_POP.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap exit {
+        internal static System.Drawing.Bitmap Img_CircleYellow {
             get {
-                object obj = ResourceManager.GetObject("exit", resourceCulture);
+                object obj = ResourceManager.GetObject("Img_CircleYellow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace Team2_POP.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap facebook_cover_photo_1 {
+        internal static System.Drawing.Bitmap Img_Close {
             get {
-                object obj = ResourceManager.GetObject("facebook_cover_photo_1", resourceCulture);
+                object obj = ResourceManager.GetObject("Img_Close", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace Team2_POP.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap iconfinder_Circle_Green_34211 {
+        internal static System.Drawing.Bitmap Img_Error {
             get {
-                object obj = ResourceManager.GetObject("iconfinder_Circle_Green_34211", resourceCulture);
+                object obj = ResourceManager.GetObject("Img_Error", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +113,9 @@ namespace Team2_POP.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap iconfinder_Circle_Red_34214 {
+        internal static System.Drawing.Bitmap Img_Exit {
             get {
-                object obj = ResourceManager.GetObject("iconfinder_Circle_Red_34214", resourceCulture);
+                object obj = ResourceManager.GetObject("Img_Exit", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +123,9 @@ namespace Team2_POP.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap iconfinder_Circle_Yellow_34215 {
+        internal static System.Drawing.Bitmap Img_Information {
             get {
-                object obj = ResourceManager.GetObject("iconfinder_Circle_Yellow_34215", resourceCulture);
+                object obj = ResourceManager.GetObject("Img_Information", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +133,9 @@ namespace Team2_POP.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap Information {
+        internal static System.Drawing.Bitmap Img_LeftArrow {
             get {
-                object obj = ResourceManager.GetObject("Information", resourceCulture);
+                object obj = ResourceManager.GetObject("Img_LeftArrow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +143,9 @@ namespace Team2_POP.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap LeftArrow {
+        internal static System.Drawing.Bitmap Img_Logo {
             get {
-                object obj = ResourceManager.GetObject("LeftArrow", resourceCulture);
+                object obj = ResourceManager.GetObject("Img_Logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -153,9 +153,9 @@ namespace Team2_POP.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap logo {
+        internal static System.Drawing.Bitmap Img_Logout {
             get {
-                object obj = ResourceManager.GetObject("logo", resourceCulture);
+                object obj = ResourceManager.GetObject("Img_Logout", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,10 +163,137 @@ namespace Team2_POP.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap logout {
+        internal static System.Drawing.Bitmap Img_Success {
             get {
-                object obj = ResourceManager.GetObject("logout", resourceCulture);
+                object obj = ResourceManager.GetObject("Img_Success", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Img_Warning {
+            get {
+                object obj = ResourceManager.GetObject("Img_Warning", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   {0}를 선택해주세요.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgChoice1 {
+            get {
+                return ResourceManager.GetString("MsgChoice1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   {1}을 선택해주세요.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgChoice2 {
+            get {
+                return ResourceManager.GetString("MsgChoice2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   선택하신 불량번호 : {0} \n 처리하지 못하었습니다. \n다시시도해주세요.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgDefectiveResultFailContents {
+            get {
+                return ResourceManager.GetString("MsgDefectiveResultFailContents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   불량등록실패과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgDefectiveResultFailHeader {
+            get {
+                return ResourceManager.GetString("MsgDefectiveResultFailHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   선택하신 불량번호 : {0} \n불량유형 : {1} \n불량처리 : {2}상태로 정상처리 되었습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgDefectiveResultSucceesContents {
+            get {
+                return ResourceManager.GetString("MsgDefectiveResultSucceesContents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   불량등록성공과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgDefectiveResultSucceesHeader {
+            get {
+                return ResourceManager.GetString("MsgDefectiveResultSucceesHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   선택되지 않은 값 존재과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgDefectiveValidate {
+            get {
+                return ResourceManager.GetString("MsgDefectiveValidate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   비가동 데이터가 존재하지 않습니다. \n다시 시도하시겠습니까?과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgDowntimeGetResultFailContent {
+            get {
+                return ResourceManager.GetString("MsgDowntimeGetResultFailContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   비가동 불러오기 실패과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgDowntimeGetResultFailHeader {
+            get {
+                return ResourceManager.GetString("MsgDowntimeGetResultFailHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   비가동처리가 정상적으로 등록되지않았습니다. \n다시 시도해주세요.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgDowntimeSetResultFailContent {
+            get {
+                return ResourceManager.GetString("MsgDowntimeSetResultFailContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   비가동 등록 실패과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgDowntimeSetResultFailHeader {
+            get {
+                return ResourceManager.GetString("MsgDowntimeSetResultFailHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   작업날짜 : {0} \n공정 : {1} \n위의 작업내역이 존재하지 않습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgWorkResultNullContent {
+            get {
+                return ResourceManager.GetString("MsgWorkResultNullContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   작업내역 없음과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgWorkResultNulllHeader {
+            get {
+                return ResourceManager.GetString("MsgWorkResultNulllHeader", resourceCulture);
             }
         }
         
@@ -176,26 +303,6 @@ namespace Team2_POP.Properties {
         internal static System.Drawing.Bitmap RightArrow {
             get {
                 object obj = ResourceManager.GetObject("RightArrow", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
-        /// </summary>
-        internal static System.Drawing.Bitmap Success {
-            get {
-                object obj = ResourceManager.GetObject("Success", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
-        /// </summary>
-        internal static System.Drawing.Bitmap Warning {
-            get {
-                object obj = ResourceManager.GetObject("Warning", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

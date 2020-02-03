@@ -18,6 +18,14 @@ namespace Team2_DAC
             conn.ConnectionString = this.ConnectionString;
         }
 
+        // 오류가 난경우 로그를 기록하는 메서드
+        private void WriteErrorLog(Exception ex)
+        {
+            string sss = ex.Message;
+        }
+
+        #region 파라미터 대입
+
         // 파라미터 넣는 함수 Null이 있는경우 ==> Null값을 전달
         private void FillParameter(SqlCommand cmd, string[] paramArr, object[] valueArr)
         {
@@ -37,6 +45,8 @@ namespace Team2_DAC
             cmd.Parameters.Add(param);
             return param;
         }
+
+        #endregion
 
         #region 조회 (작업 - 생산 - 생산 실적)
 
@@ -62,6 +72,7 @@ namespace Team2_DAC
             }
             catch(Exception ex)
             {
+                WriteErrorLog(ex);
                 return null;
             }
             finally
@@ -69,6 +80,7 @@ namespace Team2_DAC
                 conn.Close();
             }
         }
+
 
         // 생산목록 조회 (작업 아이디) -- POP화면 => 작업을 더블클릭한 경우
         public List<Produce> GetProduces(string workID)
@@ -92,6 +104,7 @@ namespace Team2_DAC
             }
             catch(Exception ex)
             {
+                WriteErrorLog(ex);
                 return null;
             }
             finally
@@ -123,7 +136,7 @@ namespace Team2_DAC
             }
             catch (Exception ex)
             {
-                string sss = ex.Message;
+                WriteErrorLog(ex);
                 return null;
             }
             finally
@@ -159,6 +172,7 @@ namespace Team2_DAC
             }
             catch(Exception ex)
             {
+                WriteErrorLog(ex);
                 return false;
             }
             finally
@@ -170,7 +184,7 @@ namespace Team2_DAC
 
         #endregion
 
-        #region 정보 조회 (공장, 공정)
+        #region 정보 조회 (공장, 공정, 작업자)
 
         //공장 조회
         public List<ComboItemVO> GetFactory()
@@ -181,14 +195,12 @@ namespace Team2_DAC
             qrySelect.Append(" SELECT CONVERT(NVARCHAR(2), Factory_ID) AS ID, Factory_Name AS Name ");
             qrySelect.Append(" ,CONVERT(NVARCHAR(1), Factory_Division) AS CodeType ");
             qrySelect.Append(" FROM Factory ");
-
-
+            
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = conn;
-
                     cmd.CommandText = qrySelect.ToString();
 
                     conn.Open();
@@ -200,6 +212,7 @@ namespace Team2_DAC
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 return null;
             }
             finally
@@ -236,6 +249,7 @@ namespace Team2_DAC
             }
             catch(Exception ex)
             {
+                WriteErrorLog(ex);
                 return null;
             }
             finally
@@ -244,9 +258,7 @@ namespace Team2_DAC
             }
         }
 
-        #endregion
-
-
+        
         //작업자 불러오기
         public List<ComboItemVO> GetWorker(int factoryDivision)
         {
@@ -272,6 +284,7 @@ namespace Team2_DAC
             }
             catch(Exception ex)
             {
+                WriteErrorLog(ex);
                 return null;
             }
             finally
@@ -280,9 +293,15 @@ namespace Team2_DAC
             }
         }
 
+        #endregion
+
         #region 생산
 
-        // 생산시작
+        /// <summary>
+        /// 생산을 하기전 생산실적번호를 설정하고 생산수량을 가져오는 함수
+        /// </summary>
+        /// <param name="produceID"></param>
+        /// <returns></returns>
         public string[] StartProduce(string produceID)
         {
             string[] list = new string[2];
@@ -310,9 +329,9 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch (Exception err)
+            catch (Exception ex)
             {
-                string sss = err.Message;
+                WriteErrorLog(ex);
                 return list;
             }
             finally
@@ -322,7 +341,13 @@ namespace Team2_DAC
 
         }
 
-        // 생산중
+
+        /// <summary>
+        ///  생산중일때 양품과 불량품 개수를 넣어주는 함수
+        /// </summary>
+        /// <param name="performanceID">생산실적 아이디</param>
+        /// <param name="success">양품</param>
+        /// <param name="bad">불량품</param>
         public async void InProduction(string performanceID, int success, int bad)
         {
             string[] param = new string[] { "@PerformanceID", "@Success", "@Bad" };
@@ -343,9 +368,9 @@ namespace Team2_DAC
 
                 }
             }
-            catch (Exception err)
+            catch (Exception ex)
             {
-                string msg = err.Message;
+                WriteErrorLog(ex);
             }
             finally
             {
@@ -362,7 +387,7 @@ namespace Team2_DAC
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.CommandText = "proc_EndProduction";
+                    cmd.CommandText = "proc_EndProduction";
 
                     FillParameter(cmd, new string[] { "@Performance_ID"}, new object[] { performanceID });
 
@@ -371,9 +396,9 @@ namespace Team2_DAC
                     conn.Close();
                 }
             }
-            catch (Exception err)
+            catch (Exception ex)
             {
-                string sss = err.Message;
+                WriteErrorLog(ex);
             }
             finally
             {
@@ -384,9 +409,14 @@ namespace Team2_DAC
         #endregion
 
 
-        #region 삽입 - 작업자설정, 비가동처리
+        #region 추가 - 작업자설정, 비가동처리
 
-        // 작업자 설정
+        /// <summary>
+        /// 새로운 생산실적을 생성하는 함수
+        /// </summary>
+        /// <param name="produceID">생산 아이디</param>
+        /// <param name="empID">작업자 아이디</param>
+        /// <returns></returns>
         public bool SetWorkerForPerformance(string produceID, int empID)
         {
             int iResult = 0;
@@ -409,6 +439,7 @@ namespace Team2_DAC
 
             catch(Exception ex)
             {
+                WriteErrorLog(ex);
                 return false;
             }
             finally
@@ -417,48 +448,53 @@ namespace Team2_DAC
             }
         }
 
-
-        // 비가동 처리 - 미구현
-        public void ToggleDowntime(DowntimePOP downtime, bool isDowntime)
+        /// <summary>
+        /// 비가동을 설정하는 함수
+        /// </summary>
+        /// <param name="lineID">공정 아이디</param>
+        /// <param name="downtimeCode">비가동 유형</param>
+        /// <param name="employeeID">비가동 설정한 작업자 아이디</param>
+        public bool SetDowntime(int lineID, string downtimeCode, int employeeID)
         {
+            int iResult = 0;
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "proc_SetWorkerForPerformancePOP";
+                    cmd.CommandText = "proc_SetDowntime";
 
-                    FillParameter(cmd, new string[] { "@LineID" }, new object[] { isDowntime });
+                    FillParameter(cmd, new string[] { "@LineID", "@DowntimeCode", "@EmployeeID" }, new object[] { lineID, downtimeCode, employeeID });
 
                     conn.Open();
-                    cmd.ExecuteNonQuery();
+                    iResult = cmd.ExecuteNonQuery();
                     conn.Close();
+
+                    return iResult > 0;
                 }
             }
             catch (Exception ex)
             {
-
+                WriteErrorLog(ex);
+                return iResult > 0;
             }
             finally
             {
                 conn.Close();
             }
-        }
-
-        // 불량 처리
+        }      
 
         #endregion
 
 
         #region POP창 - 불량처리 & 불량 유형
 
-        #region Select 
+        #region 조회 (불량유형, 불량처리유형) 
 
         // 불량유형 & 처리코드
         public List<ComboItemVO> GetDefectiveCode()
-        {
-            
+        {            
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -476,7 +512,7 @@ namespace Team2_DAC
             }
             catch (Exception ex)
             {
-                string sss = ex.Message;
+                WriteErrorLog(ex);
                 return null;
             }
             finally
@@ -504,6 +540,7 @@ namespace Team2_DAC
                     {
                         list.Add(reader.GetString(0));
                     }
+
                     reader.Close();
                     conn.Close();
                 }
@@ -512,7 +549,8 @@ namespace Team2_DAC
             }
             catch (Exception ex)
             {
-                return list;
+                WriteErrorLog(ex);
+                return null;
             }
             finally
             {
@@ -521,6 +559,7 @@ namespace Team2_DAC
         }
 
         #endregion
+
 
         #region Update - 불량등록
         public bool SetDefective(string defectiveID, string handleCode, string defecCode)
@@ -550,6 +589,7 @@ namespace Team2_DAC
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 return false;
             }
             finally
@@ -562,7 +602,10 @@ namespace Team2_DAC
 
         #endregion
 
-
+        /// <summary>
+        /// 비가동 불량유형을 가져오는 함수
+        /// </summary>
+        /// <returns></returns>
         public List<ComboItemVO> GetDowntimeCode()
         {
             List<ComboItemVO> list = null;
@@ -585,6 +628,7 @@ namespace Team2_DAC
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 return null;
             }
             finally
@@ -593,32 +637,7 @@ namespace Team2_DAC
             }
         }
 
-        public void SetDowntime(int lineID, string downtimeCode, int employeeID)
-        {
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = conn;
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "proc_SetDowntime";                    
-                   
-                    FillParameter(cmd, new string[] { "@LineID", "@DowntimeCode", "@EmployeeID"}, new object[] {lineID ,downtimeCode, employeeID});
-
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    conn.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                string sss = ex.Message;
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
+        
 
         // 불량처리한 개수가 있는지 없는지 체크하는 함수 True => 불량개수가 있음, False => 불량개수가 없음
         public bool GetDefectiveByProduce(string produceID)
@@ -641,9 +660,9 @@ namespace Team2_DAC
                     return iResult > 0;
                 }
             }
-            catch (Exception err)
+            catch (Exception ex)
             {
-                string sss = err.Message;
+                WriteErrorLog(ex);
                 return false;
             }
             finally
@@ -651,5 +670,7 @@ namespace Team2_DAC
                 conn.Close();
             }
         }
+
+       
     }
 }

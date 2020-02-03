@@ -41,7 +41,7 @@
             // pictureBox2
             // 
             this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox2.Image = global::Team2_POP.Properties.Resources.logo;
+            this.pictureBox2.Image = global::Team2_POP.Properties.Resources.Img_Logo;
             this.pictureBox2.Location = new System.Drawing.Point(18, 108);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
             this.pictureBox2.Name = "pictureBox2";

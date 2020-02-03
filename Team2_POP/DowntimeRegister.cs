@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Team2_VO;
 
 namespace Team2_POP
 {
@@ -30,9 +31,23 @@ namespace Team2_POP
         {
             lblFairName.Text = LineName;
             lblFairName.Tag = LineID;
-
             cboDowntime.DropDownStyle = ComboBoxStyle.DropDownList;
-            UtilClass.ComboBinding(cboDowntime, new Service().GetDowntimeCode(), "비가동유형 선택");            
+
+            Service service = new Service();
+
+            List<ComboItemVO> list = service.GetDowntimeCode();
+            UtilClass.ComboBinding(cboDowntime, list, "비가동유형 선택");
+
+            // 바인딩한 값이 없는 경우
+            if (list == null)
+            {
+                if (CustomMessageBox.ShowDialog(Properties.Resources.MsgDowntimeGetResultFailHeader
+                        , Properties.Resources.MsgDowntimeGetResultFailContent, MessageBoxIcon.Information, true) == DialogResult.OK)
+                {
+                    list = service.GetDowntimeCode();
+                    UtilClass.ComboBinding(cboDowntime, list, "비가동유형 선택");
+                }
+            }
         }
 
         private void btnSelect_Click(object sender, EventArgs e)
@@ -49,9 +64,14 @@ namespace Team2_POP
             if(lblDowntimeName.Tag !=null)
             {
                 // 비가동 처리
-                new Service().SetDowntime(LineID, lblDowntimeName.Tag.ToString(), EmployeeID);
+                bool bResult = new Service().SetDowntime(LineID, lblDowntimeName.Tag.ToString(), EmployeeID);
 
-                DialogResult = DialogResult.OK;
+
+                if (bResult)
+                    DialogResult = DialogResult.OK;
+                else
+                    CustomMessageBox.ShowDialog(Properties.Resources.MsgDowntimeSetResultFailHeader
+                        , Properties.Resources.MsgDowntimeSetResultFailContent ,MessageBoxIcon.Error);
             }
         }
     }

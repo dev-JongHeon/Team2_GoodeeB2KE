@@ -118,46 +118,95 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="facebook_cover_photo_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\facebook_cover_photo_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Img_Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Img_Exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\exit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="LeftArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Img_LeftArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LeftArrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="logout" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Img_Logout" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logout.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="RightArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\RightArrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Close" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Img_Close" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Close.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Error" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Img_Error" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Error.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="iconfinder_Circle_Green_34211" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Img_CircleGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\iconfinder_Circle_Green_34211.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="iconfinder_Circle_Red_34214" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Img_CircleRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\iconfinder_Circle_Red_34214.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="iconfinder_Circle_Yellow_34215" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Img_CircleYellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\iconfinder_Circle_Yellow_34215.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Information" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Img_Information" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Information.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Img_Warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Warning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Success" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Img_Success" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\iconfinder_check_1930264.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MsgChoice1" xml:space="preserve">
+    <value>{0}를 선택해주세요.</value>
+    <comment>콤보박스 유효성 검사1 (를)</comment>
+  </data>
+  <data name="MsgChoice2" xml:space="preserve">
+    <value>{1}을 선택해주세요.</value>
+    <comment>콤보박스 유효성 검사2 (을)</comment>
+  </data>
+  <data name="MsgDefectiveResultFailContents" xml:space="preserve">
+    <value>선택하신 불량번호 : {0} \n 처리하지 못하었습니다. \n다시시도해주세요.</value>
+    <comment>불량등록 실패시 메세지</comment>
+  </data>
+  <data name="MsgDefectiveResultFailHeader" xml:space="preserve">
+    <value>불량등록실패</value>
+    <comment>불량등록 실패시 헤더라인</comment>
+  </data>
+  <data name="MsgDefectiveResultSucceesContents" xml:space="preserve">
+    <value>선택하신 불량번호 : {0} \n불량유형 : {1} \n불량처리 : {2}상태로 정상처리 되었습니다.</value>
+    <comment>불량등록 성공시 메세지</comment>
+  </data>
+  <data name="MsgDefectiveResultSucceesHeader" xml:space="preserve">
+    <value>불량등록성공</value>
+    <comment>불량등록 성공시 헤더라인</comment>
+  </data>
+  <data name="MsgDefectiveValidate" xml:space="preserve">
+    <value>선택되지 않은 값 존재</value>
+    <comment>불량등록 유효성실패 헤더</comment>
+  </data>
+  <data name="MsgDowntimeGetResultFailContent" xml:space="preserve">
+    <value>비가동 데이터가 존재하지 않습니다. \n다시 시도하시겠습니까?</value>
+    <comment>비가동 유형목록을 불러오기 실패한 경우 메세지</comment>
+  </data>
+  <data name="MsgDowntimeGetResultFailHeader" xml:space="preserve">
+    <value>비가동 불러오기 실패</value>
+    <comment>비가동 유형목록을 불러오기 실패한 경우 헤더</comment>
+  </data>
+  <data name="MsgDowntimeSetResultFailContent" xml:space="preserve">
+    <value>비가동처리가 정상적으로 등록되지않았습니다. \n다시 시도해주세요.</value>
+    <comment>비가동등록에 실패했을 경우 메세지</comment>
+  </data>
+  <data name="MsgDowntimeSetResultFailHeader" xml:space="preserve">
+    <value>비가동 등록 실패</value>
+    <comment>비가동등록에 실패했을 경우 헤더</comment>
+  </data>
+  <data name="MsgWorkResultNullContent" xml:space="preserve">
+    <value>작업날짜 : {0} \n공정 : {1} \n위의 작업내역이 존재하지 않습니다.</value>
+    <comment>작업목록을 불러왔을때 값이 없는경우 메세지</comment>
+  </data>
+  <data name="MsgWorkResultNulllHeader" xml:space="preserve">
+    <value>작업내역 없음</value>
+    <comment>작업목록을 불러왔을때 값이 없는경우 헤더</comment>
   </data>
 </root>
