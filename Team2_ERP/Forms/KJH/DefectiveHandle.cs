@@ -14,7 +14,8 @@ namespace Team2_ERP
     {
         MainForm frm;
         List<DefectiveHandleVO> list = new List<DefectiveHandleVO>();
-
+        DefectiveHandleService service = new DefectiveHandleService();
+        bool isFirst = true;
         public DefectiveHandle()
         {
             InitializeComponent();
@@ -27,10 +28,6 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgvDefectiveHandle, "불량처리유형번호", "HandleID",true,170);
             UtilClass.AddNewColum(dgvDefectiveHandle, "불량처리유형명", "HandleName",true,150);
             UtilClass.AddNewColum(dgvDefectiveHandle, "불량처리유형설명", "HandleExplain",true,300);
-            dgvDefectiveHandle.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dgvDefectiveHandle.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dgvDefectiveHandle.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-
             RefreshClicked();
         }
 
@@ -38,11 +35,13 @@ namespace Team2_ERP
         {
             try
             {
-                DefectiveHandleService service = new DefectiveHandleService();
                 list = service.GetAllDefectiveHandle();
-                dgvDefectiveHandle.DataSource = list;
-                dgvDefectiveHandle.ClearSelection();
-                dgvDefectiveHandle.CurrentCell = null;
+                if (!isFirst)
+                {
+                    dgvDefectiveHandle.DataSource = list;
+                    ClearDgv();
+                }
+                isFirst = false;
             }
             catch (Exception err)
             {

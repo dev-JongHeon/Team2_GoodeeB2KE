@@ -16,6 +16,8 @@ namespace Team2_ERP
         List<WorkVO> list = new List<WorkVO>();
         List<WorkVO> filteredlist = new List<WorkVO>();
         List<WorkVO> searchedlist = new List<WorkVO>();
+        WorkService service = new WorkService();
+        bool isFirst = true;
         public Work()
         {
             InitializeComponent();
@@ -64,11 +66,13 @@ namespace Team2_ERP
         {
             try
             {
-                WorkService service = new WorkService();
                 list = service.GetAllWork();
-                dgvWorkList.DataSource = list;
-                dgvWorkList.ClearSelection();
-                dgvWorkList.CurrentCell = null;
+                if (!isFirst)
+                {
+                    dgvWorkList.DataSource = list;
+                    ClearDgv();
+                }
+               
             }
             catch (Exception err)
             {
@@ -83,6 +87,7 @@ namespace Team2_ERP
             rbx0.Checked = true;
             dgvProduce.DataSource = null;
             frm.NoticeMessage = "작업지시현황 화면입니다.";
+            isFirst = false;
         }
 
         private void Work_Activated(object sender, EventArgs e)
@@ -198,13 +203,16 @@ namespace Team2_ERP
             {
                 filteredlist = list;
             }
-            dgvWorkList.DataSource = filteredlist;
-            searchSales.CodeTextBox.Clear();
-            searchPeriodRequire.Startdate.Clear();
-            searchPeriodRequire.Enddate.Clear();
-            searchPeriodwork.Startdate.Clear();
-            searchPeriodwork.Enddate.Clear();
-            ClearDgv();
+            if (!isFirst)
+            {
+                dgvWorkList.DataSource = filteredlist;
+                searchSales.CodeTextBox.Clear();
+                searchPeriodRequire.Startdate.Clear();
+                searchPeriodRequire.Enddate.Clear();
+                searchPeriodwork.Startdate.Clear();
+                searchPeriodwork.Enddate.Clear();
+                ClearDgv();
+            }
         }
 
         private void dgvWorkList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

@@ -14,6 +14,8 @@ namespace Team2_ERP
     {
         MainForm frm;
         List<DowntimeTypeVO> list = new List<DowntimeTypeVO>();
+        DowntimeTypeService service = new DowntimeTypeService();
+        bool isFirst = true;
         public DowntimeType()
         {
             InitializeComponent();
@@ -34,11 +36,13 @@ namespace Team2_ERP
         {
             try
             {
-                DowntimeTypeService service = new DowntimeTypeService();
                 list = service.GetAllDefectiveTypes();
-                dgvDowntimeType.DataSource = list;
-                dgvDowntimeType.ClearSelection();
-                dgvDowntimeType.CurrentCell = null;
+                if (!isFirst)
+                {
+                    dgvDowntimeType.DataSource = list;
+                    ClearDgv();
+                }
+                
             }
             catch (Exception err)
             {
@@ -126,6 +130,7 @@ namespace Team2_ERP
                         MessageBox.Show(err.Message);
                     }
                 }
+                
                 frm.새로고침ToolStripMenuItem.PerformClick();
             }
             else

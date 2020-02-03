@@ -690,6 +690,10 @@ namespace Team2_ERP
                 tabControl1.SelectedIndex = tindex - 1;
                 tabControl1.Invalidate();
             }
+            if(tindex==0 && tabControl1.TabCount == 1)
+            {
+                this.Close();
+            }
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)

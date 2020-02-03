@@ -14,6 +14,8 @@ namespace Team2_ERP
     {
         MainForm frm;
         List<DefectiveTypeVO> list = new List<DefectiveTypeVO>();
+        DefectiveTypeService service = new DefectiveTypeService();
+        bool isFirst = true;
         public DefectiveType()
         {
             InitializeComponent();
@@ -67,11 +69,13 @@ namespace Team2_ERP
         {
             try
             {
-                DefectiveTypeService service = new DefectiveTypeService();
                 list = service.GetAllDefectiveTypes();
-                dgvDefectiveType.DataSource = list;
-                dgvDefectiveType.ClearSelection();
-                dgvDefectiveType.CurrentCell = null;
+                if (!isFirst)
+                {
+                    dgvDefectiveType.DataSource = list;
+                    ClearDgv();
+                }
+                isFirst = false;
             }
             catch (Exception err)
             {
@@ -125,12 +129,12 @@ namespace Team2_ERP
                         DefectiveTypeService service = new DefectiveTypeService();
                         if (service.DeleteDefectiveType(dgvDefectiveType.SelectedRows[0].Cells[0].Value.ToString()))
                         {
-                            frm.NoticeMessage = "삭제 완료!";
+                            frm.NoticeMessage = "삭제 완료";
                             
                         }
                         else
                         {
-                            frm.NoticeMessage = "삭제 실패..";
+                            frm.NoticeMessage = "삭제 실패";
                         }
                         
                     }

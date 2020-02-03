@@ -41,8 +41,8 @@
             this.searchPeriod = new Team2_ERP.SearchPeriodControl();
             this.searchDowntime = new Team2_ERP.SearchUserControl();
             this.searchWorker = new Team2_ERP.SearchUserControl();
-            this.searchLine = new Team2_ERP.SearchUserControl();
             this.searchFactory = new Team2_ERP.SearchUserControl();
+            this.searchLine = new Team2_ERP.SearchUserControl();
             this.panel1.SuspendLayout();
             this.panel_Search.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -114,7 +114,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1354, 633);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "전체보기";
+            this.tabPage1.Text = "모두 보기";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // dgvDowntime
@@ -242,17 +242,6 @@
             this.searchWorker.Size = new System.Drawing.Size(312, 25);
             this.searchWorker.TabIndex = 3;
             // 
-            // searchLine
-            // 
-            this.searchLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchLine.ControlType = Team2_ERP.SearchUserControl.Mode.Line;
-            this.searchLine.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchLine.Labelname = "공정";
-            this.searchLine.Location = new System.Drawing.Point(4, 38);
-            this.searchLine.Name = "searchLine";
-            this.searchLine.Size = new System.Drawing.Size(312, 25);
-            this.searchLine.TabIndex = 4;
-            // 
             // searchFactory
             // 
             this.searchFactory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
@@ -263,6 +252,17 @@
             this.searchFactory.Name = "searchFactory";
             this.searchFactory.Size = new System.Drawing.Size(312, 25);
             this.searchFactory.TabIndex = 5;
+            // 
+            // searchLine
+            // 
+            this.searchLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.searchLine.ControlType = Team2_ERP.SearchUserControl.Mode.Line;
+            this.searchLine.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchLine.Labelname = "공정";
+            this.searchLine.Location = new System.Drawing.Point(4, 38);
+            this.searchLine.Name = "searchLine";
+            this.searchLine.Size = new System.Drawing.Size(312, 25);
+            this.searchLine.TabIndex = 4;
             // 
             // Downtime
             // 

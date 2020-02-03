@@ -22,6 +22,7 @@ namespace Team2_ERP
         DataSet ds2 = new DataSet();
         DowntimeService service = new DowntimeService();
         StringBuilder sb = new StringBuilder();
+        bool isFirst = true;
 
         public Downtime()
         {
@@ -129,33 +130,50 @@ namespace Team2_ERP
             try
             {
                 list = service.GetAllDowntime();
+
                 ds1 = service.GetDowntimeByLine($"[{DateTime.Now.ToString("yyyy-MM-dd")}]");
                 dtbyline = ds1.Tables[0].Copy();
+
                 ds2 = service.GetDowntimeByType($"[{DateTime.Now.ToString("yyyy-MM-dd")}]");
                 dtbytype = ds2.Tables[0].Copy();
+
+                dgvDowntimeByLine.Columns.Clear();
+                SettingByLineColumns(dtbyline.Columns);
+                SetDoNotSort(dgvDowntimeByLine);
+
+                dgvDowntimeByType.Columns.Clear();
+                SettingByTypeColumns(dtbytype.Columns);
+                SetDoNotSort(dgvDowntimeByType);
+                
+                if (!isFirst)
+                {
+                    if (tabDowntime.SelectedIndex == 0)
+                    {
+                        dgvDowntime.DataSource = list;
+
+                    }
+                    else if (tabDowntime.SelectedIndex == 1)
+                    {
+                        dgvDowntimeByLine.Columns.Clear();
+                        SettingByLineColumns(dtbyline.Columns);
+                        SetDoNotSort(dgvDowntimeByLine);
+                        dgvDowntimeByLine.DataSource = dtbyline;
+                    }
+                    else
+                    {
+                        dgvDowntimeByType.Columns.Clear();
+                        SettingByTypeColumns(dtbytype.Columns);
+                        SetDoNotSort(dgvDowntimeByType);
+                        dgvDowntimeByType.DataSource = dtbytype;
+                    }
+                    ClearDgv();
+                }
+                isFirst = false;
             }
             catch (Exception err)
             {
                 MessageBox.Show(err.Message);
             }
-            dgvDowntime.DataSource = list;
-            dgvDowntime.ClearSelection();
-            dgvDowntime.CurrentCell = null;
-
-            dgvDowntimeByLine.Columns.Clear();
-            SettingByLineColumns(dtbyline.Columns);
-            SetDoNotSort(dgvDowntimeByLine);
-            dgvDowntimeByLine.DataSource = dtbyline;
-            dgvDowntimeByLine.ClearSelection();
-            dgvDowntimeByLine.CurrentCell = null;
-
-            dgvDowntimeByType.Columns.Clear();
-            SettingByTypeColumns(dtbytype.Columns);
-            SetDoNotSort(dgvDowntimeByType);
-            dgvDowntimeByType.DataSource = dtbytype;
-            dgvDowntimeByType.ClearSelection();
-            dgvDowntimeByType.CurrentCell = null;
-
             ClearSearchOption();
             frm.NoticeMessage = "비가동현황 화면입니다.";
         }
@@ -214,7 +232,9 @@ namespace Team2_ERP
             {
                 if (searchFactory.CodeTextBox.Tag == null && searchLine.CodeTextBox.Tag == null && searchDowntime.CodeTextBox.Tag == null && searchWorker.CodeTextBox.Tag == null && searchPeriod.Startdate.Tag == null && searchPeriod.Enddate.Tag == null)
                 {
-                    RefreshClicked();
+                    dgvDowntime.DataSource = list;
+                    dgvDowntime.ClearSelection();
+                    dgvDowntime.CurrentCell = null;
                 }
                 else
                 {
@@ -249,8 +269,7 @@ namespace Team2_ERP
                                         where Convert.ToDateTime(item.Downtime_StartDate) >= Convert.ToDateTime(searchPeriod.Startdate.Tag.ToString()) && Convert.ToDateTime(item.Downtime_StartDate) <= Convert.ToDateTime(searchPeriod.Enddate.Tag.ToString())
                                         select item).ToList();
                     }
-
-                    dgvDowntime.DataSource = searchedlist;
+                    RefreshClicked();
                     frm.NoticeMessage = "검색 완료";
                 }
             }

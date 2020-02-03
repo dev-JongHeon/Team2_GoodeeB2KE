@@ -36,7 +36,72 @@ namespace Team2_DAC
             {
                 throw new Exception(err.Message);
             }
+        }
 
+        public DataSet GetDefectiveByLine(string date)
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                string sql = "GetDefectiveByLine";
+                using (SqlDataAdapter adpt = new SqlDataAdapter(sql, conn))
+                {
+                    adpt.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    adpt.SelectCommand.Parameters.AddWithValue("@Date", date);
+                    conn.Open();
+                    adpt.Fill(ds);
+                    conn.Close();
+                }
+                return ds;
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+        }
+
+        public DataSet GetDefectiveByDeftiveType(string date)
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                string sql = "GetDefectiveByDeftiveType";
+                using (SqlDataAdapter adpt = new SqlDataAdapter(sql, conn))
+                {
+                    adpt.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    adpt.SelectCommand.Parameters.AddWithValue("@Date", date);
+                    conn.Open();
+                    adpt.Fill(ds);
+                    conn.Close();
+                }
+                return ds;
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+        }
+
+        public DataSet GetDefectiveByDeftiveHandleType(string date)
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                string sql = "GetDefectiveByDeftiveHandleType";
+                using (SqlDataAdapter adpt = new SqlDataAdapter(sql, conn))
+                {
+                    adpt.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    adpt.SelectCommand.Parameters.AddWithValue("@Date", date);
+                    conn.Open();
+                    adpt.Fill(ds);
+                    conn.Close();
+                }
+                return ds;
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
         }
     }
 }

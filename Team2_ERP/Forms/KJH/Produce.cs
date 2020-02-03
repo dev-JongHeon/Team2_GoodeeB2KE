@@ -15,6 +15,8 @@ namespace Team2_ERP
         MainForm frm;
         List<ProduceVO> list = new List<ProduceVO>();        
         List<ProduceVO> searchedlist = new List<ProduceVO>();
+        bool isFisrt = true;
+        ProduceService service = new ProduceService();
         public Produce()
         {
             InitializeComponent();
@@ -76,11 +78,13 @@ namespace Team2_ERP
         {
             try
             {
-                ProduceService service = new ProduceService();
                 list = service.GetAllProduce();
-                dgvProduce.DataSource = list;
-                dgvProduce.ClearSelection();
-                dgvProduce.CurrentCell = null;
+                if (!isFisrt)
+                {
+                    dgvProduce.DataSource = list;
+                    ClearDgv();
+                }
+                isFisrt = false;
             }
             catch (Exception err)
             {
