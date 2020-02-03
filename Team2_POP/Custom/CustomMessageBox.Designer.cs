@@ -66,7 +66,7 @@
             // 
             // lblHeader
             // 
-            this.lblHeader.Font = new System.Drawing.Font("나눔바른고딕", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblHeader.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.lblHeader.Location = new System.Drawing.Point(12, 17);
             this.lblHeader.Name = "lblHeader";
@@ -77,13 +77,14 @@
             // 
             // lblMessage
             // 
-            this.lblMessage.Font = new System.Drawing.Font("나눔바른고딕", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblMessage.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.lblMessage.Location = new System.Drawing.Point(143, 152);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(444, 82);
             this.lblMessage.TabIndex = 2;
             this.lblMessage.Text = "메세지";
+            this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pictureBox1
             // 

@@ -18,6 +18,8 @@ namespace Team2_POP
         // 프로퍼티
         public WorkerInfoPOP WorkerInfo { get; set; }
         string workID = string.Empty;
+        System.Timers.Timer timer;
+        POPClient client;
 
         public PopMain()
         {
@@ -25,17 +27,13 @@ namespace Team2_POP
         }
 
         private void PopMain_Load(object sender, EventArgs e)
-        {            
-            SettingControl();            
+        {
+            Test();
+            SettingControl();
             InitData();
             GetTime();
         }
-               
 
-        private void Receive(object sender, ReceiveEventArgs e)
-        {
-
-        }
 
         #region 디자인
 
@@ -47,6 +45,7 @@ namespace Team2_POP
             BtnDisable(btnWorker);
             BtnDisable(btnProduceStart);
 
+            #region 이미지관련
             ImageList imageList = new ImageList();
 
             imageList.Images.Add("close", Properties.Resources.exit);
@@ -65,12 +64,10 @@ namespace Team2_POP
             btnPreDate.Image = picture1.Image;
             btnNextDate.Image = picture2.Image;
 
-
-
-
             btnExit.Image = imageList.Images["close"];
             btnLogout.Image = imageList.Images["logout"];
 
+            #endregion
 
 
 
@@ -81,7 +78,8 @@ namespace Team2_POP
             splitContainer1.IsSplitterFixed = splitContainer2.IsSplitterFixed = splitContainer3.IsSplitterFixed
                 = splitContainer4.IsSplitterFixed = splitContainer5.IsSplitterFixed =
                 splitContainer6.IsSplitterFixed = splitContainer7.IsSplitterFixed = splitContainer8.IsSplitterFixed
-                = splitContainer9.IsSplitterFixed = splitContainer10.IsSplitterFixed = true;
+                = splitContainer9.IsSplitterFixed = splitContainer10.IsSplitterFixed =
+                splitContainer11.IsSplitterFixed = true;
 
 
             // =============================================
@@ -132,6 +130,7 @@ namespace Team2_POP
 
             dgvWork.Columns[1].DefaultCellStyle.Format = "yyyy-MM-dd";
             dgvWork.Columns[2].DefaultCellStyle.Format = "yyyy-MM-dd";
+            dgvWork.Columns[7].DefaultCellStyle.Format = "yyyy-MM-dd";
 
             dgvProduce.Columns[2].DefaultCellStyle.Format = "yyyy-MM-dd";
             dgvProduce.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd";
@@ -250,42 +249,80 @@ namespace Team2_POP
         //생산시작
         private void btnProduceStart_Click(object sender, EventArgs e)
         {
+            ProduceStart();
+            #region 주석
+
+            //try
+            //{
+            //    string[] result = null;
+
+
+            //    if (dgvProduce.SelectedRows.Count < 1)
+            //    {
+            //        return;
+            //    }
+            //    else
+            //    {
+            //        string produceID = dgvProduce.SelectedRows[0].Cells[0].Value.ToString();
+            //        result = new Service().StartProduce(produceID);
+
+
+            //        ProduceMachine machine = new ProduceMachine
+            //        {
+            //            PerformanceID = result[0],
+            //            ProduceID = produceID,
+            //            LineID = Convert.ToInt32(lblLine.Tag),
+            //            RequestQty = Convert.ToInt32(result[1])
+            //        };
+
+            //        if (machine.Start())
+            //        {
+            //            dgvProduce.DataSource = dgvPerformance.DataSource = null;
+            //            dgvProduce.DataSource = new Service().GetProduce(workID);
+            //            dgvPerformance.DataSource = new Service().GetPerformance(produceID);
+            //        }
+
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    CustomMessageBox.ShowDialog("에러", ex.Message, MessageBoxIcon.Error);
+            //}
+
+            #endregion
+        }
+
+        private async void ProduceStart()
+        {
+            string[] result = null;
+
+            if (dgvProduce.SelectedRows.Count < 1)
+            {
+                //CustomMessageBox.ShowDialog("오류", ex.Message, MessageBoxIcon.Error);
+                return;
+            }
             try
             {
-                string[] result = null;
+                string produceID = dgvProduce.SelectedRows[0].Cells[0].Value.ToString();
+                result = new Service().StartProduce(produceID);
 
-
-                if (dgvProduce.SelectedRows.Count < 1)
-                {
-                    return;
-                }
-                else
-                {
-                    string produceID = dgvProduce.SelectedRows[0].Cells[0].Value.ToString();
-                    result = new Service().StartProduce(produceID);
-
-
-                    ProduceMachine machine = new ProduceMachine
-                    {
-                        PerformanceID = result[0],
-                        ProduceID = produceID,
-                        LineID = Convert.ToInt32(lblLine.Tag),
-                        RequestQty = Convert.ToInt32(result[1])
-                    };
-
-                    if (machine.Start())
-                    {
-                        dgvProduce.DataSource = dgvPerformance.DataSource = null;
-                        dgvProduce.DataSource = new Service().GetProduce(workID);
-                        dgvPerformance.DataSource = new Service().GetPerformance(produceID);
-                    }
-
-                }
+                client.PerformanceID = result[0];
+                client.RequestQty = Convert.ToInt32(result[1]);
+                client.ProduceID = produceID;
+                await client.Start();
             }
             catch (Exception ex)
             {
-                CustomMessageBox.ShowDialog("에러", ex.Message, MessageBoxIcon.Error);
+                CustomMessageBox.ShowDialog("오류", ex.Message, MessageBoxIcon.Error);
             }
+
+        }
+        public void Receive(object sender, EventArgs e)
+        {
+            ReceiveEventArgs re = (ReceiveEventArgs)e;
+            if (re.IsCompleted)
+                CustomMessageBox.ShowDialog("", re.Message, MessageBoxIcon.Information);
+
         }
 
 
@@ -315,7 +352,7 @@ namespace Team2_POP
         {
             try
             {
-                if (dgvPerformance.SelectedRows[0].Cells[0].Value != null)
+                if (dgvPerformance.SelectedRows[0].Cells[0].Value != null || dgvPerformance.SelectedRows.Count < 1)
                 {
                     DefectiveRegister defective = new DefectiveRegister();
                     defective.Performance_ID = dgvPerformance.SelectedRows[0].Cells[0].Value.ToString();
@@ -345,7 +382,11 @@ namespace Team2_POP
         //날짜조회 버튼을 누른 경우
         private void btnDate_Click(object sender, EventArgs e)
         {
+            BtnDisable(btnDefective);
+            BtnDisable(btnWorker);            
+            BtnDisable(btnProduceStart);
             GetWork(lblDate.Text);
+            
         }
 
         private void btnPreDate_Click(object sender, EventArgs e)
@@ -422,7 +463,8 @@ namespace Team2_POP
 
 
                     // 생산완료 or 생산중인경우 생산시작, 작업자 막는 코드
-                    if (dgvProduce.SelectedRows[0].Cells[8].Value.ToString() == "생산완료")
+                    if (dgvProduce.SelectedRows[0].Cells[8].Value.ToString() == "생산완료" ||
+                        Convert.ToInt32(dgvProduce.SelectedRows[0].Cells[5].Value) <=  Convert.ToInt32(dgvProduce.SelectedRows[0].Cells[6].Value))
                     {
                         BtnDisable(btnProduceStart);
                         BtnDisable(btnWorker);
@@ -455,7 +497,7 @@ namespace Team2_POP
         private void BtnEnable(Button btn)
         {
             btn.Enabled = true;
-            btn.BackColor = Color.SteelBlue;
+            btn.BackColor = Color.FromArgb(8, 15, 23);
             btn.ForeColor = Color.White;
         }
 
@@ -485,7 +527,7 @@ namespace Team2_POP
 
         private void GetTime()
         {
-            System.Timers.Timer timer = new System.Timers.Timer(1000);
+            timer = new System.Timers.Timer(1000);
             timer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
             timer.Start();
         }
@@ -500,15 +542,41 @@ namespace Team2_POP
             }
             catch (Exception ex)
             {
+                // 시간관련하여 컨트롤에 에러가 발생한 경우 
                 CustomMessageBox.ShowDialog("에러", ex.Message, MessageBoxIcon.Error);
+                if (timer.Enabled)
+                {
+                    timer.Stop();
+                    timer.Dispose();
+                }
             }
         }
+
+        private void PopMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // 타이머를 종료함
+            timer.Stop();
+            timer.Dispose();
+        }
+
 
         #endregion
 
         //===================
         //    테스트 구역
         //===================
+        private void btnWorkStart_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void Test()
+        {
+            client = new POPClient()
+            {
+                LineID = WorkerInfo.LineID
+            };
+            client.Received += new EventHandler(Receive);
+        }
     }
 }

@@ -60,12 +60,7 @@ namespace Team2_POP
         {
             new POPDAC().InProduction(performanceID, success, bad);
         }
-
-        public void EndProduce(string performanceID, string produceID)
-        {
-            new POPDAC().EndProduce(performanceID, produceID);
-        }
-
+     
         public List<ComboItemVO> GetDefectiveCode()
         {
             return new POPDAC().GetDefectiveCode();
