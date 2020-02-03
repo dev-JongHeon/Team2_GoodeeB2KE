@@ -10,7 +10,7 @@ namespace Team2_VO
     {
         public string Work_ID { get; set; } 
         public DateTime Work_StartDate { get; set; }
-        public DateTime Work_EndDate { get; set; }
+        public DateTime? Work_EndDate { get; set; }
         public string Shipment_ID { get; set; }
         public string Work_State { get; set; }
         public int Employees_ID { get; set; }

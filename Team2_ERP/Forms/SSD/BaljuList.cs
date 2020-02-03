@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -9,6 +8,7 @@ using System.Windows.Forms;
 using Team2_DAC;
 using Team2_ERP.Service;
 using Team2_VO;
+using Microsoft.Office.Interop.Excel;
 
 namespace Team2_ERP
 {
@@ -18,7 +18,7 @@ namespace Team2_ERP
         BaljuService service = new BaljuService();
         List<Balju> Balju_AllList = null;  // 발주 List
         List<BaljuDetail> BaljuDetail_AllList = null;  // 발주디테일 List
-        MainForm main; 
+        MainForm main;
         #endregion
 
         public BaljuList()
@@ -46,13 +46,15 @@ namespace Team2_ERP
             dgv_Balju.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
 
             Balju_AllList = service.GetBaljuList();  // 발주리스트 갱신
-            dgv_Balju.DataSource = Balju_AllList;
+            //dgv_Balju.DataSource = Balju_AllList;
 
             UtilClass.SettingDgv(dgv_BaljuDetail);
             UtilClass.AddNewColum(dgv_BaljuDetail, "발주지시번호", "Balju_ID", true, 130);
             UtilClass.AddNewColum(dgv_BaljuDetail, "품목코드", "Product_ID", true, 100);
             UtilClass.AddNewColum(dgv_BaljuDetail, "품목명", "Product_Name", true, 500);
             UtilClass.AddNewColum(dgv_BaljuDetail, "발주요청수량", "BaljuDetail_Qty", true, 130);
+            dgv_BaljuDetail.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
             BaljuDetail_AllList = service.GetBalju_DetailList(); // 발주디테일 AllList 갱신
         }
 
@@ -123,30 +125,46 @@ namespace Team2_ERP
 
         public override void Modify(object sender, EventArgs e)  // 발주완료(수령)처리
         {
-            if (MessageBox.Show("정말로 발주완료 처리하시겠습니까?", "알림", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (dgv_Balju.DataSource != null)
             {
-                string Balju_ID = dgv_Balju.CurrentRow.Cells[0].Value.ToString();
-                service.UpdateBalju_Processed(Balju_ID);
-                Func_Refresh();  // 새로고침
-                main.NoticeMessage = "완료 처리되었습니다.";
+                if (MessageBox.Show("정말로 발주완료 처리하시겠습니까?", "알림", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    string Balju_ID = dgv_Balju.CurrentRow.Cells[0].Value.ToString();
+                    service.UpdateBalju_Processed(Balju_ID);
+                    Func_Refresh();  // 새로고침
+                    main.NoticeMessage = "완료 처리되었습니다.";
+                }
             }
         }
 
         public override void Delete(object sender, EventArgs e)  // 삭제
         {
-            if (MessageBox.Show("정말로 해당 발주요청을 삭제하시겠습니까?", "알림", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (dgv_Balju.DataSource != null)
             {
-                string Balju_ID = dgv_Balju.CurrentRow.Cells[0].Value.ToString();
-                service.DeleteBalju(Balju_ID);
-            }
-            Func_Refresh();  // 새로고침
-            main.NoticeMessage = notice;
+                if (MessageBox.Show("정말로 해당 발주요청을 삭제하시겠습니까?", "알림", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    string Balju_ID = dgv_Balju.CurrentRow.Cells[0].Value.ToString();
+                    service.DeleteBalju(Balju_ID);
+                }
+                Func_Refresh();  // 새로고침
+                main.NoticeMessage = notice;
+            }  
+        }
+
+        public override void Excel(object sender, EventArgs e)
+        {
+            //Microsoft.Office.Interop.Excel.Application ap = new Microsoft.Office.Interop.Excel.Application
+            //Microsoft.Office.Interop.Excel.Workbook workbook = ap.Workbooks.Add();
+            //foreach (Datetable item in collection)
+            //{
+
+            //}
         }
 
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
 
-        } 
+        }
         #endregion
 
         #region Activated, OnOff, DeActivate

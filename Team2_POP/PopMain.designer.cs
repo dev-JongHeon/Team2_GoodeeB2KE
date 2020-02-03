@@ -527,6 +527,7 @@
             this.btnWorkStart.TabIndex = 7;
             this.btnWorkStart.Text = "작업시작";
             this.btnWorkStart.UseVisualStyleBackColor = false;
+            this.btnWorkStart.Click += new System.EventHandler(this.btnWorkStart_Click);
             // 
             // splitContainer3
             // 
@@ -659,7 +660,7 @@
             // 
             this.btnDefective.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
             this.btnDefective.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDefective.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDefective.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDefective.Font = new System.Drawing.Font("나눔고딕", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnDefective.ForeColor = System.Drawing.Color.White;
             this.btnDefective.Location = new System.Drawing.Point(1271, 3);
@@ -674,7 +675,7 @@
             // 
             this.btnWorker.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
             this.btnWorker.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnWorker.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnWorker.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnWorker.Font = new System.Drawing.Font("나눔고딕", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnWorker.ForeColor = System.Drawing.Color.White;
             this.btnWorker.Location = new System.Drawing.Point(637, 3);
@@ -689,7 +690,7 @@
             // 
             this.btnProduceStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
             this.btnProduceStart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnProduceStart.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnProduceStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProduceStart.Font = new System.Drawing.Font("나눔고딕", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnProduceStart.ForeColor = System.Drawing.Color.White;
             this.btnProduceStart.Location = new System.Drawing.Point(3, 3);
@@ -721,6 +722,7 @@
             // 
             this.lblTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
             this.lblTime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblTime.Font = new System.Drawing.Font("나눔고딕", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTime.ForeColor = System.Drawing.Color.White;
             this.lblTime.Location = new System.Drawing.Point(0, 0);
@@ -732,6 +734,7 @@
             // 
             this.lblWorker.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
             this.lblWorker.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblWorker.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblWorker.Font = new System.Drawing.Font("나눔고딕", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblWorker.ForeColor = System.Drawing.Color.White;
             this.lblWorker.Location = new System.Drawing.Point(0, 0);
@@ -751,6 +754,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "PopMain";
             this.Text = "POP화면";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PopMain_FormClosing);
             this.Load += new System.EventHandler(this.PopMain_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

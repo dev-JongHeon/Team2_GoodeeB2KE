@@ -48,13 +48,15 @@ namespace Team2_ERP
             dgv_Order.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm";
             dgv_Order.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgv_Order.Columns[7].DefaultCellStyle.Format = "#,#0원";
-            dgv_Order.DataSource = service.GetOrderCompletedList();
+            Order_AllList = service.GetOrderCompletedList();
 
             UtilClass.SettingDgv(dgv_OrderDetail);
             UtilClass.AddNewColum(dgv_OrderDetail, "주문번호", "Order_ID", true);
             UtilClass.AddNewColum(dgv_OrderDetail, "제품ID", "Product_ID", true);
             UtilClass.AddNewColum(dgv_OrderDetail, "제품명", "Product_Name", true, 300);
             UtilClass.AddNewColum(dgv_OrderDetail, "주문수량", "OrderDetail_Qty", true);
+            dgv_OrderDetail.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
             OrderDetail_AllList = service.GetOrderDetailList();
         }
 

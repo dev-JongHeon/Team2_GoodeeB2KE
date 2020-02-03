@@ -48,13 +48,15 @@ namespace Team2_ERP
             dgv_BaljuCompleted.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_BaljuCompleted.Columns[5].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
             BaljuCompleted_AllList = service.GetBalju_CompletedList(); // 발주리스트 갱신
-            dgv_BaljuCompleted.DataSource = BaljuCompleted_AllList;
+            //dgv_BaljuCompleted.DataSource = BaljuCompleted_AllList;
 
             UtilClass.SettingDgv(dgv_BaljuDetail);
             UtilClass.AddNewColum(dgv_BaljuDetail, "발주지시번호", "Balju_ID", true, 130);
             UtilClass.AddNewColum(dgv_BaljuDetail, "품목코드", "Product_ID", true);
             UtilClass.AddNewColum(dgv_BaljuDetail, "품목명", "Product_Name", true, 500);
             UtilClass.AddNewColum(dgv_BaljuDetail, "발주요청수량", "BaljuDetail_Qty", true, 130);
+            dgv_BaljuDetail.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
             BaljuDetail_AllList = service.GetBalju_DetailList(); // 발주디테일 AllList 갱신
 
             

@@ -354,7 +354,7 @@ namespace Team2_DAC
         }
 
         // 생산 완료
-        public void EndProduce(string performanceID, string produceID)
+        public void EndProduce(string performanceID)
         {
             try
             {
@@ -362,9 +362,9 @@ namespace Team2_DAC
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "proc_EndProduction";
+                        cmd.CommandText = "proc_EndProduction";
 
-                    FillParameter(cmd, new string[] { "@Performance_ID", "@Produce_ID" }, new object[] { performanceID, produceID });
+                    FillParameter(cmd, new string[] { "@Performance_ID"}, new object[] { performanceID });
 
                     conn.Open();
                     cmd.ExecuteNonQuery();

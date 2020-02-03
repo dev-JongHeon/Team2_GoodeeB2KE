@@ -56,9 +56,16 @@
     <Compile Include="OperationMachine.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\Service.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Team2_DAC\Team2_DAC.csproj">
+      <Project>{4E16EA1B-F52F-44C3-BD77-B6A353A93901}</Project>
+      <Name>Team2_DAC</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

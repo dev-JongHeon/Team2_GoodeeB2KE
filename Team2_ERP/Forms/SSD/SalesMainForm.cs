@@ -45,7 +45,7 @@ namespace Team2_ERP
             dgv_SalesStatus.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgv_SalesStatus.Columns[5].DefaultCellStyle.Format = "#,#0원";
             Order_AllList = service.GetSalesStatus();
-            dgv_SalesStatus.DataSource = Order_AllList;
+            //dgv_SalesStatus.DataSource = Order_AllList;
 
             int total = 0;  // 매출총액 담을 변수
             for (int i = 0; i < dgv_SalesStatus.RowCount; i++)  // 매출총액 계산

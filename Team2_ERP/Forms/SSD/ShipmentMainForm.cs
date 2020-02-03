@@ -48,13 +48,15 @@ namespace Team2_ERP
             dgv_Shipment.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_Shipment.Columns[6].DefaultCellStyle.Format = "yyyy-MM-dd";
             Shipment_AllList = service.GetShipmentList();
-            dgv_Shipment.DataSource = Shipment_AllList;
+            //dgv_Shipment.DataSource = Shipment_AllList;
 
             UtilClass.SettingDgv(dgv_ShipmentDetail);
             UtilClass.AddNewColum(dgv_ShipmentDetail, "출하번호", "Shipment_ID", true);
             UtilClass.AddNewColum(dgv_ShipmentDetail, "제품ID", "Product_ID", true);
             UtilClass.AddNewColum(dgv_ShipmentDetail, "제품명", "Product_Name", true, 300);
             UtilClass.AddNewColum(dgv_ShipmentDetail, "주문수량", "OrderDetail_Qty", true);
+            dgv_ShipmentDetail.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
             ShipmentDetail_AllList = service.GetShipmentDetailList();
         } 
 
