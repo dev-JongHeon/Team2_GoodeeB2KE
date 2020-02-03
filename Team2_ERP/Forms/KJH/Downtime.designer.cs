@@ -35,7 +35,6 @@
             this.dgvDowntimeByLine = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dgvDowntimeByType = new System.Windows.Forms.DataGridView();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.searchPeriodForBy = new Team2_ERP.SearchPeriodControl();
             this.SearchArea = new System.Windows.Forms.Panel();
             this.searchPeriod = new Team2_ERP.SearchPeriodControl();
@@ -56,7 +55,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvDowntimeByLine)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDowntimeByType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SearchArea.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -111,7 +109,6 @@
             this.tabPage1.Controls.Add(this.dgvDowntime);
             this.tabPage1.Location = new System.Drawing.Point(4, 23);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1354, 633);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "모두 보기";
@@ -120,15 +117,13 @@
             // dgvDowntime
             // 
             this.dgvDowntime.BackgroundColor = System.Drawing.Color.White;
-            this.dgvDowntime.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvDowntime.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDowntime.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvDowntime.Location = new System.Drawing.Point(3, 3);
+            this.dgvDowntime.Location = new System.Drawing.Point(0, 0);
             this.dgvDowntime.Name = "dgvDowntime";
             this.dgvDowntime.RowTemplate.Height = 23;
-            this.dgvDowntime.Size = new System.Drawing.Size(1346, 625);
-            this.dgvDowntime.TabIndex = 10;
-            this.dgvDowntime.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDowntime_CellContentClick);
+            this.dgvDowntime.Size = new System.Drawing.Size(1352, 631);
+            this.dgvDowntime.TabIndex = 11;
             // 
             // tabPage2
             // 
@@ -136,7 +131,6 @@
             this.tabPage2.Controls.Add(this.dgvDowntimeByLine);
             this.tabPage2.Location = new System.Drawing.Point(4, 23);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(1354, 633);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "공정별 보기";
@@ -145,20 +139,18 @@
             // dgvDowntimeByLine
             // 
             this.dgvDowntimeByLine.BackgroundColor = System.Drawing.Color.White;
-            this.dgvDowntimeByLine.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvDowntimeByLine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDowntimeByLine.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvDowntimeByLine.Location = new System.Drawing.Point(3, 3);
+            this.dgvDowntimeByLine.Location = new System.Drawing.Point(0, 0);
             this.dgvDowntimeByLine.Name = "dgvDowntimeByLine";
             this.dgvDowntimeByLine.RowTemplate.Height = 23;
-            this.dgvDowntimeByLine.Size = new System.Drawing.Size(1346, 625);
-            this.dgvDowntimeByLine.TabIndex = 11;
+            this.dgvDowntimeByLine.Size = new System.Drawing.Size(1352, 631);
+            this.dgvDowntimeByLine.TabIndex = 13;
             // 
             // tabPage3
             // 
             this.tabPage3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tabPage3.Controls.Add(this.dgvDowntimeByType);
-            this.tabPage3.Controls.Add(this.dataGridView2);
             this.tabPage3.Location = new System.Drawing.Point(4, 23);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(1354, 633);
@@ -169,26 +161,13 @@
             // dgvDowntimeByType
             // 
             this.dgvDowntimeByType.BackgroundColor = System.Drawing.Color.White;
-            this.dgvDowntimeByType.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvDowntimeByType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDowntimeByType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDowntimeByType.Location = new System.Drawing.Point(0, 0);
             this.dgvDowntimeByType.Name = "dgvDowntimeByType";
             this.dgvDowntimeByType.RowTemplate.Height = 23;
             this.dgvDowntimeByType.Size = new System.Drawing.Size(1352, 631);
-            this.dgvDowntimeByType.TabIndex = 12;
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 23;
-            this.dataGridView2.Size = new System.Drawing.Size(1352, 631);
-            this.dataGridView2.TabIndex = 11;
+            this.dgvDowntimeByType.TabIndex = 14;
             // 
             // searchPeriodForBy
             // 
@@ -287,7 +266,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvDowntimeByLine)).EndInit();
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDowntimeByType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.SearchArea.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -296,12 +274,8 @@
         #endregion
         private System.Windows.Forms.TabControl tabDowntime;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.DataGridView dgvDowntime;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.DataGridView dgvDowntimeByLine;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridView dgvDowntimeByType;
         private SearchPeriodControl searchPeriodForBy;
         private System.Windows.Forms.Panel SearchArea;
         private SearchPeriodControl searchPeriod;
@@ -309,5 +283,8 @@
         private SearchUserControl searchWorker;
         private SearchUserControl searchLine;
         private SearchUserControl searchFactory;
+        private System.Windows.Forms.DataGridView dgvDowntime;
+        private System.Windows.Forms.DataGridView dgvDowntimeByLine;
+        private System.Windows.Forms.DataGridView dgvDowntimeByType;
     }
 }

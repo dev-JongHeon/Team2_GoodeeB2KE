@@ -11,6 +11,9 @@ using Team2_VO;
 
 namespace Team2_POP
 {
+    /// <summary>
+    /// 불량유형을 처리하는 POPUP 창
+    /// </summary>
     public partial class DefectiveRegister : Form
     {
         public string Performance_ID { get; set; }
@@ -22,7 +25,7 @@ namespace Team2_POP
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult = DialogResult.Cancel;
         }
 
         private void DefectiveRegister_Load(object sender, EventArgs e)
@@ -57,63 +60,71 @@ namespace Team2_POP
             List<string> listDefective = service.GetDefective(Performance_ID);
 
             UtilClass.ComboBinding(cboDefItem, listDefective, "코드 선택");
-
-            //cboDefItem.DataSource = new Service().GetDefective(Performance_ID);
+            
             #endregion
         }
 
-        private bool Save()
+        private void Save()
         {
             StringBuilder msg = new StringBuilder();
 
             if (lblDefItem.Text != cboDefItem.Text)
-                msg.Append("불량번호를 선택해주세요");
+                msg.Append(string.Format(Properties.Resources.MsgChoice1, "불량번호"));
 
             if (lblDefectiveName.Tag == null)
-                msg.Append("불량품목을 선택해주세요.");
+                msg.Append(string.Format(Properties.Resources.MsgChoice2, "불량유형"));
 
             if (lblHandle.Tag == null)
-                msg.Append("불량처리유형을 선택해주세요");
+                msg.Append(string.Format(Properties.Resources.MsgChoice2, "불량처리유형"));
 
             if (msg.Length > 1)
             {
-                CustomMessageBox.ShowDialog("유효성검사 실패", msg.ToString(), MessageBoxIcon.Warning);
-                return false;
+                CustomMessageBox.ShowDialog(Properties.Resources.MsgDefectiveValidate, msg.ToString(), MessageBoxIcon.Warning);
+                ResetData();
+                return;
             }
 
-            string defectiveID = lblDefItem.Text;
-            string defecCode = lblDefectiveName.Tag.ToString();
-            string handleCode = lblHandle.Tag.ToString();
+            string defectiveID = lblDefItem.Text;                    // 불량번호
+            string defecCode = lblDefectiveName.Tag.ToString();      // 불량유형코드
+            string handleCode = lblHandle.Tag.ToString();            // 불량처리코드
+                
 
+            bool bResult = new Service().SetDefective(defectiveID, handleCode, defecCode);
+            if(bResult) // 성공한 경우
+                CustomMessageBox.ShowDialog(Properties.Resources.MsgDefectiveResultSucceesHeader
+                    ,string.Format(Properties.Resources.MsgDefectiveResultSucceesContents, defectiveID, lblDefectiveName, lblHandle)
+                    , MessageBoxIcon.Question);
 
+            else // 실패한 경우
+            {
+                CustomMessageBox.ShowDialog(Properties.Resources.MsgDefectiveResultFailHeader
+                    ,string.Format(Properties.Resources.MsgDefectiveResultFailContents, defectiveID) , MessageBoxIcon.Error);
+            }
+        }
+
+        private void ResetData()
+        {
             // 초기화
             lblDefectiveName.Text = "선택된 불량유형";
             lblDefItem.Text = "선택된 불량품목";
             lblHandle.Text = "선택된 불량 처리유형";
-
-            
             lblDefectiveName.Tag = null;
             lblHandle.Tag = null;
-
-            return new Service().SetDefective(defectiveID, handleCode, defecCode);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (Save())
-                DialogResult = DialogResult.OK;
-            else
-                CustomMessageBox.ShowDialog("불량등록 실패", "정상처리되지 않았습니다.다시 시도해주세요.", MessageBoxIcon.Error);            
+            Save();
+            DialogResult = DialogResult.OK;
         }
 
         private void btnSaveAs_Click(object sender, EventArgs e)
         {
-            if (Save())
-                InitData();
-            else
-                CustomMessageBox.ShowDialog("불량등록 실패", "정상처리되지 않았습니다.다시 시도해주세요.", MessageBoxIcon.Error);
+            Save();
+            ResetData();
         }
 
+        #region 버튼 이벤트
         private void btnDefProSelect_Click(object sender, EventArgs e)
         {
             lblDefItem.Text = cboDefItem.Text;
@@ -130,5 +141,7 @@ namespace Team2_POP
             lblHandle.Tag = cboHandle.SelectedValue.ToString();
             lblHandle.Text = cboHandle.Text;
         }
+        #endregion
+
     }
 }

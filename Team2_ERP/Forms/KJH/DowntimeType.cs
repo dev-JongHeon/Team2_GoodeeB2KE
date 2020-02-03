@@ -24,33 +24,45 @@ namespace Team2_ERP
         private void DowntimeType_Load(object sender, EventArgs e)
         {
             frm = (MainForm)this.ParentForm;
+            SettingDgvDowntimeType();
+            RefreshClicked();
+            frm.NoticeMessage = notice;
+        }
+
+        private void SettingDgvDowntimeType()
+        {
             UtilClass.SettingDgv(dgvDowntimeType);
             UtilClass.AddNewColum(dgvDowntimeType, "비가동유형번호", "DownID", true, 170);
             UtilClass.AddNewColum(dgvDowntimeType, "비가동유형명", "DownName", true, 130);
             UtilClass.AddNewColum(dgvDowntimeType, "비가동유형설명", "DownExplain", true, 300);
-
-            RefreshClicked();
         }
 
         private void RefreshClicked()
         {
             try
             {
-                list = service.GetAllDefectiveTypes();
-                if (!isFirst)
-                {
-                    dgvDowntimeType.DataSource = list;
-                    ClearDgv();
-                }
-                
+                list = service.GetAllDowntimeType();
             }
             catch (Exception err)
             {
                 MessageBox.Show(err.Message);
             }
-            searchDowntimeType.CodeTextBox.Clear();
-            frm.NoticeMessage = "비가동유형 화면입니다.";
+            dgvDowntimeType.DataSource = null;
+            if (!isFirst)
+            {
+                dgvDowntimeType.DataSource = list;
+                ClearDgv();
+            }
+            isFirst = false;
+            ClearSearhOption();
+            frm.NoticeMessage = Properties.Settings.Default.RefreshDone;
         }
+
+        private void ClearSearhOption()
+        {
+            searchDowntimeType.CodeTextBox.Clear();
+        }
+
         public override void MenuStripONOFF(bool flag)
         {
             frm.신규ToolStripMenuItem.Visible = flag;
@@ -67,16 +79,18 @@ namespace Team2_ERP
                                                       where item.DownID == searchDowntimeType.CodeTextBox.Tag.ToString()
                                                       select item).ToList();
                 dgvDowntimeType.DataSource = searchedlist;
-                frm.NoticeMessage = "검색 완료";
+                frm.NoticeMessage = Properties.Settings.Default.SearchDone;
             }
             else
             {
                 RefreshClicked();
+                frm.NoticeMessage = notice;
             }
         }
 
         public override void Refresh(object sender, EventArgs e)
         {
+            isFirst = true;
             RefreshClicked();
         }
 
@@ -85,7 +99,7 @@ namespace Team2_ERP
             DowntimeTypeAdd dfrm = new DowntimeTypeAdd(DowntimeTypeAdd.EditMode.Insert, null);
             if (dfrm.ShowDialog() == DialogResult.OK)
             {
-                frm.새로고침ToolStripMenuItem.PerformClick();
+                RefreshClicked();
             }
         }
 
@@ -97,31 +111,31 @@ namespace Team2_ERP
                 DowntimeTypeAdd dfrm = new DowntimeTypeAdd(DowntimeTypeAdd.EditMode.Update, vo);
                 if (dfrm.ShowDialog() == DialogResult.OK)
                 {
-                    frm.새로고침ToolStripMenuItem.PerformClick();
+                    RefreshClicked();
                 }
             }
             else
             {
-                frm.NoticeMessage = "수정할 불량유형을 선택하지 않으셨습니다.";
+                frm.NoticeMessage = Properties.Settings.Default.ModDowntimeTypeError;
             }
         }
         public override void Delete(object sender, EventArgs e)
         {
             if (dgvDowntimeType.SelectedRows.Count > 0)
             {
-                if (MessageBox.Show("정말로 삭제하시겠습니까?", "삭제", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show(Properties.Settings.Default.IsDelete, Properties.Settings.Default.Delete, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     try
                     {
                         DefectiveTypeService service = new DefectiveTypeService();
                         if (service.DeleteDefectiveType(dgvDowntimeType.SelectedRows[0].Cells[0].Value.ToString()))
                         {
-                            frm.NoticeMessage = "삭제 완료!";
+                            frm.NoticeMessage = Properties.Settings.Default.DeleteDone;
 
                         }
                         else
                         {
-                            frm.NoticeMessage = "삭제 실패..";
+                            frm.NoticeMessage = Properties.Settings.Default.DeleteError;
                         }
 
                     }
@@ -130,12 +144,11 @@ namespace Team2_ERP
                         MessageBox.Show(err.Message);
                     }
                 }
-                
-                frm.새로고침ToolStripMenuItem.PerformClick();
+                RefreshClicked();
             }
             else
             {
-                frm.NoticeMessage = "삭제할 불량유형을 선택하지 않으셨습니다.";
+                frm.NoticeMessage = Properties.Settings.Default.DelDowntimeTypeError;
             }
         }
 

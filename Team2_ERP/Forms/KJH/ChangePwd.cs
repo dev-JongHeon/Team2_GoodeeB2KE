@@ -32,12 +32,12 @@ namespace Team2_ERP
                     loginvo.Employee_PWD = txtPrevPwd.Text;
                     if(service.ChangePwd(loginvo, txtNewPwd.Text))
                     {
-                        MessageBox.Show("성공적으로 암호가 변경되었습니다.", "변경완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(Properties.Settings.Default.PwdSucess, Properties.Settings.Default.Success, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
                     }
                     else
                     {
-                        MessageBox.Show("이전 암호가 정확하지 않습니다.", "변경실패", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(Properties.Settings.Default.PwdFail, Properties.Settings.Default.Fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         this.ActiveControl = txtPrevPwd;
                         txtPrevPwd.SelectAll();
                     }
@@ -51,19 +51,19 @@ namespace Team2_ERP
             {
                 if (txtPrevPwd.TextLength < 1)
                 {
-                    MessageBox.Show("이전 암호를 입력하지 않으셨습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Properties.Settings.Default.PwdNoInsertPrev, Properties.Settings.Default.Warnning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     this.ActiveControl = txtPrevPwd;
                     txtPrevPwd.SelectAll();
                 }
                 else if (txtNewPwd.TextLength < 1)
                 {
-                    MessageBox.Show("새로운 암호를 입력하지 않으셨습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Properties.Settings.Default.PwdNoInsertNew, Properties.Settings.Default.Warnning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     this.ActiveControl = txtNewPwd;
                     txtNewPwd.SelectAll();
                 }
                 else if (txtNewPwd2.TextLength < 1)
                 {
-                    MessageBox.Show("변경할 새로운 암호를 입력하지 않으셨습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Properties.Settings.Default.PwdNoInsertValid, Properties.Settings.Default.Warnning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     this.ActiveControl = txtNewPwd2;
                     txtNewPwd2.SelectAll();
                 }
@@ -78,7 +78,7 @@ namespace Team2_ERP
             }
             else if (txtNewPwd.Text.Trim() != txtNewPwd2.Text.Trim())
             {
-                errorProvider1.SetError(txtNewPwd2, "입력한 비밀번호와 다릅니다.");
+                errorProvider1.SetError(txtNewPwd2, Properties.Settings.Default.PwdErrorValid);
                 txtNewPwd2.Focus();
                 txtNewPwd2.SelectAll();
             }

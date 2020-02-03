@@ -43,7 +43,7 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.dgvDefectiveByDefecHandleType = new System.Windows.Forms.DataGridView();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.SearchArea = new System.Windows.Forms.Panel();
             this.searchPeriodForBy = new Team2_ERP.SearchPeriodControl();
             this.panel1.SuspendLayout();
             this.panel_Search.SuspendLayout();
@@ -61,7 +61,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDefectiveByDefecHandleType)).BeginInit();
-            this.panel2.SuspendLayout();
+            this.SearchArea.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -75,7 +75,7 @@
             // panel5
             // 
             this.panel5.Controls.Add(this.searchPeriodForBy);
-            this.panel5.Controls.Add(this.panel2);
+            this.panel5.Controls.Add(this.SearchArea);
             // 
             // searchWorker
             // 
@@ -143,6 +143,7 @@
             this.tabDefective.Size = new System.Drawing.Size(1364, 662);
             this.tabDefective.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabDefective.TabIndex = 10;
+            this.tabDefective.SelectedIndexChanged += new System.EventHandler(this.tabDefective_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -150,7 +151,6 @@
             this.tabPage1.Controls.Add(this.dgvDefective);
             this.tabPage1.Location = new System.Drawing.Point(4, 23);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1356, 635);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "모두 보기";
@@ -161,9 +161,9 @@
             this.dgvDefective.BackgroundColor = System.Drawing.Color.White;
             this.dgvDefective.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDefective.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvDefective.Location = new System.Drawing.Point(3, 3);
+            this.dgvDefective.Location = new System.Drawing.Point(0, 0);
             this.dgvDefective.Name = "dgvDefective";
-            this.dgvDefective.Size = new System.Drawing.Size(1348, 627);
+            this.dgvDefective.Size = new System.Drawing.Size(1354, 633);
             this.dgvDefective.TabIndex = 9;
             // 
             // tabPage2
@@ -172,7 +172,6 @@
             this.tabPage2.Controls.Add(this.dgvDefectiveByLine);
             this.tabPage2.Location = new System.Drawing.Point(4, 23);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(1356, 635);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "공정별 보기";
@@ -183,9 +182,9 @@
             this.dgvDefectiveByLine.BackgroundColor = System.Drawing.Color.White;
             this.dgvDefectiveByLine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDefectiveByLine.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvDefectiveByLine.Location = new System.Drawing.Point(3, 3);
+            this.dgvDefectiveByLine.Location = new System.Drawing.Point(0, 0);
             this.dgvDefectiveByLine.Name = "dgvDefectiveByLine";
-            this.dgvDefectiveByLine.Size = new System.Drawing.Size(1348, 627);
+            this.dgvDefectiveByLine.Size = new System.Drawing.Size(1354, 633);
             this.dgvDefectiveByLine.TabIndex = 13;
             // 
             // tabPage3
@@ -224,6 +223,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tabPage4.Controls.Add(this.dgvDefectiveByDefecHandleType);
             this.tabPage4.Location = new System.Drawing.Point(4, 23);
             this.tabPage4.Name = "tabPage4";
@@ -239,20 +239,20 @@
             this.dgvDefectiveByDefecHandleType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDefectiveByDefecHandleType.Location = new System.Drawing.Point(0, 0);
             this.dgvDefectiveByDefecHandleType.Name = "dgvDefectiveByDefecHandleType";
-            this.dgvDefectiveByDefecHandleType.Size = new System.Drawing.Size(1356, 635);
+            this.dgvDefectiveByDefecHandleType.Size = new System.Drawing.Size(1354, 633);
             this.dgvDefectiveByDefecHandleType.TabIndex = 13;
             // 
-            // panel2
+            // SearchArea
             // 
-            this.panel2.Controls.Add(this.searchFactory);
-            this.panel2.Controls.Add(this.searchLine);
-            this.panel2.Controls.Add(this.searchWorker);
-            this.panel2.Controls.Add(this.searchPeriod);
-            this.panel2.Controls.Add(this.searchProduct);
-            this.panel2.Location = new System.Drawing.Point(12, 4);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(713, 100);
-            this.panel2.TabIndex = 5;
+            this.SearchArea.Controls.Add(this.searchFactory);
+            this.SearchArea.Controls.Add(this.searchLine);
+            this.SearchArea.Controls.Add(this.searchWorker);
+            this.SearchArea.Controls.Add(this.searchPeriod);
+            this.SearchArea.Controls.Add(this.searchProduct);
+            this.SearchArea.Location = new System.Drawing.Point(12, 4);
+            this.SearchArea.Name = "SearchArea";
+            this.SearchArea.Size = new System.Drawing.Size(713, 100);
+            this.SearchArea.TabIndex = 5;
             // 
             // searchPeriodForBy
             // 
@@ -289,7 +289,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.tabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDefectiveByDefecHandleType)).EndInit();
-            this.panel2.ResumeLayout(false);
+            this.SearchArea.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -311,6 +311,6 @@
         private System.Windows.Forms.DataGridView dgvDefectiveByLine;
         private System.Windows.Forms.DataGridView dgvDefectiveByDefecType;
         private SearchPeriodControl searchPeriodForBy;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel SearchArea;
     }
 }

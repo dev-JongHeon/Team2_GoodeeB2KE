@@ -25,6 +25,12 @@ namespace Team2_ERP
         private void Produce_Load(object sender, EventArgs e)
         {
             frm = (MainForm)this.ParentForm;
+            SettingDgvProduce();
+            RefreshClicked();
+        }
+
+        private void SettingDgvProduce()
+        {
             UtilClass.SettingDgv(dgvProduce);
             UtilClass.AddNewColum(dgvProduce, "생산지시번호", "Produce_ID", true, 130);
             UtilClass.AddNewColum(dgvProduce, "생산시작일", "Produce_StartDate", true, 180);
@@ -71,7 +77,6 @@ namespace Team2_ERP
             dgvPerformance.Columns[7].DefaultCellStyle.Format = "#0개";
             dgvPerformance.Columns[8].DefaultCellStyle.Format = "#0개";
             dgvPerformance.Columns[9].DefaultCellStyle.Format = "0.0#\\%";
-            RefreshClicked();
         }
 
         private void RefreshClicked()
@@ -79,17 +84,26 @@ namespace Team2_ERP
             try
             {
                 list = service.GetAllProduce();
-                if (!isFisrt)
-                {
-                    dgvProduce.DataSource = list;
-                    ClearDgv();
-                }
-                isFisrt = false;
+                
             }
             catch (Exception err)
             {
                 MessageBox.Show(err.Message);
             }
+            dgvProduce.DataSource = null;
+            dgvPerformance.DataSource = null;
+            if (!isFisrt)
+            {
+                dgvProduce.DataSource = list;
+                ClearDgv();
+            }
+            isFisrt = false;
+            ClearSearchOption();
+            frm.NoticeMessage = Properties.Settings.Default.RefreshDone;
+        }
+
+        private void ClearSearchOption()
+        {
             searchFactory.CodeTextBox.Clear();
             searchLine.CodeTextBox.Clear();
             searchProduct.CodeTextBox.Clear();
@@ -97,8 +111,6 @@ namespace Team2_ERP
             searchPeriodStart.Enddate.Clear();
             searchPeriodEnd.Startdate.Clear();
             searchPeriodEnd.Enddate.Clear();
-            dgvPerformance.DataSource = null;
-            frm.NoticeMessage = "생산실적현황 화면입니다.";
         }
 
         private void Produce_Activated(object sender, EventArgs e)
@@ -108,6 +120,7 @@ namespace Team2_ERP
             searchFactory.Focus();
             frm.NoticeMessage = notice;
         }
+
         public override void MenuStripONOFF(bool flag)
         {
             frm.신규ToolStripMenuItem.Visible = false;
@@ -136,15 +149,16 @@ namespace Team2_ERP
 
         public override void Refresh(object sender, EventArgs e)
         {
+            isFisrt = true;
             RefreshClicked();
-
         }
 
         public override void Search(object sender, EventArgs e)
         {
             if (searchFactory.CodeTextBox.Tag == null && searchLine.CodeTextBox.Tag==null&& searchProduct.CodeTextBox.Tag==null&& searchPeriodStart.Startdate.Tag == null && searchPeriodStart.Enddate.Tag == null && searchPeriodEnd.Enddate.Tag == null && searchPeriodEnd.Startdate.Tag == null)
             {
-                frm.새로고침ToolStripMenuItem.PerformClick();
+                RefreshClicked();
+                frm.NoticeMessage = notice;
             }
             else
             {
@@ -183,7 +197,7 @@ namespace Team2_ERP
                                     select item).ToList();
                 }
                 dgvProduce.DataSource = searchedlist;
-                frm.NoticeMessage = "검색 완료";
+                frm.NoticeMessage = Properties.Settings.Default.SearchDone;
                 GetPerformance();
             }
 

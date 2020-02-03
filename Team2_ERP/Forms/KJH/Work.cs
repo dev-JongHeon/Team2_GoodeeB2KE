@@ -26,6 +26,13 @@ namespace Team2_ERP
         private void Work_Load(object sender, EventArgs e)
         {
             frm = (MainForm)this.ParentForm;
+            SettingDgvWork();
+            RefreshClicked();
+            frm.NoticeMessage = notice;
+        }
+
+        private void SettingDgvWork()
+        {
             UtilClass.SettingDgv(dgvWorkList);
             UtilClass.AddNewColum(dgvWorkList, "작업지시번호", "Work_ID", true, 150);
             UtilClass.AddNewColum(dgvWorkList, "작업지시일", "Work_StartDate", true, 180);
@@ -59,7 +66,6 @@ namespace Team2_ERP
             dgvProduce.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvProduce.Columns[9].DefaultCellStyle.Format = "#0개";
             dgvProduce.Columns[10].DefaultCellStyle.Format = "#0개";
-            RefreshClicked();
         }
 
         private void RefreshClicked()
@@ -67,17 +73,25 @@ namespace Team2_ERP
             try
             {
                 list = service.GetAllWork();
-                if (!isFirst)
-                {
-                    dgvWorkList.DataSource = list;
-                    ClearDgv();
-                }
-               
             }
             catch (Exception err)
             {
                 MessageBox.Show(err.Message);
             }
+            dgvWorkList.DataSource = null;
+            dgvProduce.DataSource = null;
+            if (!isFirst)
+            {
+                dgvWorkList.DataSource = list;
+                ClearDgv();
+            }
+            ClearSearchOption();
+            frm.NoticeMessage = Properties.Settings.Default.RefreshDone;
+            isFirst = false;
+        }
+
+        private void ClearSearchOption()
+        {
             searchSales.CodeTextBox.Clear();
             searchPeriodRequire.Startdate.Clear();
             searchPeriodRequire.Enddate.Clear();
@@ -85,9 +99,6 @@ namespace Team2_ERP
             searchPeriodwork.Enddate.Clear();
             rbx0.Checked = false;
             rbx0.Checked = true;
-            dgvProduce.DataSource = null;
-            frm.NoticeMessage = "작업지시현황 화면입니다.";
-            isFirst = false;
         }
 
         private void Work_Activated(object sender, EventArgs e)
@@ -125,15 +136,16 @@ namespace Team2_ERP
 
         public override void Refresh(object sender, EventArgs e)
         {
+            isFirst = true;
             RefreshClicked();
-
         }
 
         public override void Search(object sender, EventArgs e)
         {
             if (searchSales.CodeTextBox.Tag == null && searchPeriodwork.Startdate.Tag == null && searchPeriodwork.Startdate.Tag == null && searchPeriodwork.Enddate.Tag == null && searchPeriodRequire.Startdate.Tag == null && searchPeriodRequire.Enddate.Tag == null)
             {
-                frm.새로고침ToolStripMenuItem.PerformClick();
+                RefreshClicked();
+                frm.NoticeMessage = notice;
             }
             else
             {
@@ -160,7 +172,7 @@ namespace Team2_ERP
                                     select item).ToList();
                 }
                 dgvWorkList.DataSource = searchedlist;
-                frm.NoticeMessage = "검색 완료";
+                frm.NoticeMessage = Properties.Settings.Default.SearchDone;
                 GetProduce();
             }
 

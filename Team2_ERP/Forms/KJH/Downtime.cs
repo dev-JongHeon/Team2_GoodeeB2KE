@@ -34,6 +34,7 @@ namespace Team2_ERP
             frm = (MainForm)this.ParentForm;
             SettingDgvDowntime();
             RefreshClicked();
+            frm.NoticeMessage = notice;
         }
 
         private void SettingByLineColumns(DataColumnCollection dc)
@@ -144,7 +145,11 @@ namespace Team2_ERP
                 dgvDowntimeByType.Columns.Clear();
                 SettingByTypeColumns(dtbytype.Columns);
                 SetDoNotSort(dgvDowntimeByType);
-                
+
+                dgvDowntime.DataSource = null;
+                dgvDowntimeByLine.DataSource = dtbyline.Clone();
+                dgvDowntimeByType.DataSource = dtbytype.Clone();
+
                 if (!isFirst)
                 {
                     if (tabDowntime.SelectedIndex == 0)
@@ -154,28 +159,22 @@ namespace Team2_ERP
                     }
                     else if (tabDowntime.SelectedIndex == 1)
                     {
-                        dgvDowntimeByLine.Columns.Clear();
-                        SettingByLineColumns(dtbyline.Columns);
-                        SetDoNotSort(dgvDowntimeByLine);
-                        dgvDowntimeByLine.DataSource = dtbyline;
+                        BindingDgv(dgvDowntimeByLine, dtbyline);
                     }
                     else
                     {
-                        dgvDowntimeByType.Columns.Clear();
-                        SettingByTypeColumns(dtbytype.Columns);
-                        SetDoNotSort(dgvDowntimeByType);
-                        dgvDowntimeByType.DataSource = dtbytype;
+                        BindingDgv(dgvDowntimeByType, dtbytype);
                     }
                     ClearDgv();
                 }
-                isFirst = false;
             }
             catch (Exception err)
             {
                 MessageBox.Show(err.Message);
             }
             ClearSearchOption();
-            frm.NoticeMessage = "비가동현황 화면입니다.";
+            frm.NoticeMessage = Properties.Settings.Default.RefreshDone;
+            isFirst = false;
         }
 
         private void ClearSearchOption()
@@ -220,9 +219,14 @@ namespace Team2_ERP
         {
             dgvDowntime.ClearSelection();
             dgvDowntime.CurrentCell = null;
+            dgvDowntimeByLine.ClearSelection();
+            dgvDowntimeByLine.CurrentCell = null;
+            dgvDowntimeByType.ClearSelection();
+            dgvDowntimeByType.CurrentCell = null;
         }
         public override void Refresh(object sender, EventArgs e)
         {
+            isFirst = true;
             RefreshClicked();
         }
 
@@ -232,9 +236,8 @@ namespace Team2_ERP
             {
                 if (searchFactory.CodeTextBox.Tag == null && searchLine.CodeTextBox.Tag == null && searchDowntime.CodeTextBox.Tag == null && searchWorker.CodeTextBox.Tag == null && searchPeriod.Startdate.Tag == null && searchPeriod.Enddate.Tag == null)
                 {
-                    dgvDowntime.DataSource = list;
-                    dgvDowntime.ClearSelection();
-                    dgvDowntime.CurrentCell = null;
+                    RefreshClicked();
+                    frm.NoticeMessage = notice;
                 }
                 else
                 {
@@ -269,8 +272,8 @@ namespace Team2_ERP
                                         where Convert.ToDateTime(item.Downtime_StartDate) >= Convert.ToDateTime(searchPeriod.Startdate.Tag.ToString()) && Convert.ToDateTime(item.Downtime_StartDate) <= Convert.ToDateTime(searchPeriod.Enddate.Tag.ToString())
                                         select item).ToList();
                     }
-                    RefreshClicked();
-                    frm.NoticeMessage = "검색 완료";
+                    dgvDowntime.DataSource = searchedlist;
+                    frm.NoticeMessage = Properties.Settings.Default.SearchDone;
                 }
             }
             else if (tabDowntime.SelectedIndex == 1)
@@ -281,16 +284,13 @@ namespace Team2_ERP
                     ds1.Clear();
                     ds1 = service.GetDowntimeByLine(sb.ToString().TrimEnd(','));
                     DataTable searcheddt = ds1.Tables[0].Copy();
-                    dgvDowntimeByLine.Columns.Clear();
-                    CalcTotaltime(searcheddt);
-                    SettingByLineColumns(searcheddt.Columns);
-                    SetDoNotSort(dgvDowntimeByLine);
-                    dgvDowntimeByLine.DataSource = searcheddt;
-                    frm.NoticeMessage = "검색 완료";
+                    BindingDgv(dgvDowntimeByLine, searcheddt);
+                    frm.NoticeMessage = Properties.Settings.Default.SearchDone;
                 }
                 else
                 {
                     RefreshClicked();
+                    frm.NoticeMessage = notice;
                 }
             }
             else if (tabDowntime.SelectedIndex == 2)
@@ -301,19 +301,32 @@ namespace Team2_ERP
                     ds2.Clear();
                     ds2 = service.GetDowntimeByType(sb.ToString().TrimEnd(','));
                     DataTable searcheddt2 = ds2.Tables[0].Copy();
-                    dgvDowntimeByType.Columns.Clear();
-                    CalcTotaltime(searcheddt2);
-                    SettingByTypeColumns(searcheddt2.Columns);
-                    SetDoNotSort(dgvDowntimeByType);
-                    dgvDowntimeByType.DataSource = searcheddt2;
-                    frm.NoticeMessage = "검색 완료";
+                    BindingDgv(dgvDowntimeByType,searcheddt2);
+                    frm.NoticeMessage = Properties.Settings.Default.SearchDone;
                 }
                 else
                 {
                     RefreshClicked();
+                    frm.NoticeMessage = notice;
                 }
             }
 
+        }
+
+        private void BindingDgv(DataGridView dgv,DataTable dt)
+        {
+            dgv.Columns.Clear();
+            CalcTotaltime(dt);
+            if(dgv.Name== "dgvDowntimeByLine")
+            {
+                SettingByLineColumns(dt.Columns);
+            }
+            else
+            {
+                SettingByTypeColumns(dt.Columns);
+            }
+            SetDoNotSort(dgv);
+            dgv.DataSource = dt;
         }
 
         private void GetSearchDays()
@@ -349,8 +362,7 @@ namespace Team2_ERP
             else
             {
                 SearchArea.Visible = true;
-                searchPeriodForBy.Visible = false;
-                
+                searchPeriodForBy.Visible = false;                
             }
         }
 

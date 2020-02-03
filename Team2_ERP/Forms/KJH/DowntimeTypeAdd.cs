@@ -59,22 +59,22 @@ namespace Team2_ERP
                     {
                         if (vo.DownID != "0")
                         {
-                            MessageBox.Show("수정성공", "수정성공", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(Properties.Settings.Default.ModDone, Properties.Settings.Default.ModDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
-                            MessageBox.Show("등록성공", "등록성공", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(Properties.Settings.Default.AddDone, Properties.Settings.Default.AddDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                     else
                     {
                         if (vo.DownID != "0")
                         {
-                            MessageBox.Show("수정실패", "수정실패", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(Properties.Settings.Default.ModError, Properties.Settings.Default.ModError, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
-                            MessageBox.Show("등록실패", "등록실패", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(Properties.Settings.Default.AddError, Properties.Settings.Default.AddError, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                 }
@@ -85,7 +85,7 @@ namespace Team2_ERP
             }
             else
             {
-                MessageBox.Show("필수항목을 입력하지 않으셨습니다.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Properties.Settings.Default.isEssential, Properties.Settings.Default.Warnning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

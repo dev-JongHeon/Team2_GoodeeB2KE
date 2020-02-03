@@ -12,6 +12,10 @@ namespace Team2_POP
 {
     public partial class CustomMessageBox : Form
     {
+
+        static string buttonText = "확인";
+        static bool buttonCancelVisible = false;
+
         static string headerText;
         static string bodyText;
 
@@ -26,7 +30,7 @@ namespace Team2_POP
         private void CustomMessageBox_Load(object sender, EventArgs e)
         {            
             ImageList list = new ImageList();
-            list.Images.Add(Properties.Resources.Close);
+            list.Images.Add(Properties.Resources.Img_Close);
 
             list.ImageSize = btnExit.Size;
             btnExit.Image = list.Images[0];
@@ -34,27 +38,30 @@ namespace Team2_POP
             lblHeader.Text = headerText;
             lblMessage.Text = bodyText;
 
+            btnCancel.Visible = buttonCancelVisible;
+            btnOK.Text = buttonText;
+
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
 
             switch (option)
             {
                 // DB에서 에러났을 경우
                 case MessageBoxIcon.Error:
-                    pictureBox1.Image = Properties.Resources.Error;
+                    pictureBox1.Image = Properties.Resources.Img_Error;
                     break;
                 // 유효성검사에서 실패한 경우
                 case MessageBoxIcon.Warning:
-                    pictureBox1.Image = Properties.Resources.Warning;
+                    pictureBox1.Image = Properties.Resources.Img_Warning;
                     break;
                 // 정상적으로 성공했을 경우
                 case MessageBoxIcon.Information:
-                    pictureBox1.Image = Properties.Resources.Information;
+                    pictureBox1.Image = Properties.Resources.Img_Information;
                     break;
                 case MessageBoxIcon.Question:
-                    pictureBox1.Image = Properties.Resources.Success;
+                    pictureBox1.Image = Properties.Resources.Img_Success;
                     break;
                 default:
-                    pictureBox1.Image = Properties.Resources.Information;
+                    pictureBox1.Image = Properties.Resources.Img_Information;
                     break;
             }
         }
@@ -65,14 +72,26 @@ namespace Team2_POP
         /// <param name="header"></param>
         /// <param name="msg"></param>
         /// <param name="options"></param>
-        public static void ShowDialog(string header, string msg, MessageBoxIcon options)
+        public static DialogResult ShowDialog(string header, string msg, MessageBoxIcon options)
         {
             headerText = header;
             bodyText = msg;
             option = options;
 
             frm = new CustomMessageBox();
-            frm.ShowDialog();
+            return frm.ShowDialog();
+        }
+
+        public static DialogResult ShowDialog(string header, string msg, MessageBoxIcon options, bool visible)
+        {
+            headerText = header;
+            bodyText = msg;
+            option = options;
+            buttonText = "예";
+            buttonCancelVisible = visible;
+
+            frm = new CustomMessageBox();
+            return frm.ShowDialog();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -84,6 +103,12 @@ namespace Team2_POP
         private void btnOK_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
             Close();
         }
     }
