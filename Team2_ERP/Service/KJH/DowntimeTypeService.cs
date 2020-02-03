@@ -10,7 +10,7 @@ namespace Team2_ERP
 {
     public class DowntimeTypeService
     {
-        public List<DowntimeTypeVO> GetAllDefectiveTypes()
+        public List<DowntimeTypeVO> GetAllDowntimeType()
         {
             DowntimeTypeDAC dac = new DowntimeTypeDAC();
             return dac.GetAllDowntimeType();

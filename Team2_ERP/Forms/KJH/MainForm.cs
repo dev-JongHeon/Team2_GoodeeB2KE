@@ -86,7 +86,7 @@ namespace Team2_ERP
         {
             if (!isLogout)
             {
-                if (MessageBox.Show("프로그램을 종료하시겠습니까?", "프로그램 종료", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                if (MessageBox.Show(Settings.Default.ProgramExit, Settings.Default.Exit, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 {
                     e.Cancel = true;
                 }
@@ -109,7 +109,7 @@ namespace Team2_ERP
                 }
             }
             OpenTabForm<MainTab>("메인화면");
-            NoticeMessage = "환영합니다!";
+            NoticeMessage = Settings.Default.Welcome;
         }
         #endregion
 
@@ -406,27 +406,6 @@ namespace Team2_ERP
                 OpenBaseForm<BOM>("BOM관리",e);                
             }
         }
-
-        //private void MenuByAuth(TreeNodeMouseClickEventArgs e)
-        //{
-        //    if (e.Node.Tag.ToString() == "1")
-        //    {
-        //        MenuStripONOFF(true);
-        //    }
-        //    else if (e.Node.Tag.ToString() == "0")
-        //    {
-        //        MenuStripONOFF(false);
-        //    }
-        //}
-
-        //private void MenuStripONOFF(bool flag)
-        //{
-        //    신규ToolStripMenuItem.Visible = flag;
-        //    수정ToolStripMenuItem.Visible = flag;
-        //    삭제ToolStripMenuItem.Visible = flag;
-        //    인쇄ToolStripMenuItem.Visible = flag;
-        //}
-
         private void SettingAuth()
         {
             string[] authlist = Session.Auth.Split(',');

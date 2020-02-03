@@ -16,6 +16,8 @@ namespace Team2_ERP
         CheckBox headerbox = new CheckBox();
         int uid = 0;
         List<SearchedInfoVO> list = new List<SearchedInfoVO>();
+        SearchService service = new SearchService();
+        bool isFirst = true;
         public UserAuth()
         {
             InitializeComponent();
@@ -24,6 +26,13 @@ namespace Team2_ERP
         private void UserAuth_Load(object sender, EventArgs e)
         {
             frm = (MainForm)this.ParentForm;
+            SettingDgvUserAuth();
+            RefreshClicked();
+            frm.NoticeMessage = notice;
+        }
+
+        private void SettingDgvUserAuth()
+        {
             UtilClass.SettingDgv(dgvEmpList);
             UtilClass.AddNewColum(dgvEmpList, "사원번호", "ID");
             UtilClass.AddNewColum(dgvEmpList, "사원명", "Name");
@@ -42,30 +51,33 @@ namespace Team2_ERP
             headerbox.Click += new EventHandler(headerbox_Click);
             dgvAuthList.Controls.Add(headerbox);
             dgvAuthList.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-
-            RefreshClicked();
-            
         }
 
         private void RefreshClicked()
         {
-            
             try
             {
-                SearchService service = new SearchService();
                 list = service.GetInfo("Employee");
-                dgvEmpList.DataSource = list;
-                dgvEmpList.ClearSelection();
-                dgvEmpList.CurrentCell = null;
+                dgvAuthList.DataSource = null;
+                if (!isFirst)
+                {
+                    dgvEmpList.DataSource = list; 
+                }
+                ClearDgv();
+                isFirst = false;
             }
             catch (Exception err)
             {
                 MessageBox.Show(err.Message);
             }
+            ClearSearchOption();
+            frm.NoticeMessage = Properties.Settings.Default.RefreshDone;
+        }
+
+        private void ClearSearchOption()
+        {
             txtSearch.CodeTextBox.Clear();
             headerbox.Checked = false;
-            ClearDgv();
-            frm.NoticeMessage = "권한설정 화면입니다.";
         }
 
         public override void Modify(object sender, EventArgs e)
@@ -80,17 +92,17 @@ namespace Team2_ERP
                 AuthService service = new AuthService();
                 if (service.UpdateAuth(uid, authlist))
                 {
-                    frm.NoticeMessage = "권한설정 완료!";
+                    frm.NoticeMessage = Properties.Settings.Default.AuthDone;
                 }
                 else
                 {
-                    frm.NoticeMessage = "권한설정 실패..";
+                    frm.NoticeMessage = Properties.Settings.Default.AuthError;
                 }
-                frm.새로고침ToolStripMenuItem.PerformClick();
+                RefreshClicked();
             }
             else
             {
-                frm.NoticeMessage = "권한설정할 사원을 선택하지 않으셨습니다.";
+                frm.NoticeMessage = Properties.Settings.Default.ModAuthError;
             }
         }
 
@@ -109,18 +121,19 @@ namespace Team2_ERP
                 dgvAuthList.DataSource = service.GetAuthByID(id);
                 dgvAuthList.ClearSelection();
                 dgvAuthList.CurrentCell = null;
-                frm.NoticeMessage = "검색 완료";
+                frm.NoticeMessage = Properties.Settings.Default.SearchDone;
             }
             else
             {
-                frm.새로고침ToolStripMenuItem.PerformClick();
+                RefreshClicked();
+                frm.NoticeMessage = notice;
             }
         }
 
         public override void Refresh(object sender, EventArgs e)
         {
+            isFirst = true;
             RefreshClicked();
-            dgvAuthList.DataSource = null;
         }
 
         private void headerbox_Click(object sender, EventArgs e)

@@ -103,7 +103,7 @@ namespace Team2_ERP
         /// <param name="e"></param>
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (txtEmpID.TextLength > 0)
+            if (txtEmpID.TextLength > 0&&txtEmpName.TextLength>0&&txtEmpPwd.TextLength>0)
             {
                 try
                 {
@@ -133,7 +133,7 @@ namespace Team2_ERP
                     }
                     else
                     {
-                        MessageBox.Show("입력한 비밀번호가 잘못되었습니다.", "비밀번호 오류", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(Properties.Settings.Default.LoginPwdError, Properties.Settings.Default.Error, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         txtEmpPwd.Focus();
                         txtEmpPwd.SelectAll();
                     }
@@ -145,8 +145,23 @@ namespace Team2_ERP
             }
             else
             {
-                MessageBox.Show("사원번호가 비어있습니다.\n사원을 선택하여주세요.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                btnSearch.PerformClick();
+                if (txtEmpID.TextLength < 1)
+                {
+                    MessageBox.Show(Properties.Settings.Default.LoginEmpIDError, Properties.Settings.Default.Warnning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnSearch.PerformClick();
+                }
+                else if (txtEmpName.TextLength < 1)
+                {
+                    MessageBox.Show(Properties.Settings.Default.LoginEmpNameError, Properties.Settings.Default.Warnning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnSearch.PerformClick();
+                }
+                else
+                {
+                    MessageBox.Show(Properties.Settings.Default.LoginPwdError, Properties.Settings.Default.Error, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtEmpPwd.Focus();
+                    txtEmpPwd.SelectAll();
+                }
+                
             }
         }
 
@@ -169,13 +184,16 @@ namespace Team2_ERP
             {
                 if (txtEmpID.TextLength < 1)
                 {
-                    MessageBox.Show("사원번호가 비어있습니다.\n사원을 선택하여주세요.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    btnSearch.PerformClick();
+                    MessageBox.Show(Properties.Settings.Default.LoginEmpIDError, Properties.Settings.Default.Warnning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else if (txtEmpName.TextLength < 1)
                 {
-                    MessageBox.Show("사원명이 비어있습니다.\n사원을 선택하여주세요.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Properties.Settings.Default.LoginEmpNameError, Properties.Settings.Default.Warnning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     btnSearch.PerformClick();
+                }
+                else
+                {
+
                 }
             }
 
@@ -221,8 +239,29 @@ namespace Team2_ERP
                 e.Handled = true;
             }
         }
+
         #endregion
 
-       
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+            bool startLoaction = true;
+            int startLoactionX = Properties.Settings.Default.LoginStartLocation.X;
+            int startLoactionY = Properties.Settings.Default.LoginStartLocation.Y;
+            int screenX = Screen.PrimaryScreen.Bounds.Width;
+            int screenY = Screen.PrimaryScreen.Bounds.Height;
+            int screenCmpX = startLoactionX + this.Size.Width;
+            int screenCmpY = startLoactionY + this.Size.Height;
+
+            startLoaction &= !(startLoactionX < 0 || startLoactionY < 0);
+            startLoaction &= !(screenX < screenCmpX || screenY < screenCmpY);
+
+            if (startLoaction) this.Location = Properties.Settings.Default.LoginStartLocation;
+        }
+
+        private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.LoginStartLocation = this.Location;
+            Properties.Settings.Default.Save();
+        }
     }
 }

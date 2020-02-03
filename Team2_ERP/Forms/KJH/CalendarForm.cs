@@ -171,19 +171,10 @@ namespace Team2_ERP
         {
             if (StartCalendar.SelectionStart > EndCalendar.SelectionStart)
             {
-                MessageBox.Show("시작날짜가 종료날짜보다 큽니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Properties.Settings.Default.CalendarError, Properties.Settings.Default.Error, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 DialogResult = DialogResult.None;
             }
         }
 
-        private void EndCalendar_DateChanged(object sender, DateRangeEventArgs e)
-        {
-          
-        }
-
-        private void StartCalendar_DateChanged(object sender, DateRangeEventArgs e)
-        {
-            
-        }
     }
 }

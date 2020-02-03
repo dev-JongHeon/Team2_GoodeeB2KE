@@ -24,13 +24,17 @@ namespace Team2_ERP
         private void DefectiveType_Load(object sender, EventArgs e)
         {
             frm = (MainForm)this.ParentForm;
+            SettingDefectiveType();
+            RefreshClicked();
+            frm.NoticeMessage = notice;
+        }
+
+        private void SettingDefectiveType()
+        {
             UtilClass.SettingDgv(dgvDefectiveType);
-            UtilClass.AddNewColum(dgvDefectiveType, "불량유형번호", "DefecID",true,130);
+            UtilClass.AddNewColum(dgvDefectiveType, "불량유형번호", "DefecID", true, 130);
             UtilClass.AddNewColum(dgvDefectiveType, "불량유형명", "DefecName", true, 130);
             UtilClass.AddNewColum(dgvDefectiveType, "불량유형설명", "DefecExplain", true, 300);
-
-            RefreshClicked();
-
         }
 
         private void DefectiveType_Shown(object sender, EventArgs e)
@@ -52,16 +56,18 @@ namespace Team2_ERP
                                                       where item.DefecID == txtSearch.CodeTextBox.Tag.ToString()
                                                       select item).ToList();
                 dgvDefectiveType.DataSource = searchedlist;
-                frm.NoticeMessage = "검색 완료";
+                frm.NoticeMessage = Properties.Settings.Default.SearchDone;
             }
             else
             {
                 RefreshClicked();
+                frm.NoticeMessage = notice;
             }
         }
 
         public override void Refresh(object sender, EventArgs e)
         {
+            isFirst = true;
             RefreshClicked();
         }
 
@@ -70,19 +76,25 @@ namespace Team2_ERP
             try
             {
                 list = service.GetAllDefectiveTypes();
-                if (!isFirst)
-                {
-                    dgvDefectiveType.DataSource = list;
-                    ClearDgv();
-                }
-                isFirst = false;
             }
             catch (Exception err)
             {
                 MessageBox.Show(err.Message);
             }
+            dgvDefectiveType.DataSource = null;
+            if (!isFirst)
+            {
+                dgvDefectiveType.DataSource = list;
+                ClearDgv();
+            }
+            isFirst = false;
+            ClearSearchOption();
+            frm.NoticeMessage = Properties.Settings.Default.RefreshDone;
+        }
+
+        private void ClearSearchOption()
+        {
             txtSearch.CodeTextBox.Clear();
-            frm.NoticeMessage = "불량유형 화면입니다.";
         }
 
         public override void MenuStripONOFF(bool flag)
@@ -98,7 +110,7 @@ namespace Team2_ERP
             DefectiveTypeAdd dfrm = new DefectiveTypeAdd(DefectiveTypeAdd.EditMode.Insert, null);
             if (dfrm.ShowDialog() == DialogResult.OK)
             {
-                frm.새로고침ToolStripMenuItem.PerformClick();
+                RefreshClicked();
             }
         }
 
@@ -110,31 +122,31 @@ namespace Team2_ERP
                 DefectiveTypeAdd dfrm = new DefectiveTypeAdd(DefectiveTypeAdd.EditMode.Update, vo);
                 if (dfrm.ShowDialog() == DialogResult.OK)
                 {
-                    frm.새로고침ToolStripMenuItem.PerformClick();
+                    RefreshClicked();
                 }
             }
             else
             {
-                frm.NoticeMessage = "수정할 불량유형을 선택하지 않으셨습니다.";
+                frm.NoticeMessage = Properties.Settings.Default.ModDefectiveTypeError;
             }
         }
         public override void Delete(object sender, EventArgs e)
         {
             if (dgvDefectiveType.SelectedRows.Count > 0)
             {
-                if (MessageBox.Show("정말로 삭제하시겠습니까?", "삭제", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show(Properties.Settings.Default.IsDelete, Properties.Settings.Default.Delete, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     try
                     {
                         DefectiveTypeService service = new DefectiveTypeService();
                         if (service.DeleteDefectiveType(dgvDefectiveType.SelectedRows[0].Cells[0].Value.ToString()))
                         {
-                            frm.NoticeMessage = "삭제 완료";
+                            frm.NoticeMessage = Properties.Settings.Default.DeleteDone;
                             
                         }
                         else
                         {
-                            frm.NoticeMessage = "삭제 실패";
+                            frm.NoticeMessage = Properties.Settings.Default.DeleteError;
                         }
                         
                     }
@@ -143,11 +155,11 @@ namespace Team2_ERP
                         MessageBox.Show(err.Message);
                     }
                 }
-                frm.새로고침ToolStripMenuItem.PerformClick();
+                RefreshClicked();
             }
             else
             {
-                frm.NoticeMessage = "삭제할 불량유형을 선택하지 않으셨습니다.";
+                frm.NoticeMessage = Properties.Settings.Default.DelDefectiveTypeError;
             }
         }
 

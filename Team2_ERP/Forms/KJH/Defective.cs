@@ -35,6 +35,7 @@ namespace Team2_ERP
             frm = (MainForm)this.ParentForm;
             SettingDgvDefective();
             RefreshClicked();
+            frm.NoticeMessage = notice;
         }
 
         private void SettingDgvDefective()
@@ -93,7 +94,7 @@ namespace Team2_ERP
                 dtbyhandle = ds3.Tables[0].Copy();
 
                 dgvDefectiveByLine.Columns.Clear();
-                SettingByLineColumns(dtbyline.Columns);
+                SettingByLineColumns(dtbyline.Columns);                
                 SetDoNotSort(dgvDefectiveByLine);
 
                 dgvDefectiveByDefecType.Columns.Clear();
@@ -101,9 +102,13 @@ namespace Team2_ERP
                 SetDoNotSort(dgvDefectiveByDefecType);
 
                 dgvDefectiveByDefecHandleType.Columns.Clear();
-                SettingByTypeColumns(dtbyhandle.Columns);
+                SettingByHandleColumns(dtbyhandle.Columns);
                 SetDoNotSort(dgvDefectiveByDefecHandleType);
 
+                dgvDefective.DataSource = null;
+                dgvDefectiveByLine.DataSource = dtbyline.Clone();
+                dgvDefectiveByDefecType.DataSource= dtbytype.Clone();
+                dgvDefectiveByDefecHandleType.DataSource = dtbyhandle.Clone();
                 if (!isFirst)
                 {
                     if (tabDefective.SelectedIndex == 0)
@@ -112,35 +117,27 @@ namespace Team2_ERP
                     }
                     else if (tabDefective.SelectedIndex == 1)
                     {
-                        dgvDefectiveByLine.Columns.Clear();
-                        SettingByLineColumns(dtbyline.Columns);
-                        SetDoNotSort(dgvDefectiveByLine);
-                        dgvDefectiveByLine.DataSource = dtbyline;
+                        BindingDgv(dgvDefectiveByLine, dtbyline);
                     }
                     else if (tabDefective.SelectedIndex == 2)
                     {
-                        dgvDefectiveByDefecType.Columns.Clear();
-                        SettingByTypeColumns(dtbytype.Columns);
-                        SetDoNotSort(dgvDefectiveByDefecType);
-                        dgvDefectiveByDefecType.DataSource = dtbytype;
+                        BindingDgv(dgvDefectiveByDefecType, dtbytype);
                     }
                     else
                     {
-                        dgvDefectiveByDefecHandleType.Columns.Clear();
-                        SettingByTypeColumns(dtbyhandle.Columns);
-                        SetDoNotSort(dgvDefectiveByDefecHandleType);
-                        dgvDefectiveByDefecHandleType.DataSource = dtbyhandle;
+                        BindingDgv(dgvDefectiveByDefecHandleType, dtbyhandle);
                     }
                     ClearDgv();
                 }
-                isFirst = false;
+                
             }
             catch (Exception err)
             {
                 MessageBox.Show(err.Message);
             }
             ClearSearchOption();
-            frm.NoticeMessage = "불량처리현황 화면입니다.";
+            frm.NoticeMessage = Properties.Settings.Default.RefreshDone;
+            isFirst = false;
         }
 
         private void ClearSearchOption()
@@ -166,7 +163,7 @@ namespace Team2_ERP
                 }
                 else if (name == "Product_Name")
                 {
-                    UtilClass.AddNewColum(dgvDefectiveByLine, "상품명", $"{name}", true, 130, DataGridViewContentAlignment.MiddleRight);
+                    UtilClass.AddNewColum(dgvDefectiveByLine, "상품명", $"{name}", true, 130, DataGridViewContentAlignment.MiddleCenter);
                 }
                 else
                 {
@@ -181,13 +178,30 @@ namespace Team2_ERP
             {
                 string name = item.ColumnName;
 
-                if (name == "DowntimeType_Name")
+                if (name == "DefectiveType_Name")
                 {
                     UtilClass.AddNewColum(dgvDefectiveByDefecType, "불량유형", $"{name}", true, 150, DataGridViewContentAlignment.MiddleCenter);
                 }
                 else
                 {
                     UtilClass.AddNewColum(dgvDefectiveByDefecType, $"{name}", $"{name}", true, 130, DataGridViewContentAlignment.MiddleRight);
+                }
+            }
+        }
+
+        private void SettingByHandleColumns(DataColumnCollection dc)
+        {
+            foreach (DataColumn item in dc)
+            {
+                string name = item.ColumnName;
+
+                if (name == "DefectiveHandleName")
+                {
+                    UtilClass.AddNewColum(dgvDefectiveByDefecHandleType, "불량처리유형", $"{name}", true, 150, DataGridViewContentAlignment.MiddleCenter);
+                }
+                else
+                {
+                    UtilClass.AddNewColum(dgvDefectiveByDefecHandleType, $"{name}", $"{name}", true, 130, DataGridViewContentAlignment.MiddleRight);
                 }
             }
         }
@@ -222,10 +236,17 @@ namespace Team2_ERP
         {
             dgvDefective.ClearSelection();
             dgvDefective.CurrentCell = null;
+            dgvDefectiveByLine.ClearSelection();
+            dgvDefectiveByLine.CurrentCell = null;
+            dgvDefectiveByDefecType.ClearSelection();
+            dgvDefectiveByDefecType.CurrentCell = null;
+            dgvDefectiveByDefecHandleType.ClearSelection();
+            dgvDefectiveByDefecHandleType.CurrentCell = null;
         }
 
         public override void Refresh(object sender, EventArgs e)
         {
+            isFirst = true;
             RefreshClicked();
         }
 
@@ -235,7 +256,8 @@ namespace Team2_ERP
             {
                 if (searchFactory.CodeTextBox.Tag == null && searchLine.CodeTextBox.Tag == null && searchProduct.CodeTextBox.Tag == null && searchWorker.CodeTextBox.Tag == null && searchPeriod.Startdate.Tag == null && searchPeriod.Enddate.Tag == null)
                 {
-                    frm.새로고침ToolStripMenuItem.PerformClick();
+                    RefreshClicked();
+                    frm.NoticeMessage = notice;
                 }
                 else
                 {
@@ -271,7 +293,7 @@ namespace Team2_ERP
                                         select item).ToList();
                     }
                     dgvDefective.DataSource = searchedlist;
-                    frm.NoticeMessage = "검색 완료";
+                    frm.NoticeMessage = Properties.Settings.Default.SearchDone;
                 } 
             }
             else if (tabDefective.SelectedIndex == 1)
@@ -282,40 +304,131 @@ namespace Team2_ERP
                     ds1.Clear();
                     ds1 = service.GetDefectiveByLine(sb.ToString().TrimEnd(','));
                     DataTable searcheddt = ds1.Tables[0].Copy();
-                    dgvDefectiveByLine.Columns.Clear();
-                    CalcTotaltime(searcheddt);
-                    SettingByLineColumns(searcheddt.Columns);
-                    //SetDoNotSort(dgvDowntimeByLine);
-                    //dgvDowntimeByLine.DataSource = searcheddt;
-                    frm.NoticeMessage = "검색 완료";
+                    BindingDgv(dgvDefectiveByLine, searcheddt);
+                    frm.NoticeMessage = Properties.Settings.Default.SearchDone;
                 }
                 else
                 {
                     RefreshClicked();
+                    frm.NoticeMessage = notice;
+                }
+            }
+            else if (tabDefective.SelectedIndex == 2)
+            {
+                if (searchPeriodForBy.Startdate.Tag != null && searchPeriodForBy.Enddate.Tag != null)
+                {
+                    GetSearchDays();
+                    ds2.Clear();
+                    ds2 = service.GetDefectiveByDeftiveType(sb.ToString().TrimEnd(','));
+                    DataTable searcheddt = ds2.Tables[0].Copy();
+                    BindingDgv(dgvDefectiveByDefecType, searcheddt);
+                    frm.NoticeMessage = Properties.Settings.Default.SearchDone;
+                }
+                else
+                {
+                    RefreshClicked();
+                    frm.NoticeMessage = notice;
+                }
+            }
+            else if (tabDefective.SelectedIndex == 3)
+            {
+                if (searchPeriodForBy.Startdate.Tag != null && searchPeriodForBy.Enddate.Tag != null)
+                {
+                    GetSearchDays();
+                    ds3.Clear();
+                    ds3 = service.GetDefectiveByDeftiveHandleType(sb.ToString().TrimEnd(','));
+                    DataTable searcheddt = ds3.Tables[0].Copy();
+                    BindingDgv(dgvDefectiveByDefecHandleType,searcheddt);
+                    frm.NoticeMessage = Properties.Settings.Default.SearchDone;
+                }
+                else
+                {
+                    RefreshClicked();
+                    frm.NoticeMessage = notice;
                 }
             }
             
         }
 
+        private void BindingDgv(DataGridView dgv, DataTable dt)
+        {
+            dgv.Columns.Clear();
+            if (dgv.Name== "dgvDefectiveByLine")
+            {
+                CalcTotaltime2(dt);
+                SettingByLineColumns(dt.Columns);
+                dgv.DataSource = dt;
+                for (int i = 2; i < dgv.Columns.Count; i++)
+                {
+                    dgv.Columns[i].DefaultCellStyle.Format = "#개";
+                }
+            }
+            else
+            {
+                CalcTotaltime(dt);
+                if (dgv.Name == "dgvDefectiveByDefecType")
+                { 
+                    SettingByTypeColumns(dt.Columns);
+                }
+                else
+                {
+                    SettingByHandleColumns(dt.Columns);
+                }
+                dgv.DataSource = dt;
+                for (int i = 1; i < dgv.Columns.Count; i++)
+                {
+                    dgv.Columns[i].DefaultCellStyle.Format = "#개";
+                }
+            }
+            SetDoNotSort(dgv);
+        }
+
         private void CalcTotaltime(DataTable dt)
         {
             dt.Columns.Add("불량개수", typeof(string));
-            TimeSpan time = new TimeSpan();
+            int sum = 0;
             foreach (DataRow row in dt.Rows)
             {
                 for (int i = 1; i < dt.Columns.Count - 1; i++)
                 {
                     if (row[dt.Columns[i].ColumnName].ToString() != string.Empty)
                     {
-                        time += TimeSpan.Parse(row[dt.Columns[i]].ToString());
-
-                    }
-                    if (time.ToString("hh\\:mm\\:ss") != "00:00:00")
-                    {
-                        row["불량개수"] = time.ToString("hh\\:mm\\:ss");
-                        time = new TimeSpan();
+                        sum += Convert.ToInt32(row[dt.Columns[i]].ToString());
                     }
                 }
+                if (sum == 0)
+                {
+                    row["불량개수"] = null;
+                }
+                else
+                {
+                    row["불량개수"] = $"{sum}개";
+                }
+                sum = 0;
+            }
+        }
+        private void CalcTotaltime2(DataTable dt)
+        {
+            dt.Columns.Add("불량개수", typeof(string));
+            int sum = 0;
+            foreach (DataRow row in dt.Rows)
+            {
+                for (int i = 2; i < dt.Columns.Count - 1; i++)
+                {
+                    if (row[dt.Columns[i].ColumnName].ToString() != string.Empty)
+                    {
+                        sum += Convert.ToInt32(row[dt.Columns[i]].ToString());
+                    }
+                }
+                if (sum == 0)
+                {
+                    row["불량개수"] = null;
+                }
+                else
+                {
+                    row["불량개수"] = $"{sum}개";
+                }
+                sum = 0;
             }
         }
 
@@ -340,6 +453,20 @@ namespace Team2_ERP
             MessageBox.Show("프린트");
         }
 
-        
+        private void tabDefective_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabDefective.SelectedIndex != 0)
+            {
+                searchPeriodForBy.Visible = true;
+                searchPeriodForBy.Startdate.Clear();
+                searchPeriodForBy.Enddate.Clear();
+                SearchArea.Visible = false;
+            }
+            else
+            {
+                SearchArea.Visible = true;
+                searchPeriodForBy.Visible = false;
+            }
+        }
     }
 }

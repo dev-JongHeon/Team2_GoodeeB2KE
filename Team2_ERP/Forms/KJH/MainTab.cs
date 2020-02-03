@@ -21,7 +21,7 @@ namespace Team2_ERP
         private void MainTab_Activated(object sender, EventArgs e)
         {
             frm = (MainForm)this.MdiParent;
-            frm.NoticeMessage = "환영합니다!";
+            frm.NoticeMessage = Properties.Settings.Default.Welcome;
         }
     }
 }
