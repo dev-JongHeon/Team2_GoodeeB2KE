@@ -153,12 +153,7 @@ namespace Team2_ERP
 
         public override void Excel(object sender, EventArgs e)
         {
-            //Microsoft.Office.Interop.Excel.Application ap = new Microsoft.Office.Interop.Excel.Application
-            //Microsoft.Office.Interop.Excel.Workbook workbook = ap.Workbooks.Add();
-            //foreach (Datetable item in collection)
-            //{
-
-            //}
+            
         }
 
         public override void Print(object sender, EventArgs e)  // 인쇄

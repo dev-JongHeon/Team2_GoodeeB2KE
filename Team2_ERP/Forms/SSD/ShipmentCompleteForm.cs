@@ -173,6 +173,11 @@ namespace Team2_ERP
             main.NoticeMessage = "검색 되었습니다.";
         }
 
+        public override void Excel(object sender, EventArgs e)
+        {
+
+        }
+
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
 

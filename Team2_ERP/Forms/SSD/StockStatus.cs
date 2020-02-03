@@ -13,9 +13,11 @@ namespace Team2_ERP
 {
     public partial class StockStatus : Base1Dgv
     {
+        #region 전역변수
         StockService service = new StockService();
         List<Team2_VO.StockStatus> StockStatus_AllList = null;
-        MainForm main;
+        MainForm main; 
+        #endregion
         public StockStatus()
         {
             InitializeComponent();
@@ -90,6 +92,11 @@ namespace Team2_ERP
             }
             dgv_StockStatus.DataSource = StockStatus_AllList;
             main.NoticeMessage = "검색 되었습니다.";
+        }
+
+        public override void Excel(object sender, EventArgs e)
+        {
+
         }
 
         public override void Print(object sender, EventArgs e)  // 인쇄

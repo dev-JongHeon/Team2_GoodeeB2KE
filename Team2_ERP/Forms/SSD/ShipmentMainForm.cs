@@ -78,12 +78,12 @@ namespace Team2_ERP
             dgv_ShipmentDetail.DataSource = null;
 
             // 검색조건 초기화
-            Search_Customer.CodeTextBox.Text = "";
-            Search_Employees.CodeTextBox.Text = "";
-            Search_OrderPeriod.Startdate.Text = "";
-            Search_OrderPeriod.Enddate.Text = "";
-            Search_ShipmentIndexPeriod.Startdate.Text = "";
-            Search_ShipmentIndexPeriod.Enddate.Text = "";
+            Search_Customer.CodeTextBox.Clear();
+            Search_Employees.CodeTextBox.Clear();
+            Search_OrderPeriod.Startdate.Clear();
+            Search_OrderPeriod.Enddate.Clear();
+            Search_ShipmentIndexPeriod.Startdate.Clear();
+            Search_ShipmentIndexPeriod.Enddate.Clear();
         }
 
         #region ToolStrip 기능정의
@@ -149,6 +149,11 @@ namespace Team2_ERP
             dgv_Shipment.DataSource = Shipment_AllList;
             dgv_ShipmentDetail.DataSource = null;
             main.NoticeMessage = "검색 되었습니다.";
+        }
+
+        public override void Excel(object sender, EventArgs e)
+        {
+
         }
 
         public override void Print(object sender, EventArgs e)  // 인쇄
