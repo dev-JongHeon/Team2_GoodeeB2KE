@@ -150,7 +150,8 @@ namespace Team2_ERP
         }
         public void ExcelExport()
         {
-
+            string[] exceptColumns = { "Balju_DeletedYN" };
+            UtilClass.ExportToDataGridView<Balju>(BaljuCompleted_AllList, exceptColumns);
         }
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
