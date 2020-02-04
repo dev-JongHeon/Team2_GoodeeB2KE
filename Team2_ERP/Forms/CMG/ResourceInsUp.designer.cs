@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtResourceSafe = new System.Windows.Forms.TextBox();
             this.txtResourceMoney = new System.Windows.Forms.TextBox();
             this.txtResourceName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -40,6 +39,7 @@
             this.numResourceNum = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.cboResourceCategory = new System.Windows.Forms.ComboBox();
+            this.numSafety = new System.Windows.Forms.NumericUpDown();
             this.panel1.SuspendLayout();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).BeginInit();
@@ -47,14 +47,15 @@
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numResourceNum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSafety)).BeginInit();
             this.SuspendLayout();
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.numSafety);
             this.panel5.Controls.Add(this.cboResourceCategory);
             this.panel5.Controls.Add(this.numResourceNum);
             this.panel5.Controls.Add(this.cboResourceWarehouse);
-            this.panel5.Controls.Add(this.txtResourceSafe);
             this.panel5.Controls.Add(this.txtResourceMoney);
             this.panel5.Controls.Add(this.txtResourceName);
             this.panel5.Controls.Add(this.label6);
@@ -75,13 +76,6 @@
             this.btnOK.FlatAppearance.BorderSize = 0;
             this.btnOK.TabIndex = 6;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // txtResourceSafe
-            // 
-            this.txtResourceSafe.Location = new System.Drawing.Point(129, 278);
-            this.txtResourceSafe.Name = "txtResourceSafe";
-            this.txtResourceSafe.Size = new System.Drawing.Size(133, 21);
-            this.txtResourceSafe.TabIndex = 4;
             // 
             // txtResourceMoney
             // 
@@ -158,8 +152,13 @@
             // numResourceNum
             // 
             this.numResourceNum.Location = new System.Drawing.Point(129, 216);
+            this.numResourceNum.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.numResourceNum.Name = "numResourceNum";
-            this.numResourceNum.Size = new System.Drawing.Size(52, 21);
+            this.numResourceNum.Size = new System.Drawing.Size(102, 21);
             this.numResourceNum.TabIndex = 3;
             // 
             // label6
@@ -180,6 +179,23 @@
             this.cboResourceCategory.Size = new System.Drawing.Size(133, 22);
             this.cboResourceCategory.TabIndex = 5;
             // 
+            // numSafety
+            // 
+            this.numSafety.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numSafety.Location = new System.Drawing.Point(129, 279);
+            this.numSafety.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numSafety.Name = "numSafety";
+            this.numSafety.Size = new System.Drawing.Size(102, 21);
+            this.numSafety.TabIndex = 7;
+            // 
             // ResourceInsUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -196,6 +212,7 @@
             this.panel5.PerformLayout();
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numResourceNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSafety)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -203,7 +220,6 @@
         #endregion
         private System.Windows.Forms.NumericUpDown numResourceNum;
         private System.Windows.Forms.ComboBox cboResourceWarehouse;
-        private System.Windows.Forms.TextBox txtResourceSafe;
         private System.Windows.Forms.TextBox txtResourceMoney;
         private System.Windows.Forms.TextBox txtResourceName;
         private System.Windows.Forms.Label label5;
@@ -213,5 +229,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cboResourceCategory;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown numSafety;
     }
 }
