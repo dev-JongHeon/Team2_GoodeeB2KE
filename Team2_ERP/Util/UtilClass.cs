@@ -79,7 +79,7 @@ namespace Team2_ERP
         }
 
         #region Excel 유틸리티
-        public static string ExportToDataGridView<T>(List<T> dataList, string exceptColumns)
+        public static string ExportToDataGridView<T>(List<T> dataList, string[] exceptColumns)
         {
             try
             {
