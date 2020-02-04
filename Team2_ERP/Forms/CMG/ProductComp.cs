@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Team2_ERP.Service.CMG;
 using Team2_VO;
 
 namespace Team2_ERP
@@ -15,19 +16,221 @@ namespace Team2_ERP
     {
         public enum EditMode { Insert, Update }
 
-        public ProductComp(EditMode editMode, BOMVO item)
+        string mode = string.Empty;
+        string pCode = string.Empty;
+        string pName = string.Empty;
+
+        List<ProductVO> list = null;
+
+        SemiProductCompControl spc;
+
+        public ProductComp(EditMode editMode, ProductVO item)
         {
             InitializeComponent();
 
-            if(editMode == EditMode.Insert)
+            if (editMode == EditMode.Insert)
             {
                 lblName.Text = "완제품 등록";
+                mode = "Insert";
+            }
+            else
+            {
+                lblName.Text = "완제품 수정";
+                mode = "Update";
+                pCode = item.Product_ID;
+                pName = item.Product_Name;
             }
         }
+
+        private void InitCombo()
+        {
+            StandardService service = new StandardService();
+            List<ComboItemVO> categoryList = (from item in service.GetComboProductCategory() where item.ID.Contains("CS") select item).ToList();
+            UtilClass.ComboBinding(cboCategory, categoryList, "선택");
+            CategoryLabelName(categoryList);
+
+        }
+
+        private void InitGridView()
+        {
+            UtilClass.SettingDgv(dataGridView1);
+
+            UtilClass.AddNewColum(dataGridView1, "제품이름", "Product_Name", true, 100);
+            UtilClass.AddNewColum(dataGridView1, "제품가격", "Product_Price", true, 100, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dataGridView1, "제품카테고리", "Product_Category", false, 100);
+            UtilClass.AddNewColum(dataGridView1, "제품ID", "Product_ID", false, 100);
+            dataGridView1.Columns[1].DefaultCellStyle.Format = "#,###원";
+
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+        }
+
+        private void LoadGridView()
+        {
+            StandardService service = new StandardService();
+            list = service.GetAllProduct();
+            List<ProductVO> resourceList = (from item in list where item.Product_Category.Contains($"{cboCategory.SelectedValue.ToString()}") && item.Product_DeletedYN == false select item).ToList();
+            dataGridView1.DataSource = resourceList;
+        }
+
+        private void CategoryLabelName(List<ComboItemVO> countList)
+        {
+            for (int i = 1; i < countList.Count; i++)
+            {
+                spc = new SemiProductCompControl();
+                spc.Location = new Point(0, i * 40);
+                spc.LblName.Text = countList[i].Name;
+                spc.LblName.Tag = countList[i].ID;
+
+                spc.Qty.ValueChanged += new EventHandler(TotalPrice);
+
+                splitContainer2.Panel1.Controls.Add(spc);
+            }
+        }
+
+        private void TotalPrice(object sender, EventArgs e)
+        {
+            int sum = 0;
+
+            foreach (Control control in splitContainer2.Panel1.Controls)
+            {
+                if (control is SemiProductCompControl)
+                {
+                    SemiProductCompControl spc = (SemiProductCompControl)control;
+
+                    if (!string.IsNullOrEmpty(spc.LblMoney.Text))
+                        sum += Convert.ToInt32(list.Find(i => i.Product_ID == spc.TxtName.Tag.ToString()).Product_Price * spc.Qty.Value);
+
+                    txtProductMoney.Tag = sum;
+                    numericUpDown1_ValueChanged(this, null);
+                }
+            }
+        }
+
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void ProductComp_Load(object sender, EventArgs e)
+        {
+            InitCombo();
+            InitGridView();
+            if (mode.Equals("Update"))
+                txtProductName.Text = pName;
+        }
+
+        private void cboCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboCategory.SelectedIndex < 0)
+                return;
+
+            if (!cboCategory.SelectedValue.ToString().Contains("CS"))
+                return;
+
+            LoadGridView();
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1 && dataGridView1.SelectedRows.Count > 0)
+            {
+                foreach (Control control in splitContainer2.Panel1.Controls)
+                {
+                    if (control is SemiProductCompControl)
+                    {
+                        SemiProductCompControl spc = (SemiProductCompControl)control;
+
+                        if (spc.LblName.Tag.ToString() == dataGridView1.SelectedRows[0].Cells[2].Value.ToString())
+                        {
+                            spc.TxtName.Text = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+                            spc.TxtName.Tag = dataGridView1.SelectedRows[0].Cells[3].Value;
+                            spc.LblMoney.Text = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[1].Value).ToString("#,##0") + "원";
+                            if (txtProductMoney.Text.Equals("0원") || txtProductMoney.Text.Length < 1)
+                                txtProductMoney.Text = spc.LblMoney.Text;
+                            else
+                                txtProductMoney.Text = (Convert.ToInt32(txtProductMoney.Text.Replace(",", "").Replace("원", "")) + Convert.ToInt32(spc.LblMoney.Text.Replace(",", "").Replace("원", ""))).ToString("#,##0") + "원";
+
+                            spc.Qty.Tag = dataGridView1.SelectedRows[0].Cells[1].Value;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            if (numericUpDown1.Value > 0)
+            {
+                txtProductMoney.Text = (Convert.ToInt32(txtProductMoney.Tag) * Convert.ToInt32(numericUpDown1.Value)).ToString("#,##0") + "원";
+            }
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            if (mode.Equals("Insert"))
+            {
+                ProductVO Pitem = new ProductVO
+                {
+                    Product_Name = txtProductName.Text,
+                    Product_Price = Convert.ToInt32(txtProductMoney.Text.Replace(",", "").Replace("원", "")),
+                    Product_Qty = Convert.ToInt32(numericUpDown1.Value)
+                };
+
+                List<CombinationVO> citemList = new List<CombinationVO>();
+
+                foreach (Control control in splitContainer2.Panel1.Controls)
+                {
+                    if (control is SemiProductCompControl)
+                    {
+                        SemiProductCompControl spc = (SemiProductCompControl)control;
+
+                        CombinationVO citem = new CombinationVO
+                        {
+                            Combination_Product_ID = spc.TxtName.Tag.ToString(),
+                            Combination_RequiredQty = Convert.ToInt32(spc.Qty.Value)
+                        };
+
+                        citemList.Add(citem);
+                    }
+                }
+
+                StandardService service = new StandardService();
+                service.InsertProduct(Pitem, citemList, splitContainer2.Panel1.Controls.Count);
+            }
+            else
+            {
+                ProductVO Pitem = new ProductVO
+                {
+                    Product_ID = pCode,
+                    Product_Name = txtProductName.Text,
+                    Product_Price = Convert.ToInt32(txtProductMoney.Text.Replace(",", "").Replace("원", "")),
+                    Product_Qty = Convert.ToInt32(numericUpDown1.Value)
+                };
+
+                List<CombinationVO> citemList = new List<CombinationVO>();
+
+                foreach (Control control in splitContainer2.Panel1.Controls)
+                {
+                    if (control is SemiProductCompControl)
+                    {
+                        SemiProductCompControl spc = (SemiProductCompControl)control;
+
+                        CombinationVO citem = new CombinationVO
+                        {
+                            Combination_Product_ID = spc.TxtName.Tag.ToString(),
+                            Combination_RequiredQty = Convert.ToInt32(spc.Qty.Value)
+                        };
+
+                        citemList.Add(citem);
+                    }
+                }
+
+                StandardService service = new StandardService();
+                service.UpdateProduct(Pitem, citemList, splitContainer2.Panel1.Controls.Count);
+            }
+
+            this.DialogResult = DialogResult.OK;
         }
     }
 }

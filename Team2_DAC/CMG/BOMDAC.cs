@@ -174,5 +174,240 @@ namespace Team2_DAC
                 conn.Close();
             }
         }
+
+        public void UpdateSemiProduct(ProductVO Pitem, List<CombinationVO> citemList, int count)
+        {
+            conn.Open();
+
+            SqlTransaction trans = conn.BeginTransaction();
+
+            List<CombinationVO> list = null;
+
+            try
+            {
+                string productSql = "UpdateSemiProduct";
+
+                SqlCommand cmd = new SqlCommand(productSql, conn);
+                cmd.Transaction = trans;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Product_Name", Pitem.Product_Name);
+                cmd.Parameters.AddWithValue("@Product_Price", Pitem.Product_Price);
+                cmd.Parameters.AddWithValue("@Product_Qty", Pitem.Product_Qty);
+                cmd.Parameters.AddWithValue("@Product_Category", Pitem.Product_Category);
+                cmd.Parameters.AddWithValue("@Product_ID", Pitem.Product_ID);
+                SqlDataReader reader = cmd.ExecuteReader();
+                list = Helper.DataReaderMapToList<CombinationVO>(reader);
+
+                string combiSql = "Update Combination Set Combination_Product_ID = @Combination_Product_ID, Combination_RequiredQty = @Combination_RequiredQty Where Combination_ID = @Combination_ID ";
+
+                SqlCommand dcmd = new SqlCommand(combiSql, conn);
+                for (int i = 0; i < count; i++)
+                {
+                    dcmd.Transaction = trans;
+                    dcmd.Parameters.AddWithValue("@Combination_Product_ID", citemList[i].Combination_Product_ID);
+                    dcmd.Parameters.AddWithValue("@Combination_RequiredQty", citemList[i].Combination_RequiredQty);
+                    dcmd.Parameters.AddWithValue("@Combination_ID", list[i].Combination_ID);
+                    reader.Close();
+                    dcmd.ExecuteNonQuery();
+                    dcmd.Parameters.Clear();
+                }
+
+                trans.Commit();
+            }
+            catch (Exception err)
+            {
+                trans.Rollback();
+                throw new Exception(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public void DeleteSemiProduct(ProductVO Pitem)
+        {
+            conn.Open();
+
+            SqlTransaction trans = conn.BeginTransaction();
+
+            List<CombinationVO> list = null;
+
+            try
+            {
+                string productSql = "DeleteSemiProduct";
+
+                SqlCommand cmd = new SqlCommand(productSql, conn);
+                cmd.Transaction = trans;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Product_ID", Pitem.Product_ID);
+                SqlDataReader reader = cmd.ExecuteReader();
+                list = Helper.DataReaderMapToList<CombinationVO>(reader);
+
+                string combiSql = "Update Combination Set Combination_DeletedYN = 1 Where Combination_ID = @Combination_ID ";
+
+                SqlCommand dcmd = new SqlCommand(combiSql, conn);
+                for (int i = 0; i < list.Count; i++)
+                {
+                    dcmd.Transaction = trans;
+                    dcmd.Parameters.AddWithValue("@Combination_ID", list[i].Combination_ID);
+                    reader.Close();
+                    dcmd.ExecuteNonQuery();
+                    dcmd.Parameters.Clear();
+                }
+
+                trans.Commit();
+            }
+            catch (Exception err)
+            {
+                trans.Rollback();
+                throw new Exception(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public void InsertProduct(ProductVO Pitem, List<CombinationVO> citemList, int count)
+        {
+            conn.Open();
+
+            SqlTransaction trans = conn.BeginTransaction();
+
+            string productID = string.Empty;
+
+            try
+            {
+                string productSql = "InsertProduct";
+
+                SqlCommand cmd = new SqlCommand(productSql, conn);
+                cmd.Transaction = trans;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Product_Name", Pitem.Product_Name);
+                cmd.Parameters.AddWithValue("@Product_Price", Pitem.Product_Price);
+                cmd.Parameters.AddWithValue("@Product_Qty", Pitem.Product_Qty);
+                object obj = cmd.ExecuteScalar();
+
+                productID = obj.ToString();
+
+                string combiSql = "insert into Combination(Product_ID, Combination_Product_ID, Combination_RequiredQty) values (@Product_ID, @Combination_Product_ID, @Combination_RequiredQty) ";
+
+                SqlCommand dcmd = new SqlCommand(combiSql, conn);
+                for (int i = 0; i < count; i++)
+                {
+                    dcmd.Transaction = trans;
+                    dcmd.Parameters.AddWithValue("@Product_ID", productID);
+                    dcmd.Parameters.AddWithValue("@Combination_Product_ID", citemList[i].Combination_Product_ID);
+                    dcmd.Parameters.AddWithValue("@Combination_RequiredQty", citemList[i].Combination_RequiredQty);
+                    dcmd.ExecuteNonQuery();
+                    dcmd.Parameters.Clear();
+                }
+
+                trans.Commit();
+            }
+            catch (Exception err)
+            {
+                trans.Rollback();
+                throw new Exception(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public void UpdateProduct(ProductVO Pitem, List<CombinationVO> citemList, int count)
+        {
+            conn.Open();
+
+            SqlTransaction trans = conn.BeginTransaction();
+
+            List<CombinationVO> list = null;
+
+            try
+            {
+                string productSql = "UpdateProduct";
+
+                SqlCommand cmd = new SqlCommand(productSql, conn);
+                cmd.Transaction = trans;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Product_Name", Pitem.Product_Name);
+                cmd.Parameters.AddWithValue("@Product_Price", Pitem.Product_Price);
+                cmd.Parameters.AddWithValue("@Product_Qty", Pitem.Product_Qty);
+                cmd.Parameters.AddWithValue("@Product_ID", Pitem.Product_ID);
+                SqlDataReader reader = cmd.ExecuteReader();
+                list = Helper.DataReaderMapToList<CombinationVO>(reader);
+
+                string combiSql = "Update Combination Set Combination_Product_ID = @Combination_Product_ID, Combination_RequiredQty = @Combination_RequiredQty Where Combination_ID = @Combination_ID ";
+
+                SqlCommand dcmd = new SqlCommand(combiSql, conn);
+                for (int i = 0; i < count; i++)
+                {
+                    dcmd.Transaction = trans;
+                    dcmd.Parameters.AddWithValue("@Combination_Product_ID", citemList[i].Combination_Product_ID);
+                    dcmd.Parameters.AddWithValue("@Combination_RequiredQty", citemList[i].Combination_RequiredQty);
+                    dcmd.Parameters.AddWithValue("@Combination_ID", list[i].Combination_ID);
+                    reader.Close();
+                    dcmd.ExecuteNonQuery();
+                    dcmd.Parameters.Clear();
+                }
+
+                trans.Commit();
+            }
+            catch (Exception err)
+            {
+                trans.Rollback();
+                throw new Exception(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public void DeleteProduct(ProductVO Pitem)
+        {
+            conn.Open();
+
+            SqlTransaction trans = conn.BeginTransaction();
+
+            List<CombinationVO> list = null;
+
+            try
+            {
+                string productSql = "DeleteProduct";
+
+                SqlCommand cmd = new SqlCommand(productSql, conn);
+                cmd.Transaction = trans;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Product_ID", Pitem.Product_ID);
+                SqlDataReader reader = cmd.ExecuteReader();
+                list = Helper.DataReaderMapToList<CombinationVO>(reader);
+
+                string combiSql = "Update Combination Set Combination_DeletedYN = 1 Where Combination_ID = @Combination_ID ";
+
+                SqlCommand dcmd = new SqlCommand(combiSql, conn);
+                for (int i = 0; i < list.Count; i++)
+                {
+                    dcmd.Transaction = trans;
+                    dcmd.Parameters.AddWithValue("@Combination_ID", list[i].Combination_ID);
+                    reader.Close();
+                    dcmd.ExecuteNonQuery();
+                    dcmd.Parameters.Clear();
+                }
+
+                trans.Commit();
+            }
+            catch (Exception err)
+            {
+                trans.Rollback();
+                throw new Exception(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }

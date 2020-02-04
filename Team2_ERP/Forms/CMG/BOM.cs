@@ -32,7 +32,7 @@ namespace Team2_ERP
         {
             UtilClass.SettingDgv(dgvBOM);
 
-            UtilClass.AddNewColum(dgvBOM, "분류", "Category_Division", false, 100);
+            UtilClass.AddNewColum(dgvBOM, "분류", "Product_Category", false, 100);
             UtilClass.AddNewColum(dgvBOM, "품목명", "CodeTable_CodeName", true, 100);
             UtilClass.AddNewColum(dgvBOM, "제품ID", "Product_ID", false, 100);
             UtilClass.AddNewColum(dgvBOM, "제품명", "Product_Name", true, 100);
@@ -67,8 +67,7 @@ namespace Team2_ERP
         {
             StandardService service = new StandardService();
             list = service.GetAllProduct();
-            List<ProductVO> productList = (from item in list where item.Product_DeletedYN == false select item).ToList();
-            dgvBOM.DataSource = productList;
+            dgvBOM.DataSource = list;
         }
 
         private void BOM_Load(object sender, EventArgs e)
@@ -76,19 +75,20 @@ namespace Team2_ERP
             InitGridView();
             frm = (MainForm)this.ParentForm;
             LoadGridView();
+            rdoAll.Checked = true;
         }
 
         private void dgvBOM_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if(e.ColumnIndex == 5)
+            if (e.ColumnIndex == 5)
             {
                 string str = dgvBOM.Rows[e.RowIndex].Cells[0].Value.ToString();
 
-                if(str.Equals("원자재"))
+                if (str.Contains("CM"))
                 {
                     e.Value = "역 전 개";
                 }
-                else if(str.Equals("반제품"))
+                else if (str.Contains("CS"))
                 {
                     e.Value = "역 전 개";
                 }
@@ -126,7 +126,7 @@ namespace Team2_ERP
 
         private void InitMessage()
         {
-            frm.NoticeMessage = "메세지";
+            frm.NoticeMessage = "환영합니다.";
         }
 
         private void ItemSelect(object sender, ToolStripItemClickedEventArgs e)
@@ -179,127 +179,154 @@ namespace Team2_ERP
 
         public override void Modify(object sender, EventArgs e)
         {
-            //if (dgvFactory.SelectedRows.Count > 0 || dgvLine.SelectedRows.Count > 0)
-            //{
-            //    if (dgvLine.SelectedRows.Count < 1)
-            //    {
-            //        FactoryInsUp frm = new FactoryInsUp(FactoryInsUp.EditMode.Update, factoryItem);
-            //        if (frm.ShowDialog() == DialogResult.OK)
-            //        {
-            //            frm.Close();
-            //            dgvFactory.DataSource = null;
-            //            LoadGridView();
-            //        }
-            //    }
-            //    else if (dgvFactory.SelectedRows.Count < 1)
-            //    {
-            //        LineInsUp frm = new LineInsUp(LineInsUp.EditMode.Update, lineItem);
-            //        if (frm.ShowDialog() == DialogResult.OK)
-            //        {
-            //            frm.Close();
-            //            dgvFactory.DataSource = null;
-            //            LoadGridView();
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    frm.NoticeMessage = "수정할 목록을 선택해주세요.";
-            //}
+            if (dgvBOM.SelectedRows.Count < 1)
+            {
+                frm.NoticeMessage = "수정하실 항목을 선택해주세요.";
+            }
+            else
+            {
+                if (item.Product_Category.Contains("CS"))
+                {
+                    SemiProductComp frm = new SemiProductComp(SemiProductComp.EditMode.Update, item);
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        MessageBox.Show("수정되었습니다.", "안내");
+                        dgvBOM.DataSource = null;
+                        dgvBOMDetail.DataSource = null;
+                        InitMessage();
+                        LoadGridView();
+                    }
+                }
+                else if (item.Product_Category.Contains("CP"))
+                {
+                    ProductComp frm = new ProductComp(ProductComp.EditMode.Update, item);
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        MessageBox.Show("수정되었습니다.", "안내");
+                        dgvBOM.DataSource = null;
+                        dgvBOMDetail.DataSource = null;
+                        InitMessage();
+                        LoadGridView();
+                    }
+                }
+                else
+                {
+                    frm.NoticeMessage = "원자재 항목은 원자재 탭에서 수정 가능합니다.";
+                }
+            }
         }
 
         public override void Delete(object sender, EventArgs e)
         {
-            //InitMessage();
+            InitMessage();
 
-            //if (dgvLine.SelectedRows.Count < 1)
-            //{
-            //    if (factoryItem == null)
-            //    {
-            //        frm.NoticeMessage = "삭제할 공장을 선택해주세요.";
-            //    }
-            //    else
-            //    {
-            //        if (MessageBox.Show("삭제하시겠습니까?", "안내", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            //        {
-            //            StandardService service = new StandardService();
-            //            service.DeleteFactory(factoryItem.Factory_ID);
-            //            dgvFactory.DataSource = null;
-            //            LoadGridView();
-            //        }
-            //    }
-            //}
-            //else if (dgvFactory.SelectedRows.Count < 1)
-            //{
-            //    if (lineItem == null)
-            //    {
-            //        frm.NoticeMessage = "삭제할 공정을 선택해주세요.";
-            //    }
-            //    else
-            //    {
-            //        if (MessageBox.Show("삭제하시겠습니까?", "안내", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            //        {
-            //            StandardService service = new StandardService();
-            //            service.DeleteLine(lineItem.Factory_ID);
-            //            dgvFactory.DataSource = null;
-            //            LoadGridView();
-            //        }
-            //    }
-            //}
+            if (dgvBOM.SelectedRows.Count < 1)
+            {
+                frm.NoticeMessage = "삭제하실 항목을 선택해주세요.";
+            }
+            else
+            {
+                if (item.Product_Category.Contains("CS"))
+                {
+                    if (MessageBox.Show("삭제하시겠습니까?", "안내", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        StandardService service = new StandardService();
+                        service.DeleteSemiProduct(item);
+                        dgvBOM.DataSource = null;
+                        dgvBOMDetail.DataSource = null;
+                        LoadGridView();
+                    }
+                }
+                else if (item.Product_Category.Contains("CP"))
+                {
+                    if (MessageBox.Show("삭제하시겠습니까?", "안내", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        StandardService service = new StandardService();
+                        service.DeleteProduct(item);
+                        dgvBOM.DataSource = null;
+                        dgvBOMDetail.DataSource = null;
+                        LoadGridView();
+                    }
+                }
+                else
+                {
+                    frm.NoticeMessage = "원자재 항목은 원자재 탭에서 삭제 가능합니다.";
+                }
+            }
         }
 
         public override void Search(object sender, EventArgs e)
         {
-            ////공장, 공정 두개 다 검색할 때
-            //if (searchUserControl1.CodeTextBox.Text.Length > 0 && searchUserControl2.CodeTextBox.Text.Length > 0)
-            //{
-            //    dgvFactory.DataSource = null;
-            //    List<FactoryVO> searchFList = (from item in FList where item.Factory_ID == Convert.ToInt32(searchUserControl1.CodeTextBox.Tag) && item.Factory_DeletedYN == false select item).ToList();
-            //    dgvFactory.DataSource = searchFList;
-
-            //    dgvLine.DataSource = null;
-            //    List<LineVO> searchLList = (from item in LList where item.Line_ID == Convert.ToInt32(searchUserControl2.CodeTextBox.Tag) && item.Line_DeletedYN == false select item).ToList();
-            //    dgvLine.DataSource = searchLList;
-            //}
-            ////공장만 검색할 때
-            //else if (searchUserControl1.CodeTextBox.Text.Length > 0)
-            //{
-            //    dgvFactory.DataSource = null;
-            //    List<FactoryVO> searchList = (from item in FList where item.Factory_ID == Convert.ToInt32(searchUserControl1.CodeTextBox.Tag) && item.Factory_DeletedYN == false select item).ToList();
-            //    dgvFactory.DataSource = searchList;
-            //}
-            ////공정만 검색할 때
-            //else if (searchUserControl2.CodeTextBox.Text.Length > 0)
-            //{
-            //    dgvLine.DataSource = null;
-            //    List<LineVO> searchLList = (from item in LList where item.Line_ID == Convert.ToInt32(searchUserControl2.CodeTextBox.Tag) && item.Line_DeletedYN == false select item).ToList();
-            //    dgvLine.DataSource = searchLList;
-            //}
-            //else
-            //{
-            //    frm.NoticeMessage = "검색할 공장이나 공정을 선택해주세요.";
-            //}
+            if (searchUserControl1.CodeTextBox.Text.Length < 1)
+            {
+                if (rdoAll.Checked)
+                {
+                    dgvBOM.DataSource = null;
+                    dgvBOMDetail.DataSource = null;
+                    dgvBOM.DataSource = list;
+                }
+                else if (rdoSemiProduct.Checked)
+                {
+                    dgvBOM.DataSource = null;
+                    dgvBOMDetail.DataSource = null;
+                    List<ProductVO> semiList = (from item in list where item.Product_Category.Contains("CS") select item).ToList();
+                    dgvBOM.DataSource = semiList;
+                }
+                else
+                {
+                    dgvBOM.DataSource = null;
+                    dgvBOMDetail.DataSource = null;
+                    List<ProductVO> proList = (from item in list where item.Product_Category.Contains("CP") select item).ToList();
+                    dgvBOM.DataSource = proList;
+                }
+            }
+            else
+            {
+                if (rdoAll.Checked)
+                {
+                    dgvBOM.DataSource = null;
+                    dgvBOMDetail.DataSource = null;
+                    List<ProductVO> allList = (from item in list where item.Product_ID.Equals(searchUserControl1.CodeTextBox.Tag.ToString()) select item).ToList();
+                    dgvBOM.DataSource = allList;
+                }
+                else if (rdoSemiProduct.Checked)
+                {
+                    dgvBOM.DataSource = null;
+                    dgvBOMDetail.DataSource = null;
+                    List<ProductVO> semiList = (from item in list where item.Product_Category.Contains("CS") && item.Product_ID.Equals(searchUserControl1.CodeTextBox.Tag.ToString()) select item).ToList();
+                    dgvBOM.DataSource = semiList;
+                }
+                else
+                {
+                    dgvBOM.DataSource = null;
+                    dgvBOMDetail.DataSource = null;
+                    List<ProductVO> semiList = (from item in list where item.Product_Category.Contains("CP") && item.Product_ID.Equals(searchUserControl1.CodeTextBox.Tag.ToString()) select item).ToList();
+                    dgvBOM.DataSource = semiList;
+                }
+            }
         }
 
         private void dgvBOM_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             item = new ProductVO
             {
-                Product_ID = dgvBOM.Rows[e.RowIndex].Cells[2].Value.ToString()
+                Product_Category = dgvBOM.Rows[e.RowIndex].Cells[0].Value.ToString(),
+                Product_ID = dgvBOM.Rows[e.RowIndex].Cells[2].Value.ToString(),
+                Product_Name = dgvBOM.Rows[e.RowIndex].Cells[3].Value.ToString()
             };
 
-            if(e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[0].Value.ToString().Equals("원자재"))
+            if (e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[0].Value.ToString().Contains("CM"))
             {
                 dgvBOMDetail.DataSource = null;
             }
-            else if(e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[0].Value.ToString().Equals("반제품"))
+            else if (e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[0].Value.ToString().Contains("CS"))
             {
                 StandardService service = new StandardService();
                 List<BOMVO> bomList = service.GetAllCombination(item.Product_ID);
                 bomList = (from item in bomList where item.Combination_DeletedYN == false select item).ToList();
                 dgvBOMDetail.DataSource = bomList;
             }
-            else if(e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[0].Value.ToString().Equals("완제품"))
+            else if (e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[0].Value.ToString().Contains("CP"))
             {
                 dgvBOMDetail.DataSource = null;
             }

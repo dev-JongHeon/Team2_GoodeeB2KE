@@ -52,7 +52,7 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(258, 9);
+            this.numericUpDown1.Location = new System.Drawing.Point(247, 9);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(39, 21);
             this.numericUpDown1.TabIndex = 24;
@@ -66,7 +66,7 @@
             // lblMoney
             // 
             this.lblMoney.AutoSize = true;
-            this.lblMoney.Location = new System.Drawing.Point(328, 12);
+            this.lblMoney.Location = new System.Drawing.Point(293, 13);
             this.lblMoney.Name = "lblMoney";
             this.lblMoney.Size = new System.Drawing.Size(0, 14);
             this.lblMoney.TabIndex = 23;

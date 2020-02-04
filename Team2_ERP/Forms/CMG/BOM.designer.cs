@@ -32,9 +32,9 @@
             this.dgvBOM = new System.Windows.Forms.DataGridView();
             this.dgvBOMDetail = new System.Windows.Forms.DataGridView();
             this.searchUserControl1 = new Team2_ERP.SearchUserControl();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.rdoAll = new System.Windows.Forms.RadioButton();
+            this.rdoSemiProduct = new System.Windows.Forms.RadioButton();
+            this.rdoProduct = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel1.SuspendLayout();
             this.panel_Search.SuspendLayout();
@@ -133,44 +133,44 @@
             this.searchUserControl1.Size = new System.Drawing.Size(312, 30);
             this.searchUserControl1.TabIndex = 0;
             // 
-            // radioButton1
+            // rdoAll
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(21, 24);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(47, 18);
-            this.radioButton1.TabIndex = 1;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "전체";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rdoAll.AutoSize = true;
+            this.rdoAll.Location = new System.Drawing.Point(21, 24);
+            this.rdoAll.Name = "rdoAll";
+            this.rdoAll.Size = new System.Drawing.Size(47, 18);
+            this.rdoAll.TabIndex = 1;
+            this.rdoAll.TabStop = true;
+            this.rdoAll.Text = "전체";
+            this.rdoAll.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // rdoSemiProduct
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(93, 24);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(58, 18);
-            this.radioButton2.TabIndex = 2;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "반제품";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rdoSemiProduct.AutoSize = true;
+            this.rdoSemiProduct.Location = new System.Drawing.Point(93, 24);
+            this.rdoSemiProduct.Name = "rdoSemiProduct";
+            this.rdoSemiProduct.Size = new System.Drawing.Size(58, 18);
+            this.rdoSemiProduct.TabIndex = 2;
+            this.rdoSemiProduct.TabStop = true;
+            this.rdoSemiProduct.Text = "반제품";
+            this.rdoSemiProduct.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // rdoProduct
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(174, 24);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(58, 18);
-            this.radioButton3.TabIndex = 3;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "완제품";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.rdoProduct.AutoSize = true;
+            this.rdoProduct.Location = new System.Drawing.Point(174, 24);
+            this.rdoProduct.Name = "rdoProduct";
+            this.rdoProduct.Size = new System.Drawing.Size(58, 18);
+            this.rdoProduct.TabIndex = 3;
+            this.rdoProduct.TabStop = true;
+            this.rdoProduct.Text = "완제품";
+            this.rdoProduct.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Controls.Add(this.radioButton3);
-            this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Controls.Add(this.rdoAll);
+            this.groupBox1.Controls.Add(this.rdoProduct);
+            this.groupBox1.Controls.Add(this.rdoSemiProduct);
             this.groupBox1.Location = new System.Drawing.Point(3, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(249, 54);
@@ -212,9 +212,9 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.DataGridView dgvBOMDetail;
         private SearchUserControl searchUserControl1;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rdoProduct;
+        private System.Windows.Forms.RadioButton rdoSemiProduct;
+        private System.Windows.Forms.RadioButton rdoAll;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvBOM;
     }

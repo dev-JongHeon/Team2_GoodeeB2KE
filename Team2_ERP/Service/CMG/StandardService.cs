@@ -165,5 +165,35 @@ namespace Team2_ERP.Service.CMG
             BOMDAC dac = new BOMDAC();
             dac.InsertSemiProduct(Pitem, citemList, count);
         }
+
+        public void UpdateSemiProduct(ProductVO Pitem, List<CombinationVO> citemList, int count)
+        {
+            BOMDAC dac = new BOMDAC();
+            dac.UpdateSemiProduct(Pitem, citemList, count);
+        }
+
+        public void DeleteSemiProduct(ProductVO Pitem)
+        {
+            BOMDAC dac = new BOMDAC();
+            dac.DeleteSemiProduct(Pitem);
+        }
+
+        public void InsertProduct(ProductVO Pitem, List<CombinationVO> citemList, int count)
+        {
+            BOMDAC dac = new BOMDAC();
+            dac.InsertProduct(Pitem, citemList, count);
+        }
+
+        public void UpdateProduct(ProductVO Pitem, List<CombinationVO> citemList, int count)
+        {
+            BOMDAC dac = new BOMDAC();
+            dac.UpdateProduct(Pitem, citemList, count);
+        }
+
+        public void DeleteProduct(ProductVO Pitem)
+        {
+            BOMDAC dac = new BOMDAC();
+            dac.DeleteProduct(Pitem);
+        }
     }
 }

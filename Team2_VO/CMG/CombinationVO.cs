@@ -8,6 +8,7 @@ namespace Team2_VO
 {
     public class CombinationVO
     {
+        public int Combination_ID { get; set; }
         public string Product_ID { get; set; }
         public string Combination_Product_ID { get; set; }
         public int Combination_RequiredQty { get; set; }
