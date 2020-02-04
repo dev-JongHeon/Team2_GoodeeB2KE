@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using Team2_ERP.Service;
 using Team2_VO;
@@ -17,6 +18,8 @@ namespace Team2_ERP
         List<Shipment> Shipment_AllList = null;
         List<ShipmentDetail> ShipmentDetail_AllList = null;
         MainForm main;
+        
+
         public ShipmentCompleteForm()
         {
             InitializeComponent();
@@ -175,7 +178,15 @@ namespace Team2_ERP
 
         public override void Excel(object sender, EventArgs e)
         {
-
+            using (WaitForm frm = new WaitForm())
+            {
+                frm.Processing = ExcelExport;
+                frm.ShowDialog();
+            }
+        }
+        public void ExcelExport()
+        {
+            
         }
 
         public override void Print(object sender, EventArgs e)  // 인쇄
