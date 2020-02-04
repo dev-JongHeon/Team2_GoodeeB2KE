@@ -153,7 +153,7 @@ namespace Team2_ERP
 
         public override void Excel(object sender, EventArgs e)
         {
-            
+
         }
 
         public override void Print(object sender, EventArgs e)  // 인쇄
