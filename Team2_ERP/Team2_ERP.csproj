@@ -120,6 +120,12 @@
     <Compile Include="CustomForms\TabForm.designer.cs">
       <DependentUpon>TabForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomForms\WaitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomForms\WaitForm.Designer.cs">
+      <DependentUpon>WaitForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CMG\BOM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -457,6 +463,9 @@
     <EmbeddedResource Include="CustomForms\TabForm.resx">
       <DependentUpon>TabForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CustomForms\WaitForm.resx">
+      <DependentUpon>WaitForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CMG\BOM.resx">
       <DependentUpon>BOM.cs</DependentUpon>
     </EmbeddedResource>
@@ -660,6 +669,7 @@
     <Content Include="Resources\IDE_16x16.png" />
     <Content Include="Resources\instagram_profile_image.png" />
     <Content Include="Resources\left-arrow %282%29.png" />
+    <None Include="Resources\loading.gif" />
     <Content Include="Resources\logo.png" />
     <Content Include="Resources\logo_transparent.png" />
     <Content Include="Resources\Lookup&amp;Reference_32x32.png" />

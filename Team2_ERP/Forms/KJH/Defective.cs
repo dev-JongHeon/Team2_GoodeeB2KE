@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using Team2_VO;
 
@@ -445,7 +446,16 @@ namespace Team2_ERP
 
         public override void Excel(object sender, EventArgs e)
         {
-            MessageBox.Show("엑셀");
+            using (WaitForm frm = new WaitForm())
+            {
+                frm.Processing = ExportExcel;
+                frm.ShowDialog();
+            }
+        }
+
+        private void ExportExcel()
+        {
+            Thread.Sleep(10 * 1000);
         }
 
         public override void Print(object sender, EventArgs e)
