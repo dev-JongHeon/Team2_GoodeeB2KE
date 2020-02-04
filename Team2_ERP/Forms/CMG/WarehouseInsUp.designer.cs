@@ -101,7 +101,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(48, 204);
+            this.label5.Location = new System.Drawing.Point(48, 200);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(51, 14);
             this.label5.TabIndex = 0;
@@ -132,7 +132,7 @@
             // 
             this.addressControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.addressControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.addressControl1.Location = new System.Drawing.Point(51, 242);
+            this.addressControl1.Location = new System.Drawing.Point(51, 250);
             this.addressControl1.Name = "addressControl1";
             this.addressControl1.Size = new System.Drawing.Size(505, 106);
             this.addressControl1.TabIndex = 4;

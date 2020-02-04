@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,10 @@ namespace Team2_ERP
         string mode = string.Empty;
         string pCode = string.Empty;
         string pName = string.Empty;
+
+        int count = 0;
+
+        byte[] filePath;
 
         List<ProductVO> list = null;
 
@@ -82,6 +87,7 @@ namespace Team2_ERP
                 spc.LblName.Tag = countList[i].ID;
 
                 spc.Qty.ValueChanged += new EventHandler(TotalPrice);
+                numericUpDown1.ValueChanged += new EventHandler(TotalPrice);
 
                 splitContainer2.Panel1.Controls.Add(spc);
             }
@@ -106,6 +112,16 @@ namespace Team2_ERP
             }
         }
 
+        private void GetImage()
+        {
+            StandardService service = new StandardService();
+            List<ProductVO> productList = service.GetImage(pCode);
+            filePath = productList[0].Product_Image;
+            MemoryStream ms = new MemoryStream(filePath);
+            pictureBox1.Image = Image.FromStream(ms);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+        }
+
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -117,12 +133,15 @@ namespace Team2_ERP
             InitCombo();
             InitGridView();
             if (mode.Equals("Update"))
+            {
                 txtProductName.Text = pName;
+                GetImage();
+            }
         }
 
         private void cboCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboCategory.SelectedIndex < 0)
+            if (cboCategory.SelectedIndex < 1)
                 return;
 
             if (!cboCategory.SelectedValue.ToString().Contains("CS"))
@@ -164,73 +183,143 @@ namespace Team2_ERP
             {
                 txtProductMoney.Text = (Convert.ToInt32(txtProductMoney.Tag) * Convert.ToInt32(numericUpDown1.Value)).ToString("#,##0") + "원";
             }
+            else
+            {
+                txtProductMoney.Text = "0원";
+            }
+        }
+
+        private void InsertProduct()
+        {
+            Cursor currentCursor = this.Cursor;
+            this.Cursor = Cursors.WaitCursor;
+            string localFile = pictureBox1.Tag.ToString().Replace("\\", "/");
+
+            byte[] ImageData;
+            FileStream fs = new FileStream(localFile, FileMode.Open, FileAccess.Read);
+            BinaryReader br = new BinaryReader(fs);
+            ImageData = br.ReadBytes((int)fs.Length);
+            br.Close();
+            fs.Close();
+
+            ProductVO Pitem = new ProductVO
+            {
+                Product_Name = txtProductName.Text,
+                Product_Price = Convert.ToInt32(txtProductMoney.Text.Replace(",", "").Replace("원", "")),
+                Product_Image = ImageData,
+                Product_Qty = Convert.ToInt32(numericUpDown1.Value)
+            };
+
+            List<CombinationVO> citemList = new List<CombinationVO>();
+
+            foreach (Control control in splitContainer2.Panel1.Controls)
+            {
+                if (control is SemiProductCompControl)
+                {
+                    SemiProductCompControl spc = (SemiProductCompControl)control;
+
+                    CombinationVO citem = new CombinationVO
+                    {
+                        Combination_Product_ID = spc.TxtName.Tag.ToString(),
+                        Combination_RequiredQty = Convert.ToInt32(spc.Qty.Value)
+                    };
+
+                    count += spc.Controls.Count;
+                    citemList.Add(citem);
+                }
+            }
+
+            StandardService service = new StandardService();
+            service.InsertProduct(Pitem, citemList, count);
+        }
+
+        private void UpdateProduct()
+        {
+            Cursor currentCursor = this.Cursor;
+            this.Cursor = Cursors.WaitCursor;
+            string localFile = pictureBox1.Tag.ToString().Replace("\\", "/");
+
+            byte[] ImageData;
+            FileStream fs = new FileStream(localFile, FileMode.Open, FileAccess.Read);
+            BinaryReader br = new BinaryReader(fs);
+            ImageData = br.ReadBytes((int)fs.Length);
+            br.Close();
+            fs.Close();
+
+            if(ImageData == null)
+            {
+                ImageData = filePath;
+            }
+
+            ProductVO Pitem = new ProductVO
+            {
+                Product_ID = pCode,
+                Product_Name = txtProductName.Text,
+                Product_Image = ImageData,
+                Product_Price = Convert.ToInt32(txtProductMoney.Text.Replace(",", "").Replace("원", "")),
+                Product_Qty = Convert.ToInt32(numericUpDown1.Value)
+            };
+
+            List<CombinationVO> citemList = new List<CombinationVO>();
+
+            foreach (Control control in splitContainer2.Panel1.Controls)
+            {
+                if (control is SemiProductCompControl)
+                {
+                    SemiProductCompControl spc = (SemiProductCompControl)control;
+
+                    CombinationVO citem = new CombinationVO
+                    {
+                        Combination_Product_ID = spc.TxtName.Tag.ToString(),
+                        Combination_RequiredQty = Convert.ToInt32(spc.Qty.Value)
+                    };
+
+                    count += spc.Controls.Count;
+                    citemList.Add(citem);
+                }
+            }
+
+            StandardService service = new StandardService();
+            service.UpdateProduct(Pitem, citemList, count);
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+
             if (mode.Equals("Insert"))
-            {
-                ProductVO Pitem = new ProductVO
-                {
-                    Product_Name = txtProductName.Text,
-                    Product_Price = Convert.ToInt32(txtProductMoney.Text.Replace(",", "").Replace("원", "")),
-                    Product_Qty = Convert.ToInt32(numericUpDown1.Value)
-                };
-
-                List<CombinationVO> citemList = new List<CombinationVO>();
-
-                foreach (Control control in splitContainer2.Panel1.Controls)
-                {
-                    if (control is SemiProductCompControl)
-                    {
-                        SemiProductCompControl spc = (SemiProductCompControl)control;
-
-                        CombinationVO citem = new CombinationVO
-                        {
-                            Combination_Product_ID = spc.TxtName.Tag.ToString(),
-                            Combination_RequiredQty = Convert.ToInt32(spc.Qty.Value)
-                        };
-
-                        citemList.Add(citem);
-                    }
-                }
-
-                StandardService service = new StandardService();
-                service.InsertProduct(Pitem, citemList, splitContainer2.Panel1.Controls.Count);
-            }
+                InsertProduct();
             else
-            {
-                ProductVO Pitem = new ProductVO
-                {
-                    Product_ID = pCode,
-                    Product_Name = txtProductName.Text,
-                    Product_Price = Convert.ToInt32(txtProductMoney.Text.Replace(",", "").Replace("원", "")),
-                    Product_Qty = Convert.ToInt32(numericUpDown1.Value)
-                };
-
-                List<CombinationVO> citemList = new List<CombinationVO>();
-
-                foreach (Control control in splitContainer2.Panel1.Controls)
-                {
-                    if (control is SemiProductCompControl)
-                    {
-                        SemiProductCompControl spc = (SemiProductCompControl)control;
-
-                        CombinationVO citem = new CombinationVO
-                        {
-                            Combination_Product_ID = spc.TxtName.Tag.ToString(),
-                            Combination_RequiredQty = Convert.ToInt32(spc.Qty.Value)
-                        };
-
-                        citemList.Add(citem);
-                    }
-                }
-
-                StandardService service = new StandardService();
-                service.UpdateProduct(Pitem, citemList, splitContainer2.Panel1.Controls.Count);
-            }
+                UpdateProduct();
 
             this.DialogResult = DialogResult.OK;
+        }
+
+        private void btnImageAdd_Click(object sender, EventArgs e)
+        {
+            Cursor currentCursor = this.Cursor;
+            try
+            {
+                this.Cursor = Cursors.WaitCursor;
+                openFileDialog1.Title = "Select a Image File";
+                openFileDialog1.InitialDirectory = "C:";
+                openFileDialog1.Filter = "Images Files(*.jpg; *.jpeg; *.gif; *.png; *.bmp)|*.jpg;*.gpeg;*.gif;*.png;*.bmp";
+
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    txtProductImage.Text = openFileDialog1.FileName.ToString();
+                    pictureBox1.Image = Image.FromFile(openFileDialog1.FileName);
+                    pictureBox1.Tag = openFileDialog1.FileName;
+                    pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+            finally
+            {
+                this.Cursor = currentCursor;
+            }
         }
     }
 }
