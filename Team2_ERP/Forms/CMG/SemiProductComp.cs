@@ -55,7 +55,12 @@ namespace Team2_ERP
             {
                 List<ComboItemVO> categoryList = (from item in service.GetComboProductCategory() where item.ID.Equals(pCategory) select item).ToList();
                 UtilClass.ComboBinding(cboCategory, categoryList);
+                List<ComboItemVO> resourceList = service.GetComboResourceCategory(pCategory.ToString());
+                UtilClass.ComboBinding(cboCategoryDetail, resourceList, "선택");
+                CategoryLabelName(resourceList);
             }
+            List<ComboItemVO> warehouseList = service.GetComboWarehouse(1);
+            UtilClass.ComboBinding(cboWarehouse, warehouseList, "선택");
         }
 
         private void InitGridView()
@@ -91,6 +96,7 @@ namespace Team2_ERP
                 spc.LblName.Tag = countList[i].ID;
 
                 spc.Qty.ValueChanged += new EventHandler(TotalPrice);
+                numericUpDown1.ValueChanged += new EventHandler(TotalPrice);
 
                 splitContainer2.Panel1.Controls.Add(spc);
             }
@@ -130,7 +136,7 @@ namespace Team2_ERP
         //반제품의 카테고리 목록을 보여주고 해당하는 카테고리를 선택하면 유저컨트롤 생성 메서드에 해당하는 카테고리의 ID를 보낸다.
         private void cboCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboCategory.SelectedIndex < 0)
+            if (cboCategory.SelectedIndex < 1)
                 return;
 
             if (!cboCategory.SelectedValue.ToString().Contains("CS"))
@@ -144,13 +150,8 @@ namespace Team2_ERP
                 splitContainer2.Panel1.Controls.Clear();
                 CategoryLabelName(resourceList);
             }
-            else
-            {
-                List<ComboItemVO> resourceList = service.GetComboResourceCategory(pCategory.ToString());
-                UtilClass.ComboBinding(cboCategoryDetail, resourceList, "선택");
-                splitContainer2.Panel1.Controls.Clear();
-                CategoryLabelName(resourceList);
-            }
+
+            dataGridView1.DataSource = null;
         }
 
         //원자재 카테고리를 선택하면 해당하는 카테고리에 있는 모든 원자재 목록을 데이터 그리드 뷰에 바인딩한다.
@@ -162,6 +163,7 @@ namespace Team2_ERP
             if (!cboCategoryDetail.SelectedValue.ToString().Contains("CM"))
                 return;
 
+            dataGridView1.DataSource = null;
             LoadGridView();
         }
 
@@ -202,6 +204,8 @@ namespace Team2_ERP
                     Product_Name = txtSemiproductName.Text,
                     Product_Price = Convert.ToInt32(txtSemiproductMoney.Text.Replace(",", "").Replace("원", "")),
                     Product_Qty = Convert.ToInt32(numericUpDown1.Value),
+                    Warehouse_ID = Convert.ToInt32(cboWarehouse.SelectedValue),
+                    Product_Safety = Convert.ToInt32(numSafety.Value),
                     Product_Category = cboCategory.SelectedValue.ToString()
                 };
 
@@ -234,6 +238,8 @@ namespace Team2_ERP
                     Product_Name = txtSemiproductName.Text,
                     Product_Price = Convert.ToInt32(txtSemiproductMoney.Text.Replace(",", "").Replace("원", "")),
                     Product_Qty = Convert.ToInt32(numericUpDown1.Value),
+                    Product_Safety = Convert.ToInt32(numSafety.Value),
+                    Warehouse_ID = Convert.ToInt32(cboWarehouse.SelectedValue),
                     Product_Category = cboCategory.SelectedValue.ToString()
                 };
 
@@ -268,6 +274,10 @@ namespace Team2_ERP
             if (numericUpDown1.Value > 0)
             {
                 txtSemiproductMoney.Text = (Convert.ToInt32(txtSemiproductMoney.Tag) * Convert.ToInt32(numericUpDown1.Value)).ToString("#,##0") + "원";
+            }
+            else
+            {
+                txtSemiproductMoney.Text = "0원";
             }
         }
     }

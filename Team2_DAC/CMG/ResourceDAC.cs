@@ -76,7 +76,7 @@ namespace Team2_DAC
 
         public bool UpdateResource(ResourceVO item)
         {
-            string sql = "Update Product set Product_Name = @Product_Name, Warehouse_ID = @Warehouse_ID, Product_Price = @Product_Price, Product_Qty = @Product_Qty, Product_Safety = @Product_Safety, Product_Category = @Product_Category where Product_ID = @Product_ID ";
+            string sql = "Update Product set Product_Name = @Product_Name, Warehouse_ID = @Warehouse_ID, Product_Price = @Product_Price, Product_Qty = @Product_Qty, Product_Safety = @Product_Safety, Product_Category = @Product_Category, Product_Image = @Product_Image where Product_ID = @Product_ID ";
 
             try
             {
@@ -88,6 +88,7 @@ namespace Team2_DAC
                     cmd.Parameters.AddWithValue("@Product_Qty", item.Product_Qty);
                     cmd.Parameters.AddWithValue("@Product_Safety", item.Product_Safety);
                     cmd.Parameters.AddWithValue("@Product_Category", item.Product_Category);
+                    cmd.Parameters.AddWithValue("@Product_Image", DBNull.Value);
                     cmd.Parameters.AddWithValue("@Product_ID", item.Product_ID);
 
                     conn.Open();
@@ -131,18 +132,18 @@ namespace Team2_DAC
         }
 
 
-        public List<ComboItemVO> GetComboWarehouse()
+        public List<ComboItemVO> GetComboWarehouse(int division)
         {
             List<ComboItemVO> list = null;
 
             try
             {
-                string sql = "GetInfo";
+                string sql = "GetComboWarehouse";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@div", "Warehouse");
+                    cmd.Parameters.AddWithValue("@Warehouse_Division", division);
 
                     conn.Open();
                     list = Helper.DataReaderMapToList<ComboItemVO>(cmd.ExecuteReader());

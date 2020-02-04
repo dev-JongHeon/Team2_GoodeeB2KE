@@ -8,6 +8,7 @@ namespace Team2_VO
 {
     public class DefectiveVO
     {
+        
         public string Performance_ID { get; set; }
         public int Factory_ID { get; set; }
         public string Factory_Name { get; set; }

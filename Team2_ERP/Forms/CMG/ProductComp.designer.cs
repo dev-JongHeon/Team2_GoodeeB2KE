@@ -44,6 +44,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel1.SuspendLayout();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).BeginInit();
@@ -175,9 +176,9 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(374, 16);
+            this.pictureBox1.Location = new System.Drawing.Point(363, 19);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(148, 144);
+            this.pictureBox1.Size = new System.Drawing.Size(177, 249);
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             // 
@@ -189,6 +190,7 @@
             this.btnImageAdd.TabIndex = 6;
             this.btnImageAdd.Text = "찾아보기";
             this.btnImageAdd.UseVisualStyleBackColor = true;
+            this.btnImageAdd.Click += new System.EventHandler(this.btnImageAdd_Click);
             // 
             // txtProductImage
             // 
@@ -261,6 +263,10 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "완제품명";
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // ProductComp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -315,5 +321,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
