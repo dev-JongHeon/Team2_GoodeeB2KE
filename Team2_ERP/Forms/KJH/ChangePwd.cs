@@ -32,12 +32,12 @@ namespace Team2_ERP
                     loginvo.Employee_PWD = txtPrevPwd.Text;
                     if(service.ChangePwd(loginvo, txtNewPwd.Text))
                     {
-                        MessageBox.Show(Properties.Settings.Default.PwdSucess, Properties.Settings.Default.Success, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(Properties.Settings.Default.PwdSucess, Properties.Settings.Default.MsgBoxTitleSuccess, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
                     }
                     else
                     {
-                        MessageBox.Show(Properties.Settings.Default.PwdFail, Properties.Settings.Default.Fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(Properties.Settings.Default.PwdFail, Properties.Settings.Default.MsgBoxTitleFail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         this.ActiveControl = txtPrevPwd;
                         txtPrevPwd.SelectAll();
                     }
@@ -51,19 +51,19 @@ namespace Team2_ERP
             {
                 if (txtPrevPwd.TextLength < 1)
                 {
-                    MessageBox.Show(Properties.Settings.Default.PwdNoInsertPrev, Properties.Settings.Default.Warnning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Properties.Settings.Default.PwdNoInsertPrev, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     this.ActiveControl = txtPrevPwd;
                     txtPrevPwd.SelectAll();
                 }
                 else if (txtNewPwd.TextLength < 1)
                 {
-                    MessageBox.Show(Properties.Settings.Default.PwdNoInsertNew, Properties.Settings.Default.Warnning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Properties.Settings.Default.PwdNoInsertNew, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     this.ActiveControl = txtNewPwd;
                     txtNewPwd.SelectAll();
                 }
                 else if (txtNewPwd2.TextLength < 1)
                 {
-                    MessageBox.Show(Properties.Settings.Default.PwdNoInsertValid, Properties.Settings.Default.Warnning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Properties.Settings.Default.PwdNoInsertValid, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     this.ActiveControl = txtNewPwd2;
                     txtNewPwd2.SelectAll();
                 }

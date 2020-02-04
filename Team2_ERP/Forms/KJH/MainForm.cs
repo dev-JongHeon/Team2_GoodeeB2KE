@@ -86,7 +86,7 @@ namespace Team2_ERP
         {
             if (!isLogout)
             {
-                if (MessageBox.Show(Settings.Default.ProgramExit, Settings.Default.Exit, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                if (MessageBox.Show(Settings.Default.ProgramExit, Settings.Default.MsgBoxTitleExit, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 {
                     e.Cancel = true;
                 }
@@ -110,6 +110,14 @@ namespace Team2_ERP
             }
             OpenTabForm<MainTab>("메인화면");
             NoticeMessage = Settings.Default.Welcome;
+        }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.L)
+            {
+                btnLogOut.PerformClick();
+            }
         }
         #endregion
 
@@ -579,113 +587,9 @@ namespace Team2_ERP
             string s = string.Empty;
         }
 
-        #endregion
-
-        #region 메뉴스트립 버튼이벤트
-        private void 새로고침ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-            if (M_Refresh != null)
-                M_Refresh.Invoke(this, null);
-        }
-        private void 신규ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (M_New != null)
-                M_New.Invoke(this, null);
-        }
-
-        private void 수정ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (M_Modify != null)
-                M_Modify.Invoke(this, null);
-        }
-
-        private void 삭제ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (M_Delete != null)
-                M_Delete.Invoke(this, null);
-        }
-
-        private void 검색toolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (M_Search != null)
-                M_Search.Invoke(this, null);
-        }
-
-
-        private void 엑셀로내보내기ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (M_Print_Excel != null)
-                M_Print_Excel.Invoke(this, null);
-        }
-
-        private void 프린트ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (M_Print != null)
-                M_Print.Invoke(this, null);
-        }
-
-        private void 닫기ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CloseTab();
-        }
-
-
-        private void CloseTab()
-        {
-            tindex = tabControl1.SelectedIndex;
-            foreach (Form Child in Application.OpenForms)
-            {
-                if (Child is BaseForm)
-                {
-                    BaseForm tmp = (BaseForm)Child;
-                    if (tmp.TabPag == tabControl1.SelectedTab)
-                    {
-                        tmp.Close();
-                        break;
-                    }
-                }
-                else if (Child is Base1Dgv)
-                {
-                    Base1Dgv tmp = (Base1Dgv)Child;
-                    if (tmp.TabPag == tabControl1.SelectedTab)
-                    {
-                        tmp.Close();
-                        break;
-                    }
-                }
-                else if (Child is Base2Dgv)
-                {
-                    Base2Dgv tmp = (Base2Dgv)Child;
-                    if (tmp.TabPag == tabControl1.SelectedTab)
-                    {
-                        tmp.Close();
-                        break;
-                    }
-                }
-            }
-            if (tindex != 0)
-            {
-                tabControl1.SelectedIndex = tindex - 1;
-                tabControl1.Invalidate();
-            }
-            if(tindex==0 && tabControl1.TabCount == 1)
-            {
-                this.Close();
-            }
-        }
-
-        private void btnLogOut_Click(object sender, EventArgs e)
-        {
-            isLogout = true;
-            Logininfo.IsLogout = isLogout;
-            this.Close();
-        }
-        #endregion
-
         private void tabControl1_MouseDown(object sender, MouseEventArgs e)
         {
-            
+
             if (e.Button == MouseButtons.Left) // 마우스 왼쪽 클릭시
             {
                 TabControl tc = (TabControl)sender;
@@ -808,19 +712,113 @@ namespace Team2_ERP
                 {
                     Child.Close();
                 }
-                
+
             }
             tabControl1.Invalidate();
         }
+        #endregion
 
-        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        #region 메뉴스트립 버튼이벤트
+        private void 새로고침ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (e.Control && e.KeyCode == Keys.L)
+
+            if (M_Refresh != null)
+                M_Refresh.Invoke(this, null);
+        }
+        private void 신규ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (M_New != null)
+                M_New.Invoke(this, null);
+        }
+
+        private void 수정ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (M_Modify != null)
+                M_Modify.Invoke(this, null);
+        }
+
+        private void 삭제ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (M_Delete != null)
+                M_Delete.Invoke(this, null);
+        }
+
+        private void 검색toolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (M_Search != null)
+                M_Search.Invoke(this, null);
+        }
+
+
+        private void 엑셀로내보내기ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (M_Print_Excel != null)
+                M_Print_Excel.Invoke(this, null);
+        }
+
+        private void 프린트ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (M_Print != null)
+                M_Print.Invoke(this, null);
+        }
+
+        private void 닫기ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CloseTab();
+        }
+
+
+        private void CloseTab()
+        {
+            tindex = tabControl1.SelectedIndex;
+            foreach (Form Child in Application.OpenForms)
             {
-                btnLogOut.PerformClick();
+                if (Child is BaseForm)
+                {
+                    BaseForm tmp = (BaseForm)Child;
+                    if (tmp.TabPag == tabControl1.SelectedTab)
+                    {
+                        tmp.Close();
+                        break;
+                    }
+                }
+                else if (Child is Base1Dgv)
+                {
+                    Base1Dgv tmp = (Base1Dgv)Child;
+                    if (tmp.TabPag == tabControl1.SelectedTab)
+                    {
+                        tmp.Close();
+                        break;
+                    }
+                }
+                else if (Child is Base2Dgv)
+                {
+                    Base2Dgv tmp = (Base2Dgv)Child;
+                    if (tmp.TabPag == tabControl1.SelectedTab)
+                    {
+                        tmp.Close();
+                        break;
+                    }
+                }
+            }
+            if (tindex != 0)
+            {
+                tabControl1.SelectedIndex = tindex - 1;
+                tabControl1.Invalidate();
+            }
+            if(tindex==0 && tabControl1.TabCount == 1)
+            {
+                this.Close();
             }
         }
 
-        
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            isLogout = true;
+            Logininfo.IsLogout = isLogout;
+            this.Close();
+        }
+        #endregion
+
     }
 }

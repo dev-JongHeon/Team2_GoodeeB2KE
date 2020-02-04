@@ -50,24 +50,24 @@ namespace Team2_ERP.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("오류")]
-        public string Error {
+        public string MsgBoxTitleError {
             get {
-                return ((string)(this["Error"]));
+                return ((string)(this["MsgBoxTitleError"]));
             }
             set {
-                this["Error"] = value;
+                this["MsgBoxTitleError"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("경고")]
-        public string Warnning {
+        public string MsgBoxTitleWarn {
             get {
-                return ((string)(this["Warnning"]));
+                return ((string)(this["MsgBoxTitleWarn"]));
             }
             set {
-                this["Warnning"] = value;
+                this["MsgBoxTitleWarn"] = value;
             }
         }
         
@@ -110,24 +110,24 @@ namespace Team2_ERP.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("완료")]
-        public string Success {
+        public string MsgBoxTitleSuccess {
             get {
-                return ((string)(this["Success"]));
+                return ((string)(this["MsgBoxTitleSuccess"]));
             }
             set {
-                this["Success"] = value;
+                this["MsgBoxTitleSuccess"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("실패")]
-        public string Fail {
+        public string MsgBoxTitleFail {
             get {
-                return ((string)(this["Fail"]));
+                return ((string)(this["MsgBoxTitleFail"]));
             }
             set {
-                this["Fail"] = value;
+                this["MsgBoxTitleFail"] = value;
             }
         }
         
@@ -194,12 +194,12 @@ namespace Team2_ERP.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("삭제")]
-        public string Delete {
+        public string MsgBoxTitleDelete {
             get {
-                return ((string)(this["Delete"]));
+                return ((string)(this["MsgBoxTitleDelete"]));
             }
             set {
-                this["Delete"] = value;
+                this["MsgBoxTitleDelete"] = value;
             }
         }
         
@@ -422,12 +422,12 @@ namespace Team2_ERP.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("종료")]
-        public string Exit {
+        public string MsgBoxTitleExit {
             get {
-                return ((string)(this["Exit"]));
+                return ((string)(this["MsgBoxTitleExit"]));
             }
             set {
-                this["Exit"] = value;
+                this["MsgBoxTitleExit"] = value;
             }
         }
         

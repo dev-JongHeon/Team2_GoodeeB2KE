@@ -8,10 +8,10 @@
     <Setting Name="CalendarError" Type="System.String" Scope="User">
       <Value Profile="(Default)">시작날짜가 종료날짜보다 큽니다.</Value>
     </Setting>
-    <Setting Name="Error" Type="System.String" Scope="User">
+    <Setting Name="MsgBoxTitleError" Type="System.String" Scope="User">
       <Value Profile="(Default)">오류</Value>
     </Setting>
-    <Setting Name="Warnning" Type="System.String" Scope="User">
+    <Setting Name="MsgBoxTitleWarn" Type="System.String" Scope="User">
       <Value Profile="(Default)">경고</Value>
     </Setting>
     <Setting Name="LoginStartLocation" Type="System.Drawing.Point" Scope="User">
@@ -23,10 +23,10 @@
     <Setting Name="PwdFail" Type="System.String" Scope="User">
       <Value Profile="(Default)">이전 암호가 정확하지 않습니다.</Value>
     </Setting>
-    <Setting Name="Success" Type="System.String" Scope="User">
+    <Setting Name="MsgBoxTitleSuccess" Type="System.String" Scope="User">
       <Value Profile="(Default)">완료</Value>
     </Setting>
-    <Setting Name="Fail" Type="System.String" Scope="User">
+    <Setting Name="MsgBoxTitleFail" Type="System.String" Scope="User">
       <Value Profile="(Default)">실패</Value>
     </Setting>
     <Setting Name="PwdNoInsertPrev" Type="System.String" Scope="User">
@@ -44,7 +44,7 @@
     <Setting Name="SearchDone" Type="System.String" Scope="User">
       <Value Profile="(Default)">검색 완료</Value>
     </Setting>
-    <Setting Name="Delete" Type="System.String" Scope="User">
+    <Setting Name="MsgBoxTitleDelete" Type="System.String" Scope="User">
       <Value Profile="(Default)">삭제</Value>
     </Setting>
     <Setting Name="IsDelete" Type="System.String" Scope="User">
@@ -103,7 +103,7 @@
     <Setting Name="ProgramExit" Type="System.String" Scope="User">
       <Value Profile="(Default)">프로그램을 종료하시겠습니까?</Value>
     </Setting>
-    <Setting Name="Exit" Type="System.String" Scope="User">
+    <Setting Name="MsgBoxTitleExit" Type="System.String" Scope="User">
       <Value Profile="(Default)">종료</Value>
     </Setting>
     <Setting Name="Welcome" Type="System.String" Scope="User">

@@ -85,7 +85,7 @@ namespace Team2_ERP
             }
             else
             {
-                MessageBox.Show(Properties.Settings.Default.isEssential, Properties.Settings.Default.Warnning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Properties.Settings.Default.isEssential, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

@@ -133,7 +133,7 @@ namespace Team2_ERP
                     }
                     else
                     {
-                        MessageBox.Show(Properties.Settings.Default.LoginPwdError, Properties.Settings.Default.Error, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(Properties.Settings.Default.LoginPwdError, Properties.Settings.Default.MsgBoxTitleError, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         txtEmpPwd.Focus();
                         txtEmpPwd.SelectAll();
                     }
@@ -147,17 +147,17 @@ namespace Team2_ERP
             {
                 if (txtEmpID.TextLength < 1)
                 {
-                    MessageBox.Show(Properties.Settings.Default.LoginEmpIDError, Properties.Settings.Default.Warnning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Properties.Settings.Default.LoginEmpIDError, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     btnSearch.PerformClick();
                 }
                 else if (txtEmpName.TextLength < 1)
                 {
-                    MessageBox.Show(Properties.Settings.Default.LoginEmpNameError, Properties.Settings.Default.Warnning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Properties.Settings.Default.LoginEmpNameError, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     btnSearch.PerformClick();
                 }
                 else
                 {
-                    MessageBox.Show(Properties.Settings.Default.LoginPwdError, Properties.Settings.Default.Error, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Properties.Settings.Default.LoginPwdError, Properties.Settings.Default.MsgBoxTitleError, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtEmpPwd.Focus();
                     txtEmpPwd.SelectAll();
                 }
@@ -184,11 +184,11 @@ namespace Team2_ERP
             {
                 if (txtEmpID.TextLength < 1)
                 {
-                    MessageBox.Show(Properties.Settings.Default.LoginEmpIDError, Properties.Settings.Default.Warnning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Properties.Settings.Default.LoginEmpIDError, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else if (txtEmpName.TextLength < 1)
                 {
-                    MessageBox.Show(Properties.Settings.Default.LoginEmpNameError, Properties.Settings.Default.Warnning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Properties.Settings.Default.LoginEmpNameError, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     btnSearch.PerformClick();
                 }
                 else

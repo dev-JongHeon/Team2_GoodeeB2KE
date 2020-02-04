@@ -121,7 +121,7 @@ namespace Team2_ERP
         {
             if (dgvDefectiveHandle.SelectedRows.Count > 0)
             {
-                if (MessageBox.Show(Properties.Settings.Default.IsDelete, Properties.Settings.Default.Delete, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show(Properties.Settings.Default.IsDelete, Properties.Settings.Default.MsgBoxTitleDelete, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     try
                     {

@@ -171,7 +171,7 @@ namespace Team2_ERP
         {
             if (StartCalendar.SelectionStart > EndCalendar.SelectionStart)
             {
-                MessageBox.Show(Properties.Settings.Default.CalendarError, Properties.Settings.Default.Error, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Properties.Settings.Default.CalendarError, Properties.Settings.Default.MsgBoxTitleError, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 DialogResult = DialogResult.None;
             }
         }
