@@ -153,7 +153,17 @@ namespace Team2_ERP
 
         public override void Excel(object sender, EventArgs e)
         {
-            
+            using (WaitForm frm = new WaitForm())
+            {
+                frm.Processing = ExcelExport;
+                frm.ShowDialog();
+            }
+        }
+        public void ExcelExport()
+        {
+            string[] exceptColumns = { "Balju_DeletedYN", "Balju_ReceiptDate" };
+            UtilClass.ExportToDataGridView<Balju>(Balju_AllList, exceptColumns);
+            //UtilClass.ExportToDataGridView(dgv_Balju, exceptColumns);
         }
 
         public override void Print(object sender, EventArgs e)  // 인쇄

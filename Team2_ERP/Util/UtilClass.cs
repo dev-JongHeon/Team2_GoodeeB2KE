@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -39,7 +40,7 @@ namespace Team2_ERP
             col.ValueType = typeof(string);
             col.ReadOnly = true;
             col.DefaultCellStyle.Alignment = txtAllign;
-            dgv.Columns.Add(col);            
+            dgv.Columns.Add(col);
         }
 
         /// <summary>
@@ -70,16 +71,19 @@ namespace Team2_ERP
             dgv.AllowUserToResizeRows = false;
             dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
-            dgv.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.DisplayedCells);   
+            dgv.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.DisplayedCells);
             dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
-         
-            
+
+
 
 
         }
 
+
+
+
         #region Excel 유틸리티
-        public static string ExportToDataGridView<T>(List<T> dataList, string exceptColumns)
+        public static string ExportToDataGridView<T>(List<T> dataList, string[] exceptColumns) where T : new()
         {
             try
             {
@@ -88,12 +92,17 @@ namespace Team2_ERP
 
                 int columnIndex = 0;
 
+
+
                 foreach (PropertyInfo prop in typeof(T).GetProperties())
                 {
                     if (!exceptColumns.Contains(prop.Name))
                     {
                         columnIndex++;
-                        excel.Cells[1, columnIndex] = prop.Name;
+
+                        string fieldName = (prop.GetCustomAttribute(typeof(FieldNameAttribute)) as FieldNameAttribute)?.FieldName ?? prop.Name;
+
+                        excel.Cells[1, columnIndex] = fieldName;
                     }
                 }
 
@@ -113,6 +122,60 @@ namespace Team2_ERP
                                 excel.Cells[rowIndex + 1, columnIndex] = prop.GetValue(data, null).ToString();
                             }
                         }
+                    }
+                }
+
+                excel.Visible = true;
+                Excel.Worksheet worksheet = (Excel.Worksheet)excel.ActiveSheet;
+                worksheet.Columns.AutoFit();
+                worksheet.Activate();
+                return "";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        public static string ExportToDataGridView(DataGridView dgv, string[] exceptColumns)
+        {
+            try
+            {
+                Excel.Application excel = new Excel.Application();
+                excel.Application.Workbooks.Add(true);
+
+                int columnIndex = 0;
+
+
+
+
+                foreach (DataGridViewColumn prop in dgv.Columns)
+                {
+                    if (!exceptColumns.Contains(prop.DataPropertyName))
+                    {
+                        columnIndex++;
+                        excel.Cells[1, columnIndex] = prop.HeaderText;
+                    }
+                }
+
+                int rowIndex = 0;
+
+                foreach (DataGridViewRow data in dgv.Rows)
+                {
+                    rowIndex++;
+                    columnIndex = 0;
+                    foreach (DataGridViewColumn prop in dgv.Columns)
+                    {
+                        if (!exceptColumns.Contains(prop.DataPropertyName))
+                        {
+                            columnIndex++;
+
+                            if (data.Cells[prop.Index].Value != null)
+                            {
+                                excel.Cells[rowIndex + 1, columnIndex] = data.Cells[prop.Index].Value;
+                            }
+                        }
+
                     }
                 }
 

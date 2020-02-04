@@ -26,15 +26,17 @@ namespace Team2_ERP
 
             if (editMode == EditMode.Update)
             {
+                lblName.Text = "자재 수정";
                 mode = "Update";
                 code = item.Product_ID;
                 txtResourceName.Text = item.Product_Name;
                 txtResourceMoney.Text = item.Product_Price.ToString();
                 numResourceNum.Value = item.Product_Qty;
-                txtResourceSafe.Text = item.Product_Safety.ToString();
+                numSafety.Value = item.Product_Safety;
             }
             else if (editMode == EditMode.Insert)
             {
+                lblName.Text = "자재 등록";
                 mode = "Insert";
             }
         }
@@ -48,7 +50,6 @@ namespace Team2_ERP
         {
             LoadData();
             InitCombo();
-            LabelName();
         }
 
         private void LoadData()
@@ -60,7 +61,7 @@ namespace Team2_ERP
         private void InitCombo()
         {
             StandardService service = new StandardService();
-            List<ComboItemVO> warehouseList = service.GetComboWarehouse();
+            List<ComboItemVO> warehouseList = service.GetComboWarehouse(0);
             UtilClass.ComboBinding(cboResourceWarehouse, warehouseList, "선택");
             List<ComboItemVO> meterialList = (from item in service.GetComboMeterial() where item.ID.Contains("M") select item).ToList();
             UtilClass.ComboBinding(cboResourceCategory, meterialList, "선택");
@@ -74,7 +75,7 @@ namespace Team2_ERP
                 Warehouse_ID = cboResourceWarehouse.SelectedValue.ToString(),
                 Product_Price = Convert.ToInt32(txtResourceMoney.Text),
                 Product_Qty = Convert.ToInt32(numResourceNum.Value),
-                Product_Safety = Convert.ToInt32(txtResourceSafe.Text),
+                Product_Safety = Convert.ToInt32(numSafety.Value),
                 Product_Category = cboResourceCategory.SelectedValue.ToString()
             };
 
@@ -91,7 +92,7 @@ namespace Team2_ERP
                 Warehouse_ID = cboResourceWarehouse.SelectedValue.ToString(),
                 Product_Price = Convert.ToInt32(txtResourceMoney.Text),
                 Product_Qty = Convert.ToInt32(numResourceNum.Value),
-                Product_Safety = Convert.ToInt32(txtResourceSafe.Text),
+                Product_Safety = Convert.ToInt32(numSafety.Value),
                 Product_Category = cboResourceCategory.SelectedValue.ToString()
             };
 
@@ -111,18 +112,6 @@ namespace Team2_ERP
             }
 
             this.DialogResult = DialogResult.OK;
-        }
-
-        private void LabelName()
-        {
-            if(mode.Equals("Insert"))
-            {
-                lblName.Text = "자재 등록";
-            }
-            else if(mode.Equals("Update"))
-            {
-                lblName.Text = "자재 수정";
-            }
         }
     }
 }

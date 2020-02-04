@@ -68,6 +68,31 @@ namespace Team2_DAC
             }
         }
 
+        public List<BOMVO> GetAllCombinationReverse(string code)
+        {
+            string sql = "GetAllCombinationReverse";
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@Combination_Product_ID", code);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    List<BOMVO> list = Helper.DataReaderMapToList<BOMVO>(cmd.ExecuteReader());
+                    return list;
+                }
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         public List<ComboItemVO> GetComboProductCategory()
         {
             List<ComboItemVO> list = null;
@@ -144,6 +169,8 @@ namespace Team2_DAC
                 cmd.Parameters.AddWithValue("@Product_Name", Pitem.Product_Name);
                 cmd.Parameters.AddWithValue("@Product_Price", Pitem.Product_Price);
                 cmd.Parameters.AddWithValue("@Product_Qty", Pitem.Product_Qty);
+                cmd.Parameters.AddWithValue("@Warehouse_ID", Pitem.Warehouse_ID);
+                cmd.Parameters.AddWithValue("@Product_Safety", Pitem.Product_Safety);
                 cmd.Parameters.AddWithValue("@Product_Category", Pitem.Product_Category);
                 object obj = cmd.ExecuteScalar();
 
@@ -194,6 +221,8 @@ namespace Team2_DAC
                 cmd.Parameters.AddWithValue("@Product_Price", Pitem.Product_Price);
                 cmd.Parameters.AddWithValue("@Product_Qty", Pitem.Product_Qty);
                 cmd.Parameters.AddWithValue("@Product_Category", Pitem.Product_Category);
+                cmd.Parameters.AddWithValue("@Warehouse_ID", Pitem.Warehouse_ID);
+                cmd.Parameters.AddWithValue("@Product_Safety", Pitem.Product_Safety);
                 cmd.Parameters.AddWithValue("@Product_ID", Pitem.Product_ID);
                 SqlDataReader reader = cmd.ExecuteReader();
                 list = Helper.DataReaderMapToList<CombinationVO>(reader);
@@ -287,6 +316,7 @@ namespace Team2_DAC
                 cmd.Parameters.AddWithValue("@Product_Name", Pitem.Product_Name);
                 cmd.Parameters.AddWithValue("@Product_Price", Pitem.Product_Price);
                 cmd.Parameters.AddWithValue("@Product_Qty", Pitem.Product_Qty);
+                cmd.Parameters.AddWithValue("@Product_Image", Pitem.Product_Image);
                 object obj = cmd.ExecuteScalar();
 
                 productID = obj.ToString();
@@ -402,6 +432,30 @@ namespace Team2_DAC
             catch (Exception err)
             {
                 trans.Rollback();
+                throw new Exception(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public List<ProductVO> GetImage(string code)
+        {
+            string sql = "select Product_Image from Product where Product_ID = @Product_ID";
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@Product_ID", code);
+                    List<ProductVO> list = Helper.DataReaderMapToList<ProductVO>(cmd.ExecuteReader());
+                    return list;
+                }
+            }
+            catch (Exception err)
+            {
                 throw new Exception(err.Message);
             }
             finally

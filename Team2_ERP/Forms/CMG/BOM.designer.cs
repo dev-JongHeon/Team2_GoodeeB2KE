@@ -30,12 +30,14 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgvBOM = new System.Windows.Forms.DataGridView();
-            this.dgvBOMDetail = new System.Windows.Forms.DataGridView();
             this.searchUserControl1 = new Team2_ERP.SearchUserControl();
             this.rdoAll = new System.Windows.Forms.RadioButton();
             this.rdoSemiProduct = new System.Windows.Forms.RadioButton();
             this.rdoProduct = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.dgvBOMDetail1 = new System.Windows.Forms.DataGridView();
+            this.dgvBOMDetail2 = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.panel_Search.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -47,8 +49,13 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBOM)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBOMDetail)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBOMDetail1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBOMDetail2)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -93,7 +100,7 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.dgvBOMDetail);
+            this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(1344, 571);
             this.splitContainer1.SplitterDistance = 617;
             this.splitContainer1.TabIndex = 7;
@@ -110,17 +117,6 @@
             this.dgvBOM.TabIndex = 0;
             this.dgvBOM.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBOM_CellClick);
             this.dgvBOM.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvBOM_CellFormatting);
-            // 
-            // dgvBOMDetail
-            // 
-            this.dgvBOMDetail.BackgroundColor = System.Drawing.Color.White;
-            this.dgvBOMDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBOMDetail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvBOMDetail.Location = new System.Drawing.Point(0, 0);
-            this.dgvBOMDetail.Name = "dgvBOMDetail";
-            this.dgvBOMDetail.RowTemplate.Height = 23;
-            this.dgvBOMDetail.Size = new System.Drawing.Size(723, 571);
-            this.dgvBOMDetail.TabIndex = 0;
             // 
             // searchUserControl1
             // 
@@ -178,6 +174,46 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "분류";
             // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.dgvBOMDetail1);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.dgvBOMDetail2);
+            this.splitContainer2.Size = new System.Drawing.Size(723, 571);
+            this.splitContainer2.SplitterDistance = 280;
+            this.splitContainer2.TabIndex = 0;
+            // 
+            // dgvBOMDetail1
+            // 
+            this.dgvBOMDetail1.BackgroundColor = System.Drawing.Color.White;
+            this.dgvBOMDetail1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBOMDetail1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvBOMDetail1.Location = new System.Drawing.Point(0, 0);
+            this.dgvBOMDetail1.Name = "dgvBOMDetail1";
+            this.dgvBOMDetail1.RowTemplate.Height = 23;
+            this.dgvBOMDetail1.Size = new System.Drawing.Size(723, 280);
+            this.dgvBOMDetail1.TabIndex = 0;
+            // 
+            // dgvBOMDetail2
+            // 
+            this.dgvBOMDetail2.BackgroundColor = System.Drawing.Color.White;
+            this.dgvBOMDetail2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBOMDetail2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvBOMDetail2.Location = new System.Drawing.Point(0, 0);
+            this.dgvBOMDetail2.Name = "dgvBOMDetail2";
+            this.dgvBOMDetail2.RowTemplate.Height = 23;
+            this.dgvBOMDetail2.Size = new System.Drawing.Size(723, 287);
+            this.dgvBOMDetail2.TabIndex = 0;
+            // 
             // BOM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -200,9 +236,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBOM)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBOMDetail)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBOMDetail1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBOMDetail2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -210,12 +251,14 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.DataGridView dgvBOMDetail;
         private SearchUserControl searchUserControl1;
         private System.Windows.Forms.RadioButton rdoProduct;
         private System.Windows.Forms.RadioButton rdoSemiProduct;
         private System.Windows.Forms.RadioButton rdoAll;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvBOM;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.DataGridView dgvBOMDetail1;
+        private System.Windows.Forms.DataGridView dgvBOMDetail2;
     }
 }

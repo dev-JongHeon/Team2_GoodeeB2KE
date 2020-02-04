@@ -11,6 +11,7 @@ namespace Team2_VO
         public int Employees_ID { get; set; }
         public string Employees_Name { get; set; }
         public string CodeTable_CodeID { get; set; }
+        public string CodeTable_CodeName { get; set; }
         public string Employees_Hiredate { get; set; }
         public string Employees_Resigndate { get; set; }
         public string Employees_PWD { get; set; }

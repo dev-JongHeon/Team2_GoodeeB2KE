@@ -19,5 +19,6 @@ namespace Team2_VO
         public string CodeTable_CodeName { get; set; }
         public bool Product_DeletedYN { get; set; }
         public string Category_Division { get; set; }
+        public byte[] Product_Image { get; set; }
     }
 }
