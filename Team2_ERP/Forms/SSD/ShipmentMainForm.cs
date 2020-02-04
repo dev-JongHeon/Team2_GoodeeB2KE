@@ -153,6 +153,14 @@ namespace Team2_ERP
 
         public override void Excel(object sender, EventArgs e)
         {
+            using (WaitForm frm = new WaitForm())
+            {
+                frm.Processing = ExcelExport;
+                frm.ShowDialog();
+            }
+        }
+        public void ExcelExport()
+        {
 
         }
 

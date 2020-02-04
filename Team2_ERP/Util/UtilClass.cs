@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -78,8 +79,11 @@ namespace Team2_ERP
 
         }
 
+
+
+
         #region Excel 유틸리티
-        public static string ExportToDataGridView<T>(List<T> dataList, string[] exceptColumns)
+        public static string ExportToDataGridView<T>(List<T> dataList, string[] exceptColumns) where T : new()
         {
             try
             {
@@ -88,12 +92,17 @@ namespace Team2_ERP
 
                 int columnIndex = 0;
 
+
+                
                 foreach (PropertyInfo prop in typeof(T).GetProperties())
                 {
                     if (!exceptColumns.Contains(prop.Name))
                     {
                         columnIndex++;
-                        excel.Cells[1, columnIndex] = prop.Name;
+                       
+                        string fieldName = (prop.GetCustomAttribute(typeof(FieldNameAttribute)) as FieldNameAttribute)?.FieldName ?? prop.Name;
+
+                        excel.Cells[1, columnIndex] = fieldName;
                     }
                 }
 
@@ -111,6 +120,59 @@ namespace Team2_ERP
                             if (prop.GetValue(data, null) != null)
                             {
                                 excel.Cells[rowIndex + 1, columnIndex] = prop.GetValue(data, null).ToString();
+                            }
+                        }
+                    }
+                }
+
+                excel.Visible = true;
+                Excel.Worksheet worksheet = (Excel.Worksheet)excel.ActiveSheet;
+                worksheet.Columns.AutoFit();
+                worksheet.Activate();
+                return "";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        public static string ExportToDataGridView(DataGridView dgv, string[] exceptColumns)
+        {
+            try
+            {
+                Excel.Application excel = new Excel.Application();
+                excel.Application.Workbooks.Add(true);
+
+                int columnIndex = 0;
+
+                DataTable item = (DataTable)dgv.DataSource;
+
+
+                foreach (DataColumn prop in item.Columns)
+                {
+                    if (!exceptColumns.Contains(prop.ColumnName))
+                    {
+                        columnIndex++;
+
+                        excel.Cells[1, columnIndex] = prop.ColumnName;
+                    }
+                }
+
+                int rowIndex = 0;
+
+                foreach (DataRow data in item.Rows)
+                {
+                    rowIndex++;
+                    columnIndex = 0;
+                    foreach (DataColumn prop in item.Columns)
+                    {
+                        if (!exceptColumns.Contains(prop.ColumnName))
+                        {
+                            columnIndex++;
+                            if (data[prop.ColumnName] != null)
+                            {
+                                excel.Cells[rowIndex + 1, columnIndex] = data[prop.ColumnName];
                             }
                         }
                     }
@@ -154,8 +216,8 @@ namespace Team2_ERP
         #region comboBox 바인딩 관련 유틸리티
         public static void ComboBinding(ComboBox combo, List<ComboItemVO> list)
         {
-            combo.ValueMember = "ID";
-            combo.DisplayMember = "Name";
+            combo.ValueMember = "Code";
+            combo.DisplayMember = "CodeNm";
             combo.DataSource = list;
         }
 
