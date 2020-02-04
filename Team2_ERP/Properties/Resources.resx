@@ -121,6 +121,9 @@
   <data name="BOReport_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BOReport_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Action_Refresh_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Action_Refresh_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="window_remove_12810" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\window_remove_12810.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -132,6 +135,9 @@
   </data>
   <data name="Lookup&amp;Reference_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Lookup&amp;Reference_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Action_Export_ToExcel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Action_Export_ToExcel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Action_Printing_Print" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Action_Printing_Print.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -160,17 +166,11 @@
   <data name="Calendar_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Calendar_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="1486564410-chat_81504" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\1486564410-chat_81504.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="DeleteList_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DeleteList_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="facebook_cover_photo_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\facebook_cover_photo_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Customization_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Customization_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="left-arrow (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\left-arrow (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -196,11 +196,14 @@
   <data name="chat-26_icon-icons.com_65943" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\chat-26_icon-icons.com_65943.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Action_Refresh_64x64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Action_Refresh_64x64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="logo_transparent" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logo_transparent.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Action_Export_ToExcel" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Action_Export_ToExcel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Customization_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Customization_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="loading" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\loading.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Edit_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Edit_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -211,8 +214,8 @@
   <data name="Action_Logoff" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Action_Logoff.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="logo_transparent" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\logo_transparent.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Action_Refresh_64x64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Action_Refresh_64x64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BOOrderItem_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BOOrderItem_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -235,8 +238,8 @@
   <data name="ViewSetting_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ViewSetting_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Action_Refresh_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Action_Refresh_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="1486564410-chat_81504" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1486564410-chat_81504.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="팀2최종1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\팀2최종1.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -253,7 +256,7 @@
   <data name="Action_Export_ToExcel_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Action_Export_ToExcel_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="loading" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\loading.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="processing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\processing.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

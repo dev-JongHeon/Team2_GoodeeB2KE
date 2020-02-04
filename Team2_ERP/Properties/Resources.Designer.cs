@@ -443,6 +443,16 @@ namespace Team2_ERP.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap processing {
+            get {
+                object obj = ResourceManager.GetObject("processing", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap Report_32x32 {
             get {
                 object obj = ResourceManager.GetObject("Report_32x32", resourceCulture);
