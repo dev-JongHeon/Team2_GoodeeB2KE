@@ -26,6 +26,7 @@ namespace Team2_ERP
 
             if (editMode == EditMode.Update)
             {
+                lblName.Text = "자재 수정";
                 mode = "Update";
                 code = item.Product_ID;
                 txtResourceName.Text = item.Product_Name;
@@ -35,6 +36,7 @@ namespace Team2_ERP
             }
             else if (editMode == EditMode.Insert)
             {
+                lblName.Text = "자재 등록";
                 mode = "Insert";
             }
         }
@@ -48,7 +50,6 @@ namespace Team2_ERP
         {
             LoadData();
             InitCombo();
-            LabelName();
         }
 
         private void LoadData()
@@ -111,18 +112,6 @@ namespace Team2_ERP
             }
 
             this.DialogResult = DialogResult.OK;
-        }
-
-        private void LabelName()
-        {
-            if(mode.Equals("Insert"))
-            {
-                lblName.Text = "자재 등록";
-            }
-            else if(mode.Equals("Update"))
-            {
-                lblName.Text = "자재 수정";
-            }
         }
     }
 }

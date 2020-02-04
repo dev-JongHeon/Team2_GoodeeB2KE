@@ -47,6 +47,7 @@
     <Compile Include="CMG\CodeTableDAC.cs" />
     <Compile Include="CMG\CompanyDAC.cs" />
     <Compile Include="CMG\CustomerDAC.cs" />
+    <Compile Include="CMG\EmployeeDAC.cs" />
     <Compile Include="CMG\FactoryDAC.cs" />
     <Compile Include="CMG\LineDAC.cs" />
     <Compile Include="CMG\ResourceDAC.cs" />
