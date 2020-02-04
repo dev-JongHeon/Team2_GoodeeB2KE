@@ -75,16 +75,16 @@ namespace Team2_ERP
             dgv_OrderDetail.DataSource = null;
 
             // 검색조건 초기화
-            Search_Customer.CodeTextBox.Text = "";
-            Search_Period.Startdate.Text = "";
-            Search_Period.Enddate.Text = "";
+            Search_Customer.CodeTextBox.Clear();
+            Search_Period.Startdate.Clear();
+            Search_Period.Enddate.Clear();
         }
 
         #region ToolStrip 기능정의
         public override void Refresh(object sender, EventArgs e)  // 새로고침
         {
             Func_Refresh();
-            main.NoticeMessage = "새로고침(갱신) 되었습니다.";
+            main.NoticeMessage = Properties.Settings.Default.RefreshDone;
         }
 
         public override void Modify(object sender, EventArgs e)  // 발주완료(수령)처리, 출하대기목록 Insert, 작업insert, 생산insert 
@@ -137,7 +137,7 @@ namespace Team2_ERP
             }
             dgv_Order.DataSource = Order_AllList;
             dgv_OrderDetail.DataSource = null;
-            main.NoticeMessage = "검색 되었습니다.";
+            main.NoticeMessage = Properties.Settings.Default.SearchDone;
         }
 
         public override void Excel(object sender, EventArgs e)

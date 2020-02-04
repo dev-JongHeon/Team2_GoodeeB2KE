@@ -60,7 +60,7 @@ namespace Team2_ERP
         public override void Refresh(object sender, EventArgs e)  // 새로고침
         {
             LoadData();
-            main.NoticeMessage = "새로고침(갱신) 되었습니다.";
+            main.NoticeMessage = Properties.Settings.Default.RefreshDone;
         }
 
         public override void Search(object sender, EventArgs e)  // 검색
@@ -107,7 +107,7 @@ namespace Team2_ERP
                 }
             }// 주문일시 검색조건 존재한다면
             dgv_SalesStatus.DataSource = Order_AllList;
-            main.NoticeMessage = "검색 되었습니다.";
+            main.NoticeMessage = Properties.Settings.Default.SearchDone;
         }
 
         public override void Excel(object sender, EventArgs e)

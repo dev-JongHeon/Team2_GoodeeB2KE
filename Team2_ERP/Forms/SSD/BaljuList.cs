@@ -85,7 +85,7 @@ namespace Team2_ERP
         public override void Refresh(object sender, EventArgs e)  // 새로고침
         {
             Func_Refresh();
-            main.NoticeMessage = "새로고침(갱신) 되었습니다.";
+            main.NoticeMessage = Properties.Settings.Default.RefreshDone;
         }
         public override void Search(object sender, EventArgs e)
         {
@@ -120,7 +120,7 @@ namespace Team2_ERP
             }
             dgv_Balju.DataSource = Balju_AllList;
             dgv_BaljuDetail.DataSource = null;
-            main.NoticeMessage = "검색 되었습니다.";
+            main.NoticeMessage = Properties.Settings.Default.SearchDone;
         }
 
         public override void Modify(object sender, EventArgs e)  // 발주완료(수령)처리

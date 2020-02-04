@@ -79,10 +79,10 @@ namespace Team2_ERP
 
             // 검색조건 초기화
             chk_ReceiptDate.Checked = false;
-            Search_Period.Startdate.Text = "";
-            Search_Period.Enddate.Text = "";
-            Search_Company.CodeTextBox.Text = "";
-            Search_Employee.CodeTextBox.Text = "";
+            Search_Period.Startdate.Clear();
+            Search_Period.Enddate.Clear();
+            Search_Company.CodeTextBox.Clear();
+            Search_Employee.CodeTextBox.Clear();
         }
 
         private void chk_ReceiptDate_CheckedChanged(object sender, EventArgs e)  // 수령일 체크박스 상태 바뀔 때 이벤트
@@ -95,7 +95,7 @@ namespace Team2_ERP
         public override void Refresh(object sender, EventArgs e)  // 새로고침
         {
             Func_Refresh();
-            main.NoticeMessage = "새로고침(갱신) 되었습니다.";
+            main.NoticeMessage = Properties.Settings.Default.RefreshDone;
         }
 
         public override void Search(object sender, EventArgs e)  // 검색
@@ -137,7 +137,7 @@ namespace Team2_ERP
 
             dgv_BaljuCompleted.DataSource = BaljuCompleted_AllList;
             dgv_BaljuDetail.DataSource = null;
-            main.NoticeMessage = "검색 되었습니다.";
+            main.NoticeMessage = Properties.Settings.Default.SearchDone;
         }
 
         public override void Excel(object sender, EventArgs e)
