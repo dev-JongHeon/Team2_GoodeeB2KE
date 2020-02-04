@@ -40,7 +40,7 @@ namespace Team2_ERP
             col.ValueType = typeof(string);
             col.ReadOnly = true;
             col.DefaultCellStyle.Alignment = txtAllign;
-            dgv.Columns.Add(col);            
+            dgv.Columns.Add(col);
         }
 
         /// <summary>
@@ -71,10 +71,10 @@ namespace Team2_ERP
             dgv.AllowUserToResizeRows = false;
             dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
-            dgv.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.DisplayedCells);   
+            dgv.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.DisplayedCells);
             dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
-         
-            
+
+
 
 
         }
@@ -93,13 +93,13 @@ namespace Team2_ERP
                 int columnIndex = 0;
 
 
-                
+
                 foreach (PropertyInfo prop in typeof(T).GetProperties())
                 {
                     if (!exceptColumns.Contains(prop.Name))
                     {
                         columnIndex++;
-                       
+
                         string fieldName = (prop.GetCustomAttribute(typeof(FieldNameAttribute)) as FieldNameAttribute)?.FieldName ?? prop.Name;
 
                         excel.Cells[1, columnIndex] = fieldName;
@@ -146,35 +146,36 @@ namespace Team2_ERP
 
                 int columnIndex = 0;
 
-                DataTable item = (DataTable)dgv.DataSource;
 
 
-                foreach (DataColumn prop in item.Columns)
+
+                foreach (DataGridViewColumn prop in dgv.Columns)
                 {
-                    if (!exceptColumns.Contains(prop.ColumnName))
+                    if (!exceptColumns.Contains(prop.DataPropertyName))
                     {
                         columnIndex++;
-
-                        excel.Cells[1, columnIndex] = prop.ColumnName;
+                        excel.Cells[1, columnIndex] = prop.HeaderText;
                     }
                 }
 
                 int rowIndex = 0;
 
-                foreach (DataRow data in item.Rows)
+                foreach (DataGridViewRow data in dgv.Rows)
                 {
                     rowIndex++;
                     columnIndex = 0;
-                    foreach (DataColumn prop in item.Columns)
+                    foreach (DataGridViewColumn prop in dgv.Columns)
                     {
-                        if (!exceptColumns.Contains(prop.ColumnName))
+                        if (!exceptColumns.Contains(prop.DataPropertyName))
                         {
                             columnIndex++;
-                            if (data[prop.ColumnName] != null)
+
+                            if (data.Cells[prop.Index].Value != null)
                             {
-                                excel.Cells[rowIndex + 1, columnIndex] = data[prop.ColumnName];
+                                excel.Cells[rowIndex + 1, columnIndex] = data.Cells[prop.Index].Value;
                             }
                         }
+
                     }
                 }
 
