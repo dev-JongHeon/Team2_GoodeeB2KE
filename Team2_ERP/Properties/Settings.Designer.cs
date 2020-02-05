@@ -478,5 +478,29 @@ namespace Team2_ERP.Properties {
                 this["ModAuthError"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("엑셀로 내보낼 데이터가 없습니다.")]
+        public string ExcelError {
+            get {
+                return ((string)(this["ExcelError"]));
+            }
+            set {
+                this["ExcelError"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("최대검색가능기간은 1년입니다.")]
+        public string CalendarMaxError {
+            get {
+                return ((string)(this["CalendarMaxError"]));
+            }
+            set {
+                this["CalendarMaxError"] = value;
+            }
+        }
     }
 }

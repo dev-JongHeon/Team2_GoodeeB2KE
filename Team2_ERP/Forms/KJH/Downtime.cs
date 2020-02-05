@@ -94,6 +94,7 @@ namespace Team2_ERP
 
         private void SettingDgvDowntime()
         {
+            
             UtilClass.SettingDgv(dgvDowntime);
             UtilClass.AddNewColum(dgvDowntime, "공장번호", "Factory_ID", false);
             UtilClass.AddNewColum(dgvDowntime, "공장명", "Factory_Name", true, 130);
@@ -342,7 +343,36 @@ namespace Team2_ERP
 
         public override void Excel(object sender, EventArgs e)
         {
-            MessageBox.Show("엑셀");
+            if ((tabDowntime.SelectedIndex==0&&dgvDowntime.Rows.Count > 0)|| (tabDowntime.SelectedIndex == 1 && dgvDowntimeByLine.Rows.Count>0) || (tabDowntime.SelectedIndex == 2 && dgvDowntimeByType.Rows.Count>0))
+            {
+                using (WaitForm frm = new WaitForm())
+                {
+                    frm.Processing = ExcelExport;
+                    frm.ShowDialog();
+                }
+                frm.WindowState = FormWindowState.Minimized;
+            }
+            else
+            {
+                frm.NoticeMessage = Properties.Settings.Default.ExcelError;
+            }
+        }
+
+        private void ExcelExport()
+        {
+            string[] exceptlist = new string[] { "DowntimeType_ID", "Employees_ID", "Factory_ID", "Line_ID", "Product_ID" };
+            if (tabDowntime.SelectedIndex == 0)
+            {
+                UtilClass.ExportToDataGridView(dgvDowntime, exceptlist);
+            }
+            else if (tabDowntime.SelectedIndex == 1)
+            {
+                UtilClass.ExportToDataGridView(dgvDowntimeByLine, exceptlist);
+            }
+            else
+            {
+                UtilClass.ExportToDataGridView(dgvDowntimeByType, exceptlist);
+            }
         }
 
         public override void Print(object sender, EventArgs e)

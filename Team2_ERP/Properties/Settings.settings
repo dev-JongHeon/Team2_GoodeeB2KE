@@ -118,5 +118,11 @@
     <Setting Name="ModAuthError" Type="System.String" Scope="User">
       <Value Profile="(Default)">권한설정할 사원을 선택하지 않으셨습니다.</Value>
     </Setting>
+    <Setting Name="ExcelError" Type="System.String" Scope="User">
+      <Value Profile="(Default)">엑셀로 내보낼 데이터가 없습니다.</Value>
+    </Setting>
+    <Setting Name="CalendarMaxError" Type="System.String" Scope="User">
+      <Value Profile="(Default)">최대검색가능기간은 1년입니다.</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
