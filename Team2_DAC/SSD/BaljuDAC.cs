@@ -25,9 +25,14 @@ namespace Team2_DAC
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("SELECT Balju_ID, Company_ID, Company_Name, Balju_Date, Employees_Name, Balju_DeletedYN ");
+                    sb.Append("FROM   BaljuList");
+
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "select * from BaljuList";
+                    cmd.CommandText = sb.ToString();
+                                      
                     conn.Open();
                     List<Balju> list = Helper.DataReaderMapToList<Balju>(cmd.ExecuteReader());
                     conn.Close();
@@ -47,9 +52,13 @@ namespace Team2_DAC
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("SELECT Balju_ID, Company_ID, Company_Name, Balju_Date,                                                                   Balju_ReceiptDate, Employees_Name, Balju_DeletedYN ");
+                    sb.Append("FROM   BaljuList_Completed_Top");
+                    
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "select * from BaljuList_Completed_Top";
+                    cmd.CommandText = sb.ToString();
                     conn.Open();
                     List<Balju> list = Helper.DataReaderMapToList<Balju>(cmd.ExecuteReader());
                     conn.Close();
@@ -69,9 +78,13 @@ namespace Team2_DAC
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("SELECT Balju_ID, a.Product_ID, Product_Name, BaljuDetail_Qty ");
+                    sb.Append("FROM   BaljuList_Detail");
+
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "select * from BaljuList_Detail";
+                    cmd.CommandText = sb.ToString();
                     conn.Open();
                     List<BaljuDetail> list = Helper.DataReaderMapToList<BaljuDetail>(cmd.ExecuteReader());
                     conn.Close();

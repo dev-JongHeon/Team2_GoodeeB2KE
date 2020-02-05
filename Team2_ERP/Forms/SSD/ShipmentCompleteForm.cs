@@ -74,7 +74,7 @@ namespace Team2_ERP
 
         private void Func_Refresh()  // 새로고침 기능
         {
-            Shipment_AllList = service.GetShipmentList();
+            Shipment_AllList = service.GetShipmentCompletedList();
             ShipmentDetail_AllList = service.GetShipmentDetailList();
 
             dgv_Shipment.DataSource = Shipment_AllList;
@@ -95,12 +95,12 @@ namespace Team2_ERP
         public override void Refresh(object sender, EventArgs e)  // 새로고침
         {
             Func_Refresh();
-            main.NoticeMessage = "새로고침(갱신) 되었습니다.";
+            main.NoticeMessage = Properties.Settings.Default.RefreshDone;
         }
 
         public override void Search(object sender, EventArgs e)  // 검색
         {
-            Shipment_AllList = service.GetShipmentList();  // 출하리스트 갱신
+            Shipment_AllList = service.GetShipmentCompletedList();  // 출하완료리스트 갱신
             if (Search_Customer.CodeTextBox.Text.Length > 0)  // 고객명 검색조건 있으면
             {
                 Shipment_AllList = (from item in Shipment_AllList
@@ -173,7 +173,7 @@ namespace Team2_ERP
             }
             dgv_Shipment.DataSource = Shipment_AllList;
             dgv_ShipmentDetail.DataSource = null;
-            main.NoticeMessage = "검색 되었습니다.";
+            main.NoticeMessage = Properties.Settings.Default.SearchDone;
         }
 
         public override void Excel(object sender, EventArgs e)
