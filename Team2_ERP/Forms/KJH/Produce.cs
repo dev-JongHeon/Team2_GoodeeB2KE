@@ -4,18 +4,20 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using Team2_VO;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Team2_ERP
 {
     public partial class Produce : Base2Dgv
     {
         MainForm frm;
-        List<ProduceVO> list = new List<ProduceVO>();        
+        List<ProduceVO> list = new List<ProduceVO>();
         List<ProduceVO> searchedlist = new List<ProduceVO>();
-        bool isFisrt = true;
+        bool isFirst = true;
         ProduceService service = new ProduceService();
         public Produce()
         {
@@ -84,7 +86,7 @@ namespace Team2_ERP
             try
             {
                 list = service.GetAllProduce();
-                
+
             }
             catch (Exception err)
             {
@@ -92,12 +94,12 @@ namespace Team2_ERP
             }
             dgvProduce.DataSource = null;
             dgvPerformance.DataSource = null;
-            if (!isFisrt)
+            if (!isFirst)
             {
                 dgvProduce.DataSource = list;
                 ClearDgv();
             }
-            isFisrt = false;
+            isFirst = false;
             ClearSearchOption();
             frm.NoticeMessage = Properties.Settings.Default.RefreshDone;
         }
@@ -149,13 +151,13 @@ namespace Team2_ERP
 
         public override void Refresh(object sender, EventArgs e)
         {
-            isFisrt = true;
+            isFirst = true;
             RefreshClicked();
         }
 
         public override void Search(object sender, EventArgs e)
         {
-            if (searchFactory.CodeTextBox.Tag == null && searchLine.CodeTextBox.Tag==null&& searchProduct.CodeTextBox.Tag==null&& searchPeriodStart.Startdate.Tag == null && searchPeriodStart.Enddate.Tag == null && searchPeriodEnd.Enddate.Tag == null && searchPeriodEnd.Startdate.Tag == null)
+            if (searchFactory.CodeTextBox.Tag == null && searchLine.CodeTextBox.Tag == null && searchProduct.CodeTextBox.Tag == null && searchPeriodStart.Startdate.Tag == null && searchPeriodStart.Enddate.Tag == null && searchPeriodEnd.Enddate.Tag == null && searchPeriodEnd.Startdate.Tag == null)
             {
                 RefreshClicked();
                 frm.NoticeMessage = notice;
@@ -198,7 +200,7 @@ namespace Team2_ERP
                 }
                 dgvProduce.DataSource = searchedlist;
                 frm.NoticeMessage = Properties.Settings.Default.SearchDone;
-                GetPerformance();
+                ClearDgv();
             }
 
         }
@@ -226,7 +228,27 @@ namespace Team2_ERP
 
         public override void Excel(object sender, EventArgs e)
         {
-            MessageBox.Show("엑셀");
+            if (dgvProduce.Rows.Count > 0)
+            {
+                using (WaitForm frm = new WaitForm())
+                {
+                    frm.Processing = ExcelExport;
+                    frm.ShowDialog();
+                }
+                frm.WindowState = FormWindowState.Minimized;
+            }
+            else
+            {
+                frm.NoticeMessage = Properties.Settings.Default.ExcelError;
+            }
+        }
+
+        private void ExcelExport()
+        {
+            List<ProduceVO> excellist = ((List<ProduceVO>)dgvProduce.DataSource).ToList();
+
+            string[] exceptlist = new string[] { "Employees_ID", "Factory_ID", "Line_ID", "Product_ID" };
+            UtilClass.ExportTo2DataGridView<ProduceVO,PerformanceVO>(excellist,exceptlist, "GetPerformanceByProduceID");
         }
 
         public override void Print(object sender, EventArgs e)
@@ -234,9 +256,13 @@ namespace Team2_ERP
             MessageBox.Show("프린트");
         }
 
-        private void dgvProduce_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+
+        private void dgvProduce_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            GetPerformance();
+            if (e.RowIndex > -1)
+            {
+                GetPerformance();
+            }
         }
     }
 }

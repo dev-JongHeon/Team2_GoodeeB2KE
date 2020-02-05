@@ -410,6 +410,7 @@
     </Compile>
     <Compile Include="Service\KJH\AuthService.cs" />
     <Compile Include="Service\KJH\DefectiveHandleService.cs" />
+    <Compile Include="Service\KJH\ExcelService.cs" />
     <Compile Include="Service\KJH\ProduceService.cs" />
     <Compile Include="Service\KJH\WorkService.cs" />
     <Compile Include="Service\KJH\DowntimeService.cs" />
@@ -652,6 +653,7 @@
     <Content Include="Resources\Action_Refresh_32x32.png" />
     <Content Include="Resources\Action_Refresh_64x64.png" />
     <Content Include="Resources\AddFile_32x32.png" />
+    <None Include="Resources\ajax_loader_mini.gif" />
     <Content Include="Resources\BOOrderItem_16x16.png" />
     <Content Include="Resources\BOProductGroup_16x16.png" />
     <Content Include="Resources\BOReport_16x16.png" />
@@ -685,6 +687,7 @@
     <None Include="Resources\processing.gif" />
     <Content Include="Resources\right-arrow.png" />
     <Content Include="Resources\Search_16x16.png" />
+    <None Include="Resources\sgicon_loading15.gif" />
     <Content Include="Resources\ViewSetting_16x16.png" />
     <Content Include="Resources\Window_32x32.png" />
     <Content Include="Resources\window_remove_12810.png" />
