@@ -145,10 +145,6 @@ namespace Team2_ERP
                 excel.Application.Workbooks.Add(true);
 
                 int columnIndex = 0;
-
-
-
-
                 foreach (DataGridViewColumn prop in dgv.Columns)
                 {
                     if (!exceptColumns.Contains(prop.DataPropertyName))
