@@ -15,6 +15,7 @@ namespace Team2_ERP
     public partial class Customer : BaseForm
     {
         List<CustomerVO> list;
+        List<CustomerVO> searchList;
 
         MainForm frm;
 
@@ -71,33 +72,24 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)
         {
-            if (searchCustomerName.CodeTextBox.Text.Length > 0)
+            if(searchCustomerName.CodeTextBox.Tag == null && searchCustomerBirth.Startdate.Tag == null && searchCustomerBirth.Enddate.Tag == null)
             {
-                if (searchCustomerBirth.Startdate.Text.Length > 8)
-                {
-                    dgvCustomer.DataSource = null;
-                    List<CustomerVO> searchList = (from item in list where DateTime.Parse(item.Customer_Birth) >= DateTime.Parse(searchCustomerBirth.Startdate.Tag.ToString()) && DateTime.Parse(item.Customer_Birth) <= DateTime.Parse(searchCustomerBirth.Enddate.Tag.ToString()) && item.Customer_ID == Convert.ToInt32(searchCustomerName.CodeTextBox.Tag) select item).ToList();
-                    dgvCustomer.DataSource = searchList;
-                }
-                else
-                {
-                    dgvCustomer.DataSource = null;
-                    List<CustomerVO> searchList = (from item in list where item.Customer_ID == Convert.ToInt32(searchCustomerName.CodeTextBox.Tag) select item).ToList();
-                    dgvCustomer.DataSource = searchList;
-                }
+                LoadGridView();
             }
             else
             {
-                if (searchCustomerBirth.Startdate.Text.Length > 8)
+                searchList = list;
+                if(searchCustomerName.CodeTextBox.Tag != null)
                 {
                     dgvCustomer.DataSource = null;
-                    List<CustomerVO> searchList = (from item in list where DateTime.Parse(item.Customer_Birth) >= DateTime.Parse(searchCustomerBirth.Startdate.Tag.ToString()) && DateTime.Parse(item.Customer_Birth) <= DateTime.Parse(searchCustomerBirth.Enddate.Tag.ToString()) select item).ToList();
-                    dgvCustomer.DataSource = searchList;
+                    searchList = (from item in searchList where item.Customer_ID == Convert.ToInt32(searchCustomerName.CodeTextBox.Tag) select item).ToList();
                 }
-                else
+                if(searchCustomerBirth.Startdate.Tag != null && searchCustomerBirth.Enddate.Tag != null)
                 {
-                    LoadGridView();
+                    dgvCustomer.DataSource = null;
+                    searchList = (from item in list where DateTime.Parse(item.Customer_Birth) >= DateTime.Parse(searchCustomerBirth.Startdate.Tag.ToString()) && DateTime.Parse(item.Customer_Birth) <= DateTime.Parse(searchCustomerBirth.Enddate.Tag.ToString()) select item).ToList();
                 }
+                dgvCustomer.DataSource = searchList;
             }
 
             dgvCustomer.CurrentCell = null;

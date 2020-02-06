@@ -21,7 +21,7 @@ namespace Team2_DAC
 
         public List<WarehouseVO> GetAllWarehouse()
         {
-            string sql = "GetAllWarehouse ";
+            string sql = "CMG_GetAllWarehouse ";
 
             try
             {

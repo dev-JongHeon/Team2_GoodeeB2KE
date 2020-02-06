@@ -21,7 +21,7 @@ namespace Team2_DAC
 
         public List<LineVO> GetAllLine()
         {
-            string sql = "GetAllLine";
+            string sql = "CMG_GetAllLine";
 
             try
             {

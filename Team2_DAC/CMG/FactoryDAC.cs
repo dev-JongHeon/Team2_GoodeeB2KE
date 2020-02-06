@@ -21,7 +21,7 @@ namespace Team2_DAC
 
         public List<FactoryVO> GetAllFactory()
         {
-            string sql = "GetAllFactory";
+            string sql = "CMG_GetAllFactory";
 
             try
             {
