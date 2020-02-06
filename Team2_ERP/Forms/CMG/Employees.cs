@@ -85,6 +85,7 @@ namespace Team2_ERP
             InitMessage();
             dataGridView1.DataSource = null;
             searchUserControl1.CodeTextBox.Text = "";
+            searchUserControl2.CodeTextBox.Text = "";
             dataGridView1.CurrentCell = null;
             LoadGridView();
         }
@@ -124,37 +125,45 @@ namespace Team2_ERP
 
         public override void Delete(object sender, EventArgs e)
         {
-            //InitMessage();
+            InitMessage();
 
-            //if (dataGridView1.SelectedRows.Count < 1)
-            //{
-            //    frm.NoticeMessage = "삭제할 사원을 선택해주세요.";
-            //}
+            if (dataGridView1.SelectedRows.Count < 1)
+            {
+                frm.NoticeMessage = "삭제할 사원을 선택해주세요.";
+            }
 
-            //else
-            //{
-            //    if (MessageBox.Show("삭제하시겠습니까?", "확인", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            //    {
-            //        StandardService service = new StandardService();
-            //        service.DeleteResource(item.Employees_ID);
-            //        dataGridView1.DataSource = null;
-            //        LoadGridView();
-            //    }
-            //}
+            else
+            {
+                if (MessageBox.Show("삭제하시겠습니까?", "확인", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    StandardService service = new StandardService();
+                    service.DeleteEmployee(item.Employees_ID);
+                    dataGridView1.DataSource = null;
+                    LoadGridView();
+                }
+            }
         }
 
         public override void Search(object sender, EventArgs e)
         {
-            //if (searchUserControl1.CodeTextBox.Text.Length > 0)
-            //{
-            //    dataGridView1.DataSource = null;
-            //    List<ResourceVO> searchList = (from item in list where item.Product_ID.Contains(searchUserControl1.CodeTextBox.Tag.ToString()) && item.Product_DeletedYN == false select item).ToList();
-            //    dataGridView1.DataSource = searchList;
-            //}
-            //else
-            //{
-            //    frm.NoticeMessage = "검색할 원자재를 선택해주세요.";
-            //}
+            if(searchUserControl1.CodeTextBox.Text.Length > 0 && searchUserControl2.CodeTextBox.Text.Length > 0)
+            {
+                List<EmployeeVO> searchList = (from item in list where item.Employees_ID.Equals(Convert.ToInt32(searchUserControl1.CodeTextBox.Tag)) && item.CodeTable_CodeID.Equals(searchUserControl2.CodeTextBox.Tag.ToString()) && item.Employees_DeletedYN == false select item).ToList();
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = searchList;
+            }
+            else if(searchUserControl1.CodeTextBox.Text.Length > 0)
+            {
+                List<EmployeeVO> searchList = (from item in list where item.Employees_ID.Equals(Convert.ToInt32(searchUserControl1.CodeTextBox.Tag)) && item.Employees_DeletedYN == false select item).ToList();
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = searchList;
+            }
+            else
+            {
+                List<EmployeeVO> searchList = (from item in list where item.CodeTable_CodeID.Equals(searchUserControl2.CodeTextBox.Tag.ToString()) && item.Employees_DeletedYN == false select item).ToList();
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = searchList;
+            }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)

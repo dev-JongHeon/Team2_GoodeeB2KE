@@ -31,8 +31,6 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.searchUserControl1 = new Team2_ERP.SearchUserControl();
             this.searchUserControl2 = new Team2_ERP.SearchUserControl();
-            this.searchPeriodControl1 = new Team2_ERP.SearchPeriodControl();
-            this.searchPeriodControl2 = new Team2_ERP.SearchPeriodControl();
             this.panel1.SuspendLayout();
             this.panel_Search.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -60,8 +58,6 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.searchPeriodControl2);
-            this.panel5.Controls.Add(this.searchPeriodControl1);
             this.panel5.Controls.Add(this.searchUserControl2);
             this.panel5.Controls.Add(this.searchUserControl1);
             this.panel5.Size = new System.Drawing.Size(1344, 110);
@@ -89,9 +85,9 @@
             // searchUserControl1
             // 
             this.searchUserControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl1.ControlType = Team2_ERP.SearchUserControl.Mode.Company;
+            this.searchUserControl1.ControlType = Team2_ERP.SearchUserControl.Mode.Employee;
             this.searchUserControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl1.Labelname = "작업자";
+            this.searchUserControl1.Labelname = "사원";
             this.searchUserControl1.Location = new System.Drawing.Point(3, 4);
             this.searchUserControl1.Name = "searchUserControl1";
             this.searchUserControl1.Size = new System.Drawing.Size(312, 30);
@@ -107,24 +103,6 @@
             this.searchUserControl2.Name = "searchUserControl2";
             this.searchUserControl2.Size = new System.Drawing.Size(312, 30);
             this.searchUserControl2.TabIndex = 1;
-            // 
-            // searchPeriodControl1
-            // 
-            this.searchPeriodControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchPeriodControl1.Labelname = "입사일";
-            this.searchPeriodControl1.Location = new System.Drawing.Point(321, 3);
-            this.searchPeriodControl1.Name = "searchPeriodControl1";
-            this.searchPeriodControl1.Size = new System.Drawing.Size(312, 31);
-            this.searchPeriodControl1.TabIndex = 2;
-            // 
-            // searchPeriodControl2
-            // 
-            this.searchPeriodControl2.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchPeriodControl2.Labelname = "퇴사일";
-            this.searchPeriodControl2.Location = new System.Drawing.Point(321, 42);
-            this.searchPeriodControl2.Name = "searchPeriodControl2";
-            this.searchPeriodControl2.Size = new System.Drawing.Size(312, 31);
-            this.searchPeriodControl2.TabIndex = 3;
             // 
             // Employees
             // 
@@ -152,7 +130,5 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private SearchUserControl searchUserControl2;
         private SearchUserControl searchUserControl1;
-        private SearchPeriodControl searchPeriodControl2;
-        private SearchPeriodControl searchPeriodControl1;
     }
 }
