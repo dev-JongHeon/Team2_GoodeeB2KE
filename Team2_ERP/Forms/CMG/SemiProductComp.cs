@@ -65,15 +65,15 @@ namespace Team2_ERP
 
         private void InitGridView()
         {
-            UtilClass.SettingDgv(dataGridView1);
+            UtilClass.SettingDgv(dgvSemiProduct);
 
-            UtilClass.AddNewColum(dataGridView1, "제품이름", "Product_Name", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "제품가격", "Product_Price", true, 100, DataGridViewContentAlignment.MiddleRight);
-            UtilClass.AddNewColum(dataGridView1, "제품카테고리", "Product_Category", false, 100);
-            UtilClass.AddNewColum(dataGridView1, "제품ID", "Product_ID", false, 100);
-            dataGridView1.Columns[1].DefaultCellStyle.Format = "#,###원";
+            UtilClass.AddNewColum(dgvSemiProduct, "제품이름", "Product_Name", true, 100);
+            UtilClass.AddNewColum(dgvSemiProduct, "제품가격", "Product_Price", true, 100, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dgvSemiProduct, "제품카테고리", "Product_Category", false, 100);
+            UtilClass.AddNewColum(dgvSemiProduct, "제품ID", "Product_ID", false, 100);
+            dgvSemiProduct.Columns[1].DefaultCellStyle.Format = "#,###원";
 
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dgvSemiProduct.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
         }
 
         // DataGridView 가져오기
@@ -81,8 +81,8 @@ namespace Team2_ERP
         {
             StandardService service = new StandardService();
             list = service.GetAllProduct();
-            List<ProductVO> resourceList = (from item in list where item.Product_Category.Contains($"{cboCategoryDetail.SelectedValue.ToString()}") && item.Product_DeletedYN == false select item).ToList();
-            dataGridView1.DataSource = resourceList;
+            List<ProductVO> resourceList = (from item in list where item.Product_Category.Contains($"{cboCategoryDetail.SelectedValue.ToString()}") select item).ToList();
+            dgvSemiProduct.DataSource = resourceList;
         }
 
         //반제품의 카테고리를 선택하면 유저컨트롤을 반제품의 카테고리에 속해있는 원자재 카테고리 수 만큼 생성하고 라벨 이름을 원자재 카테고리명으로 바꾼다.
@@ -151,7 +151,7 @@ namespace Team2_ERP
                 CategoryLabelName(resourceList);
             }
 
-            dataGridView1.DataSource = null;
+            dgvSemiProduct.DataSource = null;
         }
 
         //원자재 카테고리를 선택하면 해당하는 카테고리에 있는 모든 원자재 목록을 데이터 그리드 뷰에 바인딩한다.
@@ -163,14 +163,14 @@ namespace Team2_ERP
             if (!cboCategoryDetail.SelectedValue.ToString().Contains("CM"))
                 return;
 
-            dataGridView1.DataSource = null;
+            dgvSemiProduct.DataSource = null;
             LoadGridView();
         }
 
         //원자재를 선택하면 해당하는 원자재 카테고리 ID와 유저컨트롤 태그 ID를 비교해서 맞는 부분에 원자재 이름과 가격을 설정한다.
-        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvSemiProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex > -1 && dataGridView1.SelectedRows.Count > 0)
+            if (e.RowIndex > -1 && dgvSemiProduct.SelectedRows.Count > 0)
             {
                 foreach (Control control in splitContainer2.Panel1.Controls)
                 {
@@ -178,17 +178,17 @@ namespace Team2_ERP
                     {
                         SemiProductCompControl spc = (SemiProductCompControl)control;
 
-                        if (spc.LblName.Tag.ToString() == dataGridView1.SelectedRows[0].Cells[2].Value.ToString())
+                        if (spc.LblName.Tag.ToString() == dgvSemiProduct.SelectedRows[0].Cells[2].Value.ToString())
                         {
-                            spc.TxtName.Text = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
-                            spc.TxtName.Tag = dataGridView1.SelectedRows[0].Cells[3].Value;
-                            spc.LblMoney.Text = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[1].Value).ToString("#,##0") + "원";
+                            spc.TxtName.Text = dgvSemiProduct.SelectedRows[0].Cells[0].Value.ToString();
+                            spc.TxtName.Tag = dgvSemiProduct.SelectedRows[0].Cells[3].Value;
+                            spc.LblMoney.Text = Convert.ToInt32(dgvSemiProduct.SelectedRows[0].Cells[1].Value).ToString("#,##0") + "원";
                             if (txtSemiproductMoney.Text.Equals("0원") || txtSemiproductMoney.Text.Length < 1)
                                 txtSemiproductMoney.Text = spc.LblMoney.Text;
                             else
                                 txtSemiproductMoney.Text = (Convert.ToInt32(txtSemiproductMoney.Text.Replace(",", "").Replace("원", "")) + Convert.ToInt32(spc.LblMoney.Text.Replace(",", "").Replace("원", ""))).ToString("#,##0") + "원";
 
-                            spc.Qty.Tag = dataGridView1.SelectedRows[0].Cells[1].Value;
+                            spc.Qty.Tag = dgvSemiProduct.SelectedRows[0].Cells[1].Value;
                         }
                     }
                 }

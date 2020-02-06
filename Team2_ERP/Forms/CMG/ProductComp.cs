@@ -58,23 +58,23 @@ namespace Team2_ERP
 
         private void InitGridView()
         {
-            UtilClass.SettingDgv(dataGridView1);
+            UtilClass.SettingDgv(dgvProduct);
 
-            UtilClass.AddNewColum(dataGridView1, "제품이름", "Product_Name", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "제품가격", "Product_Price", true, 100, DataGridViewContentAlignment.MiddleRight);
-            UtilClass.AddNewColum(dataGridView1, "제품카테고리", "Product_Category", false, 100);
-            UtilClass.AddNewColum(dataGridView1, "제품ID", "Product_ID", false, 100);
-            dataGridView1.Columns[1].DefaultCellStyle.Format = "#,###원";
+            UtilClass.AddNewColum(dgvProduct, "제품이름", "Product_Name", true, 100);
+            UtilClass.AddNewColum(dgvProduct, "제품가격", "Product_Price", true, 100, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dgvProduct, "제품카테고리", "Product_Category", false, 100);
+            UtilClass.AddNewColum(dgvProduct, "제품ID", "Product_ID", false, 100);
+            dgvProduct.Columns[1].DefaultCellStyle.Format = "#,###원";
 
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dgvProduct.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
         }
 
         private void LoadGridView()
         {
             StandardService service = new StandardService();
             list = service.GetAllProduct();
-            List<ProductVO> resourceList = (from item in list where item.Product_Category.Contains($"{cboCategory.SelectedValue.ToString()}") && item.Product_DeletedYN == false select item).ToList();
-            dataGridView1.DataSource = resourceList;
+            List<ProductVO> resourceList = (from item in list where item.Product_Category.Contains($"{cboCategory.SelectedValue.ToString()}") select item).ToList();
+            dgvProduct.DataSource = resourceList;
         }
 
         private void CategoryLabelName(List<ComboItemVO> countList)
@@ -150,33 +150,6 @@ namespace Team2_ERP
             LoadGridView();
         }
 
-        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex > -1 && dataGridView1.SelectedRows.Count > 0)
-            {
-                foreach (Control control in splitContainer2.Panel1.Controls)
-                {
-                    if (control is SemiProductCompControl)
-                    {
-                        SemiProductCompControl spc = (SemiProductCompControl)control;
-
-                        if (spc.LblName.Tag.ToString() == dataGridView1.SelectedRows[0].Cells[2].Value.ToString())
-                        {
-                            spc.TxtName.Text = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
-                            spc.TxtName.Tag = dataGridView1.SelectedRows[0].Cells[3].Value;
-                            spc.LblMoney.Text = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[1].Value).ToString("#,##0") + "원";
-                            if (txtProductMoney.Text.Equals("0원") || txtProductMoney.Text.Length < 1)
-                                txtProductMoney.Text = spc.LblMoney.Text;
-                            else
-                                txtProductMoney.Text = (Convert.ToInt32(txtProductMoney.Text.Replace(",", "").Replace("원", "")) + Convert.ToInt32(spc.LblMoney.Text.Replace(",", "").Replace("원", ""))).ToString("#,##0") + "원";
-
-                            spc.Qty.Tag = dataGridView1.SelectedRows[0].Cells[1].Value;
-                        }
-                    }
-                }
-            }
-        }
-
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             if (numericUpDown1.Value > 0)
@@ -246,7 +219,7 @@ namespace Team2_ERP
             br.Close();
             fs.Close();
 
-            if(ImageData == null)
+            if (ImageData == null)
             {
                 ImageData = filePath;
             }
@@ -285,7 +258,6 @@ namespace Team2_ERP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-
             if (mode.Equals("Insert"))
                 InsertProduct();
             else
@@ -319,6 +291,33 @@ namespace Team2_ERP
             finally
             {
                 this.Cursor = currentCursor;
+            }
+        }
+
+        private void dgvProduct_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1 && dgvProduct.SelectedRows.Count > 0)
+            {
+                foreach (Control control in splitContainer2.Panel1.Controls)
+                {
+                    if (control is SemiProductCompControl)
+                    {
+                        SemiProductCompControl spc = (SemiProductCompControl)control;
+
+                        if (spc.LblName.Tag.ToString() == dgvProduct.SelectedRows[0].Cells[2].Value.ToString())
+                        {
+                            spc.TxtName.Text = dgvProduct.SelectedRows[0].Cells[0].Value.ToString();
+                            spc.TxtName.Tag = dgvProduct.SelectedRows[0].Cells[3].Value;
+                            spc.LblMoney.Text = Convert.ToInt32(dgvProduct.SelectedRows[0].Cells[1].Value).ToString("#,##0") + "원";
+                            if (txtProductMoney.Text.Equals("0원") || txtProductMoney.Text.Length < 1)
+                                txtProductMoney.Text = spc.LblMoney.Text;
+                            else
+                                txtProductMoney.Text = (Convert.ToInt32(txtProductMoney.Text.Replace(",", "").Replace("원", "")) + Convert.ToInt32(spc.LblMoney.Text.Replace(",", "").Replace("원", ""))).ToString("#,##0") + "원";
+
+                            spc.Qty.Tag = dgvProduct.SelectedRows[0].Cells[1].Value;
+                        }
+                    }
+                }
             }
         }
     }
