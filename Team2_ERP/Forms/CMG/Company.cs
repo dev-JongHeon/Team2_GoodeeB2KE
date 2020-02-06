@@ -28,18 +28,17 @@ namespace Team2_ERP
         // 그리드 뷰 디자인 
         private void InitGridView()
         {
-            UtilClass.SettingDgv(dataGridView1);
+            UtilClass.SettingDgv(dgvCompany);
 
-            UtilClass.AddNewColum(dataGridView1, "거래처ID", "Company_ID", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "거래처명", "Company_Name", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "주소", "Company_Address", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "전화번호", "Company_Number", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "FAX번호", "Company_Fax", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "구분", "CodeTable_CodeName", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "대표명", "Company_Owner", true, 100);
+            UtilClass.AddNewColum(dgvCompany, "거래처ID", "Company_ID", true, 100);
+            UtilClass.AddNewColum(dgvCompany, "거래처명", "Company_Name", true, 100);
+            UtilClass.AddNewColum(dgvCompany, "주소", "Company_Address", true, 100);
+            UtilClass.AddNewColum(dgvCompany, "전화번호", "Company_Number", true, 100);
+            UtilClass.AddNewColum(dgvCompany, "FAX번호", "Company_Fax", true, 100);
+            UtilClass.AddNewColum(dgvCompany, "구분", "CodeTable_CodeName", true, 100);
+            UtilClass.AddNewColum(dgvCompany, "대표명", "Company_Owner", true, 100);
 
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvCompany.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
         }
 
         // DataGridView 가져오기
@@ -47,25 +46,28 @@ namespace Team2_ERP
         {
             StandardService service = new StandardService();
             list = service.GetAllCompany();
-            dataGridView1.DataSource = list;
+            dgvCompany.DataSource = list;
+            dgvCompany.CurrentCell = null;
         }
 
         private void Company_Load(object sender, EventArgs e)
         {
             InitGridView();
             frm = (MainForm)this.ParentForm;
+            StandardService service = new StandardService();
+            list = service.GetAllCompany();
         }
 
         private void InitMessage()
         {
-            frm.NoticeMessage = "거래처 관리 화면입니다.";
+            frm.NoticeMessage = notice;
         }
 
         public override void Refresh(object sender, EventArgs e)
         {
             InitMessage();
-            dataGridView1.DataSource = null;
-            searchUserControl1.CodeTextBox.Text = "";
+            dgvCompany.DataSource = null;
+            searchCompanyName.CodeTextBox.Text = "";
         }
 
         public override void New(object sender, EventArgs e)
@@ -76,7 +78,7 @@ namespace Team2_ERP
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 frm.Close();
-                dataGridView1.DataSource = null;
+                dgvCompany.DataSource = null;
                 LoadGridView();
             }
         }
@@ -85,7 +87,7 @@ namespace Team2_ERP
         {
             InitMessage();
 
-            if (item == null)
+            if (dgvCompany.SelectedRows.Count < 1)
             {
                 frm.NoticeMessage = "수정할 거래처를 선택해주세요.";
             }
@@ -95,7 +97,7 @@ namespace Team2_ERP
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     frm.Close();
-                    dataGridView1.DataSource = null;
+                    dgvCompany.DataSource = null;
                     LoadGridView();
                 }
             }
@@ -105,39 +107,42 @@ namespace Team2_ERP
         {
             InitMessage();
 
-            if (item == null)
+            if (dgvCompany.SelectedRows.Count < 1)
             {
                 frm.NoticeMessage = "삭제할 거래처를 선택해주세요.";
             }
-
             else
             {
                 if (MessageBox.Show("삭제하시겠습니까?", "확인", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     StandardService service = new StandardService();
                     service.DeleteCompany(item.Company_ID);
-                    dataGridView1.DataSource = null;
+                    dgvCompany.DataSource = null;
                     LoadGridView();
                 }
             }
         }
         public override void Search(object sender, EventArgs e)
         {
-            if (searchUserControl1.CodeTextBox.Text.Length > 0)
+            if (searchCompanyName.CodeTextBox.Text.Length > 0)
             {
-                dataGridView1.DataSource = null;
-                List<CompanyVO> searchList = (from item in list where item.Company_ID.Equals(Convert.ToInt32(searchUserControl1.CodeTextBox.Tag)) && item.Company_DeletedYN == false select item).ToList();
-                dataGridView1.DataSource = searchList;
+                dgvCompany.DataSource = null;
+                List<CompanyVO> searchList = (from item in list where item.Company_ID.Equals(Convert.ToInt32(searchCompanyName.CodeTextBox.Tag)) select item).ToList();
+                dgvCompany.DataSource = searchList;
             }
             else
             {
-                frm.NoticeMessage = "검색할 거래처를 선택해주세요.";
+                LoadGridView();
+                InitMessage();
             }
+
+            dgvCompany.CurrentCell = null;
         }
 
         private void Company_Activated(object sender, EventArgs e)
         {
             MenuByAuth(Auth);
+            InitMessage();
         }
 
         private void Company_Deactivate(object sender, EventArgs e)
@@ -153,33 +158,31 @@ namespace Team2_ERP
             ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = false;
         }
 
-        private void Company_Shown(object sender, EventArgs e)
-        {
-            dataGridView1.CurrentCell = null;
-        }
-
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(dataGridView1.Rows[e.RowIndex].Cells[4].Value == null)
+            if (e.RowIndex < dgvCompany.Rows.Count && e.RowIndex > -1)
             {
-                item = new CompanyVO
+                if (dgvCompany.Rows[e.RowIndex].Cells[4].Value == null)
                 {
-                    Company_ID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value),
-                    Company_Name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                    Company_Number = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString(),
-                    Company_Owner = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString()
-                };
-            }
-            else
-            {
-                item = new CompanyVO
+                    item = new CompanyVO
+                    {
+                        Company_ID = Convert.ToInt32(dgvCompany.Rows[e.RowIndex].Cells[0].Value),
+                        Company_Name = dgvCompany.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                        Company_Number = dgvCompany.Rows[e.RowIndex].Cells[3].Value.ToString(),
+                        Company_Owner = dgvCompany.Rows[e.RowIndex].Cells[6].Value.ToString()
+                    };
+                }
+                else
                 {
-                    Company_ID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value),
-                    Company_Name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                    Company_Number = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString(),
-                    Company_Fax = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString(),
-                    Company_Owner = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString()
-                };
+                    item = new CompanyVO
+                    {
+                        Company_ID = Convert.ToInt32(dgvCompany.Rows[e.RowIndex].Cells[0].Value),
+                        Company_Name = dgvCompany.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                        Company_Number = dgvCompany.Rows[e.RowIndex].Cells[3].Value.ToString(),
+                        Company_Fax = dgvCompany.Rows[e.RowIndex].Cells[4].Value.ToString(),
+                        Company_Owner = dgvCompany.Rows[e.RowIndex].Cells[6].Value.ToString()
+                    };
+                }
             }
         }
     }

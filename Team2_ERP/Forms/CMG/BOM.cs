@@ -40,7 +40,6 @@ namespace Team2_ERP
             dgvBOM.Columns[4].DefaultCellStyle.Format = "#,###원";
 
             dgvBOM.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            dgvBOM.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
             btn.HeaderText = "전개";
@@ -59,7 +58,6 @@ namespace Team2_ERP
             dgvBOMDetail1.Columns[3].DefaultCellStyle.Format = "#,###원";
 
             dgvBOMDetail1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            dgvBOMDetail1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             UtilClass.SettingDgv(dgvBOMDetail2);
 
@@ -71,7 +69,6 @@ namespace Team2_ERP
             dgvBOMDetail2.Columns[3].DefaultCellStyle.Format = "#,###원";
 
             dgvBOMDetail2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            dgvBOMDetail2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         // DataGridView 가져오기
@@ -79,6 +76,8 @@ namespace Team2_ERP
         {
             StandardService service = new StandardService();
             list = service.GetAllProduct();
+            dgvBOM.DataSource = list;
+            dgvBOM.CurrentCell = null;
         }
 
         private void GridViewReset()
@@ -92,8 +91,9 @@ namespace Team2_ERP
         {
             InitGridView();
             frm = (MainForm)this.ParentForm;
-            LoadGridView();
             rdoAll.Checked = true;
+            StandardService service = new StandardService();
+            list = service.GetAllProduct();
         }
 
         private void dgvBOM_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -103,23 +103,18 @@ namespace Team2_ERP
                 string str = dgvBOM.Rows[e.RowIndex].Cells[0].Value.ToString();
 
                 if (str.Contains("CM"))
-                {
                     e.Value = "역 전 개";
-                }
                 else if (str.Contains("CS"))
-                {
                     e.Value = "전 개";
-                }
                 else
-                {
                     e.Value = "정 전 개";
-                }
             }
         }
 
         private void BOM_Activated(object sender, EventArgs e)
         {
             MenuByAuth(Auth);
+            InitMessage();
 
             //등록 서브메뉴 이벤트 추가
             tool = (ToolStripDropDownItem)(((MainForm)MdiParent).신규ToolStripMenuItem);
@@ -144,7 +139,7 @@ namespace Team2_ERP
 
         private void InitMessage()
         {
-            frm.NoticeMessage = "환영합니다.";
+            frm.NoticeMessage = notice;
         }
 
         private void ItemSelect(object sender, ToolStripItemClickedEventArgs e)
@@ -156,7 +151,7 @@ namespace Team2_ERP
                 {
                     frm.Close();
                     dgvBOM.DataSource = null;
-                    dgvBOM.DataSource = list;
+                    LoadGridView();
                 }
             }
             else
@@ -166,7 +161,7 @@ namespace Team2_ERP
                 {
                     frm.Close();
                     dgvBOM.DataSource = null;
-                    dgvBOM.DataSource = list;
+                    LoadGridView();
                 }
             }
         }
@@ -183,9 +178,7 @@ namespace Team2_ERP
         {
             InitMessage();
             GridViewReset();
-            searchUserControl1.CodeTextBox.Text = "";
-            dgvBOM.CurrentCell = null;
-            dgvBOM.DataSource = list;
+            searchProductName.CodeTextBox.Text = "";
         }
 
         public override void New(object sender, EventArgs e)
@@ -209,7 +202,7 @@ namespace Team2_ERP
                         MessageBox.Show("수정되었습니다.", "안내");
                         GridViewReset();
                         InitMessage();
-                        dgvBOM.DataSource = list;
+                        LoadGridView();
                     }
                 }
                 else if (item.Product_Category.Contains("CP"))
@@ -220,7 +213,7 @@ namespace Team2_ERP
                         MessageBox.Show("수정되었습니다.", "안내");
                         GridViewReset();
                         InitMessage();
-                        dgvBOM.DataSource = list;
+                        LoadGridView();
                     }
                 }
                 else
@@ -247,7 +240,8 @@ namespace Team2_ERP
                         StandardService service = new StandardService();
                         service.DeleteSemiProduct(item);
                         GridViewReset();
-                        dgvBOM.DataSource = list;
+                        InitMessage();
+                        LoadGridView();
                     }
                 }
                 else if (item.Product_Category.Contains("CP"))
@@ -257,7 +251,8 @@ namespace Team2_ERP
                         StandardService service = new StandardService();
                         service.DeleteProduct(item);
                         GridViewReset();
-                        dgvBOM.DataSource = list;
+                        InitMessage();
+                        LoadGridView();
                     }
                 }
                 else
@@ -269,12 +264,12 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)
         {
-            if (searchUserControl1.CodeTextBox.Text.Length < 1)
+            if (searchProductName.CodeTextBox.Text.Length < 1)
             {
                 if (rdoAll.Checked)
                 {
                     GridViewReset();
-                    dgvBOM.DataSource = list;
+                    LoadGridView();
                 }
                 else if (rdoSemiProduct.Checked)
                 {
@@ -294,66 +289,67 @@ namespace Team2_ERP
                 if (rdoAll.Checked)
                 {
                     GridViewReset();
-                    List<ProductVO> allList = (from item in list where item.Product_ID.Equals(searchUserControl1.CodeTextBox.Tag.ToString()) select item).ToList();
+                    List<ProductVO> allList = (from item in list where item.Product_ID.Equals(searchProductName.CodeTextBox.Tag.ToString()) select item).ToList();
                     dgvBOM.DataSource = allList;
                 }
                 else if (rdoSemiProduct.Checked)
                 {
                     GridViewReset();
-                    List<ProductVO> semiList = (from item in list where item.Product_Category.Contains("CS") && item.Product_ID.Equals(searchUserControl1.CodeTextBox.Tag.ToString()) select item).ToList();
+                    List<ProductVO> semiList = (from item in list where item.Product_Category.Contains("CS") && item.Product_ID.Equals(searchProductName.CodeTextBox.Tag.ToString()) select item).ToList();
                     dgvBOM.DataSource = semiList;
                 }
                 else
                 {
                     GridViewReset();
-                    List<ProductVO> semiList = (from item in list where item.Product_Category.Contains("CP") && item.Product_ID.Equals(searchUserControl1.CodeTextBox.Tag.ToString()) select item).ToList();
+                    List<ProductVO> semiList = (from item in list where item.Product_Category.Contains("CP") && item.Product_ID.Equals(searchProductName.CodeTextBox.Tag.ToString()) select item).ToList();
                     dgvBOM.DataSource = semiList;
                 }
             }
+
+            dgvBOM.CurrentCell = null;
+            InitMessage();
         }
 
         private void dgvBOM_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            item = new ProductVO
+            if (e.RowIndex < dgvBOM.Rows.Count && e.RowIndex > -1)
             {
-                Product_Category = dgvBOM.Rows[e.RowIndex].Cells[0].Value.ToString(),
-                Product_ID = dgvBOM.Rows[e.RowIndex].Cells[2].Value.ToString(),
-                Product_Name = dgvBOM.Rows[e.RowIndex].Cells[3].Value.ToString()
-            };
+                item = new ProductVO
+                {
+                    Product_Category = dgvBOM.Rows[e.RowIndex].Cells[0].Value.ToString(),
+                    Product_ID = dgvBOM.Rows[e.RowIndex].Cells[2].Value.ToString(),
+                    Product_Name = dgvBOM.Rows[e.RowIndex].Cells[3].Value.ToString()
+                };
 
-            dgvBOMDetail1.DataSource = null;
-            dgvBOMDetail2.DataSource = null;
+                dgvBOMDetail1.DataSource = null;
+                dgvBOMDetail2.DataSource = null;
 
-            if (e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[0].Value.ToString().Contains("CM"))
-            {
-                StandardService service = new StandardService();
-                List<BOMVO> bomList = service.GetAllCombinationReverse(item.Product_ID);
-                bomList = (from item in bomList where item.Combination_DeletedYN == false select item).ToList();
-                dgvBOMDetail2.DataSource = bomList;
+                if (e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[0].Value.ToString().Contains("CM"))
+                {
+                    StandardService service = new StandardService();
+                    List<BOMVO> bomList = service.GetAllCombinationReverse(item.Product_ID);
+                    bomList = (from item in bomList where item.Combination_DeletedYN == false select item).ToList();
+                    dgvBOMDetail2.DataSource = bomList;
+                }
+                else if (e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[0].Value.ToString().Contains("CS"))
+                {
+                    StandardService service = new StandardService();
+                    List<BOMVO> bomList = service.GetAllCombination(item.Product_ID);
+                    bomList = (from item in bomList where item.Combination_DeletedYN == false select item).ToList();
+                    dgvBOMDetail1.DataSource = bomList;
+
+                    List<BOMVO> bomReverseList = service.GetAllCombinationReverse(item.Product_ID);
+                    bomReverseList = (from item in bomReverseList where item.Combination_DeletedYN == false select item).ToList();
+                    dgvBOMDetail2.DataSource = bomReverseList;
+                }
+                else if (e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[0].Value.ToString().Contains("CP"))
+                {
+                    StandardService service = new StandardService();
+                    List<BOMVO> bomList = service.GetAllCombination(item.Product_ID);
+                    bomList = (from item in bomList where item.Combination_DeletedYN == false select item).ToList();
+                    dgvBOMDetail1.DataSource = bomList;
+                }
             }
-            else if (e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[0].Value.ToString().Contains("CS"))
-            {
-                StandardService service = new StandardService();
-                List<BOMVO> bomList = service.GetAllCombination(item.Product_ID);
-                bomList = (from item in bomList where item.Combination_DeletedYN == false select item).ToList();
-                dgvBOMDetail1.DataSource = bomList;
-
-                List<BOMVO> bomReverseList = service.GetAllCombinationReverse(item.Product_ID);
-                bomReverseList = (from item in bomReverseList where item.Combination_DeletedYN == false select item).ToList();
-                dgvBOMDetail2.DataSource = bomReverseList;
-            }
-            else if (e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[0].Value.ToString().Contains("CP"))
-            {
-                StandardService service = new StandardService();
-                List<BOMVO> bomList = service.GetAllCombination(item.Product_ID);
-                bomList = (from item in bomList where item.Combination_DeletedYN == false select item).ToList();
-                dgvBOMDetail1.DataSource = bomList;
-            }
-        }
-
-        private void BOM_Shown(object sender, EventArgs e)
-        {
-            dgvBOM.CurrentCell = null;
         }
     }
 }

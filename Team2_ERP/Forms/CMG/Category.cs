@@ -27,13 +27,13 @@ namespace Team2_ERP
         // 그리드 뷰 디자인 
         private void InitGridView()
         {
-            UtilClass.SettingDgv(dataGridView1);
+            UtilClass.SettingDgv(dgvCategory);
 
-            UtilClass.AddNewColum(dataGridView1, "카테고리코드", "CodeTable_CodeID", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "카테고리이름", "CodeTable_CodeName", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "카테고리설명", "CodeTable_CodeExplain", true, 100);
+            UtilClass.AddNewColum(dgvCategory, "카테고리코드", "CodeTable_CodeID", true, 100);
+            UtilClass.AddNewColum(dgvCategory, "카테고리이름", "CodeTable_CodeName", true, 100);
+            UtilClass.AddNewColum(dgvCategory, "카테고리설명", "CodeTable_CodeExplain", true, 100);
 
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dgvCategory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
         }
 
         // DataGridView 가져오기
@@ -41,20 +41,20 @@ namespace Team2_ERP
         {
             CodeTableService service = new CodeTableService();
             list = (from item in service.GetAllCodeTable() where item.CodeTable_CodeID.Contains("CS") || item.CodeTable_CodeID.Contains("CM") select item).ToList();
+            dgvCategory.DataSource = list;
+            dgvCategory.CurrentCell = null;
         }
 
         // 메인 폼 메세지 초기화
         private void InitMessage()
         {
-            frm.NoticeMessage = "카테고리 관리 화면입니다.";
+            frm.NoticeMessage = notice;
         }
 
         public override void Refresh(object sender, EventArgs e)
         {
             InitMessage();
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = list;
-            dataGridView1.CurrentCell = null;
+            dgvCategory.DataSource = null;
         }
 
         public override void New(object sender, EventArgs e)
@@ -65,8 +65,8 @@ namespace Team2_ERP
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 frm.Close();
-                dataGridView1.DataSource = null;
-                dataGridView1.DataSource = list;
+                dgvCategory.DataSource = null;
+                LoadGridView();
             }
         }
 
@@ -84,8 +84,8 @@ namespace Team2_ERP
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     frm.Close();
-                    dataGridView1.DataSource = null;
-                    dataGridView1.DataSource = list;
+                    dgvCategory.DataSource = null;
+                    LoadGridView();
                 }
             }
         }
@@ -104,15 +104,15 @@ namespace Team2_ERP
                 {
                     CodeTableService service = new CodeTableService();
                     service.DeleteCodeTable(item.CodeTable_CodeID);
-                    dataGridView1.DataSource = null;
-                    dataGridView1.DataSource = list;
+                    dgvCategory.DataSource = null;
+                    LoadGridView();
                 }
             }
         }
 
         public override void Search(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = list;
+            LoadGridView();
             InitMessage();
         }
 
@@ -120,22 +120,27 @@ namespace Team2_ERP
         {
             frm = (MainForm)this.ParentForm;
             InitGridView();
-            LoadGridView();
+            CodeTableService service = new CodeTableService();
+            list = (from item in service.GetAllCodeTable() where item.CodeTable_CodeID.Contains("CS") || item.CodeTable_CodeID.Contains("CM") select item).ToList();
             frm.NoticeMessage = "카테고리 목록 조회는 검색버튼을 눌러주세요.";
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            item = new CodeTableVO
+            if (e.RowIndex < dgvCategory.Rows.Count && e.RowIndex > -1)
             {
-                CodeTable_CodeID = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(),
-                CodeTable_CodeName = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString()
-            };
+                item = new CodeTableVO
+                {
+                    CodeTable_CodeID = dgvCategory.Rows[e.RowIndex].Cells[0].Value.ToString(),
+                    CodeTable_CodeName = dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString()
+                };
+            }
         }
 
         private void Category_Activated(object sender, EventArgs e)
         {
             MenuByAuth(Auth);
+            InitMessage();
         }
 
         public override void MenuStripONOFF(bool flag)
@@ -150,11 +155,6 @@ namespace Team2_ERP
         private void Category_Deactivate(object sender, EventArgs e)
         {
             new SettingMenuStrip().UnsetMenu(this);
-        }
-
-        private void Category_Shown(object sender, EventArgs e)
-        {
-            dataGridView1.CurrentCell = null;
         }
     }
 }

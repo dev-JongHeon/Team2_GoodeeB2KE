@@ -28,33 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvCategory = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.panel_Search.SuspendLayout();
             this.panel_Title.SuspendLayout();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCategory)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.dataGridView1);
+            this.panel1.Controls.Add(this.dgvCategory);
             this.panel1.Controls.SetChildIndex(this.panel_Title, 0);
             this.panel1.Controls.SetChildIndex(this.panel_Search, 0);
-            this.panel1.Controls.SetChildIndex(this.dataGridView1, 0);
+            this.panel1.Controls.SetChildIndex(this.dgvCategory, 0);
             // 
-            // dataGridView1
+            // dgvCategory
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 158);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(1364, 662);
-            this.dataGridView1.TabIndex = 7;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dgvCategory.BackgroundColor = System.Drawing.Color.White;
+            this.dgvCategory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCategory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvCategory.Location = new System.Drawing.Point(0, 158);
+            this.dgvCategory.Name = "dgvCategory";
+            this.dgvCategory.RowTemplate.Height = 23;
+            this.dgvCategory.Size = new System.Drawing.Size(1364, 662);
+            this.dgvCategory.TabIndex = 7;
+            this.dgvCategory.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // Category
             // 
@@ -66,19 +66,18 @@
             this.Activated += new System.EventHandler(this.Category_Activated);
             this.Deactivate += new System.EventHandler(this.Category_Deactivate);
             this.Load += new System.EventHandler(this.Category_Load);
-            this.Shown += new System.EventHandler(this.Category_Shown);
             this.panel1.ResumeLayout(false);
             this.panel_Search.ResumeLayout(false);
             this.panel_Title.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCategory)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvCategory;
     }
 }

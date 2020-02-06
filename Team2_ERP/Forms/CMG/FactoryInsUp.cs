@@ -31,7 +31,7 @@ namespace Team2_ERP
                 mode = "Insert";
                 lblName.Text = "공장등록";
             }
-            else if(editMode == EditMode.Update)
+            else
             {
                 mode = "Update";
                 lblName.Text = "공장수정";
@@ -119,13 +119,9 @@ namespace Team2_ERP
         private void btnOK_Click(object sender, EventArgs e)
         {
             if(mode.Equals("Insert"))
-            {
                 InsertFactory();
-            }
-            else if(mode.Equals("Update"))
-            {
+            else
                 UpdateFactory();
-            }
 
             this.DialogResult = DialogResult.OK;
         }

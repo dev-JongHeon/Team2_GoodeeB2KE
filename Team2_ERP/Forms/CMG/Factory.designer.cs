@@ -30,8 +30,8 @@
         {
             this.dgvFactory = new System.Windows.Forms.DataGridView();
             this.dgvLine = new System.Windows.Forms.DataGridView();
-            this.searchUserControl1 = new Team2_ERP.SearchUserControl();
-            this.searchUserControl2 = new Team2_ERP.SearchUserControl();
+            this.searchFactoryName = new Team2_ERP.SearchUserControl();
+            this.searchLineName = new Team2_ERP.SearchUserControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -61,8 +61,8 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.searchUserControl2);
-            this.panel5.Controls.Add(this.searchUserControl1);
+            this.panel5.Controls.Add(this.searchLineName);
+            this.panel5.Controls.Add(this.searchFactoryName);
             // 
             // dgvFactory
             // 
@@ -88,27 +88,27 @@
             this.dgvLine.TabIndex = 0;
             this.dgvLine.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLine_CellClick);
             // 
-            // searchUserControl1
+            // searchFactoryName
             // 
-            this.searchUserControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl1.ControlType = Team2_ERP.SearchUserControl.Mode.Factory;
-            this.searchUserControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl1.Labelname = "공장";
-            this.searchUserControl1.Location = new System.Drawing.Point(3, 6);
-            this.searchUserControl1.Name = "searchUserControl1";
-            this.searchUserControl1.Size = new System.Drawing.Size(312, 25);
-            this.searchUserControl1.TabIndex = 0;
+            this.searchFactoryName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.searchFactoryName.ControlType = Team2_ERP.SearchUserControl.Mode.Factory;
+            this.searchFactoryName.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchFactoryName.Labelname = "공장";
+            this.searchFactoryName.Location = new System.Drawing.Point(3, 6);
+            this.searchFactoryName.Name = "searchFactoryName";
+            this.searchFactoryName.Size = new System.Drawing.Size(312, 25);
+            this.searchFactoryName.TabIndex = 0;
             // 
-            // searchUserControl2
+            // searchLineName
             // 
-            this.searchUserControl2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl2.ControlType = Team2_ERP.SearchUserControl.Mode.Line;
-            this.searchUserControl2.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl2.Labelname = "공정";
-            this.searchUserControl2.Location = new System.Drawing.Point(3, 37);
-            this.searchUserControl2.Name = "searchUserControl2";
-            this.searchUserControl2.Size = new System.Drawing.Size(312, 25);
-            this.searchUserControl2.TabIndex = 1;
+            this.searchLineName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.searchLineName.ControlType = Team2_ERP.SearchUserControl.Mode.Line;
+            this.searchLineName.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchLineName.Labelname = "공정";
+            this.searchLineName.Location = new System.Drawing.Point(3, 37);
+            this.searchLineName.Name = "searchLineName";
+            this.searchLineName.Size = new System.Drawing.Size(312, 25);
+            this.searchLineName.TabIndex = 1;
             // 
             // Factory
             // 
@@ -120,7 +120,6 @@
             this.Activated += new System.EventHandler(this.Factory_Activated);
             this.Deactivate += new System.EventHandler(this.Factory_Deactivate);
             this.Load += new System.EventHandler(this.Factory_Load);
-            this.Shown += new System.EventHandler(this.Factory_Shown);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -143,7 +142,7 @@
 
         private System.Windows.Forms.DataGridView dgvFactory;
         private System.Windows.Forms.DataGridView dgvLine;
-        private SearchUserControl searchUserControl2;
-        private SearchUserControl searchUserControl1;
+        private SearchUserControl searchLineName;
+        private SearchUserControl searchFactoryName;
     }
 }

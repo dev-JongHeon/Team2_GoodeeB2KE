@@ -15,10 +15,10 @@ namespace Team2_ERP
     public partial class Department : BaseForm
     {
         List<CodeTableVO> list;
+
         MainForm frm;
-        string code = string.Empty;
-        string name = string.Empty;
-        string context = string.Empty;
+
+        CodeTableVO item;
 
         public Department()
         {
@@ -28,60 +28,64 @@ namespace Team2_ERP
         // 그리드 뷰 디자인 
         private void InitGridView()
         {
-            UtilClass.SettingDgv(dataGridView1);
+            UtilClass.SettingDgv(dgvDepartment);
 
-            UtilClass.AddNewColum(dataGridView1, "부서코드", "CodeTable_CodeID", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "부서이름", "CodeTable_CodeName", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "부서설명", "CodeTable_CodeExplain", true, 100);
+            UtilClass.AddNewColum(dgvDepartment, "부서코드", "CodeTable_CodeID", true, 100);
+            UtilClass.AddNewColum(dgvDepartment, "부서이름", "CodeTable_CodeName", true, 100);
+            UtilClass.AddNewColum(dgvDepartment, "부서설명", "CodeTable_CodeExplain", true, 100);
 
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvDepartment.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
         }
 
         // DataGridView 가져오기
         private void LoadGridView()
         {
             CodeTableService service = new CodeTableService();
-            list = service.GetAllCodeTable();
-            List<CodeTableVO> departmentList = (from item in list where item.CodeTable_CodeID.Contains("Depart") && item.CodeTable_DeletedYN==false select item).ToList();
-            dataGridView1.DataSource = departmentList;
+            list = (from item in service.GetAllCodeTable() where item.CodeTable_CodeID.Contains("Depart") select item).ToList();
+            dgvDepartment.DataSource = list;
+            dgvDepartment.CurrentCell = null;
         }
 
         // 메인 폼 메세지 초기화
         private void InitMessage()
         {
-            frm.NoticeMessage = "메세지";
+            frm.NoticeMessage = notice;
         }
 
         public override void Refresh(object sender, EventArgs e)
         {
             InitMessage();
-            dataGridView1.DataSource = null;
-            searchUserControl1.CodeTextBox.Text = "";
-            dataGridView1.CurrentCell = null;
-            LoadGridView();
+            dgvDepartment.DataSource = null;
+            searchDepartmentName.CodeTextBox.Text = "";
         }
 
         public override void New(object sender, EventArgs e)
         {
-            DepartmentInsUp frm = new DepartmentInsUp(DepartmentInsUp.EditMode.Insert, null, null, null);
-            frm.ShowDialog();
+            DepartmentInsUp frm = new DepartmentInsUp(DepartmentInsUp.EditMode.Insert, null);
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                frm.Close();
+                dgvDepartment.DataSource = null;
+                InitMessage();
+                LoadGridView();
+            }
         }
 
         public override void Modify(object sender, EventArgs e)
         {
-            if (code == string.Empty)
+            if (dgvDepartment.SelectedRows.Count < 1)
             {
                 frm.NoticeMessage = "수정할 부서를 선택해주세요.";
             }
             else
             {
-                DepartmentInsUp frm = new DepartmentInsUp(DepartmentInsUp.EditMode.Update, code, name, context);
+                DepartmentInsUp frm = new DepartmentInsUp(DepartmentInsUp.EditMode.Update, item);
 
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     frm.Close();
-                    dataGridView1.DataSource = null;
+                    dgvDepartment.DataSource = null;
+                    InitMessage();
                     LoadGridView();
                 }
             }
@@ -91,7 +95,7 @@ namespace Team2_ERP
         {
             InitMessage();
 
-            if (code == string.Empty)
+            if (dgvDepartment.SelectedRows.Count < 1)
             {
                 frm.NoticeMessage = "삭제할 부서를 선택해주세요.";
             }
@@ -100,8 +104,9 @@ namespace Team2_ERP
                  if (MessageBox.Show("삭제하시겠습니까?", "확인", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     CodeTableService service = new CodeTableService();
-                    service.DeleteCodeTable(code);
-                    dataGridView1.DataSource = null;
+                    service.DeleteCodeTable(item.CodeTable_CodeID);
+                    dgvDepartment.DataSource = null;
+                    InitMessage();
                     LoadGridView();
                 }
             }
@@ -109,28 +114,33 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)
         {
-            if (searchUserControl1.CodeTextBox.Text.Length > 0)
+            if (searchDepartmentName.CodeTextBox.Text.Length > 0)
             {
-                dataGridView1.DataSource = null;
-                List<CodeTableVO> deptList = (from item in list where item.CodeTable_CodeID.Contains(searchUserControl1.CodeTextBox.Tag.ToString()) && item.CodeTable_DeletedYN == false select item).ToList();
-                dataGridView1.DataSource = deptList;
+                dgvDepartment.DataSource = null;
+                List<CodeTableVO> deptList = (from item in list where item.CodeTable_CodeID.Contains(searchDepartmentName.CodeTextBox.Tag.ToString()) && item.CodeTable_DeletedYN == false select item).ToList();
+                dgvDepartment.DataSource = deptList;
             }
             else
             {
-                frm.NoticeMessage = "검색할 부서를 선택해주세요.";
+                LoadGridView();
+                InitMessage();
             }
+
+            dgvDepartment.CurrentCell = null;
         }
 
         private void Department_Load(object sender, EventArgs e)
         {
             InitGridView();
             frm = (MainForm)this.ParentForm;
-            LoadGridView();
+            CodeTableService service = new CodeTableService();
+            list = (from item in service.GetAllCodeTable() where item.CodeTable_CodeID.Contains("Depart") select item).ToList();
         }
 
         private void Department_Activated(object sender, EventArgs e)
         {
             MenuByAuth(Auth);
+            InitMessage();
         }
 
         private void Department_Deactivate(object sender, EventArgs e)
@@ -140,14 +150,15 @@ namespace Team2_ERP
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            code = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-            name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
-            context = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
-        }
-
-        private void Department_Shown(object sender, EventArgs e)
-        {
-            dataGridView1.CurrentCell = null;
+            if (e.RowIndex < dgvDepartment.Rows.Count && e.RowIndex > -1)
+            {
+                item = new CodeTableVO
+                {
+                    CodeTable_CodeID = dgvDepartment.Rows[e.RowIndex].Cells[0].Value.ToString(),
+                    CodeTable_CodeName = dgvDepartment.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                    CodeTable_CodeExplain = dgvDepartment.Rows[e.RowIndex].Cells[2].Value.ToString()
+                };
+            }
         }
 
         public override void MenuStripONOFF(bool flag)

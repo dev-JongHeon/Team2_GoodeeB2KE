@@ -60,29 +60,32 @@ namespace Team2_ERP
         {
             StandardService service = new StandardService();
             FList = service.GetAllFactory();
-            List<FactoryVO> factoryList = (from item in FList where item.Factory_DeletedYN == false select item).ToList();
-            dgvFactory.DataSource = factoryList;
+            dgvFactory.DataSource = FList;
+            dgvFactory.CurrentCell = null;
 
             LList = service.GetAllLine();
-            List<LineVO> lineList = (from item in LList where item.Line_DeletedYN == false select item).ToList();
-            dgvLine.DataSource = lineList;
+            dgvLine.DataSource = LList;
+            dgvLine.CurrentCell = null;
         }
 
         private void Factory_Load(object sender, EventArgs e)
         {
             InitGridView();
             frm = (MainForm)this.ParentForm;
-            LoadGridView();
+            StandardService service = new StandardService();
+            FList = service.GetAllFactory();
+            LList = service.GetAllLine();
         }
 
         private void InitMessage()
         {
-            frm.NoticeMessage = "메세지";
+            frm.NoticeMessage = notice;
         }
 
         private void Factory_Activated(object sender, EventArgs e)
         {
             MenuByAuth(Auth);
+            InitMessage();
 
             //등록 서브메뉴 이벤트 추가
             tool = (ToolStripDropDownItem)(((MainForm)MdiParent).신규ToolStripMenuItem);
@@ -116,11 +119,9 @@ namespace Team2_ERP
         {
             InitMessage();
             dgvFactory.DataSource = null;
-            searchUserControl1.CodeTextBox.Text = "";
-            searchUserControl2.CodeTextBox.Text = "";
-            dgvFactory.CurrentCell = null;
-            dgvLine.CurrentCell = null;
-            LoadGridView();
+            dgvLine.DataSource = null;
+            searchFactoryName.CodeTextBox.Text = "";
+            searchLineName.CodeTextBox.Text = "";
         }
 
         public override void New(object sender, EventArgs e)
@@ -202,34 +203,39 @@ namespace Team2_ERP
         public override void Search(object sender, EventArgs e)
         {
             //공장, 공정 두개 다 검색할 때
-            if(searchUserControl1.CodeTextBox.Text.Length > 0 && searchUserControl2.CodeTextBox.Text.Length > 0)
+            if(searchFactoryName.CodeTextBox.Text.Length > 0 && searchLineName.CodeTextBox.Text.Length > 0)
             {
                 dgvFactory.DataSource = null;
-                List<FactoryVO> searchFList = (from item in FList where item.Factory_ID == Convert.ToInt32(searchUserControl1.CodeTextBox.Tag) && item.Factory_DeletedYN == false select item).ToList();
+                List<FactoryVO> searchFList = (from item in FList where item.Factory_ID == Convert.ToInt32(searchFactoryName.CodeTextBox.Tag) select item).ToList();
                 dgvFactory.DataSource = searchFList;
 
                 dgvLine.DataSource = null;
-                List<LineVO> searchLList = (from item in LList where item.Line_ID == Convert.ToInt32(searchUserControl2.CodeTextBox.Tag) && item.Line_DeletedYN == false select item).ToList();
+                List<LineVO> searchLList = (from item in LList where item.Line_ID == Convert.ToInt32(searchLineName.CodeTextBox.Tag) select item).ToList();
                 dgvLine.DataSource = searchLList;
             }
             //공장만 검색할 때
-            else if (searchUserControl1.CodeTextBox.Text.Length > 0)
+            else if (searchFactoryName.CodeTextBox.Text.Length > 0)
             {
                 dgvFactory.DataSource = null;
-                List<FactoryVO> searchList = (from item in FList where item.Factory_ID == Convert.ToInt32(searchUserControl1.CodeTextBox.Tag) && item.Factory_DeletedYN == false select item).ToList();
+                dgvLine.DataSource = null;
+                List<FactoryVO> searchList = (from item in FList where item.Factory_ID == Convert.ToInt32(searchFactoryName.CodeTextBox.Tag) select item).ToList();
                 dgvFactory.DataSource = searchList;
             }
             //공정만 검색할 때
-            else if(searchUserControl2.CodeTextBox.Text.Length > 0)
+            else if(searchLineName.CodeTextBox.Text.Length > 0)
             {
                 dgvLine.DataSource = null;
-                List<LineVO> searchLList = (from item in LList where item.Line_ID == Convert.ToInt32(searchUserControl2.CodeTextBox.Tag) && item.Line_DeletedYN == false select item).ToList();
+                dgvFactory.DataSource = null;
+                List<LineVO> searchLList = (from item in LList where item.Line_ID == Convert.ToInt32(searchLineName.CodeTextBox.Tag) select item).ToList();
                 dgvLine.DataSource = searchLList;
             }
             else
             {
-                frm.NoticeMessage = "검색할 공장이나 공정을 선택해주세요.";
+                LoadGridView();
             }
+
+            dgvFactory.CurrentCell = null;
+            dgvLine.CurrentCell = null;
         }
 
         private void ItemSelect(object sender, ToolStripItemClickedEventArgs e)
@@ -256,34 +262,31 @@ namespace Team2_ERP
             }
         }
 
-        private void Factory_Shown(object sender, EventArgs e)
-        {
-            dgvFactory.CurrentCell = null;
-            dgvLine.CurrentCell = null;
-        }
-
         private void dgvFactory_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             dgvLine.CurrentCell = null;
 
-            if (dgvFactory.Rows[e.RowIndex].Cells[4].Value == null)
+            if (e.RowIndex < dgvFactory.Rows.Count && e.RowIndex > -1)
             {
-                factoryItem = new FactoryVO()
+                if (dgvFactory.Rows[e.RowIndex].Cells[4].Value == null)
                 {
-                    Factory_ID = Convert.ToInt32(dgvFactory.Rows[e.RowIndex].Cells[0].Value),
-                    Factory_Name = dgvFactory.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                    Factory_Number = dgvFactory.Rows[e.RowIndex].Cells[3].Value.ToString()
-                };
-            }
-            else
-            {
-                factoryItem = new FactoryVO()
+                    factoryItem = new FactoryVO()
+                    {
+                        Factory_ID = Convert.ToInt32(dgvFactory.Rows[e.RowIndex].Cells[0].Value),
+                        Factory_Name = dgvFactory.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                        Factory_Number = dgvFactory.Rows[e.RowIndex].Cells[3].Value.ToString()
+                    };
+                }
+                else
                 {
-                    Factory_ID = Convert.ToInt32(dgvFactory.Rows[e.RowIndex].Cells[0].Value),
-                    Factory_Name = dgvFactory.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                    Factory_Number = dgvFactory.Rows[e.RowIndex].Cells[3].Value.ToString(),
-                    Factory_Fax = dgvFactory.Rows[e.RowIndex].Cells[4].Value.ToString()
-                };
+                    factoryItem = new FactoryVO()
+                    {
+                        Factory_ID = Convert.ToInt32(dgvFactory.Rows[e.RowIndex].Cells[0].Value),
+                        Factory_Name = dgvFactory.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                        Factory_Number = dgvFactory.Rows[e.RowIndex].Cells[3].Value.ToString(),
+                        Factory_Fax = dgvFactory.Rows[e.RowIndex].Cells[4].Value.ToString()
+                    };
+                }
             }
         }
 
@@ -291,11 +294,14 @@ namespace Team2_ERP
         {
             dgvFactory.CurrentCell = null;
 
-            lineItem = new LineVO()
+            if (e.RowIndex < dgvLine.Rows.Count && e.RowIndex > -1)
             {
-                Line_ID = Convert.ToInt32(dgvLine.Rows[e.RowIndex].Cells[0].Value),
-                Line_Name = dgvLine.Rows[e.RowIndex].Cells[1].Value.ToString()
-            };
+                lineItem = new LineVO()
+                {
+                    Line_ID = Convert.ToInt32(dgvLine.Rows[e.RowIndex].Cells[0].Value),
+                    Line_Name = dgvLine.Rows[e.RowIndex].Cells[1].Value.ToString()
+                };
+            }
         }
     }
 }

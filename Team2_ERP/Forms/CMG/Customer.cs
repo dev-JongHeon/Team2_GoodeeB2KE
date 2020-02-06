@@ -26,18 +26,18 @@ namespace Team2_ERP
         // 그리드 뷰 디자인 
         private void InitGridView()
         {
-            UtilClass.SettingDgv(dataGridView1);
+            UtilClass.SettingDgv(dgvCustomer);
 
-            UtilClass.AddNewColum(dataGridView1, "아이디", "Customer_UserID", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "비밀번호", "Customer_PWD", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "이름", "Customer_Name", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "연락처", "Customer_Phone", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "이메일", "Customer_Email", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "생년월일", "Customer_Birth", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "주소", "Customer_Address", true, 100);
+            UtilClass.AddNewColum(dgvCustomer, "아이디", "Customer_UserID", true, 100);
+            UtilClass.AddNewColum(dgvCustomer, "비밀번호", "Customer_PWD", true, 100);
+            UtilClass.AddNewColum(dgvCustomer, "이름", "Customer_Name", true, 100);
+            UtilClass.AddNewColum(dgvCustomer, "연락처", "Customer_Phone", true, 100);
+            UtilClass.AddNewColum(dgvCustomer, "이메일", "Customer_Email", true, 100);
+            UtilClass.AddNewColum(dgvCustomer, "생년월일", "Customer_Birth", true, 100);
+            UtilClass.AddNewColum(dgvCustomer, "주소", "Customer_Address", true, 100);
 
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvCustomer.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dgvCustomer.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         // DataGridView 가져오기
@@ -45,48 +45,63 @@ namespace Team2_ERP
         {
             StandardService service = new StandardService();
             list = service.GetAllCustomer();
-            List<CustomerVO> CustomerList = (from item in list where item.Customer_DeletedYN == false select item).ToList();
-            dataGridView1.DataSource = CustomerList;
+            dgvCustomer.DataSource = list;
+            dgvCustomer.CurrentCell = null;
         }
 
         private void Customer_Load(object sender, EventArgs e)
         {
             InitGridView();
             frm = (MainForm)this.ParentForm;
-            LoadGridView();
+            StandardService service = new StandardService();
+            list = service.GetAllCustomer();
         }
 
         private void InitMessage()
         {
-            frm.NoticeMessage = "메세지";
+            frm.NoticeMessage = notice;
         }
 
         public override void Refresh(object sender, EventArgs e)
         {
             InitMessage();
-            dataGridView1.DataSource = null;
-            searchUserControl1.CodeTextBox.Text = "";
-            dataGridView1.CurrentCell = null;
-            LoadGridView();
+            dgvCustomer.DataSource = null;
+            searchCustomerName.CodeTextBox.Text = "";
         }
 
         public override void Search(object sender, EventArgs e)
         {
-            if (searchUserControl1.CodeTextBox.Text.Length > 0)
+            if (searchCustomerName.CodeTextBox.Text.Length > 0)
             {
-                dataGridView1.DataSource = null;
-                List<CustomerVO> searchList = (from item in list where item.Customer_ID == Convert.ToInt32(searchUserControl1.CodeTextBox.Tag) && item.Customer_DeletedYN == false select item).ToList();
-                dataGridView1.DataSource = searchList;
+                if (searchCustomerBirth.Startdate.Text.Length > 8)
+                {
+                    dgvCustomer.DataSource = null;
+                    List<CustomerVO> searchList = (from item in list where DateTime.Parse(item.Customer_Birth) >= searchCustomerBirth.sdate.AddDays(-1) && DateTime.Parse(item.Customer_Birth) <= searchCustomerBirth.edate && item.Customer_ID == Convert.ToInt32(searchCustomerName.CodeTextBox.Tag) select item).ToList();
+                    dgvCustomer.DataSource = searchList;
+                }
+                else
+                {
+                    dgvCustomer.DataSource = null;
+                    List<CustomerVO> searchList = (from item in list where item.Customer_ID == Convert.ToInt32(searchCustomerName.CodeTextBox.Tag) select item).ToList();
+                    dgvCustomer.DataSource = searchList;
+                }
             }
             else
             {
-                frm.NoticeMessage = "검색할 고객을 선택해주세요.";
+                if (searchCustomerBirth.Startdate.Text.Length > 8)
+                {
+                    dgvCustomer.DataSource = null;
+                    List<CustomerVO> searchList = (from item in list where DateTime.Parse(item.Customer_Birth) >= searchCustomerBirth.sdate.AddDays(-1) && DateTime.Parse(item.Customer_Birth) <= searchCustomerBirth.edate select item).ToList();
+                    dgvCustomer.DataSource = searchList;
+                }
+                else
+                {
+                    LoadGridView();
+                }
             }
-        }
 
-        private void Customer_Shown(object sender, EventArgs e)
-        {
-            dataGridView1.CurrentCell = null;
+            dgvCustomer.CurrentCell = null;
+            InitMessage();
         }
 
         private void Customer_Deactivate(object sender, EventArgs e)
@@ -97,6 +112,7 @@ namespace Team2_ERP
         private void Customer_Activated(object sender, EventArgs e)
         {
             MenuByAuth(Auth);
+            InitMessage();
         }
 
         public override void MenuStripONOFF(bool flag)

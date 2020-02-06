@@ -15,6 +15,7 @@ namespace Team2_ERP
     public partial class CategoryInsUp : BasePopup
     {
         public enum EditMode { Insert, Update }
+
         string mode = string.Empty;
         string code = string.Empty;
 
@@ -29,8 +30,7 @@ namespace Team2_ERP
                 code = item.CodeTable_CodeID;
                 txtName.Text = item.CodeTable_CodeName;
             }
-            
-            else if(editMode == EditMode.Insert)
+            else
             {
                 mode = "Insert";
                 lblName.Text = "카테고리 등록";
@@ -42,14 +42,11 @@ namespace Team2_ERP
             CodeTableVO category = new CodeTableVO();
 
             category.CodeTable_CodeName = txtName.Text;
+
             if (txtContext.Text.Length > 0)
-            {
                 category.CodeTable_CodeExplain = txtContext.Text;
-            }
             else
-            {
                 category.CodeTable_CodeExplain = cboContext.SelectedValue.ToString();
-            }
 
             CodeTableService service = new CodeTableService();
             service.InsertCategory(category);
@@ -60,14 +57,12 @@ namespace Team2_ERP
             CodeTableVO category = new CodeTableVO();
 
             category.CodeTable_CodeName = txtName.Text;
+
             if (txtContext.Text.Length > 0)
-            {
                 category.CodeTable_CodeExplain = txtContext.Text;
-            }
             else
-            {
                 category.CodeTable_CodeExplain = cboContext.SelectedValue.ToString();
-            }
+
             category.CodeTable_CodeID = code;
 
             CodeTableService service = new CodeTableService();
@@ -82,13 +77,9 @@ namespace Team2_ERP
         private void btnOK_Click(object sender, EventArgs e)
         {
             if (mode.Equals("Insert"))
-            {
                 InsertCategory();
-            }
-            else if (mode.Equals("Update"))
-            {
+            else
                 UpdateCategory();
-            }
 
             this.DialogResult = DialogResult.OK;
         }
