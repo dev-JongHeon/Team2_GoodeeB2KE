@@ -14,6 +14,7 @@ namespace Team2_ERP
 {
     public partial class SearchPeriodControl : UserControl
     {
+        CalendarForm frm;
         public string Labelname
         {
             get { return lblName.Text; }
@@ -30,8 +31,8 @@ namespace Team2_ERP
             get { return txtEnd; }
         }
         
-        public DateTime sdate { set => txtStart.Text = value.ToString(); get => (txtEnd.Text != "    -  -") ? Convert.ToDateTime(txtStart.Text) : DateTime.Now; }
-        public DateTime edate { set => txtEnd.Text = value.ToString(); get => (txtEnd.Text!="    -  -")? Convert.ToDateTime(txtEnd.Text):DateTime.Now; }
+        public DateTime sdate { set => txtStart.Text = value.ToString();  }
+        public DateTime edate { set => txtEnd.Text = value.ToString();  }
         
 
         public SearchPeriodControl()
@@ -42,7 +43,16 @@ namespace Team2_ERP
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            CalendarForm frm = new CalendarForm(sdate,edate);
+            
+            if (txtStart.Tag != null && txtEnd.Tag != null)
+            {
+                frm = new CalendarForm(Convert.ToDateTime(txtStart.Tag.ToString()), Convert.ToDateTime(txtEnd.Tag.ToString()));
+            }
+            else
+            {
+                frm = new CalendarForm();
+            }
+             
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 sdate = frm.Startdate;
