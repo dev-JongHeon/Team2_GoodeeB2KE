@@ -28,50 +28,50 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.searchUserControl1 = new Team2_ERP.SearchUserControl();
+            this.dgvDepartment = new System.Windows.Forms.DataGridView();
+            this.searchDepartmentName = new Team2_ERP.SearchUserControl();
             this.panel1.SuspendLayout();
             this.panel_Search.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel_Title.SuspendLayout();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDepartment)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.dataGridView1);
+            this.panel1.Controls.Add(this.dgvDepartment);
             this.panel1.Controls.SetChildIndex(this.panel_Title, 0);
             this.panel1.Controls.SetChildIndex(this.panel_Search, 0);
-            this.panel1.Controls.SetChildIndex(this.dataGridView1, 0);
+            this.panel1.Controls.SetChildIndex(this.dgvDepartment, 0);
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.searchUserControl1);
+            this.panel5.Controls.Add(this.searchDepartmentName);
             // 
-            // dataGridView1
+            // dgvDepartment
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 158);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(1364, 662);
-            this.dataGridView1.TabIndex = 7;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dgvDepartment.BackgroundColor = System.Drawing.Color.White;
+            this.dgvDepartment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDepartment.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvDepartment.Location = new System.Drawing.Point(0, 158);
+            this.dgvDepartment.Name = "dgvDepartment";
+            this.dgvDepartment.RowTemplate.Height = 23;
+            this.dgvDepartment.Size = new System.Drawing.Size(1364, 662);
+            this.dgvDepartment.TabIndex = 7;
+            this.dgvDepartment.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
-            // searchUserControl1
+            // searchDepartmentName
             // 
-            this.searchUserControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl1.ControlType = Team2_ERP.SearchUserControl.Mode.Department;
-            this.searchUserControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl1.Labelname = "부서";
-            this.searchUserControl1.Location = new System.Drawing.Point(3, 3);
-            this.searchUserControl1.Name = "searchUserControl1";
-            this.searchUserControl1.Size = new System.Drawing.Size(312, 25);
-            this.searchUserControl1.TabIndex = 0;
+            this.searchDepartmentName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.searchDepartmentName.ControlType = Team2_ERP.SearchUserControl.Mode.Department;
+            this.searchDepartmentName.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchDepartmentName.Labelname = "부서";
+            this.searchDepartmentName.Location = new System.Drawing.Point(3, 41);
+            this.searchDepartmentName.Name = "searchDepartmentName";
+            this.searchDepartmentName.Size = new System.Drawing.Size(312, 25);
+            this.searchDepartmentName.TabIndex = 0;
             // 
             // Department
             // 
@@ -83,21 +83,20 @@
             this.Activated += new System.EventHandler(this.Department_Activated);
             this.Deactivate += new System.EventHandler(this.Department_Deactivate);
             this.Load += new System.EventHandler(this.Department_Load);
-            this.Shown += new System.EventHandler(this.Department_Shown);
             this.panel1.ResumeLayout(false);
             this.panel_Search.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel_Title.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDepartment)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private SearchUserControl searchUserControl1;
+        private System.Windows.Forms.DataGridView dgvDepartment;
+        private SearchUserControl searchDepartmentName;
     }
 }

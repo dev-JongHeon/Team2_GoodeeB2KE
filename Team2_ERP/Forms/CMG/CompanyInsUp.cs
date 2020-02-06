@@ -29,7 +29,7 @@ namespace Team2_ERP
                 lblName.Text = "거래처 등록";
                 mode = "Insert";
             }
-            else if(editMode == EditMode.Update)
+            else
             {
                 lblName.Text = "거래처 수정";
                 mode = "Update";
@@ -72,6 +72,7 @@ namespace Team2_ERP
         {
             CompanyVO item = new CompanyVO
             {
+                Company_ID = code,
                 Company_Name = txtCompanyName.Text,
                 Company_Number = txtCompanyNumber.Text,
                 Company_Fax = txtCompanyFaxNumber.Text,

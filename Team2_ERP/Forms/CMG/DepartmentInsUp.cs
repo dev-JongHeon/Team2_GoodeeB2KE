@@ -18,19 +18,21 @@ namespace Team2_ERP
         string mode = string.Empty;
         string code = string.Empty;
 
-        public DepartmentInsUp(EditMode editMode, string dept, string name, string context)
+        public DepartmentInsUp(EditMode editMode, CodeTableVO item)
         {
             InitializeComponent();
 
             if (editMode == EditMode.Update)
             {
+                lblName.Text = "부서 수정";
                 mode = "Update";
-                code = dept;
-                txtName.Text = name;
-                txtContext.Text = context;
+                code = item.CodeTable_CodeID;
+                txtName.Text = item.CodeTable_CodeName;
+                txtContext.Text = item.CodeTable_CodeExplain;
             }
-            else if (editMode == EditMode.Insert)
+            else
             {
+                lblName.Text = "부서 등록";
                 mode = "Insert";
             }
         }
@@ -68,27 +70,11 @@ namespace Team2_ERP
         private void btnOK_Click(object sender, EventArgs e)
         {
             if (mode.Equals("Insert"))
-            {
                 InsertDepart();
-            }
             else if (mode.Equals("Update"))
-            {
                 UpdateDepart();
-            }
 
             this.DialogResult = DialogResult.OK;
-        }
-
-        private void DepartmentInsUp_Load(object sender, EventArgs e)
-        {
-            if (mode.Equals("Insert"))
-            {
-                lblName.Text = "부서 등록";
-            }
-            else if (mode.Equals("Update"))
-            {
-                lblName.Text = "부서 수정";
-            }
         }
     }
 }

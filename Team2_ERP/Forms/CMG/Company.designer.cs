@@ -28,24 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.searchUserControl1 = new Team2_ERP.SearchUserControl();
+            this.dgvCompany = new System.Windows.Forms.DataGridView();
+            this.searchCompanyName = new Team2_ERP.SearchUserControl();
             this.panel1.SuspendLayout();
             this.panel_Search.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel_Title.SuspendLayout();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCompany)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.dataGridView1);
+            this.panel1.Controls.Add(this.dgvCompany);
             this.panel1.Size = new System.Drawing.Size(1344, 729);
             this.panel1.Controls.SetChildIndex(this.panel_Title, 0);
             this.panel1.Controls.SetChildIndex(this.panel_Search, 0);
-            this.panel1.Controls.SetChildIndex(this.dataGridView1, 0);
+            this.panel1.Controls.SetChildIndex(this.dgvCompany, 0);
             // 
             // panel_Search
             // 
@@ -57,7 +57,7 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.searchUserControl1);
+            this.panel5.Controls.Add(this.searchCompanyName);
             this.panel5.Size = new System.Drawing.Size(1344, 110);
             // 
             // panel_Title
@@ -68,28 +68,28 @@
             // 
             this.linepanel1.Size = new System.Drawing.Size(1344, 2);
             // 
-            // dataGridView1
+            // dgvCompany
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 158);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(1344, 571);
-            this.dataGridView1.TabIndex = 7;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dgvCompany.BackgroundColor = System.Drawing.Color.White;
+            this.dgvCompany.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCompany.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvCompany.Location = new System.Drawing.Point(0, 158);
+            this.dgvCompany.Name = "dgvCompany";
+            this.dgvCompany.RowTemplate.Height = 23;
+            this.dgvCompany.Size = new System.Drawing.Size(1344, 571);
+            this.dgvCompany.TabIndex = 7;
+            this.dgvCompany.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
-            // searchUserControl1
+            // searchCompanyName
             // 
-            this.searchUserControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl1.ControlType = Team2_ERP.SearchUserControl.Mode.Company;
-            this.searchUserControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchUserControl1.Labelname = "회사";
-            this.searchUserControl1.Location = new System.Drawing.Point(3, 3);
-            this.searchUserControl1.Name = "searchUserControl1";
-            this.searchUserControl1.Size = new System.Drawing.Size(312, 30);
-            this.searchUserControl1.TabIndex = 0;
+            this.searchCompanyName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.searchCompanyName.ControlType = Team2_ERP.SearchUserControl.Mode.Company;
+            this.searchCompanyName.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchCompanyName.Labelname = "회사";
+            this.searchCompanyName.Location = new System.Drawing.Point(3, 38);
+            this.searchCompanyName.Name = "searchCompanyName";
+            this.searchCompanyName.Size = new System.Drawing.Size(312, 30);
+            this.searchCompanyName.TabIndex = 0;
             // 
             // Company
             // 
@@ -101,21 +101,20 @@
             this.Activated += new System.EventHandler(this.Company_Activated);
             this.Deactivate += new System.EventHandler(this.Company_Deactivate);
             this.Load += new System.EventHandler(this.Company_Load);
-            this.Shown += new System.EventHandler(this.Company_Shown);
             this.panel1.ResumeLayout(false);
             this.panel_Search.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel_Title.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCompany)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private SearchUserControl searchUserControl1;
+        private System.Windows.Forms.DataGridView dgvCompany;
+        private SearchUserControl searchCompanyName;
     }
 }
