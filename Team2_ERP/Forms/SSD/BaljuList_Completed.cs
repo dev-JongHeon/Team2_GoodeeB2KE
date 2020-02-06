@@ -58,8 +58,6 @@ namespace Team2_ERP
             dgv_BaljuDetail.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
             BaljuDetail_AllList = service.GetBalju_DetailList(); // 발주디테일 AllList 갱신
-
-            
         }
 
         private void dgv_BaljuCompleted_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
@@ -70,6 +68,17 @@ namespace Team2_ERP
                                                   select list_detail).ToList();
             dgv_BaljuDetail.DataSource = BaljuDetail_List;
         }
+
+        private string[] SetParamsCount()
+        {
+            string[] Params = new string[dgv_BaljuCompleted.RowCount];
+            for (int i = 0; i < dgv_BaljuCompleted.RowCount; i++)
+            {
+                Params[i] = dgv_BaljuCompleted.Rows[i].Cells[0].Value.ToString();
+            }
+            return Params;
+        }
+
 
         private void Func_Refresh()  // 새로고침 기능
         {

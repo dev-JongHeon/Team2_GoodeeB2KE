@@ -12,7 +12,7 @@
   <xs:element name="dsBalju" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsBalju" msprop:Generator_UserDSName="dsBalju">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Balju" msprop:Generator_TableClassName="BaljuDataTable" msprop:Generator_TableVarName="tableBalju" msprop:Generator_TablePropName="Balju" msprop:Generator_RowDeletingName="BaljuRowDeleting" msprop:Generator_RowChangingName="BaljuRowChanging" msprop:Generator_RowEvHandlerName="BaljuRowChangeEventHandler" msprop:Generator_RowDeletedName="BaljuRowDeleted" msprop:Generator_UserTableName="Balju" msprop:Generator_RowChangedName="BaljuRowChanged" msprop:Generator_RowEvArgName="BaljuRowChangeEvent" msprop:Generator_RowClassName="BaljuRow">
+        <xs:element name="dtBalju" msprop:Generator_TableClassName="dtBaljuDataTable" msprop:Generator_TableVarName="tabledtBalju" msprop:Generator_TablePropName="dtBalju" msprop:Generator_RowDeletingName="dtBaljuRowDeleting" msprop:Generator_RowChangingName="dtBaljuRowChanging" msprop:Generator_RowEvHandlerName="dtBaljuRowChangeEventHandler" msprop:Generator_RowDeletedName="dtBaljuRowDeleted" msprop:Generator_UserTableName="dtBalju" msprop:Generator_RowChangedName="dtBaljuRowChanged" msprop:Generator_RowEvArgName="dtBaljuRowChangeEvent" msprop:Generator_RowClassName="dtBaljuRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Balju_ID" msprop:Generator_ColumnVarNameInTable="columnBalju_ID" msprop:Generator_ColumnPropNameInRow="Balju_ID" msprop:Generator_ColumnPropNameInTable="Balju_IDColumn" msprop:Generator_UserColumnName="Balju_ID" type="xs:string" minOccurs="0" />
@@ -22,12 +22,13 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Balju_Detail" msprop:Generator_TableClassName="Balju_DetailDataTable" msprop:Generator_TableVarName="tableBalju_Detail" msprop:Generator_TablePropName="Balju_Detail" msprop:Generator_RowDeletingName="Balju_DetailRowDeleting" msprop:Generator_RowChangingName="Balju_DetailRowChanging" msprop:Generator_RowEvHandlerName="Balju_DetailRowChangeEventHandler" msprop:Generator_RowDeletedName="Balju_DetailRowDeleted" msprop:Generator_UserTableName="Balju_Detail" msprop:Generator_RowChangedName="Balju_DetailRowChanged" msprop:Generator_RowEvArgName="Balju_DetailRowChangeEvent" msprop:Generator_RowClassName="Balju_DetailRow">
+        <xs:element name="dtBalju_Detail" msprop:Generator_TableClassName="dtBalju_DetailDataTable" msprop:Generator_TableVarName="tabledtBalju_Detail" msprop:Generator_TablePropName="dtBalju_Detail" msprop:Generator_RowDeletingName="dtBalju_DetailRowDeleting" msprop:Generator_RowChangingName="dtBalju_DetailRowChanging" msprop:Generator_RowEvHandlerName="dtBalju_DetailRowChangeEventHandler" msprop:Generator_RowDeletedName="dtBalju_DetailRowDeleted" msprop:Generator_UserTableName="dtBalju_Detail" msprop:Generator_RowChangedName="dtBalju_DetailRowChanged" msprop:Generator_RowEvArgName="dtBalju_DetailRowChangeEvent" msprop:Generator_RowClassName="dtBalju_DetailRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Product_Name" msprop:Generator_ColumnVarNameInTable="columnProduct_Name" msprop:Generator_ColumnPropNameInRow="Product_Name" msprop:Generator_ColumnPropNameInTable="Product_NameColumn" msprop:Generator_UserColumnName="Product_Name" type="xs:string" minOccurs="0" />
               <xs:element name="BaljuDetail_Qty" msprop:Generator_ColumnVarNameInTable="columnBaljuDetail_Qty" msprop:Generator_ColumnPropNameInRow="BaljuDetail_Qty" msprop:Generator_ColumnPropNameInTable="BaljuDetail_QtyColumn" msprop:Generator_UserColumnName="BaljuDetail_Qty" type="xs:string" minOccurs="0" />
               <xs:element name="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_UserColumnName="Price" type="xs:string" minOccurs="0" />
+              <xs:element name="Balju_ID" msprop:Generator_ColumnVarNameInTable="columnBalju_ID" msprop:Generator_ColumnPropNameInRow="Balju_ID" msprop:Generator_ColumnPropNameInTable="Balju_IDColumn" msprop:Generator_UserColumnName="Balju_ID" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

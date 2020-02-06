@@ -55,7 +55,7 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_BaljuDetail, "발주요청수량", "BaljuDetail_Qty", true, 130);
             dgv_BaljuDetail.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-            BaljuDetail_AllList = service.GetBalju_DetailList(); // 발주디테일 AllList 갱신
+            BaljuDetail_AllList = service.GetBalju_DetailList();
         }
 
         private void dgv_Balju_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
@@ -66,6 +66,19 @@ namespace Team2_ERP
                                                   select list_detail).ToList();
             dgv_BaljuDetail.DataSource = BaljuDetail_List;
         }
+
+        private string[] SetParamsCount()
+        {
+            string[] Params = new string[dgv_Balju.RowCount];
+            for (int i = 0; i < dgv_Balju.RowCount; i++)
+            {
+                
+                Params[i] = dgv_Balju.Rows[i].Cells[0].Value.ToString();
+
+            }
+            return Params;
+        }
+
         private void Func_Refresh()  // 새로고침 기능
         {
             Balju_AllList = service.GetBaljuList();
@@ -89,6 +102,7 @@ namespace Team2_ERP
         }
         public override void Search(object sender, EventArgs e)
         {
+            
             Balju_AllList = service.GetBaljuList();  // 발주리스트 갱신
             if (Search_Company.CodeTextBox.Text.Length > 0)  // 회사 검색조건 있으면
             {
@@ -120,6 +134,8 @@ namespace Team2_ERP
             }
             dgv_Balju.DataSource = Balju_AllList;
             dgv_BaljuDetail.DataSource = null;
+
+            BaljuDetail_AllList = service.GetBalju_DetailList(); // 발주디테일 AllList 갱신
             main.NoticeMessage = Properties.Settings.Default.SearchDone;
         }
 

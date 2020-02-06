@@ -75,6 +75,8 @@ namespace Team2_ERP
             dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
         }
 
+
+
         #region Excel 유틸리티
         public static string ExportToDataGridView<T>(List<T> dataList, string[] exceptColumns) where T : new()
         {
