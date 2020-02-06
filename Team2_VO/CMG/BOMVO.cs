@@ -10,6 +10,9 @@ namespace Team2_VO
     {
         public string Category_Division { get; set; }
         public string Product_Name { get; set; }
+        public int Combination_ID { get; set; }
+        public string Product_ID { get; set; }
+        public string Combination_Product_ID { get; set; }
         public int Combination_RequiredQty { get; set; }
         public int Product_Price { get; set; }
         public bool Combination_DeletedYN { get; set; }

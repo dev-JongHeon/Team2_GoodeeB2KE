@@ -334,9 +334,9 @@ namespace Team2_ERP
                 else if (e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[0].Value.ToString().Contains("CS"))
                 {
                     StandardService service = new StandardService();
-                    List<BOMVO> bomList = service.GetAllCombination(item.Product_ID);
-                    bomList = (from item in bomList where item.Combination_DeletedYN == false select item).ToList();
-                    dgvBOMDetail1.DataSource = bomList;
+                    service.GetAllCombination(item.Product_ID);
+                    //bomList = (from item in bomList where item.Combination_DeletedYN == false select item).ToList();
+                    //dgvBOMDetail1.DataSource = bomList;
 
                     List<BOMVO> bomReverseList = service.GetAllCombinationReverse(item.Product_ID);
                     bomReverseList = (from item in bomReverseList where item.Combination_DeletedYN == false select item).ToList();
@@ -345,9 +345,9 @@ namespace Team2_ERP
                 else if (e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[0].Value.ToString().Contains("CP"))
                 {
                     StandardService service = new StandardService();
-                    List<BOMVO> bomList = service.GetAllCombination(item.Product_ID);
-                    bomList = (from item in bomList where item.Combination_DeletedYN == false select item).ToList();
-                    dgvBOMDetail1.DataSource = bomList;
+                    service.GetAllCombination($"'{item.Product_ID}'");
+                    //bomList = (from item in bomList where item.Combination_DeletedYN == false select item).ToList();
+                    //dgvBOMDetail1.DataSource = bomList;
                 }
             }
         }

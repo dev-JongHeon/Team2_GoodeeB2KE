@@ -45,14 +45,14 @@ namespace Team2_DAC
 
         public List<BOMVO> GetAllCombination(string code)
         {
-            string sql = "CMG_GetAllCombination";
+            string sql = "CMG_GetAllCombination1";
 
             try
             {
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     conn.Open();
-                    cmd.Parameters.AddWithValue("@ProductID", code);
+                    cmd.Parameters.AddWithValue("@id", code);
                     cmd.CommandType = CommandType.StoredProcedure;
                     List<BOMVO> list = Helper.DataReaderMapToList<BOMVO>(cmd.ExecuteReader());
                     return list;
