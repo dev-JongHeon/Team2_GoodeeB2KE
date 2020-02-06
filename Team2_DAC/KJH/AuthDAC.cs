@@ -22,7 +22,7 @@ namespace Team2_DAC
             try
             {
                 List<AuthVO> list = new List<AuthVO>();
-                string sql = "GetAuth";
+                string sql = "KJH_GetAuth";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -43,7 +43,7 @@ namespace Team2_DAC
         {
             try
             {
-                string sql = "UpdateAuth";
+                string sql = "KJH_UpdateAuth";
                 int result = 0;
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {

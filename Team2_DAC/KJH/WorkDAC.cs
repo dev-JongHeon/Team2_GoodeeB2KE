@@ -22,7 +22,7 @@ namespace Team2_DAC
             try
             {
                 List<WorkVO> list = new List<WorkVO>();
-                string sql = "GetAllWork";
+                string sql = "KJH_GetAllWork";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -38,7 +38,5 @@ namespace Team2_DAC
             }
 
         }
-
-        
     }
 }

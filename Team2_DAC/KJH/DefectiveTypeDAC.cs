@@ -22,7 +22,7 @@ namespace Team2_DAC
             try
             {
                 List<DefectiveTypeVO> list = new List<DefectiveTypeVO>();
-                string sql = "GetAllDefectiveType";
+                string sql = "KJH_GetAllDefectiveType";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -42,7 +42,7 @@ namespace Team2_DAC
         {
             try
             {
-                string sql = "UpdateDefectiveType";
+                string sql = "KJH_UpdateDefectiveType";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
@@ -67,7 +67,7 @@ namespace Team2_DAC
         {
             try
             {
-                string sql = "DeleteDefectiveType";
+                string sql = "KJH_DeleteDefectiveType";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {

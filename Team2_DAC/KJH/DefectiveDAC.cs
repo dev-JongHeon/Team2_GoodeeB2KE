@@ -22,7 +22,7 @@ namespace Team2_DAC
             try
             {
                 List<DefectiveVO> list = new List<DefectiveVO>();
-                string sql = "GetAllDefective";
+                string sql = "KJH_GetAllDefective";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -43,7 +43,7 @@ namespace Team2_DAC
             try
             {
                 DataSet ds = new DataSet();
-                string sql = "GetDefectiveByLine";
+                string sql = "KJH_GetDefectiveByLine";
                 using (SqlDataAdapter adpt = new SqlDataAdapter(sql, conn))
                 {
                     adpt.SelectCommand.CommandType = CommandType.StoredProcedure;
@@ -65,7 +65,7 @@ namespace Team2_DAC
             try
             {
                 DataSet ds = new DataSet();
-                string sql = "GetDefectiveByDeftiveType";
+                string sql = "KJH_GetDefectiveByDeftiveType";
                 using (SqlDataAdapter adpt = new SqlDataAdapter(sql, conn))
                 {
                     adpt.SelectCommand.CommandType = CommandType.StoredProcedure;
@@ -87,7 +87,7 @@ namespace Team2_DAC
             try
             {
                 DataSet ds = new DataSet();
-                string sql = "GetDefectiveByDeftiveHandleType";
+                string sql = "KJH_GetDefectiveByDeftiveHandleType";
                 using (SqlDataAdapter adpt = new SqlDataAdapter(sql, conn))
                 {
                     adpt.SelectCommand.CommandType = CommandType.StoredProcedure;

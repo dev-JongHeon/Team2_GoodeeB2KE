@@ -22,7 +22,7 @@ namespace Team2_DAC
             try
             {
                 List<DowntimeTypeVO> list = new List<DowntimeTypeVO>();
-                string sql = "GetAllDowntimeType";
+                string sql = "KJH_GetAllDowntimeType";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -42,7 +42,7 @@ namespace Team2_DAC
         {
             try
             {
-                string sql = "UpdateDowntimeType";
+                string sql = "KJH_UpdateDowntimeType";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
@@ -67,7 +67,7 @@ namespace Team2_DAC
         {
             try
             {
-                string sql = "DeleteDowntimeType";
+                string sql = "KJH_DeleteDowntimeType";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {

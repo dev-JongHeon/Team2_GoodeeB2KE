@@ -22,7 +22,7 @@ namespace Team2_DAC
             try
             {
                 List<ProduceVO> list = new List<ProduceVO>();
-                string sql = "GetAllProduce";
+                string sql = "KJH_GetAllProduce";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -44,7 +44,7 @@ namespace Team2_DAC
             try
             {
                 List<ProduceVO> list = new List<ProduceVO>();
-                string sql = "GetProduceByWorkID";
+                string sql = "KJH_GetProduceByWorkID";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -66,7 +66,7 @@ namespace Team2_DAC
             try
             {
                 List<PerformanceVO> list = new List<PerformanceVO>();
-                string sql = "GetPerformanceByProduceID";
+                string sql = "KJH_GetPerformanceByProduceID";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;

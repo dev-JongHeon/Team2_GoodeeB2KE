@@ -22,7 +22,7 @@ namespace Team2_DAC
             try
             {
                 List<DefectiveHandleVO> list = new List<DefectiveHandleVO>();
-                string sql = "GetAllDefectiveHandle";
+                string sql = "KJH_GetAllDefectiveHandle";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -42,7 +42,7 @@ namespace Team2_DAC
         {
             try
             {
-                string sql = "UpdateDefectiveHandle";
+                string sql = "KJH_UpdateDefectiveHandle";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
@@ -67,7 +67,7 @@ namespace Team2_DAC
         {
             try
             {
-                string sql = "DeleteDefectiveHandle";
+                string sql = "KJH_DeleteDefectiveHandle";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {

@@ -52,7 +52,7 @@ namespace Team2_DAC
             try
             {
                 List<LoginVO> list = new List<LoginVO>();
-                string sql = "Login";
+                string sql = "KJH_Login";
                 using (SqlCommand cmd = new SqlCommand(sql,conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -74,7 +74,7 @@ namespace Team2_DAC
         {
             try
             {
-                string sql = "ChangePWD";
+                string sql = "KJH_ChangePWD";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -97,7 +97,7 @@ namespace Team2_DAC
         {
             try
             {
-                string sql = "InsertUserAuth";
+                string sql = "KJH_InsertUserAuth";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     int result = 0;

@@ -22,7 +22,7 @@ namespace Team2_DAC
             try
             {
                 List<DowntimeVO> list = new List<DowntimeVO>();
-                string sql = "GetAllDowntime";
+                string sql = "KJH_GetAllDowntime";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -43,7 +43,7 @@ namespace Team2_DAC
             try
             {
                 DataSet ds = new DataSet();
-                string sql = "GetDowntimeByLine";
+                string sql = "KJH_GetDowntimeByLine";
                 using (SqlDataAdapter adpt = new SqlDataAdapter(sql,conn))
                 {
                     adpt.SelectCommand.CommandType = CommandType.StoredProcedure;
@@ -65,7 +65,7 @@ namespace Team2_DAC
             try
             {
                 DataSet ds = new DataSet();
-                string sql = "GetDowntimeByLine2";
+                string sql = "KJH_GetDowntimeByLine2";
                 using (SqlDataAdapter adpt = new SqlDataAdapter(sql, conn))
                 {
                     adpt.SelectCommand.CommandType = CommandType.StoredProcedure;
@@ -88,7 +88,7 @@ namespace Team2_DAC
             try
             {
                 DataSet ds = new DataSet();
-                string sql = "GetDowntimeByType";
+                string sql = "KJH_GetDowntimeByType";
                 using (SqlDataAdapter adpt = new SqlDataAdapter(sql, conn))
                 {
                     adpt.SelectCommand.CommandType = CommandType.StoredProcedure;

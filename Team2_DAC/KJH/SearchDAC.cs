@@ -22,7 +22,7 @@ namespace Team2_DAC
             try
             {
                 List<SearchedInfoVO> list = new List<SearchedInfoVO>();
-                string sql = "GetInfo";
+                string sql = "KJH_GetInfo";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
