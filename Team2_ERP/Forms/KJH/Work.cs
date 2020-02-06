@@ -280,6 +280,11 @@ namespace Team2_ERP
                 GetProduce();
             }
         }
+
+        private void dgvWorkList_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            GetProduce();
+        }
     }
 }
 

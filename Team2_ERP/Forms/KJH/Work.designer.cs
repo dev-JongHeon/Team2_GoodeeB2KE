@@ -84,6 +84,7 @@
             this.dgvWorkList.Size = new System.Drawing.Size(1364, 368);
             this.dgvWorkList.TabIndex = 8;
             this.dgvWorkList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvWorkList_CellClick);
+            this.dgvWorkList.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvWorkList_CellValueChanged);
             // 
             // dgvProduce
             // 
@@ -109,19 +110,23 @@
             // 
             // searchPeriodwork
             // 
+            this.searchPeriodwork.edate = new System.DateTime(2020, 2, 6, 12, 3, 7, 7);
             this.searchPeriodwork.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.searchPeriodwork.Labelname = "작업지시일";
             this.searchPeriodwork.Location = new System.Drawing.Point(153, 45);
             this.searchPeriodwork.Name = "searchPeriodwork";
+            this.searchPeriodwork.sdate = new System.DateTime(2020, 2, 6, 12, 3, 7, 7);
             this.searchPeriodwork.Size = new System.Drawing.Size(312, 25);
             this.searchPeriodwork.TabIndex = 1;
             // 
             // searchPeriodRequire
             // 
+            this.searchPeriodRequire.edate = new System.DateTime(2020, 2, 6, 12, 3, 6, 976);
             this.searchPeriodRequire.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.searchPeriodRequire.Labelname = "납기일";
             this.searchPeriodRequire.Location = new System.Drawing.Point(153, 76);
             this.searchPeriodRequire.Name = "searchPeriodRequire";
+            this.searchPeriodRequire.sdate = new System.DateTime(2020, 2, 6, 12, 3, 7, 7);
             this.searchPeriodRequire.Size = new System.Drawing.Size(312, 25);
             this.searchPeriodRequire.TabIndex = 2;
             // 

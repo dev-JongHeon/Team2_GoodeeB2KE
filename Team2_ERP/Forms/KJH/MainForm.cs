@@ -196,7 +196,7 @@ namespace Team2_ERP
                     }
                     else if (tmp.Tag.ToString() == string.Empty)
                     {
-                        if (tmp.Name=="menu_System"&&!logininfo.Employee_IsAdmin)
+                        if (tmp.Name == "menu_System" && !logininfo.Employee_IsAdmin)
                         {
                             tmp.Visible = false;
                         }
@@ -250,7 +250,7 @@ namespace Team2_ERP
                 if (item is Panel)
                 {
                     Panel tmp = (Panel)item;
-                    if (tmp.Tag.ToString() == string.Empty&&tmp.Visible)
+                    if (tmp.Tag.ToString() == string.Empty && tmp.Visible)
                     {
                         sumheight += tmp.Height;
                     }
@@ -317,7 +317,7 @@ namespace Team2_ERP
             Type type = Type.GetType($"Team2_ERP.{e.Node.Name},{Assembly.GetExecutingAssembly().GetName().Name}");
             var info = type.GetTypeInfo();
             object obj = GetInstance(type);
-            if (obj!=null)
+            if (obj != null)
             {
                 if (info.BaseType.Name == "BaseForm")
                 {
@@ -330,7 +330,7 @@ namespace Team2_ERP
                 else
                 {
                     OpenBase2DgvForm(e.Node.Text, e, (Base2Dgv)obj);
-                } 
+                }
             }
         }
 
@@ -355,13 +355,13 @@ namespace Team2_ERP
             GetMenuNodes(mlist, treeView_Stock.Nodes);
             GetMenuNodes(mlist, treeView_Sales.Nodes);
             GetMenuNodes(mlist, treeView_Info.Nodes);
-            for(int i = 0; i < mlist.Count; i++)
+            for (int i = 0; i < mlist.Count; i++)
             {
                 mlist[i].Tag = authlist[i];
             }
         }
 
-        private void GetMenuNodes(List<TreeNode> mlist,TreeNodeCollection node)
+        private void GetMenuNodes(List<TreeNode> mlist, TreeNodeCollection node)
         {
             foreach (TreeNode item in node)
             {
@@ -433,11 +433,11 @@ namespace Team2_ERP
         }
 
 
-        private void OpenBaseForm<T>(string name, TreeNodeMouseClickEventArgs e,T a) where T :BaseForm, new()
+        private void OpenBaseForm<T>(string name, TreeNodeMouseClickEventArgs e, T a) where T : BaseForm, new()
         {
             foreach (Form Child in Application.OpenForms)
             {
-                if (Child.GetType() == typeof(T))
+                if (Child.GetType() == a.GetType())
                 {
                     Child.Activate();
                     return;
@@ -464,7 +464,7 @@ namespace Team2_ERP
         {
             foreach (Form Child in Application.OpenForms)
             {
-                if (Child.GetType() == typeof(T))
+                if (Child.GetType() == a.GetType())
                 {
                     Child.Activate();
                     return;
@@ -486,11 +486,11 @@ namespace Team2_ERP
             frm.FormName = name;
             frm.Show();
         }
-        private void OpenBase2DgvForm<T>(string name, TreeNodeMouseClickEventArgs e,T a) where T : Base2Dgv, new()
+        private void OpenBase2DgvForm<T>(string name, TreeNodeMouseClickEventArgs e, T a) where T : Base2Dgv, new()
         {
             foreach (Form Child in Application.OpenForms)
             {
-                if (Child.GetType() == typeof(T))
+                if (Child.GetType() == a.GetType())
                 {
                     Child.Activate();
                     return;
@@ -819,7 +819,7 @@ namespace Team2_ERP
                 tabControl1.SelectedIndex = tindex - 1;
                 tabControl1.Invalidate();
             }
-            if(tindex==0 && tabControl1.TabCount == 1)
+            if (tindex == 0 && tabControl1.TabCount == 1)
             {
                 this.Close();
             }
