@@ -49,17 +49,29 @@ namespace Team2_ERP
             dgvBOM.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             dgvBOM.Columns[5].Width = 70;
 
-            UtilClass.SettingDgv(dgvBOMDetail);
+            UtilClass.SettingDgv(dgvBOMDetail1);
 
-            UtilClass.AddNewColum(dgvBOMDetail, "분류", "Category_Division", true, 100);
-            UtilClass.AddNewColum(dgvBOMDetail, "제품명", "Product_Name", true, 100);
-            UtilClass.AddNewColum(dgvBOMDetail, "개수", "Combination_RequiredQty", true, 100, DataGridViewContentAlignment.MiddleRight);
-            UtilClass.AddNewColum(dgvBOMDetail, "가격", "Product_Price", true, 100, DataGridViewContentAlignment.MiddleRight);
-            dgvBOMDetail.Columns[2].DefaultCellStyle.Format = "#,###개";
-            dgvBOMDetail.Columns[3].DefaultCellStyle.Format = "#,###원";
+            UtilClass.AddNewColum(dgvBOMDetail1, "분류", "Category_Division", true, 100);
+            UtilClass.AddNewColum(dgvBOMDetail1, "제품명", "Product_Name", true, 100);
+            UtilClass.AddNewColum(dgvBOMDetail1, "개수", "Combination_RequiredQty", true, 100, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dgvBOMDetail1, "가격", "Product_Price", true, 100, DataGridViewContentAlignment.MiddleRight);
+            dgvBOMDetail1.Columns[2].DefaultCellStyle.Format = "#,###개";
+            dgvBOMDetail1.Columns[3].DefaultCellStyle.Format = "#,###원";
 
-            dgvBOMDetail.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            dgvBOMDetail.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvBOMDetail1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dgvBOMDetail1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            UtilClass.SettingDgv(dgvBOMDetail2);
+
+            UtilClass.AddNewColum(dgvBOMDetail2, "분류", "Category_Division", true, 100);
+            UtilClass.AddNewColum(dgvBOMDetail2, "제품명", "Product_Name", true, 100);
+            UtilClass.AddNewColum(dgvBOMDetail2, "개수", "Combination_RequiredQty", true, 100, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dgvBOMDetail2, "가격", "Product_Price", true, 100, DataGridViewContentAlignment.MiddleRight);
+            dgvBOMDetail2.Columns[2].DefaultCellStyle.Format = "#,###개";
+            dgvBOMDetail2.Columns[3].DefaultCellStyle.Format = "#,###원";
+
+            dgvBOMDetail2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dgvBOMDetail2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         // DataGridView 가져오기
@@ -68,6 +80,13 @@ namespace Team2_ERP
             StandardService service = new StandardService();
             list = service.GetAllProduct();
             dgvBOM.DataSource = list;
+        }
+
+        private void GridViewReset()
+        {
+            dgvBOM.DataSource = null;
+            dgvBOMDetail1.DataSource = null;
+            dgvBOMDetail2.DataSource = null;
         }
 
         private void BOM_Load(object sender, EventArgs e)
@@ -90,7 +109,7 @@ namespace Team2_ERP
                 }
                 else if (str.Contains("CS"))
                 {
-                    e.Value = "역 전 개";
+                    e.Value = "전 개";
                 }
                 else
                 {
@@ -164,11 +183,9 @@ namespace Team2_ERP
         public override void Refresh(object sender, EventArgs e)
         {
             InitMessage();
-            dgvBOM.DataSource = null;
-            dgvBOMDetail.DataSource = null;
+            GridViewReset();
             searchUserControl1.CodeTextBox.Text = "";
             dgvBOM.CurrentCell = null;
-            dgvBOMDetail.CurrentCell = null;
             LoadGridView();
         }
 
@@ -191,8 +208,7 @@ namespace Team2_ERP
                     if (frm.ShowDialog() == DialogResult.OK)
                     {
                         MessageBox.Show("수정되었습니다.", "안내");
-                        dgvBOM.DataSource = null;
-                        dgvBOMDetail.DataSource = null;
+                        GridViewReset();
                         InitMessage();
                         LoadGridView();
                     }
@@ -203,8 +219,7 @@ namespace Team2_ERP
                     if (frm.ShowDialog() == DialogResult.OK)
                     {
                         MessageBox.Show("수정되었습니다.", "안내");
-                        dgvBOM.DataSource = null;
-                        dgvBOMDetail.DataSource = null;
+                        GridViewReset();
                         InitMessage();
                         LoadGridView();
                     }
@@ -232,8 +247,7 @@ namespace Team2_ERP
                     {
                         StandardService service = new StandardService();
                         service.DeleteSemiProduct(item);
-                        dgvBOM.DataSource = null;
-                        dgvBOMDetail.DataSource = null;
+                        GridViewReset();
                         LoadGridView();
                     }
                 }
@@ -243,8 +257,7 @@ namespace Team2_ERP
                     {
                         StandardService service = new StandardService();
                         service.DeleteProduct(item);
-                        dgvBOM.DataSource = null;
-                        dgvBOMDetail.DataSource = null;
+                        GridViewReset();
                         LoadGridView();
                     }
                 }
@@ -261,21 +274,18 @@ namespace Team2_ERP
             {
                 if (rdoAll.Checked)
                 {
-                    dgvBOM.DataSource = null;
-                    dgvBOMDetail.DataSource = null;
+                    GridViewReset();
                     dgvBOM.DataSource = list;
                 }
                 else if (rdoSemiProduct.Checked)
                 {
-                    dgvBOM.DataSource = null;
-                    dgvBOMDetail.DataSource = null;
+                    GridViewReset();
                     List<ProductVO> semiList = (from item in list where item.Product_Category.Contains("CS") select item).ToList();
                     dgvBOM.DataSource = semiList;
                 }
                 else
                 {
-                    dgvBOM.DataSource = null;
-                    dgvBOMDetail.DataSource = null;
+                    GridViewReset();
                     List<ProductVO> proList = (from item in list where item.Product_Category.Contains("CP") select item).ToList();
                     dgvBOM.DataSource = proList;
                 }
@@ -284,22 +294,19 @@ namespace Team2_ERP
             {
                 if (rdoAll.Checked)
                 {
-                    dgvBOM.DataSource = null;
-                    dgvBOMDetail.DataSource = null;
+                    GridViewReset();
                     List<ProductVO> allList = (from item in list where item.Product_ID.Equals(searchUserControl1.CodeTextBox.Tag.ToString()) select item).ToList();
                     dgvBOM.DataSource = allList;
                 }
                 else if (rdoSemiProduct.Checked)
                 {
-                    dgvBOM.DataSource = null;
-                    dgvBOMDetail.DataSource = null;
+                    GridViewReset();
                     List<ProductVO> semiList = (from item in list where item.Product_Category.Contains("CS") && item.Product_ID.Equals(searchUserControl1.CodeTextBox.Tag.ToString()) select item).ToList();
                     dgvBOM.DataSource = semiList;
                 }
                 else
                 {
-                    dgvBOM.DataSource = null;
-                    dgvBOMDetail.DataSource = null;
+                    GridViewReset();
                     List<ProductVO> semiList = (from item in list where item.Product_Category.Contains("CP") && item.Product_ID.Equals(searchUserControl1.CodeTextBox.Tag.ToString()) select item).ToList();
                     dgvBOM.DataSource = semiList;
                 }
@@ -315,20 +322,33 @@ namespace Team2_ERP
                 Product_Name = dgvBOM.Rows[e.RowIndex].Cells[3].Value.ToString()
             };
 
+            dgvBOMDetail1.DataSource = null;
+            dgvBOMDetail2.DataSource = null;
+
             if (e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[0].Value.ToString().Contains("CM"))
             {
-                dgvBOMDetail.DataSource = null;
+                StandardService service = new StandardService();
+                List<BOMVO> bomList = service.GetAllCombinationReverse(item.Product_ID);
+                bomList = (from item in bomList where item.Combination_DeletedYN == false select item).ToList();
+                dgvBOMDetail2.DataSource = bomList;
             }
             else if (e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[0].Value.ToString().Contains("CS"))
             {
                 StandardService service = new StandardService();
                 List<BOMVO> bomList = service.GetAllCombination(item.Product_ID);
                 bomList = (from item in bomList where item.Combination_DeletedYN == false select item).ToList();
-                dgvBOMDetail.DataSource = bomList;
+                dgvBOMDetail1.DataSource = bomList;
+
+                List<BOMVO> bomReverseList = service.GetAllCombinationReverse(item.Product_ID);
+                bomReverseList = (from item in bomReverseList where item.Combination_DeletedYN == false select item).ToList();
+                dgvBOMDetail2.DataSource = bomReverseList;
             }
             else if (e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[0].Value.ToString().Contains("CP"))
             {
-                dgvBOMDetail.DataSource = null;
+                StandardService service = new StandardService();
+                List<BOMVO> bomList = service.GetAllCombination(item.Product_ID);
+                bomList = (from item in bomList where item.Combination_DeletedYN == false select item).ToList();
+                dgvBOMDetail1.DataSource = bomList;
             }
         }
 

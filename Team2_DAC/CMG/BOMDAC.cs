@@ -68,6 +68,31 @@ namespace Team2_DAC
             }
         }
 
+        public List<BOMVO> GetAllCombinationReverse(string code)
+        {
+            string sql = "GetAllCombinationReverse";
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@Combination_Product_ID", code);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    List<BOMVO> list = Helper.DataReaderMapToList<BOMVO>(cmd.ExecuteReader());
+                    return list;
+                }
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         public List<ComboItemVO> GetComboProductCategory()
         {
             List<ComboItemVO> list = null;

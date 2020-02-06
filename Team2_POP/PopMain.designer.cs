@@ -126,7 +126,7 @@
             // 
             // splitContainer1
             // 
-            this.splitContainer1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.splitContainer1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
@@ -145,7 +145,7 @@
             // 
             // splitContainer8
             // 
-            this.splitContainer8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.splitContainer8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.splitContainer8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer8.Location = new System.Drawing.Point(0, 0);
             this.splitContainer8.Name = "splitContainer8";
@@ -163,6 +163,7 @@
             // 
             // panelHaderLeft
             // 
+            this.panelHaderLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.panelHaderLeft.Controls.Add(this.tableLayoutPanel2);
             this.panelHaderLeft.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelHaderLeft.Location = new System.Drawing.Point(0, 0);
@@ -172,7 +173,7 @@
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.tableLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.tableLayoutPanel2.ColumnCount = 8;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
@@ -201,7 +202,7 @@
             // lblFactory
             // 
             this.lblFactory.AutoSize = true;
-            this.lblFactory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.lblFactory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.lblFactory.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblFactory.Font = new System.Drawing.Font("나눔고딕", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblFactory.ForeColor = System.Drawing.Color.White;
@@ -214,7 +215,7 @@
             // lblWorkerName
             // 
             this.lblWorkerName.AutoSize = true;
-            this.lblWorkerName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.lblWorkerName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.lblWorkerName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblWorkerName.Font = new System.Drawing.Font("나눔고딕", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblWorkerName.ForeColor = System.Drawing.Color.White;
@@ -228,7 +229,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Font = new System.Drawing.Font("나눔고딕", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label3.ForeColor = System.Drawing.Color.White;
@@ -242,7 +243,7 @@
             // lblLine
             // 
             this.lblLine.AutoSize = true;
-            this.lblLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.lblLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.lblLine.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblLine.Font = new System.Drawing.Font("나눔고딕", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblLine.ForeColor = System.Drawing.Color.White;
@@ -255,7 +256,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("나눔고딕", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label2.ForeColor = System.Drawing.Color.White;
@@ -269,7 +270,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("나눔고딕", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.ForeColor = System.Drawing.Color.White;
@@ -291,7 +292,7 @@
             // 
             // splitContainer9
             // 
-            this.splitContainer9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.splitContainer9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.splitContainer9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer9.Location = new System.Drawing.Point(0, 0);
             this.splitContainer9.Name = "splitContainer9";
@@ -309,7 +310,7 @@
             // 
             // splitContainer10
             // 
-            this.splitContainer10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.splitContainer10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.splitContainer10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer10.Location = new System.Drawing.Point(0, 0);
             this.splitContainer10.Name = "splitContainer10";
@@ -327,7 +328,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -336,7 +337,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
@@ -346,6 +347,7 @@
             // 
             // splitContainer11
             // 
+            this.splitContainer11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.splitContainer11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer11.Location = new System.Drawing.Point(0, 0);
             this.splitContainer11.Name = "splitContainer11";
@@ -363,7 +365,7 @@
             // 
             // btnLogout
             // 
-            this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.btnLogout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogout.Location = new System.Drawing.Point(0, 0);
@@ -375,7 +377,7 @@
             // 
             // btnExit
             // 
-            this.btnExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.btnExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.btnExit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Location = new System.Drawing.Point(0, 0);
@@ -388,7 +390,7 @@
             // 
             // splitContainer2
             // 
-            this.splitContainer2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.splitContainer2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
             this.splitContainer2.Name = "splitContainer2";
@@ -432,7 +434,7 @@
             // 
             // btnDownTime
             // 
-            this.btnDownTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.btnDownTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.btnDownTime.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnDownTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDownTime.Font = new System.Drawing.Font("나눔고딕", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -447,7 +449,7 @@
             // 
             // btnNextDate
             // 
-            this.btnNextDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.btnNextDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.btnNextDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnNextDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNextDate.Location = new System.Drawing.Point(630, 3);
@@ -460,7 +462,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Font = new System.Drawing.Font("나눔고딕", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label4.ForeColor = System.Drawing.Color.White;
@@ -473,7 +475,7 @@
             // 
             // btnPreDate
             // 
-            this.btnPreDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.btnPreDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.btnPreDate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnPreDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPreDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -488,7 +490,7 @@
             // lblDate
             // 
             this.lblDate.AutoSize = true;
-            this.lblDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.lblDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.lblDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblDate.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 24.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblDate.ForeColor = System.Drawing.Color.White;
@@ -501,7 +503,7 @@
             // 
             // btnDate
             // 
-            this.btnDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.btnDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.btnDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDate.Font = new System.Drawing.Font("나눔고딕", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -516,7 +518,7 @@
             // 
             // btnWorkStart
             // 
-            this.btnWorkStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.btnWorkStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.btnWorkStart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnWorkStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnWorkStart.Font = new System.Drawing.Font("나눔고딕", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -531,7 +533,7 @@
             // 
             // splitContainer3
             // 
-            this.splitContainer3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.splitContainer3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer3.Location = new System.Drawing.Point(0, 0);
             this.splitContainer3.Name = "splitContainer3";
@@ -562,7 +564,7 @@
             // 
             // splitContainer4
             // 
-            this.splitContainer4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.splitContainer4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer4.Location = new System.Drawing.Point(0, 0);
             this.splitContainer4.Name = "splitContainer4";
@@ -581,6 +583,7 @@
             // 
             // splitContainer6
             // 
+            this.splitContainer6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.splitContainer6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer6.Location = new System.Drawing.Point(0, 0);
             this.splitContainer6.Name = "splitContainer6";
@@ -658,7 +661,7 @@
             // 
             // btnDefective
             // 
-            this.btnDefective.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.btnDefective.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.btnDefective.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnDefective.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDefective.Font = new System.Drawing.Font("나눔고딕", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -673,7 +676,7 @@
             // 
             // btnWorker
             // 
-            this.btnWorker.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.btnWorker.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.btnWorker.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnWorker.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnWorker.Font = new System.Drawing.Font("나눔고딕", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -688,7 +691,7 @@
             // 
             // btnProduceStart
             // 
-            this.btnProduceStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.btnProduceStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.btnProduceStart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnProduceStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProduceStart.Font = new System.Drawing.Font("나눔고딕", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -720,7 +723,7 @@
             // 
             // lblTime
             // 
-            this.lblTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.lblTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.lblTime.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblTime.Font = new System.Drawing.Font("나눔고딕", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -732,7 +735,7 @@
             // 
             // lblWorker
             // 
-            this.lblWorker.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))));
+            this.lblWorker.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.lblWorker.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblWorker.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblWorker.Font = new System.Drawing.Font("나눔고딕", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -747,7 +750,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(236)))), ((int)(((byte)(241)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.ClientSize = new System.Drawing.Size(1904, 1041);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));

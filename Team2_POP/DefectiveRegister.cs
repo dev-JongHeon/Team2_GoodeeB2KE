@@ -127,19 +127,26 @@ namespace Team2_POP
         #region 버튼 이벤트
         private void btnDefProSelect_Click(object sender, EventArgs e)
         {
+            if(cboDefItem.SelectedIndex != 0)
             lblDefItem.Text = cboDefItem.Text;
         }
 
         private void btnDefNameSelect_Click(object sender, EventArgs e)
         {
-            lblDefectiveName.Tag = cboDefectiveName.SelectedValue.ToString();
-            lblDefectiveName.Text = cboDefectiveName.Text;
+            if (cboDefectiveName.SelectedIndex != 0)
+            {
+                lblDefectiveName.Tag = cboDefectiveName.SelectedValue.ToString();
+                lblDefectiveName.Text = cboDefectiveName.Text;
+            }
         }
 
         private void btnHandle_Click(object sender, EventArgs e)
         {
-            lblHandle.Tag = cboHandle.SelectedValue.ToString();
-            lblHandle.Text = cboHandle.Text;
+            if (cboDefectiveName.SelectedIndex != 0)
+            {
+                lblHandle.Tag = cboHandle.SelectedValue.ToString();
+                lblHandle.Text = cboHandle.Text;
+            }
         }
         #endregion
 

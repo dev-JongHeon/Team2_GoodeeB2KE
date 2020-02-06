@@ -79,7 +79,9 @@ namespace Team2_POP
             option = options;
 
             frm = new CustomMessageBox();
-            return frm.ShowDialog();
+            frm.ShowDialog();
+
+            return frm.DialogResult;
         }
 
         public static DialogResult ShowDialog(string header, string msg, MessageBoxIcon options, bool visible)
@@ -91,7 +93,9 @@ namespace Team2_POP
             buttonCancelVisible = visible;
 
             frm = new CustomMessageBox();
-            return frm.ShowDialog();
+            frm.ShowDialog();
+
+            return frm.DialogResult;
         }
 
         private void btnExit_Click(object sender, EventArgs e)

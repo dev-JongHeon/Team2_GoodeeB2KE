@@ -527,7 +527,7 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(59)))), ((int)(((byte)(64)))));
             this.label1.Location = new System.Drawing.Point(268, 144);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 83);
+            this.label1.Size = new System.Drawing.Size(83, 83);
             this.label1.TabIndex = 16;
             this.label1.Text = "~";
             // 
@@ -558,7 +558,6 @@
             this.Labelname = "기간선택";
             this.Name = "CalendarForm";
             this.Titleimg = global::Team2_ERP.Properties.Resources.Calendar_32x32;
-            this.Load += new System.EventHandler(this.CalendarForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel_Title.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).EndInit();

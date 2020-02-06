@@ -20,6 +20,9 @@ namespace Team2_POP
         public int RequestQty { get; set; }
         public string ProduceID { get; set; }
         public int LineID { get; set; }
+
+        public bool Connected { get; set; }
+
         #endregion
 
         public event EventHandler Received;
@@ -51,10 +54,9 @@ namespace Team2_POP
             await Read();
         }
 
-        public async Task Start()
-        {
-           bool conn = await Connect();
-            if(conn)
+        public void Start()
+        {           
+            if(Connected)
             {
                 Writer();
                 timer.Start();
@@ -76,13 +78,14 @@ namespace Team2_POP
                 if (client.Connected)
                 {
                     netStream = client.GetStream();
-
+                    Connected = client.Connected;
                     // 최대 수신시간 5초
                     netStream.ReadTimeout = timeout;
                 }
 
                 return await Task.FromResult(client.Connected);
             }
+            
             catch (Exception ex)
             {
                 ErrorMessage(ex);
@@ -149,7 +152,7 @@ namespace Team2_POP
 
                 //}
                 #endregion
-
+                
                 byte[] buff = new byte[1024];
 
                 int nbytes = await netStream.ReadAsync(buff, 0, buff.Length);
@@ -157,7 +160,8 @@ namespace Team2_POP
                 string[] msg = Encoding.UTF8.GetString(buff, 0, nbytes).Split(',');
                 if (nbytes > 0)
                 {
-                    foreach (Form frm in Application.OpenForms)
+                    FormCollection frms = Application.OpenForms;
+                    foreach (Form frm in frms)
                     {
                         // 활성화된 POP메인폼을 찾고
                         if (frm is PopMain)
@@ -183,9 +187,12 @@ namespace Team2_POP
                                     e.IsCompleted = bool.Parse(msg[2]);                                   
                                 }
 
-                                Debug.WriteLine(msg[0]);
-                                if (Received != null)
-                                    Received.Invoke(this, e);
+                                if (e.Message != null)
+                                {
+                                    Debug.WriteLine(msg[0]);
+                                    if (Received != null)
+                                        Received.Invoke(this, e);
+                                }
                             }
                         }
                     }

@@ -11,14 +11,17 @@ namespace Team2_Machine
     //파일에 쓰인 견적서를 바탕으로 DB에 접속한다.
     public class OperationMachine
     {
+        #region 프로퍼티
         public string PerformanceID { get; set; }
         public string ProduceID { get; set; }
         public int RequestQty { get; set; }
+        #endregion
 
-        // Insert한 생산실적 아이디와 생산할 수량이 이미 파일에 기록되있어
-        // 해당 파일을 가져와서 생산함
+        #region 전역변수
 
-        int iCnt;
+        int iTotalCnt; // 총 투입개수(소요개수)
+
+        #endregion
         private bool IsSuccessItem()
         {
             int iResult = new Random((int)DateTime.UtcNow.Ticks).Next(1, 101);
@@ -32,34 +35,36 @@ namespace Team2_Machine
             try
             {
                 Service service = new Service();
-                
-                for (int i = 0; i < RequestQty; i++)
-                {
-                    iCnt++;
-                    bool b = IsSuccessItem();
-                    Thread.Sleep(new Random().Next(100,120));
 
-                    if (b)
-                        service.Producing(PerformanceID, 1, 0);
+                // currentQty = 현재투입량, RequestQty = 요청수량
+                for (int currentQty = 0; currentQty < RequestQty; currentQty++)
+                {
+                    iTotalCnt++;
+                    bool IsSuccess = IsSuccessItem(); // true => 양품 false => 불량품
+                    Thread.Sleep(new Random().Next(100, 120));
+
+                    int itemQuality = 0;
+
+                    if (IsSuccess)
+                        itemQuality = 1;
                     else
-                    {
-                        service.Producing(PerformanceID, 0, 1);
-                        i--;
-                    }
+                        currentQty--;
+
+                    // 생산중
+                    service.Producing(PerformanceID, itemQuality, 1 - itemQuality);
                 }
 
                 // 생산 완료 ( 재고 감소 )
-
                 Thread.Sleep(100);
                 service.EndProduce(PerformanceID);
 
-                return iCnt;
+                return iTotalCnt;
             }
-            catch(Exception Ex)
+            catch (Exception Ex)
             {
                 Debug.WriteLine(Ex.Message);
                 Debug.WriteLine(Ex);
-                return iCnt;
+                return iTotalCnt;
             }
         }
     }

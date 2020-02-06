@@ -40,7 +40,7 @@
             this.txtEmployeesPhoneNumber = new System.Windows.Forms.TextBox();
             this.dtpEmployeesHireDate = new System.Windows.Forms.DateTimePicker();
             this.dtpEmployeesResignDate = new System.Windows.Forms.DateTimePicker();
-            this.txtEmployeesBirthDay = new System.Windows.Forms.DateTimePicker();
+            this.dtpEmployeesBirthDay = new System.Windows.Forms.DateTimePicker();
             this.cboEmployeesCategory = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel_Title.SuspendLayout();
@@ -53,7 +53,7 @@
             // panel5
             // 
             this.panel5.Controls.Add(this.cboEmployeesCategory);
-            this.panel5.Controls.Add(this.txtEmployeesBirthDay);
+            this.panel5.Controls.Add(this.dtpEmployeesBirthDay);
             this.panel5.Controls.Add(this.dtpEmployeesResignDate);
             this.panel5.Controls.Add(this.dtpEmployeesHireDate);
             this.panel5.Controls.Add(this.txtEmployeesPhoneNumber);
@@ -70,10 +70,12 @@
             // btnCancel
             // 
             this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOK
             // 
             this.btnOK.FlatAppearance.BorderSize = 0;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // label2
             // 
@@ -182,13 +184,13 @@
             this.dtpEmployeesResignDate.Size = new System.Drawing.Size(132, 21);
             this.dtpEmployeesResignDate.TabIndex = 2;
             // 
-            // txtEmployeesBirthDay
+            // dtpEmployeesBirthDay
             // 
-            this.txtEmployeesBirthDay.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.txtEmployeesBirthDay.Location = new System.Drawing.Point(100, 355);
-            this.txtEmployeesBirthDay.Name = "txtEmployeesBirthDay";
-            this.txtEmployeesBirthDay.Size = new System.Drawing.Size(132, 21);
-            this.txtEmployeesBirthDay.TabIndex = 2;
+            this.dtpEmployeesBirthDay.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpEmployeesBirthDay.Location = new System.Drawing.Point(100, 355);
+            this.dtpEmployeesBirthDay.Name = "dtpEmployeesBirthDay";
+            this.dtpEmployeesBirthDay.Size = new System.Drawing.Size(132, 21);
+            this.dtpEmployeesBirthDay.TabIndex = 2;
             // 
             // cboEmployeesCategory
             // 
@@ -205,6 +207,7 @@
             this.ClientSize = new System.Drawing.Size(800, 525);
             this.Name = "EmployeesInsUp";
             this.Text = "EmployeesInsUp";
+            this.Load += new System.EventHandler(this.EmployeesInsUp_Load);
             this.panel1.ResumeLayout(false);
             this.panel_Title.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).EndInit();
@@ -224,7 +227,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cboEmployeesCategory;
-        private System.Windows.Forms.DateTimePicker txtEmployeesBirthDay;
+        private System.Windows.Forms.DateTimePicker dtpEmployeesBirthDay;
         private System.Windows.Forms.DateTimePicker dtpEmployeesResignDate;
         private System.Windows.Forms.DateTimePicker dtpEmployeesHireDate;
         private System.Windows.Forms.TextBox txtEmployeesPhoneNumber;

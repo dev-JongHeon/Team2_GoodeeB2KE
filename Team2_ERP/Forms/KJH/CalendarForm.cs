@@ -41,7 +41,7 @@ namespace Team2_ERP
                     case Mode.LastMonth:
                         DateTime dt = DateTime.Now.AddMonths(-1);
                         StartCalendar.SelectionStart = new DateTime(dt.Year, dt.Month, 1);
-                        EndCalendar.SelectionStart = new DateTime(dt.Year, dt.Month, DateTime.DaysInMonth(dt.Year,dt.Month));
+                        EndCalendar.SelectionStart = new DateTime(dt.Year, dt.Month, DateTime.DaysInMonth(dt.Year, dt.Month));
                         break;
                     case Mode.Month:
                         StartCalendar.SelectionStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
@@ -129,8 +129,6 @@ namespace Team2_ERP
             }
         }
 
-
-
         public CalendarForm()
         {
             InitializeComponent();
@@ -139,11 +137,8 @@ namespace Team2_ERP
         public CalendarForm(DateTime start, DateTime end)
         {
             InitializeComponent();
-            if (start != null && end != null)
-            {
-                Startdate = start;
-                Enddate = end;
-            }
+            Startdate = start;
+            Enddate = end;
 
         }
 
@@ -161,12 +156,6 @@ namespace Team2_ERP
             }
         }
 
-        private void CalendarForm_Load(object sender, EventArgs e)
-        {
-            CalendarMode = Mode.Today;
-
-        }
-
         private void btnOK_Click(object sender, EventArgs e)
         {
             if (StartCalendar.SelectionStart > EndCalendar.SelectionStart)
@@ -174,7 +163,11 @@ namespace Team2_ERP
                 MessageBox.Show(Properties.Settings.Default.CalendarError, Properties.Settings.Default.MsgBoxTitleError, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 DialogResult = DialogResult.None;
             }
+            else if ((EndCalendar.SelectionStart - StartCalendar.SelectionStart).Days > 366)
+            {
+                MessageBox.Show(Properties.Settings.Default.CalendarMaxError, Properties.Settings.Default.MsgBoxTitleError, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                DialogResult = DialogResult.None;
+            }
         }
-
     }
 }

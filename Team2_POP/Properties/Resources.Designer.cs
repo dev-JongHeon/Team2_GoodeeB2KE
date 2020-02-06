@@ -199,7 +199,9 @@ namespace Team2_POP.Properties {
         }
         
         /// <summary>
-        ///   선택하신 불량번호 : {0} \n 처리하지 못하었습니다. \n다시시도해주세요.과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   선택하신 불량번호 : {0} 
+        ///처리하지 못하었습니다. 
+        ///다시시도해주세요.과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string MsgDefectiveResultFailContents {
             get {
@@ -208,7 +210,7 @@ namespace Team2_POP.Properties {
         }
         
         /// <summary>
-        ///   불량등록실패과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   불량등록 실패과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string MsgDefectiveResultFailHeader {
             get {
@@ -217,7 +219,10 @@ namespace Team2_POP.Properties {
         }
         
         /// <summary>
-        ///   선택하신 불량번호 : {0} \n불량유형 : {1} \n불량처리 : {2}상태로 정상처리 되었습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   선택하신 불량번호 : {0} 
+        ///불량유형 : {1} 
+        ///불량처리 : {2}상태
+        ///위에 정보로 정상처리 되었습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string MsgDefectiveResultSucceesContents {
             get {
@@ -226,7 +231,7 @@ namespace Team2_POP.Properties {
         }
         
         /// <summary>
-        ///   불량등록성공과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   불량등록 성공과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string MsgDefectiveResultSucceesHeader {
             get {
@@ -244,7 +249,8 @@ namespace Team2_POP.Properties {
         }
         
         /// <summary>
-        ///   비가동 데이터가 존재하지 않습니다. \n다시 시도하시겠습니까?과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   비가동 데이터가 존재하지 않습니다. 
+        ///다시 시도하시겠습니까?과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string MsgDowntimeGetResultFailContent {
             get {
@@ -262,7 +268,8 @@ namespace Team2_POP.Properties {
         }
         
         /// <summary>
-        ///   비가동처리가 정상적으로 등록되지않았습니다. \n다시 시도해주세요.과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   비가동처리가 정상적으로 등록되지않았습니다. 
+        ///다시 시도해주세요.과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string MsgDowntimeSetResultFailContent {
             get {
@@ -280,7 +287,18 @@ namespace Team2_POP.Properties {
         }
         
         /// <summary>
-        ///   작업날짜 : {0} \n공정 : {1} \n위의 작업내역이 존재하지 않습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   데이터 불러오기 실패과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgLoadResultFailHeader {
+            get {
+                return ResourceManager.GetString("MsgLoadResultFailHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   작업날짜 : {0} 
+        ///공정 : {1} 
+        ///위의 작업내역이 존재하지 않습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string MsgWorkResultNullContent {
             get {
