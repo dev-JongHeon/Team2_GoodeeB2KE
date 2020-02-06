@@ -68,6 +68,7 @@ namespace Team2_Machine
             }
             catch (Exception Ex)
             {
+                new Service().EndProduce(PerformanceID);
                 Debug.WriteLine(Ex.Message);
                 Debug.WriteLine(Ex);
                 return iTotalCnt;

@@ -15,8 +15,7 @@ using Team2_POP.Properties;
 namespace Team2_POP
 {
     public partial class PopMain : Form
-    {
-
+    {        
         #region 프로퍼티 & 전역변수
         //===============
         //    프로퍼티
@@ -189,7 +188,7 @@ namespace Team2_POP
 
         #endregion
 
-
+        
 
         /// <summary>
         /// 비가동인지 아닌지 여부
@@ -241,7 +240,7 @@ namespace Team2_POP
                 dgvWork.DataSource = list;
             else
                 CustomMessageBox.ShowDialog(Resources.MsgWorkResultNulllHeader
-                    ,string.Format(Resources.MsgWorkResultNullContent, date, lblLine.Text), MessageBoxIcon.Information);
+                    , string.Format(Resources.MsgWorkResultNullContent, date, lblLine.Text), MessageBoxIcon.Information);
 
         }
 
@@ -325,13 +324,13 @@ namespace Team2_POP
                 CustomMessageBox.ShowDialog("데이터 오류", "생산목록을 선택해주세요.", MessageBoxIcon.Warning);
                 return;
             }
-            
+
             try
             {
                 string produceID = dgvProduce.SelectedRows[0].Cells[0].Value.ToString();
 
                 // 생산해야할 개수와 생산실적아이디를 가져옴
-                result = new Service().StartProduce(produceID); 
+                result = new Service().StartProduce(produceID);
 
                 if (result.Length == 2)
                 {
@@ -339,20 +338,24 @@ namespace Team2_POP
                     client.RequestQty = Convert.ToInt32(result[1]);
                     client.ProduceID = produceID;
 
-                    if (!client.Connected)
-                    {
-                        bool bConnect = await client.Connect();
-                    }
 
                     //서버와 연결되어있지 않은경우
                     if (!client.Connected)
                     {
-                        CustomMessageBox.ShowDialog("기계통신오류", "기계와의 작동이 원할하지 않습니다. \n기계서버의 상태를 점검한후 다시 시도해주세요.", MessageBoxIcon.Error);
-                        ConnectServer();
+                        bool bConnect = await client.Connect();
+
+                        if (!bConnect)
+                        {
+                            CustomMessageBox.ShowDialog("기계통신오류", "기계와의 작동이 원할하지 않습니다. \n기계서버의 상태를 점검한후 다시 시도해주세요.", MessageBoxIcon.Error);
+                            ConnectServer();
+                        }
                     }
+
                     //서버와 연결된 경우
                     else
+                    {                      
                         client.Start();
+                    }
                 }
                 else
                 {
@@ -367,9 +370,13 @@ namespace Team2_POP
 
         }
         public void Receive(object sender, ReceiveEventArgs e)
-        {            
+        {
             if (e.IsCompleted)
-                CustomMessageBox.ShowDialog("성공", e.Message, MessageBoxIcon.Information);
+            {
+                CustomMessageBox.ShowDialog("성공", e.Message, MessageBoxIcon.Information);  
+                
+
+            }
             else
                 CustomMessageBox.ShowDialog("실패", e.Message, MessageBoxIcon.Error);
         }
@@ -471,7 +478,7 @@ namespace Team2_POP
                 dgvProduce.DataSource = null;
                 dgvPerformance.DataSource = null;
 
-                if (e.RowIndex > -1 && e.ColumnIndex > -1 && dgvWork.SelectedRows[0].Cells[0].Value !=null)
+                if (e.RowIndex > -1 && e.ColumnIndex > -1 && dgvWork.SelectedRows[0].Cells[0].Value != null)
                 {
                     workID = dgvWork.SelectedRows[0].Cells[0].Value.ToString();
 
@@ -482,9 +489,9 @@ namespace Team2_POP
                     // 불러온 값이 없는 경우
                     if (list == null)
                     {
-                       DialogResult dResult = CustomMessageBox.ShowDialog(Resources.MsgLoadResultFailHeader
-                           , "생산데이터를 불러오는 중에 실패했습니다. 다시 시도하시겠습니까?", MessageBoxIcon.Information, MessageBoxButtons.OKCancel);
-                        if(dResult == DialogResult.OK)
+                        DialogResult dResult = CustomMessageBox.ShowDialog(Resources.MsgLoadResultFailHeader
+                            , "생산데이터를 불러오는 중에 실패했습니다. 다시 시도하시겠습니까?", MessageBoxIcon.Information, MessageBoxButtons.OKCancel);
+                        if (dResult == DialogResult.OK)
                         {
                             list = service.GetProduce(workID);
                         }
@@ -644,6 +651,6 @@ namespace Team2_POP
 
         }
 
-        
+
     }
 }

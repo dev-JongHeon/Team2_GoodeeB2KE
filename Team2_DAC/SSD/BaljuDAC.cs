@@ -18,6 +18,7 @@ namespace Team2_DAC
             conn = new SqlConnection(ConnectionStr);
         }
 
+        
         // 발주조회
         public List<Balju> GetBaljuList()
         {
@@ -27,12 +28,12 @@ namespace Team2_DAC
                 {
                     StringBuilder sb = new StringBuilder();
                     sb.Append("SELECT Balju_ID, Company_ID, Company_Name, Balju_Date, Employees_Name, Balju_DeletedYN ");
-                    sb.Append("FROM   BaljuList");
-
+                    sb.Append("FROM   BaljuList ");
+                    
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandText = sb.ToString();
-                                      
+
                     conn.Open();
                     List<Balju> list = Helper.DataReaderMapToList<Balju>(cmd.ExecuteReader());
                     conn.Close();
@@ -80,7 +81,8 @@ namespace Team2_DAC
                 {
                     StringBuilder sb = new StringBuilder();
                     sb.Append("SELECT Balju_ID, Product_ID, Product_Name, BaljuDetail_Qty ");
-                    sb.Append("FROM   BaljuList_Detail");
+                    sb.Append("FROM   BaljuList_Detail ");
+                    //sb.Append("WHERE  Balju_ID IN (@Balju_ID)");
 
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
@@ -155,6 +157,32 @@ namespace Team2_DAC
                 }
             }
 
+        }
+    }
+
+    public static class ExtensionParams
+    {
+        public static SqlParameter[] AddArrayParameters<T>(this SqlCommand cmd, string paramNameRoot, IEnumerable<T> values, SqlDbType? dbType = null, int? size = null)
+        {
+            var parameters = new List<SqlParameter>();
+            var parameterNames = new List<string>();
+            var paramNbr = 1;
+            foreach (var value in values)
+            {
+                var paramName = string.Format("@{0}{1}", paramNameRoot, paramNbr++);
+                parameterNames.Add(paramName);
+                SqlParameter p = new SqlParameter(paramName, value);
+                if (dbType.HasValue)
+                    p.SqlDbType = dbType.Value;
+                if (size.HasValue)
+                    p.Size = size.Value;
+                cmd.Parameters.Add(p);
+                parameters.Add(p);
+            }
+
+            cmd.CommandText = cmd.CommandText.Replace("{" + paramNameRoot + "}", string.Join(",", parameterNames));
+
+            return parameters.ToArray();
         }
     }
 }
