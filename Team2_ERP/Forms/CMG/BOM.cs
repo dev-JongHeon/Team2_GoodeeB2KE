@@ -334,7 +334,12 @@ namespace Team2_ERP
                 else if (e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[0].Value.ToString().Contains("CS"))
                 {
                     StandardService service = new StandardService();
-                    List<BOMVO> bomList = service.GetAllCombination(item.Product_ID);
+                    StringBuilder sb = new StringBuilder();
+                    foreach (DataGridViewRow item in dgvBOM.Rows)
+                    {
+                        sb.Append($"'{item.Cells[2].Value.ToString()}',");
+                    }
+                    List<BOMVO> bomList = service.GetAllCombination(sb.ToString().Trim(','));
                     bomList = (from item in bomList where item.Combination_DeletedYN == false select item).ToList();
                     dgvBOMDetail1.DataSource = bomList;
 

@@ -172,6 +172,12 @@ namespace Team2_ERP.Service.CMG
             return dac.GetAllCombination(code);
         }
 
+        public List<BOMVO> GetAllCombination1(string code)
+        {
+            BOMDAC dac = new BOMDAC();
+            return dac.GetAllCombination1(code);
+        }
+
         public List<BOMVO> GetAllCombinationReverse(string code)
         {
             BOMDAC dac = new BOMDAC();

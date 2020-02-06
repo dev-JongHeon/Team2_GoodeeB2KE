@@ -45,18 +45,46 @@ namespace Team2_DAC
 
         public List<BOMVO> GetAllCombination(string code)
         {
-            string sql = "CMG_GetAllCombination";
+            string sql = "CMG_GetAllCombination1";
 
             try
             {
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     conn.Open();
-                    cmd.Parameters.AddWithValue("@ProductID", code);
+                    cmd.Parameters.AddWithValue("@id", code);
                     cmd.CommandType = CommandType.StoredProcedure;
                     List<BOMVO> list = Helper.DataReaderMapToList<BOMVO>(cmd.ExecuteReader());
                     return list;
                 }
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        public List<BOMVO> GetAllCombination1(string code)
+        {
+            try
+            {
+                List<BOMVO> list = new List<BOMVO>();
+                DataSet ds = new DataSet();
+                string sql = "CMG_GetAllCombination1";
+                using (SqlDataAdapter adpt = new SqlDataAdapter(sql, conn))
+                {
+                    adpt.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    adpt.SelectCommand.Parameters.AddWithValue("@id", code);
+                    conn.Open();
+                    adpt.Fill(ds);
+                    conn.Close();
+                    list=Helper.ConvertDataTableToList<BOMVO>(ds.Tables[0]);
+                }
+                return list;
+                
             }
             catch (Exception err)
             {
