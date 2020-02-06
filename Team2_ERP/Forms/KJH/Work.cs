@@ -80,13 +80,16 @@ namespace Team2_ERP
             }
             dgvWorkList.DataSource = null;
             dgvProduce.DataSource = null;
+            ClearSearchOption();
             if (!isFirst)
             {
                 dgvWorkList.DataSource = list;
                 ClearDgv();
+                rbxAll.Checked = true;
+
             }
-            ClearSearchOption();
             frm.NoticeMessage = Properties.Settings.Default.RefreshDone;
+            
             isFirst = false;
         }
 
@@ -98,7 +101,9 @@ namespace Team2_ERP
             searchPeriodwork.Startdate.Clear();
             searchPeriodwork.Enddate.Clear();
             rbx0.Checked = false;
-            rbx0.Checked = true;
+            rbx1.Checked = false;
+            rbx2.Checked = false;
+            rbxAll.Checked = false;
         }
 
         private void Work_Activated(object sender, EventArgs e)
@@ -180,7 +185,27 @@ namespace Team2_ERP
 
         public override void Excel(object sender, EventArgs e)
         {
-            MessageBox.Show("엑셀");
+            if (dgvWorkList.Rows.Count > 0)
+            {
+                using (WaitForm frm = new WaitForm())
+                {
+                    frm.Processing = ExcelExport;
+                    frm.ShowDialog();
+                }
+                frm.WindowState = FormWindowState.Minimized;
+            }
+            else
+            {
+                frm.NoticeMessage = Properties.Settings.Default.ExcelError;
+            }
+
+        }
+
+        private void ExcelExport()
+        {
+            List<WorkVO> excellist = ((List<WorkVO>)dgvWorkList.DataSource).ToList();
+            string[] exceptlist = new string[] { "Employees_ID", "Factory_ID", "Line_ID", "Product_ID" };
+            UtilClass.ExportTo2DataGridView<WorkVO, ProduceVO>(excellist, exceptlist, "GetProduceByWorkID");
         }
 
         public override void Print(object sender, EventArgs e)
@@ -227,11 +252,6 @@ namespace Team2_ERP
             }
         }
 
-        private void dgvWorkList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            GetProduce();
-        }
-
         private void GetProduce()
         {
             dgvProduce.DataSource = null;
@@ -250,6 +270,14 @@ namespace Team2_ERP
                 {
                     MessageBox.Show(err.Message);
                 }
+            }
+        }
+
+        private void dgvWorkList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                GetProduce();
             }
         }
     }

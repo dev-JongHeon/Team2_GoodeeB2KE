@@ -41,6 +41,7 @@ namespace Team2_ERP
 
         private void SettingDgvDefective()
         {
+            
             UtilClass.SettingDgv(dgvDefective);
             UtilClass.AddNewColum(dgvDefective, "생산실적번호", "Performance_ID", true, 130);
             UtilClass.AddNewColum(dgvDefective, "공장번호", "Factory_ID", false);
@@ -446,10 +447,39 @@ namespace Team2_ERP
 
         public override void Excel(object sender, EventArgs e)
         {
-            using (WaitForm frm = new WaitForm())
+            if ((tabDefective.SelectedIndex == 0 && dgvDefective.Rows.Count > 0) || (tabDefective.SelectedIndex == 1 && dgvDefectiveByLine.Rows.Count > 0) || (tabDefective.SelectedIndex == 2 && dgvDefectiveByDefecType.Rows.Count > 0)|| (tabDefective.SelectedIndex == 3 && dgvDefectiveByDefecHandleType.Rows.Count > 0))
             {
-                frm.Processing = ExportExcel;
-                frm.ShowDialog();
+                using (WaitForm frm = new WaitForm())
+                {
+                    frm.Processing = ExcelExport;
+                    frm.ShowDialog();
+                }
+                frm.WindowState = FormWindowState.Minimized;
+            }
+            else
+            {
+                frm.NoticeMessage = Properties.Settings.Default.ExcelError;
+            }
+        }
+
+        private void ExcelExport()
+        {
+            string[] exceptlist = new string[] { "DefectiveHandle_ID", "DefectiveType_ID", "Employees_ID", "Factory_ID", "Line_ID", "Product_ID" };
+            if (tabDefective.SelectedIndex == 0)
+            {
+                UtilClass.ExportToDataGridView(dgvDefective, exceptlist);
+            }
+            else if (tabDefective.SelectedIndex == 1)
+            {
+                UtilClass.ExportToDataGridView(dgvDefectiveByLine, exceptlist);
+            }
+            else if(tabDefective.SelectedIndex==2)
+            {
+                UtilClass.ExportToDataGridView(dgvDefectiveByDefecType, exceptlist);
+            }
+            else
+            {
+                UtilClass.ExportToDataGridView(dgvDefectiveByDefecHandleType, exceptlist);
             }
         }
 

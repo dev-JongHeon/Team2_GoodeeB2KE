@@ -25,9 +25,13 @@ namespace Team2_DAC
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("SELECT StockReceipt_ID, StockReceipt_Division, StockReceipt_Date, Warehouse_ID, Warehouse_Division,                      Warehouse_Name, Product_ID, Product_Name, StockReceipt_Quantity, Employees_Name,                                  StockReceipt_Division1 ");
+                    sb.Append("FROM   StockReceipt_List ");
+
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "select * from StockReceipt_List";
+                    cmd.CommandText = sb.ToString();
                     conn.Open();
                     List<StockReceipt> list = Helper.DataReaderMapToList<StockReceipt>(cmd.ExecuteReader());
                     conn.Close();
@@ -47,9 +51,13 @@ namespace Team2_DAC
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("SELECT Product_ID, Product_Name, CodeTable_CodeName, Warehouse_ID, Warehouse_Name, Product_Price,                        Product_Qty, Product_Safety, Count_Subtract, Product_DeletedYN ");
+                    sb.Append("FROM   StockStatus_List ");
+
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "select * from StockStatus_List";
+                    cmd.CommandText = sb.ToString();
                     conn.Open();
                     List<StockStatus> list = Helper.DataReaderMapToList<StockStatus>(cmd.ExecuteReader());
                     conn.Close();

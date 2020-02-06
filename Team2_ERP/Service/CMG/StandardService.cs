@@ -148,6 +148,12 @@ namespace Team2_ERP.Service.CMG
             return dac.GetAllCombination(code);
         }
 
+        public List<BOMVO> GetAllCombinationReverse(string code)
+        {
+            BOMDAC dac = new BOMDAC();
+            return dac.GetAllCombinationReverse(code);
+        }
+
         public List<ComboItemVO> GetComboProductCategory()
         {
             BOMDAC dac = new BOMDAC();
@@ -200,6 +206,30 @@ namespace Team2_ERP.Service.CMG
         {
             BOMDAC dac = new BOMDAC();
             return dac.GetImage(code);
+        }
+
+        public List<EmployeeVO> GetAllEmployee()
+        {
+            EmployeeDAC dac = new EmployeeDAC();
+            return dac.GetAllEmployee();
+        }
+
+        public List<ComboItemVO> GetComboEmployee()
+        {
+            EmployeeDAC dac = new EmployeeDAC();
+            return dac.GetComboEmployee();
+        }
+
+        public bool InsertEmployee(EmployeeVO item)
+        {
+            EmployeeDAC dac = new EmployeeDAC();
+            return dac.InsertEmployee(item);
+        }
+
+        public bool UpdateEmployee(EmployeeVO item)
+        {
+            EmployeeDAC dac = new EmployeeDAC();
+            return dac.UpdateEmployee(item);
         }
     }
 }

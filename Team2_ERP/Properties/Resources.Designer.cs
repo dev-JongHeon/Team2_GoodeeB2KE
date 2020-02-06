@@ -153,6 +153,16 @@ namespace Team2_ERP.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap ajax_loader_mini {
+            get {
+                object obj = ResourceManager.GetObject("ajax_loader_mini", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap BOOrderItem_16x16 {
             get {
                 object obj = ResourceManager.GetObject("BOOrderItem_16x16", resourceCulture);
@@ -476,6 +486,16 @@ namespace Team2_ERP.Properties {
         internal static System.Drawing.Bitmap Search_16x16 {
             get {
                 object obj = ResourceManager.GetObject("Search_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap sgicon_loading15 {
+            get {
+                object obj = ResourceManager.GetObject("sgicon_loading15", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

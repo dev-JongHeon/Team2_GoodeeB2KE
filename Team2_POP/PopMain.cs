@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Team2_VO;
 using System.Threading;
 using System.Timers;
+using Team2_POP.Properties;
 
 namespace Team2_POP
 {
@@ -30,8 +31,6 @@ namespace Team2_POP
         POPClient client;
 
         #endregion
-
-
 
         #region 생성자 & 로드 이벤트
         // 생성자
@@ -205,13 +204,13 @@ namespace Team2_POP
             // 가동일때
             if (bResult)
             {
-                pictureBox1.Image = Properties.Resources.Img_CircleGreen;
+                pictureBox1.Image = Resources.Img_CircleGreen;
                 btnDownTime.Text = "비가동 전환";
             }
             // 비가동일때
             else
             {
-                pictureBox1.Image = Properties.Resources.Img_CircleRed;
+                pictureBox1.Image = Resources.Img_CircleRed;
                 btnDownTime.Text = "가동 전환";
             }
 
@@ -241,8 +240,8 @@ namespace Team2_POP
             if (list.Count > 0)
                 dgvWork.DataSource = list;
             else
-                CustomMessageBox.ShowDialog(Properties.Resources.MsgWorkResultNulllHeader
-                    ,string.Format(Properties.Resources.MsgWorkResultNullContent, date, lblLine.Text), MessageBoxIcon.Information);
+                CustomMessageBox.ShowDialog(Resources.MsgWorkResultNulllHeader
+                    ,string.Format(Resources.MsgWorkResultNullContent, date, lblLine.Text), MessageBoxIcon.Information);
 
         }
 
@@ -291,8 +290,8 @@ namespace Team2_POP
                 if (bResult)
                     IsDowntime(true);
                 else
-                    CustomMessageBox.ShowDialog(Properties.Resources.MsgDowntimeSetResultFailHeader
-                        , Properties.Resources.MsgDowntimeSetResultFailContent, MessageBoxIcon.Error);
+                    CustomMessageBox.ShowDialog(Resources.MsgDowntimeSetResultFailHeader
+                        , Resources.MsgDowntimeSetResultFailContent, MessageBoxIcon.Error);
             }
 
         }
@@ -306,7 +305,16 @@ namespace Team2_POP
         {
             ProduceStart();
         }
+        private void ConnectServer()
+        {
+            client = new POPClient()
+            {
+                LineID = WorkerInfo.LineID
+            };
 
+            client.Received -= Receive;
+            client.Received += new EventHandler(Receive);
+        }
         private async void ProduceStart()
         {
             string[] result = null;
@@ -317,8 +325,7 @@ namespace Team2_POP
                 CustomMessageBox.ShowDialog("데이터 오류", "생산목록을 선택해주세요.", MessageBoxIcon.Warning);
                 return;
             }
-
-
+            
             try
             {
                 string produceID = dgvProduce.SelectedRows[0].Cells[0].Value.ToString();
@@ -332,15 +339,17 @@ namespace Team2_POP
                     client.RequestQty = Convert.ToInt32(result[1]);
                     client.ProduceID = produceID;
 
-                    //서버와 연결되어있지 않은경우 
-                    if (!client.Connect().IsCompleted)
+                    bool bConnect = await client.Connect();
+
+                    //서버와 연결되어있지 않은경우
+                    if (!client.Connected)
                     {
                         CustomMessageBox.ShowDialog("기계통신오류", "기계와의 작동이 원할하지 않습니다. \n기계서버의 상태를 점검한후 다시 시도해주세요.", MessageBoxIcon.Error);
                         ConnectServer();
                     }
                     //서버와 연결된 경우
                     else
-                        await client.Start();
+                        client.Start();
                 }
                 else
                 {
@@ -358,8 +367,9 @@ namespace Team2_POP
         {
             ReceiveEventArgs re = (ReceiveEventArgs)e;
             if (re.IsCompleted)
-                CustomMessageBox.ShowDialog("", re.Message, MessageBoxIcon.Information);
-
+                CustomMessageBox.ShowDialog("성공", re.Message, MessageBoxIcon.Information);
+            else
+                CustomMessageBox.ShowDialog("실패", re.Message, MessageBoxIcon.Error);
         }
 
 
@@ -395,18 +405,19 @@ namespace Team2_POP
                     return;
                 }
 
-                if (dgvPerformance.SelectedRows[0].Cells[0].Value != null || dgvPerformance.SelectedRows.Count < 1)
+                var performanceRow = dgvPerformance.SelectedRows[0];
+
+                if (performanceRow.Cells[0].Value != null)
                 {
                     DefectiveRegister defective = new DefectiveRegister();
-                    defective.Performance_ID = dgvPerformance.SelectedRows[0].Cells[0].Value.ToString();
+                    defective.Performance_ID = performanceRow.Cells[0].Value.ToString();
 
-                    if (defective.ShowDialog() == DialogResult.OK)
-                        CustomMessageBox.ShowDialog("불량등록 성공", "불량등록을 성공했습니다.", MessageBoxIcon.Question);
+                    defective.ShowDialog();
                 }
             }
             catch (Exception ex)
             {
-                CustomMessageBox.ShowDialog(ex.InnerException.Message + "에러", ex.Message, MessageBoxIcon.Error);
+                CustomMessageBox.ShowDialog(Resources.MsgDefectiveResultFailHeader, ex.Message, MessageBoxIcon.Error);
             }
         }
 
@@ -429,7 +440,6 @@ namespace Team2_POP
             BtnDisable(btnWorker);
             BtnDisable(btnProduceStart);
             GetWork(lblDate.Text);
-
         }
 
         private void btnPreDate_Click(object sender, EventArgs e)
@@ -459,16 +469,32 @@ namespace Team2_POP
                 dgvProduce.DataSource = null;
                 dgvPerformance.DataSource = null;
 
-                if (e.RowIndex > -1 && e.ColumnIndex > -1)
+                if (e.RowIndex > -1 && e.ColumnIndex > -1 && dgvWork.SelectedRows[0].Cells[0].Value !=null)
                 {
                     workID = dgvWork.SelectedRows[0].Cells[0].Value.ToString();
+
+                    Service service = new Service();
+
+                    List<Produce> list = service.GetProduce(workID);
+
+                    // 불러온 값이 없는 경우
+                    if (list == null)
+                    {
+                       DialogResult dResult = CustomMessageBox.ShowDialog(Resources.MsgLoadResultFailHeader
+                           , "생산데이터를 불러오는 중에 실패했습니다. 다시 시도하시겠습니까?", MessageBoxIcon.Information, true);
+                        if(dResult == DialogResult.OK)
+                        {
+                            list = service.GetProduce(workID);
+                        }
+                    }
+
                     dgvProduce.DataSource = new Service().GetProduce(workID);
                     dgvProduce.ClearSelection();
                 }
             }
             catch (Exception ex)
             {
-                CustomMessageBox.ShowDialog("에러", ex.Message, MessageBoxIcon.Error);
+                CustomMessageBox.ShowDialog("오류", ex.Message, MessageBoxIcon.Error);
             }
         }
         //=====================
@@ -616,15 +642,6 @@ namespace Team2_POP
 
         }
 
-        private void ConnectServer()
-        {
-            client = new POPClient()
-            {
-                LineID = WorkerInfo.LineID
-            };
-
-            client.Received -= Receive;
-            client.Received += new EventHandler(Receive);
-        }
+        
     }
 }

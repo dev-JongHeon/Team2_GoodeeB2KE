@@ -83,7 +83,7 @@
             this.dgvWorkList.RowTemplate.Height = 23;
             this.dgvWorkList.Size = new System.Drawing.Size(1364, 368);
             this.dgvWorkList.TabIndex = 8;
-            this.dgvWorkList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvWorkList_CellDoubleClick);
+            this.dgvWorkList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvWorkList_CellClick);
             // 
             // dgvProduce
             // 

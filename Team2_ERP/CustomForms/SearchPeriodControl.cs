@@ -29,9 +29,10 @@ namespace Team2_ERP
             set { txtEnd = value; }
             get { return txtEnd; }
         }
-
-        public DateTime sdate { set => txtStart.Text = value.ToString(); }
-        public DateTime edate { set => txtEnd.Text = value.ToString(); }
+        
+        public DateTime sdate { set => txtStart.Text = value.ToString(); get => (txtEnd.Text != "    -  -") ? Convert.ToDateTime(txtStart.Text) : DateTime.Now; }
+        public DateTime edate { set => txtEnd.Text = value.ToString(); get => (txtEnd.Text!="    -  -")? Convert.ToDateTime(txtEnd.Text):DateTime.Now; }
+        
 
         public SearchPeriodControl()
         {
@@ -41,7 +42,7 @@ namespace Team2_ERP
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            CalendarForm frm = new CalendarForm();
+            CalendarForm frm = new CalendarForm(sdate,edate);
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 sdate = frm.Startdate;
@@ -69,6 +70,7 @@ namespace Team2_ERP
                 txtStart.Tag = null;
                 txtEnd.Tag = null;
             }
+            
         }
 
         private void txtEnd_TextChanged(object sender, EventArgs e)

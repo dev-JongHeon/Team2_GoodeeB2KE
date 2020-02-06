@@ -164,7 +164,7 @@ namespace Team2_ERP
         }
         public void ExcelExport()
         {
-            string[] exceptColumns = { "", "Balju_DeletedYN" };
+            string[] exceptColumns = { "" };
             UtilClass.ExportToDataGridView<StockReceipt>(StockReceipt_AllList, exceptColumns);
         }
 

@@ -81,6 +81,7 @@
             // cboDefItem
             // 
             this.cboDefItem.BackColor = System.Drawing.Color.White;
+            this.cboDefItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboDefItem.FormattingEnabled = true;
             this.cboDefItem.Location = new System.Drawing.Point(22, 175);
             this.cboDefItem.Name = "cboDefItem";
@@ -130,6 +131,7 @@
             // cboDefectiveName
             // 
             this.cboDefectiveName.BackColor = System.Drawing.Color.White;
+            this.cboDefectiveName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboDefectiveName.FormattingEnabled = true;
             this.cboDefectiveName.Location = new System.Drawing.Point(22, 335);
             this.cboDefectiveName.Name = "cboDefectiveName";
@@ -169,6 +171,7 @@
             // cboHandle
             // 
             this.cboHandle.BackColor = System.Drawing.Color.White;
+            this.cboHandle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboHandle.FormattingEnabled = true;
             this.cboHandle.Location = new System.Drawing.Point(22, 493);
             this.cboHandle.Name = "cboHandle";

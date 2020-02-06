@@ -24,9 +24,13 @@ namespace Team2_DAC
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("SELECT Order_ID, Customer_UserID, Customer_Name, Order_Date, Order_Address1, Order_Address2,                             Order_DeletedYN, Order_State, TotalPrice ");
+                    sb.Append("FROM   Order_top");
+
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "select * from Order_top";  
+                    cmd.CommandText = sb.ToString(); 
                     conn.Open();
                     List<Order> list = Helper.DataReaderMapToList<Order>(cmd.ExecuteReader());
                     conn.Close();
@@ -47,9 +51,13 @@ namespace Team2_DAC
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("SELECT Order_ID, Product_ID, Product_Name, OrderDetail_Qty ");
+                    sb.Append("FROM   Order_Details");
+
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "SELECT * FROM Order_Details ";
+                    cmd.CommandText = sb.ToString();
 
                     conn.Open();
                     List<OrderDetail> list = Helper.DataReaderMapToList<OrderDetail>(cmd.ExecuteReader());
@@ -70,9 +78,13 @@ namespace Team2_DAC
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("SELECT Order_ID, Customer_UserID, Customer_Name, Order_Date, OrderCompleted_Date, Order_Address1,                        Order_Address2, TotalPrice ");
+                    sb.Append("FROM   OrderCompleted_top");
+                    
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "SELECT * FROM OrderCompleted_top ";
+                    cmd.CommandText = sb.ToString();
 
                     conn.Open();
                     List<Order> list = Helper.DataReaderMapToList<Order>(cmd.ExecuteReader());
@@ -93,9 +105,13 @@ namespace Team2_DAC
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("SELECT Order_ID, Customer_UserID, Customer_Name, Order_Date, Shipment_DoneDate, TotalPrice");
+                    sb.Append("FROM   SalesStatus");
+                    
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "select * from SalesStatus";
+                    cmd.CommandText = sb.ToString();
                     conn.Open();
                     List<Sales> list = Helper.DataReaderMapToList<Sales>(cmd.ExecuteReader());
                     conn.Close();
@@ -109,7 +125,7 @@ namespace Team2_DAC
             }
         }
 
-        public void UpOrder_InsShipment(string orderID, int employeeID)
+        public void UpOrder_InsShipment(string orderID, int employeeID)  // 주문 처리
         {
             int check = 0;
             try
@@ -139,7 +155,7 @@ namespace Team2_DAC
             }
         }
 
-        public void DeleteOrder(string order_ID)
+        public void DeleteOrder(string order_ID)  // 주문 삭제
         {
             int check = 0;
             try
