@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -305,115 +306,46 @@ namespace Team2_ERP
 
         private void treeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            if (e.Node.Name == "UserAuth")
+            if (e.Node.Parent != null)
             {
-                OpenBaseForm<UserAuth>("사용자권한설정",e);                
-            }
-            else if (e.Node.Name == "Work")
-            {
-                OpenBaseForm<Work>("작업지시현황",e);                
-            }
-            else if (e.Node.Name == "Produce")
-            {
-                OpenBaseForm<Produce>("생산실적현황",e);                
-            }
-            else if (e.Node.Name == "DowntimeType")
-            {
-                OpenBaseForm<DowntimeType>("비가동유형",e);                
-            }
-            else if (e.Node.Name == "Downtime")
-            {
-                OpenBaseForm<Downtime>("비가동현황",e);                
-            }
-            else if (e.Node.Name == "DefectiveType")
-            {
-                OpenBaseForm<DefectiveType>("불량유형",e);               
-            }
-            else if (e.Node.Name == "DefectiveHandle")
-            {
-                OpenBaseForm<DefectiveHandle>("불량처리유형",e);                
-            }
-            else if (e.Node.Name == "Defective")
-            {
-                OpenBaseForm<Defective>("불량처리현황",e);                
-            }
-            else if (e.Node.Name == "StockStatus")
-            {
-                OpenBaseForm<StockStatus>("재고현황",e);                
-            }
-            else if (e.Node.Name == "InOutList_MaterialWarehouse")
-            {
-                OpenBaseForm<InOutList_MaterialWarehouse>("자재수불현황",e);  
-            }
-            else if (e.Node.Name == "InOutList_SemiProductWarehouse")
-            {
-                OpenBaseForm<InOutList_SemiProductWarehouse>("반제품수불현황",e); 
-            }
-            else if (e.Node.Name == "BaljuList")
-            {
-                OpenBaseForm<BaljuList>("발주현황",e);               
-            }
-            else if (e.Node.Name == "BaljuList_Completed")
-            {
-                OpenBaseForm<BaljuList_Completed>("발주완료현황",e);                
-            }
-            else if (e.Node.Name == "OrderMainForm")
-            {
-                OpenBaseForm<OrderMainForm>("주문현황",e);                
-            }
-            else if (e.Node.Name == "OrderCompleteForm")
-            {
-                OpenBaseForm<OrderCompleteForm>("주문처리완료현황",e);                
-            }
-            else if (e.Node.Name == "ShipmentMainForm")
-            {
-                OpenBaseForm<ShipmentMainForm>("출하현황",e);                
-            }
-            else if (e.Node.Name == "ShipmentCompleteForm")
-            {
-                OpenBaseForm<ShipmentCompleteForm>("출하완료현황",e);                
-            }
-            else if (e.Node.Name == "SalesMainForm")
-            {
-                OpenBaseForm<SalesMainForm>("매출현황",e);                
-            }
-            else if (e.Node.Name == "Department")
-            {
-                OpenBaseForm<Department>("부서관리",e);                
-            }
-            else if (e.Node.Name == "Employees")
-            {
-                OpenBaseForm<Employees>("사원관리",e);                
-            }
-            else if (e.Node.Name == "Company")
-            {
-                OpenBaseForm<Company>("거래처관리",e);                
-            }
-            else if (e.Node.Name == "Customer")
-            {
-                OpenBaseForm<Customer>("고객관리",e);                
-            }
-            else if (e.Node.Name == "Category")
-            {
-                OpenBaseForm<Category>("카테고리관리",e);                
-            }
-            else if (e.Node.Name == "Factory")
-            {
-                OpenBaseForm<Factory>("공장&공정관리",e);                
-            }
-            else if (e.Node.Name == "Resource")
-            {
-                OpenBaseForm<Resource>("원자재관리",e);                
-            }
-            else if (e.Node.Name == "Warehouse")
-            {
-                OpenBaseForm<Warehouse>("창고관리",e);                
-            }
-            else if (e.Node.Name == "BOM")
-            {
-                OpenBaseForm<BOM>("BOM관리",e);                
+                OpenForm(e);
             }
         }
+
+        private void OpenForm(TreeNodeMouseClickEventArgs e)
+        {
+            Type type = Type.GetType($"Team2_ERP.{e.Node.Name},{Assembly.GetExecutingAssembly().GetName().Name}");
+            var info = type.GetTypeInfo();
+            object obj = GetInstance(type);
+            if (obj!=null)
+            {
+                if (info.BaseType.Name == "BaseForm")
+                {
+                    OpenBaseForm(e.Node.Text, e, (BaseForm)obj);
+                }
+                else if (info.BaseType.Name == "Base1Dgv")
+                {
+                    OpenBase1DgvForm(e.Node.Text, e, (Base1Dgv)obj);
+                }
+                else
+                {
+                    OpenBase2DgvForm(e.Node.Text, e, (Base2Dgv)obj);
+                } 
+            }
+        }
+
+        public object GetInstance(Type type)
+        {
+            if (type != null)
+            {
+                return Activator.CreateInstance(type);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         private void SettingAuth()
         {
             string[] authlist = Session.Auth.Split(',');
@@ -473,8 +405,8 @@ namespace Team2_ERP
             tabControl1.SelectedTab = tp;
             frm.FormName = name;
             frm.Show();
-            
         }
+
         private void OpenTabForm<T>(string name) where T : TabForm, new()
         {
             foreach (Form Child in Application.OpenForms)
@@ -497,6 +429,87 @@ namespace Team2_ERP
             tp.Show();
             frm.TabPag = tp;
             tabControl1.SelectedTab = tp;
+            frm.Show();
+        }
+
+
+        private void OpenBaseForm<T>(string name, TreeNodeMouseClickEventArgs e,T a) where T :BaseForm, new()
+        {
+            foreach (Form Child in Application.OpenForms)
+            {
+                if (Child.GetType() == typeof(T))
+                {
+                    Child.Activate();
+                    return;
+                }
+            }
+            T frm = a;
+            frm.Auth = e.Node.Tag.ToString();
+            frm.Text = name;
+            frm.MdiParent = this;
+            frm.ControlBox = false;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.TabCtrl = tabControl1;
+            TabPage tp = new TabPage();
+            tp.Parent = tabControl1;
+            tp.Text = frm.Text;
+            tp.Show();
+            frm.TabPag = tp;
+            tabControl1.SelectedTab = tp;
+            frm.FormName = name;
+            frm.Show();
+        }
+
+        private void OpenBase1DgvForm<T>(string name, TreeNodeMouseClickEventArgs e, T a) where T : Base1Dgv, new()
+        {
+            foreach (Form Child in Application.OpenForms)
+            {
+                if (Child.GetType() == typeof(T))
+                {
+                    Child.Activate();
+                    return;
+                }
+            }
+            T frm = a;
+            frm.Auth = e.Node.Tag.ToString();
+            frm.Text = name;
+            frm.MdiParent = this;
+            frm.ControlBox = false;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.TabCtrl = tabControl1;
+            TabPage tp = new TabPage();
+            tp.Parent = tabControl1;
+            tp.Text = frm.Text;
+            tp.Show();
+            frm.TabPag = tp;
+            tabControl1.SelectedTab = tp;
+            frm.FormName = name;
+            frm.Show();
+        }
+        private void OpenBase2DgvForm<T>(string name, TreeNodeMouseClickEventArgs e,T a) where T : Base2Dgv, new()
+        {
+            foreach (Form Child in Application.OpenForms)
+            {
+                if (Child.GetType() == typeof(T))
+                {
+                    Child.Activate();
+                    return;
+                }
+            }
+            T frm = a;
+            frm.Auth = e.Node.Tag.ToString();
+            frm.Text = name;
+            frm.MdiParent = this;
+            frm.ControlBox = false;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.TabCtrl = tabControl1;
+            TabPage tp = new TabPage();
+            tp.Parent = tabControl1;
+            tp.Text = frm.Text;
+            tp.Show();
+            frm.TabPag = tp;
+            tabControl1.SelectedTab = tp;
+            frm.FormName = name;
             frm.Show();
         }
         #endregion
