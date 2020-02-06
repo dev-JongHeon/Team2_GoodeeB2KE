@@ -54,15 +54,29 @@ namespace Team2_POP
 
         private async void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            if (Connected)
-                await Read();
+            try
+            {
+                if (Connected)
+                {
+                    await Read();
+                }
+            }
+            catch(Exception ex)
+            {
+                CustomMessageBox.ShowDialog("서버접속끊김", "서버와의 연결이 끊겼습니다.", MessageBoxIcon.Error
+                    , MessageBoxButtons.OK);
+                ErrorMessage(ex);
+                timer.Stop();
+                timer.Enabled = false;
+                timer.Dispose();
+            }
         }
 
         public void Start()
         {
             if (Connected && timer.Enabled)
             {
-                Writer();                
+                Writer();
             }
             else if (Connected)
             {
@@ -127,39 +141,6 @@ namespace Team2_POP
         {
             try
             {
-                #region 주석
-                //using (StreamReader reader = new StreamReader(netStream)) // 수신
-                //{                    
-                //    string response = await reader.ReadLineAsync();
-                //    string[] msg = response.Split(',');
-                //    if (msg.Length != 5)
-                //        throw new Exception("메세지 전송 실패");
-
-                //    foreach (Form frm in Application.OpenForms)
-                //    {
-                //        // 활성화된 POP메인폼을 찾고
-                //        if (frm is PopMain)
-                //        {
-                //            PopMain pop = (PopMain)frm;
-                //            // 해당 POP의 라인아이디와 같은 경우
-                //            if (pop.WorkerInfo.LineID == Convert.ToInt32(msg[0]))
-                //            {
-                //                //respone 형태 (라인아이디(0),메세지(1),생산실적아이디(2),완료여부(3),총 투입수량(4)) 
-                //                ReceiveEventArgs e = new ReceiveEventArgs
-                //                {
-                //                    LineID = int.Parse(msg[0]),
-                //                    Message = msg[1],
-                //                    PerformanceID = msg[2],
-                //                    IsCompleted = bool.Parse(msg[3]),
-                //                    QtyImport = int.Parse(msg[4])
-                //                };
-                //                Received(response, e);
-                //            }
-                //        }
-                //    }
-
-                //}
-                #endregion
 
                 byte[] buff = new byte[1024];
 
@@ -213,43 +194,7 @@ namespace Team2_POP
                     }
                 }
             }
-
-        //    foreach (Form frm in frms)
-        //    {
-        //        // 활성화된 POP메인폼을 찾고
-        //        if (frm is PopMain)
-        //        {
-        //            PopMain pop = (PopMain)frm;
-        //            // 해당 POP의 라인아이디와 같은 경우
-        //            if (pop.WorkerInfo.LineID == Convert.ToInt32(msg[0]))
-        //            {
-        //                //respone 형태 (라인아이디(0),메세지(1),생산실적아이디(2),완료여부(3),총 투입수량(4)) 
-        //                ReceiveEventArgs e = new ReceiveEventArgs();
-        //                if (msg.Length == 5)
-        //                {
-        //                    e.LineID = int.Parse(msg[0]);
-        //                    e.Message = msg[1];
-        //                    e.PerformanceID = msg[2];
-        //                    e.IsCompleted = bool.Parse(msg[3]);
-        //                    e.QtyImport = int.Parse(msg[4]);
-        //                }
-        //                else if (msg.Length == 3)
-        //                {
-        //                    e.LineID = int.Parse(msg[0]);
-        //                    e.Message = msg[1];
-        //                    e.IsCompleted = bool.Parse(msg[2]);
-        //                }
-
-        //                if (e.Message != null)
-        //                {
-        //                    Debug.WriteLine(msg[0]);
-        //                    if (Received != null)
-        //                        Received.Invoke(this, e);
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
+            
             catch (Exception ex)
             {
                 ErrorMessage(ex);
@@ -258,12 +203,17 @@ namespace Team2_POP
 
         private void ErrorMessage(Exception ex)
         {
-            foreach (Form frm in Application.OpenForms)
+            FormCollection frms = Application.OpenForms;
+            for (int i = 0; i < frms.Count; i++)
             {
-                // 활성화된 POP메인폼을 찾고
-                if (frm is PopMain)
+                if (frms[i] == null)
                 {
-                    PopMain pop = (PopMain)frm;
+                    i++;
+                    continue;
+                }
+                if (frms[i] is PopMain)
+                {
+                    PopMain pop = (PopMain)frms[i];
                     // 해당 POP의 라인아이디와 같은 경우
                     if (pop.WorkerInfo.LineID == LineID)
                     {
@@ -277,7 +227,7 @@ namespace Team2_POP
 
                     }
                 }
-            }
+            }            
         }
 
 
