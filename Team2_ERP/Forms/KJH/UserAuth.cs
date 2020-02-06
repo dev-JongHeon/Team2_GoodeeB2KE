@@ -125,7 +125,6 @@ namespace Team2_ERP
             }
             else
             {
-                isFirst = true;
                 RefreshClicked();
                 frm.NoticeMessage = notice;
             }

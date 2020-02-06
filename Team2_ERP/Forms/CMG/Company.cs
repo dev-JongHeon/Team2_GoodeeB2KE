@@ -30,6 +30,7 @@ namespace Team2_ERP
         {
             UtilClass.SettingDgv(dataGridView1);
 
+            UtilClass.AddNewColum(dataGridView1, "거래처ID", "Company_ID", true, 100);
             UtilClass.AddNewColum(dataGridView1, "거래처명", "Company_Name", true, 100);
             UtilClass.AddNewColum(dataGridView1, "주소", "Company_Address", true, 100);
             UtilClass.AddNewColum(dataGridView1, "전화번호", "Company_Number", true, 100);
@@ -86,55 +87,56 @@ namespace Team2_ERP
 
         public override void Modify(object sender, EventArgs e)
         {
-            //InitMessage();
+            InitMessage();
 
-            //if (item == null)
-            //{
-            //    frm.NoticeMessage = "수정할 제품을 선택해주세요.";
-            //}
-            //else
-            //{
-            //    ResourceInsUp frm = new ResourceInsUp(ResourceInsUp.EditMode.Update, item);
-            //    if (frm.ShowDialog() == DialogResult.OK)
-            //    {
-            //        frm.Close();
-            //        dataGridView1.DataSource = null;
-            //        LoadGridView();
-            //    }
-            //}
+            if (item == null)
+            {
+                frm.NoticeMessage = "수정할 거래처를 선택해주세요.";
+            }
+            else
+            {
+                CompanyInsUp frm = new CompanyInsUp(CompanyInsUp.EditMode.Update, item);
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    frm.Close();
+                    dataGridView1.DataSource = null;
+                    LoadGridView();
+                }
+            }
         }
 
         public override void Delete(object sender, EventArgs e)
         {
-            //InitMessage();
+            InitMessage();
 
-            //if (item == null)
-            //{
-            //    frm.NoticeMessage = "삭제할 제품을 선택해주세요.";
-            //}
+            if (item == null)
+            {
+                frm.NoticeMessage = "삭제할 거래처를 선택해주세요.";
+            }
 
-            //else
-            //{
-            //    if (MessageBox.Show("삭제하시겠습니까?", "확인", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            //    {
-            //        StandardService service = new StandardService();
-            //        service.DeleteResource(item.Product_ID);
-            //        dataGridView1.DataSource = null;
-            //        LoadGridView();
-            //    }
+            else
+            {
+                if (MessageBox.Show("삭제하시겠습니까?", "확인", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    StandardService service = new StandardService();
+                    service.DeleteCompany(item.Company_ID);
+                    dataGridView1.DataSource = null;
+                    LoadGridView();
+                }
+            }
         }
         public override void Search(object sender, EventArgs e)
         {
-            //if (searchUserControl1.CodeTextBox.Text.Length > 0)
-            //{
-            //    dataGridView1.DataSource = null;
-            //    List<ResourceVO> searchList = (from item in list where item.Product_ID.Contains(searchUserControl1.CodeTextBox.Tag.ToString()) && item.Product_DeletedYN == false select item).ToList();
-            //    dataGridView1.DataSource = searchList;
-            //}
-            //else
-            //{
-            //    frm.NoticeMessage = "검색할 원자재를 선택해주세요.";
-            //}
+            if (searchUserControl1.CodeTextBox.Text.Length > 0)
+            {
+                dataGridView1.DataSource = null;
+                List<CompanyVO> searchList = (from item in list where item.Company_ID.Equals(Convert.ToInt32(searchUserControl1.CodeTextBox.Tag)) && item.Company_DeletedYN == false select item).ToList();
+                dataGridView1.DataSource = searchList;
+            }
+            else
+            {
+                frm.NoticeMessage = "검색할 거래처를 선택해주세요.";
+            }
         }
 
         private void Company_Activated(object sender, EventArgs e)
@@ -162,13 +164,27 @@ namespace Team2_ERP
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            item = new CompanyVO
+            if(dataGridView1.Rows[e.RowIndex].Cells[4].Value == null)
             {
-                Company_Name = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(),
-                Company_Number = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString(),
-                Company_Fax = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString(),
-                Company_Owner = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString()
-            };
+                item = new CompanyVO
+                {
+                    Company_ID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value),
+                    Company_Name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                    Company_Number = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString(),
+                    Company_Owner = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString()
+                };
+            }
+            else
+            {
+                item = new CompanyVO
+                {
+                    Company_ID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value),
+                    Company_Name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                    Company_Number = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString(),
+                    Company_Fax = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString(),
+                    Company_Owner = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString()
+                };
+            }
         }
     }
 }
