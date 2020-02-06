@@ -132,5 +132,30 @@ namespace Team2_DAC
                 conn.Close();
             }
         }
+
+        public bool DeleteEmployee(int code)
+        {
+            string sql = $"Update Employee set Employees_DeletedYN = {1} where Employees_ID = @Employees_ID ";
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Employees_ID", code);
+
+                    conn.Open();
+                    var rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }

@@ -136,6 +136,30 @@ namespace Team2_ERP.Service.CMG
             return dac.GetAllCompany();
         }
 
+        public bool InsertCompany(CompanyVO item)
+        {
+            CompanyDAC dac = new CompanyDAC();
+            return dac.InsertCompany(item);
+        }
+
+        public bool UpdateCompany(CompanyVO item)
+        {
+            CompanyDAC dac = new CompanyDAC();
+            return dac.UpdateCompany(item);
+        }
+
+        public List<ComboItemVO> GetComboSector()
+        {
+            CompanyDAC dac = new CompanyDAC();
+            return dac.GetComboSector();
+        }
+
+        public bool DeleteCompany(int code)
+        {
+            CompanyDAC dac = new CompanyDAC();
+            return dac.DeleteCompany(code);
+        }
+
         public List<ProductVO> GetAllProduct()
         {
             BOMDAC dac = new BOMDAC();
@@ -230,6 +254,12 @@ namespace Team2_ERP.Service.CMG
         {
             EmployeeDAC dac = new EmployeeDAC();
             return dac.UpdateEmployee(item);
+        }
+
+        public bool DeleteEmployee(int code)
+        {
+            EmployeeDAC dac = new EmployeeDAC();
+            return dac.DeleteEmployee(code);
         }
     }
 }
