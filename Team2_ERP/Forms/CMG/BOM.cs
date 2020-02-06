@@ -79,7 +79,6 @@ namespace Team2_ERP
         {
             StandardService service = new StandardService();
             list = service.GetAllProduct();
-            dgvBOM.DataSource = list;
         }
 
         private void GridViewReset()
@@ -157,7 +156,7 @@ namespace Team2_ERP
                 {
                     frm.Close();
                     dgvBOM.DataSource = null;
-                    LoadGridView();
+                    dgvBOM.DataSource = list;
                 }
             }
             else
@@ -167,7 +166,7 @@ namespace Team2_ERP
                 {
                     frm.Close();
                     dgvBOM.DataSource = null;
-                    LoadGridView();
+                    dgvBOM.DataSource = list;
                 }
             }
         }
@@ -186,7 +185,7 @@ namespace Team2_ERP
             GridViewReset();
             searchUserControl1.CodeTextBox.Text = "";
             dgvBOM.CurrentCell = null;
-            LoadGridView();
+            dgvBOM.DataSource = list;
         }
 
         public override void New(object sender, EventArgs e)
@@ -210,7 +209,7 @@ namespace Team2_ERP
                         MessageBox.Show("수정되었습니다.", "안내");
                         GridViewReset();
                         InitMessage();
-                        LoadGridView();
+                        dgvBOM.DataSource = list;
                     }
                 }
                 else if (item.Product_Category.Contains("CP"))
@@ -221,7 +220,7 @@ namespace Team2_ERP
                         MessageBox.Show("수정되었습니다.", "안내");
                         GridViewReset();
                         InitMessage();
-                        LoadGridView();
+                        dgvBOM.DataSource = list;
                     }
                 }
                 else
@@ -248,7 +247,7 @@ namespace Team2_ERP
                         StandardService service = new StandardService();
                         service.DeleteSemiProduct(item);
                         GridViewReset();
-                        LoadGridView();
+                        dgvBOM.DataSource = list;
                     }
                 }
                 else if (item.Product_Category.Contains("CP"))
@@ -258,7 +257,7 @@ namespace Team2_ERP
                         StandardService service = new StandardService();
                         service.DeleteProduct(item);
                         GridViewReset();
-                        LoadGridView();
+                        dgvBOM.DataSource = list;
                     }
                 }
                 else

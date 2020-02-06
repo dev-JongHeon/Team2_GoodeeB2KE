@@ -40,22 +40,20 @@ namespace Team2_ERP
         private void LoadGridView()
         {
             CodeTableService service = new CodeTableService();
-            list = service.GetAllCodeTable();
-            List<CodeTableVO> categoryList = (from item in list where item.CodeTable_CodeID.Contains("CS") || item.CodeTable_CodeID.Contains("CM") && item.CodeTable_DeletedYN == false select item).ToList();
-            dataGridView1.DataSource = categoryList;
+            list = (from item in service.GetAllCodeTable() where item.CodeTable_CodeID.Contains("CS") || item.CodeTable_CodeID.Contains("CM") select item).ToList();
         }
 
         // 메인 폼 메세지 초기화
         private void InitMessage()
         {
-            frm.NoticeMessage = "메세지";
+            frm.NoticeMessage = "카테고리 관리 화면입니다.";
         }
 
         public override void Refresh(object sender, EventArgs e)
         {
             InitMessage();
             dataGridView1.DataSource = null;
-            LoadGridView();
+            dataGridView1.DataSource = list;
             dataGridView1.CurrentCell = null;
         }
 
@@ -68,7 +66,7 @@ namespace Team2_ERP
             {
                 frm.Close();
                 dataGridView1.DataSource = null;
-                LoadGridView();
+                dataGridView1.DataSource = list;
             }
         }
 
@@ -87,7 +85,7 @@ namespace Team2_ERP
                 {
                     frm.Close();
                     dataGridView1.DataSource = null;
-                    LoadGridView();
+                    dataGridView1.DataSource = list;
                 }
             }
         }
@@ -107,17 +105,23 @@ namespace Team2_ERP
                     CodeTableService service = new CodeTableService();
                     service.DeleteCodeTable(item.CodeTable_CodeID);
                     dataGridView1.DataSource = null;
-                    LoadGridView();
+                    dataGridView1.DataSource = list;
                 }
             }
         }
 
+        public override void Search(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = list;
+            InitMessage();
+        }
 
         private void Category_Load(object sender, EventArgs e)
         {
             frm = (MainForm)this.ParentForm;
             InitGridView();
             LoadGridView();
+            frm.NoticeMessage = "카테고리 목록 조회는 검색버튼을 눌러주세요.";
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -138,9 +142,9 @@ namespace Team2_ERP
         {
             ((MainForm)MdiParent).신규ToolStripMenuItem.Visible = flag;
             ((MainForm)MdiParent).수정ToolStripMenuItem.Visible = flag;
+            ((MainForm)MdiParent).검색toolStripMenuItem.Visible = flag;
             ((MainForm)MdiParent).삭제ToolStripMenuItem.Visible = flag;
             ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = false;
-            ((MainForm)MdiParent).검색toolStripMenuItem.Visible = false;
         }
 
         private void Category_Deactivate(object sender, EventArgs e)

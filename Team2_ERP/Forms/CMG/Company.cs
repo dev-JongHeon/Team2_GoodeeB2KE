@@ -47,20 +47,18 @@ namespace Team2_ERP
         {
             StandardService service = new StandardService();
             list = service.GetAllCompany();
-            List<CompanyVO> CompanyList = (from item in list where item.Company_DeletedYN == false select item).ToList();
-            dataGridView1.DataSource = CompanyList;
+            dataGridView1.DataSource = list;
         }
 
         private void Company_Load(object sender, EventArgs e)
         {
             InitGridView();
             frm = (MainForm)this.ParentForm;
-            LoadGridView();
         }
 
         private void InitMessage()
         {
-            frm.NoticeMessage = "메세지";
+            frm.NoticeMessage = "거래처 관리 화면입니다.";
         }
 
         public override void Refresh(object sender, EventArgs e)
@@ -68,8 +66,6 @@ namespace Team2_ERP
             InitMessage();
             dataGridView1.DataSource = null;
             searchUserControl1.CodeTextBox.Text = "";
-            dataGridView1.CurrentCell = null;
-            LoadGridView();
         }
 
         public override void New(object sender, EventArgs e)

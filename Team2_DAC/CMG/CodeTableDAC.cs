@@ -21,7 +21,7 @@ namespace Team2_DAC
 
         public List<CodeTableVO> GetAllCodeTable()
         {
-            string sql = "select CodeTable_CodeID, CodeTable_CodeName, CodeTable_CodeExplain, CodeTable_DeletedYN from CodeTable ";
+            string sql = "select CodeTable_CodeID, CodeTable_CodeName, CodeTable_CodeExplain, CodeTable_DeletedYN from CodeTable where CodeTable_DeletedYN = 0 ";
 
             try
             {
