@@ -76,7 +76,7 @@ namespace Team2_ERP
                 if (searchCustomerBirth.Startdate.Text.Length > 8)
                 {
                     dgvCustomer.DataSource = null;
-                    List<CustomerVO> searchList = (from item in list where DateTime.Parse(item.Customer_Birth) >= searchCustomerBirth.sdate.AddDays(-1) && DateTime.Parse(item.Customer_Birth) <= searchCustomerBirth.edate && item.Customer_ID == Convert.ToInt32(searchCustomerName.CodeTextBox.Tag) select item).ToList();
+                    List<CustomerVO> searchList = (from item in list where DateTime.Parse(item.Customer_Birth) >= DateTime.Parse(searchCustomerBirth.Startdate.Tag.ToString()) && DateTime.Parse(item.Customer_Birth) <= DateTime.Parse(searchCustomerBirth.Enddate.Tag.ToString()) && item.Customer_ID == Convert.ToInt32(searchCustomerName.CodeTextBox.Tag) select item).ToList();
                     dgvCustomer.DataSource = searchList;
                 }
                 else
@@ -91,7 +91,7 @@ namespace Team2_ERP
                 if (searchCustomerBirth.Startdate.Text.Length > 8)
                 {
                     dgvCustomer.DataSource = null;
-                    List<CustomerVO> searchList = (from item in list where DateTime.Parse(item.Customer_Birth) >= searchCustomerBirth.sdate.AddDays(-1) && DateTime.Parse(item.Customer_Birth) <= searchCustomerBirth.edate select item).ToList();
+                    List<CustomerVO> searchList = (from item in list where DateTime.Parse(item.Customer_Birth) >= DateTime.Parse(searchCustomerBirth.Startdate.Tag.ToString()) && DateTime.Parse(item.Customer_Birth) <= DateTime.Parse(searchCustomerBirth.Enddate.Tag.ToString()) select item).ToList();
                     dgvCustomer.DataSource = searchList;
                 }
                 else
