@@ -37,6 +37,15 @@ namespace Team2_ERP
             SettingDgvDefective();
             RefreshClicked();
             frm.NoticeMessage = notice;
+            SetEssentialSearchOption();
+        }
+
+        private void SetEssentialSearchOption()
+        {
+            searchPeriod.Startdate.BackColor = Color.LightYellow;
+            searchPeriod.Enddate.BackColor = Color.LightYellow;
+            searchPeriodForBy.Startdate.BackColor = Color.LightYellow;
+            searchPeriodForBy.Enddate.BackColor = Color.LightYellow;
         }
 
         private void SettingDgvDefective()
@@ -96,15 +105,18 @@ namespace Team2_ERP
                 dtbyhandle = ds3.Tables[0].Copy();
 
                 dgvDefectiveByLine.Columns.Clear();
-                SettingByLineColumns(dtbyline.Columns);                
+                SettingByLineColumns(dtbyline.Columns);
+                dgvDefectiveByLine.Columns[2].Visible = false;
                 SetDoNotSort(dgvDefectiveByLine);
 
                 dgvDefectiveByDefecType.Columns.Clear();
                 SettingByTypeColumns(dtbytype.Columns);
+                dgvDefectiveByDefecType.Columns[1].Visible = false;
                 SetDoNotSort(dgvDefectiveByDefecType);
 
                 dgvDefectiveByDefecHandleType.Columns.Clear();
                 SettingByHandleColumns(dtbyhandle.Columns);
+                dgvDefectiveByDefecHandleType.Columns[1].Visible = false;
                 SetDoNotSort(dgvDefectiveByDefecHandleType);
 
                 dgvDefective.DataSource = null;
@@ -256,14 +268,19 @@ namespace Team2_ERP
         {
             if (tabDefective.SelectedIndex==0)
             {
-                if (searchFactory.CodeTextBox.Tag == null && searchLine.CodeTextBox.Tag == null && searchProduct.CodeTextBox.Tag == null && searchWorker.CodeTextBox.Tag == null && searchPeriod.Startdate.Tag == null && searchPeriod.Enddate.Tag == null)
+                if(searchPeriod.Startdate.Tag == null && searchPeriod.Enddate.Tag == null)
                 {
-                    RefreshClicked();
-                    frm.NoticeMessage = notice;
+                    frm.NoticeMessage = "기간을 선택하셔야 합니다.";
                 }
                 else
                 {
                     searchedlist = list;
+                    if (searchPeriod.Startdate.Tag != null && searchPeriod.Enddate.Tag != null)
+                    {
+                        searchedlist = (from item in searchedlist
+                                        where Convert.ToDateTime(item.Defective_HandleDate) >= Convert.ToDateTime(searchPeriod.Startdate.Tag.ToString()) && Convert.ToDateTime(item.Defective_HandleDate) <= Convert.ToDateTime(searchPeriod.Enddate.Tag.ToString())
+                                        select item).ToList();
+                    }
                     if (searchFactory.CodeTextBox.Tag != null)
                     {
                         searchedlist = (from item in searchedlist
@@ -288,12 +305,7 @@ namespace Team2_ERP
                                         where item.Employees_ID == Convert.ToInt32(searchWorker.CodeTextBox.Tag)
                                         select item).ToList();
                     }
-                    if (searchPeriod.Startdate.Tag != null && searchPeriod.Enddate.Tag != null)
-                    {
-                        searchedlist = (from item in searchedlist
-                                        where Convert.ToDateTime(item.Defective_HandleDate) >= Convert.ToDateTime(searchPeriod.Startdate.Tag.ToString()) && Convert.ToDateTime(item.Defective_HandleDate) <= Convert.ToDateTime(searchPeriod.Enddate.Tag.ToString())
-                                        select item).ToList();
-                    }
+                    
                     dgvDefective.DataSource = searchedlist;
                     frm.NoticeMessage = Properties.Settings.Default.SearchDone;
                 } 
@@ -311,8 +323,7 @@ namespace Team2_ERP
                 }
                 else
                 {
-                    RefreshClicked();
-                    frm.NoticeMessage = notice;
+                    frm.NoticeMessage = "기간을 선택하셔야 합니다.";
                 }
             }
             else if (tabDefective.SelectedIndex == 2)
@@ -328,8 +339,7 @@ namespace Team2_ERP
                 }
                 else
                 {
-                    RefreshClicked();
-                    frm.NoticeMessage = notice;
+                    frm.NoticeMessage = "기간을 선택하셔야 합니다.";
                 }
             }
             else if (tabDefective.SelectedIndex == 3)
@@ -345,8 +355,7 @@ namespace Team2_ERP
                 }
                 else
                 {
-                    RefreshClicked();
-                    frm.NoticeMessage = notice;
+                    frm.NoticeMessage = "기간을 선택하셔야 합니다.";
                 }
             }
             

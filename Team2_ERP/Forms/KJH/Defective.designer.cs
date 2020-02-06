@@ -74,8 +74,8 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.searchPeriodForBy);
             this.panel5.Controls.Add(this.SearchArea);
+            this.panel5.Controls.Add(this.searchPeriodForBy);
             // 
             // searchWorker
             // 
