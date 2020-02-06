@@ -80,7 +80,7 @@
             // TopMargin
             // 
             this.TopMargin.Dpi = 254F;
-            this.TopMargin.HeightF = 200F;
+            this.TopMargin.HeightF = 91.52082F;
             this.TopMargin.Name = "TopMargin";
             // 
             // BottomMargin
@@ -116,7 +116,7 @@
             this.xrLabel8,
             this.xrPageInfo1});
             this.ReportFooter.Dpi = 254F;
-            this.ReportFooter.HeightF = 116.4167F;
+            this.ReportFooter.HeightF = 95.25F;
             this.ReportFooter.Name = "ReportFooter";
             // 
             // xrLabel2
@@ -536,11 +536,11 @@
             // xrLabel8
             // 
             this.xrLabel8.Dpi = 254F;
-            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(94.36703F, 0F);
+            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(94.36698F, 0F);
             this.xrLabel8.Multiline = true;
             this.xrLabel8.Name = "xrLabel8";
             this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
-            this.xrLabel8.SizeF = new System.Drawing.SizeF(254F, 63.71163F);
+            this.xrLabel8.SizeF = new System.Drawing.SizeF(254F, 82.23254F);
             this.xrLabel8.StylePriority.UseTextAlignment = false;
             this.xrLabel8.Text = "구디B2KE";
             this.xrLabel8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
@@ -548,10 +548,10 @@
             // xrPageInfo1
             // 
             this.xrPageInfo1.Dpi = 254F;
-            this.xrPageInfo1.LocationFloat = new DevExpress.Utils.PointFloat(1F, 0F);
+            this.xrPageInfo1.LocationFloat = new DevExpress.Utils.PointFloat(0.999939F, 0F);
             this.xrPageInfo1.Name = "xrPageInfo1";
             this.xrPageInfo1.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
-            this.xrPageInfo1.SizeF = new System.Drawing.SizeF(1899F, 63.71163F);
+            this.xrPageInfo1.SizeF = new System.Drawing.SizeF(1899F, 82.23254F);
             this.xrPageInfo1.StylePriority.UseTextAlignment = false;
             this.xrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
@@ -568,7 +568,7 @@
             this.DetailReport});
             this.Dpi = 254F;
             this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Margins = new System.Drawing.Printing.Margins(100, 100, 200, 200);
+            this.Margins = new System.Drawing.Printing.Margins(100, 100, 92, 200);
             this.PageHeight = 2970;
             this.PageWidth = 2100;
             this.PaperKind = System.Drawing.Printing.PaperKind.A4;

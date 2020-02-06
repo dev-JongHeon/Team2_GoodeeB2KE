@@ -80,9 +80,9 @@
             // 
             this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblMessage.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.lblMessage.Location = new System.Drawing.Point(143, 152);
+            this.lblMessage.Location = new System.Drawing.Point(143, 81);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(444, 82);
+            this.lblMessage.Size = new System.Drawing.Size(444, 198);
             this.lblMessage.TabIndex = 2;
             this.lblMessage.Text = "메세지";
             this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

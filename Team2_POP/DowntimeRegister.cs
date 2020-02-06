@@ -42,7 +42,7 @@ namespace Team2_POP
             if (list == null)
             {
                 if (CustomMessageBox.ShowDialog(Properties.Resources.MsgDowntimeGetResultFailHeader
-                        , Properties.Resources.MsgDowntimeGetResultFailContent, MessageBoxIcon.Information, true) == DialogResult.OK)
+                        , Properties.Resources.MsgDowntimeGetResultFailContent, MessageBoxIcon.Information, MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
                     list = service.GetDowntimeCode();
                     UtilClass.ComboBinding(cboDowntime, list, "비가동유형 선택");

@@ -143,6 +143,14 @@
     <Compile Include="CustomForms\WaitForm.Designer.cs">
       <DependentUpon>WaitForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="dsBalju.cs">
+      <DependentUpon>dsBalju.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsBalju.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsBalju.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CMG\BOM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -646,6 +654,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="dsBalju.xsc">
+      <DependentUpon>dsBalju.xsd</DependentUpon>
+    </None>
+    <None Include="dsBalju.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsBalju.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="dsBalju.xss">
+      <DependentUpon>dsBalju.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

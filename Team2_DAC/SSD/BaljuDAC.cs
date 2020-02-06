@@ -79,7 +79,7 @@ namespace Team2_DAC
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     StringBuilder sb = new StringBuilder();
-                    sb.Append("SELECT Balju_ID, a.Product_ID, Product_Name, BaljuDetail_Qty ");
+                    sb.Append("SELECT Balju_ID, Product_ID, Product_Name, BaljuDetail_Qty ");
                     sb.Append("FROM   BaljuList_Detail");
 
                     cmd.Connection = conn;
