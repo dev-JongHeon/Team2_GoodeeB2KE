@@ -79,7 +79,7 @@ namespace Team2_POP
 
             if (msg.Length > 1)
             {
-                CustomMessageBox.ShowDialog(Properties.Resources.MsgDefectiveValidate, msg.ToString(), MessageBoxIcon.Warning);
+                CustomMessageBox.ShowDialog(Properties.Resources.MsgDefectiveValidate, msg.ToString(), MessageBoxIcon.Warning, MessageBoxButtons.OK);
                 ResetData();
                 return;
             }
@@ -92,7 +92,7 @@ namespace Team2_POP
             bool bResult = new Service().SetDefective(defectiveID, handleCode, defecCode);
             if(bResult) // 성공한 경우
                 CustomMessageBox.ShowDialog(Properties.Resources.MsgDefectiveResultSucceesHeader
-                    ,string.Format(Properties.Resources.MsgDefectiveResultSucceesContents, defectiveID, lblDefectiveName, lblHandle)
+                    ,string.Format(Properties.Resources.MsgDefectiveResultSucceesContents, defectiveID, lblDefectiveName.Text, lblHandle.Text)
                     , MessageBoxIcon.Question);
 
             else // 실패한 경우

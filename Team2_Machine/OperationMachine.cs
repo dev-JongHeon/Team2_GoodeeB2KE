@@ -52,11 +52,17 @@ namespace Team2_Machine
 
                     // 생산중
                     service.Producing(PerformanceID, itemQuality, 1 - itemQuality);
+
+
+                    //생산중 - 모니터링 화면
+
                 }
 
                 // 생산 완료 ( 재고 감소 )
                 Thread.Sleep(100);
                 service.EndProduce(PerformanceID);
+
+                // 생산 완료 - 모니터링 화면
 
                 return iTotalCnt;
             }

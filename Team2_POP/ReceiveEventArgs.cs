@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Team2_POP
 {
     public class ReceiveEventArgs : EventArgs
-    {
+    {       
         public int LineID { get; set; }
         public string Message { get; set; }
         public bool IsCompleted { get; set; }

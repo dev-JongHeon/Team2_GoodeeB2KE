@@ -72,26 +72,18 @@ namespace Team2_POP
         /// <param name="header"></param>
         /// <param name="msg"></param>
         /// <param name="options"></param>
-        public static DialogResult ShowDialog(string header, string msg, MessageBoxIcon options)
+        public static DialogResult ShowDialog(string header, string msg, MessageBoxIcon iconOption,
+            MessageBoxButtons btnOption = MessageBoxButtons.OK)
         {
             headerText = header;
             bodyText = msg;
-            option = options;
-
-            frm = new CustomMessageBox();
-            frm.ShowDialog();
-
-            return frm.DialogResult;
-        }
-
-        public static DialogResult ShowDialog(string header, string msg, MessageBoxIcon options, bool visible)
-        {
-            headerText = header;
-            bodyText = msg;
-            option = options;
-            buttonText = "예";
-            buttonCancelVisible = visible;
-
+            option = iconOption;
+            
+            if(btnOption == MessageBoxButtons.OKCancel)
+            {
+                buttonText = "예";
+                buttonCancelVisible = true;
+            }
             frm = new CustomMessageBox();
             frm.ShowDialog();
 
