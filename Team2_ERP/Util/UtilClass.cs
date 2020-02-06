@@ -137,7 +137,7 @@ namespace Team2_ERP
             }
         }
 
-        public static string ExportToDataGridView(DataGridView dgv, string[] exceptColumns)
+        public static string ExportToDataGridView(DataGridView dgv, string[] exceptColumns)  // DataGridView 전용
         {
             try
             {
