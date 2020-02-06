@@ -21,7 +21,7 @@ namespace Team2_DAC
 
         public List<EmployeeVO> GetAllEmployee()
         {
-            string sql = "GetAllEmployee";
+            string sql = "CMG_GetAllEmployee";
 
             try
             {

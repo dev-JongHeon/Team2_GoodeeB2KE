@@ -34,7 +34,7 @@ namespace Team2_ERP
                 numResourceNum.Value = item.Product_Qty;
                 numSafety.Value = item.Product_Safety;
             }
-            else if (editMode == EditMode.Insert)
+            else
             {
                 lblName.Text = "자재 등록";
                 mode = "Insert";
@@ -103,13 +103,9 @@ namespace Team2_ERP
         private void btnOK_Click(object sender, EventArgs e)
         {
             if(mode.Equals("Insert"))
-            {
                 InsertResource();
-            }
-            else if(mode.Equals("Update"))
-            {
+            else
                 UpdateResource();
-            }
 
             this.DialogResult = DialogResult.OK;
         }

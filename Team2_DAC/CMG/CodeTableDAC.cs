@@ -44,7 +44,7 @@ namespace Team2_DAC
 
         public bool InsertCategory(CodeTableVO category)
         {
-            string sql = "InsertCategory";
+            string sql = "CMG_InsertCategory";
 
             try
             {
@@ -72,7 +72,7 @@ namespace Team2_DAC
 
         public bool InsertDepart(CodeTableVO category)
         {
-            string sql = "InsertDepart";
+            string sql = "CMG_InsertDepart";
 
             try
             {

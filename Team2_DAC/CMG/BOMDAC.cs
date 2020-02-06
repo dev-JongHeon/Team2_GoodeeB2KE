@@ -21,7 +21,7 @@ namespace Team2_DAC
 
         public List<ProductVO> GetAllProduct()
         {
-            string sql = "GetAllProduct";
+            string sql = "CMG_GetAllProduct";
 
             try
             {
@@ -45,7 +45,7 @@ namespace Team2_DAC
 
         public List<BOMVO> GetAllCombination(string code)
         {
-            string sql = "GetAllCombination";
+            string sql = "CMG_GetAllCombination";
 
             try
             {
@@ -70,7 +70,7 @@ namespace Team2_DAC
 
         public List<BOMVO> GetAllCombinationReverse(string code)
         {
-            string sql = "GetAllCombinationReverse";
+            string sql = "CMG_GetAllCombinationReverse";
 
             try
             {
@@ -128,7 +128,7 @@ namespace Team2_DAC
 
             try
             {
-                string sql = "GetComboResourceCategory";
+                string sql = "CMG_GetComboResourceCategory";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
@@ -161,7 +161,7 @@ namespace Team2_DAC
 
             try
             {
-                string productSql = "InsertSemiProduct";
+                string productSql = "CMG_InsertSemiProduct";
 
                 SqlCommand cmd = new SqlCommand(productSql, conn);
                 cmd.Transaction = trans;
@@ -212,7 +212,7 @@ namespace Team2_DAC
 
             try
             {
-                string productSql = "UpdateSemiProduct";
+                string productSql = "CMG_UpdateSemiProduct";
 
                 SqlCommand cmd = new SqlCommand(productSql, conn);
                 cmd.Transaction = trans;
@@ -264,7 +264,7 @@ namespace Team2_DAC
 
             try
             {
-                string productSql = "DeleteSemiProduct";
+                string productSql = "CMG_DeleteSemiProduct";
 
                 SqlCommand cmd = new SqlCommand(productSql, conn);
                 cmd.Transaction = trans;
@@ -308,7 +308,7 @@ namespace Team2_DAC
 
             try
             {
-                string productSql = "InsertProduct";
+                string productSql = "CMG_InsertProduct";
 
                 SqlCommand cmd = new SqlCommand(productSql, conn);
                 cmd.Transaction = trans;
@@ -357,7 +357,7 @@ namespace Team2_DAC
 
             try
             {
-                string productSql = "UpdateProduct";
+                string productSql = "CMG_UpdateProduct";
 
                 SqlCommand cmd = new SqlCommand(productSql, conn);
                 cmd.Transaction = trans;
@@ -406,7 +406,7 @@ namespace Team2_DAC
 
             try
             {
-                string productSql = "DeleteProduct";
+                string productSql = "CMG_DeleteProduct";
 
                 SqlCommand cmd = new SqlCommand(productSql, conn);
                 cmd.Transaction = trans;

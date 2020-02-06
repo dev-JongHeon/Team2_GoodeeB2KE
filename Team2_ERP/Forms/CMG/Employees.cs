@@ -28,17 +28,17 @@ namespace Team2_ERP
         // 그리드 뷰 디자인 
         private void InitGridView()
         {
-            UtilClass.SettingDgv(dataGridView1);
+            UtilClass.SettingDgv(dgvEmployee);
 
-            UtilClass.AddNewColum(dataGridView1, "사원번호", "Employees_ID", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "사원이름", "Employees_Name", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "소속부서", "CodeTable_CodeName", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "입사일", "Employees_Hiredate", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "퇴사일", "Employees_Resigndate", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "연락망", "Employees_Phone", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "생년월일", "Employees_Birth", true, 100);
+            UtilClass.AddNewColum(dgvEmployee, "사원번호", "Employees_ID", true, 100);
+            UtilClass.AddNewColum(dgvEmployee, "사원이름", "Employees_Name", true, 100);
+            UtilClass.AddNewColum(dgvEmployee, "소속부서", "CodeTable_CodeName", true, 100);
+            UtilClass.AddNewColum(dgvEmployee, "입사일", "Employees_Hiredate", true, 100);
+            UtilClass.AddNewColum(dgvEmployee, "퇴사일", "Employees_Resigndate", true, 100);
+            UtilClass.AddNewColum(dgvEmployee, "연락망", "Employees_Phone", true, 100);
+            UtilClass.AddNewColum(dgvEmployee, "생년월일", "Employees_Birth", true, 100);
 
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dgvEmployee.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
         }
 
         // DataGridView 가져오기
@@ -46,20 +46,22 @@ namespace Team2_ERP
         {
             StandardService service = new StandardService();
             list = service.GetAllEmployee();
-            dataGridView1.DataSource = list;
+            dgvEmployee.DataSource = list;
+            dgvEmployee.CurrentCell = null;
         }
 
         private void Employees_Load(object sender, EventArgs e)
         {
             InitGridView();
             frm = (MainForm)this.ParentForm;
-            LoadGridView();
+            StandardService service = new StandardService();
+            list = service.GetAllEmployee();
         }
 
         private void Employees_Activated(object sender, EventArgs e)
         {
             MenuByAuth(Auth);
-            frm.NoticeMessage = notice;
+            InitMessage();
         }
 
         private void Employees_Deactivate(object sender, EventArgs e)
@@ -77,17 +79,15 @@ namespace Team2_ERP
 
         private void InitMessage()
         {
-            frm.NoticeMessage = "메세지";
+            frm.NoticeMessage = notice;
         }
 
         public override void Refresh(object sender, EventArgs e)
         {
             InitMessage();
-            dataGridView1.DataSource = null;
-            searchUserControl1.CodeTextBox.Text = "";
-            searchUserControl2.CodeTextBox.Text = "";
-            dataGridView1.CurrentCell = null;
-            LoadGridView();
+            dgvEmployee.DataSource = null;
+            searchEmployeeName.CodeTextBox.Text = "";
+            searchDepartmentName.CodeTextBox.Text = "";
         }
 
         public override void New(object sender, EventArgs e)
@@ -98,7 +98,7 @@ namespace Team2_ERP
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 frm.Close();
-                dataGridView1.DataSource = null;
+                dgvEmployee.DataSource = null;
                 LoadGridView();
             }
         }
@@ -107,7 +107,7 @@ namespace Team2_ERP
         {
             InitMessage();
 
-            if (dataGridView1.SelectedRows.Count < 1)
+            if (dgvEmployee.SelectedRows.Count < 1)
             {
                 frm.NoticeMessage = "수정할 사원을 선택해주세요.";
             }
@@ -117,7 +117,7 @@ namespace Team2_ERP
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     frm.Close();
-                    dataGridView1.DataSource = null;
+                    dgvEmployee.DataSource = null;
                     LoadGridView();
                 }
             }
@@ -127,7 +127,7 @@ namespace Team2_ERP
         {
             InitMessage();
 
-            if (dataGridView1.SelectedRows.Count < 1)
+            if (dgvEmployee.SelectedRows.Count < 1)
             {
                 frm.NoticeMessage = "삭제할 사원을 선택해주세요.";
             }
@@ -138,7 +138,7 @@ namespace Team2_ERP
                 {
                     StandardService service = new StandardService();
                     service.DeleteEmployee(item.Employees_ID);
-                    dataGridView1.DataSource = null;
+                    dgvEmployee.DataSource = null;
                     LoadGridView();
                 }
             }
@@ -146,36 +146,46 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)
         {
-            if(searchUserControl1.CodeTextBox.Text.Length > 0 && searchUserControl2.CodeTextBox.Text.Length > 0)
+            if (searchEmployeeName.CodeTextBox.Text.Length > 0 && searchDepartmentName.CodeTextBox.Text.Length > 0)
             {
-                List<EmployeeVO> searchList = (from item in list where item.Employees_ID.Equals(Convert.ToInt32(searchUserControl1.CodeTextBox.Tag)) && item.CodeTable_CodeID.Equals(searchUserControl2.CodeTextBox.Tag.ToString()) && item.Employees_DeletedYN == false select item).ToList();
-                dataGridView1.DataSource = null;
-                dataGridView1.DataSource = searchList;
+                List<EmployeeVO> searchList = (from item in list where item.Employees_ID.Equals(Convert.ToInt32(searchEmployeeName.CodeTextBox.Tag)) && item.CodeTable_CodeID.Equals(searchDepartmentName.CodeTextBox.Tag.ToString()) && item.Employees_DeletedYN == false select item).ToList();
+                dgvEmployee.DataSource = null;
+                dgvEmployee.DataSource = searchList;
             }
-            else if(searchUserControl1.CodeTextBox.Text.Length > 0)
+            else if (searchEmployeeName.CodeTextBox.Text.Length > 0)
             {
-                List<EmployeeVO> searchList = (from item in list where item.Employees_ID.Equals(Convert.ToInt32(searchUserControl1.CodeTextBox.Tag)) && item.Employees_DeletedYN == false select item).ToList();
-                dataGridView1.DataSource = null;
-                dataGridView1.DataSource = searchList;
+                List<EmployeeVO> searchList = (from item in list where item.Employees_ID.Equals(Convert.ToInt32(searchEmployeeName.CodeTextBox.Tag)) && item.Employees_DeletedYN == false select item).ToList();
+                dgvEmployee.DataSource = null;
+                dgvEmployee.DataSource = searchList;
+            }
+            else if (searchDepartmentName.CodeTextBox.Text.Length > 0)
+            {
+                List<EmployeeVO> searchList = (from item in list where item.CodeTable_CodeID.Equals(searchDepartmentName.CodeTextBox.Tag.ToString()) && item.Employees_DeletedYN == false select item).ToList();
+                dgvEmployee.DataSource = null;
+                dgvEmployee.DataSource = searchList;
             }
             else
             {
-                List<EmployeeVO> searchList = (from item in list where item.CodeTable_CodeID.Equals(searchUserControl2.CodeTextBox.Tag.ToString()) && item.Employees_DeletedYN == false select item).ToList();
-                dataGridView1.DataSource = null;
-                dataGridView1.DataSource = searchList;
+                LoadGridView();
             }
+
+            dgvEmployee.CurrentCell = null;
+            InitMessage();
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvEmployee_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            item = new EmployeeVO
+            if (e.RowIndex < dgvEmployee.Rows.Count && e.RowIndex > -1)
             {
-                Employees_ID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value),
-                Employees_Name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                Employees_Hiredate = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString(),
-                Employees_Phone = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString(),
-                Employees_Birth = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString()
-            };
+                item = new EmployeeVO
+                {
+                    Employees_ID = Convert.ToInt32(dgvEmployee.Rows[e.RowIndex].Cells[0].Value),
+                    Employees_Name = dgvEmployee.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                    Employees_Hiredate = dgvEmployee.Rows[e.RowIndex].Cells[3].Value.ToString(),
+                    Employees_Phone = dgvEmployee.Rows[e.RowIndex].Cells[5].Value.ToString(),
+                    Employees_Birth = dgvEmployee.Rows[e.RowIndex].Cells[6].Value.ToString()
+                };
+            }
         }
     }
 }

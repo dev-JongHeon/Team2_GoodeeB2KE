@@ -28,21 +28,20 @@ namespace Team2_ERP
         // 그리드 뷰 디자인 
         private void InitGridView()
         {
-            UtilClass.SettingDgv(dataGridView1);
+            UtilClass.SettingDgv(dgvResource);
 
-            UtilClass.AddNewColum(dataGridView1, "제품코드", "Product_ID", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "제품이름", "Product_Name", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "제품보관창고", "Warehouse_Name", true, 100);
-            UtilClass.AddNewColum(dataGridView1, "제품가격", "Product_Price", true, 100, DataGridViewContentAlignment.MiddleRight);
-            UtilClass.AddNewColum(dataGridView1, "제품개수", "Product_Qty", true, 100, DataGridViewContentAlignment.MiddleRight);
-            UtilClass.AddNewColum(dataGridView1, "안전재고량", "Product_Safety", true, 100, DataGridViewContentAlignment.MiddleRight);
-            UtilClass.AddNewColum(dataGridView1, "제품카테고리", "CodeTable_CodeName", true, 100);
-            dataGridView1.Columns[3].DefaultCellStyle.Format = "#,###원";
-            dataGridView1.Columns[4].DefaultCellStyle.Format = "#,###개";
-            dataGridView1.Columns[5].DefaultCellStyle.Format = "#,###개";
+            UtilClass.AddNewColum(dgvResource, "제품코드", "Product_ID", true, 100);
+            UtilClass.AddNewColum(dgvResource, "제품이름", "Product_Name", true, 100);
+            UtilClass.AddNewColum(dgvResource, "제품보관창고", "Warehouse_Name", true, 100);
+            UtilClass.AddNewColum(dgvResource, "제품가격", "Product_Price", true, 100, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dgvResource, "제품개수", "Product_Qty", true, 100, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dgvResource, "안전재고량", "Product_Safety", true, 100, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dgvResource, "제품카테고리", "CodeTable_CodeName", true, 100);
+            dgvResource.Columns[3].DefaultCellStyle.Format = "#,###원";
+            dgvResource.Columns[4].DefaultCellStyle.Format = "#,###개";
+            dgvResource.Columns[5].DefaultCellStyle.Format = "#,###개";
 
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvResource.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
         }
 
         // DataGridView 가져오기
@@ -50,29 +49,28 @@ namespace Team2_ERP
         {
             StandardService service = new StandardService();
             list = service.GetAllResource();
-            List<ResourceVO> resourceList = (from item in list where item.Product_ID.Contains("M") && item.Product_DeletedYN == false select item).ToList();
-            dataGridView1.DataSource = resourceList;
+            dgvResource.DataSource = list;
+            dgvResource.CurrentCell = null;
         }
 
         private void Resource_Load(object sender, EventArgs e)
         {
             InitGridView();
             frm = (MainForm)this.ParentForm;
-            LoadGridView();
+            StandardService service = new StandardService();
+            list = service.GetAllResource();
         }
 
         private void InitMessage()
         {
-            frm.NoticeMessage = "메세지";
+            frm.NoticeMessage = notice;
         }
 
         public override void Refresh(object sender, EventArgs e)
         {
             InitMessage();
-            dataGridView1.DataSource = null;
-            searchUserControl1.CodeTextBox.Text = "";
-            dataGridView1.CurrentCell = null;
-            LoadGridView();
+            dgvResource.DataSource = null;
+            searchResourceName.CodeTextBox.Text = "";
         }
 
         public override void New(object sender, EventArgs e)
@@ -83,7 +81,7 @@ namespace Team2_ERP
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 frm.Close();
-                dataGridView1.DataSource = null;
+                dgvResource.DataSource = null;
                 LoadGridView();
             }
         }
@@ -102,7 +100,7 @@ namespace Team2_ERP
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     frm.Close();
-                    dataGridView1.DataSource = null;
+                    dgvResource.DataSource = null;
                     LoadGridView();
                 }
             }
@@ -112,18 +110,17 @@ namespace Team2_ERP
         {
             InitMessage();
 
-            if (item == null)
+            if (dgvResource.SelectedRows.Count < 1)
             {
                 frm.NoticeMessage = "삭제할 제품을 선택해주세요.";
             }
-
             else
             {
                 if (MessageBox.Show("삭제하시겠습니까?", "확인", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     StandardService service = new StandardService();
                     service.DeleteResource(item.Product_ID);
-                    dataGridView1.DataSource = null;
+                    dgvResource.DataSource = null;
                     LoadGridView();
                 }
             }
@@ -131,15 +128,15 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)
         {
-            if (searchUserControl1.CodeTextBox.Text.Length > 0)
+            if (searchResourceName.CodeTextBox.Text.Length > 0)
             {
-                dataGridView1.DataSource = null;
-                List<ResourceVO> searchList = (from item in list where item.Product_ID.Contains(searchUserControl1.CodeTextBox.Tag.ToString()) && item.Product_DeletedYN == false select item).ToList();
-                dataGridView1.DataSource = searchList;
+                dgvResource.DataSource = null;
+                List<ResourceVO> searchList = (from item in list where item.Product_ID.Contains(searchResourceName.CodeTextBox.Tag.ToString()) && item.Product_DeletedYN == false select item).ToList();
+                dgvResource.DataSource = searchList;
             }
             else
             {
-                frm.NoticeMessage = "검색할 원자재를 선택해주세요.";
+                LoadGridView();
             }
         }
 
@@ -151,7 +148,7 @@ namespace Team2_ERP
         private void Resource_Activated(object sender, EventArgs e)
         {
             MenuByAuth(Auth);
-            frm.NoticeMessage = notice;
+            InitMessage();
         }
 
         public override void MenuStripONOFF(bool flag)
@@ -164,19 +161,17 @@ namespace Team2_ERP
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            item = new ResourceVO
+            if (e.RowIndex < dgvResource.Rows.Count && e.RowIndex > -1)
             {
-                Product_ID = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(),
-                Product_Name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                Product_Price = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString().Replace(",", "").Replace("원", "")),
-                Product_Qty = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString()),
-                Product_Safety = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString())
-            };
-        }
-
-        private void Resource_Shown(object sender, EventArgs e)
-        {
-            dataGridView1.CurrentCell = null;
+                item = new ResourceVO
+                {
+                    Product_ID = dgvResource.Rows[e.RowIndex].Cells[0].Value.ToString(),
+                    Product_Name = dgvResource.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                    Product_Price = Convert.ToInt32(dgvResource.Rows[e.RowIndex].Cells[3].Value.ToString().Replace(",", "").Replace("원", "")),
+                    Product_Qty = Convert.ToInt32(dgvResource.Rows[e.RowIndex].Cells[4].Value.ToString()),
+                    Product_Safety = Convert.ToInt32(dgvResource.Rows[e.RowIndex].Cells[5].Value.ToString())
+                };
+            }
         }
     }
 }

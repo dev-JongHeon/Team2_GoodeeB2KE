@@ -21,7 +21,7 @@ namespace Team2_DAC
 
         public List<ResourceVO> GetAllResource()
         {
-            string sql = "GetAllResource";
+            string sql = "CMG_GetAllResource";
 
             try
             {
@@ -45,7 +45,7 @@ namespace Team2_DAC
 
         public bool InsertResource(ResourceVO item)
         {
-            string sql = "InsertResource";
+            string sql = "CMG_InsertResource";
 
             try
             {
@@ -138,7 +138,7 @@ namespace Team2_DAC
 
             try
             {
-                string sql = "GetComboWarehouse";
+                string sql = "CMG_GetComboWarehouse";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {

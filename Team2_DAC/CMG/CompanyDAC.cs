@@ -21,7 +21,7 @@ namespace Team2_DAC
 
         public List<CompanyVO> GetAllCompany()
         {
-            string sql = "GetAllCompany";
+            string sql = "CMG_GetAllCompany";
 
             try
             {

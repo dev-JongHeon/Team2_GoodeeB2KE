@@ -123,7 +123,6 @@
             this.ClientSize = new System.Drawing.Size(641, 408);
             this.Name = "DepartmentInsUp";
             this.Text = "DepartmentInsUp";
-            this.Load += new System.EventHandler(this.DepartmentInsUp_Load);
             this.panel1.ResumeLayout(false);
             this.panel_Title.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).EndInit();

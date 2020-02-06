@@ -313,7 +313,7 @@ namespace Team2_POP
             };
 
             client.Received -= Receive;
-            client.Received += new EventHandler(Receive);
+            client.Received += new ReceiveEventHandler(Receive);
         }
         private async void ProduceStart()
         {
@@ -339,7 +339,10 @@ namespace Team2_POP
                     client.RequestQty = Convert.ToInt32(result[1]);
                     client.ProduceID = produceID;
 
-                    bool bConnect = await client.Connect();
+                    if (!client.Connected)
+                    {
+                        bool bConnect = await client.Connect();
+                    }
 
                     //서버와 연결되어있지 않은경우
                     if (!client.Connected)
@@ -363,13 +366,12 @@ namespace Team2_POP
             }
 
         }
-        public void Receive(object sender, EventArgs e)
-        {
-            ReceiveEventArgs re = (ReceiveEventArgs)e;
-            if (re.IsCompleted)
-                CustomMessageBox.ShowDialog("성공", re.Message, MessageBoxIcon.Information);
+        public void Receive(object sender, ReceiveEventArgs e)
+        {            
+            if (e.IsCompleted)
+                CustomMessageBox.ShowDialog("성공", e.Message, MessageBoxIcon.Information);
             else
-                CustomMessageBox.ShowDialog("실패", re.Message, MessageBoxIcon.Error);
+                CustomMessageBox.ShowDialog("실패", e.Message, MessageBoxIcon.Error);
         }
 
 
@@ -481,7 +483,7 @@ namespace Team2_POP
                     if (list == null)
                     {
                        DialogResult dResult = CustomMessageBox.ShowDialog(Resources.MsgLoadResultFailHeader
-                           , "생산데이터를 불러오는 중에 실패했습니다. 다시 시도하시겠습니까?", MessageBoxIcon.Information, true);
+                           , "생산데이터를 불러오는 중에 실패했습니다. 다시 시도하시겠습니까?", MessageBoxIcon.Information, MessageBoxButtons.OKCancel);
                         if(dResult == DialogResult.OK)
                         {
                             list = service.GetProduce(workID);

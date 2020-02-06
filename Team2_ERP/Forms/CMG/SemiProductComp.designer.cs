@@ -33,7 +33,7 @@
             this.cboCategoryDetail = new System.Windows.Forms.ComboBox();
             this.cboCategory = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvSemiProduct = new System.Windows.Forms.DataGridView();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.numSafety = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
@@ -59,7 +59,7 @@
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSemiProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
@@ -113,7 +113,7 @@
             // 
             // splitContainer3.Panel2
             // 
-            this.splitContainer3.Panel2.Controls.Add(this.dataGridView1);
+            this.splitContainer3.Panel2.Controls.Add(this.dgvSemiProduct);
             this.splitContainer3.Size = new System.Drawing.Size(289, 407);
             this.splitContainer3.SplitterDistance = 90;
             this.splitContainer3.TabIndex = 0;
@@ -145,17 +145,17 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "카테고리";
             // 
-            // dataGridView1
+            // dgvSemiProduct
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(289, 313);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
+            this.dgvSemiProduct.BackgroundColor = System.Drawing.Color.White;
+            this.dgvSemiProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSemiProduct.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvSemiProduct.Location = new System.Drawing.Point(0, 0);
+            this.dgvSemiProduct.Name = "dgvSemiProduct";
+            this.dgvSemiProduct.RowTemplate.Height = 23;
+            this.dgvSemiProduct.Size = new System.Drawing.Size(289, 313);
+            this.dgvSemiProduct.TabIndex = 0;
+            this.dgvSemiProduct.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSemiProduct_CellContentClick);
             // 
             // splitContainer2
             // 
@@ -300,7 +300,7 @@
             this.splitContainer3.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSemiProduct)).EndInit();
             this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -322,7 +322,7 @@
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.ComboBox cboCategory;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvSemiProduct;
         private System.Windows.Forms.ComboBox cboCategoryDetail;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label4;
