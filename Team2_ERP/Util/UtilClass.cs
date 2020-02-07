@@ -628,7 +628,7 @@ namespace Team2_ERP
 
                     foreach (U data in detaillist2)
                     {
-                        if (data.ToString() == id)
+                        if (data.Equals(id))
                         {
                             lastrow2++;
                             columnIndex = 0;

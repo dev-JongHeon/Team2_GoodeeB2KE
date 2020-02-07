@@ -62,10 +62,14 @@ namespace Team2_ERP
 
             UtilClass.SettingDgv(dgvBOMDetail1);
 
+            UtilClass.AddNewColum(dgvBOMDetail1, "제품ID", "Product_ID", false, 100);
             UtilClass.AddNewColum(dgvBOMDetail1, "분류", "Category_Division", true, 100);
             UtilClass.AddNewColum(dgvBOMDetail1, "제품명", "Product_Name", true, 100);
             UtilClass.AddNewColum(dgvBOMDetail1, "개수", "Combination_RequiredQty", true, 100, DataGridViewContentAlignment.MiddleRight);
             UtilClass.AddNewColum(dgvBOMDetail1, "가격", "Product_Price", true, 100, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dgvBOMDetail1, "조합ID", "Combination_ID", false, 100);
+            UtilClass.AddNewColum(dgvBOMDetail1, "조합제품ID", "Combination_Product_ID", false, 100);
+            UtilClass.AddNewColum(dgvBOMDetail1, "조합삭제여부", "Combination_DeletedYN", false, 100);
             dgvBOMDetail1.Columns[2].DefaultCellStyle.Format = "#,###개";
             dgvBOMDetail1.Columns[3].DefaultCellStyle.Format = "#,###원";
 
@@ -73,6 +77,7 @@ namespace Team2_ERP
 
             UtilClass.SettingDgv(dgvBOMDetail2);
 
+            UtilClass.AddNewColum(dgvBOMDetail1, "제품ID", "Product_ID", false, 100);
             UtilClass.AddNewColum(dgvBOMDetail2, "분류", "Category_Division", true, 100);
             UtilClass.AddNewColum(dgvBOMDetail2, "제품명", "Product_Name", true, 100);
             UtilClass.AddNewColum(dgvBOMDetail2, "개수", "Combination_RequiredQty", true, 100, DataGridViewContentAlignment.MiddleRight);
@@ -316,7 +321,7 @@ namespace Team2_ERP
             List<ProductVO> allList = list.ToList();
             List<BOMVO> detail1 = bomList.ToList();
             List<BOMVO> detail2 = bomReverseList.ToList();
-            string[] gg = new string[] { "Product_Category", "Warehouse_ID", "Warehouse_Name", "Product_Qty", "Product_Safety", "Product_DeletedYN", "Category_Division", "Product_Image" };
+            string[] gg = new string[] { "Product_Category", "Warehouse_ID", "Warehouse_Name", "Product_Qty", "Product_Safety", "Product_DeletedYN", "Category_Division", "Product_Image", "Combination_ID", "Combination_Product_ID", "Combination_DeletedYN" };
             UtilClass.ExportTo2DataGridView(allList, detail1, detail2, gg);
         }
 
