@@ -32,10 +32,10 @@ namespace Team2_POP
         }
 
         // 생산 목록 조회
-        public List<Produce> GetProduce(string workID)
+        public List<Produce> GetProduce(string workID, int lineID)
         {
             if (!string.IsNullOrEmpty(workID))
-                return new POPDAC().GetProduces(workID);
+                return new POPDAC().GetProduces(workID, lineID);
             else
                 return null;
         }

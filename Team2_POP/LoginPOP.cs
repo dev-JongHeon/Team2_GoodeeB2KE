@@ -79,7 +79,7 @@ namespace Team2_POP
             // 로그인이 완료되면 메인 화면을 띄워주는 코드
             using(PopMain Main = new PopMain())
             {
-                this.Hide();
+                Hide();
                 Main.WorkerInfo = workerInfo;
 
                 // 로그아웃버튼을 누른 경우
@@ -93,9 +93,7 @@ namespace Team2_POP
                 // 종료 버튼을 누른 경우
                 // 로그인 화면도 닫음
                 else
-                {
                     Close();
-                }
             }
         }
 

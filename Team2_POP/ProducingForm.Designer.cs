@@ -68,7 +68,10 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ProducingForm";            
+            this.Text = "ProducingForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProducingForm_FormClosing);
+            this.Load += new System.EventHandler(this.ProducingForm_Load);
+            this.Shown += new System.EventHandler(this.ProducingForm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.picProducing)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

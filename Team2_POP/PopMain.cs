@@ -15,7 +15,7 @@ using Team2_POP.Properties;
 namespace Team2_POP
 {
     public partial class PopMain : Form
-    {        
+    {
         #region 프로퍼티 & 전역변수
         //===============
         //    프로퍼티
@@ -60,28 +60,26 @@ namespace Team2_POP
             BtnDisable(btnWorker);
             BtnDisable(btnProduceStart);
 
-            #region 이미지관련
-            ImageList imageList = new ImageList();
+            #region 이미지관련          
+            ImageList list1 = new ImageList();
+            ImageList list2 = new ImageList();
+            ImageList list3 = new ImageList();
+            ImageList list4 = new ImageList();
 
-            imageList.Images.Add("close", Properties.Resources.Img_Exit);
-            imageList.Images.Add("logout", Properties.Resources.Img_Logout);
+            list1.Images.Add(Resources.Img_LeftArrow);
+            list2.Images.Add(Resources.Img_RightArrow);
+            list3.Images.Add(Resources.Img_Exit);
+            list4.Images.Add(Resources.Img_Logout);
 
-            imageList.ImageSize = btnExit.Size;
+            list1.ImageSize = btnPreDate.Size;
+            list2.ImageSize = btnNextDate.Size;
+            list3.ImageSize = btnExit.Size;
+            list4.ImageSize = btnLogout.Size;
 
-            PictureBox picture1 = new PictureBox();
-            PictureBox picture2 = new PictureBox();
-            picture1.SizeMode = PictureBoxSizeMode.StretchImage;
-            picture2.SizeMode = PictureBoxSizeMode.StretchImage;
-
-            picture1.Image = Properties.Resources.Img_LeftArrow;
-            picture2.Image = Properties.Resources.RightArrow;
-
-            btnPreDate.Image = picture1.Image;
-            btnNextDate.Image = picture2.Image;
-
-            btnExit.Image = imageList.Images["close"];
-            btnLogout.Image = imageList.Images["logout"];
-
+            btnPreDate.Image = list1.Images[0];
+            btnNextDate.Image = list2.Images[0];
+            btnExit.Image = list3.Images[0];
+            btnLogout.Image = list4.Images[0];
             #endregion
 
 
@@ -188,7 +186,19 @@ namespace Team2_POP
 
         #endregion
 
-        
+        // 서버에 연결하는 코드
+        private void ConnectServer()
+        {
+            client = new POPClient()
+            {
+                LineID = WorkerInfo.LineID
+            };
+
+            client.Received -= Receive;
+            client.Received += new ReceiveEventHandler(Receive);
+            client.Connect();
+        }
+
 
         /// <summary>
         /// 비가동인지 아닌지 여부
@@ -304,17 +314,9 @@ namespace Team2_POP
         {
             ProduceStart();
         }
-        private void ConnectServer()
-        {
-            client = new POPClient()
-            {
-                LineID = WorkerInfo.LineID
-            };
 
-            client.Received -= Receive;
-            client.Received += new ReceiveEventHandler(Receive);
-        }
-        private async void ProduceStart()
+
+        private void ProduceStart()
         {
             string[] result = null;
 
@@ -332,6 +334,7 @@ namespace Team2_POP
                 // 생산해야할 개수와 생산실적아이디를 가져옴
                 result = new Service().StartProduce(produceID);
 
+                // 정상수량대로 가져온 경우
                 if (result.Length == 2)
                 {
                     client.PerformanceID = result[0];
@@ -342,7 +345,7 @@ namespace Team2_POP
                     //서버와 연결되어있지 않은경우
                     if (!client.Connected)
                     {
-                        bool bConnect = await client.Connect();
+                        bool bConnect = client.Connected;
 
                         if (!bConnect)
                         {
@@ -351,12 +354,16 @@ namespace Team2_POP
                         }
                     }
 
-                    //서버와 연결된 경우
+                    //서버와 연결된 경우 (정상실행)
                     else
-                    {                      
-                        client.Start();
+                    {
+                        CustomMessageBox.ShowDialog("접수 성공", "생산을 시작합니다.", MessageBoxIcon.Question);
+                        pFrm = new ProducingForm();
+                        pFrm.Processing = client.Start;
+                        pFrm.ShowDialog();
                     }
                 }
+                // 비정상 수량
                 else
                 {
                     CustomMessageBox.ShowDialog("데이터 통신 오류", "처리하는 과정에서 오류가 발생하였습니다. \n다시 시도해주세요.", MessageBoxIcon.Error);
@@ -369,16 +376,30 @@ namespace Team2_POP
             }
 
         }
+
+        ProducingForm pFrm;
         public void Receive(object sender, ReceiveEventArgs e)
         {
+            Task.Factory.StartNew(Test1, e).Wait();
+        }
+
+        public delegate void CloseDelegate();
+        private void Test1(object re)
+        {
+            ReceiveEventArgs e = (ReceiveEventArgs)re;
+
             if (e.IsCompleted)
             {
-                CustomMessageBox.ShowDialog("성공", e.Message, MessageBoxIcon.Information);  
-                
+                CustomMessageBox.ShowDialog("성공", e.Message, MessageBoxIcon.Information);
 
+                if (e.Message == "생산완료")
+                    pFrm.Invoke(new CloseDelegate(pFrm.Close));
             }
             else
+            {
                 CustomMessageBox.ShowDialog("실패", e.Message, MessageBoxIcon.Error);
+                pFrm.Invoke(new CloseDelegate(pFrm.Close));
+            }
         }
 
 
@@ -484,7 +505,7 @@ namespace Team2_POP
 
                     Service service = new Service();
 
-                    List<Produce> list = service.GetProduce(workID);
+                    List<Produce> list = service.GetProduce(workID, WorkerInfo.LineID);
 
                     // 불러온 값이 없는 경우
                     if (list == null)
@@ -493,11 +514,11 @@ namespace Team2_POP
                             , "생산데이터를 불러오는 중에 실패했습니다. 다시 시도하시겠습니까?", MessageBoxIcon.Information, MessageBoxButtons.OKCancel);
                         if (dResult == DialogResult.OK)
                         {
-                            list = service.GetProduce(workID);
+                            list = service.GetProduce(workID, WorkerInfo.LineID);
                         }
                     }
 
-                    dgvProduce.DataSource = new Service().GetProduce(workID);
+                    dgvProduce.DataSource = new Service().GetProduce(workID, WorkerInfo.LineID);
                     dgvProduce.ClearSelection();
                 }
             }
@@ -633,6 +654,8 @@ namespace Team2_POP
             // 타이머를 종료함
             timer.Stop();
             timer.Dispose();
+            // 서버접속을 종료함
+            client.DisConnected();
         }
 
 

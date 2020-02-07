@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -14,9 +15,9 @@ namespace Team2_Machine
 
         public ServerMachine()
         {
-            Console.WriteLine("머신 기계 가동시작");
+            Console.WriteLine($"{DateTime.Now.ToString("yyyymmdd HH:MM:ss")} 머신 기계 가동시작");
             AsyncWorkerServer().Wait();
-            Console.WriteLine("머신 기계 가동종료");
+            Console.WriteLine($"{DateTime.Now.ToString("yyyymmdd HH:MM:ss")} 머신 기계 가동종료");
         }
 
 
@@ -29,7 +30,7 @@ namespace Team2_Machine
             while (true)
             {
                 TcpClient client = await listener.AcceptTcpClientAsync().ConfigureAwait(false);
-                Console.WriteLine("클라이언트 접속");
+                Console.WriteLine($"{DateTime.Now.ToString("yyyymmdd HH:MM:ss")} 클라이언트 접속");
                 // 작업을 시작해라
                 await Task.Factory.StartNew(AsyncTcpProcess, client);
             }
@@ -39,10 +40,12 @@ namespace Team2_Machine
         // 실질적으로 작업하는 코드
         private void AsyncTcpProcess(object o)
         {
-            TcpClient client = (TcpClient)o;
+            TcpClient client = null;
+            NetworkStream stream = null;
             try
             {
-                NetworkStream stream = client.GetStream();
+                client = (TcpClient)o;
+                stream = client.GetStream();
 
                 while (client.Connected)
                 {
@@ -65,9 +68,11 @@ namespace Team2_Machine
                         if (workList.Length != 4)
                         {
                             msg = "서버 : 접수 실패";
-                            isCompleted = !isCompleted;
+                            isCompleted = false;
                         }
-                        Write(stream, new object[] { lineID, msg, isCompleted }).Wait();
+
+                        // 최초 : 라인아이디(0), 메세지(1), 성공여부(2)
+                        Write(stream, new object[] { lineID, msg, isCompleted });
 
                         OperationMachine machine = new OperationMachine();
                         machine.PerformanceID = workList[0];
@@ -75,18 +80,25 @@ namespace Team2_Machine
                         int totalQty = machine.ProductionMachine();
 
                         Console.WriteLine("작업완료 : {0}", totalQty);
-                        Write(stream, new object[] { lineID, "성공", machine.PerformanceID, true, totalQty }).Wait();
+
+                        //두번째 : 라인아이디(0), 메세지(1), 실적(2), 성공(3), 투입수량(4)
+                        Write(stream, new object[] { lineID, "생산완료", machine.PerformanceID, true, totalQty });
 
                         buff.ToList().Clear();
                     }
-                }
 
-                stream.Close();
-                client.Close();
+
+                }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                stream.Close();
+                client.Close();
+                Console.WriteLine($"{DateTime.Now.ToString("yyyymmdd HH:MM:ss")} 클라이언트 접속해제");
             }
         }
 
@@ -98,11 +110,12 @@ namespace Team2_Machine
         /// <param name="stream"></param>
         /// <param name="arrObj"></param>
         /// <returns></returns>
-        private async Task Write(NetworkStream stream, object[] arrObj)
+        private async void Write(NetworkStream stream, object[] arrObj)
         {
+            StreamWriter writer = new StreamWriter(stream);
+            writer.AutoFlush = true;
             string msg = string.Join(",", arrObj);
-            byte[] buff = Encoding.UTF8.GetBytes(msg);
-            await stream.WriteAsync(buff, 0, buff.Length).ConfigureAwait(false);
+            await writer.WriteLineAsync(msg).ConfigureAwait(false);
         }
 
         public void ServerDown()

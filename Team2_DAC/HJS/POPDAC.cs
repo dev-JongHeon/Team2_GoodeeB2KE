@@ -83,7 +83,7 @@ namespace Team2_DAC
 
 
         // 생산목록 조회 (작업 아이디) -- POP화면 => 작업을 더블클릭한 경우
-        public List<Produce> GetProduces(string workID)
+        public List<Produce> GetProduces(string workID, int lineID)
         {
             try
             {
@@ -93,7 +93,7 @@ namespace Team2_DAC
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "proc_GetProducesPOP";
 
-                    FillParameter(cmd, new string[] { "@Work_ID" }, new object[] { workID });
+                    FillParameter(cmd, new string[] { "@Work_ID", "@Line_ID" }, new object[] { workID, lineID });
 
                     conn.Open();
                     List<Produce> list = Helper.DataReaderMapToList<Produce>(cmd.ExecuteReader());
@@ -269,7 +269,7 @@ namespace Team2_DAC
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "GetInfo";
+                    cmd.CommandText = "KJH_GetInfo";
 
                     string div = factoryDivision == 0 ? "DepProd1" : "DepProd2";
 
@@ -615,7 +615,7 @@ namespace Team2_DAC
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "GetInfo";
+                    cmd.CommandText = "KJH_GetInfo";
 
                     FillParameter(cmd, new string[] { "@div" }, new object[] { "Downtime" });
 

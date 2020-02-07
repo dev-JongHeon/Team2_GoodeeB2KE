@@ -368,6 +368,7 @@
             this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.btnLogout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogout.Image = global::Team2_POP.Properties.Resources.Img_Logout;
             this.btnLogout.Location = new System.Drawing.Point(0, 0);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(60, 51);
@@ -380,6 +381,7 @@
             this.btnExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.btnExit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.Image = global::Team2_POP.Properties.Resources.Img_Exit;
             this.btnExit.Location = new System.Drawing.Point(0, 0);
             this.btnExit.Margin = new System.Windows.Forms.Padding(0);
             this.btnExit.Name = "btnExit";
@@ -452,6 +454,7 @@
             this.btnNextDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
             this.btnNextDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnNextDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNextDate.Image = global::Team2_POP.Properties.Resources.Img_RightArrow;
             this.btnNextDate.Location = new System.Drawing.Point(630, 3);
             this.btnNextDate.Name = "btnNextDate";
             this.btnNextDate.Size = new System.Drawing.Size(184, 76);
@@ -480,6 +483,7 @@
             this.btnPreDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPreDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPreDate.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnPreDate.Image = global::Team2_POP.Properties.Resources.Img_LeftArrow;
             this.btnPreDate.Location = new System.Drawing.Point(193, 3);
             this.btnPreDate.Name = "btnPreDate";
             this.btnPreDate.Size = new System.Drawing.Size(184, 76);
