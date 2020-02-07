@@ -82,6 +82,7 @@
             // lblName
             // 
             this.lblName.AutoSize = true;
+            this.lblName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.lblName.Location = new System.Drawing.Point(12, 13);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(51, 14);

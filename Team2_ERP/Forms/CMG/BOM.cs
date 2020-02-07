@@ -48,9 +48,6 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgvBOM, "이미지", "Product_Image", false, 100);
             dgvBOM.Columns[4].DefaultCellStyle.Format = "#,###원";
 
-            
-            
-
             dgvBOM.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
 
             DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
@@ -70,8 +67,8 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgvBOMDetail1, "조합ID", "Combination_ID", false, 100);
             UtilClass.AddNewColum(dgvBOMDetail1, "조합제품ID", "Combination_Product_ID", false, 100);
             UtilClass.AddNewColum(dgvBOMDetail1, "조합삭제여부", "Combination_DeletedYN", false, 100);
-            dgvBOMDetail1.Columns[2].DefaultCellStyle.Format = "#,###개";
-            dgvBOMDetail1.Columns[3].DefaultCellStyle.Format = "#,###원";
+            dgvBOMDetail1.Columns[3].DefaultCellStyle.Format = "#,###개";
+            dgvBOMDetail1.Columns[4].DefaultCellStyle.Format = "#,###원";
 
             dgvBOMDetail1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
 
@@ -309,10 +306,13 @@ namespace Team2_ERP
 
         public override void Excel(object sender, EventArgs e)
         {
-            using (WaitForm frm = new WaitForm())
+            if (dgvBOM.Rows.Count > 0)
             {
-                frm.Processing = ExcelExport;
+                using (WaitForm frm = new WaitForm())
+                {
+                    frm.Processing = ExcelExport;
                     frm.ShowDialog();
+                }
             }
         }
 

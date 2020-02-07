@@ -221,7 +221,7 @@
             0});
             this.numSafety.Name = "numSafety";
             this.numSafety.Size = new System.Drawing.Size(102, 21);
-            this.numSafety.TabIndex = 7;
+            this.numSafety.TabIndex = 4;
             // 
             // ResourceInsUp
             // 

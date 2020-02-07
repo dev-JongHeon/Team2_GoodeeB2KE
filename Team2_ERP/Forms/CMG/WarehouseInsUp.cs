@@ -58,7 +58,7 @@ namespace Team2_ERP
                     Warehouse_Division = Convert.ToInt32(cboWarehouseDivision.SelectedValue),
                     Warehouse_Number = txtWarehouseNumber.Text,
                     Warehouse_Fax = txtWarehouseFaxNumber.Text,
-                    Warehouse_Address = addressControl1.Address1 + "　" + addressControl1.Address2
+                    Warehouse_Address = addrWarehouse.Address1 + "　" + addrWarehouse.Address2
                 };
 
                 StandardService service = new StandardService();
@@ -77,7 +77,7 @@ namespace Team2_ERP
                     Warehouse_Name = txtWarehouseName.Text,
                     Warehouse_Number = txtWarehouseNumber.Text,
                     Warehouse_Fax = txtWarehouseFaxNumber.Text,
-                    Warehouse_Address = addressControl1.Address1 + "　" + addressControl1.Address2
+                    Warehouse_Address = addrWarehouse.Address1 + "　" + addrWarehouse.Address2
                 };
 
                 StandardService service = new StandardService();
@@ -119,12 +119,23 @@ namespace Team2_ERP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if(mode.Equals("Insert"))
-                InsertWarehouse();
+            if(txtWarehouseName.Text.Length > 0 && !cboWarehouseDivision.SelectedText.Equals("선택") && addrWarehouse.Address1.Length > 0 && addrWarehouse.Address2.Length > 0)
+            {
+                if(mode.Equals("Insert"))
+                {
+                    InsertWarehouse();
+                    DialogResult = MessageBox.Show(Properties.Settings.Default.AddDone, Properties.Settings.Default.AddDone, MessageBoxButtons.OK);
+                }
+                else
+                {
+                    UpdateWarehouse();
+                    DialogResult = MessageBox.Show(Properties.Settings.Default.ModDone, Properties.Settings.Default.ModDone, MessageBoxButtons.OK);
+                }
+            }
             else
-                UpdateWarehouse();
-
-            this.DialogResult = DialogResult.OK;
+            {
+                MessageBox.Show(Properties.Settings.Default.isEssential, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

@@ -35,7 +35,7 @@
             this.txtCompanyName = new System.Windows.Forms.TextBox();
             this.txtCompanyNumber = new System.Windows.Forms.TextBox();
             this.txtCompanyFaxNumber = new System.Windows.Forms.TextBox();
-            this.addressControl1 = new Team2_ERP.AddressControl();
+            this.addrCompany = new Team2_ERP.AddressControl();
             this.cboCompanyDivision = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtCompanyOwner = new System.Windows.Forms.TextBox();
@@ -52,7 +52,7 @@
             this.panel5.Controls.Add(this.txtCompanyOwner);
             this.panel5.Controls.Add(this.label1);
             this.panel5.Controls.Add(this.cboCompanyDivision);
-            this.panel5.Controls.Add(this.addressControl1);
+            this.panel5.Controls.Add(this.addrCompany);
             this.panel5.Controls.Add(this.txtCompanyFaxNumber);
             this.panel5.Controls.Add(this.txtCompanyNumber);
             this.panel5.Controls.Add(this.txtCompanyName);
@@ -134,14 +134,14 @@
             this.txtCompanyFaxNumber.Size = new System.Drawing.Size(133, 21);
             this.txtCompanyFaxNumber.TabIndex = 2;
             // 
-            // addressControl1
+            // addrCompany
             // 
-            this.addressControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.addressControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.addressControl1.Location = new System.Drawing.Point(52, 286);
-            this.addressControl1.Name = "addressControl1";
-            this.addressControl1.Size = new System.Drawing.Size(505, 106);
-            this.addressControl1.TabIndex = 4;
+            this.addrCompany.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.addrCompany.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.addrCompany.Location = new System.Drawing.Point(52, 286);
+            this.addrCompany.Name = "addrCompany";
+            this.addrCompany.Size = new System.Drawing.Size(505, 106);
+            this.addrCompany.TabIndex = 4;
             // 
             // cboCompanyDivision
             // 
@@ -195,7 +195,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
-        private AddressControl addressControl1;
+        private AddressControl addrCompany;
         private System.Windows.Forms.ComboBox cboCompanyDivision;
         private System.Windows.Forms.TextBox txtCompanyOwner;
         private System.Windows.Forms.Label label1;

@@ -38,7 +38,6 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgvCustomer, "주소", "Customer_Address", true, 100);
 
             dgvCustomer.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            dgvCustomer.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         // DataGridView 가져오기

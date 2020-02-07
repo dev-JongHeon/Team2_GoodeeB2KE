@@ -81,7 +81,7 @@ namespace Team2_ERP
                     Factory_Division = Convert.ToInt32(cboFactoryDivision.SelectedValue),
                     Factory_Number = txtFactoryNumber.Text,
                     Factory_Fax = txtFactoryFaxNumber.Text,
-                    Factory_Address = addressControl1.Address1 + "　" + addressControl1.Address2
+                    Factory_Address = addrFactory.Address1 + "　" + addrFactory.Address2
                 };
 
                 StandardService service = new StandardService();
@@ -100,7 +100,7 @@ namespace Team2_ERP
                     Factory_Division = Convert.ToInt32(cboFactoryDivision.SelectedValue),
                     Factory_Number = txtFactoryNumber.Text,
                     Factory_Fax = txtFactoryFaxNumber.Text,
-                    Factory_Address = addressControl1.Address1 + "　" + addressControl1.Address2
+                    Factory_Address = addrFactory.Address1 + "　" + addrFactory.Address2
                 };
 
                 StandardService service = new StandardService();
@@ -125,7 +125,23 @@ namespace Team2_ERP
             else
                 UpdateFactory();
 
-            this.DialogResult = DialogResult.OK;
+            if(txtFactoryName.Text.Length > 0 && !cboFactoryDivision.SelectedText.Equals("선택") && txtFactoryNumber.Text.Length > 0 && addrFactory.Address1.Length > 0 && addrFactory.Address2.Length > 0)
+            {
+                if(mode.Equals("Insert"))
+                {
+                    InsertFactory();
+                    DialogResult = MessageBox.Show(Properties.Settings.Default.AddDone, Properties.Settings.Default.AddDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    UpdateFactory();
+                    DialogResult = MessageBox.Show(Properties.Settings.Default.ModDone, Properties.Settings.Default.ModDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show(Properties.Settings.Default.isEssential, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }
