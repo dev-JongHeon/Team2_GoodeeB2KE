@@ -44,5 +44,10 @@ namespace Team2_VO
 
         [FieldName("발주수량")]
         public int BaljuDetail_Qty { get; set; }
+
+        public override string ToString()
+        {
+            return Balju_ID;
+        }
     }
 }

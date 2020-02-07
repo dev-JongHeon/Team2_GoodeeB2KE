@@ -16,8 +16,9 @@ namespace Team2_ERP
     {
         #region 전역변수
         BaljuService service = new BaljuService();
-        List<Balju> Balju_AllList = null;  // 발주 List
-        List<BaljuDetail> BaljuDetail_AllList = null;  // 발주디테일 List
+        List<Balju> Balju_AllList = null;  // Masters
+        List<BaljuDetail> BaljuDetail_AllList = null;  // Details
+        List<Balju> SearchedList = null;  // 검색용
         MainForm main;
         #endregion
 
@@ -44,18 +45,14 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Balju, "삭제여부", "Balju_DeletedYN", false);
             dgv_Balju.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_Balju.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
-
             Balju_AllList = service.GetBaljuList();  // 발주리스트 갱신
-            //dgv_Balju.DataSource = Balju_AllList;
 
             UtilClass.SettingDgv(dgv_BaljuDetail);
-            UtilClass.AddNewColum(dgv_BaljuDetail, "발주지시번호", "Balju_ID", true, 130);
+            UtilClass.AddNewColum(dgv_BaljuDetail, "발주지시번호", "Balju_ID", false, 130);
             UtilClass.AddNewColum(dgv_BaljuDetail, "품목코드", "Product_ID", true, 100);
             UtilClass.AddNewColum(dgv_BaljuDetail, "품목명", "Product_Name", true, 500);
             UtilClass.AddNewColum(dgv_BaljuDetail, "발주요청수량", "BaljuDetail_Qty", true, 130);
             dgv_BaljuDetail.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
-            BaljuDetail_AllList = service.GetBalju_DetailList();
         }
 
         private void dgv_Balju_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
@@ -67,25 +64,22 @@ namespace Team2_ERP
             dgv_BaljuDetail.DataSource = BaljuDetail_List;
         }
 
-        private string[] SetParamsCount()
+        private void GetBaljuDetail_List()  // 현재 위의 Dgv에 따라 DetailList 가져옴
         {
-            string[] Params = new string[dgv_Balju.RowCount];
-            for (int i = 0; i < dgv_Balju.RowCount; i++)
+            StringBuilder sb = new StringBuilder();
+            foreach (DataGridViewRow row in dgv_Balju.Rows)
             {
-                
-                Params[i] = dgv_Balju.Rows[i].Cells[0].Value.ToString();
-
+                sb.Append($"'{row.Cells[0].Value.ToString()}',");
             }
-            return Params;
+            BaljuDetail_AllList = service.GetBalju_DetailList(sb.ToString().Trim(','));  // 디테일 AllList 갱신
         }
 
         private void Func_Refresh()  // 새로고침 기능
         {
-            Balju_AllList = service.GetBaljuList();
-            BaljuDetail_AllList = service.GetBalju_DetailList();
-
-            dgv_Balju.DataSource = Balju_AllList;
             dgv_BaljuDetail.DataSource = null;
+            dgv_Balju.DataSource = null;
+            Balju_AllList = service.GetBaljuList();
+            GetBaljuDetail_List();
 
             // 검색조건 초기화
             Search_Period.Startdate.Clear(); 
@@ -102,42 +96,38 @@ namespace Team2_ERP
         }
         public override void Search(object sender, EventArgs e)
         {
-            
-            Balju_AllList = service.GetBaljuList();  // 발주리스트 갱신
-            if (Search_Company.CodeTextBox.Text.Length > 0)  // 회사 검색조건 있으면
+            if (Search_Period.Startdate.Text == "    -  -") {main.NoticeMessage = Properties.Settings.Default.PeriodError;}
+            else
             {
-                Balju_AllList = (from item in Balju_AllList
-                                 where item.Company_Name == Search_Company.CodeTextBox.Text
-                                 select item).ToList();
-            }
-            if (Search_Employee.CodeTextBox.Text.Length > 0)  // 사원 검색조건 있으면
-            {
-                Balju_AllList = (from item in Balju_AllList
-                                 where item.Employees_Name == Search_Employee.CodeTextBox.Text
-                                 select item).ToList();
-            }
-            if (Search_Period.Startdate.Text != "    -  -")   // 시작기간 text가 존재하면
-            {
-                if (Search_Period.Startdate.Text != Search_Period.Enddate.Text)  // 시작~끝 날짜 다른경우
+                SearchedList = Balju_AllList;
+                if (Search_Company.CodeTextBox.Text.Length > 0)  // 회사 검색조건 있으면
                 {
-                    Balju_AllList = (from item in Balju_AllList
-                                     where item.Balju_Date.Date.CompareTo(Convert.ToDateTime(Search_Period.Startdate.Text)) >= 0 &&
+                    SearchedList = (from item in SearchedList
+                                     where item.Company_Name == Search_Company.CodeTextBox.Text
+                                     select item).ToList();
+                }
+                if (Search_Employee.CodeTextBox.Text.Length > 0)  // 사원 검색조건 있으면
+                {
+                    SearchedList = (from item in SearchedList
+                                     where item.Employees_Name == Search_Employee.CodeTextBox.Text
+                                     select item).ToList();
+                }
+                if (Search_Period.Startdate.Text != "    -  -")   // 기간 검색조건 있으면
+                {
+                    SearchedList = (from item in SearchedList
+                                    where item.Balju_Date.Date.CompareTo(Convert.ToDateTime(Search_Period.Startdate.Text)) >= 0 &&
                                             item.Balju_Date.Date.CompareTo(Convert.ToDateTime(Search_Period.Enddate.Text)) <= 0
                                      select item).ToList();
-                }
-                else   // 같은경우
-                {
-                    Balju_AllList = (from item in Balju_AllList
-                                     where item.Balju_Date.Date == Convert.ToDateTime(Search_Period.Startdate.Text)
-                                     select item).ToList();
-                }
-            }
-            dgv_Balju.DataSource = Balju_AllList;
-            dgv_BaljuDetail.DataSource = null;
 
-            BaljuDetail_AllList = service.GetBalju_DetailList(); // 발주디테일 AllList 갱신
-            main.NoticeMessage = Properties.Settings.Default.SearchDone;
+                }
+                dgv_Balju.DataSource = SearchedList;
+                dgv_BaljuDetail.DataSource = null;
+                GetBaljuDetail_List();
+                main.NoticeMessage = Properties.Settings.Default.SearchDone; 
+            }
         }
+
+        
 
         public override void Modify(object sender, EventArgs e)  // 발주완료(수령)처리
         {
@@ -169,17 +159,21 @@ namespace Team2_ERP
 
         public override void Excel(object sender, EventArgs e)
         {
-            using (WaitForm frm = new WaitForm())
+            if (dgv_Balju.Rows.Count > 0)
             {
-                frm.Processing = ExcelExport;
-                frm.ShowDialog();
+                using (WaitForm frm = new WaitForm())
+                {
+                    frm.Processing = ExcelExport;
+                    frm.ShowDialog();
+                }
             }
         }
         public void ExcelExport()
         {
+            List<Balju> master = SearchedList.ToList();
+            List<BaljuDetail> detail = BaljuDetail_AllList.ToList();
             string[] exceptColumns = { "Balju_DeletedYN", "Balju_ReceiptDate" };
-            UtilClass.ExportToDataGridView<Balju>(Balju_AllList, exceptColumns);
-            //UtilClass.ExportToDataGridView(dgv_Balju, exceptColumns);
+            UtilClass.ExportTo2DataGridView(master, detail, exceptColumns);
         }
 
         public override void Print(object sender, EventArgs e)  // 인쇄

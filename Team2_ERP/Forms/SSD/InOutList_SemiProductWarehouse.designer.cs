@@ -51,11 +51,9 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.dgv_Stock);
+            this.panel2.Location = new System.Drawing.Point(0, 192);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel2.Size = new System.Drawing.Size(1364, 628);
-            // 
-            // panel1
-            // 
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             // 
             // panel_Search
             // 
@@ -66,8 +64,7 @@
             // panel4
             // 
             this.panel4.Location = new System.Drawing.Point(0, 132);
-            this.panel4.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.panel4.Size = new System.Drawing.Size(1364, 2);
+            this.panel4.Margin = new System.Windows.Forms.Padding(5);
             // 
             // panel5
             // 
@@ -76,17 +73,14 @@
             this.panel5.Controls.Add(this.Search_SemiProduct);
             this.panel5.Controls.Add(this.Search_Warehouse);
             this.panel5.Controls.Add(this.Search_Period);
-            this.panel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel5.Size = new System.Drawing.Size(1364, 134);
             // 
             // panel_Title
             // 
-            this.panel_Title.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel_Title.Size = new System.Drawing.Size(1364, 58);
             // 
             // panel8
             // 
-            this.panel8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel8.Size = new System.Drawing.Size(243, 56);
             // 
             // lblFormName
@@ -98,14 +92,12 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Size = new System.Drawing.Size(59, 56);
             // 
             // linepanel1
             // 
             this.linepanel1.Location = new System.Drawing.Point(0, 56);
-            this.linepanel1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.linepanel1.Size = new System.Drawing.Size(1364, 2);
+            this.linepanel1.Margin = new System.Windows.Forms.Padding(5);
             // 
             // dgv_Stock
             // 
@@ -144,7 +136,7 @@
             // Search_Period
             // 
             this.Search_Period.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Search_Period.Labelname = "기간 선택";
+            this.Search_Period.Labelname = "처리일자";
             this.Search_Period.Location = new System.Drawing.Point(186, 13);
             this.Search_Period.Name = "Search_Period";
             this.Search_Period.Size = new System.Drawing.Size(312, 35);
@@ -168,7 +160,7 @@
             this.rdo_In.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.rdo_In.Location = new System.Drawing.Point(42, 38);
             this.rdo_In.Name = "rdo_In";
-            this.rdo_In.Size = new System.Drawing.Size(57, 21);
+            this.rdo_In.Size = new System.Drawing.Size(47, 18);
             this.rdo_In.TabIndex = 59;
             this.rdo_In.Text = "입고";
             this.rdo_In.UseVisualStyleBackColor = true;
@@ -180,7 +172,7 @@
             this.rdo_Out.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.rdo_Out.Location = new System.Drawing.Point(42, 62);
             this.rdo_Out.Name = "rdo_Out";
-            this.rdo_Out.Size = new System.Drawing.Size(57, 21);
+            this.rdo_Out.Size = new System.Drawing.Size(47, 18);
             this.rdo_Out.TabIndex = 60;
             this.rdo_Out.Text = "출고";
             this.rdo_Out.UseVisualStyleBackColor = true;
@@ -192,7 +184,7 @@
             this.rdo_All.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.rdo_All.Location = new System.Drawing.Point(42, 14);
             this.rdo_All.Name = "rdo_All";
-            this.rdo_All.Size = new System.Drawing.Size(57, 21);
+            this.rdo_All.Size = new System.Drawing.Size(47, 18);
             this.rdo_All.TabIndex = 58;
             this.rdo_All.Text = "전체";
             this.rdo_All.UseVisualStyleBackColor = true;
@@ -211,7 +203,7 @@
             // 
             // InOutList_SemiProductWarehouse
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.ClientSize = new System.Drawing.Size(1364, 820);
             this.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.FormName = "수불내역(반제품)";

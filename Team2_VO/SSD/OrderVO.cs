@@ -52,5 +52,10 @@ namespace Team2_VO
 
         [FieldName("주문수량")]
         public int OrderDetail_Qty { get; set; }  // 주문갯수
+
+        public override string ToString()
+        {
+            return Order_ID;
+        }
     }
 }

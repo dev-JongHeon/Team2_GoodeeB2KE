@@ -15,8 +15,9 @@ namespace Team2_ERP
     {
         #region 전역변수
         OrderService service = new OrderService();
-        List<Order> Order_AllList = null;
-        List<OrderDetail> OrderDetail_AllList = null;
+        List<Order> Order_AllList = null;  // Masters
+        List<OrderDetail> OrderDetail_AllList = null;  // Details
+        List<Order> SearchedList = null;  // 검색용
         MainForm main; 
         #endregion
         public OrderMainForm()
@@ -45,16 +46,13 @@ namespace Team2_ERP
             dgv_Order.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgv_Order.Columns[6].DefaultCellStyle.Format = "#,#0원";
             Order_AllList = service.GetOrderList();
-            //dgv_Order.DataSource = Order_AllList;
 
             UtilClass.SettingDgv(dgv_OrderDetail);
-            UtilClass.AddNewColum(dgv_OrderDetail, "주문번호", "Order_ID", true);
+            UtilClass.AddNewColum(dgv_OrderDetail, "주문번호", "Order_ID", false);
             UtilClass.AddNewColum(dgv_OrderDetail, "제품ID", "Product_ID", true);
             UtilClass.AddNewColum(dgv_OrderDetail, "제품명", "Product_Name", true, 300);
             UtilClass.AddNewColum(dgv_OrderDetail, "주문수량", "OrderDetail_Qty", true);
             dgv_OrderDetail.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
-            OrderDetail_AllList = service.GetOrderDetailList();
         }
 
         private void dgv_Order_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
@@ -66,13 +64,22 @@ namespace Team2_ERP
             dgv_OrderDetail.DataSource = OrderDetail_List;
         }
 
+        private void GetOrderDetail_List()  // 현재 위의 Dgv의 Row수 따라 그에맞는 DetailList 가져옴
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (DataGridViewRow row in dgv_Order.Rows)
+            {
+                sb.Append($"'{row.Cells[0].Value.ToString()}',");
+            }
+            OrderDetail_AllList = service.GetOrderDetailList(sb.ToString().Trim(','));  // 디테일 AllList 갱신
+        }
+
         private void Func_Refresh()  // 새로고침 기능
         {
-            Order_AllList = service.GetOrderList();
-            OrderDetail_AllList = service.GetOrderDetailList();
-
-            dgv_Order.DataSource = Order_AllList;
+            dgv_Order.DataSource = null;
             dgv_OrderDetail.DataSource = null;
+            Order_AllList = service.GetOrderList();
+            GetOrderDetail_List();
 
             // 검색조건 초기화
             Search_Customer.CodeTextBox.Clear();
@@ -111,46 +118,48 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)  // 검색
         {
-            Order_AllList = service.GetOrderList();  // 주문리스트 갱신
-            if (Search_Customer.CodeTextBox.Text.Length > 0)  // 고객명 검색조건 있으면
+            if (Search_Period.Startdate.Text == "    -  -") { main.NoticeMessage = Properties.Settings.Default.PeriodError; }
+            else
             {
-                Order_AllList = (from item in Order_AllList
-                                 where item.Customer_Name == Search_Customer.CodeTextBox.Text
-                                 select item).ToList();
-            }
-
-            if (Search_Period.Startdate.Text != "    -  -")   // 시작기간 text가 존재하면
-            {
-                if (Search_Period.Startdate.Text != Search_Period.Enddate.Text)  // 시작, 끝 날짜가 다른경우
+                SearchedList = Order_AllList;
+                if (Search_Customer.CodeTextBox.Text.Length > 0)  // 고객명 검색조건 있으면
                 {
-                    Order_AllList = (from item in Order_AllList
+                    SearchedList = (from item in SearchedList
+                                     where item.Customer_Name == Search_Customer.CodeTextBox.Text
+                                     select item).ToList();
+                }
+
+                if (Search_Period.Startdate.Text != "    -  -")   // 시작기간 text가 존재하면
+                {
+                    SearchedList = (from item in SearchedList
                                      where item.Order_Date.Date.CompareTo(Convert.ToDateTime(Search_Period.Startdate.Text)) >= 0 &&
                                             item.Order_Date.Date.CompareTo(Convert.ToDateTime(Search_Period.Enddate.Text)) <= 0
                                      select item).ToList();
                 }
-                else   // 같은경우
-                {
-                    Order_AllList = (from item in Order_AllList
-                                     where item.Order_Date.Date == Convert.ToDateTime(Search_Period.Startdate.Text)
-                                     select item).ToList();
-                }
+                dgv_Order.DataSource = SearchedList;
+                dgv_OrderDetail.DataSource = null;
+                GetOrderDetail_List();
+                main.NoticeMessage = Properties.Settings.Default.SearchDone;
             }
-            dgv_Order.DataSource = Order_AllList;
-            dgv_OrderDetail.DataSource = null;
-            main.NoticeMessage = Properties.Settings.Default.SearchDone;
         }
 
         public override void Excel(object sender, EventArgs e)
         {
-            using (WaitForm frm = new WaitForm())
+            if (dgv_Order.Rows.Count > 0)
             {
-                frm.Processing = ExcelExport;
-                frm.ShowDialog();
+                using (WaitForm frm = new WaitForm())
+                {
+                    frm.Processing = ExcelExport;
+                    frm.ShowDialog();
+                }
             }
         }
         public void ExcelExport()
         {
-
+            List<Order> master = SearchedList.ToList();
+            List<OrderDetail> detail = OrderDetail_AllList.ToList();
+            string[] exceptColumns = { "Order_DeletedYN", "OrderCompleted_Date" };
+            UtilClass.ExportTo2DataGridView(master, detail, exceptColumns);
         }
 
         public override void Print(object sender, EventArgs e)  // 인쇄

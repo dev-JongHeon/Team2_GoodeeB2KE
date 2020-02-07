@@ -15,8 +15,9 @@ namespace Team2_ERP
     public partial class ShipmentCompleteForm : Base2Dgv
     {
         ShipmentService service = new ShipmentService();
-        List<Shipment> Shipment_AllList = null;
-        List<ShipmentDetail> ShipmentDetail_AllList = null;
+        List<Shipment> Shipment_AllList = null;  // Masters
+        List<ShipmentDetail> ShipmentDetail_AllList = null;  // Details
+        List<Shipment> SearchedList = null;  // 검색용
         MainForm main;
         
 
@@ -54,13 +55,11 @@ namespace Team2_ERP
             Shipment_AllList = service.GetShipmentCompletedList();
 
             UtilClass.SettingDgv(dgv_ShipmentDetail);
-            UtilClass.AddNewColum(dgv_ShipmentDetail, "출하번호", "Shipment_ID", true);
+            UtilClass.AddNewColum(dgv_ShipmentDetail, "출하번호", "Shipment_ID", false);
             UtilClass.AddNewColum(dgv_ShipmentDetail, "제품ID", "Product_ID", true);
             UtilClass.AddNewColum(dgv_ShipmentDetail, "제품명", "Product_Name", true, 300);
             UtilClass.AddNewColum(dgv_ShipmentDetail, "주문수량", "OrderDetail_Qty", true);
             dgv_ShipmentDetail.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
-            ShipmentDetail_AllList = service.GetShipmentDetailList();
         }
 
         private void dgv_Shipment_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -72,13 +71,22 @@ namespace Team2_ERP
             dgv_ShipmentDetail.DataSource = ShipmentDetail_List;
         }
 
+        private void GetShipmentDetail_List()  // 현재 위의 Dgv의 Row수 따라 그에맞는 DetailList 가져옴
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (DataGridViewRow row in dgv_Shipment.Rows)
+            {
+                sb.Append($"'{row.Cells[0].Value.ToString()}',");
+            }
+            ShipmentDetail_AllList = service.GetShipmentDetailList(sb.ToString().Trim(','));  // 디테일 AllList 갱신
+        }
+
         private void Func_Refresh()  // 새로고침 기능
         {
-            Shipment_AllList = service.GetShipmentCompletedList();
-            ShipmentDetail_AllList = service.GetShipmentDetailList();
-
-            dgv_Shipment.DataSource = Shipment_AllList;
+            dgv_Shipment.DataSource = null;
             dgv_ShipmentDetail.DataSource = null;
+            Shipment_AllList = service.GetShipmentCompletedList();
+            GetShipmentDetail_List();
 
             // 검색조건 초기화
             Search_Customer.CodeTextBox.Clear();
@@ -100,43 +108,35 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)  // 검색
         {
-            Shipment_AllList = service.GetShipmentCompletedList();  // 출하완료리스트 갱신
-            if (Search_Customer.CodeTextBox.Text.Length > 0)  // 고객명 검색조건 있으면
+            if (Search_ShipmentIndexPeriod.Startdate.Text == "    -  -") { main.NoticeMessage = Properties.Settings.Default.PeriodError; }
+            else
             {
-                Shipment_AllList = (from item in Shipment_AllList
-                                    where item.Customer_Name == Search_Customer.CodeTextBox.Text
-                                    select item).ToList();
-            }
-
-            if (Search_Employees.CodeTextBox.Text.Length > 0)  // 출하지시자 검색조건 있으면
-            {
-                Shipment_AllList = (from item in Shipment_AllList
-                                    where item.Employees_Name == Search_Employees.CodeTextBox.Text
-                                    select item).ToList();
-            }
-
-            if (Search_OrderPeriod.Startdate.Text != "    -  -")  //주문일시 검색조건 존재한다면
-            {
-                if (Search_OrderPeriod.Startdate.Text != Search_OrderPeriod.Enddate.Text)  // 시작, 끝 날짜가 다른경우
+                SearchedList = Shipment_AllList;
+                if (Search_Customer.CodeTextBox.Text.Length > 0)  // 고객명 검색조건 있으면
                 {
-                    Shipment_AllList = (from item in Shipment_AllList
+                    SearchedList = (from item in SearchedList
+                                        where item.Customer_Name == Search_Customer.CodeTextBox.Text
+                                        select item).ToList();
+                }
+
+                if (Search_Employees.CodeTextBox.Text.Length > 0)  // 출하지시자 검색조건 있으면
+                {
+                    SearchedList = (from item in SearchedList
+                                        where item.Employees_Name == Search_Employees.CodeTextBox.Text
+                                        select item).ToList();
+                }
+
+                if (Search_OrderPeriod.Startdate.Text != "    -  -")  //주문일시 검색조건 존재한다면
+                {
+                    SearchedList = (from item in SearchedList
                                         where item.Order_Date.Date.CompareTo(Convert.ToDateTime(Search_OrderPeriod.Startdate.Text)) >= 0 &&
                                                item.Order_Date.Date.CompareTo(Convert.ToDateTime(Search_OrderPeriod.Enddate.Text)) <= 0
                                         select item).ToList();
                 }
-                else   // 같은경우
-                {
-                    Shipment_AllList = (from item in Shipment_AllList
-                                        where item.Order_Date.Date == Convert.ToDateTime(Search_OrderPeriod.Startdate.Text)
-                                        select item).ToList();
-                }
-            }
 
-            if (Search_ShipmentIndexPeriod.Startdate.Text != "    -  -")  // 출하지시일시 검색조건 존재한다면
-            {
-                if (Search_ShipmentIndexPeriod.Startdate.Text != Search_ShipmentIndexPeriod.Enddate.Text)  // 시작, 끝 날짜가 다른경우
+                if (Search_ShipmentIndexPeriod.Startdate.Text != "    -  -")  // 출하지시일시 검색조건 존재한다면
                 {
-                    Shipment_AllList = (from item in Shipment_AllList
+                    SearchedList = (from item in SearchedList
                                         where item.Shipment_RequiredDate.Date.CompareTo
                                               (Convert.ToDateTime(Search_ShipmentIndexPeriod.Startdate.Text)) >= 0
                                               &&
@@ -144,19 +144,10 @@ namespace Team2_ERP
                                               (Convert.ToDateTime(Search_ShipmentIndexPeriod.Enddate.Text)) <= 0
                                         select item).ToList();
                 }
-                else   // 같은경우
-                {
-                    Shipment_AllList = (from item in Shipment_AllList
-                                        where item.Shipment_RequiredDate.Date == Convert.ToDateTime(Search_ShipmentIndexPeriod.Startdate.Text)
-                                        select item).ToList();
-                }
-            }
 
-            if (Search_ShipmentRequiredDate.Startdate.Text != "    -  -")  // 출하요청날짜 검색조건 존재한다면
-            {
-                if (Search_ShipmentRequiredDate.Startdate.Text != Search_ShipmentIndexPeriod.Enddate.Text)  // 시작, 끝 날짜가 다른경우
+                if (Search_ShipmentRequiredDate.Startdate.Text != "    -  -")  // 출하요청날짜 검색조건 존재한다면
                 {
-                    Shipment_AllList = (from item in Shipment_AllList
+                    SearchedList = (from item in SearchedList
                                         where item.Shipment_RequiredDate.Date.CompareTo
                                               (Convert.ToDateTime(Search_ShipmentRequiredDate.Startdate.Text)) >= 0
                                               &&
@@ -164,29 +155,30 @@ namespace Team2_ERP
                                               (Convert.ToDateTime(Search_ShipmentRequiredDate.Enddate.Text)) <= 0
                                         select item).ToList();
                 }
-                else   // 같은경우
-                {
-                    Shipment_AllList = (from item in Shipment_AllList
-                                        where item.Shipment_RequiredDate.Date == Convert.ToDateTime(Search_ShipmentRequiredDate.Startdate.Text)
-                                        select item).ToList();
-                }
+                dgv_Shipment.DataSource = SearchedList;
+                dgv_ShipmentDetail.DataSource = null;
+                GetShipmentDetail_List();
+                main.NoticeMessage = Properties.Settings.Default.SearchDone;
             }
-            dgv_Shipment.DataSource = Shipment_AllList;
-            dgv_ShipmentDetail.DataSource = null;
-            main.NoticeMessage = Properties.Settings.Default.SearchDone;
         }
 
         public override void Excel(object sender, EventArgs e)
         {
-            using (WaitForm frm = new WaitForm())
+            if (dgv_Shipment.Rows.Count > 0)
             {
-                frm.Processing = ExcelExport;
-                frm.ShowDialog();
+                using (WaitForm frm = new WaitForm())
+                {
+                    frm.Processing = ExcelExport;
+                    frm.ShowDialog();
+                }
             }
         }
         public void ExcelExport()
         {
-            
+            List<Shipment> master = SearchedList.ToList();
+            List<ShipmentDetail> detail = ShipmentDetail_AllList.ToList();
+            string[] exceptColumns = { "" };
+            UtilClass.ExportTo2DataGridView(master, detail, exceptColumns);
         }
 
         public override void Print(object sender, EventArgs e)  // 인쇄

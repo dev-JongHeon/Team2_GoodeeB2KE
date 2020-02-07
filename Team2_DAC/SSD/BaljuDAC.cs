@@ -54,7 +54,7 @@ namespace Team2_DAC
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     StringBuilder sb = new StringBuilder();
-                    sb.Append("SELECT Balju_ID, Company_ID, Company_Name, Balju_Date,                                                                   Balju_ReceiptDate, Employees_Name, Balju_DeletedYN ");
+                    sb.Append("SELECT Balju_ID, Company_ID, Company_Name, Balju_Date,                                                                        Balju_ReceiptDate, Employees_Name, Balju_DeletedYN ");
                     sb.Append("FROM   BaljuList_Completed_Top");
                     
                     cmd.Connection = conn;
@@ -73,20 +73,17 @@ namespace Team2_DAC
             }
         }
 
-        public List<BaljuDetail> GetBalju_DetailList()
+        public List<BaljuDetail> GetBalju_DetailList(string sb)
         {
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    StringBuilder sb = new StringBuilder();
-                    sb.Append("SELECT Balju_ID, Product_ID, Product_Name, BaljuDetail_Qty ");
-                    sb.Append("FROM   BaljuList_Detail ");
-                    //sb.Append("WHERE  Balju_ID IN (@Balju_ID)");
-
                     cmd.Connection = conn;
-                    cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = sb.ToString();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "SSD_GetBaljuDetail_List";
+                    cmd.Parameters.AddWithValue("@Search", sb);
+
                     conn.Open();
                     List<BaljuDetail> list = Helper.DataReaderMapToList<BaljuDetail>(cmd.ExecuteReader());
                     conn.Close();

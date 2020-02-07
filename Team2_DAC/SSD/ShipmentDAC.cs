@@ -70,18 +70,16 @@ namespace Team2_DAC
             }
         }
 
-        public List<ShipmentDetail> GetShipmentDetailList()
+        public List<ShipmentDetail> GetShipmentDetailList(string sb)
         {
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    StringBuilder sb = new StringBuilder();
-                    sb.Append("SELECT Shipment_ID, Product_ID, Product_Name, OrderDetail_Qty ");
-                    sb.Append("FROM   Shipment a JOIN Orders b ON a.Order_ID = b.Order_ID                                                                          JOIN OrderDetail c ON b.Order_ID = c.Order_ID                                                                     JOIN Product d ON c.Product_ID = d.Product_ID ");
                     cmd.Connection = conn;
-                    cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = sb.ToString();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "SSD_GetShipmentDetail_List";
+                    cmd.Parameters.AddWithValue("@Search", sb);
 
                     conn.Open();
                     List<ShipmentDetail> list = Helper.DataReaderMapToList<ShipmentDetail>(cmd.ExecuteReader());

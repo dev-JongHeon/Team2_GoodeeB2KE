@@ -213,6 +213,7 @@ namespace Team2_ERP
                 return ex.Message;
             }
         }
+        
         public static string ExportTo2DataGridView<T, D>(List<T> dataList, string[] exceptColumns, string methodname) where T : new() where D : new()
         {
             try
@@ -273,7 +274,7 @@ namespace Team2_ERP
                             }
                         }
                         lastrow = rowIndex + 2;
-                        dataList.Remove(data);
+                        
                         break;
                     }
 
@@ -436,6 +437,7 @@ namespace Team2_ERP
 
                     foreach (D data in detaillist)
                     {
+                        
                         if (data.ToString()==id)
                         {
                             lastrow++;

@@ -45,19 +45,16 @@ namespace Team2_DAC
         }
          
 
-        public List<OrderDetail> GetOrderDetailList()  // 뷰사용
+        public List<OrderDetail> GetOrderDetailList(string sb)  // 뷰사용
         {
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    StringBuilder sb = new StringBuilder();
-                    sb.Append("SELECT Order_ID, Product_ID, Product_Name, OrderDetail_Qty ");
-                    sb.Append("FROM   Order_Details");
-
                     cmd.Connection = conn;
-                    cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = sb.ToString();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "SSD_GetOrderDetail_List";
+                    cmd.Parameters.AddWithValue("@Search", sb);
 
                     conn.Open();
                     List<OrderDetail> list = Helper.DataReaderMapToList<OrderDetail>(cmd.ExecuteReader());
@@ -106,7 +103,7 @@ namespace Team2_DAC
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     StringBuilder sb = new StringBuilder();
-                    sb.Append("SELECT Order_ID, Customer_UserID, Customer_Name, Order_Date, Shipment_DoneDate, TotalPrice");
+                    sb.Append("SELECT Order_ID, Customer_UserID, Customer_Name, Order_Date, Shipment_DoneDate, TotalPrice ");
                     sb.Append("FROM   SalesStatus");
                     
                     cmd.Connection = conn;
