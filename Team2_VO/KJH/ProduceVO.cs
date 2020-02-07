@@ -8,6 +8,8 @@ namespace Team2_VO
 {
     public class ProduceVO
     {
+        [FieldName("작업지시번호")]
+        public string ProduceWork_ID { get; set; }
         [FieldName("생산지시번호")]
         public string Produce_ID { get; set; }
         [FieldName("생산시작일")]
@@ -29,5 +31,10 @@ namespace Team2_VO
         public int Produce_QtyReleased { get; set; }
         [FieldName("생산상태")]
         public string Produce_State { get; set; }
+
+        public override string ToString()
+        {
+            return ProduceWork_ID;
+        }
     }
 }

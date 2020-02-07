@@ -124,5 +124,8 @@
     <Setting Name="CalendarMaxError" Type="System.String" Scope="User">
       <Value Profile="(Default)">최대검색가능기간은 1년입니다.</Value>
     </Setting>
+    <Setting Name="PeriodError" Type="System.String" Scope="User">
+      <Value Profile="(Default)">기간을 선택하셔야 합니다.</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -339,7 +339,7 @@ namespace Team2_ERP
                 }
                 else
                 {
-                    frm.NoticeMessage = "기간을 선택하셔야 합니다.";
+                    frm.NoticeMessage = Properties.Settings.Default.PeriodError;
                 }
             }
             else if (tabDefective.SelectedIndex == 3)
@@ -355,7 +355,7 @@ namespace Team2_ERP
                 }
                 else
                 {
-                    frm.NoticeMessage = "기간을 선택하셔야 합니다.";
+                    frm.NoticeMessage = Properties.Settings.Default.PeriodError;
                 }
             }
             

@@ -33,7 +33,7 @@
             this.searchSales = new Team2_ERP.SearchUserControl();
             this.searchPeriodwork = new Team2_ERP.SearchPeriodControl();
             this.searchPeriodRequire = new Team2_ERP.SearchPeriodControl();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbxSearch = new System.Windows.Forms.GroupBox();
             this.rbx2 = new System.Windows.Forms.RadioButton();
             this.rbx0 = new System.Windows.Forms.RadioButton();
             this.rbx1 = new System.Windows.Forms.RadioButton();
@@ -52,7 +52,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWorkList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProduce)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.gbxSearch.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -68,7 +68,7 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.groupBox1);
+            this.panel5.Controls.Add(this.gbxSearch);
             this.panel5.Controls.Add(this.searchPeriodRequire);
             this.panel5.Controls.Add(this.searchPeriodwork);
             this.panel5.Controls.Add(this.searchSales);
@@ -83,8 +83,7 @@
             this.dgvWorkList.RowTemplate.Height = 23;
             this.dgvWorkList.Size = new System.Drawing.Size(1364, 368);
             this.dgvWorkList.TabIndex = 8;
-            this.dgvWorkList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvWorkList_CellClick);
-            this.dgvWorkList.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvWorkList_CellValueChanged);
+            this.dgvWorkList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvWorkList_CellDoubleClick);
             // 
             // dgvProduce
             // 
@@ -103,7 +102,7 @@
             this.searchSales.ControlType = Team2_ERP.SearchUserControl.Mode.DepSales;
             this.searchSales.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.searchSales.Labelname = "작업지시자";
-            this.searchSales.Location = new System.Drawing.Point(153, 14);
+            this.searchSales.Location = new System.Drawing.Point(12, 11);
             this.searchSales.Name = "searchSales";
             this.searchSales.Size = new System.Drawing.Size(312, 25);
             this.searchSales.TabIndex = 0;
@@ -112,7 +111,7 @@
             // 
             this.searchPeriodwork.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.searchPeriodwork.Labelname = "작업지시일";
-            this.searchPeriodwork.Location = new System.Drawing.Point(153, 45);
+            this.searchPeriodwork.Location = new System.Drawing.Point(12, 42);
             this.searchPeriodwork.Name = "searchPeriodwork";
             this.searchPeriodwork.Size = new System.Drawing.Size(312, 25);
             this.searchPeriodwork.TabIndex = 1;
@@ -121,23 +120,23 @@
             // 
             this.searchPeriodRequire.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.searchPeriodRequire.Labelname = "납기일";
-            this.searchPeriodRequire.Location = new System.Drawing.Point(153, 76);
+            this.searchPeriodRequire.Location = new System.Drawing.Point(12, 73);
             this.searchPeriodRequire.Name = "searchPeriodRequire";
             this.searchPeriodRequire.Size = new System.Drawing.Size(312, 25);
             this.searchPeriodRequire.TabIndex = 2;
             // 
-            // groupBox1
+            // gbxSearch
             // 
-            this.groupBox1.Controls.Add(this.rbx2);
-            this.groupBox1.Controls.Add(this.rbx0);
-            this.groupBox1.Controls.Add(this.rbx1);
-            this.groupBox1.Controls.Add(this.rbxAll);
-            this.groupBox1.Location = new System.Drawing.Point(12, 4);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(135, 100);
-            this.groupBox1.TabIndex = 62;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "작업상태";
+            this.gbxSearch.Controls.Add(this.rbx2);
+            this.gbxSearch.Controls.Add(this.rbx0);
+            this.gbxSearch.Controls.Add(this.rbx1);
+            this.gbxSearch.Controls.Add(this.rbxAll);
+            this.gbxSearch.Location = new System.Drawing.Point(330, 5);
+            this.gbxSearch.Name = "gbxSearch";
+            this.gbxSearch.Size = new System.Drawing.Size(135, 100);
+            this.gbxSearch.TabIndex = 62;
+            this.gbxSearch.TabStop = false;
+            this.gbxSearch.Text = "작업상태";
             // 
             // rbx2
             // 
@@ -210,8 +209,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWorkList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProduce)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbxSearch.ResumeLayout(false);
+            this.gbxSearch.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -222,7 +221,7 @@
         private SearchPeriodControl searchPeriodwork;
         private SearchUserControl searchSales;
         private SearchPeriodControl searchPeriodRequire;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbxSearch;
         private System.Windows.Forms.RadioButton rbx2;
         private System.Windows.Forms.RadioButton rbx0;
         private System.Windows.Forms.RadioButton rbx1;
