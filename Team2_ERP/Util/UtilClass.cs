@@ -541,7 +541,8 @@ namespace Team2_ERP
                     #endregion
 
                     #region Detail1그리기
-                    TestWorkSheet.Range[TestWorkSheet.Cells[lastrow, 1], TestWorkSheet.Cells[lastrow, 5]].Merge(true);
+                    lastrow++;
+                    TestWorkSheet.Range[TestWorkSheet.Cells[lastrow, 1], TestWorkSheet.Cells[lastrow, 8]].Merge(true);
                     TestWorkSheet.Cells[lastrow, 1].Value = "정 전 개";
                     TestWorkSheet.Cells[lastrow, 1].Font.Name = "나눔고딕";
                     TestWorkSheet.Cells[lastrow, 1].Font.Bold = true;
@@ -590,12 +591,13 @@ namespace Team2_ERP
                                 }
                             }
                         }
-                        lastrow = rowIndex + 2;
+                        lastrow = lastrow + 2;
                     }
                     #endregion
 
                     #region Detail2그리기
-                    TestWorkSheet.Range[TestWorkSheet.Cells[lastrow, 1], TestWorkSheet.Cells[lastrow, 5]].Merge(true);
+                    lastrow++;
+                    TestWorkSheet.Range[TestWorkSheet.Cells[lastrow, 1], TestWorkSheet.Cells[lastrow, 8]].Merge(true);
                     TestWorkSheet.Cells[lastrow, 1].Value = "역 전 개";
                     TestWorkSheet.Cells[lastrow, 1].Font.Name = "나눔고딕";
                     TestWorkSheet.Cells[lastrow, 1].Font.Bold = true;
