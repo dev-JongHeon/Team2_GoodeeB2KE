@@ -26,6 +26,7 @@ namespace Team2_ERP
             {
                 lblName.Text = "부서 수정";
                 mode = "Update";
+                pbxTitle.Image = Properties.Resources.Edit_32x32;
                 code = item.CodeTable_CodeID;
                 txtName.Text = item.CodeTable_CodeName;
                 txtContext.Text = item.CodeTable_CodeExplain;
@@ -34,6 +35,7 @@ namespace Team2_ERP
             {
                 lblName.Text = "부서 등록";
                 mode = "Insert";
+                pbxTitle.Image = Properties.Resources.AddFile_32x32;
             }
         }
 

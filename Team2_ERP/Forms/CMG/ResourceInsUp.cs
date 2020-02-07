@@ -28,6 +28,7 @@ namespace Team2_ERP
             {
                 lblName.Text = "자재 수정";
                 mode = "Update";
+                pbxTitle.Image = Properties.Resources.Edit_32x32;
                 code = item.Product_ID;
                 txtResourceName.Text = item.Product_Name;
                 txtResourceMoney.Text = item.Product_Price.ToString();
@@ -38,6 +39,7 @@ namespace Team2_ERP
             {
                 lblName.Text = "자재 등록";
                 mode = "Insert";
+                pbxTitle.Image = Properties.Resources.AddFile_32x32;
             }
         }
 

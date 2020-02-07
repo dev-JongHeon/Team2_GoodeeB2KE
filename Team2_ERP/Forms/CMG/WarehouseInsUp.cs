@@ -29,15 +29,17 @@ namespace Team2_ERP
             if(editMode == EditMode.Update)
             {
                 mode = "Update";
+                pbxTitle.Image = Properties.Resources.Edit_32x32;
 
                 code = item.Warehouse_ID;
                 txtWarehouseName.Text = item.Warehouse_Name;
                 txtWarehouseNumber.Text = item.Warehouse_Number;
                 txtWarehouseFaxNumber.Text = item.Warehouse_Fax;
             }
-            else if(editMode == EditMode.Insert)
+            else
             {
                 mode = "Insert";
+                pbxTitle.Image = Properties.Resources.AddFile_32x32;
             }
         }
 

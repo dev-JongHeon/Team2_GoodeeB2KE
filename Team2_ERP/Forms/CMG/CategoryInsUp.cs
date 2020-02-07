@@ -29,11 +29,13 @@ namespace Team2_ERP
                 lblName.Text = "카테고리 수정";
                 code = item.CodeTable_CodeID;
                 txtName.Text = item.CodeTable_CodeName;
+                pbxTitle.Image = Properties.Resources.Edit_32x32;
             }
             else
             {
                 mode = "Insert";
                 lblName.Text = "카테고리 등록";
+                pbxTitle.Image = Properties.Resources.AddFile_32x32;
             }
         }
 

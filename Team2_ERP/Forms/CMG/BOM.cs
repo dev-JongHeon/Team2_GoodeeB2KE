@@ -15,6 +15,8 @@ namespace Team2_ERP
     public partial class BOM : BaseForm
     {
         List<ProductVO> list;
+        List<BOMVO> bomList;
+        List<BOMVO> bomReverseList;
 
         ToolStripDropDownItem tool;
 
@@ -75,9 +77,30 @@ namespace Team2_ERP
         private void LoadGridView()
         {
             StandardService service = new StandardService();
-            list = service.GetAllProduct();
-            dgvBOM.DataSource = list;
-            dgvBOM.CurrentCell = null;
+
+            if(rdoResource.Checked)
+            {
+                list = service.GetProductList("Resource");
+                dgvBOM.DataSource = list;
+            }
+            else if(rdoSemiProduct.Checked)
+            {
+                list = service.GetProductList("SemiProduct");
+                dgvBOM.DataSource = list;
+            }
+            else
+            {
+                list = service.GetProductList("Product");
+                dgvBOM.DataSource = list;
+            }
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (DataGridViewRow item in dgvBOM.Rows)
+                sb.Append($"'{item.Cells[2].Value.ToString()}',");
+
+            bomList = service.GetAllCombination(sb.ToString().Trim(','));
+            bomReverseList = service.GetAllCombinationReverse(sb.ToString().Trim(','));
         }
 
         private void GridViewReset()
@@ -91,9 +114,7 @@ namespace Team2_ERP
         {
             InitGridView();
             frm = (MainForm)this.ParentForm;
-            rdoAll.Checked = true;
-            StandardService service = new StandardService();
-            list = service.GetAllProduct();
+            rdoResource.Checked = true;
         }
 
         private void dgvBOM_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -102,12 +123,7 @@ namespace Team2_ERP
             {
                 string str = dgvBOM.Rows[e.RowIndex].Cells[0].Value.ToString();
 
-                if (str.Contains("CM"))
-                    e.Value = "역 전 개";
-                else if (str.Contains("CS"))
-                    e.Value = "전 개";
-                else
-                    e.Value = "정 전 개";
+                e.Value = "전  개";
             }
         }
 
@@ -171,7 +187,6 @@ namespace Team2_ERP
             ((MainForm)MdiParent).신규ToolStripMenuItem.Visible = flag;
             ((MainForm)MdiParent).수정ToolStripMenuItem.Visible = flag;
             ((MainForm)MdiParent).삭제ToolStripMenuItem.Visible = flag;
-            ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = false;
         }
 
         public override void Refresh(object sender, EventArgs e)
@@ -264,50 +279,22 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)
         {
-            if (searchProductName.CodeTextBox.Text.Length < 1)
+            GridViewReset();
+            LoadGridView();
+
+            if(searchProductName.CodeTextBox.Tag != null)
             {
-                if (rdoAll.Checked)
-                {
-                    GridViewReset();
-                    LoadGridView();
-                }
-                else if (rdoSemiProduct.Checked)
-                {
-                    GridViewReset();
-                    List<ProductVO> semiList = (from item in list where item.Product_Category.Contains("CS") select item).ToList();
-                    dgvBOM.DataSource = semiList;
-                }
-                else
-                {
-                    GridViewReset();
-                    List<ProductVO> proList = (from item in list where item.Product_Category.Contains("CP") select item).ToList();
-                    dgvBOM.DataSource = proList;
-                }
-            }
-            else
-            {
-                if (rdoAll.Checked)
-                {
-                    GridViewReset();
-                    List<ProductVO> allList = (from item in list where item.Product_ID.Equals(searchProductName.CodeTextBox.Tag.ToString()) select item).ToList();
-                    dgvBOM.DataSource = allList;
-                }
-                else if (rdoSemiProduct.Checked)
-                {
-                    GridViewReset();
-                    List<ProductVO> semiList = (from item in list where item.Product_Category.Contains("CS") && item.Product_ID.Equals(searchProductName.CodeTextBox.Tag.ToString()) select item).ToList();
-                    dgvBOM.DataSource = semiList;
-                }
-                else
-                {
-                    GridViewReset();
-                    List<ProductVO> semiList = (from item in list where item.Product_Category.Contains("CP") && item.Product_ID.Equals(searchProductName.CodeTextBox.Tag.ToString()) select item).ToList();
-                    dgvBOM.DataSource = semiList;
-                }
+                list = (from item in list where item.Product_ID.Equals(searchProductName.CodeTextBox.Tag.ToString()) select item).ToList();
+                dgvBOM.DataSource = list;
             }
 
             dgvBOM.CurrentCell = null;
             InitMessage();
+        }
+
+        public override void Excel(object sender, EventArgs e)
+        {
+
         }
 
         private void dgvBOM_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -326,33 +313,21 @@ namespace Team2_ERP
 
                 if (e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[0].Value.ToString().Contains("CM"))
                 {
-                    StandardService service = new StandardService();
-                    List<BOMVO> bomList = service.GetAllCombinationReverse(item.Product_ID);
-                    bomList = (from item in bomList where item.Combination_DeletedYN == false select item).ToList();
-                    dgvBOMDetail2.DataSource = bomList;
+                    List<BOMVO> productList = (from item in bomReverseList where item.Combination_Product_ID.Equals(dgvBOM.Rows[e.RowIndex].Cells[2].Value.ToString()) select item).ToList();
+                    dgvBOMDetail2.DataSource = productList;
                 }
                 else if (e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[0].Value.ToString().Contains("CS"))
                 {
-                    StandardService service = new StandardService();
-                    StringBuilder sb = new StringBuilder();
-                    foreach (DataGridViewRow item in dgvBOM.Rows)
-                    {
-                        sb.Append($"'{item.Cells[2].Value.ToString()}',");
-                    }
-                    List<BOMVO> bomList = service.GetAllCombination(sb.ToString().Trim(','));
-                    bomList = (from item in bomList where item.Combination_DeletedYN == false select item).ToList();
-                    dgvBOMDetail1.DataSource = bomList;
+                    List<BOMVO> semiProductList = (from item in bomList where item.Product_ID.Equals(dgvBOM.Rows[e.RowIndex].Cells[2].Value.ToString()) select item).ToList();
+                    dgvBOMDetail1.DataSource = semiProductList;
 
-                    List<BOMVO> bomReverseList = service.GetAllCombinationReverse(item.Product_ID);
-                    bomReverseList = (from item in bomReverseList where item.Combination_DeletedYN == false select item).ToList();
-                    dgvBOMDetail2.DataSource = bomReverseList;
+                    List<BOMVO> productList = (from item in bomReverseList where item.Combination_Product_ID.Equals(dgvBOM.Rows[e.RowIndex].Cells[2].Value.ToString()) select item).ToList();
+                    dgvBOMDetail2.DataSource = productList;
                 }
                 else if (e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[0].Value.ToString().Contains("CP"))
                 {
-                    StandardService service = new StandardService();
-                    List<BOMVO> bomList = service.GetAllCombination(item.Product_ID);
-                    bomList = (from item in bomList where item.Combination_DeletedYN == false select item).ToList();
-                    dgvBOMDetail1.DataSource = bomList;
+                    List<BOMVO> semiProductList = (from item in bomList where item.Product_ID.Equals(dgvBOM.Rows[e.RowIndex].Cells[2].Value.ToString()) select item).ToList();
+                    dgvBOMDetail1.DataSource = semiProductList;
                 }
             }
         }

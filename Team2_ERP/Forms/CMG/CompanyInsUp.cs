@@ -28,11 +28,13 @@ namespace Team2_ERP
             {
                 lblName.Text = "거래처 등록";
                 mode = "Insert";
+                pbxTitle.Image = Properties.Resources.AddFile_32x32;
             }
             else
             {
                 lblName.Text = "거래처 수정";
                 mode = "Update";
+                pbxTitle.Image = Properties.Resources.Edit_32x32;
                 code = item.Company_ID;
                 txtCompanyName.Text = item.Company_Name;
                 txtCompanyNumber.Text = item.Company_Number;
