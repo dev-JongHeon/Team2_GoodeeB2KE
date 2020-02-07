@@ -16,6 +16,7 @@ namespace Team2_ERP
         List<WorkVO> list = new List<WorkVO>();
         List<WorkVO> filteredlist = new List<WorkVO>();
         List<WorkVO> searchedlist = new List<WorkVO>();
+        List<ProduceVO> produces = new List<ProduceVO>();
         WorkService service = new WorkService();
         bool isFirst = true;
         public Work()
@@ -29,6 +30,13 @@ namespace Team2_ERP
             SettingDgvWork();
             RefreshClicked();
             frm.NoticeMessage = notice;
+            EssentialSearchOption();
+        }
+
+        private void EssentialSearchOption()
+        {
+            searchPeriodwork.Startdate.BackColor = Color.LightYellow;
+            searchPeriodwork.Enddate.BackColor = Color.LightYellow;
         }
 
         private void SettingDgvWork()
@@ -47,6 +55,7 @@ namespace Team2_ERP
             dgvWorkList.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             UtilClass.SettingDgv(dgvProduce);
+            UtilClass.AddNewColum(dgvProduce, "작업지시번호", "ProduceWork_ID", false, 130);
             UtilClass.AddNewColum(dgvProduce, "생산지시번호", "Produce_ID", true, 130);
             UtilClass.AddNewColum(dgvProduce, "생산시작일", "Produce_StartDate", true, 180);
             UtilClass.AddNewColum(dgvProduce, "생산완료일", "Produce_DoneDate", true, 180);
@@ -86,10 +95,8 @@ namespace Team2_ERP
                 dgvWorkList.DataSource = list;
                 ClearDgv();
                 rbxAll.Checked = true;
-
             }
             frm.NoticeMessage = Properties.Settings.Default.RefreshDone;
-            
             isFirst = false;
         }
 
@@ -104,6 +111,7 @@ namespace Team2_ERP
             rbx1.Checked = false;
             rbx2.Checked = false;
             rbxAll.Checked = false;
+            gbxSearch.Enabled = false;
         }
 
         private void Work_Activated(object sender, EventArgs e)
@@ -147,18 +155,25 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)
         {
-            if (searchSales.CodeTextBox.Tag == null && searchPeriodwork.Startdate.Tag == null && searchPeriodwork.Startdate.Tag == null && searchPeriodwork.Enddate.Tag == null && searchPeriodRequire.Startdate.Tag == null && searchPeriodRequire.Enddate.Tag == null)
+
+            if (searchPeriodwork.Startdate.Tag == null && searchPeriodwork.Enddate.Tag == null)
             {
-                RefreshClicked();
-                frm.NoticeMessage = notice;
+                frm.NoticeMessage = Properties.Settings.Default.PeriodError;
             }
             else
             {
-                searchedlist = filteredlist;
+                searchedlist = list;
+                if (searchPeriodwork.Startdate.Tag != null && searchPeriodwork.Enddate.Tag != null)
+                {
+                    searchedlist = (from item in searchedlist
+                                    where Convert.ToDateTime(item.Work_StartDate) >= Convert.ToDateTime(searchPeriodwork.Startdate.Tag.ToString()) && Convert.ToDateTime(item.Work_StartDate) <= Convert.ToDateTime(searchPeriodwork.Enddate.Tag.ToString())
+                                    orderby item.Work_StartDate
+                                    select item).ToList();
+                }
                 if (searchSales.CodeTextBox.Tag != null)
                 {
                     searchedlist = (from item in searchedlist
-                                    where item.Employees_ID == Convert.ToInt32(searchSales.CodeTextBox.Tag)                                    
+                                    where item.Employees_ID == Convert.ToInt32(searchSales.CodeTextBox.Tag)
                                     select item).ToList();
                 }
                 if (searchPeriodRequire.Startdate.Tag != null && searchPeriodRequire.Enddate.Tag != null)
@@ -169,16 +184,11 @@ namespace Team2_ERP
                                     select item
                                     ).ToList();
                 }
-                if (searchPeriodwork.Startdate.Tag != null && searchPeriodwork.Enddate.Tag != null)
-                {
-                    searchedlist = (from item in searchedlist
-                                    where Convert.ToDateTime(item.Work_StartDate) >= Convert.ToDateTime(searchPeriodwork.Startdate.Tag.ToString()) && Convert.ToDateTime(item.Work_StartDate) <= Convert.ToDateTime(searchPeriodwork.Enddate.Tag.ToString())
-                                    orderby item.Work_StartDate
-                                    select item).ToList();
-                }
                 dgvWorkList.DataSource = searchedlist;
                 frm.NoticeMessage = Properties.Settings.Default.SearchDone;
                 GetProduce();
+                gbxSearch.Enabled = true;
+                rbxAll.Checked = true;
             }
 
         }
@@ -203,9 +213,10 @@ namespace Team2_ERP
 
         private void ExcelExport()
         {
-            List<WorkVO> excellist = ((List<WorkVO>)dgvWorkList.DataSource).ToList();
-            string[] exceptlist = new string[] { "Employees_ID", "Factory_ID", "Line_ID", "Product_ID" };
-            UtilClass.ExportTo2DataGridView<WorkVO, ProduceVO>(excellist, exceptlist, "GetProduceByWorkID");
+            List<WorkVO> excellist = searchedlist.ToList();
+            List<ProduceVO> detaillist = produces.ToList();
+            string[] exceptlist = new string[] { "Employees_ID", "Factory_ID", "Line_ID", "Product_ID", "ProduceWork_ID" };
+            UtilClass.ExportTo2DataGridView(excellist,detaillist, exceptlist);
         }
 
         public override void Print(object sender, EventArgs e)
@@ -217,54 +228,42 @@ namespace Team2_ERP
         {
             if (rbx0.Checked)
             {
-                filteredlist = (from item in list
+                filteredlist = (from item in searchedlist
                                 where item.Work_State == "작업대기"
                                 select item).ToList();
 
             }
             else if (rbx1.Checked)
             {
-                filteredlist = (from item in list
+                filteredlist = (from item in searchedlist
                                 where item.Work_State == "작업중"
                                 select item).ToList();
 
             }
             else if (rbx2.Checked)
             {
-                filteredlist = (from item in list
+                filteredlist = (from item in searchedlist
                                 where item.Work_State == "작업완료"
                                 select item).ToList();
 
             }
             else if (rbxAll.Checked)
             {
-                filteredlist = list;
+                filteredlist = searchedlist;
             }
-            if (!isFirst)
-            {
-                dgvWorkList.DataSource = filteredlist;
-                searchSales.CodeTextBox.Clear();
-                searchPeriodRequire.Startdate.Clear();
-                searchPeriodRequire.Enddate.Clear();
-                searchPeriodwork.Startdate.Clear();
-                searchPeriodwork.Enddate.Clear();
-                ClearDgv();
-            }
+            dgvWorkList.DataSource = filteredlist;
+
         }
 
         private void GetProduce()
         {
-            dgvProduce.DataSource = null;
-            if (dgvWorkList.SelectedRows.Count > 0)
+            if (dgvWorkList.Rows.Count > 0)
             {
-                string id = dgvWorkList.SelectedRows[0].Cells[0].Value.ToString();
-
+                string id = SettingID(dgvWorkList, 0);
                 try
                 {
                     ProduceService service = new ProduceService();
-                    dgvProduce.DataSource = service.GetProduceByWorkID(id);
-                    dgvProduce.ClearSelection();
-                    dgvProduce.CurrentCell = null;
+                    produces = service.GetProduceByWorkID(id);
                 }
                 catch (Exception err)
                 {
@@ -273,17 +272,43 @@ namespace Team2_ERP
             }
         }
 
+        private void SetProduce(string id)
+        {
+            List<ProduceVO> search = produces.ToList();
+            dgvProduce.DataSource = null;
+            List<ProduceVO> searched = (from item in search
+                                        where item.ProduceWork_ID == id
+                                        select item).ToList();
+            if (searched != null)
+                dgvProduce.DataSource = searched;
+        }
+
+        private string SettingID(DataGridView dgv, int i)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (DataGridViewRow item in dgv.Rows)
+            {
+                sb.Append($"'{item.Cells[i].Value.ToString()}',");
+            }
+            return sb.ToString().TrimEnd(',');
+        }
+
         private void dgvWorkList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > -1)
             {
-                GetProduce();
+                SetProduce(dgvWorkList[e.RowIndex, 0].Value.ToString());
             }
         }
 
-        private void dgvWorkList_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+
+
+        private void dgvWorkList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            GetProduce();
+            if (e.RowIndex > -1)
+            {
+                SetProduce(dgvWorkList.SelectedRows[0].Cells[0].Value.ToString());
+            }
         }
     }
 }

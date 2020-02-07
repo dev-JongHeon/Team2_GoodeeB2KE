@@ -16,8 +16,9 @@ namespace Team2_ERP
     {
         #region 전역변수
         BaljuService service = new BaljuService();
-        List<BaljuDetail> BaljuDetail_AllList = null;  // 발주디테일 List
-        List<Balju> BaljuCompleted_AllList = null;  // 발주 List
+        List<Balju> BaljuCompleted_AllList = null;  // Masterss
+        List<BaljuDetail> BaljuDetail_AllList = null;  // Details
+        List<Balju> SearchedList = null;  // 검색용
         MainForm main; 
         #endregion
 
@@ -48,16 +49,13 @@ namespace Team2_ERP
             dgv_BaljuCompleted.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_BaljuCompleted.Columns[5].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
             BaljuCompleted_AllList = service.GetBalju_CompletedList(); // 발주리스트 갱신
-            //dgv_BaljuCompleted.DataSource = BaljuCompleted_AllList;
 
             UtilClass.SettingDgv(dgv_BaljuDetail);
-            UtilClass.AddNewColum(dgv_BaljuDetail, "발주지시번호", "Balju_ID", true, 130);
+            UtilClass.AddNewColum(dgv_BaljuDetail, "발주지시번호", "Balju_ID", false, 130);
             UtilClass.AddNewColum(dgv_BaljuDetail, "품목코드", "Product_ID", true);
             UtilClass.AddNewColum(dgv_BaljuDetail, "품목명", "Product_Name", true, 500);
             UtilClass.AddNewColum(dgv_BaljuDetail, "발주요청수량", "BaljuDetail_Qty", true, 130);
             dgv_BaljuDetail.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
-            BaljuDetail_AllList = service.GetBalju_DetailList(); // 발주디테일 AllList 갱신
         }
 
         private void dgv_BaljuCompleted_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
@@ -69,35 +67,29 @@ namespace Team2_ERP
             dgv_BaljuDetail.DataSource = BaljuDetail_List;
         }
 
-        private string[] SetParamsCount()
+        private void GetBaljuCompletedDetail_List()  // 현재 위의 Dgv의 Row수 따라 그에맞는 DetailList 가져옴
         {
-            string[] Params = new string[dgv_BaljuCompleted.RowCount];
-            for (int i = 0; i < dgv_BaljuCompleted.RowCount; i++)
+            StringBuilder sb = new StringBuilder();
+            foreach (DataGridViewRow row in dgv_BaljuCompleted.Rows)
             {
-                Params[i] = dgv_BaljuCompleted.Rows[i].Cells[0].Value.ToString();
+                sb.Append($"'{row.Cells[0].Value.ToString()}',");
             }
-            return Params;
+            BaljuDetail_AllList = service.GetBalju_DetailList(sb.ToString().Trim(','));  // 디테일 AllList 갱신
         }
 
 
         private void Func_Refresh()  // 새로고침 기능
         {
+            dgv_BaljuDetail.DataSource = null;
+            dgv_BaljuCompleted.DataSource = null;
             BaljuCompleted_AllList = service.GetBalju_CompletedList();
-            dgv_BaljuCompleted.DataSource = BaljuCompleted_AllList;
-            BaljuDetail_AllList = service.GetBalju_DetailList();
+            GetBaljuCompletedDetail_List();
 
             // 검색조건 초기화
-            chk_ReceiptDate.Checked = false;
             Search_Period.Startdate.Clear();
             Search_Period.Enddate.Clear();
             Search_Company.CodeTextBox.Clear();
             Search_Employee.CodeTextBox.Clear();
-        }
-
-        private void chk_ReceiptDate_CheckedChanged(object sender, EventArgs e)  // 수령일 체크박스 상태 바뀔 때 이벤트
-        {
-            if (chk_ReceiptDate.Checked) dtp_ReceiptDate.Enabled = true;
-            else dtp_ReceiptDate.Enabled = false;
         }
 
         #region ToolStrip 기능정의
@@ -109,58 +101,58 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)  // 검색
         {
-            BaljuCompleted_AllList = service.GetBalju_CompletedList();  // 발주리스트 갱신
-            if (Search_Company.CodeTextBox.Text.Length > 0)   // 회사 검색조건 있으면
+            if (Search_Period.Startdate.Text == "    -  -") { main.NoticeMessage = Properties.Settings.Default.PeriodError; }
+            else
             {
-                BaljuCompleted_AllList = (from item in BaljuCompleted_AllList
-                                          where item.Company_Name == Search_Company.CodeTextBox.Text
-                                          select item).ToList();
-            }
-            if (Search_Employee.CodeTextBox.Text.Length > 0)   // 사원 검색조건 있으면
-            {
-                BaljuCompleted_AllList = (from item in BaljuCompleted_AllList
-                                          where item.Employees_Name == Search_Employee.CodeTextBox.Text
-                                          select item).ToList();
-            }
-            if (Search_Period.Startdate.Text != "    -  -")   // 시작기간 text가 존재하면
-            {
-                if (Search_Period.Startdate.Text != Search_Period.Enddate.Text)
+                SearchedList = BaljuCompleted_AllList;
+                if (Search_Company.CodeTextBox.Text.Length > 0)   // 회사 검색조건 있으면
                 {
-                    BaljuCompleted_AllList = (from item in BaljuCompleted_AllList
+                    SearchedList = (from item in SearchedList
+                                              where item.Company_Name == Search_Company.CodeTextBox.Text
+                                              select item).ToList();
+                }
+                if (Search_Employee.CodeTextBox.Text.Length > 0)   // 사원 검색조건 있으면
+                {
+                    SearchedList = (from item in SearchedList
+                                              where item.Employees_Name == Search_Employee.CodeTextBox.Text
+                                              select item).ToList();
+                }
+                if (Search_Period.Startdate.Text != "    -  -")   // 시작기간 text가 존재하면
+                {
+                    SearchedList = (from item in SearchedList
                                               where item.Balju_Date.Date.CompareTo(Convert.ToDateTime(Search_Period.Startdate.Text)) >= 0 &&                  item.Balju_Date.Date.CompareTo(Convert.ToDateTime(Search_Period.Enddate.Text)) <= 0
                                               select item).ToList();
                 }
-                else
+                if (Search_ReceiptPeriod.Startdate.Text != "    -  -")
                 {
-                    BaljuCompleted_AllList = (from item in BaljuCompleted_AllList
-                                              where item.Balju_Date.Date == Convert.ToDateTime(Search_Period.Startdate.Text)
-                                              select item).ToList();
+                    SearchedList = (from item in SearchedList
+                                    where item.Balju_ReceiptDate.Date.CompareTo(Convert.ToDateTime(Search_ReceiptPeriod.Startdate.Text)) >= 0 && item.Balju_ReceiptDate.Date.CompareTo(Convert.ToDateTime(Search_ReceiptPeriod.Enddate.Text)) <= 0
+                                    select item).ToList();
                 }
+                dgv_BaljuCompleted.DataSource = SearchedList;
+                dgv_BaljuDetail.DataSource = null;
+                GetBaljuCompletedDetail_List();
+                main.NoticeMessage = Properties.Settings.Default.SearchDone;
             }
-            if (chk_ReceiptDate.Checked)
-            {
-                BaljuCompleted_AllList = (from item in BaljuCompleted_AllList
-                                          where item.Balju_ReceiptDate.Date == dtp_ReceiptDate.Value.Date
-                                          select item).ToList();
-            }
-
-            dgv_BaljuCompleted.DataSource = BaljuCompleted_AllList;
-            dgv_BaljuDetail.DataSource = null;
-            main.NoticeMessage = Properties.Settings.Default.SearchDone;
         }
 
         public override void Excel(object sender, EventArgs e)
         {
-            using (WaitForm frm = new WaitForm())
+            if (dgv_BaljuCompleted.Rows.Count > 0)
             {
-                frm.Processing = ExcelExport;
-                frm.ShowDialog();
+                using (WaitForm frm = new WaitForm())
+                {
+                    frm.Processing = ExcelExport;
+                    frm.ShowDialog();
+                }
             }
         }
         public void ExcelExport()
         {
+            List<Balju> master = SearchedList.ToList();
+            List<BaljuDetail> detail = BaljuDetail_AllList.ToList();
             string[] exceptColumns = { "Balju_DeletedYN" };
-            UtilClass.ExportToDataGridView<Balju>(BaljuCompleted_AllList, exceptColumns);
+            UtilClass.ExportTo2DataGridView(master, detail, exceptColumns);
         }
         public override void Print(object sender, EventArgs e)  // 인쇄
         {

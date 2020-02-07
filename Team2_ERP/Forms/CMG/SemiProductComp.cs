@@ -32,11 +32,13 @@ namespace Team2_ERP
             {
                 lblName.Text = "반제품 등록";
                 mode = "Insert";
+                pbxTitle.Image = Properties.Resources.AddFile_32x32;
             }
             else if (editMode == EditMode.Update)
             {
                 lblName.Text = "반제품 수정";
                 mode = "Update";
+                pbxTitle.Image = Properties.Resources.Edit_32x32;
                 pCode = item.Product_ID;
                 pCategory = item.Product_Category;
             }

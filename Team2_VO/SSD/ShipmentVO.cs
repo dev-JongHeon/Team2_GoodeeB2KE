@@ -49,5 +49,10 @@ namespace Team2_VO
 
         [FieldName("주문수량")]
         public int OrderDetail_Qty { get; set; }  // 주문수량
+
+        public override string ToString()
+        {
+            return Shipment_ID;
+        }
     }
 }

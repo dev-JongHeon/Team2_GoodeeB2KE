@@ -16,10 +16,10 @@ namespace Team2_ERP.Service
             return dac.GetOrderList();
         }
 
-        public List<OrderDetail> GetOrderDetailList()
+        public List<OrderDetail> GetOrderDetailList(string sb)
         {
             OrderDAC dac = new OrderDAC();
-            return dac.GetOrderDetailList();
+            return dac.GetOrderDetailList(sb);
         }
 
         public List<Order> GetOrderCompletedList()

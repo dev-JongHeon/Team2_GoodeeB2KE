@@ -44,7 +44,7 @@ namespace Team2_DAC
             try
             {
                 List<ProduceVO> list = new List<ProduceVO>();
-                string sql = "KJH_GetProduceByWorkID";
+                string sql = "KJH_GetProduceByWorkIDtest";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;

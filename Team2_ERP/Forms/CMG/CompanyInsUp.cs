@@ -28,11 +28,13 @@ namespace Team2_ERP
             {
                 lblName.Text = "거래처 등록";
                 mode = "Insert";
+                pbxTitle.Image = Properties.Resources.AddFile_32x32;
             }
             else
             {
                 lblName.Text = "거래처 수정";
                 mode = "Update";
+                pbxTitle.Image = Properties.Resources.Edit_32x32;
                 code = item.Company_ID;
                 txtCompanyName.Text = item.Company_Name;
                 txtCompanyNumber.Text = item.Company_Number;
@@ -86,10 +88,23 @@ namespace Team2_ERP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (mode.Equals("Insert"))
-                InsertCompany();
+            if (txtCompanyName.Text.Length > 0 && txtCompanyNumber.Text.Length > 0 && cboCompanyDivision.SelectedValue != null && txtCompanyOwner.Text.Length > 0 && addrCompany.Address1.Length > 0 && addrCompany.Address2.Length > 0)
+            {
+                if(mode.Equals("Insert"))
+                {
+                    InsertCompany();
+                    DialogResult = MessageBox.Show(Properties.Settings.Default.AddDone, Properties.Settings.Default.AddDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    UpdateCompany();
+                    DialogResult = MessageBox.Show(Properties.Settings.Default.ModDone, Properties.Settings.Default.ModDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
             else
-                UpdateCompany();
+            {
+                MessageBox.Show(Properties.Settings.Default.isEssential, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void CompanyInsUp_Load(object sender, EventArgs e)

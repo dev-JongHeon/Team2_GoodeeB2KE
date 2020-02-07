@@ -33,7 +33,7 @@
             this.Search_ShipmentPeriod = new Team2_ERP.SearchPeriodControl();
             this.dgv_SalesStatus = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lbl_Total = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -121,7 +121,7 @@
             // 
             this.Search_OrderIndexPeriod.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Search_OrderIndexPeriod.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.Search_OrderIndexPeriod.Labelname = "주문일시";
+            this.Search_OrderIndexPeriod.Labelname = "주문일자";
             this.Search_OrderIndexPeriod.Location = new System.Drawing.Point(58, 43);
             this.Search_OrderIndexPeriod.Margin = new System.Windows.Forms.Padding(4);
             this.Search_OrderIndexPeriod.Name = "Search_OrderIndexPeriod";
@@ -131,8 +131,8 @@
             // Search_ShipmentPeriod
             // 
             this.Search_ShipmentPeriod.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Search_ShipmentPeriod.Labelname = "출하처리일시";
-            this.Search_ShipmentPeriod.Location = new System.Drawing.Point(405, 14);
+            this.Search_ShipmentPeriod.Labelname = "출하처리일자";
+            this.Search_ShipmentPeriod.Location = new System.Drawing.Point(404, 14);
             this.Search_ShipmentPeriod.Margin = new System.Windows.Forms.Padding(4);
             this.Search_ShipmentPeriod.Name = "Search_ShipmentPeriod";
             this.Search_ShipmentPeriod.Size = new System.Drawing.Size(401, 30);
@@ -153,7 +153,7 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.label3);
+            this.panel3.Controls.Add(this.lbl_Total);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 810);
@@ -162,17 +162,17 @@
             this.panel3.Size = new System.Drawing.Size(1754, 55);
             this.panel3.TabIndex = 1;
             // 
-            // label3
+            // lbl_Total
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.Location = new System.Drawing.Point(1631, 14);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 21);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "0000000";
+            this.lbl_Total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_Total.AutoSize = true;
+            this.lbl_Total.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbl_Total.Location = new System.Drawing.Point(1539, 14);
+            this.lbl_Total.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Total.Name = "lbl_Total";
+            this.lbl_Total.Size = new System.Drawing.Size(40, 21);
+            this.lbl_Total.TabIndex = 10;
+            this.lbl_Total.Text = "0원";
             // 
             // label1
             // 
@@ -216,7 +216,7 @@
         private SearchPeriodControl Search_ShipmentPeriod;
         private SearchPeriodControl Search_OrderIndexPeriod;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbl_Total;
         private System.Windows.Forms.Label label1;
     }
 }

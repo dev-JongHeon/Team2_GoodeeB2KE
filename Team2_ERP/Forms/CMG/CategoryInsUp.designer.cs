@@ -107,6 +107,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.label1.Location = new System.Drawing.Point(58, 125);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 14);
@@ -116,6 +117,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.label2.Location = new System.Drawing.Point(58, 184);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 14);

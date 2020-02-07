@@ -35,7 +35,7 @@
             this.txtWarehouseName = new System.Windows.Forms.TextBox();
             this.txtWarehouseNumber = new System.Windows.Forms.TextBox();
             this.txtWarehouseFaxNumber = new System.Windows.Forms.TextBox();
-            this.addressControl1 = new Team2_ERP.AddressControl();
+            this.addrWarehouse = new Team2_ERP.AddressControl();
             this.cboWarehouseDivision = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel_Title.SuspendLayout();
@@ -48,7 +48,7 @@
             // panel5
             // 
             this.panel5.Controls.Add(this.cboWarehouseDivision);
-            this.panel5.Controls.Add(this.addressControl1);
+            this.panel5.Controls.Add(this.addrWarehouse);
             this.panel5.Controls.Add(this.txtWarehouseFaxNumber);
             this.panel5.Controls.Add(this.txtWarehouseNumber);
             this.panel5.Controls.Add(this.txtWarehouseName);
@@ -128,14 +128,14 @@
             this.txtWarehouseFaxNumber.Size = new System.Drawing.Size(143, 21);
             this.txtWarehouseFaxNumber.TabIndex = 3;
             // 
-            // addressControl1
+            // addrWarehouse
             // 
-            this.addressControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.addressControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.addressControl1.Location = new System.Drawing.Point(51, 250);
-            this.addressControl1.Name = "addressControl1";
-            this.addressControl1.Size = new System.Drawing.Size(505, 106);
-            this.addressControl1.TabIndex = 4;
+            this.addrWarehouse.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.addrWarehouse.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.addrWarehouse.Location = new System.Drawing.Point(51, 250);
+            this.addrWarehouse.Name = "addrWarehouse";
+            this.addrWarehouse.Size = new System.Drawing.Size(505, 106);
+            this.addrWarehouse.TabIndex = 4;
             // 
             // cboWarehouseDivision
             // 
@@ -172,7 +172,7 @@
         private System.Windows.Forms.TextBox txtWarehouseFaxNumber;
         private System.Windows.Forms.TextBox txtWarehouseNumber;
         private System.Windows.Forms.TextBox txtWarehouseName;
-        private AddressControl addressControl1;
+        private AddressControl addrWarehouse;
         private System.Windows.Forms.ComboBox cboWarehouseDivision;
     }
 }

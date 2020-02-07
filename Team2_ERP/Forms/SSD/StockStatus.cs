@@ -16,6 +16,7 @@ namespace Team2_ERP
         #region 전역변수
         StockService service = new StockService();
         List<Team2_VO.StockStatus> StockStatus_AllList = null;
+        List<Team2_VO.StockStatus> SearchedList = null;
         MainForm main; 
         #endregion
         public StockStatus()
@@ -51,14 +52,13 @@ namespace Team2_ERP
 
         private void Func_Refresh()  // 새로고침 기능
         {
+            dgv_StockStatus.DataSource = null;
             StockStatus_AllList = service.GetStockStatus();
-            dgv_StockStatus.DataSource = StockStatus_AllList;
 
             // 검색조건 초기화
             Search_Product.CodeTextBox.Clear();
             Search_Warehouse.CodeTextBox.Clear();
             Search_Category.CodeTextBox.Clear();
-
         }
 
         #region ToolStrip 기능정의
@@ -70,41 +70,45 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)  // 검색
         {
-            StockStatus_AllList = service.GetStockStatus();  // 출하리스트 갱신
+            SearchedList = StockStatus_AllList;
             if (Search_Product.CodeTextBox.Text.Length > 0)  // 고객명 검색조건 있으면
             {
-                StockStatus_AllList = (from item in StockStatus_AllList
+                SearchedList = (from item in SearchedList
                                        where item.Product_Name == Search_Product.CodeTextBox.Text
                                        select item).ToList();
             }
 
             if (Search_Warehouse.CodeTextBox.Text.Length > 0)  // 출하지시자 검색조건 있으면
             {
-                StockStatus_AllList = (from item in StockStatus_AllList
+                SearchedList = (from item in SearchedList
                                        where item.Warehouse_Name == Search_Warehouse.CodeTextBox.Text
                                        select item).ToList();
             }
             if (Search_Category.CodeTextBox.Text.Length > 0)  // 출하지시자 검색조건 있으면
             {
-                StockStatus_AllList = (from item in StockStatus_AllList
+                SearchedList = (from item in SearchedList
                                        where item.CodeTable_CodeName == Search_Category.CodeTextBox.Text
                                        select item).ToList();
             }
-            dgv_StockStatus.DataSource = StockStatus_AllList;
+            dgv_StockStatus.DataSource = SearchedList;
             main.NoticeMessage = Properties.Settings.Default.SearchDone;
         }
 
         public override void Excel(object sender, EventArgs e)
         {
-            using (WaitForm frm = new WaitForm())
+            if (dgv_StockStatus.Rows.Count > 0)
             {
-                frm.Processing = ExcelExport;
-                frm.ShowDialog();
+                using (WaitForm frm = new WaitForm())
+                {
+                    frm.Processing = ExcelExport;
+                    frm.ShowDialog();
+                }
             }
         }
         public void ExcelExport()
         {
-
+            string[] exceptColumns = { "Warehouse_Division" };
+            UtilClass.ExportToDataGridView(dgv_StockStatus, exceptColumns);
         }
 
         public override void Print(object sender, EventArgs e)  // 인쇄

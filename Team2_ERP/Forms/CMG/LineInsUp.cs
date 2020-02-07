@@ -30,11 +30,13 @@ namespace Team2_ERP
             {
                 mode = "Insert";
                 lblName.Text = "공정등록";
+                pbxTitle.Image = Properties.Resources.AddFile_32x32;
             }
             else
             {
                 mode = "Update";
                 lblName.Text = "공정수정";
+                pbxTitle.Image = Properties.Resources.Edit_32x32;
                 code = item.Line_ID;
                 txtLineName.Text = item.Line_Name;
             }
@@ -89,7 +91,23 @@ namespace Team2_ERP
             else
                 UpdateLine();
 
-            this.DialogResult = DialogResult.OK;
+            if(txtLineName.Text.Length > 0 && cboFactoryName.SelectedValue != null)
+            {
+                if(mode.Equals("Insert"))
+                {
+                    InsertLine();
+                    DialogResult = MessageBox.Show(Properties.Settings.Default.AddDone, Properties.Settings.Default.AddDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    UpdateLine();
+                    DialogResult = MessageBox.Show(Properties.Settings.Default.ModDone, Properties.Settings.Default.ModDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show(Properties.Settings.Default.isEssential, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

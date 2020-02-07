@@ -22,10 +22,10 @@ namespace Team2_ERP.Service
             return dac.GetBalju_CompletedList();
         }
 
-        public List<BaljuDetail> GetBalju_DetailList()
+        public List<BaljuDetail> GetBalju_DetailList(string sb)
         {
             BaljuDAC dac = new BaljuDAC();
-            return dac.GetBalju_DetailList();
+            return dac.GetBalju_DetailList(sb);
         }
 
         public void UpdateBalju_Processed(string balju_ID)

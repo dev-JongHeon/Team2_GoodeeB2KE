@@ -167,6 +167,12 @@ namespace Team2_ERP.Service.CMG
             return dac.GetAllProduct();
         }
 
+        public List<ProductVO> GetProductList(string type)
+        {
+            BOMDAC dac = new BOMDAC();
+            return dac.GetProductList(type);
+        }
+
         public List<BOMVO> GetAllCombination(string code)
         {
             BOMDAC dac = new BOMDAC();
@@ -179,10 +185,10 @@ namespace Team2_ERP.Service.CMG
             return dac.GetAllCombination1(code);
         }
 
-        public List<BOMVO> GetAllCombinationReverse(string code)
+        public List<BOMVO> GetAllCombinationReverse(string type)
         {
             BOMDAC dac = new BOMDAC();
-            return dac.GetAllCombinationReverse(code);
+            return dac.GetAllCombinationReverse(type);
         }
 
         public List<ComboItemVO> GetComboProductCategory()

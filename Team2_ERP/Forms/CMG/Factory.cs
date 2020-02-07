@@ -42,7 +42,6 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgvFactory, "주소", "Factory_Address", true, 100);
 
             dgvFactory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            dgvFactory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             UtilClass.SettingDgv(dgvLine);
 
@@ -52,7 +51,6 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgvLine, "비가동상태", "Line_Downtome_Name", true, 100);
 
             dgvLine.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            dgvLine.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         // DataGridView 가져오기

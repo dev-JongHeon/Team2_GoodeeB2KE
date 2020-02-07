@@ -26,6 +26,7 @@ namespace Team2_ERP
             {
                 lblName.Text = "부서 수정";
                 mode = "Update";
+                pbxTitle.Image = Properties.Resources.Edit_32x32;
                 code = item.CodeTable_CodeID;
                 txtName.Text = item.CodeTable_CodeName;
                 txtContext.Text = item.CodeTable_CodeExplain;
@@ -34,6 +35,7 @@ namespace Team2_ERP
             {
                 lblName.Text = "부서 등록";
                 mode = "Insert";
+                pbxTitle.Image = Properties.Resources.AddFile_32x32;
             }
         }
 
@@ -74,7 +76,24 @@ namespace Team2_ERP
             else if (mode.Equals("Update"))
                 UpdateDepart();
 
-            this.DialogResult = DialogResult.OK;
+
+            if(txtName.Text.Length > 0 && txtContext.Text.Length > 0)
+            {
+                if(mode.Equals("Insert"))
+                {
+                    InsertDepart();
+                    DialogResult = MessageBox.Show(Properties.Settings.Default.AddDone, Properties.Settings.Default.AddDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    UpdateDepart();
+                    DialogResult = MessageBox.Show(Properties.Settings.Default.ModDone, Properties.Settings.Default.ModDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show(Properties.Settings.Default.isEssential, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

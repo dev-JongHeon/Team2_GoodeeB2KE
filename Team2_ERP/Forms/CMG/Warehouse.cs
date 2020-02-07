@@ -38,7 +38,6 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgvWarehouse, "구분", "Warehouse_Division_Name", true, 100);
 
             dgvWarehouse.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            dgvWarehouse.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         // DataGridView 가져오기

@@ -43,9 +43,34 @@ namespace Team2_DAC
             }
         }
 
+        public List<ProductVO> GetProductList(string type)
+        {
+            string sql = "CMG_GetProductList";
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@id", type);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    List<ProductVO> list = Helper.DataReaderMapToList<ProductVO>(cmd.ExecuteReader());
+                    return list;
+                }
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         public List<BOMVO> GetAllCombination(string code)
         {
-            string sql = "CMG_GetAllCombination1";
+            string sql = "CMG_GetAllCombination";
 
             try
             {
@@ -96,7 +121,7 @@ namespace Team2_DAC
             }
         }
 
-        public List<BOMVO> GetAllCombinationReverse(string code)
+        public List<BOMVO> GetAllCombinationReverse(string type)
         {
             string sql = "CMG_GetAllCombinationReverse";
 
@@ -105,7 +130,7 @@ namespace Team2_DAC
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     conn.Open();
-                    cmd.Parameters.AddWithValue("@Combination_Product_ID", code);
+                    cmd.Parameters.AddWithValue("@id", type);
                     cmd.CommandType = CommandType.StoredProcedure;
                     List<BOMVO> list = Helper.DataReaderMapToList<BOMVO>(cmd.ExecuteReader());
                     return list;
@@ -127,7 +152,7 @@ namespace Team2_DAC
 
             try
             {
-                string sql = "GetInfo";
+                string sql = "KJH_GetInfo";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {

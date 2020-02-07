@@ -28,6 +28,7 @@ namespace Team2_ERP
             {
                 lblName.Text = "자재 수정";
                 mode = "Update";
+                pbxTitle.Image = Properties.Resources.Edit_32x32;
                 code = item.Product_ID;
                 txtResourceName.Text = item.Product_Name;
                 txtResourceMoney.Text = item.Product_Price.ToString();
@@ -38,6 +39,7 @@ namespace Team2_ERP
             {
                 lblName.Text = "자재 등록";
                 mode = "Insert";
+                pbxTitle.Image = Properties.Resources.AddFile_32x32;
             }
         }
 
@@ -102,12 +104,23 @@ namespace Team2_ERP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if(mode.Equals("Insert"))
-                InsertResource();
+            if (txtResourceName.Text.Length > 0 && cboResourceWarehouse.SelectedValue != null && txtResourceMoney.Text.Length > 0 && numResourceNum.Value != 0 && numSafety.Value != 0 && cboResourceCategory.SelectedValue != null)
+            {
+                if (mode.Equals("Insert"))
+                {
+                    InsertResource();
+                    DialogResult = MessageBox.Show(Properties.Settings.Default.AddDone, Properties.Settings.Default.AddDone, MessageBoxButtons.OK);
+                }
+                else
+                {
+                    UpdateResource();
+                    DialogResult = MessageBox.Show(Properties.Settings.Default.ModDone, Properties.Settings.Default.ModDone, MessageBoxButtons.OK);
+                }
+            }
             else
-                UpdateResource();
-
-            this.DialogResult = DialogResult.OK;
+            {
+                MessageBox.Show(Properties.Settings.Default.isEssential, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

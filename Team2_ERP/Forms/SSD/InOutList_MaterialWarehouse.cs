@@ -17,6 +17,7 @@ namespace Team2_ERP
         #region 전역변수
         StockService service = new StockService();
         List<StockReceipt> StockReceipt_AllList = null;
+        List<StockReceipt> SearchedList = null;
         MainForm main; 
         #endregion
         public InOutList_MaterialWarehouse()
@@ -48,25 +49,12 @@ namespace Team2_ERP
             dgv_Stock.Columns[2].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
 
             dgv_Stock.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            StockReceipt_AllList = service.GetStockReceipts(); //  자재, 반제품 수불내역 전체 갱신
-
-            // LINQ로 원자재창고에 속한것만 가져옴
-            StockReceipt_AllList = (from list_Stock in StockReceipt_AllList
-                                    where list_Stock.Warehouse_Division == false
-                                    select list_Stock).ToList();
-            //dgv_Stock.DataSource = StockReceipt_AllList;
-
-            
+            StockReceipt_AllList = service.GetStockReceipts(false); //  자재, 반제품 수불내역 전체 갱신
         }
         private void Func_Refresh()  // 새로고침 기능
         {
-            StockReceipt_AllList = service.GetStockReceipts();  // 수불내역 재조회 후 AllList에 저장
-
-            // LINQ로 원자재창고에 속한것만 바인딩
-            StockReceipt_AllList = (from list_Stock in StockReceipt_AllList
-                                    where list_Stock.Warehouse_Division == false
-                                    select list_Stock).ToList();
-            dgv_Stock.DataSource = StockReceipt_AllList;
+            dgv_Stock.DataSource = null;
+            StockReceipt_AllList = service.GetStockReceipts(false);
 
             // 검색조건 초기화
             Search_Period.Startdate.Clear();
@@ -74,7 +62,9 @@ namespace Team2_ERP
             Search_Material.CodeTextBox.Clear();
             Search_Warehouse.CodeTextBox.Clear();
 
-            rdo_All.Checked = true;
+            rdo_All.Checked = false;
+            rdo_In.Checked = false;
+            rdo_Out.Checked = false;
         }
 
         #region 라디오버튼 검색조건
@@ -110,62 +100,58 @@ namespace Team2_ERP
         }
         public override void Search(object sender, EventArgs e)  // 검색
         {
-            StockReceipt_AllList = service.GetStockReceipts();  // 수불리스트 갱신
-
-            if (Search_Warehouse.CodeTextBox.Text.Length > 0)  // 창고 검색조건 있으면
+            if (Search_Period.Startdate.Text == "    -  -") { main.NoticeMessage = Properties.Settings.Default.PeriodError; }
+            else
             {
-                StockReceipt_AllList = (from item in StockReceipt_AllList
-                                        where item.Warehouse_Name == Search_Warehouse.CodeTextBox.Text
-                                        select item).ToList();
-            }
-
-            if (Search_Material.CodeTextBox.Text.Length > 0)  // 원자재명 검색조건 있으면
-            {
-                StockReceipt_AllList = (from item in StockReceipt_AllList
-                                        where item.Product_Name == Search_Material.CodeTextBox.Text
-                                        select item).ToList();
-            }
-
-            if (Search_Employees.CodeTextBox.Text.Length > 0)  // 사원 검색조건 있으면
-            {
-                StockReceipt_AllList = (from item in StockReceipt_AllList
-                                        where item.Employees_Name == Search_Employees.CodeTextBox.Text
-                                        select item).ToList();
-            }
-
-            if (Search_Period.Startdate.Text != "    -  -")   // 시작기간 text가 존재하면
-            {
-                if (Search_Period.Startdate.Text != Search_Period.Enddate.Text)  // 시작, 끝 날짜가 다른경우
+                SearchedList = StockReceipt_AllList;
+                if (Search_Warehouse.CodeTextBox.Text.Length > 0)  // 창고 검색조건 있으면
                 {
-                    StockReceipt_AllList = (from item in StockReceipt_AllList
-                                            where item.StockReceipt_Date.Date.CompareTo(Convert.ToDateTime(Search_Period.Startdate.Text)) >= 0 &&
-                                            item.StockReceipt_Date.Date.CompareTo(Convert.ToDateTime(Search_Period.Enddate.Text)) <= 0
+                    SearchedList = (from item in SearchedList
+                                            where item.Warehouse_Name == Search_Warehouse.CodeTextBox.Text
                                             select item).ToList();
                 }
-                else   // 같은경우
+
+                if (Search_Material.CodeTextBox.Text.Length > 0)  // 원자재명 검색조건 있으면
                 {
-                    StockReceipt_AllList = (from item in StockReceipt_AllList
-                                            where item.StockReceipt_Date.Date == Convert.ToDateTime(Search_Period.Startdate.Text)
+                    SearchedList = (from item in SearchedList
+                                            where item.Product_Name == Search_Material.CodeTextBox.Text
                                             select item).ToList();
                 }
+
+                if (Search_Employees.CodeTextBox.Text.Length > 0)  // 사원 검색조건 있으면
+                {
+                    SearchedList = (from item in SearchedList
+                                            where item.Employees_Name == Search_Employees.CodeTextBox.Text
+                                            select item).ToList();
+                }
+
+                if (Search_Period.Startdate.Text != "    -  -")   // 시작기간 text가 존재하면
+                {
+                    SearchedList = (from item in SearchedList
+                                            where item.StockReceipt_Date.Date.CompareTo(Convert.ToDateTime(Search_Period.Startdate.Text)) >= 0 && item.StockReceipt_Date.Date.CompareTo(Convert.ToDateTime(Search_Period.Enddate.Text)) <= 0
+                                            select item).ToList();
+                }
+                dgv_Stock.DataSource = SearchedList;
+                rdo_All.Checked = true;  // 라디오버튼 '전체'에 체크
+                main.NoticeMessage = Properties.Settings.Default.SearchDone;
             }
-            dgv_Stock.DataSource = StockReceipt_AllList;
-            rdo_All.Checked = true;  // 라디오버튼 '전체'에 체크
-            main.NoticeMessage = Properties.Settings.Default.SearchDone;
         }
 
         public override void Excel(object sender, EventArgs e)
         {
-            using (WaitForm frm = new WaitForm())
+            if (dgv_Stock.Rows.Count > 0)
             {
-                frm.Processing = ExcelExport;
-                frm.ShowDialog();
+                using (WaitForm frm = new WaitForm())
+                {
+                    frm.Processing = ExcelExport;
+                    frm.ShowDialog();
+                }
             }
         }
         public void ExcelExport()
         {
             string[] exceptColumns = { "" };
-            UtilClass.ExportToDataGridView<StockReceipt>(StockReceipt_AllList, exceptColumns);
+            UtilClass.ExportToDataGridView(dgv_Stock, exceptColumns);
         }
 
         public override void Print(object sender, EventArgs e)  // 인쇄

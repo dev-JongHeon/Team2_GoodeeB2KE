@@ -19,15 +19,18 @@ namespace Team2_DAC
             conn = new SqlConnection(ConnectionStr);
         }
 
-        public List<StockReceipt> GetStockReceipts() // 뷰 사용
+        public List<StockReceipt> GetStockReceipts(bool Warehouse_Division) // 뷰 사용
         {
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     StringBuilder sb = new StringBuilder();
-                    sb.Append("SELECT StockReceipt_ID, StockReceipt_Division, StockReceipt_Date, Warehouse_ID, Warehouse_Division,                      Warehouse_Name, Product_ID, Product_Name, StockReceipt_Quantity, Employees_Name,                                  StockReceipt_Division1 ");
+                    sb.Append("SELECT StockReceipt_ID, StockReceipt_Division, StockReceipt_Date, Warehouse_ID, Warehouse_Division,                           Warehouse_Name, Product_ID, Product_Name, StockReceipt_Quantity, Employees_Name,                                       StockReceipt_Division1 ");
                     sb.Append("FROM   StockReceipt_List ");
+
+                    if (Warehouse_Division) sb.Append(" WHERE Warehouse_Division = 1 ");  // 반제품창고일 때
+                    else sb.Append(" WHERE Warehouse_Division = 0 ");  // 원자재창고일 때
 
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
