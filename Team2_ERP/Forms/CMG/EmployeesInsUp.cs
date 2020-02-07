@@ -105,9 +105,29 @@ namespace Team2_ERP
         private void btnOK_Click(object sender, EventArgs e)
         {
             if (mode.Equals("Insert"))
-                InsertEmployee();
+            {
+                if(txtEmployeesName.Text.Length > 0 && cboEmployeesCategory.SelectedValue != null && dtpEmployeesHireDate.Value != null && txtEmployeesPassword.Text.Length > 0 && txtEmployeesPhoneNumber.Text.Length > 0 && dtpEmployeesBirthDay.Value != null)
+                {
+                    InsertEmployee();
+                    DialogResult = MessageBox.Show(Properties.Settings.Default.AddDone, Properties.Settings.Default.AddDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(Properties.Settings.Default.isEssential, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
             else
-                UpdateEmployee();
+            {
+                if (txtEmployeesName.Text.Length > 0 && cboEmployeesCategory.SelectedValue != null && dtpEmployeesResignDate.Value != null && txtEmployeesPassword.Text.Length > 0 && txtEmployeesPhoneNumber.Text.Length > 0 && dtpEmployeesBirthDay.Value != null)
+                {
+                    UpdateEmployee();
+                    DialogResult = MessageBox.Show(Properties.Settings.Default.ModDone, Properties.Settings.Default.ModDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(Properties.Settings.Default.isEssential, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
         }
     }
 }

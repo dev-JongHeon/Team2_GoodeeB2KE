@@ -35,7 +35,7 @@
             this.txtFactoryName = new System.Windows.Forms.TextBox();
             this.txtFactoryNumber = new System.Windows.Forms.TextBox();
             this.txtFactoryFaxNumber = new System.Windows.Forms.TextBox();
-            this.addressControl1 = new Team2_ERP.AddressControl();
+            this.addrFactory = new Team2_ERP.AddressControl();
             this.cboFactoryDivision = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel_Title.SuspendLayout();
@@ -48,7 +48,7 @@
             // panel5
             // 
             this.panel5.Controls.Add(this.cboFactoryDivision);
-            this.panel5.Controls.Add(this.addressControl1);
+            this.panel5.Controls.Add(this.addrFactory);
             this.panel5.Controls.Add(this.txtFactoryFaxNumber);
             this.panel5.Controls.Add(this.txtFactoryNumber);
             this.panel5.Controls.Add(this.txtFactoryName);
@@ -129,14 +129,14 @@
             this.txtFactoryFaxNumber.Size = new System.Drawing.Size(133, 21);
             this.txtFactoryFaxNumber.TabIndex = 3;
             // 
-            // addressControl1
+            // addrFactory
             // 
-            this.addressControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.addressControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.addressControl1.Location = new System.Drawing.Point(36, 260);
-            this.addressControl1.Name = "addressControl1";
-            this.addressControl1.Size = new System.Drawing.Size(505, 106);
-            this.addressControl1.TabIndex = 4;
+            this.addrFactory.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.addrFactory.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.addrFactory.Location = new System.Drawing.Point(36, 260);
+            this.addrFactory.Name = "addrFactory";
+            this.addrFactory.Size = new System.Drawing.Size(505, 106);
+            this.addrFactory.TabIndex = 4;
             // 
             // cboFactoryDivision
             // 
@@ -173,7 +173,7 @@
         private System.Windows.Forms.TextBox txtFactoryName;
         private System.Windows.Forms.TextBox txtFactoryFaxNumber;
         private System.Windows.Forms.TextBox txtFactoryNumber;
-        private AddressControl addressControl1;
+        private AddressControl addrFactory;
         private System.Windows.Forms.ComboBox cboFactoryDivision;
     }
 }

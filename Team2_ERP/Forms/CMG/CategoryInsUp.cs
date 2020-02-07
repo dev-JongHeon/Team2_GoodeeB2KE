@@ -83,7 +83,7 @@ namespace Team2_ERP
                 if(txtName.Text.Length > 0 && cboContext.SelectedValue != null)
                 {
                     InsertCategory();
-                    MessageBox.Show(Properties.Settings.Default.AddDone, Properties.Settings.Default.AddDone, MessageBoxButtons.OK);
+                    DialogResult = MessageBox.Show(Properties.Settings.Default.AddDone, Properties.Settings.Default.AddDone, MessageBoxButtons.OK);
                 }
                 else
                 {
@@ -95,7 +95,7 @@ namespace Team2_ERP
                 if(txtName.Text.Length > 0 && txtContext.Text.Length > 0)
                 {
                     UpdateCategory();
-                    MessageBox.Show(Properties.Settings.Default.ModDone, Properties.Settings.Default.ModDone, MessageBoxButtons.OK);
+                    DialogResult = MessageBox.Show(Properties.Settings.Default.ModDone, Properties.Settings.Default.ModDone, MessageBoxButtons.OK);
                 }
                 else
                 {

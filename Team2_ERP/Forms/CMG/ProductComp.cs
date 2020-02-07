@@ -89,7 +89,7 @@ namespace Team2_ERP
                 spc.LblName.Tag = countList[i].ID;
 
                 spc.Qty.ValueChanged += new EventHandler(TotalPrice);
-                numericUpDown1.ValueChanged += new EventHandler(TotalPrice);
+                numProductQty.ValueChanged += new EventHandler(TotalPrice);
 
                 splitContainer2.Panel1.Controls.Add(spc);
             }
@@ -154,9 +154,9 @@ namespace Team2_ERP
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            if (numericUpDown1.Value > 0)
+            if (numProductQty.Value > 0)
             {
-                txtProductMoney.Text = (Convert.ToInt32(txtProductMoney.Tag) * Convert.ToInt32(numericUpDown1.Value)).ToString("#,##0") + "원";
+                txtProductMoney.Text = (Convert.ToInt32(txtProductMoney.Tag) * Convert.ToInt32(numProductQty.Value)).ToString("#,##0") + "원";
             }
             else
             {
@@ -182,7 +182,7 @@ namespace Team2_ERP
                 Product_Name = txtProductName.Text,
                 Product_Price = Convert.ToInt32(txtProductMoney.Text.Replace(",", "").Replace("원", "")),
                 Product_Image = ImageData,
-                Product_Qty = Convert.ToInt32(numericUpDown1.Value)
+                Product_Qty = Convert.ToInt32(numProductQty.Value)
             };
 
             List<CombinationVO> citemList = new List<CombinationVO>();
@@ -232,7 +232,7 @@ namespace Team2_ERP
                 Product_Name = txtProductName.Text,
                 Product_Image = ImageData,
                 Product_Price = Convert.ToInt32(txtProductMoney.Text.Replace(",", "").Replace("원", "")),
-                Product_Qty = Convert.ToInt32(numericUpDown1.Value)
+                Product_Qty = Convert.ToInt32(numProductQty.Value)
             };
 
             List<CombinationVO> citemList = new List<CombinationVO>();
@@ -260,12 +260,23 @@ namespace Team2_ERP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (mode.Equals("Insert"))
-                InsertProduct();
+            if(spc.TxtName.Tag != null && txtProductImage.Text.Length > 0 && txtProductName.Text.Length > 0 && numProductQty.Value > 1 && txtProductMoney.Text.Length > 0)
+            {
+                if(mode.Equals("Insert"))
+                {
+                    InsertProduct();
+                    DialogResult = MessageBox.Show(Properties.Settings.Default.AddDone, Properties.Settings.Default.AddDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    UpdateProduct();
+                    DialogResult = MessageBox.Show(Properties.Settings.Default.ModDone, Properties.Settings.Default.ModDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
             else
-                UpdateProduct();
-
-            this.DialogResult = DialogResult.OK;
+            {
+                MessageBox.Show(Properties.Settings.Default.isEssential, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnImageAdd_Click(object sender, EventArgs e)

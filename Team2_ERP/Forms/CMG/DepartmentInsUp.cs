@@ -76,7 +76,24 @@ namespace Team2_ERP
             else if (mode.Equals("Update"))
                 UpdateDepart();
 
-            this.DialogResult = DialogResult.OK;
+
+            if(txtName.Text.Length > 0 && txtContext.Text.Length > 0)
+            {
+                if(mode.Equals("Insert"))
+                {
+                    InsertDepart();
+                    DialogResult = MessageBox.Show(Properties.Settings.Default.AddDone, Properties.Settings.Default.AddDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    UpdateDepart();
+                    DialogResult = MessageBox.Show(Properties.Settings.Default.ModDone, Properties.Settings.Default.ModDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show(Properties.Settings.Default.isEssential, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }
