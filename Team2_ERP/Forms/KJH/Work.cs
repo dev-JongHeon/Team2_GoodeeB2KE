@@ -213,9 +213,10 @@ namespace Team2_ERP
 
         private void ExcelExport()
         {
-            List<WorkVO> excellist = ((List<WorkVO>)dgvWorkList.DataSource).ToList();
+            List<WorkVO> excellist = searchedlist.ToList();
+            List<ProduceVO> detaillist = produces.ToList();
             string[] exceptlist = new string[] { "Employees_ID", "Factory_ID", "Line_ID", "Product_ID", "ProduceWork_ID" };
-            UtilClass.ExportTo2DataGridView<WorkVO, ProduceVO>(excellist, exceptlist, "GetProduceByWorkID");
+            UtilClass.ExportTo2DataGridView(excellist,detaillist, exceptlist);
         }
 
         public override void Print(object sender, EventArgs e)
