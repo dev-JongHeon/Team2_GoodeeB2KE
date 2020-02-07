@@ -75,8 +75,6 @@ namespace Team2_ERP
             dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
         }
 
-
-
         #region Excel 유틸리티
         public static string ExportToDataGridView<T>(List<T> dataList, string[] exceptColumns) where T : new()
         {
@@ -132,6 +130,9 @@ namespace Team2_ERP
                 Excel.Worksheet worksheet = (Excel.Worksheet)excel.ActiveSheet;
                 worksheet.Columns.AutoFit();
                 worksheet.Activate();
+                releaseObject(worksheet);
+                releaseObject(excel.ActiveWorkbook);
+                releaseObject(excel);
                 return "";
             }
             catch (Exception ex)
@@ -140,7 +141,13 @@ namespace Team2_ERP
             }
         }
 
-        public static string ExportToDataGridView(DataGridView dgv, string[] exceptColumns)  // DataGridView 전용
+        /// <summary>
+        /// DataGridView 자체를 엑셀로 옮기는 메서드
+        /// </summary>
+        /// <param name="dgv">엑셀로 옮길 DataGridView</param>
+        /// <param name="exceptColumns">visible=false 시킨 컬럼명 배열</param>
+        /// <returns></returns>
+        public static string ExportToDataGridView(DataGridView dgv, string[] exceptColumns) 
         {
             try
             {
@@ -154,9 +161,9 @@ namespace Team2_ERP
                     if (!exceptColumns.Contains(prop.DataPropertyName))
                     {
                         columnIndex++;
-                        excel.Cells[1, columnIndex].Interior.Color = Excel.XlRgbColor.rgbCadetBlue;
+                        excel.Cells[1, columnIndex].Interior.Color = ColorTranslator.ToOle(Color.FromArgb(55, 113, 138)); 
                         excel.Cells[1, columnIndex].Font.Name = "나눔고딕";
-                        excel.Cells[1, columnIndex].Font.Color = ColorTranslator.ToOle(Color.FromArgb(55, 113, 138));
+                        excel.Cells[1, columnIndex].Font.Color = Excel.XlRgbColor.rgbWhite;
                         excel.Cells[1, columnIndex].Font.Bold = true;
                         excel.Cells[1, columnIndex].Font.Size = 14;
                         excel.Cells[1, columnIndex].VerticalAlignment = Excel.XlHAlign.xlHAlignCenter;
@@ -195,6 +202,10 @@ namespace Team2_ERP
                 worksheet.Columns.AutoFit();
                 worksheet.Activate();
                 excel.WindowState = Excel.XlWindowState.xlMaximized;
+                
+                releaseObject(worksheet);
+                releaseObject(excel.ActiveWorkbook);
+                releaseObject(excel);
                 return "";
             }
             catch (Exception ex)
@@ -202,7 +213,6 @@ namespace Team2_ERP
                 return ex.Message;
             }
         }
-
         public static string ExportTo2DataGridView<T, D>(List<T> dataList, string[] exceptColumns, string methodname) where T : new() where D : new()
         {
             try
@@ -326,11 +336,161 @@ namespace Team2_ERP
                 excel.Visible = true;
                 excel.Worksheets[1].Activate();
                 excel.WindowState = Excel.XlWindowState.xlMaximized;
+                releaseObject(TestWorkSheet);
+                releaseObject(workbook);
+                releaseObject(excel);
                 return "";
             }
             catch (Exception ex)
             {
                 return ex.Message;
+            }
+        }
+
+        public static string ExportTo2DataGridView<T, D>(List<T> dataList, List<D> detaillist, string[] exceptColumns) where T : new() where D : new()
+        {
+            try
+            {
+                Excel.Application excel = new Excel.Application();
+                Excel.Workbook workbook = excel.Application.Workbooks.Add(true);
+                Excel.Worksheet TestWorkSheet = excel.ActiveSheet;
+                int cnt = dataList.Count;
+                string id = string.Empty;
+                int lastrow = 0;
+                for (int i = 0; i < cnt; i++)
+                {
+                    int columnIndex = 0;
+                    foreach (PropertyInfo prop in typeof(T).GetProperties())
+                    {
+
+                        if (!exceptColumns.Contains(prop.Name))
+                        {
+                            columnIndex++;
+
+                            string fieldName = (prop.GetCustomAttribute(typeof(FieldNameAttribute)) as FieldNameAttribute)?.FieldName ?? prop.Name;
+                            TestWorkSheet.Cells[1, columnIndex].Interior.Color = ColorTranslator.ToOle(Color.FromArgb(55, 113, 138));
+                            TestWorkSheet.Cells[1, columnIndex].Font.Name = "나눔고딕";
+                            TestWorkSheet.Cells[1, columnIndex].Font.Color = Excel.XlRgbColor.rgbWhite;
+                            TestWorkSheet.Cells[1, columnIndex].Font.Bold = true;
+                            TestWorkSheet.Cells[1, columnIndex].Font.Size = 14;
+                            TestWorkSheet.Cells[1, columnIndex].VerticalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                            TestWorkSheet.Cells[1, columnIndex].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                            TestWorkSheet.Cells[1, columnIndex].Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                            TestWorkSheet.Cells[1, columnIndex] = fieldName;
+                        }
+                    }
+
+
+                    int rowIndex = 0;
+
+                    foreach (T data in dataList)
+                    {
+                        rowIndex++;
+                        columnIndex = 0;
+                        foreach (PropertyInfo prop in typeof(T).GetProperties())
+                        {
+                            if (!exceptColumns.Contains(prop.Name))
+                            {
+                                columnIndex++;
+                                if (prop.GetValue(data, null) != null)
+                                {
+                                    if (columnIndex == 1)
+                                    {
+                                        id = prop.GetValue(data, null).ToString();
+                                        TestWorkSheet.Name = id;
+                                    }
+                                    TestWorkSheet.Cells[rowIndex + 1, columnIndex].NumberFormat = "@";
+                                    TestWorkSheet.Cells[rowIndex + 1, columnIndex].Font.Name = "나눔고딕";
+                                    TestWorkSheet.Cells[rowIndex + 1, columnIndex] = prop.GetValue(data, null).ToString();
+                                }
+                                TestWorkSheet.Cells[rowIndex + 1, columnIndex].Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                            }
+                        }
+                        lastrow = rowIndex + 2;
+                        dataList.Remove(data);
+                        break;
+                    }
+
+                  
+
+                    columnIndex = 0;
+                    foreach (PropertyInfo prop in typeof(D).GetProperties())
+                    {
+
+                        if (!exceptColumns.Contains(prop.Name))
+                        {
+                            columnIndex++;
+
+                            string fieldName = (prop.GetCustomAttribute(typeof(FieldNameAttribute)) as FieldNameAttribute)?.FieldName ?? prop.Name;
+
+                            TestWorkSheet.Cells[lastrow + 1, columnIndex].Interior.Color = ColorTranslator.ToOle(Color.FromArgb(55, 113, 138));
+                            TestWorkSheet.Cells[lastrow + 1, columnIndex].Font.Name = "나눔고딕";
+                            TestWorkSheet.Cells[lastrow + 1, columnIndex].Font.Color = Excel.XlRgbColor.rgbWhite;
+                            TestWorkSheet.Cells[lastrow + 1, columnIndex].Font.Bold = true;
+                            TestWorkSheet.Cells[lastrow + 1, columnIndex].Font.Size = 14;
+                            TestWorkSheet.Cells[lastrow + 1, columnIndex].VerticalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                            TestWorkSheet.Cells[lastrow + 1, columnIndex].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                            TestWorkSheet.Cells[lastrow + 1, columnIndex].Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                            TestWorkSheet.Cells[lastrow + 1, columnIndex] = fieldName;
+
+                        }
+                    }
+
+                    //foreach (D data in list)
+                    //{
+                    //    lastrow++;
+                    //    columnIndex = 0;
+                    //    foreach (PropertyInfo prop in typeof(D).GetProperties())
+                    //    {
+                    //        if (!exceptColumns.Contains(prop.Name))
+                    //        {
+                    //            columnIndex++;
+                    //            if (prop.GetValue(data, null) != null)
+                    //            {
+                    //                TestWorkSheet.Cells[lastrow + 1, columnIndex].NumberFormat = "@";
+                    //                TestWorkSheet.Cells[lastrow + 1, columnIndex].Font.Name = "나눔고딕";
+                    //                TestWorkSheet.Cells[lastrow + 1, columnIndex] = prop.GetValue(data, null).ToString();
+                    //            }
+                    //            TestWorkSheet.Cells[lastrow + 1, columnIndex].Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                    //        }
+                    //    }
+                    //}
+                    TestWorkSheet.Columns.AutoFit();
+                    if (i != cnt - 1)
+                    {
+                        TestWorkSheet = workbook.Sheets.Add(After: workbook.Sheets[workbook.Sheets.Count]);
+                    }
+                }
+
+                excel.Visible = true;
+                excel.Worksheets[1].Activate();
+                excel.WindowState = Excel.XlWindowState.xlMaximized;
+                releaseObject(TestWorkSheet);
+                releaseObject(workbook);
+                releaseObject(excel);
+                return "";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        private static void releaseObject(object obj)
+        {
+            try
+            {
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
+                obj = null;
+            }
+            catch (Exception ex)
+            {
+                obj = null;
+                MessageBox.Show("Exception Occured while releasing object " + ex.ToString());
+            }
+            finally
+            {
+                GC.Collect();
             }
         }
         #endregion

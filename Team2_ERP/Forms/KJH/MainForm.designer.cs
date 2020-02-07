@@ -495,6 +495,7 @@
             this.lblUserDept.Size = new System.Drawing.Size(72, 14);
             this.lblUserDept.TabIndex = 6;
             this.lblUserDept.Text = "lblUserDept";
+            this.lblUserDept.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label5
             // 
@@ -530,6 +531,7 @@
             this.lblUserName.Size = new System.Drawing.Size(72, 14);
             this.lblUserName.TabIndex = 3;
             this.lblUserName.Text = "lblUserDept";
+            this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label4
             // 

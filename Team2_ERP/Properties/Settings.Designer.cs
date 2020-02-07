@@ -502,5 +502,17 @@ namespace Team2_ERP.Properties {
                 this["CalendarMaxError"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("기간을 선택하셔야 합니다.")]
+        public string PeriodError {
+            get {
+                return ((string)(this["PeriodError"]));
+            }
+            set {
+                this["PeriodError"] = value;
+            }
+        }
     }
 }
