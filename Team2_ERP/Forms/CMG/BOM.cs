@@ -41,6 +41,11 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgvBOM, "가격", "Product_Price", true, 100, DataGridViewContentAlignment.MiddleRight);
             UtilClass.AddNewColum(dgvBOM, "창고ID", "Warehouse_ID", false, 100);
             UtilClass.AddNewColum(dgvBOM, "창고이름", "Warehouse_Name", false, 100);
+            UtilClass.AddNewColum(dgvBOM, "개수", "Product_Qty", false, 100);
+            UtilClass.AddNewColum(dgvBOM, "안전개수", "Product_Safety", false, 100);
+            UtilClass.AddNewColum(dgvBOM, "삭제여부", "Product_DeletedYN", false, 100);
+            UtilClass.AddNewColum(dgvBOM, "카테고리", "Category_Division", false, 100);
+            UtilClass.AddNewColum(dgvBOM, "이미지", "Product_Image", false, 100);
             dgvBOM.Columns[4].DefaultCellStyle.Format = "#,###원";
 
             
@@ -52,8 +57,8 @@ namespace Team2_ERP
             btn.HeaderText = "전개";
             btn.Width = 100;
             dgvBOM.Columns.Add(btn);
-            dgvBOM.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dgvBOM.Columns[5].Width = 70;
+            dgvBOM.Columns[12].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dgvBOM.Columns[12].Width = 70;
 
             UtilClass.SettingDgv(dgvBOMDetail1);
 
@@ -124,7 +129,7 @@ namespace Team2_ERP
 
         private void dgvBOM_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.ColumnIndex == 5)
+            if (e.ColumnIndex == 12)
             {
                 string str = dgvBOM.Rows[e.RowIndex].Cells[0].Value.ToString();
 
@@ -329,12 +334,12 @@ namespace Team2_ERP
                 dgvBOMDetail1.DataSource = null;
                 dgvBOMDetail2.DataSource = null;
 
-                if (e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[1].Value.ToString().Contains("CM"))
+                if (e.ColumnIndex == 12 && dgvBOM.CurrentRow.Cells[1].Value.ToString().Contains("CM"))
                 {
                     List<BOMVO> productList = (from item in bomReverseList where item.Combination_Product_ID.Equals(dgvBOM.Rows[e.RowIndex].Cells[0].Value.ToString()) select item).ToList();
                     dgvBOMDetail2.DataSource = productList;
                 }
-                else if (e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[1].Value.ToString().Contains("CS"))
+                else if (e.ColumnIndex == 12 && dgvBOM.CurrentRow.Cells[1].Value.ToString().Contains("CS"))
                 {
                     List<BOMVO> semiProductList = (from item in bomList where item.Product_ID.Equals(dgvBOM.Rows[e.RowIndex].Cells[0].Value.ToString()) select item).ToList();
                     dgvBOMDetail1.DataSource = semiProductList;
@@ -342,7 +347,7 @@ namespace Team2_ERP
                     List<BOMVO> productList = (from item in bomReverseList where item.Combination_Product_ID.Equals(dgvBOM.Rows[e.RowIndex].Cells[0].Value.ToString()) select item).ToList();
                     dgvBOMDetail2.DataSource = productList;
                 }
-                else if (e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[1].Value.ToString().Contains("CP"))
+                else if (e.ColumnIndex == 12 && dgvBOM.CurrentRow.Cells[1].Value.ToString().Contains("CP"))
                 {
                     List<BOMVO> semiProductList = (from item in bomList where item.Product_ID.Equals(dgvBOM.Rows[e.RowIndex].Cells[0].Value.ToString()) select item).ToList();
                     dgvBOMDetail1.DataSource = semiProductList;
