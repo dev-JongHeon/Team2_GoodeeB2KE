@@ -119,11 +119,6 @@ namespace Team2_ERP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if(mode.Equals("Insert"))
-                InsertWarehouse();
-            else
-                UpdateWarehouse();
-
             if(txtWarehouseName.Text.Length > 0 && !cboWarehouseDivision.SelectedText.Equals("선택") && addrWarehouse.Address1.Length > 0 && addrWarehouse.Address2.Length > 0)
             {
                 if(mode.Equals("Insert"))
