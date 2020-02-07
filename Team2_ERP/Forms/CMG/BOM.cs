@@ -316,7 +316,7 @@ namespace Team2_ERP
             List<ProductVO> allList = list.ToList();
             List<BOMVO> detail1 = bomList.ToList();
             List<BOMVO> detail2 = bomReverseList.ToList();
-            string[] gg = new string[] { "Product_Category" };
+            string[] gg = new string[] { "Product_Category", "Warehouse_ID", "Warehouse_Name", "Product_Qty", "Product_Safety", "Product_DeletedYN", "Category_Division", "Product_Image" };
             UtilClass.ExportTo2DataGridView(allList, detail1, detail2, gg);
         }
 
