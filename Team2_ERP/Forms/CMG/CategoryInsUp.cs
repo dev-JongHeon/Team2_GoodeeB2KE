@@ -79,11 +79,29 @@ namespace Team2_ERP
         private void btnOK_Click(object sender, EventArgs e)
         {
             if (mode.Equals("Insert"))
-                InsertCategory();
+            {
+                if(txtName.Text.Length > 0 && cboContext.SelectedValue != null)
+                {
+                    InsertCategory();
+                    MessageBox.Show(Properties.Settings.Default.AddDone, Properties.Settings.Default.AddDone, MessageBoxButtons.OK);
+                }
+                else
+                {
+                    MessageBox.Show(Properties.Settings.Default.AddError, Properties.Settings.Default.AddError);
+                }
+            }
             else
-                UpdateCategory();
-
-            this.DialogResult = DialogResult.OK;
+            {
+                if(txtName.Text.Length > 0 && txtContext.Text.Length > 0)
+                {
+                    UpdateCategory();
+                    MessageBox.Show(Properties.Settings.Default.ModDone, Properties.Settings.Default.ModDone, MessageBoxButtons.OK);
+                }
+                else
+                {
+                    MessageBox.Show(Properties.Settings.Default.ModError, Properties.Settings.Default.ModError);
+                }
+            }
         }
 
         private void CategoryInsUp_Load(object sender, EventArgs e)

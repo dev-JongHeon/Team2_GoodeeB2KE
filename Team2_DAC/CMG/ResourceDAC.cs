@@ -167,7 +167,7 @@ namespace Team2_DAC
 
             try
             {
-                string sql = "GetInfo";
+                string sql = "KJH_GetInfo";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {

@@ -34,9 +34,9 @@ namespace Team2_ERP
         {
             UtilClass.SettingDgv(dgvBOM);
 
+            UtilClass.AddNewColum(dgvBOM, "제품ID", "Product_ID", false, 100);
             UtilClass.AddNewColum(dgvBOM, "분류", "Product_Category", false, 100);
             UtilClass.AddNewColum(dgvBOM, "품목명", "CodeTable_CodeName", true, 100);
-            UtilClass.AddNewColum(dgvBOM, "제품ID", "Product_ID", false, 100);
             UtilClass.AddNewColum(dgvBOM, "제품명", "Product_Name", true, 100);
             UtilClass.AddNewColum(dgvBOM, "가격", "Product_Price", true, 100, DataGridViewContentAlignment.MiddleRight);
             dgvBOM.Columns[4].DefaultCellStyle.Format = "#,###원";
@@ -97,7 +97,7 @@ namespace Team2_ERP
             StringBuilder sb = new StringBuilder();
 
             foreach (DataGridViewRow item in dgvBOM.Rows)
-                sb.Append($"'{item.Cells[2].Value.ToString()}',");
+                sb.Append($"'{item.Cells[0].Value.ToString()}',");
 
             bomList = service.GetAllCombination(sb.ToString().Trim(','));
             bomReverseList = service.GetAllCombinationReverse(sb.ToString().Trim(','));
@@ -303,30 +303,30 @@ namespace Team2_ERP
             {
                 item = new ProductVO
                 {
-                    Product_Category = dgvBOM.Rows[e.RowIndex].Cells[0].Value.ToString(),
-                    Product_ID = dgvBOM.Rows[e.RowIndex].Cells[2].Value.ToString(),
+                    Product_ID = dgvBOM.Rows[e.RowIndex].Cells[0].Value.ToString(),
+                    Product_Category = dgvBOM.Rows[e.RowIndex].Cells[1].Value.ToString(),
                     Product_Name = dgvBOM.Rows[e.RowIndex].Cells[3].Value.ToString()
                 };
 
                 dgvBOMDetail1.DataSource = null;
                 dgvBOMDetail2.DataSource = null;
 
-                if (e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[0].Value.ToString().Contains("CM"))
+                if (e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[1].Value.ToString().Contains("CM"))
                 {
-                    List<BOMVO> productList = (from item in bomReverseList where item.Combination_Product_ID.Equals(dgvBOM.Rows[e.RowIndex].Cells[2].Value.ToString()) select item).ToList();
+                    List<BOMVO> productList = (from item in bomReverseList where item.Combination_Product_ID.Equals(dgvBOM.Rows[e.RowIndex].Cells[0].Value.ToString()) select item).ToList();
                     dgvBOMDetail2.DataSource = productList;
                 }
-                else if (e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[0].Value.ToString().Contains("CS"))
+                else if (e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[1].Value.ToString().Contains("CS"))
                 {
-                    List<BOMVO> semiProductList = (from item in bomList where item.Product_ID.Equals(dgvBOM.Rows[e.RowIndex].Cells[2].Value.ToString()) select item).ToList();
+                    List<BOMVO> semiProductList = (from item in bomList where item.Product_ID.Equals(dgvBOM.Rows[e.RowIndex].Cells[0].Value.ToString()) select item).ToList();
                     dgvBOMDetail1.DataSource = semiProductList;
 
-                    List<BOMVO> productList = (from item in bomReverseList where item.Combination_Product_ID.Equals(dgvBOM.Rows[e.RowIndex].Cells[2].Value.ToString()) select item).ToList();
+                    List<BOMVO> productList = (from item in bomReverseList where item.Combination_Product_ID.Equals(dgvBOM.Rows[e.RowIndex].Cells[0].Value.ToString()) select item).ToList();
                     dgvBOMDetail2.DataSource = productList;
                 }
-                else if (e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[0].Value.ToString().Contains("CP"))
+                else if (e.ColumnIndex == 5 && dgvBOM.CurrentRow.Cells[1].Value.ToString().Contains("CP"))
                 {
-                    List<BOMVO> semiProductList = (from item in bomList where item.Product_ID.Equals(dgvBOM.Rows[e.RowIndex].Cells[2].Value.ToString()) select item).ToList();
+                    List<BOMVO> semiProductList = (from item in bomList where item.Product_ID.Equals(dgvBOM.Rows[e.RowIndex].Cells[0].Value.ToString()) select item).ToList();
                     dgvBOMDetail1.DataSource = semiProductList;
                 }
             }

@@ -104,12 +104,19 @@ namespace Team2_ERP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if(mode.Equals("Insert"))
-                InsertResource();
-            else
-                UpdateResource();
-
-            this.DialogResult = DialogResult.OK;
+            if (txtResourceName.Text.Length > 0 && cboResourceWarehouse.SelectedValue != null && txtResourceMoney.Text.Length > 0 && numResourceNum.Value != 0 && numSafety.Value != 0 && cboResourceCategory.SelectedValue != null)
+            {
+                if (mode.Equals("Insert"))
+                {
+                    InsertResource();
+                    DialogResult = MessageBox.Show(Properties.Settings.Default.AddDone, Properties.Settings.Default.AddDone, MessageBoxButtons.OK);
+                }
+                else
+                {
+                    UpdateResource();
+                    DialogResult = MessageBox.Show(Properties.Settings.Default.ModDone, Properties.Settings.Default.ModDone, MessageBoxButtons.OK);
+                }
+            }
         }
     }
 }

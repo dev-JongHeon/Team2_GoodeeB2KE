@@ -120,14 +120,9 @@ namespace Team2_ERP
         private void btnOK_Click(object sender, EventArgs e)
         {
             if(mode.Equals("Insert"))
-            {
                 InsertWarehouse();
-            }
-
-            else if(mode.Equals("Update"))
-            {
+            else
                 UpdateWarehouse();
-            }
 
             this.DialogResult = DialogResult.OK;
         }
