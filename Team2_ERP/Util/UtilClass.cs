@@ -357,6 +357,7 @@ namespace Team2_ERP
                 int cnt = dataList.Count;
                 string id = string.Empty;
                 int lastrow = 0;
+                
                 for (int i = 0; i < cnt; i++)
                 {
                     int columnIndex = 0;
@@ -485,6 +486,7 @@ namespace Team2_ERP
                 int cnt = dataList.Count;
                 string id = string.Empty;
                 int lastrow = 0;
+                int lastrow2 = 0;
                 for (int i = 0; i < cnt; i++)
                 {
                     int columnIndex = 0;
@@ -510,7 +512,6 @@ namespace Team2_ERP
                     }
 
                     int rowIndex = 0;
-
                     foreach (T data in dataList)
                     {
                         rowIndex++;
@@ -534,7 +535,7 @@ namespace Team2_ERP
                                 TestWorkSheet.Cells[rowIndex + 1, columnIndex].Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
                             }
                         }
-                        lastrow = rowIndex + 2;
+                        lastrow = rowIndex + 3;
                         dataList.Remove(data);
                         break;
                     }
@@ -549,7 +550,7 @@ namespace Team2_ERP
                     TestWorkSheet.Cells[lastrow, 1].Font.Size = 14;
                     TestWorkSheet.Cells[lastrow, 1].VerticalAlignment = Excel.XlHAlign.xlHAlignCenter;
                     TestWorkSheet.Cells[lastrow, 1].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-                    TestWorkSheet.Cells[lastrow, 1].Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                    TestWorkSheet.Range[TestWorkSheet.Cells[lastrow, 1], TestWorkSheet.Cells[lastrow, 8]].Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
                     columnIndex = 0;
                     foreach (PropertyInfo prop in typeof(D).GetProperties())
                     {
@@ -591,20 +592,20 @@ namespace Team2_ERP
                                 }
                             }
                         }
-                        lastrow = lastrow + 2;
+                        lastrow2 = lastrow + 3;
                     }
                     #endregion
 
                     #region Detail2그리기
-                    lastrow++;
-                    TestWorkSheet.Range[TestWorkSheet.Cells[lastrow, 1], TestWorkSheet.Cells[lastrow, 8]].Merge(true);
-                    TestWorkSheet.Cells[lastrow, 1].Value = "역 전 개";
-                    TestWorkSheet.Cells[lastrow, 1].Font.Name = "나눔고딕";
-                    TestWorkSheet.Cells[lastrow, 1].Font.Bold = true;
-                    TestWorkSheet.Cells[lastrow, 1].Font.Size = 14;
-                    TestWorkSheet.Cells[lastrow, 1].VerticalAlignment = Excel.XlHAlign.xlHAlignCenter;
-                    TestWorkSheet.Cells[lastrow, 1].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-                    TestWorkSheet.Cells[lastrow, 1].Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                    lastrow2++;
+                    TestWorkSheet.Range[TestWorkSheet.Cells[lastrow2, 1], TestWorkSheet.Cells[lastrow2, 8]].Merge(true);
+                    TestWorkSheet.Cells[lastrow2, 1].Value = "역 전 개";
+                    TestWorkSheet.Cells[lastrow2, 1].Font.Name = "나눔고딕";
+                    TestWorkSheet.Cells[lastrow2, 1].Font.Bold = true;
+                    TestWorkSheet.Cells[lastrow2, 1].Font.Size = 14;
+                    TestWorkSheet.Cells[lastrow2, 1].VerticalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    TestWorkSheet.Cells[lastrow2, 1].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    TestWorkSheet.Range[TestWorkSheet.Cells[lastrow2, 1], TestWorkSheet.Cells[lastrow2, 8]].Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
                     columnIndex = 0;
                     foreach (PropertyInfo prop in typeof(U).GetProperties())
                     {
@@ -613,15 +614,15 @@ namespace Team2_ERP
                             columnIndex++;
 
                             string fieldName = (prop.GetCustomAttribute(typeof(FieldNameAttribute)) as FieldNameAttribute)?.FieldName ?? prop.Name;
-                            TestWorkSheet.Cells[lastrow + 1, columnIndex].Interior.Color = ColorTranslator.ToOle(Color.FromArgb(55, 113, 138));
-                            TestWorkSheet.Cells[lastrow + 1, columnIndex].Font.Name = "나눔고딕";
-                            TestWorkSheet.Cells[lastrow + 1, columnIndex].Font.Color = Excel.XlRgbColor.rgbWhite;
-                            TestWorkSheet.Cells[lastrow + 1, columnIndex].Font.Bold = true;
-                            TestWorkSheet.Cells[lastrow + 1, columnIndex].Font.Size = 14;
-                            TestWorkSheet.Cells[lastrow + 1, columnIndex].VerticalAlignment = Excel.XlHAlign.xlHAlignCenter;
-                            TestWorkSheet.Cells[lastrow + 1, columnIndex].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-                            TestWorkSheet.Cells[lastrow + 1, columnIndex].Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
-                            TestWorkSheet.Cells[lastrow + 1, columnIndex] = fieldName;
+                            TestWorkSheet.Cells[lastrow2 + 1, columnIndex].Interior.Color = ColorTranslator.ToOle(Color.FromArgb(55, 113, 138));
+                            TestWorkSheet.Cells[lastrow2 + 1, columnIndex].Font.Name = "나눔고딕";
+                            TestWorkSheet.Cells[lastrow2 + 1, columnIndex].Font.Color = Excel.XlRgbColor.rgbWhite;
+                            TestWorkSheet.Cells[lastrow2 + 1, columnIndex].Font.Bold = true;
+                            TestWorkSheet.Cells[lastrow2 + 1, columnIndex].Font.Size = 14;
+                            TestWorkSheet.Cells[lastrow2 + 1, columnIndex].VerticalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                            TestWorkSheet.Cells[lastrow2 + 1, columnIndex].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                            TestWorkSheet.Cells[lastrow2 + 1, columnIndex].Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                            TestWorkSheet.Cells[lastrow2 + 1, columnIndex] = fieldName;
                         }
                     }
 
@@ -629,7 +630,7 @@ namespace Team2_ERP
                     {
                         if (data.ToString() == id)
                         {
-                            lastrow++;
+                            lastrow2++;
                             columnIndex = 0;
                             foreach (PropertyInfo prop in typeof(U).GetProperties())
                             {
@@ -638,11 +639,11 @@ namespace Team2_ERP
                                     columnIndex++;
                                     if (prop.GetValue(data, null) != null)
                                     {
-                                        TestWorkSheet.Cells[lastrow + 1, columnIndex].NumberFormat = "@";
-                                        TestWorkSheet.Cells[lastrow + 1, columnIndex].Font.Name = "나눔고딕";
-                                        TestWorkSheet.Cells[lastrow + 1, columnIndex] = prop.GetValue(data, null).ToString();
+                                        TestWorkSheet.Cells[lastrow2 + 1, columnIndex].NumberFormat = "@";
+                                        TestWorkSheet.Cells[lastrow2 + 1, columnIndex].Font.Name = "나눔고딕";
+                                        TestWorkSheet.Cells[lastrow2 + 1, columnIndex] = prop.GetValue(data, null).ToString();
                                     }
-                                    TestWorkSheet.Cells[lastrow + 1, columnIndex].Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                                    TestWorkSheet.Cells[lastrow2 + 1, columnIndex].Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
                                 }
                             }
                         }
