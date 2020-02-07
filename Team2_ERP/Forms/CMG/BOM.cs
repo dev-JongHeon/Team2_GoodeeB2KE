@@ -39,7 +39,12 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgvBOM, "품목명", "CodeTable_CodeName", true, 100);
             UtilClass.AddNewColum(dgvBOM, "제품명", "Product_Name", true, 100);
             UtilClass.AddNewColum(dgvBOM, "가격", "Product_Price", true, 100, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dgvBOM, "창고ID", "Warehouse_ID", false, 100);
+            UtilClass.AddNewColum(dgvBOM, "창고이름", "Warehouse_Name", false, 100);
             dgvBOM.Columns[4].DefaultCellStyle.Format = "#,###원";
+
+            
+            
 
             dgvBOM.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
 
@@ -294,7 +299,20 @@ namespace Team2_ERP
 
         public override void Excel(object sender, EventArgs e)
         {
+            using (WaitForm frm = new WaitForm())
+            {
+                frm.Processing = ExcelExport;
+                    frm.ShowDialog();
+            }
+        }
 
+        private void ExcelExport()
+        {
+            List<ProductVO> allList = list.ToList();
+            List<BOMVO> detail1 = bomList.ToList();
+            List<BOMVO> detail2 = bomReverseList.ToList();
+            string[] gg = new string[] { "Product_Category" };
+            UtilClass.ExportTo2DataGridView(allList, detail1, detail2, gg);
         }
 
         private void dgvBOM_CellClick(object sender, DataGridViewCellEventArgs e)
