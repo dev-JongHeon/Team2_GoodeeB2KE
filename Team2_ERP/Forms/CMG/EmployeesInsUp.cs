@@ -27,11 +27,13 @@ namespace Team2_ERP
             {
                 lblName.Text = "사원등록";
                 mode = "Insert";
+                pbxTitle.Image = Properties.Resources.AddFile_32x32;
             }
             else
             {
                 lblName.Text = "사원수정";
                 mode = "Update";
+                pbxTitle.Image = Properties.Resources.Edit_32x32;
                 eCode = item.Employees_ID;
                 txtEmployeesName.Text = item.Employees_Name;
                 txtEmployeesPhoneNumber.Text = item.Employees_Phone;

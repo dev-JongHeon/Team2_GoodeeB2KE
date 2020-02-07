@@ -37,11 +37,13 @@ namespace Team2_ERP
             {
                 lblName.Text = "완제품 등록";
                 mode = "Insert";
+                pbxTitle.Image = Properties.Resources.AddFile_32x32;
             }
             else
             {
                 lblName.Text = "완제품 수정";
                 mode = "Update";
+                pbxTitle.Image = Properties.Resources.Edit_32x32;
                 pCode = item.Product_ID;
                 pName = item.Product_Name;
             }

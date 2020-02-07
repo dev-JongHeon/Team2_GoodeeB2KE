@@ -30,11 +30,13 @@ namespace Team2_ERP
             {
                 mode = "Insert";
                 lblName.Text = "공장등록";
+                pbxTitle.Image = Properties.Resources.AddFile_32x32;
             }
             else
             {
                 mode = "Update";
                 lblName.Text = "공장수정";
+                pbxTitle.Image = Properties.Resources.Edit_32x32;
 
                 code = item.Factory_ID;
                 txtFactoryName.Text = item.Factory_Name;
