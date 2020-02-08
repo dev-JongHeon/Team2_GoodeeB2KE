@@ -44,7 +44,9 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.dgvDefectiveByDefecHandleType = new System.Windows.Forms.DataGridView();
             this.SearchArea = new System.Windows.Forms.Panel();
-            this.searchPeriodForBy = new Team2_ERP.SearchPeriodControl();
+            this.searchPeriodForBy1 = new Team2_ERP.SearchPeriodControl();
+            this.searchPeriodForBy2 = new Team2_ERP.SearchPeriodControl();
+            this.searchPeriodForBy3 = new Team2_ERP.SearchPeriodControl();
             this.panel1.SuspendLayout();
             this.panel_Search.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -75,7 +77,9 @@
             // panel5
             // 
             this.panel5.Controls.Add(this.SearchArea);
-            this.panel5.Controls.Add(this.searchPeriodForBy);
+            this.panel5.Controls.Add(this.searchPeriodForBy3);
+            this.panel5.Controls.Add(this.searchPeriodForBy2);
+            this.panel5.Controls.Add(this.searchPeriodForBy1);
             // 
             // searchWorker
             // 
@@ -249,19 +253,37 @@
             this.SearchArea.Controls.Add(this.searchWorker);
             this.SearchArea.Controls.Add(this.searchPeriod);
             this.SearchArea.Controls.Add(this.searchProduct);
-            this.SearchArea.Location = new System.Drawing.Point(12, 4);
+            this.SearchArea.Location = new System.Drawing.Point(12, 5);
             this.SearchArea.Name = "SearchArea";
             this.SearchArea.Size = new System.Drawing.Size(713, 100);
             this.SearchArea.TabIndex = 5;
             // 
-            // searchPeriodForBy
+            // searchPeriodForBy1
             // 
-            this.searchPeriodForBy.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.searchPeriodForBy.Labelname = "기간 선택";
-            this.searchPeriodForBy.Location = new System.Drawing.Point(17, 41);
-            this.searchPeriodForBy.Name = "searchPeriodForBy";
-            this.searchPeriodForBy.Size = new System.Drawing.Size(312, 25);
-            this.searchPeriodForBy.TabIndex = 6;
+            this.searchPeriodForBy1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchPeriodForBy1.Labelname = "기간 선택";
+            this.searchPeriodForBy1.Location = new System.Drawing.Point(17, 41);
+            this.searchPeriodForBy1.Name = "searchPeriodForBy1";
+            this.searchPeriodForBy1.Size = new System.Drawing.Size(312, 25);
+            this.searchPeriodForBy1.TabIndex = 6;
+            // 
+            // searchPeriodForBy2
+            // 
+            this.searchPeriodForBy2.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchPeriodForBy2.Labelname = "기간 선택";
+            this.searchPeriodForBy2.Location = new System.Drawing.Point(17, 41);
+            this.searchPeriodForBy2.Name = "searchPeriodForBy2";
+            this.searchPeriodForBy2.Size = new System.Drawing.Size(312, 25);
+            this.searchPeriodForBy2.TabIndex = 7;
+            // 
+            // searchPeriodForBy3
+            // 
+            this.searchPeriodForBy3.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchPeriodForBy3.Labelname = "기간 선택";
+            this.searchPeriodForBy3.Location = new System.Drawing.Point(17, 41);
+            this.searchPeriodForBy3.Name = "searchPeriodForBy3";
+            this.searchPeriodForBy3.Size = new System.Drawing.Size(312, 25);
+            this.searchPeriodForBy3.TabIndex = 8;
             // 
             // Defective
             // 
@@ -310,7 +332,9 @@
         private System.Windows.Forms.DataGridView dgvDefectiveByDefecHandleType;
         private System.Windows.Forms.DataGridView dgvDefectiveByLine;
         private System.Windows.Forms.DataGridView dgvDefectiveByDefecType;
-        private SearchPeriodControl searchPeriodForBy;
+        private SearchPeriodControl searchPeriodForBy1;
         private System.Windows.Forms.Panel SearchArea;
+        private SearchPeriodControl searchPeriodForBy3;
+        private SearchPeriodControl searchPeriodForBy2;
     }
 }

@@ -203,6 +203,10 @@ namespace Team2_ERP
             searchPeriod.Enddate.Clear();
             searchPeriodForBy.Startdate.Clear();
             searchPeriodForBy.Enddate.Clear();
+            sdate1 = string.Empty;
+            edate1 = string.Empty;
+            sdate2 = string.Empty;
+            edate2 = string.Empty;
         }
 
         private void Downtime_Activated(object sender, EventArgs e)
@@ -402,7 +406,8 @@ namespace Team2_ERP
             }
             else if (tabDowntime.SelectedIndex==1)
             {
-                
+                sdate2 = searchPeriodForBy.Startdate.Text;
+                edate2 = searchPeriodForBy.Enddate.Text;
                 searchPeriodForBy.Visible = true;
                 searchPeriodForBy.Startdate.Clear();
                 searchPeriodForBy.Enddate.Clear();
@@ -411,23 +416,20 @@ namespace Team2_ERP
                     searchPeriodForBy.Startdate.Text = sdate1;
                     searchPeriodForBy.Enddate.Text = edate1;
                 }
-                sdate1 = searchPeriodForBy.Startdate.Text;
-                edate1 = searchPeriodForBy.Enddate.Text;
                 SearchArea.Visible = false;
             }
             else if (tabDowntime.SelectedIndex == 2)
             {
-                
+                sdate1 = searchPeriodForBy.Startdate.Text;
+                edate1 = searchPeriodForBy.Enddate.Text;
                 searchPeriodForBy.Visible = true;
                 searchPeriodForBy.Startdate.Clear();
                 searchPeriodForBy.Enddate.Clear();
                 if (sdate2 != "    -  -" && edate2 != "    -  -")
                 {
-                    searchPeriodForBy.Startdate.Text = sdate1;
-                    searchPeriodForBy.Enddate.Text = edate1;
+                    searchPeriodForBy.Startdate.Text = sdate2;
+                    searchPeriodForBy.Enddate.Text = edate2;
                 }
-                sdate2 = searchPeriodForBy.Startdate.Text;
-                edate2 = searchPeriodForBy.Enddate.Text;
                 SearchArea.Visible = false;
             }
         }
