@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace Team2_ERP.DataSet {
+namespace Team2_ERP.DataSets {
     
     
     /// <summary>

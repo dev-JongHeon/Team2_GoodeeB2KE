@@ -1,4 +1,4 @@
-﻿namespace Team2_ERP.DataSet
+﻿namespace Team2_ERP.DataSets
 {
 
 
