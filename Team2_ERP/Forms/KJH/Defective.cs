@@ -270,7 +270,7 @@ namespace Team2_ERP
             {
                 if(searchPeriod.Startdate.Tag == null && searchPeriod.Enddate.Tag == null)
                 {
-                    frm.NoticeMessage = "기간을 선택하셔야 합니다.";
+                    frm.NoticeMessage = Properties.Settings.Default.PeriodError;
                 }
                 else
                 {
@@ -490,11 +490,6 @@ namespace Team2_ERP
             {
                 UtilClass.ExportToDataGridView(dgvDefectiveByDefecHandleType, exceptlist);
             }
-        }
-
-        private void ExportExcel()
-        {
-            Thread.Sleep(10 * 1000);
         }
 
         public override void Print(object sender, EventArgs e)

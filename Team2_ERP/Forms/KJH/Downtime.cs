@@ -23,6 +23,11 @@ namespace Team2_ERP
         DowntimeService service = new DowntimeService();
         StringBuilder sb = new StringBuilder();
         bool isFirst = true;
+        string sdate1 = string.Empty;
+        string edate1 = string.Empty;
+        string sdate2 = string.Empty;
+        string edate2 = string.Empty;
+
 
         public Downtime()
         {
@@ -35,6 +40,15 @@ namespace Team2_ERP
             SettingDgvDowntime();
             RefreshClicked();
             frm.NoticeMessage = notice;
+            SetEssentialSearchOption();
+        }
+
+        private void SetEssentialSearchOption()
+        {
+            searchPeriod.Startdate.BackColor = Color.LightYellow;
+            searchPeriod.Enddate.BackColor = Color.LightYellow;
+            searchPeriodForBy.Startdate.BackColor = Color.LightYellow;
+            searchPeriodForBy.Enddate.BackColor = Color.LightYellow;
         }
 
         private void SettingByLineColumns(DataColumnCollection dc)
@@ -58,8 +72,8 @@ namespace Team2_ERP
             foreach (DataColumn item in dc)
             {
                 string name = item.ColumnName;
-                
-               if (name == "DowntimeType_Name")
+
+                if (name == "DowntimeType_Name")
                 {
                     UtilClass.AddNewColum(dgvDowntimeByType, "유형명", $"{name}", true, 150, DataGridViewContentAlignment.MiddleCenter);
                 }
@@ -72,29 +86,28 @@ namespace Team2_ERP
 
         private void CalcTotaltime(DataTable dt)
         {
-            dt.Columns.Add("비가동시간",typeof(string));
+            dt.Columns.Add("비가동시간", typeof(string));
             TimeSpan time = new TimeSpan();
             foreach (DataRow row in dt.Rows)
             {
-                for (int i = 1; i < dt.Columns.Count-1; i++)
+                for (int i = 1; i < dt.Columns.Count - 1; i++)
                 {
                     if (row[dt.Columns[i].ColumnName].ToString() != string.Empty)
                     {
                         time += TimeSpan.Parse(row[dt.Columns[i]].ToString());
-                    
                     }
-                    if (time.ToString("hh\\:mm\\:ss") != "00:00:00")
-                    {
-                        row["비가동시간"] = time.ToString("hh\\:mm\\:ss");
-                        time = new TimeSpan();
-                    }
+                }
+                if (time.ToString("hh\\:mm\\:ss") != "00:00:00")
+                {
+                    row["비가동시간"] = time.ToString("hh\\:mm\\:ss");
+                    time = new TimeSpan();
                 }
             }
         }
 
         private void SettingDgvDowntime()
         {
-            
+
             UtilClass.SettingDgv(dgvDowntime);
             UtilClass.AddNewColum(dgvDowntime, "공장번호", "Factory_ID", false);
             UtilClass.AddNewColum(dgvDowntime, "공장명", "Factory_Name", true, 130);
@@ -141,10 +154,12 @@ namespace Team2_ERP
 
                 dgvDowntimeByLine.Columns.Clear();
                 SettingByLineColumns(dtbyline.Columns);
+                dgvDowntimeByLine.Columns[1].Visible = false;
                 SetDoNotSort(dgvDowntimeByLine);
 
                 dgvDowntimeByType.Columns.Clear();
                 SettingByTypeColumns(dtbytype.Columns);
+                dgvDowntimeByType.Columns[1].Visible = false;
                 SetDoNotSort(dgvDowntimeByType);
 
                 dgvDowntime.DataSource = null;
@@ -235,14 +250,19 @@ namespace Team2_ERP
         {
             if (tabDowntime.SelectedIndex == 0)
             {
-                if (searchFactory.CodeTextBox.Tag == null && searchLine.CodeTextBox.Tag == null && searchDowntime.CodeTextBox.Tag == null && searchWorker.CodeTextBox.Tag == null && searchPeriod.Startdate.Tag == null && searchPeriod.Enddate.Tag == null)
+                if (searchPeriod.Startdate.Tag == null && searchPeriod.Enddate.Tag == null)
                 {
-                    RefreshClicked();
-                    frm.NoticeMessage = notice;
+                    frm.NoticeMessage = Properties.Settings.Default.PeriodError;
                 }
                 else
                 {
                     searchedlist = list;
+                    if (searchPeriod.Startdate.Tag != null && searchPeriod.Enddate.Tag != null)
+                    {
+                        searchedlist = (from item in searchedlist
+                                        where Convert.ToDateTime(item.Downtime_StartDate) >= Convert.ToDateTime(searchPeriod.Startdate.Tag.ToString()) && Convert.ToDateTime(item.Downtime_StartDate) <= Convert.ToDateTime(searchPeriod.Enddate.Tag.ToString())
+                                        select item).ToList();
+                    }
                     if (searchFactory.CodeTextBox.Tag != null)
                     {
                         searchedlist = (from item in searchedlist
@@ -267,12 +287,7 @@ namespace Team2_ERP
                                         where item.Employees_ID == Convert.ToInt32(searchWorker.CodeTextBox.Tag)
                                         select item).ToList();
                     }
-                    if (searchPeriod.Startdate.Tag != null && searchPeriod.Enddate.Tag != null)
-                    {
-                        searchedlist = (from item in searchedlist
-                                        where Convert.ToDateTime(item.Downtime_StartDate) >= Convert.ToDateTime(searchPeriod.Startdate.Tag.ToString()) && Convert.ToDateTime(item.Downtime_StartDate) <= Convert.ToDateTime(searchPeriod.Enddate.Tag.ToString())
-                                        select item).ToList();
-                    }
+
                     dgvDowntime.DataSource = searchedlist;
                     frm.NoticeMessage = Properties.Settings.Default.SearchDone;
                 }
@@ -290,8 +305,7 @@ namespace Team2_ERP
                 }
                 else
                 {
-                    RefreshClicked();
-                    frm.NoticeMessage = notice;
+                    frm.NoticeMessage = Properties.Settings.Default.PeriodError;
                 }
             }
             else if (tabDowntime.SelectedIndex == 2)
@@ -302,23 +316,22 @@ namespace Team2_ERP
                     ds2.Clear();
                     ds2 = service.GetDowntimeByType(sb.ToString().TrimEnd(','));
                     DataTable searcheddt2 = ds2.Tables[0].Copy();
-                    BindingDgv(dgvDowntimeByType,searcheddt2);
+                    BindingDgv(dgvDowntimeByType, searcheddt2);
                     frm.NoticeMessage = Properties.Settings.Default.SearchDone;
                 }
                 else
                 {
-                    RefreshClicked();
-                    frm.NoticeMessage = notice;
+                    frm.NoticeMessage = Properties.Settings.Default.PeriodError;
                 }
             }
 
         }
 
-        private void BindingDgv(DataGridView dgv,DataTable dt)
+        private void BindingDgv(DataGridView dgv, DataTable dt)
         {
             dgv.Columns.Clear();
             CalcTotaltime(dt);
-            if(dgv.Name== "dgvDowntimeByLine")
+            if (dgv.Name == "dgvDowntimeByLine")
             {
                 SettingByLineColumns(dt.Columns);
             }
@@ -343,7 +356,7 @@ namespace Team2_ERP
 
         public override void Excel(object sender, EventArgs e)
         {
-            if ((tabDowntime.SelectedIndex==0&&dgvDowntime.Rows.Count > 0)|| (tabDowntime.SelectedIndex == 1 && dgvDowntimeByLine.Rows.Count>0) || (tabDowntime.SelectedIndex == 2 && dgvDowntimeByType.Rows.Count>0))
+            if ((tabDowntime.SelectedIndex == 0 && dgvDowntime.Rows.Count > 0) || (tabDowntime.SelectedIndex == 1 && dgvDowntimeByLine.Rows.Count > 0) || (tabDowntime.SelectedIndex == 2 && dgvDowntimeByType.Rows.Count > 0))
             {
                 using (WaitForm frm = new WaitForm())
                 {
@@ -369,7 +382,7 @@ namespace Team2_ERP
             {
                 UtilClass.ExportToDataGridView(dgvDowntimeByLine, exceptlist);
             }
-            else
+            else if (tabDowntime.SelectedIndex==2)
             {
                 UtilClass.ExportToDataGridView(dgvDowntimeByType, exceptlist);
             }
@@ -382,23 +395,41 @@ namespace Team2_ERP
 
         private void tabDowntime_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabDowntime.SelectedIndex != 0)
+            if (tabDowntime.SelectedIndex ==0 )
             {
+                SearchArea.Visible = true;
+                searchPeriodForBy.Visible = false;
+            }
+            else if (tabDowntime.SelectedIndex==1)
+            {
+                
                 searchPeriodForBy.Visible = true;
                 searchPeriodForBy.Startdate.Clear();
                 searchPeriodForBy.Enddate.Clear();
+                if (sdate1 != "    -  -" && edate1 != "    -  -")
+                {
+                    searchPeriodForBy.Startdate.Text = sdate1;
+                    searchPeriodForBy.Enddate.Text = edate1;
+                }
+                sdate1 = searchPeriodForBy.Startdate.Text;
+                edate1 = searchPeriodForBy.Enddate.Text;
                 SearchArea.Visible = false;
             }
-            else
+            else if (tabDowntime.SelectedIndex == 2)
             {
-                SearchArea.Visible = true;
-                searchPeriodForBy.Visible = false;                
+                
+                searchPeriodForBy.Visible = true;
+                searchPeriodForBy.Startdate.Clear();
+                searchPeriodForBy.Enddate.Clear();
+                if (sdate2 != "    -  -" && edate2 != "    -  -")
+                {
+                    searchPeriodForBy.Startdate.Text = sdate1;
+                    searchPeriodForBy.Enddate.Text = edate1;
+                }
+                sdate2 = searchPeriodForBy.Startdate.Text;
+                edate2 = searchPeriodForBy.Enddate.Text;
+                SearchArea.Visible = false;
             }
-        }
-
-        private void dgvDowntime_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

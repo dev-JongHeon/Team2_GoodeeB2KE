@@ -173,7 +173,7 @@
             // 
             this.searchPeriodForBy.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.searchPeriodForBy.Labelname = "기간 선택";
-            this.searchPeriodForBy.Location = new System.Drawing.Point(11, 38);
+            this.searchPeriodForBy.Location = new System.Drawing.Point(11, 40);
             this.searchPeriodForBy.Name = "searchPeriodForBy";
             this.searchPeriodForBy.Size = new System.Drawing.Size(312, 25);
             this.searchPeriodForBy.TabIndex = 7;
@@ -181,10 +181,10 @@
             // SearchArea
             // 
             this.SearchArea.Controls.Add(this.searchPeriod);
+            this.SearchArea.Controls.Add(this.searchLine);
             this.SearchArea.Controls.Add(this.searchDowntime);
             this.SearchArea.Controls.Add(this.searchWorker);
             this.SearchArea.Controls.Add(this.searchFactory);
-            this.SearchArea.Controls.Add(this.searchLine);
             this.SearchArea.Location = new System.Drawing.Point(11, 4);
             this.SearchArea.Name = "SearchArea";
             this.SearchArea.Size = new System.Drawing.Size(741, 100);
