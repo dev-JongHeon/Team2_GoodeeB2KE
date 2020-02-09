@@ -48,6 +48,9 @@ namespace Team2_ERP
             dgv_Stock.Columns[2].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
             dgv_Stock.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             StockReceipt_AllList = service.GetStockReceipts(true); // 수불내역 갱신
+
+            Search_Period.Startdate.BackColor = Color.LightYellow;
+            Search_Period.Enddate.BackColor = Color.LightYellow;
         }
         private void Func_Refresh()  // 새로고침 기능
         {
