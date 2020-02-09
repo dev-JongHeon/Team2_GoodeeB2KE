@@ -23,6 +23,7 @@ namespace Team2_POP
         public int RequestQty { get; set; }
         public string ProduceID { get; set; }
         public int LineID { get; set; }
+        public bool IsLine { get; set; }
 
         public bool Connected { get; set; }
 
@@ -46,7 +47,7 @@ namespace Team2_POP
             timer = new System.Timers.Timer();
             timer.AutoReset = true;
             timer.Interval = 1000;
-            timer.Elapsed += Timer_Elapsed;
+            timer.Elapsed += Timer_Elapsed;            
         }
 
         // 매초 서버로부터 메세지를 수신받는 이벤트
@@ -56,7 +57,9 @@ namespace Team2_POP
             {
                 if (Connected)
                 {
-                    await Read();
+                    client.Client.Receive(new byte[1], SocketFlags.Peek);  // 20200208      
+                    client.Client.Send(new byte[1], SocketFlags.Peek);     // 20200208
+                    await Read(); 
                 }
             }
             catch(Exception ex)
@@ -80,7 +83,8 @@ namespace Team2_POP
             else if (Connected)
             {
                 timer.Start();
-                Writer();                
+                Writer();
+                client.ReceiveTimeout = 5000; // 20200208
             }
         }
 
@@ -119,7 +123,7 @@ namespace Team2_POP
 
 
         // 서버에 송신메서드 (생산 실적아이디를 윈도우 서비스(생산 기계)로 넘겨줌)
-        public void Writer()
+        public async void Writer()
         {
             try
             {
@@ -128,11 +132,30 @@ namespace Team2_POP
                 StreamWriter writer = new StreamWriter(netStream);
 
                 writer.AutoFlush = true;
-                writer.WriteAsync(ProductionInstruction);
+                await writer.WriteAsync(ProductionInstruction);
             }
             catch (Exception ex)
             {
                 ErrorMessage(ex);
+                DisConnected();
+            }
+        }
+
+        public async void Certification()
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(netStream))
+                {
+                    string LineInfo = string.Join(",", new object[] { LineID, IsLine });
+                    writer.AutoFlush = true;
+                    await writer.WriteAsync(LineInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage(ex);
+                DisConnected();
             }
         }
 
@@ -190,61 +213,6 @@ namespace Team2_POP
                     }
 
                 }
-                
-
-
-                //byte[] buff = new byte[1024];
-
-
-                //int nbytes = await netStream.ReadAsync(buff, 0, buff.Length);
-
-                //string[] msg = Encoding.UTF8.GetString(buff, 0, nbytes).Split(',');
-                //if (nbytes > 0)
-                //{
-                //    // 현재까지 열린 폼을 기준으로 반복문을 수행함
-                //    FormCollection frms = Application.OpenForms;
-
-                //    for (int i = 0; i < frms.Count; i++)
-                //    {
-                //        if (frms[i] == null)
-                //        {
-                //            i++;
-                //            continue;
-                //        }
-
-                //        if (frms[i] is PopMain)
-                //        {
-                //            PopMain pop = (PopMain)frms[i];
-                //            // 해당 POP의 라인아이디와 같은 경우
-                //            if (pop.WorkerInfo.LineID == Convert.ToInt32(msg[0]))
-                //            {
-                //                //respone 형태 (실시간모니터인지 아닌지(0), 라인아이디(1),메세지(2),생산실적아이디(3),완료여부(4),총 투입수량(5)) 
-                //                ReceiveEventArgs e = new ReceiveEventArgs();
-                //                if (msg.Length == 5)
-                //                {
-                //                    e.LineID = int.Parse(msg[0]);
-                //                    e.Message = msg[1];
-                //                    e.PerformanceID = msg[2];
-                //                    e.IsCompleted = bool.Parse(msg[3]);
-                //                    e.QtyImport = int.Parse(msg[4]);
-                //                }
-                //                else if (msg.Length == 3)
-                //                {
-                //                    e.LineID = int.Parse(msg[0]);
-                //                    e.Message = msg[1];
-                //                    e.IsCompleted = bool.Parse(msg[2]);
-                //                }
-
-                //                if (e.Message != null)
-                //                {
-                //                    Debug.WriteLine(msg[0]);
-                //                    if (Received != null)
-                //                        Received?.Invoke(this, e);
-                //                }
-                //            }
-                //        }
-                //    }
-                //}
             }
             
             catch (Exception ex)
