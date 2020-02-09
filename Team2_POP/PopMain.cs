@@ -197,6 +197,9 @@ namespace Team2_POP
             client.Received -= Receive;
             client.Received += new ReceiveEventHandler(Receive);
             client.Connect();
+            client.LineID = WorkerInfo.LineID;
+            client.IsLine = true;
+            client.Certification();
         }
 
 
@@ -656,6 +659,7 @@ namespace Team2_POP
             timer.Dispose();
             // 서버접속을 종료함
             client.DisConnected();
+            e.Cancel = false;
         }
 
 

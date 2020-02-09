@@ -88,7 +88,7 @@ namespace Team2_POP
                 {
                     SettingControl();
                     InitData();
-                    Show();
+                    Show();                  
                 }
                 // 종료 버튼을 누른 경우
                 // 로그인 화면도 닫음
