@@ -17,6 +17,7 @@ namespace Team2_ERP
         MainForm frm;
         List<ProduceVO> list = new List<ProduceVO>();
         List<ProduceVO> searchedlist = new List<ProduceVO>();
+        List<PerformanceVO> performances = new List<PerformanceVO>();
         bool isFirst = true;
         ProduceService service = new ProduceService();
         public Produce()
@@ -29,11 +30,19 @@ namespace Team2_ERP
             frm = (MainForm)this.ParentForm;
             SettingDgvProduce();
             RefreshClicked();
+            SetEssentialSearchOption();
+        }
+        private void SetEssentialSearchOption()
+        {
+            searchPeriodStart.Startdate.BackColor = Color.LightYellow;
+            searchPeriodStart.Enddate.BackColor = Color.LightYellow;
         }
 
         private void SettingDgvProduce()
         {
+            string[] exceptlist = new string[] { "Employees_ID", "Factory_ID", "Line_ID", "Product_ID" };
             UtilClass.SettingDgv(dgvProduce);
+            UtilClass.AddNewColum(dgvProduce, "작업지시번호", "ProduceWork_ID", false, 130);
             UtilClass.AddNewColum(dgvProduce, "생산지시번호", "Produce_ID", true, 130);
             UtilClass.AddNewColum(dgvProduce, "생산시작일", "Produce_StartDate", true, 180);
             UtilClass.AddNewColum(dgvProduce, "생산완료일", "Produce_DoneDate", true, 180);
@@ -55,6 +64,7 @@ namespace Team2_ERP
             dgvProduce.Columns[10].DefaultCellStyle.Format = "#0개";
 
             UtilClass.SettingDgv(dgvPerformance);
+            UtilClass.AddNewColum(dgvPerformance, "생산지시번호", "PerformanceProduce_ID", false, 130);
             UtilClass.AddNewColum(dgvPerformance, "생산실적번호", "Performance_ID", true, 130);
             UtilClass.AddNewColum(dgvPerformance, "실적시작시간", "Performance_StartDate", true, 180);
             UtilClass.AddNewColum(dgvPerformance, "실적종료시간", "Performance_EndDate", true, 180);
@@ -68,17 +78,17 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgvPerformance, "작업자번호", "Employees_ID", false);
             UtilClass.AddNewColum(dgvPerformance, "작업자", "Employees_Name", true);
 
-            dgvPerformance.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvPerformance.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvPerformance.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvPerformance.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvPerformance.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvPerformance.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvPerformance.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvPerformance.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvPerformance.Columns[6].DefaultCellStyle.Format = "#0개";
+            dgvPerformance.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvPerformance.Columns[7].DefaultCellStyle.Format = "#0개";
             dgvPerformance.Columns[8].DefaultCellStyle.Format = "#0개";
-            dgvPerformance.Columns[9].DefaultCellStyle.Format = "0.0#\\%";
+            dgvPerformance.Columns[9].DefaultCellStyle.Format = "#0개";
+            dgvPerformance.Columns[10].DefaultCellStyle.Format = "0.0#\\%";
         }
 
         private void RefreshClicked()
@@ -157,14 +167,20 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)
         {
-            if (searchFactory.CodeTextBox.Tag == null && searchLine.CodeTextBox.Tag == null && searchProduct.CodeTextBox.Tag == null && searchPeriodStart.Startdate.Tag == null && searchPeriodStart.Enddate.Tag == null && searchPeriodEnd.Enddate.Tag == null && searchPeriodEnd.Startdate.Tag == null)
+            if (searchPeriodStart.Startdate.Tag == null && searchPeriodStart.Enddate.Tag == null)
             {
-                RefreshClicked();
-                frm.NoticeMessage = notice;
+                frm.NoticeMessage = Properties.Settings.Default.PeriodError;
             }
             else
             {
                 searchedlist = list;
+                if (searchPeriodEnd.Startdate.Tag != null && searchPeriodEnd.Enddate.Tag != null)
+                {
+                    searchedlist = (from item in searchedlist
+                                    where Convert.ToDateTime(item.Produce_DoneDate) >= Convert.ToDateTime(searchPeriodEnd.Startdate.Tag.ToString()) && Convert.ToDateTime(item.Produce_DoneDate) <= Convert.ToDateTime(searchPeriodEnd.Enddate.Tag.ToString())
+                                    orderby item.Produce_DoneDate
+                                    select item).ToList();
+                }
                 if (searchFactory.CodeTextBox.Tag != null)
                 {
                     searchedlist = (from item in searchedlist
@@ -191,39 +207,48 @@ namespace Team2_ERP
                                     select item
                                     ).ToList();
                 }
-                if (searchPeriodEnd.Startdate.Tag != null && searchPeriodEnd.Enddate.Tag != null)
-                {
-                    searchedlist = (from item in searchedlist
-                                    where Convert.ToDateTime(item.Produce_DoneDate) >= Convert.ToDateTime(searchPeriodEnd.Startdate.Tag.ToString()) && Convert.ToDateTime(item.Produce_DoneDate) <= Convert.ToDateTime(searchPeriodEnd.Enddate.Tag.ToString())
-                                    orderby item.Produce_DoneDate
-                                    select item).ToList();
-                }
                 dgvProduce.DataSource = searchedlist;
                 frm.NoticeMessage = Properties.Settings.Default.SearchDone;
-                ClearDgv();
+                GetPerformance();
+       
             }
-
         }
 
         private void GetPerformance()
         {
-            dgvPerformance.DataSource = null;
             if (dgvProduce.SelectedRows.Count > 0)
             {
-                string id = dgvProduce.SelectedRows[0].Cells[0].Value.ToString();
-
+                string id = SettingID(dgvProduce, 1);
                 try
                 {
                     ProduceService service = new ProduceService();
-                    dgvPerformance.DataSource = service.GetPerformanceByProduceID(id);
-                    dgvPerformance.ClearSelection();
-                    dgvPerformance.CurrentCell = null;
+                    performances= service.GetPerformanceByProduceID(id);
                 }
                 catch (Exception err)
                 {
                     MessageBox.Show(err.Message);
                 }
             }
+        }
+
+        private void SetPerformance(string id)
+        {
+            List<PerformanceVO> search = performances.ToList();
+            dgvPerformance.DataSource = null;
+            List<PerformanceVO> searched = (from item in search
+                                        where item.PerformanceProduce_ID == id
+                                        select item).ToList();
+            if (searched != null)
+                dgvPerformance.DataSource = searched;
+        }
+        private string SettingID(DataGridView dgv, int i)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (DataGridViewRow item in dgv.Rows)
+            {
+                sb.Append($"'{item.Cells[i].Value.ToString()}',");
+            }
+            return sb.ToString().TrimEnd(',');
         }
 
         public override void Excel(object sender, EventArgs e)
@@ -245,10 +270,11 @@ namespace Team2_ERP
 
         private void ExcelExport()
         {
-            List<ProduceVO> excellist = ((List<ProduceVO>)dgvProduce.DataSource).ToList();
+            List<ProduceVO> excellist = searchedlist.ToList();
+            List<PerformanceVO> detaillist = performances.ToList();
 
-            string[] exceptlist = new string[] { "Employees_ID", "Factory_ID", "Line_ID", "Product_ID" };
-            UtilClass.ExportTo2DataGridView<ProduceVO,PerformanceVO>(excellist,exceptlist, "GetPerformanceByProduceID");
+            string[] exceptlist = new string[] { "ProduceWork_ID","Employees_ID", "Factory_ID", "Line_ID", "Product_ID","PerformanceProduce_ID" };
+            UtilClass.ExportTo2DataGridView(excellist,detaillist,exceptlist);
         }
 
         public override void Print(object sender, EventArgs e)
@@ -256,12 +282,11 @@ namespace Team2_ERP
             MessageBox.Show("프린트");
         }
 
-
-        private void dgvProduce_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvProduce_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > -1)
             {
-                GetPerformance();
+                SetPerformance(dgvProduce.SelectedRows[0].Cells[1].Value.ToString());
             }
         }
     }

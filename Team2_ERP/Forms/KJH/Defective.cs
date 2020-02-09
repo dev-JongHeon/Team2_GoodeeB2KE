@@ -25,6 +25,7 @@ namespace Team2_ERP
         DataTable dtbytype = new DataTable();
         DataTable dtbyhandle = new DataTable();
         StringBuilder sb = new StringBuilder();
+        
 
         public Defective()
         {
@@ -44,8 +45,12 @@ namespace Team2_ERP
         {
             searchPeriod.Startdate.BackColor = Color.LightYellow;
             searchPeriod.Enddate.BackColor = Color.LightYellow;
-            searchPeriodForBy.Startdate.BackColor = Color.LightYellow;
-            searchPeriodForBy.Enddate.BackColor = Color.LightYellow;
+            searchPeriodForBy1.Startdate.BackColor = Color.LightYellow;
+            searchPeriodForBy1.Enddate.BackColor = Color.LightYellow;
+            searchPeriodForBy2.Startdate.BackColor = Color.LightYellow;
+            searchPeriodForBy2.Enddate.BackColor = Color.LightYellow;
+            searchPeriodForBy3.Startdate.BackColor = Color.LightYellow;
+            searchPeriodForBy3.Enddate.BackColor = Color.LightYellow;
         }
 
         private void SettingDgvDefective()
@@ -162,8 +167,12 @@ namespace Team2_ERP
             searchWorker.CodeTextBox.Clear();
             searchPeriod.Startdate.Clear();
             searchPeriod.Enddate.Clear();
-            searchPeriodForBy.Startdate.Clear();
-            searchPeriodForBy.Enddate.Clear();
+            searchPeriodForBy1.Startdate.Clear();
+            searchPeriodForBy1.Enddate.Clear();
+            searchPeriodForBy2.Startdate.Clear();
+            searchPeriodForBy2.Enddate.Clear();
+            searchPeriodForBy3.Startdate.Clear();
+            searchPeriodForBy3.Enddate.Clear();
         }
 
         private void SettingByLineColumns(DataColumnCollection dc)
@@ -270,7 +279,7 @@ namespace Team2_ERP
             {
                 if(searchPeriod.Startdate.Tag == null && searchPeriod.Enddate.Tag == null)
                 {
-                    frm.NoticeMessage = "기간을 선택하셔야 합니다.";
+                    frm.NoticeMessage = Properties.Settings.Default.PeriodError;
                 }
                 else
                 {
@@ -312,9 +321,9 @@ namespace Team2_ERP
             }
             else if (tabDefective.SelectedIndex == 1)
             {
-                if (searchPeriodForBy.Startdate.Tag != null && searchPeriodForBy.Enddate.Tag != null)
+                if (searchPeriodForBy1.Startdate.Tag != null && searchPeriodForBy1.Enddate.Tag != null)
                 {
-                    GetSearchDays();
+                    GetSearchDays(searchPeriodForBy1);
                     ds1.Clear();
                     ds1 = service.GetDefectiveByLine(sb.ToString().TrimEnd(','));
                     DataTable searcheddt = ds1.Tables[0].Copy();
@@ -328,9 +337,9 @@ namespace Team2_ERP
             }
             else if (tabDefective.SelectedIndex == 2)
             {
-                if (searchPeriodForBy.Startdate.Tag != null && searchPeriodForBy.Enddate.Tag != null)
+                if (searchPeriodForBy1.Startdate.Tag != null && searchPeriodForBy1.Enddate.Tag != null)
                 {
-                    GetSearchDays();
+                    GetSearchDays(searchPeriodForBy2);
                     ds2.Clear();
                     ds2 = service.GetDefectiveByDeftiveType(sb.ToString().TrimEnd(','));
                     DataTable searcheddt = ds2.Tables[0].Copy();
@@ -344,9 +353,9 @@ namespace Team2_ERP
             }
             else if (tabDefective.SelectedIndex == 3)
             {
-                if (searchPeriodForBy.Startdate.Tag != null && searchPeriodForBy.Enddate.Tag != null)
+                if (searchPeriodForBy1.Startdate.Tag != null && searchPeriodForBy1.Enddate.Tag != null)
                 {
-                    GetSearchDays();
+                    GetSearchDays(searchPeriodForBy3);
                     ds3.Clear();
                     ds3 = service.GetDefectiveByDeftiveHandleType(sb.ToString().TrimEnd(','));
                     DataTable searcheddt = ds3.Tables[0].Copy();
@@ -443,11 +452,11 @@ namespace Team2_ERP
             }
         }
 
-        private void GetSearchDays()
+        private void GetSearchDays(SearchPeriodControl sp)
         {
             sb.Clear();
-            DateTime date = Convert.ToDateTime(searchPeriodForBy.Startdate.Text);
-            while (DateTime.Compare(date, Convert.ToDateTime(searchPeriodForBy.Enddate.Text).AddDays(1)) != 0)
+            DateTime date = Convert.ToDateTime(sp.Startdate.Text);
+            while (DateTime.Compare(date, Convert.ToDateTime(sp.Enddate.Text).AddDays(1)) != 0)
             {
                 sb.Append($"[{date.ToString("yyyy-MM-dd")}],");
                 date = date.AddDays(1);
@@ -492,11 +501,6 @@ namespace Team2_ERP
             }
         }
 
-        private void ExportExcel()
-        {
-            Thread.Sleep(10 * 1000);
-        }
-
         public override void Print(object sender, EventArgs e)
         {
             MessageBox.Show("프린트");
@@ -504,17 +508,33 @@ namespace Team2_ERP
 
         private void tabDefective_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabDefective.SelectedIndex != 0)
-            {
-                searchPeriodForBy.Visible = true;
-                searchPeriodForBy.Startdate.Clear();
-                searchPeriodForBy.Enddate.Clear();
-                SearchArea.Visible = false;
-            }
-            else
+            if (tabDefective.SelectedIndex == 0)
             {
                 SearchArea.Visible = true;
-                searchPeriodForBy.Visible = false;
+                searchPeriodForBy1.Visible = false;
+                searchPeriodForBy2.Visible = false;
+                searchPeriodForBy3.Visible = false;
+            }
+            else if (tabDefective.SelectedIndex==1)
+            {
+                SearchArea.Visible = false;
+                searchPeriodForBy1.Visible = true;
+                searchPeriodForBy2.Visible = false;
+                searchPeriodForBy3.Visible = false;
+            }
+            else if (tabDefective.SelectedIndex == 2)
+            {
+                SearchArea.Visible = false;
+                searchPeriodForBy1.Visible = false;
+                searchPeriodForBy2.Visible = true;
+                searchPeriodForBy3.Visible = false;
+            }
+            else if (tabDefective.SelectedIndex == 3)
+            {
+                SearchArea.Visible = false;
+                searchPeriodForBy1.Visible = false;
+                searchPeriodForBy2.Visible = false;
+                searchPeriodForBy3.Visible = true;
             }
         }
     }

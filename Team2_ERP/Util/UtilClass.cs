@@ -32,13 +32,15 @@ namespace Team2_ERP
                                        int colwidth = 100,
                                        DataGridViewContentAlignment txtAllign = DataGridViewContentAlignment.MiddleLeft)
         {
-            DataGridViewTextBoxColumn col = new DataGridViewTextBoxColumn();
-            col.HeaderText = headerText.Trim();
-            col.DataPropertyName = dataPropertyName;
-            col.Width = colwidth;
-            col.Visible = visible;
-            col.ValueType = typeof(string);
-            col.ReadOnly = true;
+            DataGridViewTextBoxColumn col = new DataGridViewTextBoxColumn
+            {
+                HeaderText = headerText.Trim(),
+                DataPropertyName = dataPropertyName,
+                Width = colwidth,
+                Visible = visible,
+                ValueType = typeof(string),
+                ReadOnly = true
+            };
             col.DefaultCellStyle.Alignment = txtAllign;
             dgv.Columns.Add(col);
         }
@@ -76,6 +78,13 @@ namespace Team2_ERP
         }
 
         #region Excel 유틸리티
+        /// <summary>
+        /// 리스트의 값을 엑셀로 옮기는 메서드
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="dataList"></param>
+        /// <param name="exceptColumns"></param>
+        /// <returns></returns>
         public static string ExportToDataGridView<T>(List<T> dataList, string[] exceptColumns) where T : new()
         {
             try
@@ -214,6 +223,15 @@ namespace Team2_ERP
             }
         }
         
+        /// <summary>
+        /// Master의 ID값으로 DB에가서 Detail을 가져오는 메서드
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="D"></typeparam>
+        /// <param name="dataList"></param>
+        /// <param name="exceptColumns"></param>
+        /// <param name="methodname"></param>
+        /// <returns></returns>
         public static string ExportTo2DataGridView<T, D>(List<T> dataList, string[] exceptColumns, string methodname) where T : new() where D : new()
         {
             try
@@ -348,6 +366,15 @@ namespace Team2_ERP
             }
         }
 
+        /// <summary>
+        /// Master와 Detail 리스트를 받아서 엑셀로 옮기는 메서드
+        /// </summary>
+        /// <typeparam name="T">Master 리스트의 타입</typeparam>
+        /// <typeparam name="D">Detail 리스트의 타입</typeparam>
+        /// <param name="dataList">Master리스트</param>
+        /// <param name="detaillist">Detail리스트</param>
+        /// <param name="exceptColumns">리스트중에서 안보여줄 값의 배열</param>
+        /// <returns></returns>
         public static object ExportTo2DataGridView<T, D>(List<T> dataList, List<D> detaillist, string[] exceptColumns) where T : new() where D : new()
         {
             try

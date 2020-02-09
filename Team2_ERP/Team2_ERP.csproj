@@ -144,13 +144,19 @@
     <Compile Include="CustomForms\WaitForm.Designer.cs">
       <DependentUpon>WaitForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="dsBalju.cs">
+    <Compile Include="DataSets\dsBalju.cs">
       <DependentUpon>dsBalju.xsd</DependentUpon>
     </Compile>
-    <Compile Include="dsBalju.Designer.cs">
+    <Compile Include="DataSets\dsBalju.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dsBalju.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DowntimeReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DowntimeReport.Designer.cs">
+      <DependentUpon>DowntimeReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\CMG\BOM.cs">
       <SubType>Form</SubType>
@@ -500,6 +506,9 @@
     <EmbeddedResource Include="CustomForms\WaitForm.resx">
       <DependentUpon>WaitForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DowntimeReport.resx">
+      <DependentUpon>DowntimeReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CMG\BOM.resx">
       <DependentUpon>BOM.cs</DependentUpon>
     </EmbeddedResource>
@@ -654,15 +663,15 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="dsBalju.xsc">
+    <None Include="DataSets\dsBalju.xsc">
       <DependentUpon>dsBalju.xsd</DependentUpon>
     </None>
-    <None Include="dsBalju.xsd">
+    <None Include="DataSets\dsBalju.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>dsBalju.Designer.cs</LastGenOutput>
     </None>
-    <None Include="dsBalju.xss">
+    <None Include="DataSets\dsBalju.xss">
       <DependentUpon>dsBalju.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
@@ -743,5 +752,6 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

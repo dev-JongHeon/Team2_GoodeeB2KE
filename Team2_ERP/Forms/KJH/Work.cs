@@ -293,16 +293,6 @@ namespace Team2_ERP
             return sb.ToString().TrimEnd(',');
         }
 
-        private void dgvWorkList_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex > -1)
-            {
-                SetProduce(dgvWorkList[e.RowIndex, 0].Value.ToString());
-            }
-        }
-
-
-
         private void dgvWorkList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > -1)
