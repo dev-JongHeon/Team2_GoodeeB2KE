@@ -440,11 +440,11 @@
     <Compile Include="Forms\SSD\StockStatus.designer.cs">
       <DependentUpon>StockStatus.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SSD\XtraReport1.cs">
+    <Compile Include="Forms\SSD\BaljuReport.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Forms\SSD\XtraReport1.Designer.cs">
-      <DependentUpon>XtraReport1.cs</DependentUpon>
+    <Compile Include="Forms\SSD\BaljuReport.Designer.cs">
+      <DependentUpon>BaljuReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Service\KJH\AuthService.cs" />
     <Compile Include="Service\KJH\DefectiveHandleService.cs" />
@@ -650,9 +650,10 @@
     <EmbeddedResource Include="Forms\SSD\StockStatus.resx">
       <DependentUpon>StockStatus.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SSD\XtraReport1.resx">
-      <DependentUpon>XtraReport1.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\SSD\BaljuReport.resx">
+      <DependentUpon>BaljuReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

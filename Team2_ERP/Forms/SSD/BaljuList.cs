@@ -181,7 +181,7 @@ namespace Team2_ERP
 
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
-            XtraReport1 xr = new XtraReport1();
+            BaljuReport br = new BaljuReport();
             
         }
         #endregion
