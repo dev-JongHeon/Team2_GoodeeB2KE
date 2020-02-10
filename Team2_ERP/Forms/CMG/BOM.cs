@@ -227,7 +227,6 @@ namespace Team2_ERP
                     SemiProductComp frm = new SemiProductComp(SemiProductComp.EditMode.Update, item);
                     if (frm.ShowDialog() == DialogResult.OK)
                     {
-                        MessageBox.Show("수정되었습니다.", "안내");
                         GridViewReset();
                         InitMessage();
                         LoadGridView();
@@ -238,7 +237,6 @@ namespace Team2_ERP
                     ProductComp frm = new ProductComp(ProductComp.EditMode.Update, item);
                     if (frm.ShowDialog() == DialogResult.OK)
                     {
-                        MessageBox.Show("수정되었습니다.", "안내");
                         GridViewReset();
                         InitMessage();
                         LoadGridView();
