@@ -46,7 +46,7 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgvBOM, "삭제여부", "Product_DeletedYN", false, 100);
             UtilClass.AddNewColum(dgvBOM, "카테고리", "Category_Division", false, 100);
             UtilClass.AddNewColum(dgvBOM, "이미지", "Product_Image", false, 100);
-            dgvBOM.Columns[4].DefaultCellStyle.Format = "#,###원";
+            dgvBOM.Columns[4].DefaultCellStyle.Format = "#,##0원";
 
             dgvBOM.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
 
@@ -62,13 +62,13 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgvBOMDetail1, "제품ID", "Product_ID", false, 100);
             UtilClass.AddNewColum(dgvBOMDetail1, "분류", "Category_Division", true, 100);
             UtilClass.AddNewColum(dgvBOMDetail1, "제품명", "Product_Name", true, 100);
-            UtilClass.AddNewColum(dgvBOMDetail1, "개수", "Combination_RequiredQty", true, 100, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dgvBOMDetail1, "조합개수", "Combination_RequiredQty", true, 100, DataGridViewContentAlignment.MiddleRight);
             UtilClass.AddNewColum(dgvBOMDetail1, "가격", "Product_Price", true, 100, DataGridViewContentAlignment.MiddleRight);
             UtilClass.AddNewColum(dgvBOMDetail1, "조합ID", "Combination_ID", false, 100);
             UtilClass.AddNewColum(dgvBOMDetail1, "조합제품ID", "Combination_Product_ID", false, 100);
             UtilClass.AddNewColum(dgvBOMDetail1, "조합삭제여부", "Combination_DeletedYN", false, 100);
-            dgvBOMDetail1.Columns[3].DefaultCellStyle.Format = "#,###개";
-            dgvBOMDetail1.Columns[4].DefaultCellStyle.Format = "#,###원";
+            dgvBOMDetail1.Columns[3].DefaultCellStyle.Format = "#,##0개";
+            dgvBOMDetail1.Columns[4].DefaultCellStyle.Format = "#,##0원";
 
             dgvBOMDetail1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
 
@@ -77,10 +77,10 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgvBOMDetail1, "제품ID", "Product_ID", false, 100);
             UtilClass.AddNewColum(dgvBOMDetail2, "분류", "Category_Division", true, 100);
             UtilClass.AddNewColum(dgvBOMDetail2, "제품명", "Product_Name", true, 100);
-            UtilClass.AddNewColum(dgvBOMDetail2, "개수", "Combination_RequiredQty", true, 100, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dgvBOMDetail2, "상품개수", "Combination_RequiredQty", true, 100, DataGridViewContentAlignment.MiddleRight);
             UtilClass.AddNewColum(dgvBOMDetail2, "가격", "Product_Price", true, 100, DataGridViewContentAlignment.MiddleRight);
-            dgvBOMDetail2.Columns[2].DefaultCellStyle.Format = "#,###개";
-            dgvBOMDetail2.Columns[3].DefaultCellStyle.Format = "#,###원";
+            dgvBOMDetail2.Columns[2].DefaultCellStyle.Format = "#,##0개";
+            dgvBOMDetail2.Columns[3].DefaultCellStyle.Format = "#,##0원";
 
             dgvBOMDetail2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
         }
