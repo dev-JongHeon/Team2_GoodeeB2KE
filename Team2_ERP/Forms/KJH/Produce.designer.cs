@@ -124,7 +124,7 @@
             this.dgvProduce.RowTemplate.Height = 23;
             this.dgvProduce.Size = new System.Drawing.Size(1364, 368);
             this.dgvProduce.TabIndex = 2;
-            this.dgvProduce.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProduce_CellClick);
+            this.dgvProduce.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProduce_CellDoubleClick);
             // 
             // searchPeriodStart
             // 

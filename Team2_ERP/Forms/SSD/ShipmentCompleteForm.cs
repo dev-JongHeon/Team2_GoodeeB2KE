@@ -60,6 +60,9 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_ShipmentDetail, "제품명", "Product_Name", true, 300);
             UtilClass.AddNewColum(dgv_ShipmentDetail, "주문수량", "OrderDetail_Qty", true);
             dgv_ShipmentDetail.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            Search_ShipmentIndexPeriod.Startdate.BackColor = Color.LightYellow;
+            Search_ShipmentIndexPeriod.Enddate.BackColor = Color.LightYellow;
         }
 
         private void dgv_Shipment_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

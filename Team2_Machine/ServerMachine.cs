@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -30,7 +31,6 @@ namespace Team2_Machine
             while (true)
             {
                 TcpClient client = await listener.AcceptTcpClientAsync().ConfigureAwait(false);
-                Console.WriteLine($"{DateTime.Now.ToString("yyyymmdd HH:MM:ss")} 클라이언트 접속");
                 // 작업을 시작해라
                 await Task.Factory.StartNew(AsyncTcpProcess, client);
             }
@@ -42,6 +42,7 @@ namespace Team2_Machine
         {
             TcpClient client = null;
             NetworkStream stream = null;
+            ClientInfo clientInfo = new ClientInfo();
             try
             {
                 client = (TcpClient)o;
@@ -51,44 +52,56 @@ namespace Team2_Machine
                     stream = client.GetStream();
                 }
 
-                while (client.Connected)
+                Socket socket = client.Client;
+
+                while (socket.Connected)
                 {
                     byte[] buff = new byte[1024];
 
                     Task<int> readTask = stream.ReadAsync(buff, 0, buff.Length);
                     int nbytes = readTask.Result;
 
-                    if (nbytes > 0)
+                    if (nbytes > 2)
                     {
                         // 데이터를 가져옴(실적번호, 요구수량, 생산번호, 라인아이디)
                         string[] workList = Encoding.UTF8.GetString(buff, 0, nbytes).Trim().Split(',');
 
                         workList.ToList().ForEach(p => Console.WriteLine(p)); // 확인코드
 
-                        string lineID = workList[3];
-
-                        string msg = "서버 : 접수 완료";
-                        bool isCompleted = true;
-                        if (workList.Length != 4)
+                        // 접속 정보를 담음
+                        if (workList.Length == 2)
                         {
-                            msg = "서버 : 접수 실패";
-                            isCompleted = false;
+                            clientInfo.ID = Convert.ToInt32(workList[0]);
+                            clientInfo.IsBoard = Convert.ToBoolean(workList[1]);
+                            clientInfo.Client = client;
+                            Console.WriteLine($"{DateTime.Now.ToString("yyyymmdd HH:MM:ss")} 클라이언트 접속 \n접속공정 - {clientInfo.ID}");
                         }
+                        else
+                        {
+                            string msg = "서버 : 접수 완료";
+                            bool isCompleted = true;
+                            if (workList.Length != 4)
+                            {
+                                msg = "서버 : 접수 실패";
+                                isCompleted = false;
+                            }
 
-                        // 최초 : 라인아이디(0), 메세지(1), 성공여부(2)
-                        Write(stream, new object[] { lineID, msg, isCompleted });
+                            string lineID = workList[3];
+                            // 최초 : 라인아이디(0), 메세지(1), 성공여부(2)
+                            Write(stream, new object[] { lineID, msg, isCompleted });
 
-                        OperationMachine machine = new OperationMachine();
-                        machine.PerformanceID = workList[0];
-                        machine.RequestQty = Convert.ToInt32(workList[1]);
-                        int totalQty = machine.ProductionMachine();
+                            OperationMachine machine = new OperationMachine();
+                            machine.PerformanceID = workList[0];
+                            machine.RequestQty = Convert.ToInt32(workList[1]);
+                            int totalQty = machine.ProductionMachine();
 
-                        Console.WriteLine("작업완료 : {0}", totalQty);
+                            Console.WriteLine("작업완료 : {0}", totalQty);
 
-                        //두번째 : 라인아이디(0), 메세지(1), 실적(2), 성공(3), 투입수량(4)
-                        Write(stream, new object[] { lineID, "생산완료", machine.PerformanceID, true, totalQty });
+                            //두번째 : 라인아이디(0), 메세지(1), 실적(2), 성공(3), 투입수량(4)
+                            Write(stream, new object[] { lineID, "생산완료", machine.PerformanceID, true, totalQty });
 
-                        buff.ToList().Clear();
+                            buff.ToList().Clear();
+                        }
                     }
 
 

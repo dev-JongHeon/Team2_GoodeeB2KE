@@ -29,7 +29,9 @@ namespace Team2_ERP
         public EventHandler M_Print_Printer;
         int tindex;
         bool isLogout = false;
+        Graphics g;
         LoginVO logininfo = new LoginVO();
+
         public LoginVO Logininfo { get => logininfo; set => logininfo = value; }
         public string NoticeMessage { get => lblNoticeMsg.Text; set => lblNoticeMsg.Text = value; }
 
@@ -596,8 +598,8 @@ namespace Team2_ERP
 
             //pad the rectangle to cover the 1 pixel line between the top of the tabpage and the start of the tabs
             background.Size = new Size(tabControl1.Right - background.Left, lasttabrect.Height + 1);
-            e.Graphics.FillRectangle(fillbrush, background);
-            string s = string.Empty;
+            g.FillRectangle(fillbrush, background);
+
         }
 
         private void tabControl1_MouseDown(object sender, MouseEventArgs e)
@@ -831,7 +833,17 @@ namespace Team2_ERP
             Logininfo.IsLogout = isLogout;
             this.Close();
         }
+
         #endregion
+
+        private void MainForm_LocationChanged(object sender, EventArgs e)
+        {
+            if ((this.Location.X + this.Width >= Screen.PrimaryScreen.WorkingArea.Width)||(this.Location.X< Screen.PrimaryScreen.WorkingArea.X))
+                tabControl1.Invalidate();
+
+            if (this.Location.Y + this.Height >= Screen.PrimaryScreen.WorkingArea.Height)
+                tabControl1.Invalidate();
+        }
 
     }
 }

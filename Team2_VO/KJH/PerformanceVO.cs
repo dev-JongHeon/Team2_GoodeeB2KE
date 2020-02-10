@@ -8,6 +8,8 @@ namespace Team2_VO
 {
     public class PerformanceVO
     {
+        [FieldName("생산지시번호")]
+        public string PerformanceProduce_ID { get; set; }
         [FieldName("생산실적번호")]
         public string Performance_ID { get; set; }
         [FieldName("실적시작시간")]
@@ -30,5 +32,10 @@ namespace Team2_VO
         public int Employees_ID { get; set; }
         [FieldName("작업자")]
         public string Employees_Name { get; set; }
+
+        public override string ToString()
+        {
+            return PerformanceProduce_ID;
+        }
     }
 }

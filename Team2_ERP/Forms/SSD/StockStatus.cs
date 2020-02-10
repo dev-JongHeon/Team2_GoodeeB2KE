@@ -47,7 +47,6 @@ namespace Team2_ERP
             dgv_StockStatus.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgv_StockStatus.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             StockStatus_AllList = service.GetStockStatus();
-            //dgv_StockStatus.DataSource = StockStatus_AllList;
         }
 
         private void Func_Refresh()  // 새로고침 기능

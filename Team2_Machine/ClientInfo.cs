@@ -12,5 +12,6 @@ namespace Team2_Machine
     {
         public TcpClient Client { get; set; }
         public bool IsBoard { get; set; }
+        public int ID { get; set; }
     }
 }
