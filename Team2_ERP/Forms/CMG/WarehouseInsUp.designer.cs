@@ -33,10 +33,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtWarehouseName = new System.Windows.Forms.TextBox();
-            this.txtWarehouseNumber = new System.Windows.Forms.TextBox();
-            this.txtWarehouseFaxNumber = new System.Windows.Forms.TextBox();
             this.addrWarehouse = new Team2_ERP.AddressControl();
             this.cboWarehouseDivision = new System.Windows.Forms.ComboBox();
+            this.maskedWarehouseNumber = new System.Windows.Forms.MaskedTextBox();
+            this.maskedWarehouseFaxNumber = new System.Windows.Forms.MaskedTextBox();
             this.panel1.SuspendLayout();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).BeginInit();
@@ -45,27 +45,50 @@
             this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
+            // panel1
+            // 
+            this.panel1.Size = new System.Drawing.Size(632, 525);
+            // 
+            // panel_Title
+            // 
+            this.panel_Title.Size = new System.Drawing.Size(630, 32);
+            // 
+            // panel3
+            // 
+            this.panel3.Location = new System.Drawing.Point(428, 0);
+            // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.maskedWarehouseFaxNumber);
+            this.panel5.Controls.Add(this.maskedWarehouseNumber);
             this.panel5.Controls.Add(this.cboWarehouseDivision);
             this.panel5.Controls.Add(this.addrWarehouse);
-            this.panel5.Controls.Add(this.txtWarehouseFaxNumber);
-            this.panel5.Controls.Add(this.txtWarehouseNumber);
             this.panel5.Controls.Add(this.txtWarehouseName);
             this.panel5.Controls.Add(this.label5);
             this.panel5.Controls.Add(this.label4);
             this.panel5.Controls.Add(this.label3);
             this.panel5.Controls.Add(this.label2);
+            this.panel5.Size = new System.Drawing.Size(630, 409);
+            // 
+            // panel4
+            // 
+            this.panel4.Size = new System.Drawing.Size(630, 50);
+            // 
+            // panel2
+            // 
+            this.panel2.Size = new System.Drawing.Size(630, 32);
             // 
             // btnCancel
             // 
             this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.Location = new System.Drawing.Point(373, 3);
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOK
             // 
             this.btnOK.FlatAppearance.BorderSize = 0;
+            this.btnOK.Location = new System.Drawing.Point(176, 3);
             this.btnOK.TabIndex = 5;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
@@ -114,20 +137,6 @@
             this.txtWarehouseName.Size = new System.Drawing.Size(143, 21);
             this.txtWarehouseName.TabIndex = 0;
             // 
-            // txtWarehouseNumber
-            // 
-            this.txtWarehouseNumber.Location = new System.Drawing.Point(125, 139);
-            this.txtWarehouseNumber.Name = "txtWarehouseNumber";
-            this.txtWarehouseNumber.Size = new System.Drawing.Size(143, 21);
-            this.txtWarehouseNumber.TabIndex = 2;
-            // 
-            // txtWarehouseFaxNumber
-            // 
-            this.txtWarehouseFaxNumber.Location = new System.Drawing.Point(125, 197);
-            this.txtWarehouseFaxNumber.Name = "txtWarehouseFaxNumber";
-            this.txtWarehouseFaxNumber.Size = new System.Drawing.Size(143, 21);
-            this.txtWarehouseFaxNumber.TabIndex = 3;
-            // 
             // addrWarehouse
             // 
             this.addrWarehouse.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -145,11 +154,27 @@
             this.cboWarehouseDivision.Size = new System.Drawing.Size(143, 22);
             this.cboWarehouseDivision.TabIndex = 1;
             // 
+            // maskedWarehouseNumber
+            // 
+            this.maskedWarehouseNumber.Location = new System.Drawing.Point(125, 139);
+            this.maskedWarehouseNumber.Mask = "000-9000-0000";
+            this.maskedWarehouseNumber.Name = "maskedWarehouseNumber";
+            this.maskedWarehouseNumber.Size = new System.Drawing.Size(143, 21);
+            this.maskedWarehouseNumber.TabIndex = 2;
+            // 
+            // maskedWarehouseFaxNumber
+            // 
+            this.maskedWarehouseFaxNumber.Location = new System.Drawing.Point(125, 197);
+            this.maskedWarehouseFaxNumber.Mask = "000-9000-0000";
+            this.maskedWarehouseFaxNumber.Name = "maskedWarehouseFaxNumber";
+            this.maskedWarehouseFaxNumber.Size = new System.Drawing.Size(143, 21);
+            this.maskedWarehouseFaxNumber.TabIndex = 3;
+            // 
             // WarehouseInsUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 525);
+            this.ClientSize = new System.Drawing.Size(632, 525);
             this.Name = "WarehouseInsUp";
             this.Text = "WarehouseInsUp";
             this.Load += new System.EventHandler(this.WarehouseInsUp_Load);
@@ -169,10 +194,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtWarehouseFaxNumber;
-        private System.Windows.Forms.TextBox txtWarehouseNumber;
         private System.Windows.Forms.TextBox txtWarehouseName;
         private AddressControl addrWarehouse;
         private System.Windows.Forms.ComboBox cboWarehouseDivision;
+        private System.Windows.Forms.MaskedTextBox maskedWarehouseFaxNumber;
+        private System.Windows.Forms.MaskedTextBox maskedWarehouseNumber;
     }
 }

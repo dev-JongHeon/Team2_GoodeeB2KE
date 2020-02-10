@@ -40,8 +40,8 @@ namespace Team2_ERP
 
                 code = item.Factory_ID;
                 txtFactoryName.Text = item.Factory_Name;
-                txtFactoryNumber.Text = item.Factory_Number;
-                txtFactoryFaxNumber.Text = item.Factory_Fax;
+                maskedFactoryNumber.Text = item.Factory_Number;
+                maskedFactoryFaxNumber.Text = item.Factory_Fax;
             }
         }
 
@@ -79,10 +79,15 @@ namespace Team2_ERP
                 {
                     Factory_Name = txtFactoryName.Text,
                     Factory_Division = Convert.ToInt32(cboFactoryDivision.SelectedValue),
-                    Factory_Number = txtFactoryNumber.Text,
-                    Factory_Fax = txtFactoryFaxNumber.Text,
+                    Factory_Number = maskedFactoryNumber.Text,
+                    Factory_Fax = maskedFactoryFaxNumber.Text,
                     Factory_Address = addrFactory.Address1 + "　" + addrFactory.Address2
                 };
+
+                if(item.Factory_Fax.Replace("-", "").Trim().Length < 10)
+                {
+                    item.Factory_Fax = null;
+                }
 
                 StandardService service = new StandardService();
                 service.InsertFactory(item);
@@ -98,10 +103,15 @@ namespace Team2_ERP
                     Factory_ID = code,
                     Factory_Name = txtFactoryName.Text,
                     Factory_Division = Convert.ToInt32(cboFactoryDivision.SelectedValue),
-                    Factory_Number = txtFactoryNumber.Text,
-                    Factory_Fax = txtFactoryFaxNumber.Text,
+                    Factory_Number = maskedFactoryNumber.Text,
+                    Factory_Fax = maskedFactoryFaxNumber.Text,
                     Factory_Address = addrFactory.Address1 + "　" + addrFactory.Address2
                 };
+
+                if (item.Factory_Fax.Replace("-", "").Trim().Length < 10)
+                {
+                    item.Factory_Fax = null;
+                }
 
                 StandardService service = new StandardService();
                 service.UpdateFactory(item);
@@ -125,7 +135,7 @@ namespace Team2_ERP
             else
                 UpdateFactory();
 
-            if(txtFactoryName.Text.Length > 0 && !cboFactoryDivision.SelectedText.Equals("선택") && txtFactoryNumber.Text.Length > 0 && addrFactory.Address1.Length > 0 && addrFactory.Address2.Length > 0)
+            if(txtFactoryName.Text.Length > 0 && !cboFactoryDivision.SelectedText.Equals("선택") && maskedFactoryNumber.Text.Replace("_", "").Replace("-", "").Trim().Length < 0 && addrFactory.Address1.Length > 0 && addrFactory.Address2.Length > 0)
             {
                 if(mode.Equals("Insert"))
                 {

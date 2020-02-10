@@ -199,6 +199,7 @@ namespace Team2_ERP
             ((MainForm)MdiParent).신규ToolStripMenuItem.Visible = flag;
             ((MainForm)MdiParent).수정ToolStripMenuItem.Visible = flag;
             ((MainForm)MdiParent).삭제ToolStripMenuItem.Visible = flag;
+            ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = flag;
         }
 
         public override void Refresh(object sender, EventArgs e)
@@ -226,7 +227,6 @@ namespace Team2_ERP
                     SemiProductComp frm = new SemiProductComp(SemiProductComp.EditMode.Update, item);
                     if (frm.ShowDialog() == DialogResult.OK)
                     {
-                        MessageBox.Show("수정되었습니다.", "안내");
                         GridViewReset();
                         InitMessage();
                         LoadGridView();
@@ -237,7 +237,6 @@ namespace Team2_ERP
                     ProductComp frm = new ProductComp(ProductComp.EditMode.Update, item);
                     if (frm.ShowDialog() == DialogResult.OK)
                     {
-                        MessageBox.Show("수정되었습니다.", "안내");
                         GridViewReset();
                         InitMessage();
                         LoadGridView();
