@@ -16,9 +16,9 @@ namespace Team2_Machine
 
         public ServerMachine()
         {
-            Console.WriteLine($"{DateTime.Now.ToString("yyyymmdd HH:MM:ss")} 머신 기계 가동시작");
+            Console.WriteLine($"{DateTime.Now.ToString("yyyyMMdd HH:mm:ss")} 머신 기계 가동시작");
             AsyncWorkerServer().Wait();
-            Console.WriteLine($"{DateTime.Now.ToString("yyyymmdd HH:MM:ss")} 머신 기계 가동종료");
+            Console.WriteLine($"{DateTime.Now.ToString("yyyyMMdd HH:mm:ss")} 머신 기계 가동종료");
         }
 
 
@@ -46,13 +46,8 @@ namespace Team2_Machine
             try
             {
                 client = (TcpClient)o;
-
-                lock (client.GetStream())
-                {
-                    stream = client.GetStream();
-                }
-
-                Socket socket = client.Client;
+                stream = client.GetStream();
+                Socket socket = client.Client;                
 
                 while (socket.Connected)
                 {
@@ -103,8 +98,6 @@ namespace Team2_Machine
                             buff.ToList().Clear();
                         }
                     }
-
-
                 }
             }
             catch (Exception ex)
