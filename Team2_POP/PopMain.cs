@@ -11,6 +11,7 @@ using Team2_VO;
 using System.Threading;
 using System.Timers;
 using Team2_POP.Properties;
+using System.Diagnostics;
 
 namespace Team2_POP
 {
@@ -40,7 +41,6 @@ namespace Team2_POP
 
         private void PopMain_Load(object sender, EventArgs e)
         {
-            ConnectServer();
             SettingControl();
             InitData();
             GetTime();
@@ -194,9 +194,13 @@ namespace Team2_POP
                 LineID = WorkerInfo.LineID
             };
 
-            client.Received -= Receive;
+            //client.Received -= Receive;
             client.Received += new ReceiveEventHandler(Receive);
             client.Connect();
+
+            client.LineID = WorkerInfo.LineID;
+            client.IsLine = true;
+            client.Certification();
         }
 
 
@@ -312,10 +316,23 @@ namespace Team2_POP
         //생산시작
         private void btnProduceStart_Click(object sender, EventArgs e)
         {
-            ProduceStart();
+            // 처음 접속인 경우
+            if (client == null)
+            {
+                // 서버와 연결함
+                ConnectServer();
+                Thread.Sleep(100);
+                ProduceStart();
+            }
+            else
+            {
+                // 기존 서버와 연결을 끊고 다시 생산시작을 가동
+                client = null;
+                btnProduceStart.PerformClick();
+            }
         }
 
-
+        // 생산을 시작하는 경우
         private void ProduceStart()
         {
             string[] result = null;
@@ -359,6 +376,7 @@ namespace Team2_POP
                     {
                         CustomMessageBox.ShowDialog("접수 성공", "생산을 시작합니다.", MessageBoxIcon.Question);
                         pFrm = new ProducingForm();
+                        //client.Start();
                         pFrm.Processing = client.Start;
                         pFrm.ShowDialog();
                     }
@@ -374,31 +392,44 @@ namespace Team2_POP
             {
                 CustomMessageBox.ShowDialog("오류", ex.Message, MessageBoxIcon.Error);
             }
-
         }
 
         ProducingForm pFrm;
         public void Receive(object sender, ReceiveEventArgs e)
         {
-            Task.Factory.StartNew(Test1, e).Wait();
+            Task.Factory.StartNew(ReceiveMessage, e).Wait();
         }
 
         public delegate void CloseDelegate();
-        private void Test1(object re)
+
+        private void ReceiveMessage(object re)
         {
-            ReceiveEventArgs e = (ReceiveEventArgs)re;
-
-            if (e.IsCompleted)
+            try
             {
-                CustomMessageBox.ShowDialog("성공", e.Message, MessageBoxIcon.Information);
+                ReceiveEventArgs e = (ReceiveEventArgs)re;
+                
+                if (e.IsCompleted)
+                {
+                    CustomMessageBox.ShowDialog("성공", e.Message, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    CustomMessageBox.ShowDialog("실패", e.Message, MessageBoxIcon.Error);
+                }
 
-                if (e.Message == "생산완료")
-                    pFrm.Invoke(new CloseDelegate(pFrm.Close));
-            }
-            else
-            {
-                CustomMessageBox.ShowDialog("실패", e.Message, MessageBoxIcon.Error);
+                client = null;
+                // 생산대기중 창을 닫음
                 pFrm.Invoke(new CloseDelegate(pFrm.Close));
+                dgvWork.DataSource = null;
+                dgvProduce.DataSource = null;
+                dgvPerformance.DataSource = null;
+
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.ShowDialog("오류", ex.Message, MessageBoxIcon.Error);
+                if (pFrm != null)
+                    pFrm.Invoke(new CloseDelegate(pFrm.Close));
             }
         }
 
@@ -644,7 +675,8 @@ namespace Team2_POP
                 if (timer.Enabled)
                 {
                     timer.Stop();
-                    timer.Dispose();
+                    timer.Enabled = false;
+                    timer.Close();
                 }
             }
         }
@@ -654,8 +686,12 @@ namespace Team2_POP
             // 타이머를 종료함
             timer.Stop();
             timer.Dispose();
-            // 서버접속을 종료함
-            client.DisConnected();
+            if (client != null)
+            {
+                // 서버접속을 종료함
+                client.DisConnected();
+            }
+            e.Cancel = false;
         }
 
 

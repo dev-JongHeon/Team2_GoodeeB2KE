@@ -47,6 +47,9 @@ namespace Team2_ERP
             dgv_SalesStatus.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgv_SalesStatus.Columns[5].DefaultCellStyle.Format = "#,#0원";
             Order_AllList = service.GetSalesStatus();
+
+            Search_OrderIndexPeriod.Startdate.BackColor = Color.LightYellow;
+            Search_OrderIndexPeriod.Enddate.BackColor = Color.LightYellow;
         }
 
         private void Func_Refresh()  // 새로고침 기능

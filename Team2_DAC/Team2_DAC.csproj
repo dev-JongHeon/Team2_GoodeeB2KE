@@ -53,6 +53,14 @@
     <Compile Include="CMG\ResourceDAC.cs" />
     <Compile Include="CMG\WarehouseDAC.cs" />
     <Compile Include="ConnectionInfo.cs" />
+    <Compile Include="SSD\DataSets\dsBalju.cs">
+      <DependentUpon>dsBalju.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SSD\DataSets\dsBalju.Designer.cs">
+      <DependentUpon>dsBalju.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Helper.cs" />
     <Compile Include="HJS\POPDAC.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -83,6 +91,19 @@
       <Project>{fadad5a8-d7be-466a-a7e0-679c91bb281c}</Project>
       <Name>Team2_VO</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SSD\DataSets\dsBalju.xsc">
+      <DependentUpon>dsBalju.xsd</DependentUpon>
+    </None>
+    <None Include="SSD\DataSets\dsBalju.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsBalju.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SSD\DataSets\dsBalju.xss">
+      <DependentUpon>dsBalju.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

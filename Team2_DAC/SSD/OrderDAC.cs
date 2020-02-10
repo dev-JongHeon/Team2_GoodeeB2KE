@@ -9,13 +9,12 @@ using Team2_VO;
 
 namespace Team2_DAC
 {
-    public class OrderDAC
+    public class OrderDAC : ConnectionInfo
     {
         SqlConnection conn = null;
         public OrderDAC()
         {
-            string ConnectionStr = "Server = whyfi8888.ddns.net,11433; uid = team2; pwd = 1234; database = team2";
-            conn = new SqlConnection(ConnectionStr);
+            conn = new SqlConnection(this.ConnectionString);
         }
 
         public List<Order> GetOrderList()  // 뷰 사용

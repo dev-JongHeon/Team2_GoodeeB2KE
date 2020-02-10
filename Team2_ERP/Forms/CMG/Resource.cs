@@ -37,9 +37,9 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgvResource, "제품개수", "Product_Qty", true, 100, DataGridViewContentAlignment.MiddleRight);
             UtilClass.AddNewColum(dgvResource, "안전재고량", "Product_Safety", true, 100, DataGridViewContentAlignment.MiddleRight);
             UtilClass.AddNewColum(dgvResource, "제품카테고리", "CodeTable_CodeName", true, 100);
-            dgvResource.Columns[3].DefaultCellStyle.Format = "#,###원";
-            dgvResource.Columns[4].DefaultCellStyle.Format = "#,###개";
-            dgvResource.Columns[5].DefaultCellStyle.Format = "#,###개";
+            dgvResource.Columns[3].DefaultCellStyle.Format = "#,##0원";
+            dgvResource.Columns[4].DefaultCellStyle.Format = "#,##0개";
+            dgvResource.Columns[5].DefaultCellStyle.Format = "#,##0개";
 
             dgvResource.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
         }

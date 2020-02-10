@@ -56,6 +56,9 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_BaljuDetail, "품목명", "Product_Name", true, 500);
             UtilClass.AddNewColum(dgv_BaljuDetail, "발주요청수량", "BaljuDetail_Qty", true, 130);
             dgv_BaljuDetail.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            Search_Period.Startdate.BackColor = Color.LightYellow;
+            Search_Period.Enddate.BackColor = Color.LightYellow;
         }
 
         private void dgv_BaljuCompleted_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트

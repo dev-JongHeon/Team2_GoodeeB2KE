@@ -41,7 +41,7 @@ namespace Team2_Machine
                 {
                     iTotalCnt++;
                     bool IsSuccess = IsSuccessItem(); // true => 양품 false => 불량품
-                    Thread.Sleep(new Random().Next(100, 120));
+                    Thread.Sleep(new Random().Next(600, 720));
 
                     int itemQuality = 0;
 
@@ -59,7 +59,7 @@ namespace Team2_Machine
                 }
 
                 // 생산 완료 ( 재고 감소 )
-                Thread.Sleep(100);
+                Thread.Sleep(3000);
                 service.EndProduce(PerformanceID);
 
                 // 생산 완료 - 모니터링 화면

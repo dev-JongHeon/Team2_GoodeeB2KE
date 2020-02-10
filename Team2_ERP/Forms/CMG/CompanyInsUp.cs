@@ -37,8 +37,8 @@ namespace Team2_ERP
                 pbxTitle.Image = Properties.Resources.Edit_32x32;
                 code = item.Company_ID;
                 txtCompanyName.Text = item.Company_Name;
-                txtCompanyNumber.Text = item.Company_Number;
-                txtCompanyFaxNumber.Text = item.Company_Fax;
+                maskedCompanyNumber.Text = item.Company_Number;
+                maskedCompanyFaxNumber.Text = item.Company_Fax;
                 txtCompanyOwner.Text = item.Company_Owner;
             }
         }
@@ -60,11 +60,17 @@ namespace Team2_ERP
             CompanyVO item = new CompanyVO
             {
                 Company_Name = txtCompanyName.Text,
-                Company_Number = txtCompanyNumber.Text,
-                Company_Fax = txtCompanyFaxNumber.Text,
+                Company_Number = maskedCompanyNumber.Text,
+                Company_Fax = maskedCompanyFaxNumber.Text,
                 CodeTable_CodeID = cboCompanyDivision.SelectedValue.ToString(),
-                Company_Owner = txtCompanyOwner.Text
+                Company_Owner = txtCompanyOwner.Text,
+                Company_Address = addrCompany.Address1 + "　" + addrCompany.Address2
             };
+
+            if(item.Company_Fax.Replace("-", "").Trim().Length < 10)
+            {
+                item.Company_Fax = null;
+            }
 
             StandardService service = new StandardService();
             service.InsertCompany(item);
@@ -76,11 +82,17 @@ namespace Team2_ERP
             {
                 Company_ID = code,
                 Company_Name = txtCompanyName.Text,
-                Company_Number = txtCompanyNumber.Text,
-                Company_Fax = txtCompanyFaxNumber.Text,
+                Company_Number = maskedCompanyNumber.Text,
+                Company_Fax = maskedCompanyFaxNumber.Text,
                 CodeTable_CodeID = cboCompanyDivision.SelectedValue.ToString(),
-                Company_Owner = txtCompanyOwner.Text
+                Company_Owner = txtCompanyOwner.Text,
+                Company_Address = addrCompany.Address1 + "　" + addrCompany.Address2
             };
+
+            if (item.Company_Fax.Replace("-", "").Trim().Length < 10)
+            {
+                item.Company_Fax = null;
+            }
 
             StandardService service = new StandardService();
             service.UpdateCompany(item);
@@ -88,7 +100,7 @@ namespace Team2_ERP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (txtCompanyName.Text.Length > 0 && txtCompanyNumber.Text.Length > 0 && cboCompanyDivision.SelectedValue != null && txtCompanyOwner.Text.Length > 0 && addrCompany.Address1.Length > 0 && addrCompany.Address2.Length > 0)
+            if (txtCompanyName.Text.Length > 0 && maskedCompanyNumber.Text.Replace("_", "").Replace("-", "").Trim().Length < 10 && cboCompanyDivision.SelectedValue != null && txtCompanyOwner.Text.Length > 0 && addrCompany.Address1.Length > 0 && addrCompany.Address2.Length > 0)
             {
                 if(mode.Equals("Insert"))
                 {

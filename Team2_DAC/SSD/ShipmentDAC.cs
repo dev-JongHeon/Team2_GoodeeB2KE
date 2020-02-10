@@ -9,13 +9,12 @@ using Team2_VO;
 
 namespace Team2_DAC
 {
-    public class ShipmentDAC
+    public class ShipmentDAC : ConnectionInfo
     {
         SqlConnection conn = null;
         public ShipmentDAC()
         {
-            string ConnectionStr = "Server = whyfi8888.ddns.net,11433; uid = team2; pwd = 1234; database = team2";
-            conn = new SqlConnection(ConnectionStr);
+            conn = new SqlConnection(this.ConnectionString);
         }
 
         public List<Shipment> GetShipmentList() // 뷰 사용
@@ -27,7 +26,7 @@ namespace Team2_DAC
                     StringBuilder sb = new StringBuilder();
                     sb.Append("SELECT Shipment_ID, Order_ID, Order_Date, OrderCompleted_Date, Customer_userID, Customer_Name,                           Shipment_RequiredDate, Employees_Name, Shipment_DoneDate ");
                     sb.Append("FROM   Shipment_top");
-                   
+
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandText = sb.ToString();

@@ -39,7 +39,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.cboWarehouse = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numQty = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtSemiproductName = new System.Windows.Forms.TextBox();
@@ -64,7 +64,7 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSafety)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numQty)).BeginInit();
             this.SuspendLayout();
             // 
             // panel5
@@ -155,7 +155,7 @@
             this.dgvSemiProduct.RowTemplate.Height = 23;
             this.dgvSemiProduct.Size = new System.Drawing.Size(289, 313);
             this.dgvSemiProduct.TabIndex = 0;
-            this.dgvSemiProduct.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSemiProduct_CellContentClick);
+            this.dgvSemiProduct.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSemiProduct_CellDoubleClick);
             // 
             // splitContainer2
             // 
@@ -170,7 +170,7 @@
             this.splitContainer2.Panel2.Controls.Add(this.label6);
             this.splitContainer2.Panel2.Controls.Add(this.cboWarehouse);
             this.splitContainer2.Panel2.Controls.Add(this.label5);
-            this.splitContainer2.Panel2.Controls.Add(this.numericUpDown1);
+            this.splitContainer2.Panel2.Controls.Add(this.numQty);
             this.splitContainer2.Panel2.Controls.Add(this.label4);
             this.splitContainer2.Panel2.Controls.Add(this.label2);
             this.splitContainer2.Panel2.Controls.Add(this.txtSemiproductName);
@@ -225,18 +225,18 @@
             this.label5.TabIndex = 5;
             this.label5.Text = "보관창고";
             // 
-            // numericUpDown1
+            // numQty
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(307, 113);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(42, 21);
-            this.numericUpDown1.TabIndex = 4;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.numQty.Location = new System.Drawing.Point(307, 113);
+            this.numQty.Name = "numQty";
+            this.numQty.Size = new System.Drawing.Size(42, 21);
+            this.numQty.TabIndex = 4;
+            this.numQty.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            this.numQty.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // label4
             // 
@@ -311,7 +311,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numSafety)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numQty)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -329,7 +329,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvSemiProduct;
         private System.Windows.Forms.ComboBox cboCategoryDetail;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numQty;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cboWarehouse;
         private System.Windows.Forms.Label label5;

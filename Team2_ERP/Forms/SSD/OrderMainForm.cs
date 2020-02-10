@@ -53,6 +53,9 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_OrderDetail, "제품명", "Product_Name", true, 300);
             UtilClass.AddNewColum(dgv_OrderDetail, "주문수량", "OrderDetail_Qty", true);
             dgv_OrderDetail.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            Search_Period.Startdate.BackColor = Color.LightYellow;
+            Search_Period.Enddate.BackColor = Color.LightYellow;
         }
 
         private void dgv_Order_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트

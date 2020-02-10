@@ -9,6 +9,8 @@ using Team2_DAC;
 using Team2_ERP.Service;
 using Team2_VO;
 using Microsoft.Office.Interop.Excel;
+using DevExpress.XtraReports.UI;
+using Team2_DAC.SSD.DataSets;
 
 namespace Team2_ERP
 {
@@ -53,6 +55,9 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_BaljuDetail, "품목명", "Product_Name", true, 500);
             UtilClass.AddNewColum(dgv_BaljuDetail, "발주요청수량", "BaljuDetail_Qty", true, 130);
             dgv_BaljuDetail.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            Search_Period.Startdate.BackColor = Color.LightYellow;
+            Search_Period.Enddate.BackColor = Color.LightYellow;
         }
 
         private void dgv_Balju_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
@@ -178,7 +183,33 @@ namespace Team2_ERP
 
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
+            BaljuReport br = new BaljuReport();
+            dsBalju ds = new dsBalju();
+                        
+            ds.Relations.Clear();
+            ds.Tables.Clear();
+            ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+            ds.Tables.Add(UtilClass.ConvertToDataTable(BaljuDetail_AllList));
+            ds.Tables[0].TableName = "dtBalju";
+            ds.Tables[1].TableName = "dtBalju_Detail";
+            ds.Relations.Add("dtBalju_dtBalju_Detail", ds.Tables[0].Columns["Balju_ID"], ds.Tables[1].Columns["Balju_ID"]);
+            //dOrg.Tables.Add(UtilClass.ConvertToDataTable(BaljuDetail_AllList));
+            //ds = (dsBalju)dOrg;
+            ds.AcceptChanges();
 
+            //StringBuilder sb = new StringBuilder();
+            //foreach (DataGridViewRow row in dgv_Balju.Rows)
+            //{
+            //    sb.Append($"'{row.Cells[0].Value.ToString()}',");
+            //}
+
+            br.DataSource = ds;
+            using (ReportPrintTool printTool = new ReportPrintTool(br))
+            {
+                printTool.ShowRibbonPreviewDialog();
+            }
+            
+            
         }
         #endregion
 

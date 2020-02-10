@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,6 +39,12 @@ namespace Team2_ERP.Service
         {
             BaljuDAC dac = new BaljuDAC();
             dac.DeleteBalju(balju_ID);
+        }
+
+        public DataSet GetBaljuList_DataSet(string id)
+        {
+            BaljuDAC dac = new BaljuDAC();
+            return dac.GetBaljuList_DataSet(id);
         }
     }
 }
