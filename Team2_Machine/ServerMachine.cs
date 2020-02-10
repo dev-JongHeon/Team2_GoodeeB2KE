@@ -45,7 +45,11 @@ namespace Team2_Machine
             try
             {
                 client = (TcpClient)o;
-                stream = client.GetStream();
+
+                lock (client.GetStream())
+                {
+                    stream = client.GetStream();
+                }
 
                 while (client.Connected)
                 {
