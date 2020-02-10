@@ -66,7 +66,7 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgvProduct, "제품가격", "Product_Price", true, 100, DataGridViewContentAlignment.MiddleRight);
             UtilClass.AddNewColum(dgvProduct, "제품카테고리", "Product_Category", false, 100);
             UtilClass.AddNewColum(dgvProduct, "제품ID", "Product_ID", false, 100);
-            dgvProduct.Columns[1].DefaultCellStyle.Format = "#,###원";
+            dgvProduct.Columns[1].DefaultCellStyle.Format = "#,##0원";
 
             dgvProduct.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
         }
