@@ -33,12 +33,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtCompanyName = new System.Windows.Forms.TextBox();
-            this.txtCompanyNumber = new System.Windows.Forms.TextBox();
-            this.txtCompanyFaxNumber = new System.Windows.Forms.TextBox();
             this.addrCompany = new Team2_ERP.AddressControl();
             this.cboCompanyDivision = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtCompanyOwner = new System.Windows.Forms.TextBox();
+            this.maskedCompanyNumber = new System.Windows.Forms.MaskedTextBox();
+            this.maskedCompanyFaxNumber = new System.Windows.Forms.MaskedTextBox();
             this.panel1.SuspendLayout();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).BeginInit();
@@ -47,30 +47,53 @@
             this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
+            // panel1
+            // 
+            this.panel1.Size = new System.Drawing.Size(604, 525);
+            // 
+            // panel_Title
+            // 
+            this.panel_Title.Size = new System.Drawing.Size(602, 32);
+            // 
+            // panel3
+            // 
+            this.panel3.Location = new System.Drawing.Point(400, 0);
+            // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.maskedCompanyFaxNumber);
+            this.panel5.Controls.Add(this.maskedCompanyNumber);
             this.panel5.Controls.Add(this.txtCompanyOwner);
             this.panel5.Controls.Add(this.label1);
             this.panel5.Controls.Add(this.cboCompanyDivision);
             this.panel5.Controls.Add(this.addrCompany);
-            this.panel5.Controls.Add(this.txtCompanyFaxNumber);
-            this.panel5.Controls.Add(this.txtCompanyNumber);
             this.panel5.Controls.Add(this.txtCompanyName);
             this.panel5.Controls.Add(this.label6);
             this.panel5.Controls.Add(this.label5);
             this.panel5.Controls.Add(this.label4);
             this.panel5.Controls.Add(this.label2);
+            this.panel5.Size = new System.Drawing.Size(602, 409);
+            // 
+            // panel4
+            // 
+            this.panel4.Size = new System.Drawing.Size(602, 50);
+            // 
+            // panel2
+            // 
+            this.panel2.Size = new System.Drawing.Size(602, 32);
             // 
             // btnCancel
             // 
             this.btnCancel.FlatAppearance.BorderSize = 0;
-            this.btnCancel.TabIndex = 6;
+            this.btnCancel.Location = new System.Drawing.Point(350, 3);
+            this.btnCancel.TabIndex = 7;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOK
             // 
             this.btnOK.FlatAppearance.BorderSize = 0;
-            this.btnOK.TabIndex = 5;
+            this.btnOK.Location = new System.Drawing.Point(153, 3);
+            this.btnOK.TabIndex = 6;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // label2
@@ -120,20 +143,6 @@
             this.txtCompanyName.Size = new System.Drawing.Size(133, 21);
             this.txtCompanyName.TabIndex = 0;
             // 
-            // txtCompanyNumber
-            // 
-            this.txtCompanyNumber.Location = new System.Drawing.Point(126, 76);
-            this.txtCompanyNumber.Name = "txtCompanyNumber";
-            this.txtCompanyNumber.Size = new System.Drawing.Size(133, 21);
-            this.txtCompanyNumber.TabIndex = 1;
-            // 
-            // txtCompanyFaxNumber
-            // 
-            this.txtCompanyFaxNumber.Location = new System.Drawing.Point(126, 131);
-            this.txtCompanyFaxNumber.Name = "txtCompanyFaxNumber";
-            this.txtCompanyFaxNumber.Size = new System.Drawing.Size(133, 21);
-            this.txtCompanyFaxNumber.TabIndex = 2;
-            // 
             // addrCompany
             // 
             this.addrCompany.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -141,7 +150,7 @@
             this.addrCompany.Location = new System.Drawing.Point(52, 286);
             this.addrCompany.Name = "addrCompany";
             this.addrCompany.Size = new System.Drawing.Size(505, 106);
-            this.addrCompany.TabIndex = 4;
+            this.addrCompany.TabIndex = 5;
             // 
             // cboCompanyDivision
             // 
@@ -166,13 +175,30 @@
             this.txtCompanyOwner.Location = new System.Drawing.Point(126, 241);
             this.txtCompanyOwner.Name = "txtCompanyOwner";
             this.txtCompanyOwner.Size = new System.Drawing.Size(133, 21);
-            this.txtCompanyOwner.TabIndex = 6;
+            this.txtCompanyOwner.TabIndex = 4;
+            // 
+            // maskedCompanyNumber
+            // 
+            this.maskedCompanyNumber.Location = new System.Drawing.Point(126, 76);
+            this.maskedCompanyNumber.Mask = "000-9000-0000";
+            this.maskedCompanyNumber.Name = "maskedCompanyNumber";
+            this.maskedCompanyNumber.Size = new System.Drawing.Size(133, 21);
+            this.maskedCompanyNumber.TabIndex = 1;
+            // 
+            // maskedCompanyFaxNumber
+            // 
+            this.maskedCompanyFaxNumber.Location = new System.Drawing.Point(126, 131);
+            this.maskedCompanyFaxNumber.Mask = "000-9000-0000";
+            this.maskedCompanyFaxNumber.Name = "maskedCompanyFaxNumber";
+            this.maskedCompanyFaxNumber.RejectInputOnFirstFailure = true;
+            this.maskedCompanyFaxNumber.Size = new System.Drawing.Size(133, 21);
+            this.maskedCompanyFaxNumber.TabIndex = 2;
             // 
             // CompanyInsUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 525);
+            this.ClientSize = new System.Drawing.Size(604, 525);
             this.Name = "CompanyInsUp";
             this.Text = "CompanyInsUp";
             this.Load += new System.EventHandler(this.CompanyInsUp_Load);
@@ -188,8 +214,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.TextBox txtCompanyFaxNumber;
-        private System.Windows.Forms.TextBox txtCompanyNumber;
         private System.Windows.Forms.TextBox txtCompanyName;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
@@ -199,5 +223,7 @@
         private System.Windows.Forms.ComboBox cboCompanyDivision;
         private System.Windows.Forms.TextBox txtCompanyOwner;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.MaskedTextBox maskedCompanyNumber;
+        private System.Windows.Forms.MaskedTextBox maskedCompanyFaxNumber;
     }
 }

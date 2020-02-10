@@ -245,10 +245,12 @@ namespace Team2_ERP
                 if (mode.Equals("Insert"))
                 {
                     InsertSemiProduct();
+                    DialogResult = MessageBox.Show(Properties.Settings.Default.AddDone, Properties.Settings.Default.AddDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
                     UpdateSemiProduct();
+                    DialogResult = MessageBox.Show(Properties.Settings.Default.ModDone, Properties.Settings.Default.ModDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else

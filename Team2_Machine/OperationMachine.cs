@@ -41,7 +41,7 @@ namespace Team2_Machine
                 {
                     iTotalCnt++;
                     bool IsSuccess = IsSuccessItem(); // true => 양품 false => 불량품
-                    Thread.Sleep(new Random().Next(100, 120));
+                    Thread.Sleep(new Random().Next(600, 720));
 
                     int itemQuality = 0;
 

@@ -37,11 +37,11 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtEmployeesName = new System.Windows.Forms.TextBox();
             this.txtEmployeesPassword = new System.Windows.Forms.TextBox();
-            this.txtEmployeesPhoneNumber = new System.Windows.Forms.TextBox();
             this.dtpEmployeesHireDate = new System.Windows.Forms.DateTimePicker();
             this.dtpEmployeesResignDate = new System.Windows.Forms.DateTimePicker();
             this.dtpEmployeesBirthDay = new System.Windows.Forms.DateTimePicker();
             this.cboEmployeesCategory = new System.Windows.Forms.ComboBox();
+            this.maskedEmployeesPhoneNumber = new System.Windows.Forms.MaskedTextBox();
             this.panel1.SuspendLayout();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).BeginInit();
@@ -50,13 +50,29 @@
             this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
+            // panel1
+            // 
+            this.panel1.Size = new System.Drawing.Size(336, 525);
+            // 
+            // panel_Title
+            // 
+            this.panel_Title.Size = new System.Drawing.Size(334, 32);
+            // 
+            // lblName
+            // 
+            this.lblName.Size = new System.Drawing.Size(268, 30);
+            // 
+            // panel3
+            // 
+            this.panel3.Location = new System.Drawing.Point(132, 0);
+            // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.maskedEmployeesPhoneNumber);
             this.panel5.Controls.Add(this.cboEmployeesCategory);
             this.panel5.Controls.Add(this.dtpEmployeesBirthDay);
             this.panel5.Controls.Add(this.dtpEmployeesResignDate);
             this.panel5.Controls.Add(this.dtpEmployeesHireDate);
-            this.panel5.Controls.Add(this.txtEmployeesPhoneNumber);
             this.panel5.Controls.Add(this.txtEmployeesPassword);
             this.panel5.Controls.Add(this.txtEmployeesName);
             this.panel5.Controls.Add(this.label8);
@@ -66,15 +82,28 @@
             this.panel5.Controls.Add(this.label4);
             this.panel5.Controls.Add(this.label3);
             this.panel5.Controls.Add(this.label2);
+            this.panel5.Size = new System.Drawing.Size(334, 409);
+            // 
+            // panel4
+            // 
+            this.panel4.Size = new System.Drawing.Size(334, 50);
+            // 
+            // panel2
+            // 
+            this.panel2.Size = new System.Drawing.Size(334, 32);
             // 
             // btnCancel
             // 
             this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.Location = new System.Drawing.Point(195, 2);
+            this.btnCancel.TabIndex = 8;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOK
             // 
             this.btnOK.FlatAppearance.BorderSize = 0;
+            this.btnOK.Location = new System.Drawing.Point(56, 2);
+            this.btnOK.TabIndex = 7;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // label2
@@ -151,21 +180,14 @@
             this.txtEmployeesName.Location = new System.Drawing.Point(100, 25);
             this.txtEmployeesName.Name = "txtEmployeesName";
             this.txtEmployeesName.Size = new System.Drawing.Size(132, 21);
-            this.txtEmployeesName.TabIndex = 1;
+            this.txtEmployeesName.TabIndex = 0;
             // 
             // txtEmployeesPassword
             // 
             this.txtEmployeesPassword.Location = new System.Drawing.Point(100, 242);
             this.txtEmployeesPassword.Name = "txtEmployeesPassword";
             this.txtEmployeesPassword.Size = new System.Drawing.Size(132, 21);
-            this.txtEmployeesPassword.TabIndex = 1;
-            // 
-            // txtEmployeesPhoneNumber
-            // 
-            this.txtEmployeesPhoneNumber.Location = new System.Drawing.Point(100, 298);
-            this.txtEmployeesPhoneNumber.Name = "txtEmployeesPhoneNumber";
-            this.txtEmployeesPhoneNumber.Size = new System.Drawing.Size(132, 21);
-            this.txtEmployeesPhoneNumber.TabIndex = 1;
+            this.txtEmployeesPassword.TabIndex = 4;
             // 
             // dtpEmployeesHireDate
             // 
@@ -182,7 +204,7 @@
             this.dtpEmployeesResignDate.Location = new System.Drawing.Point(100, 184);
             this.dtpEmployeesResignDate.Name = "dtpEmployeesResignDate";
             this.dtpEmployeesResignDate.Size = new System.Drawing.Size(132, 21);
-            this.dtpEmployeesResignDate.TabIndex = 2;
+            this.dtpEmployeesResignDate.TabIndex = 3;
             // 
             // dtpEmployeesBirthDay
             // 
@@ -190,7 +212,7 @@
             this.dtpEmployeesBirthDay.Location = new System.Drawing.Point(100, 355);
             this.dtpEmployeesBirthDay.Name = "dtpEmployeesBirthDay";
             this.dtpEmployeesBirthDay.Size = new System.Drawing.Size(132, 21);
-            this.dtpEmployeesBirthDay.TabIndex = 2;
+            this.dtpEmployeesBirthDay.TabIndex = 6;
             // 
             // cboEmployeesCategory
             // 
@@ -198,13 +220,21 @@
             this.cboEmployeesCategory.Location = new System.Drawing.Point(100, 76);
             this.cboEmployeesCategory.Name = "cboEmployeesCategory";
             this.cboEmployeesCategory.Size = new System.Drawing.Size(132, 22);
-            this.cboEmployeesCategory.TabIndex = 3;
+            this.cboEmployeesCategory.TabIndex = 1;
+            // 
+            // maskedEmployeesPhoneNumber
+            // 
+            this.maskedEmployeesPhoneNumber.Location = new System.Drawing.Point(100, 298);
+            this.maskedEmployeesPhoneNumber.Mask = "000-9000-0000";
+            this.maskedEmployeesPhoneNumber.Name = "maskedEmployeesPhoneNumber";
+            this.maskedEmployeesPhoneNumber.Size = new System.Drawing.Size(132, 21);
+            this.maskedEmployeesPhoneNumber.TabIndex = 5;
             // 
             // EmployeesInsUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 525);
+            this.ClientSize = new System.Drawing.Size(336, 525);
             this.Name = "EmployeesInsUp";
             this.Text = "EmployeesInsUp";
             this.Load += new System.EventHandler(this.EmployeesInsUp_Load);
@@ -230,9 +260,9 @@
         private System.Windows.Forms.DateTimePicker dtpEmployeesBirthDay;
         private System.Windows.Forms.DateTimePicker dtpEmployeesResignDate;
         private System.Windows.Forms.DateTimePicker dtpEmployeesHireDate;
-        private System.Windows.Forms.TextBox txtEmployeesPhoneNumber;
         private System.Windows.Forms.TextBox txtEmployeesPassword;
         private System.Windows.Forms.TextBox txtEmployeesName;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.MaskedTextBox maskedEmployeesPhoneNumber;
     }
 }

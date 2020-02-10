@@ -260,7 +260,7 @@ namespace Team2_ERP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if(spc.TxtName.Tag != null && txtProductImage.Text.Length > 0 && txtProductName.Text.Length > 0 && numProductQty.Value > 1 && txtProductMoney.Text.Length > 0)
+            if(spc.TxtName.Tag != null && txtProductImage.Text.Length > 0 && txtProductName.Text.Length > 0 && numProductQty.Value > 0 && txtProductMoney.Text.Length > 0)
             {
                 if(mode.Equals("Insert"))
                 {

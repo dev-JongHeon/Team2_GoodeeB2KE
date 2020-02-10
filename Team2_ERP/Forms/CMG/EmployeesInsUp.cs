@@ -36,7 +36,7 @@ namespace Team2_ERP
                 pbxTitle.Image = Properties.Resources.Edit_32x32;
                 eCode = item.Employees_ID;
                 txtEmployeesName.Text = item.Employees_Name;
-                txtEmployeesPhoneNumber.Text = item.Employees_Phone;
+                maskedEmployeesPhoneNumber.Text = item.Employees_Phone;
                 dtpEmployeesHireDate.Value = Convert.ToDateTime(item.Employees_Hiredate);
             }
         }
@@ -77,7 +77,7 @@ namespace Team2_ERP
                 CodeTable_CodeID = cboEmployeesCategory.SelectedValue.ToString(),
                 Employees_Hiredate = dtpEmployeesHireDate.Value.ToShortDateString(),
                 Employees_PWD = txtEmployeesPassword.Text,
-                Employees_Phone = txtEmployeesPhoneNumber.Text,
+                Employees_Phone = maskedEmployeesPhoneNumber.Text,
                 Employees_Birth = dtpEmployeesBirthDay.Value.ToShortDateString()
             };
 
@@ -93,7 +93,7 @@ namespace Team2_ERP
                 CodeTable_CodeID = cboEmployeesCategory.SelectedValue.ToString(),
                 Employees_Resigndate = dtpEmployeesResignDate.Value.ToShortDateString(),
                 Employees_PWD = txtEmployeesPassword.Text,
-                Employees_Phone = txtEmployeesPhoneNumber.Text,
+                Employees_Phone = maskedEmployeesPhoneNumber.Text,
                 Employees_Birth = dtpEmployeesBirthDay.Value.ToShortDateString(),
                 Employees_ID = eCode
             };
@@ -106,7 +106,7 @@ namespace Team2_ERP
         {
             if (mode.Equals("Insert"))
             {
-                if(txtEmployeesName.Text.Length > 0 && cboEmployeesCategory.SelectedValue != null && dtpEmployeesHireDate.Value != null && txtEmployeesPassword.Text.Length > 0 && txtEmployeesPhoneNumber.Text.Length > 0 && dtpEmployeesBirthDay.Value != null)
+                if(txtEmployeesName.Text.Length > 0 && cboEmployeesCategory.SelectedValue != null && dtpEmployeesHireDate.Value != null && txtEmployeesPassword.Text.Length > 0 && maskedEmployeesPhoneNumber.Text.Replace("_", "").Replace("-", "").Trim().Length < 10 && dtpEmployeesBirthDay.Value != null)
                 {
                     InsertEmployee();
                     DialogResult = MessageBox.Show(Properties.Settings.Default.AddDone, Properties.Settings.Default.AddDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -118,7 +118,7 @@ namespace Team2_ERP
             }
             else
             {
-                if (txtEmployeesName.Text.Length > 0 && cboEmployeesCategory.SelectedValue != null && dtpEmployeesResignDate.Value != null && txtEmployeesPassword.Text.Length > 0 && txtEmployeesPhoneNumber.Text.Length > 0 && dtpEmployeesBirthDay.Value != null)
+                if (txtEmployeesName.Text.Length > 0 && cboEmployeesCategory.SelectedValue != null && dtpEmployeesResignDate.Value != null && txtEmployeesPassword.Text.Length > 0 && maskedEmployeesPhoneNumber.Text.Replace("_", "").Replace("-", "").Trim().Length < 10 && dtpEmployeesBirthDay.Value != null)
                 {
                     UpdateEmployee();
                     DialogResult = MessageBox.Show(Properties.Settings.Default.ModDone, Properties.Settings.Default.ModDone, MessageBoxButtons.OK, MessageBoxIcon.Information);

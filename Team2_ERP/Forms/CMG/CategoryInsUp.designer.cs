@@ -47,15 +47,15 @@
             // 
             // panel1
             // 
-            this.panel1.Size = new System.Drawing.Size(641, 408);
+            this.panel1.Size = new System.Drawing.Size(378, 362);
             // 
             // panel_Title
             // 
-            this.panel_Title.Size = new System.Drawing.Size(639, 32);
+            this.panel_Title.Size = new System.Drawing.Size(376, 32);
             // 
             // panel3
             // 
-            this.panel3.Location = new System.Drawing.Point(437, 0);
+            this.panel3.Location = new System.Drawing.Point(174, 0);
             // 
             // panel5
             // 
@@ -65,28 +65,28 @@
             this.panel5.Controls.Add(this.label1);
             this.panel5.Controls.Add(this.txtContext);
             this.panel5.Controls.Add(this.txtName);
-            this.panel5.Size = new System.Drawing.Size(639, 292);
+            this.panel5.Size = new System.Drawing.Size(376, 246);
             // 
             // panel4
             // 
-            this.panel4.Location = new System.Drawing.Point(0, 356);
-            this.panel4.Size = new System.Drawing.Size(639, 50);
+            this.panel4.Location = new System.Drawing.Point(0, 310);
+            this.panel4.Size = new System.Drawing.Size(376, 50);
             // 
             // panel2
             // 
-            this.panel2.Size = new System.Drawing.Size(639, 32);
+            this.panel2.Size = new System.Drawing.Size(376, 32);
             // 
             // btnCancel
             // 
             this.btnCancel.FlatAppearance.BorderSize = 0;
-            this.btnCancel.Location = new System.Drawing.Point(367, 3);
+            this.btnCancel.Location = new System.Drawing.Point(216, 3);
             this.btnCancel.TabIndex = 3;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOK
             // 
             this.btnOK.FlatAppearance.BorderSize = 0;
-            this.btnOK.Location = new System.Drawing.Point(170, 3);
+            this.btnOK.Location = new System.Drawing.Point(91, 3);
             this.btnOK.TabIndex = 2;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
@@ -170,7 +170,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(641, 408);
+            this.ClientSize = new System.Drawing.Size(378, 362);
             this.Name = "CategoryInsUp";
             this.Text = "CategoryInsUp";
             this.Load += new System.EventHandler(this.CategoryInsUp_Load);

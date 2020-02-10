@@ -11,6 +11,7 @@ using Team2_VO;
 using System.Threading;
 using System.Timers;
 using Team2_POP.Properties;
+using System.Diagnostics;
 
 namespace Team2_POP
 {
@@ -39,8 +40,7 @@ namespace Team2_POP
         }
 
         private void PopMain_Load(object sender, EventArgs e)
-        {
-            ConnectServer();
+        {            
             SettingControl();
             InitData();
             GetTime();
@@ -193,10 +193,11 @@ namespace Team2_POP
             {
                 LineID = WorkerInfo.LineID
             };
-
-            client.Received -= Receive;
+            
+            //client.Received -= Receive;
             client.Received += new ReceiveEventHandler(Receive);
             client.Connect();
+
             client.LineID = WorkerInfo.LineID;
             client.IsLine = true;
             client.Certification();
@@ -315,7 +316,17 @@ namespace Team2_POP
         //생산시작
         private void btnProduceStart_Click(object sender, EventArgs e)
         {
-            ProduceStart();
+             if (client == null)
+            {
+                ConnectServer();
+                Thread.Sleep(100);
+                ProduceStart();
+            }
+            else
+            {
+                client = null;
+                btnProduceStart.PerformClick();
+            }
         }
 
 
@@ -362,6 +373,7 @@ namespace Team2_POP
                     {
                         CustomMessageBox.ShowDialog("접수 성공", "생산을 시작합니다.", MessageBoxIcon.Question);
                         pFrm = new ProducingForm();
+                        //client.Start();
                         pFrm.Processing = client.Start;
                         pFrm.ShowDialog();
                     }
@@ -377,18 +389,19 @@ namespace Team2_POP
             {
                 CustomMessageBox.ShowDialog("오류", ex.Message, MessageBoxIcon.Error);
             }
-
         }
 
         ProducingForm pFrm;
         public void Receive(object sender, ReceiveEventArgs e)
         {
-            Task.Factory.StartNew(Test1, e).Wait();
+            Task.Factory.StartNew(Test1, e).Wait();            
         }
 
         public delegate void CloseDelegate();
+
         private void Test1(object re)
         {
+            Debug.WriteLine("Test1");
             ReceiveEventArgs e = (ReceiveEventArgs)re;
 
             if (e.IsCompleted)
@@ -396,13 +409,18 @@ namespace Team2_POP
                 CustomMessageBox.ShowDialog("성공", e.Message, MessageBoxIcon.Information);
 
                 if (e.Message == "생산완료")
+                {
                     pFrm.Invoke(new CloseDelegate(pFrm.Close));
+                    return;
+                }
             }
             else
             {
                 CustomMessageBox.ShowDialog("실패", e.Message, MessageBoxIcon.Error);
-                pFrm.Invoke(new CloseDelegate(pFrm.Close));
+                 pFrm.Invoke(new CloseDelegate(pFrm.Close));
             }
+
+            client = null;
         }
 
 
@@ -657,8 +675,11 @@ namespace Team2_POP
             // 타이머를 종료함
             timer.Stop();
             timer.Dispose();
-            // 서버접속을 종료함
-            client.DisConnected();
+            if (client != null)
+            {
+                // 서버접속을 종료함
+                client.DisConnected();
+            }
             e.Cancel = false;
         }
 
