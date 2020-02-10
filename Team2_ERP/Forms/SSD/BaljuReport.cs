@@ -6,9 +6,9 @@ using DevExpress.XtraReports.UI;
 
 namespace Team2_ERP
 {
-    public partial class XtraReport1 : DevExpress.XtraReports.UI.XtraReport
+    public partial class BaljuReport : DevExpress.XtraReports.UI.XtraReport
     {
-        public XtraReport1()
+        public BaljuReport()
         {
             InitializeComponent();
         }

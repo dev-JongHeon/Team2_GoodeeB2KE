@@ -152,34 +152,13 @@ namespace Team2_DAC
                 {
                     System.Windows.Forms.MessageBox.Show("삭제완료!");
                 }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("삭제실패...");
+                }
             }
-
         }
     }
 
-    public static class ExtensionParams
-    {
-        public static SqlParameter[] AddArrayParameters<T>(this SqlCommand cmd, string paramNameRoot, IEnumerable<T> values, SqlDbType? dbType = null, int? size = null)
-        {
-            var parameters = new List<SqlParameter>();
-            var parameterNames = new List<string>();
-            var paramNbr = 1;
-            foreach (var value in values)
-            {
-                var paramName = string.Format("@{0}{1}", paramNameRoot, paramNbr++);
-                parameterNames.Add(paramName);
-                SqlParameter p = new SqlParameter(paramName, value);
-                if (dbType.HasValue)
-                    p.SqlDbType = dbType.Value;
-                if (size.HasValue)
-                    p.Size = size.Value;
-                cmd.Parameters.Add(p);
-                parameters.Add(p);
-            }
 
-            cmd.CommandText = cmd.CommandText.Replace("{" + paramNameRoot + "}", string.Join(",", parameterNames));
-
-            return parameters.ToArray();
-        }
-    }
 }
