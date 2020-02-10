@@ -5,20 +5,19 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Team2_DAC.SSD.DataSets;
 using Team2_VO;
 
 namespace Team2_DAC
 {
-    public class BaljuDAC
+    public class BaljuDAC : ConnectionInfo
     {
         SqlConnection conn = null;
-        public BaljuDAC()
+        public BaljuDAC() 
         {
-            string ConnectionStr = "Server = whyfi8888.ddns.net,11433; uid = team2; pwd = 1234; database = team2";
-            conn = new SqlConnection(ConnectionStr);
+            conn = new SqlConnection(this.ConnectionString);
         }
 
-        
         // 발주조회
         public List<Balju> GetBaljuList()
         {
@@ -156,6 +155,38 @@ namespace Team2_DAC
                 {
                     System.Windows.Forms.MessageBox.Show("삭제실패...");
                 }
+            }
+        }
+
+        public DataSet GetBaljuList_DataSet(string id)
+        {
+            try
+            {
+                dsBalju ds = new dsBalju();
+                StringBuilder sb = new StringBuilder();
+                using (SqlConnection conn = this.conn) 
+                {
+                    sb.Append("SELECT Balju_ID, Company_Name, Balju_Date, Employees_Name ");
+                    sb.Append("FROM   BaljuList ");
+                    
+                    conn.Open();
+                    SqlDataAdapter da = new SqlDataAdapter(sb.ToString(), conn);
+                    da.Fill(ds, "dtBalju");
+                    sb.Clear();                    
+
+                    sb.Append("SSD_GetBaljuDetail_List");
+                    da = new SqlDataAdapter(sb.ToString(), conn);
+                    da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    da.SelectCommand.Parameters.AddWithValue("@Search", id);
+                    da.Fill(ds, "dtBalju_Detail");
+
+                    conn.Close();
+                    return ds;
+                }
+            }
+            catch
+            {
+                return null;
             }
         }
     }
