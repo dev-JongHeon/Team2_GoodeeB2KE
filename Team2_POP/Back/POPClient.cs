@@ -116,7 +116,9 @@ namespace Team2_POP
             if (netStream != null)
             {
                 client.Close();
+                client = null;
                 netStream.Close();
+                netStream = null;
             }
             Connected = false;
         }
