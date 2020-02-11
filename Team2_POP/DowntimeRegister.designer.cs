@@ -67,6 +67,7 @@
             // 
             // cboDowntime
             // 
+            this.cboDowntime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboDowntime.FormattingEnabled = true;
             this.cboDowntime.Location = new System.Drawing.Point(19, 176);
             this.cboDowntime.Name = "cboDowntime";

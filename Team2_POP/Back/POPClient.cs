@@ -16,7 +16,7 @@ namespace Team2_POP
 
     public delegate void ReceiveEventHandler(object sender, ReceiveEventArgs e);
 
-    public class POPClient : IDisposable
+    public class POPClient
     {
         #region 프로퍼티 실적아이디, 요구수량, 사원번호
         public string PerformanceID { get; set; }
@@ -55,20 +55,21 @@ namespace Team2_POP
         {
             try
             {
-                if (Connected)
+                if (Connected && timer.Enabled)
                 {
                     await Read();
                 }
             }
             catch (Exception ex)
             {
+                WriteLog(ex);
                 CustomMessageBox.ShowDialog("서버접속끊김", "서버와의 연결이 끊겼습니다.", MessageBoxIcon.Error
                     , MessageBoxButtons.OK);
                 ErrorMessage(ex);
                 timer.Stop();
                 timer.Enabled = false;
                 timer.Dispose();
-                DisConnected();
+                //DisConnected();
             }
         }
 
@@ -95,7 +96,7 @@ namespace Team2_POP
             }
             catch (Exception ex)
             {
-                string sss = ex.Message;
+                WriteLog(ex);
             }
         }
 
@@ -108,7 +109,7 @@ namespace Team2_POP
             client.NoDelay = true;
 
             netStream = client.GetStream();
-            
+
             try
             {
                 if (client.Connected)
@@ -121,6 +122,7 @@ namespace Team2_POP
 
             catch (Exception ex)
             {
+                WriteLog(ex);
                 ErrorMessage(ex);
                 return client.Connected;
             }
@@ -128,34 +130,51 @@ namespace Team2_POP
 
         public void DisConnected()
         {
-            if (netStream != null)
+            try
             {
-                Writer(netStream, new object[] { 9 });
-                client.Close();
-                netStream.Close();
-                timer.Stop();
-                timer.Enabled = false;
-                timer.Dispose();
+                Connected = false;
+                Task.Delay(2000);
+
+                if (client != null)
+                {
+
+                    Writer(netStream, new object[] { 9 });
+                    Task.Delay(1000);
+                    timer.Stop();
+                    timer.Enabled = false;
+                    timer.Dispose();
+
+                    Task.Delay(1000);
+                    netStream.Close();
+                    client.Close();
+                    client.Dispose();
+                }
             }
-            Connected = false;
+            catch(Exception ex)
+            {
+                WriteLog(ex);
+            }
         }
 
 
         // 서버에 송신메서드 (생산 실적아이디를 윈도우 서비스(생산 기계)로 넘겨줌)
-        public async void Writer(Stream stream, object[] objArr)
+        public void Writer(Stream stream, object[] objArr)
         {
             try
             {
+                if (!stream.CanWrite)
+                    return;
+
                 string ProductionInstruction = string.Join(",", objArr);
                 StreamWriter writer = new StreamWriter(stream);
 
-                writer.AutoFlush = true;
-                await writer.WriteAsync(ProductionInstruction);
+                writer.AutoFlush = true;                
+                writer.Write(ProductionInstruction);
             }
             catch (Exception ex)
             {
+                WriteLog(ex);
                 ErrorMessage(ex);
-                DisConnected();
             }
         }
 
@@ -167,6 +186,7 @@ namespace Team2_POP
             }
             catch (Exception ex)
             {
+                WriteLog(ex);
                 ErrorMessage(ex);
                 DisConnected();
             }
@@ -175,6 +195,8 @@ namespace Team2_POP
         // 서버 수신메서드
         public async Task Read()
         {
+            if (!netStream.CanRead) return;
+
             try
             {
                 StreamReader reader = new StreamReader(netStream);
@@ -230,13 +252,14 @@ namespace Team2_POP
 
             catch (Exception ex)
             {
+                WriteLog(ex);
                 ErrorMessage(ex);
-                DisConnected();
             }
         }
 
         private void ErrorMessage(Exception ex)
         {
+            WriteLog(ex);
             FormCollection frms = Application.OpenForms;
             for (int i = 0; i < frms.Count; i++)
             {
@@ -256,23 +279,19 @@ namespace Team2_POP
                         e.LineID = LineID;
                         e.IsCompleted = false;
 
-                        if (Received != null)
-                            Received.Invoke(this, e);
-
+                        if (!pop.IsDisposed)
+                        {
+                            if (Received != null)
+                                Received.Invoke(this, e);
+                        }
                     }
                 }
             }
         }
 
-
-        public void Dispose()
+        private void WriteLog(Exception ex)
         {
-            if (netStream != null)
-            {
-                netStream.Close();
-                client.Close();
-                Connected = false;
-            }
+            Program.Log.WriteError(ex.Message, ex);
         }
     }
 }

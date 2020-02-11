@@ -1,4 +1,4 @@
-﻿namespace Team2_DAC.SSD.DataSets
+﻿namespace Team2_DAC
 {
 
 

@@ -32,6 +32,8 @@
             this.txtLineName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cboCategory = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).BeginInit();
@@ -54,6 +56,8 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.cboCategory);
+            this.panel5.Controls.Add(this.label1);
             this.panel5.Controls.Add(this.cboFactoryName);
             this.panel5.Controls.Add(this.txtLineName);
             this.panel5.Controls.Add(this.label3);
@@ -86,14 +90,14 @@
             // cboFactoryName
             // 
             this.cboFactoryName.FormattingEnabled = true;
-            this.cboFactoryName.Location = new System.Drawing.Point(123, 99);
+            this.cboFactoryName.Location = new System.Drawing.Point(123, 75);
             this.cboFactoryName.Name = "cboFactoryName";
             this.cboFactoryName.Size = new System.Drawing.Size(132, 22);
             this.cboFactoryName.TabIndex = 1;
             // 
             // txtLineName
             // 
-            this.txtLineName.Location = new System.Drawing.Point(122, 37);
+            this.txtLineName.Location = new System.Drawing.Point(122, 24);
             this.txtLineName.Name = "txtLineName";
             this.txtLineName.Size = new System.Drawing.Size(132, 21);
             this.txtLineName.TabIndex = 0;
@@ -102,7 +106,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label3.Location = new System.Drawing.Point(50, 102);
+            this.label3.Location = new System.Drawing.Point(50, 78);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 14);
             this.label3.TabIndex = 4;
@@ -112,11 +116,29 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label2.Location = new System.Drawing.Point(49, 40);
+            this.label2.Location = new System.Drawing.Point(49, 27);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 14);
             this.label2.TabIndex = 5;
             this.label2.Text = "공정이름";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label1.Location = new System.Drawing.Point(50, 125);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 14);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "카테고리";
+            // 
+            // cboCategory
+            // 
+            this.cboCategory.FormattingEnabled = true;
+            this.cboCategory.Location = new System.Drawing.Point(122, 122);
+            this.cboCategory.Name = "cboCategory";
+            this.cboCategory.Size = new System.Drawing.Size(133, 22);
+            this.cboCategory.TabIndex = 7;
             // 
             // LineInsUp
             // 
@@ -143,5 +165,7 @@
         private System.Windows.Forms.TextBox txtLineName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cboCategory;
+        private System.Windows.Forms.Label label1;
     }
 }

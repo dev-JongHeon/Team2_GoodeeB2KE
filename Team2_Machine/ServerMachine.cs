@@ -53,12 +53,15 @@ namespace Team2_Machine
                 client = (TcpClient)o;
                 stream = client.GetStream();
 
-                while (client.Connected)
+                while (true)
                 {
                     byte[] buff = new byte[1024];
 
                     Task<int> readTask = stream.ReadAsync(buff, 0, buff.Length);
                     int nbytes = readTask.Result;
+
+                    if (nbytes == 0)
+                        break;
 
                     if (nbytes > 2)
                     {
@@ -103,6 +106,7 @@ namespace Team2_Machine
                         }
                         else if (Convert.ToInt32(workList[0]) == 9)
                         {
+                            Debug.WriteLine("클라이언트 접속해제 요청");
                             break;
                         }
                     }

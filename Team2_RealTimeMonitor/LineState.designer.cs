@@ -29,10 +29,12 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnPause = new System.Windows.Forms.Button();
             this.lblNow = new System.Windows.Forms.Label();
+            this.btnPause = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -55,37 +57,11 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel1);
-            this.splitContainer1.Size = new System.Drawing.Size(624, 511);
-            this.splitContainer1.SplitterDistance = 91;
+            this.splitContainer1.Panel2.Controls.Add(this.panel2);
+            this.splitContainer1.Panel2.Controls.Add(this.panel1);
+            this.splitContainer1.Size = new System.Drawing.Size(1619, 632);
+            this.splitContainer1.SplitterDistance = 112;
             this.splitContainer1.TabIndex = 0;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(624, 416);
-            this.flowLayoutPanel1.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(520, 11);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 34);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "모니터 추가";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btnPause
-            // 
-            this.btnPause.Location = new System.Drawing.Point(521, 51);
-            this.btnPause.Name = "btnPause";
-            this.btnPause.Size = new System.Drawing.Size(94, 34);
-            this.btnPause.TabIndex = 0;
-            this.btnPause.Text = "작업 중지";
-            this.btnPause.UseVisualStyleBackColor = true;
-            this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
             // 
             // lblNow
             // 
@@ -97,11 +73,56 @@
             this.lblNow.TabIndex = 1;
             this.lblNow.Text = "2020-01-09";
             // 
+            // btnPause
+            // 
+            this.btnPause.Location = new System.Drawing.Point(521, 51);
+            this.btnPause.Name = "btnPause";
+            this.btnPause.Size = new System.Drawing.Size(94, 34);
+            this.btnPause.TabIndex = 0;
+            this.btnPause.Text = "작업 중지";
+            this.btnPause.UseVisualStyleBackColor = true;
+            this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(520, 11);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(94, 34);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "모니터 추가";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 516);
+            this.panel1.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(1419, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(200, 516);
+            this.panel2.TabIndex = 1;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(200, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1219, 516);
+            this.flowLayoutPanel1.TabIndex = 2;
+            // 
             // LineState
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 511);
+            this.BackColor = System.Drawing.Color.Black;
+            this.ClientSize = new System.Drawing.Size(1619, 632);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("나눔고딕", 10F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -120,10 +141,12 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnPause;
         private System.Windows.Forms.Label lblNow;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

@@ -32,7 +32,7 @@
             this.Search_SemiProduct = new Team2_ERP.SearchUserControl();
             this.Search_Warehouse = new Team2_ERP.SearchUserControl();
             this.Search_Period = new Team2_ERP.SearchPeriodControl();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Group_Rdo = new System.Windows.Forms.GroupBox();
             this.rdo_In = new System.Windows.Forms.RadioButton();
             this.rdo_Out = new System.Windows.Forms.RadioButton();
             this.rdo_All = new System.Windows.Forms.RadioButton();
@@ -45,14 +45,14 @@
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Stock)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.Group_Rdo.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.dgv_Stock);
             this.panel2.Location = new System.Drawing.Point(0, 192);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Size = new System.Drawing.Size(1364, 628);
             // 
             // panel_Search
@@ -69,7 +69,7 @@
             // panel5
             // 
             this.panel5.Controls.Add(this.Search_Employees);
-            this.panel5.Controls.Add(this.groupBox1);
+            this.panel5.Controls.Add(this.Group_Rdo);
             this.panel5.Controls.Add(this.Search_SemiProduct);
             this.panel5.Controls.Add(this.Search_Warehouse);
             this.panel5.Controls.Add(this.Search_Period);
@@ -142,17 +142,17 @@
             this.Search_Period.Size = new System.Drawing.Size(312, 35);
             this.Search_Period.TabIndex = 67;
             // 
-            // groupBox1
+            // Group_Rdo
             // 
-            this.groupBox1.Controls.Add(this.rdo_In);
-            this.groupBox1.Controls.Add(this.rdo_Out);
-            this.groupBox1.Controls.Add(this.rdo_All);
-            this.groupBox1.Location = new System.Drawing.Point(33, 11);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(130, 86);
-            this.groupBox1.TabIndex = 70;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "구분";
+            this.Group_Rdo.Controls.Add(this.rdo_In);
+            this.Group_Rdo.Controls.Add(this.rdo_Out);
+            this.Group_Rdo.Controls.Add(this.rdo_All);
+            this.Group_Rdo.Location = new System.Drawing.Point(33, 11);
+            this.Group_Rdo.Name = "Group_Rdo";
+            this.Group_Rdo.Size = new System.Drawing.Size(130, 86);
+            this.Group_Rdo.TabIndex = 70;
+            this.Group_Rdo.TabStop = false;
+            this.Group_Rdo.Text = "구분";
             // 
             // rdo_In
             // 
@@ -219,8 +219,8 @@
             this.panel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Stock)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.Group_Rdo.ResumeLayout(false);
+            this.Group_Rdo.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -231,7 +231,7 @@
         private SearchUserControl Search_SemiProduct;
         private SearchUserControl Search_Warehouse;
         private SearchPeriodControl Search_Period;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox Group_Rdo;
         private System.Windows.Forms.RadioButton rdo_In;
         private System.Windows.Forms.RadioButton rdo_Out;
         private System.Windows.Forms.RadioButton rdo_All;

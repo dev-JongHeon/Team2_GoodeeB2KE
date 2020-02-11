@@ -74,7 +74,7 @@ namespace Team2_DAC
 
         public bool InsertEmployee(EmployeeVO item)
         {
-            string sql = "Insert Into Employee(Employees_Name, CodeTable_CodeID, Employees_Hiredate, Employees_Resigndate, Employees_PWD, Employees_Phone, Employees_Birth) values(@Employees_Name, @CodeTable_CodeID, @Employees_Hiredate, @Employees_Resigndate, @Employees_PWD, @Employees_Phone, @Employees_Birth) ";
+            string sql = "CMG_InsertEmployee";
 
             try
             {
@@ -83,9 +83,11 @@ namespace Team2_DAC
                     cmd.Parameters.AddWithValue("@Employees_Name", item.Employees_Name);
                     cmd.Parameters.AddWithValue("@CodeTable_CodeID", item.CodeTable_CodeID);
                     cmd.Parameters.AddWithValue("@Employees_Hiredate", item.Employees_Hiredate);
+                    cmd.Parameters.AddWithValue("@Employees_Resigndate", DBNull.Value);
                     cmd.Parameters.AddWithValue("@Employees_PWD", item.Employees_PWD);
                     cmd.Parameters.AddWithValue("@Employees_Phone", item.Employees_Phone);
                     cmd.Parameters.AddWithValue("@Employees_Birth", item.Employees_Birth);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
                     conn.Open();
                     var rowsAffected = cmd.ExecuteNonQuery();

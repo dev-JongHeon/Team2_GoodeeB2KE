@@ -197,7 +197,7 @@
     <value>..\Resources\RightArrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="MsgChoice2" xml:space="preserve">
-    <value>{1}을 선택해주세요.</value>
+    <value>{0}을 선택해주세요.</value>
     <comment>콤보박스 유효성 검사2 (을)</comment>
   </data>
   <data name="MsgDefectiveResultSucceesHeader" xml:space="preserve">

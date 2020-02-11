@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace Team2_DAC.SSD.DataSets {
+namespace Team2_DAC {
     
     
     /// <summary>
@@ -329,6 +329,8 @@ namespace Team2_DAC.SSD.DataSets {
             
             private global::System.Data.DataColumn columnEmployees_Name;
             
+            private global::System.Data.DataColumn columnBalju_ReceiptDate;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public dtBaljuDataTable() {
@@ -396,6 +398,14 @@ namespace Team2_DAC.SSD.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn Balju_ReceiptDateColumn {
+                get {
+                    return this.columnBalju_ReceiptDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -431,13 +441,14 @@ namespace Team2_DAC.SSD.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtBaljuRow AdddtBaljuRow(string Balju_ID, string Balju_Date, string Company_Name, string Employees_Name) {
+            public dtBaljuRow AdddtBaljuRow(string Balju_ID, string Balju_Date, string Company_Name, string Employees_Name, string Balju_ReceiptDate) {
                 dtBaljuRow rowdtBaljuRow = ((dtBaljuRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Balju_ID,
                         Balju_Date,
                         Company_Name,
-                        Employees_Name};
+                        Employees_Name,
+                        Balju_ReceiptDate};
                 rowdtBaljuRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtBaljuRow);
                 return rowdtBaljuRow;
@@ -471,6 +482,7 @@ namespace Team2_DAC.SSD.DataSets {
                 this.columnBalju_Date = base.Columns["Balju_Date"];
                 this.columnCompany_Name = base.Columns["Company_Name"];
                 this.columnEmployees_Name = base.Columns["Employees_Name"];
+                this.columnBalju_ReceiptDate = base.Columns["Balju_ReceiptDate"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -484,6 +496,8 @@ namespace Team2_DAC.SSD.DataSets {
                 base.Columns.Add(this.columnCompany_Name);
                 this.columnEmployees_Name = new global::System.Data.DataColumn("Employees_Name", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEmployees_Name);
+                this.columnBalju_ReceiptDate = new global::System.Data.DataColumn("Balju_ReceiptDate", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBalju_ReceiptDate);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnBalju_ID}, true));
                 this.columnBalju_ID.AllowDBNull = false;
@@ -967,6 +981,22 @@ namespace Team2_DAC.SSD.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string Balju_ReceiptDate {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtBalju.Balju_ReceiptDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("\'dtBalju\' 테이블의 \'Balju_ReceiptDate\' 열의 값이 DBNull입니다.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtBalju.Balju_ReceiptDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsBalju_DateNull() {
                 return this.IsNull(this.tabledtBalju.Balju_DateColumn);
             }
@@ -999,6 +1029,18 @@ namespace Team2_DAC.SSD.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetEmployees_NameNull() {
                 this[this.tabledtBalju.Employees_NameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsBalju_ReceiptDateNull() {
+                return this.IsNull(this.tabledtBalju.Balju_ReceiptDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetBalju_ReceiptDateNull() {
+                this[this.tabledtBalju.Balju_ReceiptDateColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

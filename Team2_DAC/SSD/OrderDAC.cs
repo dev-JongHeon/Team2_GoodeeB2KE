@@ -130,7 +130,7 @@ namespace Team2_DAC
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "UpOrder_InsShipment";
+                    cmd.CommandText = "SSD_UpOrder_InsShipment";
                     cmd.Parameters.AddWithValue("@Order_ID", orderID);
                     cmd.Parameters.AddWithValue("@Employee_ID", employeeID);
                     conn.Open();
@@ -160,7 +160,7 @@ namespace Team2_DAC
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "DeleteOrder";
+                    cmd.CommandText = "SSD_DeleteOrder";
                     cmd.Parameters.AddWithValue("@Order_ID", order_ID);
                     conn.Open();
                     check = cmd.ExecuteNonQuery();
