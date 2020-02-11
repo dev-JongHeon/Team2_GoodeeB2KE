@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using Team2_ERP.Properties;
 
 namespace Team2_ERP
 {
@@ -160,12 +161,12 @@ namespace Team2_ERP
         {
             if (StartCalendar.SelectionStart > EndCalendar.SelectionStart)
             {
-                MessageBox.Show(Properties.Settings.Default.CalendarError, Properties.Settings.Default.MsgBoxTitleError, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Resources.CalendarError, Resources.MsgBoxTitleError, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 DialogResult = DialogResult.None;
             }
             else if ((EndCalendar.SelectionStart - StartCalendar.SelectionStart).Days > 366)
             {
-                MessageBox.Show(Properties.Settings.Default.CalendarMaxError, Properties.Settings.Default.MsgBoxTitleError, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Resources.CalendarMaxError, Resources.MsgBoxTitleError, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 DialogResult = DialogResult.None;
             }
         }

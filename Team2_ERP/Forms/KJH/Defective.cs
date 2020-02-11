@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using Team2_ERP.Properties;
 using Team2_VO;
 
 namespace Team2_ERP
@@ -155,7 +156,7 @@ namespace Team2_ERP
                 MessageBox.Show(err.Message);
             }
             ClearSearchOption();
-            frm.NoticeMessage = Properties.Settings.Default.RefreshDone;
+            frm.NoticeMessage = Resources.RefreshDone;
             isFirst = false;
         }
 
@@ -279,7 +280,7 @@ namespace Team2_ERP
             {
                 if(searchPeriod.Startdate.Tag == null && searchPeriod.Enddate.Tag == null)
                 {
-                    frm.NoticeMessage = Properties.Settings.Default.PeriodError;
+                    frm.NoticeMessage = Resources.PeriodError;
                 }
                 else
                 {
@@ -316,7 +317,7 @@ namespace Team2_ERP
                     }
                     
                     dgvDefective.DataSource = searchedlist;
-                    frm.NoticeMessage = Properties.Settings.Default.SearchDone;
+                    frm.NoticeMessage = Resources.SearchDone;
                 } 
             }
             else if (tabDefective.SelectedIndex == 1)
@@ -328,7 +329,7 @@ namespace Team2_ERP
                     ds1 = service.GetDefectiveByLine(sb.ToString().TrimEnd(','));
                     DataTable searcheddt = ds1.Tables[0].Copy();
                     BindingDgv(dgvDefectiveByLine, searcheddt);
-                    frm.NoticeMessage = Properties.Settings.Default.SearchDone;
+                    frm.NoticeMessage = Resources.SearchDone;
                 }
                 else
                 {
@@ -344,11 +345,11 @@ namespace Team2_ERP
                     ds2 = service.GetDefectiveByDeftiveType(sb.ToString().TrimEnd(','));
                     DataTable searcheddt = ds2.Tables[0].Copy();
                     BindingDgv(dgvDefectiveByDefecType, searcheddt);
-                    frm.NoticeMessage = Properties.Settings.Default.SearchDone;
+                    frm.NoticeMessage = Resources.SearchDone;
                 }
                 else
                 {
-                    frm.NoticeMessage = Properties.Settings.Default.PeriodError;
+                    frm.NoticeMessage = Resources.PeriodError;
                 }
             }
             else if (tabDefective.SelectedIndex == 3)
@@ -360,11 +361,11 @@ namespace Team2_ERP
                     ds3 = service.GetDefectiveByDeftiveHandleType(sb.ToString().TrimEnd(','));
                     DataTable searcheddt = ds3.Tables[0].Copy();
                     BindingDgv(dgvDefectiveByDefecHandleType,searcheddt);
-                    frm.NoticeMessage = Properties.Settings.Default.SearchDone;
+                    frm.NoticeMessage = Resources.SearchDone;
                 }
                 else
                 {
-                    frm.NoticeMessage = Properties.Settings.Default.PeriodError;
+                    frm.NoticeMessage = Resources.PeriodError;
                 }
             }
             
@@ -476,7 +477,7 @@ namespace Team2_ERP
             }
             else
             {
-                frm.NoticeMessage = Properties.Settings.Default.ExcelError;
+                frm.NoticeMessage = Resources.ExcelError;
             }
         }
 

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Team2_ERP.Properties;
 using Team2_VO;
 
 namespace Team2_ERP
@@ -71,10 +72,10 @@ namespace Team2_ERP
 
             dgvProduce.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvProduce.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvProduce.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvProduce.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvProduce.Columns[9].DefaultCellStyle.Format = "#0개";
+            dgvProduce.Columns[11].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvProduce.Columns[10].DefaultCellStyle.Format = "#0개";
+            dgvProduce.Columns[11].DefaultCellStyle.Format = "#0개";
         }
 
         private void RefreshClicked()
@@ -96,7 +97,7 @@ namespace Team2_ERP
                 ClearDgv();
                 rbxAll.Checked = true;
             }
-            frm.NoticeMessage = Properties.Settings.Default.RefreshDone;
+            frm.NoticeMessage = Resources.RefreshDone;
             isFirst = false;
         }
 
@@ -158,7 +159,7 @@ namespace Team2_ERP
 
             if (searchPeriodwork.Startdate.Tag == null && searchPeriodwork.Enddate.Tag == null)
             {
-                frm.NoticeMessage = Properties.Settings.Default.PeriodError;
+                frm.NoticeMessage = Resources.PeriodError;
             }
             else
             {
@@ -185,7 +186,7 @@ namespace Team2_ERP
                                     ).ToList();
                 }
                 dgvWorkList.DataSource = searchedlist;
-                frm.NoticeMessage = Properties.Settings.Default.SearchDone;
+                frm.NoticeMessage = Resources.SearchDone;
                 GetProduce();
                 gbxSearch.Enabled = true;
                 rbxAll.Checked = true;
@@ -206,7 +207,7 @@ namespace Team2_ERP
             }
             else
             {
-                frm.NoticeMessage = Properties.Settings.Default.ExcelError;
+                frm.NoticeMessage = Resources.ExcelError;
             }
 
         }

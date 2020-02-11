@@ -12,14 +12,14 @@
   <xs:element name="dsOrder" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsOrder" msprop:Generator_UserDSName="dsOrder">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
+        <xs:element name="dtOrder" msprop:Generator_TableClassName="dtOrderDataTable" msprop:Generator_TableVarName="tabledtOrder" msprop:Generator_RowChangedName="dtOrderRowChanged" msprop:Generator_TablePropName="dtOrder" msprop:Generator_RowDeletingName="dtOrderRowDeleting" msprop:Generator_RowChangingName="dtOrderRowChanging" msprop:Generator_RowEvHandlerName="dtOrderRowChangeEventHandler" msprop:Generator_RowDeletedName="dtOrderRowDeleted" msprop:Generator_RowClassName="dtOrderRow" msprop:Generator_UserTableName="dtOrder" msprop:Generator_RowEvArgName="dtOrderRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="DataColumn1" msprop:Generator_ColumnVarNameInTable="columnDataColumn1" msprop:Generator_ColumnPropNameInRow="DataColumn1" msprop:Generator_ColumnPropNameInTable="DataColumn1Column" msprop:Generator_UserColumnName="DataColumn1" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DataTable2" msprop:Generator_TableClassName="DataTable2DataTable" msprop:Generator_TableVarName="tableDataTable2" msprop:Generator_TablePropName="DataTable2" msprop:Generator_RowDeletingName="DataTable2RowDeleting" msprop:Generator_RowChangingName="DataTable2RowChanging" msprop:Generator_RowEvHandlerName="DataTable2RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable2RowDeleted" msprop:Generator_UserTableName="DataTable2" msprop:Generator_RowChangedName="DataTable2RowChanged" msprop:Generator_RowEvArgName="DataTable2RowChangeEvent" msprop:Generator_RowClassName="DataTable2Row">
+        <xs:element name="dtOrderDetail" msprop:Generator_TableClassName="dtOrderDetailDataTable" msprop:Generator_TableVarName="tabledtOrderDetail" msprop:Generator_RowChangedName="dtOrderDetailRowChanged" msprop:Generator_TablePropName="dtOrderDetail" msprop:Generator_RowDeletingName="dtOrderDetailRowDeleting" msprop:Generator_RowChangingName="dtOrderDetailRowChanging" msprop:Generator_RowEvHandlerName="dtOrderDetailRowChangeEventHandler" msprop:Generator_RowDeletedName="dtOrderDetailRowDeleted" msprop:Generator_RowClassName="dtOrderDetailRow" msprop:Generator_UserTableName="dtOrderDetail" msprop:Generator_RowEvArgName="dtOrderDetailRowChangeEvent">
           <xs:complexType>
           </xs:complexType>
         </xs:element>

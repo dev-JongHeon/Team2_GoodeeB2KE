@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Team2_ERP.Properties;
 using Team2_VO;
 
 namespace Team2_ERP
@@ -32,12 +33,12 @@ namespace Team2_ERP
                     loginvo.Employee_PWD = txtPrevPwd.Text;
                     if(service.ChangePwd(loginvo, txtNewPwd.Text))
                     {
-                        MessageBox.Show(Properties.Settings.Default.PwdSucess, Properties.Settings.Default.MsgBoxTitleSuccess, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(Resources.PwdSucess, Resources.MsgBoxTitleSuccess, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
                     }
                     else
                     {
-                        MessageBox.Show(Properties.Settings.Default.PwdFail, Properties.Settings.Default.MsgBoxTitleFail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(Resources.PwdFail, Resources.MsgBoxTitleFail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         this.ActiveControl = txtPrevPwd;
                         txtPrevPwd.SelectAll();
                     }
@@ -51,19 +52,19 @@ namespace Team2_ERP
             {
                 if (txtPrevPwd.TextLength < 1)
                 {
-                    MessageBox.Show(Properties.Settings.Default.PwdNoInsertPrev, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Resources.PwdNoInsertPrev, Resources.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     this.ActiveControl = txtPrevPwd;
                     txtPrevPwd.SelectAll();
                 }
                 else if (txtNewPwd.TextLength < 1)
                 {
-                    MessageBox.Show(Properties.Settings.Default.PwdNoInsertNew, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Resources.PwdNoInsertNew, Resources.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     this.ActiveControl = txtNewPwd;
                     txtNewPwd.SelectAll();
                 }
                 else if (txtNewPwd2.TextLength < 1)
                 {
-                    MessageBox.Show(Properties.Settings.Default.PwdNoInsertValid, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Resources.PwdNoInsertValid, Resources.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     this.ActiveControl = txtNewPwd2;
                     txtNewPwd2.SelectAll();
                 }
@@ -78,7 +79,7 @@ namespace Team2_ERP
             }
             else if (txtNewPwd.Text.Trim() != txtNewPwd2.Text.Trim())
             {
-                errorProvider1.SetError(txtNewPwd2, Properties.Settings.Default.PwdErrorValid);
+                errorProvider1.SetError(txtNewPwd2, Resources.PwdErrorValid);
                 txtNewPwd2.Focus();
                 txtNewPwd2.SelectAll();
             }
