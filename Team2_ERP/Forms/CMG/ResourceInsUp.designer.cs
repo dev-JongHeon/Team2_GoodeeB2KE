@@ -40,6 +40,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.cboResourceCategory = new System.Windows.Forms.ComboBox();
             this.numSafety = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cboCompany = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).BeginInit();
@@ -68,6 +70,8 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.cboCompany);
+            this.panel5.Controls.Add(this.label7);
             this.panel5.Controls.Add(this.numSafety);
             this.panel5.Controls.Add(this.cboResourceCategory);
             this.panel5.Controls.Add(this.numResourceNum);
@@ -106,7 +110,7 @@
             // 
             // txtResourceMoney
             // 
-            this.txtResourceMoney.Location = new System.Drawing.Point(129, 145);
+            this.txtResourceMoney.Location = new System.Drawing.Point(129, 139);
             this.txtResourceMoney.Name = "txtResourceMoney";
             this.txtResourceMoney.Size = new System.Drawing.Size(133, 21);
             this.txtResourceMoney.TabIndex = 2;
@@ -122,7 +126,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label5.Location = new System.Drawing.Point(33, 277);
+            this.label5.Location = new System.Drawing.Point(33, 254);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(62, 14);
             this.label5.TabIndex = 2;
@@ -132,7 +136,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label4.Location = new System.Drawing.Point(33, 214);
+            this.label4.Location = new System.Drawing.Point(33, 196);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(29, 14);
             this.label4.TabIndex = 3;
@@ -142,7 +146,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label3.Location = new System.Drawing.Point(33, 148);
+            this.label3.Location = new System.Drawing.Point(33, 142);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 14);
             this.label3.TabIndex = 4;
@@ -152,7 +156,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label2.Location = new System.Drawing.Point(33, 89);
+            this.label2.Location = new System.Drawing.Point(33, 87);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 14);
             this.label2.TabIndex = 5;
@@ -171,14 +175,14 @@
             // cboResourceWarehouse
             // 
             this.cboResourceWarehouse.FormattingEnabled = true;
-            this.cboResourceWarehouse.Location = new System.Drawing.Point(129, 82);
+            this.cboResourceWarehouse.Location = new System.Drawing.Point(129, 80);
             this.cboResourceWarehouse.Name = "cboResourceWarehouse";
             this.cboResourceWarehouse.Size = new System.Drawing.Size(133, 22);
             this.cboResourceWarehouse.TabIndex = 1;
             // 
             // numResourceNum
             // 
-            this.numResourceNum.Location = new System.Drawing.Point(129, 212);
+            this.numResourceNum.Location = new System.Drawing.Point(129, 194);
             this.numResourceNum.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -192,7 +196,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label6.Location = new System.Drawing.Point(33, 339);
+            this.label6.Location = new System.Drawing.Point(33, 313);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(51, 14);
             this.label6.TabIndex = 2;
@@ -201,7 +205,7 @@
             // cboResourceCategory
             // 
             this.cboResourceCategory.FormattingEnabled = true;
-            this.cboResourceCategory.Location = new System.Drawing.Point(129, 336);
+            this.cboResourceCategory.Location = new System.Drawing.Point(129, 310);
             this.cboResourceCategory.Name = "cboResourceCategory";
             this.cboResourceCategory.Size = new System.Drawing.Size(133, 22);
             this.cboResourceCategory.TabIndex = 5;
@@ -213,7 +217,7 @@
             0,
             0,
             0});
-            this.numSafety.Location = new System.Drawing.Point(129, 275);
+            this.numSafety.Location = new System.Drawing.Point(129, 252);
             this.numSafety.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -222,6 +226,24 @@
             this.numSafety.Name = "numSafety";
             this.numSafety.Size = new System.Drawing.Size(102, 21);
             this.numSafety.TabIndex = 4;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label7.Location = new System.Drawing.Point(33, 365);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(40, 14);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "거래처";
+            // 
+            // cboCompany
+            // 
+            this.cboCompany.FormattingEnabled = true;
+            this.cboCompany.Location = new System.Drawing.Point(129, 362);
+            this.cboCompany.Name = "cboCompany";
+            this.cboCompany.Size = new System.Drawing.Size(133, 22);
+            this.cboCompany.TabIndex = 8;
             // 
             // ResourceInsUp
             // 
@@ -257,5 +279,7 @@
         private System.Windows.Forms.ComboBox cboResourceCategory;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown numSafety;
+        private System.Windows.Forms.ComboBox cboCompany;
+        private System.Windows.Forms.Label label7;
     }
 }

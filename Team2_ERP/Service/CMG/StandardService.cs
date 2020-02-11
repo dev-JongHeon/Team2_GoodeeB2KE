@@ -47,6 +47,12 @@ namespace Team2_ERP.Service.CMG
             return dac.GetComboMeterial();
         }
 
+        public List<ComboItemVO> GetComboCompany()
+        {
+            ResourceDAC dac = new ResourceDAC();
+            return dac.GetComboCompany();
+        }
+
         public List<WarehouseVO> GetAllWarehouse()
         {
             WarehouseDAC dac = new WarehouseDAC();
@@ -101,16 +107,22 @@ namespace Team2_ERP.Service.CMG
             return dac.DeleteFactory(code);
         }
 
-        public List<LineVO> GetAllLine()
+        public List<LineVO> GetAllLine(int code)
         {
             LineDAC dac = new LineDAC();
-            return dac.GetAllLine();
+            return dac.GetAllLine(code);
         }
 
         public List<ComboItemVO> GetComboFactory()
         {
             LineDAC dac = new LineDAC();
             return dac.GetComboFactory();
+        }
+
+        public List<ComboItemVO> GetComboCategory()
+        {
+            LineDAC dac = new LineDAC();
+            return dac.GetComboCategory();
         }
 
         public bool InsertLine(LineVO item)

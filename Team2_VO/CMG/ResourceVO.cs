@@ -18,5 +18,6 @@ namespace Team2_VO
         public bool Product_DeletedYN { get; set; }
         public string Product_Category { get; set; }
         public string CodeTable_CodeName { get; set; }
+        public int Company_ID { get; set; }
     }
 }
