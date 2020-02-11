@@ -127,26 +127,54 @@ namespace Team2_DAC
 
         public bool DeleteCodeTable(string code)
         {
-            string sql = $"Update CodeTable set CodeTable_DeletedYN = {1} where CodeTable_CodeID = @CodeTable_CodeID ";
-
-            try
+            if (code.Contains("Depart"))
             {
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
-                {
-                    cmd.Parameters.AddWithValue("@CodeTable_CodeID", code);
+                string sql = "CMG_DeleteDepart";
 
-                    conn.Open();
-                    var rowsAffected = cmd.ExecuteNonQuery();
-                    return rowsAffected > 0;
+                try
+                {
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@CodeTable_CodeID", code);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        conn.Open();
+                        var rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                }
+                catch (Exception err)
+                {
+                    throw new Exception(err.Message);
+                }
+                finally
+                {
+                    conn.Close();
                 }
             }
-            catch(Exception err)
+            else
             {
-                throw new Exception(err.Message);
-            }
-            finally
-            {
-                conn.Close();
+                string sql = $"Update CodeTable set CodeTable_DeletedYN = {1} where CodeTable_CodeID = @CodeTable_CodeID ";
+
+                try
+                {
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@CodeTable_CodeID", code);
+
+                        conn.Open();
+                        var rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                }
+                catch (Exception err)
+                {
+                    throw new Exception(err.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
             }
         }
     }

@@ -101,7 +101,7 @@
             // Search_ShipmentIndexPeriod
             // 
             this.Search_ShipmentIndexPeriod.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Search_ShipmentIndexPeriod.Labelname = "출하지시일자";
+            this.Search_ShipmentIndexPeriod.Labelname = "출하요청일자";
             this.Search_ShipmentIndexPeriod.Location = new System.Drawing.Point(342, 25);
             this.Search_ShipmentIndexPeriod.Name = "Search_ShipmentIndexPeriod";
             this.Search_ShipmentIndexPeriod.Size = new System.Drawing.Size(312, 25);

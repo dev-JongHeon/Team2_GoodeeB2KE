@@ -9,6 +9,8 @@ using Team2_DAC;
 using Team2_ERP.Service;
 using Team2_VO;
 using Microsoft.Office.Interop.Excel;
+using DevExpress.XtraReports.UI;
+using Team2_ERP.Properties;
 
 namespace Team2_ERP
 {
@@ -141,7 +143,12 @@ namespace Team2_ERP
                     string Balju_ID = dgv_Balju.CurrentRow.Cells[0].Value.ToString();
                     service.UpdateBalju_Processed(Balju_ID);
                     Func_Refresh();  // 새로고침
-                    main.NoticeMessage = "완료 처리되었습니다.";
+                    main.NoticeMessage = notice;
+                }
+                else
+                {
+                    MessageBox.Show("처리를 취소하셨습니다.");
+                    main.NoticeMessage = notice;
                 }
             }
         }
@@ -154,9 +161,14 @@ namespace Team2_ERP
                 {
                     string Balju_ID = dgv_Balju.CurrentRow.Cells[0].Value.ToString();
                     service.DeleteBalju(Balju_ID);
+                    Func_Refresh();  // 새로고침
+                    main.NoticeMessage = notice;
                 }
-                Func_Refresh();  // 새로고침
-                main.NoticeMessage = notice;
+                else
+                {
+                    MessageBox.Show("처리를 취소하셨습니다.");
+                    main.NoticeMessage = notice;
+                }
             }  
         }
 
@@ -181,8 +193,32 @@ namespace Team2_ERP
 
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
-            XtraReport1 xr = new XtraReport1();
-            xr.DataSource =
+            BaljuReport br = new BaljuReport();
+            dsBalju ds = new dsBalju();
+                        
+            ds.Relations.Clear();
+            ds.Tables.Clear();
+            ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+            ds.Tables.Add(UtilClass.ConvertToDataTable(BaljuDetail_AllList));
+            ds.Tables[0].TableName = "dtBalju";
+            ds.Tables[1].TableName = "dtBalju_Detail";
+            ds.Relations.Add("dtBalju_dtBalju_Detail", ds.Tables[0].Columns["Balju_ID"], ds.Tables[1].Columns["Balju_ID"]);
+            
+            //dOrg.Tables.Add(UtilClass.ConvertToDataTable(BaljuDetail_AllList));
+            //ds = (dsBalju)dOrg;
+            ds.AcceptChanges();
+
+            //StringBuilder sb = new StringBuilder();
+            //foreach (DataGridViewRow row in dgv_Balju.Rows)
+            //{
+            //    sb.Append($"'{row.Cells[0].Value.ToString()}',");
+            //}
+
+            br.DataSource = ds;
+            using (ReportPrintTool printTool = new ReportPrintTool(br))
+            {
+                printTool.ShowRibbonPreviewDialog();
+            }  
         }
         #endregion
 

@@ -74,7 +74,7 @@
             this.searchFactoryName.ControlType = Team2_ERP.SearchUserControl.Mode.Factory;
             this.searchFactoryName.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.searchFactoryName.Labelname = "공장";
-            this.searchFactoryName.Location = new System.Drawing.Point(3, 6);
+            this.searchFactoryName.Location = new System.Drawing.Point(3, 27);
             this.searchFactoryName.Name = "searchFactoryName";
             this.searchFactoryName.Size = new System.Drawing.Size(312, 25);
             this.searchFactoryName.TabIndex = 0;
@@ -85,7 +85,7 @@
             this.searchLineName.ControlType = Team2_ERP.SearchUserControl.Mode.Line;
             this.searchLineName.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.searchLineName.Labelname = "공정";
-            this.searchLineName.Location = new System.Drawing.Point(3, 37);
+            this.searchLineName.Location = new System.Drawing.Point(3, 58);
             this.searchLineName.Name = "searchLineName";
             this.searchLineName.Size = new System.Drawing.Size(312, 25);
             this.searchLineName.TabIndex = 1;
@@ -110,6 +110,7 @@
             this.dgvFactory.Size = new System.Drawing.Size(1364, 368);
             this.dgvFactory.TabIndex = 9;
             this.dgvFactory.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFactory_CellClick);
+            this.dgvFactory.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFactory_CellDoubleClick);
             // 
             // panel7
             // 

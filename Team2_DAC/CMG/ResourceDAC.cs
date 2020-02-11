@@ -58,6 +58,7 @@ namespace Team2_DAC
                     cmd.Parameters.AddWithValue("@Product_Qty", item.Product_Qty);
                     cmd.Parameters.AddWithValue("@Product_Safety", item.Product_Safety);
                     cmd.Parameters.AddWithValue("@Product_Category", item.Product_Category);
+                    cmd.Parameters.AddWithValue("@Company_ID", item.Company_ID);
 
                     conn.Open();
                     var rowsAffected = cmd.ExecuteNonQuery();
@@ -76,7 +77,7 @@ namespace Team2_DAC
 
         public bool UpdateResource(ResourceVO item)
         {
-            string sql = "Update Product set Product_Name = @Product_Name, Warehouse_ID = @Warehouse_ID, Product_Price = @Product_Price, Product_Qty = @Product_Qty, Product_Safety = @Product_Safety, Product_Category = @Product_Category, Product_Image = @Product_Image where Product_ID = @Product_ID ";
+            string sql = "Update Product set Product_Name = @Product_Name, Warehouse_ID = @Warehouse_ID, Product_Price = @Product_Price, Product_Qty = @Product_Qty, Product_Safety = @Product_Safety, Product_Category = @Product_Category, Product_Image = @Product_Image, Company_ID = @Company_ID where Product_ID = @Product_ID ";
 
             try
             {
@@ -89,6 +90,7 @@ namespace Team2_DAC
                     cmd.Parameters.AddWithValue("@Product_Safety", item.Product_Safety);
                     cmd.Parameters.AddWithValue("@Product_Category", item.Product_Category);
                     cmd.Parameters.AddWithValue("@Product_Image", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Company_ID", item.Company_ID);
                     cmd.Parameters.AddWithValue("@Product_ID", item.Product_ID);
 
                     conn.Open();
@@ -108,13 +110,14 @@ namespace Team2_DAC
 
         public bool DeleteResource(string code)
         {
-            string sql = $"Update Product set Product_DeletedYN = {1} where Product_ID = @Product_ID ";
+            string sql = "CMG_DeleteResource";
 
             try
             {
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@Product_ID", code);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
                     conn.Open();
                     var rowsAffected = cmd.ExecuteNonQuery();
@@ -173,6 +176,35 @@ namespace Team2_DAC
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@div", "CategoryM");
+
+                    conn.Open();
+                    list = Helper.DataReaderMapToList<ComboItemVO>(cmd.ExecuteReader());
+
+                    return list;
+                }
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public List<ComboItemVO> GetComboCompany()
+        {
+            List<ComboItemVO> list = null;
+
+            try
+            {
+                string sql = "KJH_GetInfo";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@div", "Company");
 
                     conn.Open();
                     list = Helper.DataReaderMapToList<ComboItemVO>(cmd.ExecuteReader());

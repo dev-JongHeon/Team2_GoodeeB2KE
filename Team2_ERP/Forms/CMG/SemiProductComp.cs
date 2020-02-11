@@ -73,7 +73,7 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgvSemiProduct, "제품가격", "Product_Price", true, 100, DataGridViewContentAlignment.MiddleRight);
             UtilClass.AddNewColum(dgvSemiProduct, "제품카테고리", "Product_Category", false, 100);
             UtilClass.AddNewColum(dgvSemiProduct, "제품ID", "Product_ID", false, 100);
-            dgvSemiProduct.Columns[1].DefaultCellStyle.Format = "#,###원";
+            dgvSemiProduct.Columns[1].DefaultCellStyle.Format = "#,##0원";
 
             dgvSemiProduct.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
         }
@@ -98,7 +98,7 @@ namespace Team2_ERP
                 spc.LblName.Tag = countList[i].ID;
 
                 spc.Qty.ValueChanged += new EventHandler(TotalPrice);
-                numericUpDown1.ValueChanged += new EventHandler(TotalPrice);
+                numQty.ValueChanged += new EventHandler(TotalPrice);
 
                 splitContainer2.Panel1.Controls.Add(spc);
             }
@@ -169,8 +169,111 @@ namespace Team2_ERP
             LoadGridView();
         }
 
+        private void InsertSemiProduct()
+        {
+            ProductVO Pitem = new ProductVO
+            {
+                Product_Name = txtSemiproductName.Text,
+                Product_Price = Convert.ToInt32(txtSemiproductMoney.Text.Replace(",", "").Replace("원", "")),
+                Product_Qty = Convert.ToInt32(numQty.Value),
+                Warehouse_ID = Convert.ToInt32(cboWarehouse.SelectedValue),
+                Product_Safety = Convert.ToInt32(numSafety.Value),
+                Product_Category = cboCategory.SelectedValue.ToString()
+            };
+
+            List<CombinationVO> citemList = new List<CombinationVO>();
+
+            foreach (Control control in splitContainer2.Panel1.Controls)
+            {
+                if (control is SemiProductCompControl)
+                {
+                    SemiProductCompControl spc = (SemiProductCompControl)control;
+
+                    CombinationVO citem = new CombinationVO
+                    {
+                        Combination_Product_ID = spc.TxtName.Tag.ToString(),
+                        Combination_RequiredQty = Convert.ToInt32(spc.Qty.Value)
+                    };
+
+                    citemList.Add(citem);
+                }
+            }
+
+            StandardService service = new StandardService();
+            service.InsertSemiProduct(Pitem, citemList, splitContainer2.Panel1.Controls.Count);
+        }
+
+        private void UpdateSemiProduct()
+        {
+            ProductVO Pitem = new ProductVO
+            {
+                Product_ID = pCode,
+                Product_Name = txtSemiproductName.Text,
+                Product_Price = Convert.ToInt32(txtSemiproductMoney.Text.Replace(",", "").Replace("원", "")),
+                Product_Qty = Convert.ToInt32(numQty.Value),
+                Product_Safety = Convert.ToInt32(numSafety.Value),
+                Warehouse_ID = Convert.ToInt32(cboWarehouse.SelectedValue),
+                Product_Category = cboCategory.SelectedValue.ToString()
+            };
+
+            List<CombinationVO> citemList = new List<CombinationVO>();
+
+            foreach (Control control in splitContainer2.Panel1.Controls)
+            {
+                if (control is SemiProductCompControl)
+                {
+                    SemiProductCompControl spc = (SemiProductCompControl)control;
+
+                    CombinationVO citem = new CombinationVO
+                    {
+                        Combination_Product_ID = spc.TxtName.Tag.ToString(),
+                        Combination_RequiredQty = Convert.ToInt32(spc.Qty.Value)
+                    };
+
+                    citemList.Add(citem);
+                }
+            }
+
+            StandardService service = new StandardService();
+            service.UpdateSemiProduct(Pitem, citemList, splitContainer2.Panel1.Controls.Count);
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            if (spc.TxtName.Tag != null && cboWarehouse.SelectedValue != null && txtSemiproductName.Text.Length > 0 && numSafety.Value > 0 && numQty.Value > 0 && txtSemiproductMoney.Text.Length > 0)
+            {
+                if (mode.Equals("Insert"))
+                {
+                    InsertSemiProduct();
+                    DialogResult = MessageBox.Show(Properties.Settings.Default.AddDone, Properties.Settings.Default.AddDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    UpdateSemiProduct();
+                    DialogResult = MessageBox.Show(Properties.Settings.Default.ModDone, Properties.Settings.Default.ModDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show(Properties.Settings.Default.isEssential, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        //반제품 조합의 개수만큼 단가를 조정한다.
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            if (numQty.Value > 0)
+            {
+                txtSemiproductMoney.Text = (Convert.ToInt32(txtSemiproductMoney.Tag) * Convert.ToInt32(numQty.Value)).ToString("#,##0") + "원";
+            }
+            else
+            {
+                txtSemiproductMoney.Text = "0원";
+            }
+        }
+
         //원자재를 선택하면 해당하는 원자재 카테고리 ID와 유저컨트롤 태그 ID를 비교해서 맞는 부분에 원자재 이름과 가격을 설정한다.
-        private void dgvSemiProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvSemiProduct_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > -1 && dgvSemiProduct.SelectedRows.Count > 0)
             {
@@ -194,92 +297,6 @@ namespace Team2_ERP
                         }
                     }
                 }
-            }
-        }
-
-        private void btnOK_Click(object sender, EventArgs e)
-        {
-            if (mode.Equals("Insert"))
-            {
-                ProductVO Pitem = new ProductVO
-                {
-                    Product_Name = txtSemiproductName.Text,
-                    Product_Price = Convert.ToInt32(txtSemiproductMoney.Text.Replace(",", "").Replace("원", "")),
-                    Product_Qty = Convert.ToInt32(numericUpDown1.Value),
-                    Warehouse_ID = Convert.ToInt32(cboWarehouse.SelectedValue),
-                    Product_Safety = Convert.ToInt32(numSafety.Value),
-                    Product_Category = cboCategory.SelectedValue.ToString()
-                };
-
-                List<CombinationVO> citemList = new List<CombinationVO>();
-
-                foreach (Control control in splitContainer2.Panel1.Controls)
-                {
-                    if (control is SemiProductCompControl)
-                    {
-                        SemiProductCompControl spc = (SemiProductCompControl)control;
-
-                        CombinationVO citem = new CombinationVO
-                        {
-                            Combination_Product_ID = spc.TxtName.Tag.ToString(),
-                            Combination_RequiredQty = Convert.ToInt32(spc.Qty.Value)
-                        };
-
-                        citemList.Add(citem);
-                    }
-                }
-
-                StandardService service = new StandardService();
-                service.InsertSemiProduct(Pitem, citemList, splitContainer2.Panel1.Controls.Count);
-            }
-            else
-            {
-                ProductVO Pitem = new ProductVO
-                {
-                    Product_ID = pCode,
-                    Product_Name = txtSemiproductName.Text,
-                    Product_Price = Convert.ToInt32(txtSemiproductMoney.Text.Replace(",", "").Replace("원", "")),
-                    Product_Qty = Convert.ToInt32(numericUpDown1.Value),
-                    Product_Safety = Convert.ToInt32(numSafety.Value),
-                    Warehouse_ID = Convert.ToInt32(cboWarehouse.SelectedValue),
-                    Product_Category = cboCategory.SelectedValue.ToString()
-                };
-
-                List<CombinationVO> citemList = new List<CombinationVO>();
-
-                foreach (Control control in splitContainer2.Panel1.Controls)
-                {
-                    if (control is SemiProductCompControl)
-                    {
-                        SemiProductCompControl spc = (SemiProductCompControl)control;
-
-                        CombinationVO citem = new CombinationVO
-                        {
-                            Combination_Product_ID = spc.TxtName.Tag.ToString(),
-                            Combination_RequiredQty = Convert.ToInt32(spc.Qty.Value)
-                        };
-
-                        citemList.Add(citem);
-                    }
-                }
-
-                StandardService service = new StandardService();
-                service.UpdateSemiProduct(Pitem, citemList, splitContainer2.Panel1.Controls.Count);
-            }
-
-            this.DialogResult = DialogResult.OK;
-        }
-
-        //반제품 조합의 개수만큼 단가를 조정한다.
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-            if (numericUpDown1.Value > 0)
-            {
-                txtSemiproductMoney.Text = (Convert.ToInt32(txtSemiproductMoney.Tag) * Convert.ToInt32(numericUpDown1.Value)).ToString("#,##0") + "원";
-            }
-            else
-            {
-                txtSemiproductMoney.Text = "0원";
             }
         }
     }

@@ -210,7 +210,7 @@ namespace Team2_POP.Properties {
         }
         
         /// <summary>
-        ///   {1}을 선택해주세요.과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   {0}을 선택해주세요.과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string MsgChoice2 {
             get {

@@ -22,8 +22,7 @@ namespace Team2_POP
         }
 
         private void LoginPOP_Load(object sender, EventArgs e)
-        {
-           // CustomMessageBox.hi.Show();
+        {            
             SettingControl();
             InitData();
 
@@ -61,7 +60,7 @@ namespace Team2_POP
 
             if (msg.Length > 1)
             {
-                MessageBox.Show(msg.ToString());
+                CustomMessageBox.ShowDialog("접속실패", msg.ToString(), MessageBoxIcon.Warning, MessageBoxButtons.OK);
                 return;
             }
 
@@ -75,26 +74,26 @@ namespace Team2_POP
                 FactoryID = cboFactory.SelectedValue.ToString(),
                 FactoryName = cboFactory.Text
             };
-             
-            // 로그인이 완료되면 메인 화면을 띄워주는 코드
-            using(PopMain Main = new PopMain())
-            {
-                Hide();
-                Main.WorkerInfo = workerInfo;
 
-                // 로그아웃버튼을 누른 경우
-                // 폼을 다시 로드하는 효과를 줌.
-                if(Main.ShowDialog() == DialogResult.OK)
-                {
-                    SettingControl();
-                    InitData();
-                    Show();                  
-                }
-                // 종료 버튼을 누른 경우
-                // 로그인 화면도 닫음
-                else
-                    Close();
+            // 로그인이 완료되면 메인 화면을 띄워주는 코드
+
+            PopMain Main = new PopMain();
+            Hide();
+            Main.WorkerInfo = workerInfo;
+
+            // 로그아웃버튼을 누른 경우
+            // 폼을 다시 로드하는 효과를 줌.
+            if (Main.ShowDialog() == DialogResult.OK)
+            {
+                SettingControl();
+                InitData();
+                Show();
             }
+            // 종료 버튼을 누른 경우
+            // 로그인 화면도 닫음
+            else
+                Close();
+
         }
 
         private void cboFactory_SelectedIndexChanged(object sender, EventArgs e)

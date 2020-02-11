@@ -36,6 +36,7 @@
             this.rdoSemiProduct = new System.Windows.Forms.RadioButton();
             this.rdoResource = new System.Windows.Forms.RadioButton();
             this.cboContext = new System.Windows.Forms.ComboBox();
+            this.rdoProduct = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).BeginInit();
@@ -47,15 +48,15 @@
             // 
             // panel1
             // 
-            this.panel1.Size = new System.Drawing.Size(641, 408);
+            this.panel1.Size = new System.Drawing.Size(378, 362);
             // 
             // panel_Title
             // 
-            this.panel_Title.Size = new System.Drawing.Size(639, 32);
+            this.panel_Title.Size = new System.Drawing.Size(376, 32);
             // 
             // panel3
             // 
-            this.panel3.Location = new System.Drawing.Point(437, 0);
+            this.panel3.Location = new System.Drawing.Point(174, 0);
             // 
             // panel5
             // 
@@ -65,28 +66,28 @@
             this.panel5.Controls.Add(this.label1);
             this.panel5.Controls.Add(this.txtContext);
             this.panel5.Controls.Add(this.txtName);
-            this.panel5.Size = new System.Drawing.Size(639, 292);
+            this.panel5.Size = new System.Drawing.Size(376, 246);
             // 
             // panel4
             // 
-            this.panel4.Location = new System.Drawing.Point(0, 356);
-            this.panel4.Size = new System.Drawing.Size(639, 50);
+            this.panel4.Location = new System.Drawing.Point(0, 310);
+            this.panel4.Size = new System.Drawing.Size(376, 50);
             // 
             // panel2
             // 
-            this.panel2.Size = new System.Drawing.Size(639, 32);
+            this.panel2.Size = new System.Drawing.Size(376, 32);
             // 
             // btnCancel
             // 
             this.btnCancel.FlatAppearance.BorderSize = 0;
-            this.btnCancel.Location = new System.Drawing.Point(367, 3);
+            this.btnCancel.Location = new System.Drawing.Point(216, 3);
             this.btnCancel.TabIndex = 3;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOK
             // 
             this.btnOK.FlatAppearance.BorderSize = 0;
-            this.btnOK.Location = new System.Drawing.Point(170, 3);
+            this.btnOK.Location = new System.Drawing.Point(91, 3);
             this.btnOK.TabIndex = 2;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
@@ -126,11 +127,12 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.rdoProduct);
             this.groupBox1.Controls.Add(this.rdoSemiProduct);
             this.groupBox1.Controls.Add(this.rdoResource);
             this.groupBox1.Location = new System.Drawing.Point(61, 19);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(175, 66);
+            this.groupBox1.Size = new System.Drawing.Size(261, 66);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             // 
@@ -166,11 +168,22 @@
             this.cboContext.Size = new System.Drawing.Size(143, 22);
             this.cboContext.TabIndex = 9;
             // 
+            // rdoProduct
+            // 
+            this.rdoProduct.AutoSize = true;
+            this.rdoProduct.Location = new System.Drawing.Point(180, 29);
+            this.rdoProduct.Name = "rdoProduct";
+            this.rdoProduct.Size = new System.Drawing.Size(58, 18);
+            this.rdoProduct.TabIndex = 1;
+            this.rdoProduct.TabStop = true;
+            this.rdoProduct.Text = "완제품";
+            this.rdoProduct.UseVisualStyleBackColor = true;
+            // 
             // CategoryInsUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(641, 408);
+            this.ClientSize = new System.Drawing.Size(378, 362);
             this.Name = "CategoryInsUp";
             this.Text = "CategoryInsUp";
             this.Load += new System.EventHandler(this.CategoryInsUp_Load);
@@ -197,5 +210,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rdoSemiProduct;
         private System.Windows.Forms.RadioButton rdoResource;
+        private System.Windows.Forms.RadioButton rdoProduct;
     }
 }

@@ -16,7 +16,7 @@ namespace Team2_POP
 
     public delegate void ReceiveEventHandler(object sender, ReceiveEventArgs e);
 
-    public class POPClient : IDisposable
+    public class POPClient
     {
         #region 프로퍼티 실적아이디, 요구수량, 사원번호
         public string PerformanceID { get; set; }
@@ -36,7 +36,7 @@ namespace Team2_POP
         // 어떤 라인인지 필요
         // 서버에 접속할 client 필요  (AppConfig에 추가할 목록)
         string host = "127.0.0.1";
-        int port = 5000; 
+        int port = 5000;
         NetworkStream netStream;
         System.Timers.Timer timer;
         TcpClient client;
@@ -47,7 +47,7 @@ namespace Team2_POP
             timer = new System.Timers.Timer();
             timer.AutoReset = true;
             timer.Interval = 1000;
-            timer.Elapsed += Timer_Elapsed;            
+            timer.Elapsed += Timer_Elapsed;
         }
 
         // 매초 서버로부터 메세지를 수신받는 이벤트
@@ -55,50 +55,66 @@ namespace Team2_POP
         {
             try
             {
-                if (Connected)
+                if (Connected && timer.Enabled)
                 {
-                    client.Client.Receive(new byte[1], SocketFlags.Peek);  // 20200208      
-                    client.Client.Send(new byte[1], SocketFlags.Peek);     // 20200208
-                    await Read(); 
+                    await Read();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
+                WriteLog(ex);
                 CustomMessageBox.ShowDialog("서버접속끊김", "서버와의 연결이 끊겼습니다.", MessageBoxIcon.Error
                     , MessageBoxButtons.OK);
                 ErrorMessage(ex);
                 timer.Stop();
                 timer.Enabled = false;
                 timer.Dispose();
-                DisConnected();
+                //DisConnected();
             }
         }
 
         public void Start()
         {
-            if (Connected && timer.Enabled)
+            try
             {
-                Writer();
+                if (Connected && timer.Enabled)
+                {
+                    Writer(netStream, new object[] { 1, PerformanceID, RequestQty, ProduceID, LineID });
+                }
+                else if (Connected)
+                {
+                    timer.Enabled = true;
+                    timer.Start();
+                    Writer(netStream, new object[] { 1, PerformanceID, RequestQty, ProduceID, LineID });
+
+                }
+                else
+                {
+                    Connect();
+                    Start();
+                }
             }
-            else if (Connected)
+            catch (Exception ex)
             {
-                timer.Start();
-                Writer();
-                client.ReceiveTimeout = 5000; // 20200208
+                WriteLog(ex);
             }
         }
 
         // 서버 연결
         public bool Connect()
         {
-            client = new TcpClient(host, port);
+            IPEndPoint clientIP = new IPEndPoint(IPAddress.Parse(host), new Random((int)DateTime.UtcNow.Ticks).Next(5001, 8901));
+            client = new TcpClient(clientIP);
+            client.ConnectAsync(host, port).Wait();
+            client.NoDelay = true;
+
+            netStream = client.GetStream();
 
             try
-            {   
+            {
                 if (client.Connected)
                 {
-                    netStream = client.GetStream();
-                    Connected = client.Connected;                                    
+                    Connected = client.Connected;
                 }
 
                 return client.Connected;
@@ -106,6 +122,7 @@ namespace Team2_POP
 
             catch (Exception ex)
             {
+                WriteLog(ex);
                 ErrorMessage(ex);
                 return client.Connected;
             }
@@ -113,47 +130,63 @@ namespace Team2_POP
 
         public void DisConnected()
         {
-            if (netStream != null)
+            try
             {
-                client.Close();
-                netStream.Close();
+                Connected = false;
+                Task.Delay(2000);
+
+                if (client != null)
+                {
+
+                    Writer(netStream, new object[] { 9 });
+                    Task.Delay(1000);
+                    timer.Stop();
+                    timer.Enabled = false;
+                    timer.Dispose();
+
+                    Task.Delay(1000);
+                    netStream.Close();
+                    client.Close();
+                    client.Dispose();
+                }
             }
-            Connected = false;
+            catch(Exception ex)
+            {
+                WriteLog(ex);
+            }
         }
 
 
         // 서버에 송신메서드 (생산 실적아이디를 윈도우 서비스(생산 기계)로 넘겨줌)
-        public async void Writer()
+        public void Writer(Stream stream, object[] objArr)
         {
             try
             {
-                string ProductionInstruction = string.Join(",", new object[] { PerformanceID, RequestQty, ProduceID, LineID });
-                
-                StreamWriter writer = new StreamWriter(netStream);
+                if (!stream.CanWrite)
+                    return;
 
-                writer.AutoFlush = true;
-                await writer.WriteAsync(ProductionInstruction);
+                string ProductionInstruction = string.Join(",", objArr);
+                StreamWriter writer = new StreamWriter(stream);
+
+                writer.AutoFlush = true;                
+                writer.Write(ProductionInstruction);
             }
             catch (Exception ex)
             {
+                WriteLog(ex);
                 ErrorMessage(ex);
-                DisConnected();
             }
         }
 
-        public async void Certification()
+        public void Certification()
         {
             try
             {
-                using (StreamWriter writer = new StreamWriter(netStream))
-                {
-                    string LineInfo = string.Join(",", new object[] { LineID, IsLine });
-                    writer.AutoFlush = true;
-                    await writer.WriteAsync(LineInfo);
-                }
+                Writer(netStream, new object[] { 0, LineID, IsLine });
             }
             catch (Exception ex)
             {
+                WriteLog(ex);
                 ErrorMessage(ex);
                 DisConnected();
             }
@@ -162,12 +195,14 @@ namespace Team2_POP
         // 서버 수신메서드
         public async Task Read()
         {
+            if (!netStream.CanRead) return;
+
             try
             {
                 StreamReader reader = new StreamReader(netStream);
                 string[] msg = (await reader.ReadLineAsync()).Split(',');
-                
-                if(msg.Length > 1)
+
+                if (msg.Length > 1)
                 {
                     FormCollection frms = Application.OpenForms;
 
@@ -211,19 +246,20 @@ namespace Team2_POP
                             }
                         }
                     }
-
                 }
             }
-            
+
+
             catch (Exception ex)
             {
+                WriteLog(ex);
                 ErrorMessage(ex);
-                DisConnected();
             }
         }
 
         private void ErrorMessage(Exception ex)
         {
+            WriteLog(ex);
             FormCollection frms = Application.OpenForms;
             for (int i = 0; i < frms.Count; i++)
             {
@@ -243,23 +279,19 @@ namespace Team2_POP
                         e.LineID = LineID;
                         e.IsCompleted = false;
 
-                        if (Received != null)
-                            Received.Invoke(this, e);
-
+                        if (!pop.IsDisposed)
+                        {
+                            if (Received != null)
+                                Received.Invoke(this, e);
+                        }
                     }
                 }
-            }            
+            }
         }
 
-
-        public void Dispose()
+        private void WriteLog(Exception ex)
         {
-            if (netStream != null)
-            {
-                netStream.Close();
-                client.Close();
-                Connected = false;
-            }
+            Program.Log.WriteError(ex.Message, ex);
         }
     }
 }

@@ -9,13 +9,12 @@ using Team2_VO;
 
 namespace Team2_DAC
 {
-    public class OrderDAC
+    public class OrderDAC : ConnectionInfo
     {
         SqlConnection conn = null;
         public OrderDAC()
         {
-            string ConnectionStr = "Server = whyfi8888.ddns.net,11433; uid = team2; pwd = 1234; database = team2";
-            conn = new SqlConnection(ConnectionStr);
+            conn = new SqlConnection(this.ConnectionString);
         }
 
         public List<Order> GetOrderList()  // 뷰 사용
@@ -131,7 +130,7 @@ namespace Team2_DAC
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "UpOrder_InsShipment";
+                    cmd.CommandText = "SSD_UpOrder_InsShipment";
                     cmd.Parameters.AddWithValue("@Order_ID", orderID);
                     cmd.Parameters.AddWithValue("@Employee_ID", employeeID);
                     conn.Open();
@@ -161,7 +160,7 @@ namespace Team2_DAC
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "DeleteOrder";
+                    cmd.CommandText = "SSD_DeleteOrder";
                     cmd.Parameters.AddWithValue("@Order_ID", order_ID);
                     conn.Open();
                     check = cmd.ExecuteNonQuery();

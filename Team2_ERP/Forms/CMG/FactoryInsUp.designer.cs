@@ -33,10 +33,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtFactoryName = new System.Windows.Forms.TextBox();
-            this.txtFactoryNumber = new System.Windows.Forms.TextBox();
-            this.txtFactoryFaxNumber = new System.Windows.Forms.TextBox();
             this.addrFactory = new Team2_ERP.AddressControl();
             this.cboFactoryDivision = new System.Windows.Forms.ComboBox();
+            this.maskedFactoryNumber = new System.Windows.Forms.MaskedTextBox();
+            this.maskedFactoryFaxNumber = new System.Windows.Forms.MaskedTextBox();
             this.panel1.SuspendLayout();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).BeginInit();
@@ -45,27 +45,50 @@
             this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
+            // panel1
+            // 
+            this.panel1.Size = new System.Drawing.Size(605, 525);
+            // 
+            // panel_Title
+            // 
+            this.panel_Title.Size = new System.Drawing.Size(603, 32);
+            // 
+            // panel3
+            // 
+            this.panel3.Location = new System.Drawing.Point(401, 0);
+            // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.maskedFactoryFaxNumber);
+            this.panel5.Controls.Add(this.maskedFactoryNumber);
             this.panel5.Controls.Add(this.cboFactoryDivision);
             this.panel5.Controls.Add(this.addrFactory);
-            this.panel5.Controls.Add(this.txtFactoryFaxNumber);
-            this.panel5.Controls.Add(this.txtFactoryNumber);
             this.panel5.Controls.Add(this.txtFactoryName);
             this.panel5.Controls.Add(this.label5);
             this.panel5.Controls.Add(this.label4);
             this.panel5.Controls.Add(this.label3);
             this.panel5.Controls.Add(this.label2);
+            this.panel5.Size = new System.Drawing.Size(603, 409);
+            // 
+            // panel4
+            // 
+            this.panel4.Size = new System.Drawing.Size(603, 50);
+            // 
+            // panel2
+            // 
+            this.panel2.Size = new System.Drawing.Size(603, 32);
             // 
             // btnCancel
             // 
             this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.Location = new System.Drawing.Point(369, 3);
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOK
             // 
             this.btnOK.FlatAppearance.BorderSize = 0;
+            this.btnOK.Location = new System.Drawing.Point(172, 3);
             this.btnOK.TabIndex = 5;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
@@ -115,20 +138,6 @@
             this.txtFactoryName.Size = new System.Drawing.Size(133, 21);
             this.txtFactoryName.TabIndex = 0;
             // 
-            // txtFactoryNumber
-            // 
-            this.txtFactoryNumber.Location = new System.Drawing.Point(110, 147);
-            this.txtFactoryNumber.Name = "txtFactoryNumber";
-            this.txtFactoryNumber.Size = new System.Drawing.Size(133, 21);
-            this.txtFactoryNumber.TabIndex = 2;
-            // 
-            // txtFactoryFaxNumber
-            // 
-            this.txtFactoryFaxNumber.Location = new System.Drawing.Point(110, 205);
-            this.txtFactoryFaxNumber.Name = "txtFactoryFaxNumber";
-            this.txtFactoryFaxNumber.Size = new System.Drawing.Size(133, 21);
-            this.txtFactoryFaxNumber.TabIndex = 3;
-            // 
             // addrFactory
             // 
             this.addrFactory.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -146,11 +155,27 @@
             this.cboFactoryDivision.Size = new System.Drawing.Size(133, 22);
             this.cboFactoryDivision.TabIndex = 1;
             // 
+            // maskedFactoryNumber
+            // 
+            this.maskedFactoryNumber.Location = new System.Drawing.Point(110, 147);
+            this.maskedFactoryNumber.Mask = "000-9000-0000";
+            this.maskedFactoryNumber.Name = "maskedFactoryNumber";
+            this.maskedFactoryNumber.Size = new System.Drawing.Size(133, 21);
+            this.maskedFactoryNumber.TabIndex = 2;
+            // 
+            // maskedFactoryFaxNumber
+            // 
+            this.maskedFactoryFaxNumber.Location = new System.Drawing.Point(110, 205);
+            this.maskedFactoryFaxNumber.Mask = "000-9000-0000";
+            this.maskedFactoryFaxNumber.Name = "maskedFactoryFaxNumber";
+            this.maskedFactoryFaxNumber.Size = new System.Drawing.Size(133, 21);
+            this.maskedFactoryFaxNumber.TabIndex = 3;
+            // 
             // FactoryInsUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 525);
+            this.ClientSize = new System.Drawing.Size(605, 525);
             this.Name = "FactoryInsUp";
             this.Text = "FactoryInsUp";
             this.Load += new System.EventHandler(this.FactoryInsUp_Load);
@@ -171,9 +196,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtFactoryName;
-        private System.Windows.Forms.TextBox txtFactoryFaxNumber;
-        private System.Windows.Forms.TextBox txtFactoryNumber;
         private AddressControl addrFactory;
         private System.Windows.Forms.ComboBox cboFactoryDivision;
+        private System.Windows.Forms.MaskedTextBox maskedFactoryFaxNumber;
+        private System.Windows.Forms.MaskedTextBox maskedFactoryNumber;
     }
 }

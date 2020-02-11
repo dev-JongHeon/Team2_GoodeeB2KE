@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -14,8 +15,9 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Team2_ERP
 {
-    public class UtilClass
+    public static class UtilClass
     {
+        #region DataGridView 관련
         /// <summary>
         /// DataGridView의 컬럼 추가
         /// </summary>
@@ -76,7 +78,57 @@ namespace Team2_ERP
             dgv.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.DisplayedCells);
             dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
         }
+        #endregion
 
+        #region DataSet 관련
+        public static DataSet ToDataSet<T>(this IList<T> list)
+        {
+            Type elementType = typeof(T);
+            DataSet ds = new DataSet();
+            DataTable t = new DataTable();
+            ds.Tables.Add(t);
+
+            //add a column to table for each public property on T
+            foreach (var propInfo in elementType.GetProperties())
+            {
+                Type ColType = Nullable.GetUnderlyingType(propInfo.PropertyType) ?? propInfo.PropertyType;
+
+                t.Columns.Add(propInfo.Name, ColType);
+            }
+
+            //go through each property on T and add each value to the table
+            foreach (T item in list)
+            {
+                DataRow row = t.NewRow();
+
+                foreach (var propInfo in elementType.GetProperties())
+                {
+                    row[propInfo.Name] = propInfo.GetValue(item, null) ?? DBNull.Value;
+                }
+
+                t.Rows.Add(row);
+            }
+
+            return ds;
+        }
+
+        public static DataTable ConvertToDataTable<T>(IList<T> data)
+        {
+            PropertyDescriptorCollection properties =
+               TypeDescriptor.GetProperties(typeof(T));
+            DataTable table = new DataTable();
+            foreach (PropertyDescriptor prop in properties)
+                table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
+            foreach (T item in data)
+            {
+                DataRow row = table.NewRow();
+                foreach (PropertyDescriptor prop in properties)
+                    row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
+                table.Rows.Add(row);
+            }
+            return table;
+        }
+        #endregion
         #region Excel 유틸리티
         /// <summary>
         /// 리스트의 값을 엑셀로 옮기는 메서드

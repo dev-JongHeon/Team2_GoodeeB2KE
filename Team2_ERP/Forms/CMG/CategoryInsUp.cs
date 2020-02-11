@@ -80,26 +80,56 @@ namespace Team2_ERP
         {
             if (mode.Equals("Insert"))
             {
-                if(txtName.Text.Length > 0 && cboContext.SelectedValue != null)
+                if(rdoResource.Checked)
                 {
-                    InsertCategory();
-                    DialogResult = MessageBox.Show(Properties.Settings.Default.AddDone, Properties.Settings.Default.AddDone, MessageBoxButtons.OK);
+                    if (txtName.Text.Length > 0 && cboContext.SelectedValue != null)
+                    {
+                        InsertCategory();
+                        DialogResult = MessageBox.Show(Properties.Settings.Default.AddDone, Properties.Settings.Default.AddDone, MessageBoxButtons.OK);
+                    }
+                    else
+                    {
+                        MessageBox.Show(Properties.Settings.Default.AddError, Properties.Settings.Default.AddError);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show(Properties.Settings.Default.AddError, Properties.Settings.Default.AddError);
+                    if (txtName.Text.Length > 0 && txtContext.Text.Length > 0)
+                    {
+                        InsertCategory();
+                        DialogResult = MessageBox.Show(Properties.Settings.Default.AddDone, Properties.Settings.Default.AddDone, MessageBoxButtons.OK);
+                    }
+                    else
+                    {
+                        MessageBox.Show(Properties.Settings.Default.AddError, Properties.Settings.Default.AddError);
+                    }
                 }
             }
             else
             {
-                if(txtName.Text.Length > 0 && txtContext.Text.Length > 0)
+                if(rdoResource.Checked)
                 {
-                    UpdateCategory();
-                    DialogResult = MessageBox.Show(Properties.Settings.Default.ModDone, Properties.Settings.Default.ModDone, MessageBoxButtons.OK);
+                    if(txtName.Text.Length > 0 && cboContext.SelectedValue != null)
+                    {
+                        UpdateCategory();
+                        DialogResult = MessageBox.Show(Properties.Settings.Default.ModDone, Properties.Settings.Default.ModDone, MessageBoxButtons.OK);
+                    }
+                    else
+                    {
+                        MessageBox.Show(Properties.Settings.Default.ModError, Properties.Settings.Default.ModError);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show(Properties.Settings.Default.ModError, Properties.Settings.Default.ModError);
+                    if (txtName.Text.Length > 0 && txtContext.Text.Length > 0)
+                    {
+                        UpdateCategory();
+                        DialogResult = MessageBox.Show(Properties.Settings.Default.ModDone, Properties.Settings.Default.ModDone, MessageBoxButtons.OK);
+                    }
+                    else
+                    {
+                        MessageBox.Show(Properties.Settings.Default.ModError, Properties.Settings.Default.ModError);
+                    }
                 }
             }
         }
@@ -111,13 +141,21 @@ namespace Team2_ERP
                 if (code.Substring(0, 2).Equals("CM"))
                 {
                     rdoSemiProduct.Enabled = false;
+                    rdoProduct.Enabled = false;
                     rdoResource.Checked = true;
                     InitCombo();
                 }
                 else if(code.Substring(0, 2).Equals("CS"))
                 {
                     rdoResource.Enabled = false;
+                    rdoProduct.Enabled = false;
                     rdoSemiProduct.Checked = true;
+                }
+                else if(code.Substring(0, 2).Equals("CP"))
+                {
+                    rdoProduct.Checked = true;
+                    rdoResource.Enabled = false;
+                    rdoSemiProduct.Enabled = false;
                 }
             }
             else

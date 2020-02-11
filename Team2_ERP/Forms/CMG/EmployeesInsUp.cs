@@ -19,6 +19,37 @@ namespace Team2_ERP
         string mode = string.Empty;
         int eCode = 0;
 
+        public Dictionary<string, string> menulist = new Dictionary<string, string>
+        {
+            {"UserAuth","사용자권한설정" },
+            {"Work","작업지시현황" },
+            {"Produce","생산실적현황" },
+            {"DowntimeType","비가동유형" },
+            {"Downtime","비가동현황" },
+            {"DefectiveType","불량유형" },
+            {"DefectiveHandle","불량처리유형" },
+            {"Defective","불량처리현황" },
+            {"StockStatus","재고현황" },
+            {"InOutList_MaterialWarehouse","자재수불현황" },
+            {"InOutList_SemiProductWarehouse","반제품수불현황" },
+            {"BaljuList","발주현황" },
+            {"BaljuList_Completed","발주완료현황" },
+            {"OrderMainForm","주문현황" },
+            {"OrderCompleteForm","주문처리완료현황" },
+            {"ShipmentMainForm","출하현황" },
+            {"ShipmentCompleteForm","출하완료현황" },
+            {"SalesMainForm","매출현황" },
+            {"Department","부서관리" },
+            {"Employees","사원관리" },
+            {"Company","거래처관리" },
+            {"Customer","고객관리" },
+            {"Category","카테고리관리" },
+            {"Factory","공장&공정관리" },
+            {"Resource","원자재관리" },
+            {"Warehouse","창고관리" },
+            {"BOM","BOM관리" },
+        };
+
         public EmployeesInsUp(EditMode editMode, EmployeeVO item)
         {
             InitializeComponent();
@@ -36,7 +67,7 @@ namespace Team2_ERP
                 pbxTitle.Image = Properties.Resources.Edit_32x32;
                 eCode = item.Employees_ID;
                 txtEmployeesName.Text = item.Employees_Name;
-                txtEmployeesPhoneNumber.Text = item.Employees_Phone;
+                maskedEmployeesPhoneNumber.Text = item.Employees_Phone;
                 dtpEmployeesHireDate.Value = Convert.ToDateTime(item.Employees_Hiredate);
             }
         }
@@ -77,7 +108,7 @@ namespace Team2_ERP
                 CodeTable_CodeID = cboEmployeesCategory.SelectedValue.ToString(),
                 Employees_Hiredate = dtpEmployeesHireDate.Value.ToShortDateString(),
                 Employees_PWD = txtEmployeesPassword.Text,
-                Employees_Phone = txtEmployeesPhoneNumber.Text,
+                Employees_Phone = maskedEmployeesPhoneNumber.Text,
                 Employees_Birth = dtpEmployeesBirthDay.Value.ToShortDateString()
             };
 
@@ -93,7 +124,7 @@ namespace Team2_ERP
                 CodeTable_CodeID = cboEmployeesCategory.SelectedValue.ToString(),
                 Employees_Resigndate = dtpEmployeesResignDate.Value.ToShortDateString(),
                 Employees_PWD = txtEmployeesPassword.Text,
-                Employees_Phone = txtEmployeesPhoneNumber.Text,
+                Employees_Phone = maskedEmployeesPhoneNumber.Text,
                 Employees_Birth = dtpEmployeesBirthDay.Value.ToShortDateString(),
                 Employees_ID = eCode
             };
@@ -106,7 +137,7 @@ namespace Team2_ERP
         {
             if (mode.Equals("Insert"))
             {
-                if(txtEmployeesName.Text.Length > 0 && cboEmployeesCategory.SelectedValue != null && dtpEmployeesHireDate.Value != null && txtEmployeesPassword.Text.Length > 0 && txtEmployeesPhoneNumber.Text.Length > 0 && dtpEmployeesBirthDay.Value != null)
+                if(txtEmployeesName.Text.Length > 0 && cboEmployeesCategory.SelectedValue != null && dtpEmployeesHireDate.Value != null && txtEmployeesPassword.Text.Length > 0 && maskedEmployeesPhoneNumber.Text.Replace("_", "").Replace("-", "").Trim().Length < 10 && dtpEmployeesBirthDay.Value != null)
                 {
                     InsertEmployee();
                     DialogResult = MessageBox.Show(Properties.Settings.Default.AddDone, Properties.Settings.Default.AddDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -118,7 +149,7 @@ namespace Team2_ERP
             }
             else
             {
-                if (txtEmployeesName.Text.Length > 0 && cboEmployeesCategory.SelectedValue != null && dtpEmployeesResignDate.Value != null && txtEmployeesPassword.Text.Length > 0 && txtEmployeesPhoneNumber.Text.Length > 0 && dtpEmployeesBirthDay.Value != null)
+                if (txtEmployeesName.Text.Length > 0 && cboEmployeesCategory.SelectedValue != null && dtpEmployeesResignDate.Value != null && txtEmployeesPassword.Text.Length > 0 && maskedEmployeesPhoneNumber.Text.Replace("_", "").Replace("-", "").Trim().Length < 10 && dtpEmployeesBirthDay.Value != null)
                 {
                     UpdateEmployee();
                     DialogResult = MessageBox.Show(Properties.Settings.Default.ModDone, Properties.Settings.Default.ModDone, MessageBoxButtons.OK, MessageBoxIcon.Information);

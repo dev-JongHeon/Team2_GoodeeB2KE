@@ -29,16 +29,18 @@ namespace Team2_ERP
             if(editMode == EditMode.Update)
             {
                 mode = "Update";
+                lblName.Text = "창고 수정";
                 pbxTitle.Image = Properties.Resources.Edit_32x32;
 
                 code = item.Warehouse_ID;
                 txtWarehouseName.Text = item.Warehouse_Name;
-                txtWarehouseNumber.Text = item.Warehouse_Number;
-                txtWarehouseFaxNumber.Text = item.Warehouse_Fax;
+                maskedWarehouseNumber.Text = item.Warehouse_Number;
+                maskedWarehouseFaxNumber.Text = item.Warehouse_Fax;
             }
             else
             {
                 mode = "Insert";
+                lblName.Text = "창고 등록";
                 pbxTitle.Image = Properties.Resources.AddFile_32x32;
             }
         }
@@ -56,10 +58,20 @@ namespace Team2_ERP
                 {
                     Warehouse_Name = txtWarehouseName.Text,
                     Warehouse_Division = Convert.ToInt32(cboWarehouseDivision.SelectedValue),
-                    Warehouse_Number = txtWarehouseNumber.Text,
-                    Warehouse_Fax = txtWarehouseFaxNumber.Text,
+                    Warehouse_Number = maskedWarehouseNumber.Text,
+                    Warehouse_Fax = maskedWarehouseFaxNumber.Text,
                     Warehouse_Address = addrWarehouse.Address1 + "　" + addrWarehouse.Address2
                 };
+
+                if(item.Warehouse_Number.Replace("-", "").Trim().Length < 10)
+                {
+                    item.Warehouse_Number = null;
+                }
+
+                if(item.Warehouse_Fax.Replace("-", "").Trim().Length < 10)
+                {
+                    item.Warehouse_Fax = null;
+                }
 
                 StandardService service = new StandardService();
                 service.InsertWarehouse(item);
@@ -75,10 +87,20 @@ namespace Team2_ERP
                     Warehouse_ID = code,
                     Warehouse_Division = Convert.ToInt32(cboWarehouseDivision.SelectedValue),
                     Warehouse_Name = txtWarehouseName.Text,
-                    Warehouse_Number = txtWarehouseNumber.Text,
-                    Warehouse_Fax = txtWarehouseFaxNumber.Text,
+                    Warehouse_Number = maskedWarehouseNumber.Text,
+                    Warehouse_Fax = maskedWarehouseNumber.Text,
                     Warehouse_Address = addrWarehouse.Address1 + "　" + addrWarehouse.Address2
                 };
+
+                if (item.Warehouse_Number.Replace("-", "").Trim().Length < 10)
+                {
+                    item.Warehouse_Number = null;
+                }
+
+                if (item.Warehouse_Fax.Replace("-", "").Trim().Length < 10)
+                {
+                    item.Warehouse_Fax = null;
+                }
 
                 StandardService service = new StandardService();
                 service.UpdateWarehouse(item);

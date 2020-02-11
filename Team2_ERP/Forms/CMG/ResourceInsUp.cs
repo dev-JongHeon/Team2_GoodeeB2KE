@@ -67,6 +67,8 @@ namespace Team2_ERP
             UtilClass.ComboBinding(cboResourceWarehouse, warehouseList, "선택");
             List<ComboItemVO> meterialList = (from item in service.GetComboMeterial() where item.ID.Contains("M") select item).ToList();
             UtilClass.ComboBinding(cboResourceCategory, meterialList, "선택");
+            List<ComboItemVO> companyList = service.GetComboCompany();
+            UtilClass.ComboBinding(cboCompany, companyList, "선택");
         }
 
         private void InsertResource()
@@ -78,7 +80,8 @@ namespace Team2_ERP
                 Product_Price = Convert.ToInt32(txtResourceMoney.Text),
                 Product_Qty = Convert.ToInt32(numResourceNum.Value),
                 Product_Safety = Convert.ToInt32(numSafety.Value),
-                Product_Category = cboResourceCategory.SelectedValue.ToString()
+                Product_Category = cboResourceCategory.SelectedValue.ToString(),
+                Company_ID = Convert.ToInt32(cboCompany.SelectedValue)
             };
 
             StandardService service = new StandardService();
@@ -95,7 +98,8 @@ namespace Team2_ERP
                 Product_Price = Convert.ToInt32(txtResourceMoney.Text),
                 Product_Qty = Convert.ToInt32(numResourceNum.Value),
                 Product_Safety = Convert.ToInt32(numSafety.Value),
-                Product_Category = cboResourceCategory.SelectedValue.ToString()
+                Product_Category = cboResourceCategory.SelectedValue.ToString(),
+                Company_ID = Convert.ToInt32(cboCompany.SelectedValue)
             };
 
             StandardService service = new StandardService();
