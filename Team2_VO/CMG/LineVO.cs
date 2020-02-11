@@ -14,5 +14,6 @@ namespace Team2_VO
         public string Factory_Name { get; set; }
         public string Line_Downtome_Name { get; set; }
         public bool Line_DeletedYN { get; set; }
+        public string Line_CodeID { get; set; }
     }
 }

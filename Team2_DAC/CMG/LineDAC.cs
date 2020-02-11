@@ -19,7 +19,7 @@ namespace Team2_DAC
             conn.ConnectionString = this.ConnectionString;
         }
 
-        public List<LineVO> GetAllLine()
+        public List<LineVO> GetAllLine(int code)
         {
             string sql = "CMG_GetAllLine";
 
@@ -29,6 +29,7 @@ namespace Team2_DAC
                 {
                     conn.Open();
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Factory_ID", code);
                     List<LineVO> list = Helper.DataReaderMapToList<LineVO>(cmd.ExecuteReader());
                     return list;
                 }
@@ -48,7 +49,7 @@ namespace Team2_DAC
 
             try
             {
-                string sql = "GetInfo";
+                string sql = "KJH_GetInfo";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
@@ -71,9 +72,38 @@ namespace Team2_DAC
             }
         }
 
+        public List<ComboItemVO> GetComboCategory()
+        {
+            List<ComboItemVO> list = null;
+
+            try
+            {
+                string sql = "CMG_GetComboCategory";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@div", "ProductCategory");
+
+                    conn.Open();
+                    list = Helper.DataReaderMapToList<ComboItemVO>(cmd.ExecuteReader());
+
+                    return list;
+                }
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         public bool InsertLine(LineVO item)
         {
-            string sql = "insert into Line(Line_Name, Factory_ID) values (@Line_Name, @Factory_ID) ";
+            string sql = "insert into Line(Line_Name, Factory_ID, Line_CodeID) values (@Line_Name, @Factory_ID, @Line_CodeID) ";
 
             try
             {
@@ -81,6 +111,7 @@ namespace Team2_DAC
                 {
                     cmd.Parameters.AddWithValue("@Line_Name", item.Line_Name);
                     cmd.Parameters.AddWithValue("@Factory_ID", item.Factory_ID);
+                    cmd.Parameters.AddWithValue("@Line_CodeID", item.Line_CodeID);
 
                     conn.Open();
                     var rowsAffected = cmd.ExecuteNonQuery();
@@ -99,7 +130,7 @@ namespace Team2_DAC
 
         public bool UpdateLine(LineVO item)
         {
-            string sql = "Update Line set Line_Name = @Line_Name, Factory_ID = @Factory_ID where Line_ID = @Line_ID ";
+            string sql = "Update Line set Line_Name = @Line_Name, Factory_ID = @Factory_ID, Line_CodeID = @Line_CodeID where Line_ID = @Line_ID ";
 
             try
             {
@@ -107,6 +138,7 @@ namespace Team2_DAC
                 {
                     cmd.Parameters.AddWithValue("@Line_Name", item.Line_Name);
                     cmd.Parameters.AddWithValue("@Factory_ID", item.Factory_ID);
+                    cmd.Parameters.AddWithValue("@Line_CodeID", item.Line_CodeID);
                     cmd.Parameters.AddWithValue("@Line_ID", item.Line_ID);
 
                     conn.Open();

@@ -47,6 +47,8 @@ namespace Team2_ERP
             StandardService service = new StandardService();
             List<ComboItemVO> factoryList = service.GetComboFactory();
             UtilClass.ComboBinding(cboFactoryName, factoryList, "선택");
+            List<ComboItemVO> categoryList = service.GetComboCategory();
+            UtilClass.ComboBinding(cboCategory, categoryList, "선택");
         }
 
         private void InsertLine()
@@ -54,7 +56,8 @@ namespace Team2_ERP
             LineVO item = new LineVO
             {
                 Line_Name = txtLineName.Text,
-                Factory_ID = Convert.ToInt32(cboFactoryName.SelectedValue)
+                Factory_ID = Convert.ToInt32(cboFactoryName.SelectedValue),
+                Line_CodeID = cboCategory.SelectedValue.ToString()
             };
 
             StandardService service = new StandardService();
@@ -67,7 +70,8 @@ namespace Team2_ERP
             {
                 Line_ID = code,
                 Line_Name = txtLineName.Text,
-                Factory_ID = Convert.ToInt32(cboFactoryName.SelectedValue)
+                Factory_ID = Convert.ToInt32(cboFactoryName.SelectedValue),
+                Line_CodeID = cboCategory.SelectedValue.ToString()
             };
 
             StandardService service = new StandardService();
