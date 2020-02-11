@@ -73,18 +73,6 @@ namespace Team2_ERP.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point LoginStartLocation {
-            get {
-                return ((global::System.Drawing.Point)(this["LoginStartLocation"]));
-            }
-            set {
-                this["LoginStartLocation"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("성공적으로 암호가 변경되었습니다.")]
         public string PwdSucess {
             get {

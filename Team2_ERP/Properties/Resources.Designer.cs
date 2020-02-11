@@ -141,6 +141,24 @@ namespace Team2_ERP.Properties {
         }
         
         /// <summary>
+        ///   등록 완료과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string AddDone {
+            get {
+                return ResourceManager.GetString("AddDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   등록 실패과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string AddError {
+            get {
+                return ResourceManager.GetString("AddError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
         internal static System.Drawing.Bitmap AddFile_32x32 {
@@ -157,6 +175,24 @@ namespace Team2_ERP.Properties {
             get {
                 object obj = ResourceManager.GetObject("ajax_loader_mini", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   권한설정 완료과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string AuthDone {
+            get {
+                return ResourceManager.GetString("AuthDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   권한설정 실패과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string AuthError {
+            get {
+                return ResourceManager.GetString("AuthError", resourceCulture);
             }
         }
         
@@ -211,6 +247,24 @@ namespace Team2_ERP.Properties {
         }
         
         /// <summary>
+        ///   시작날짜가 종료날짜보다 큽니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string CalendarError {
+            get {
+                return ResourceManager.GetString("CalendarError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   최대검색가능기간은 1년입니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string CalendarMaxError {
+            get {
+                return ResourceManager.GetString("CalendarMaxError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
         internal static System.Drawing.Bitmap chat_26_icon_icons_com_65943 {
@@ -251,6 +305,51 @@ namespace Team2_ERP.Properties {
         }
         
         /// <summary>
+        ///   삭제할 불량처리유형을 선택하지 않으셨습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string DelDefectiveHandleError {
+            get {
+                return ResourceManager.GetString("DelDefectiveHandleError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   삭제할 불량유형을 선택하지 않으셨습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string DelDefectiveTypeError {
+            get {
+                return ResourceManager.GetString("DelDefectiveTypeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   삭제할 비가동유형을 선택하지 않으셨습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string DelDowntimeTypeError {
+            get {
+                return ResourceManager.GetString("DelDowntimeTypeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   삭제 완료과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string DeleteDone {
+            get {
+                return ResourceManager.GetString("DeleteDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   삭제 실패과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string DeleteError {
+            get {
+                return ResourceManager.GetString("DeleteError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
         internal static System.Drawing.Bitmap DeleteList_32x32 {
@@ -277,6 +376,15 @@ namespace Team2_ERP.Properties {
             get {
                 object obj = ResourceManager.GetObject("Edit_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   엑셀로 내보낼 데이터가 없습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string ExcelError {
+            get {
+                return ResourceManager.GetString("ExcelError", resourceCulture);
             }
         }
         
@@ -331,6 +439,24 @@ namespace Team2_ERP.Properties {
         }
         
         /// <summary>
+        ///   정말로 삭제하시겠습니까?과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string IsDelete {
+            get {
+                return ResourceManager.GetString("IsDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   필수항목을 입력하지 않으셨습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string isEssential {
+            get {
+                return ResourceManager.GetString("isEssential", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
         internal static System.Drawing.Bitmap left_arrow__2_ {
@@ -347,6 +473,35 @@ namespace Team2_ERP.Properties {
             get {
                 object obj = ResourceManager.GetObject("loading", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   사원번호가 비어있습니다.
+        ///사원을 선택하여주세요.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string LoginEmpIDError {
+            get {
+                return ResourceManager.GetString("LoginEmpIDError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   사원명이 비어있습니다.
+        ///사원을 선택하여주세요.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string LoginEmpNameError {
+            get {
+                return ResourceManager.GetString("LoginEmpNameError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   입력한 비밀번호가 잘못되었습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string LoginPwdError {
+            get {
+                return ResourceManager.GetString("LoginPwdError", resourceCulture);
             }
         }
         
@@ -391,6 +546,114 @@ namespace Team2_ERP.Properties {
         }
         
         /// <summary>
+        ///   권한설정할 사원을 선택하지 않으셨습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string ModAuthError {
+            get {
+                return ResourceManager.GetString("ModAuthError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   수정할 불량처리유형을 선택하지 않으셨습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string ModDefectiveHandleError {
+            get {
+                return ResourceManager.GetString("ModDefectiveHandleError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   수정할 불량유형을 선택하지 않으셨습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string ModDefectiveTypeError {
+            get {
+                return ResourceManager.GetString("ModDefectiveTypeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   수정 완료과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string ModDone {
+            get {
+                return ResourceManager.GetString("ModDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   수정할 비가동유형을 선택하지 않으셨습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string ModDowntimeTypeError {
+            get {
+                return ResourceManager.GetString("ModDowntimeTypeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   수정 실패과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string ModError {
+            get {
+                return ResourceManager.GetString("ModError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   삭제과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgBoxTitleDelete {
+            get {
+                return ResourceManager.GetString("MsgBoxTitleDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   오류과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgBoxTitleError {
+            get {
+                return ResourceManager.GetString("MsgBoxTitleError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   종료과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgBoxTitleExit {
+            get {
+                return ResourceManager.GetString("MsgBoxTitleExit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   실패과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgBoxTitleFail {
+            get {
+                return ResourceManager.GetString("MsgBoxTitleFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   완료과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgBoxTitleSuccess {
+            get {
+                return ResourceManager.GetString("MsgBoxTitleSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   경고과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgBoxTitleWarn {
+            get {
+                return ResourceManager.GetString("MsgBoxTitleWarn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
         internal static System.Drawing.Bitmap NewProducts_32x32 {
@@ -417,6 +680,15 @@ namespace Team2_ERP.Properties {
             get {
                 object obj = ResourceManager.GetObject("Next_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   기간을 선택하셔야 합니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string PeriodError {
+            get {
+                return ResourceManager.GetString("PeriodError", resourceCulture);
             }
         }
         
@@ -461,6 +733,78 @@ namespace Team2_ERP.Properties {
         }
         
         /// <summary>
+        ///   프로그램을 종료하시겠습니까?과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string ProgramExit {
+            get {
+                return ResourceManager.GetString("ProgramExit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   입력한 비밀번호와 다릅니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string PwdErrorValid {
+            get {
+                return ResourceManager.GetString("PwdErrorValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   이전 암호가 정확하지 않습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string PwdFail {
+            get {
+                return ResourceManager.GetString("PwdFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   새로운 암호를 입력하지 않으셨습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string PwdNoInsertNew {
+            get {
+                return ResourceManager.GetString("PwdNoInsertNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   이전 암호를 입력하지 않으셨습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string PwdNoInsertPrev {
+            get {
+                return ResourceManager.GetString("PwdNoInsertPrev", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   새로운 암호 확인을 입력하지 않으셨습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string PwdNoInsertValid {
+            get {
+                return ResourceManager.GetString("PwdNoInsertValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   성공적으로 암호가 변경되었습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string PwdSucess {
+            get {
+                return ResourceManager.GetString("PwdSucess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   새로고침 완료과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string RefreshDone {
+            get {
+                return ResourceManager.GetString("RefreshDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
         internal static System.Drawing.Bitmap Report_32x32 {
@@ -491,6 +835,15 @@ namespace Team2_ERP.Properties {
         }
         
         /// <summary>
+        ///   검색 완료과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string SearchDone {
+            get {
+                return ResourceManager.GetString("SearchDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
         internal static System.Drawing.Bitmap sgicon_loading15 {
@@ -507,6 +860,15 @@ namespace Team2_ERP.Properties {
             get {
                 object obj = ResourceManager.GetObject("ViewSetting_16x16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   환영합니다!과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string Welcome {
+            get {
+                return ResourceManager.GetString("Welcome", resourceCulture);
             }
         }
         

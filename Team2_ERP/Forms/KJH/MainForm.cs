@@ -29,7 +29,7 @@ namespace Team2_ERP
         public EventHandler M_Print_Printer;
         int tindex;
         bool isLogout = false;
-        Graphics g;
+        
         LoginVO logininfo = new LoginVO();
 
         public LoginVO Logininfo { get => logininfo; set => logininfo = value; }
@@ -89,7 +89,7 @@ namespace Team2_ERP
         {
             if (!isLogout)
             {
-                if (MessageBox.Show(Settings.Default.ProgramExit, Settings.Default.MsgBoxTitleExit, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                if (MessageBox.Show(Resources.ProgramExit, Resources.MsgBoxTitleExit, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 {
                     e.Cancel = true;
                 }
@@ -112,7 +112,7 @@ namespace Team2_ERP
                 }
             }
             OpenTabForm<MainTab>("메인화면");
-            NoticeMessage = Settings.Default.Welcome;
+            NoticeMessage = Resources.Welcome;
         }
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)

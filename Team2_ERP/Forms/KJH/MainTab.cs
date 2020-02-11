@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Team2_ERP.Properties;
 
 namespace Team2_ERP
 {
@@ -21,7 +22,7 @@ namespace Team2_ERP
         private void MainTab_Activated(object sender, EventArgs e)
         {
             frm = (MainForm)this.MdiParent;
-            frm.NoticeMessage = Properties.Settings.Default.Welcome;
+            frm.NoticeMessage = Resources.Welcome;
         }
     }
 }

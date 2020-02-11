@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Team2_ERP.Properties;
 using Team2_VO;
 
 namespace Team2_ERP
@@ -58,6 +59,7 @@ namespace Team2_ERP
             try
             {
                 list = service.GetInfo("Employee");
+                dgvEmpList.DataSource = null;
                 dgvAuthList.DataSource = null;
                 if (!isFirst)
                 {
@@ -71,7 +73,7 @@ namespace Team2_ERP
                 MessageBox.Show(err.Message);
             }
             ClearSearchOption();
-            frm.NoticeMessage = Properties.Settings.Default.RefreshDone;
+            frm.NoticeMessage = Resources.RefreshDone;
         }
 
         private void ClearSearchOption()
@@ -92,17 +94,17 @@ namespace Team2_ERP
                 AuthService service = new AuthService();
                 if (service.UpdateAuth(uid, authlist))
                 {
-                    frm.NoticeMessage = Properties.Settings.Default.AuthDone;
+                    frm.NoticeMessage = Resources.AuthDone;
                 }
                 else
                 {
-                    frm.NoticeMessage = Properties.Settings.Default.AuthError;
+                    frm.NoticeMessage = Resources.AuthError;
                 }
                 RefreshClicked();
             }
             else
             {
-                frm.NoticeMessage = Properties.Settings.Default.ModAuthError;
+                frm.NoticeMessage = Resources.ModAuthError;
             }
         }
 
@@ -121,7 +123,7 @@ namespace Team2_ERP
                 dgvAuthList.DataSource = service.GetAuthByID(id);
                 dgvAuthList.ClearSelection();
                 dgvAuthList.CurrentCell = null;
-                frm.NoticeMessage = Properties.Settings.Default.SearchDone;
+                frm.NoticeMessage = Resources.SearchDone;
             }
             else
             {

@@ -14,9 +14,6 @@
     <Setting Name="MsgBoxTitleWarn" Type="System.String" Scope="User">
       <Value Profile="(Default)">경고</Value>
     </Setting>
-    <Setting Name="LoginStartLocation" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">0, 0</Value>
-    </Setting>
     <Setting Name="PwdSucess" Type="System.String" Scope="User">
       <Value Profile="(Default)">성공적으로 암호가 변경되었습니다.</Value>
     </Setting>

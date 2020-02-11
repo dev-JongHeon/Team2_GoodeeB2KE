@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using Team2_ERP.Properties;
 using Team2_VO;
 
 namespace Team2_ERP
@@ -59,22 +60,22 @@ namespace Team2_ERP
                     {
                         if (vo.DownID != "0")
                         {
-                            MessageBox.Show(Properties.Settings.Default.ModDone, Properties.Settings.Default.ModDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(Resources.ModDone, Resources.ModDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
-                            MessageBox.Show(Properties.Settings.Default.AddDone, Properties.Settings.Default.AddDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(Resources.AddDone, Resources.AddDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                     else
                     {
                         if (vo.DownID != "0")
                         {
-                            MessageBox.Show(Properties.Settings.Default.ModError, Properties.Settings.Default.ModError, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(Resources.ModError, Resources.ModError, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
-                            MessageBox.Show(Properties.Settings.Default.AddError, Properties.Settings.Default.AddError, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(Resources.AddError, Resources.AddError, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                 }
@@ -85,7 +86,7 @@ namespace Team2_ERP
             }
             else
             {
-                MessageBox.Show(Properties.Settings.Default.isEssential, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Resources.isEssential, Resources.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }
