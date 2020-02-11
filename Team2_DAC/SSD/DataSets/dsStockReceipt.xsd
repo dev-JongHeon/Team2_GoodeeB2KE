@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsStockReceipt" targetNamespace="http://tempuri.org/dsStockReceipt.xsd" xmlns:mstns="http://tempuri.org/dsStockReceipt.xsd" xmlns="http://tempuri.org/dsStockReceipt.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsStockReceipt" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsStockReceipt" msprop:Generator_UserDSName="dsStockReceipt">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dtStockReceipt" msprop:Generator_TableClassName="dtStockReceiptDataTable" msprop:Generator_TableVarName="tabledtStockReceipt" msprop:Generator_TablePropName="dtStockReceipt" msprop:Generator_RowDeletingName="dtStockReceiptRowDeleting" msprop:Generator_RowChangingName="dtStockReceiptRowChanging" msprop:Generator_RowEvHandlerName="dtStockReceiptRowChangeEventHandler" msprop:Generator_RowDeletedName="dtStockReceiptRowDeleted" msprop:Generator_UserTableName="dtStockReceipt" msprop:Generator_RowChangedName="dtStockReceiptRowChanged" msprop:Generator_RowEvArgName="dtStockReceiptRowChangeEvent" msprop:Generator_RowClassName="dtStockReceiptRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DataColumn1" msprop:Generator_ColumnVarNameInTable="columnDataColumn1" msprop:Generator_ColumnPropNameInRow="DataColumn1" msprop:Generator_ColumnPropNameInTable="DataColumn1Column" msprop:Generator_UserColumnName="DataColumn1" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
