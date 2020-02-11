@@ -316,6 +316,12 @@ namespace Team2_POP
         //생산시작
         private void btnProduceStart_Click(object sender, EventArgs e)
         {
+            if (dgvPerformance.SelectedRows.Count < 1)
+            {
+                CustomMessageBox.ShowDialog("데이터 오류", "생산실적을 선택해주세요.", MessageBoxIcon.Warning);
+                return;
+            }
+
             // 처음 접속인 경우
             if (client == null)
             {
@@ -330,6 +336,10 @@ namespace Team2_POP
                 client = null;
                 btnProduceStart.PerformClick();
             }
+
+            dgvWork.DataSource = null;
+            dgvProduce.DataSource = null;
+            dgvPerformance.DataSource = null;
         }
 
         // 생산을 시작하는 경우
@@ -376,7 +386,6 @@ namespace Team2_POP
                     {
                         CustomMessageBox.ShowDialog("접수 성공", "생산을 시작합니다.", MessageBoxIcon.Question);
                         pFrm = new ProducingForm();
-                        //client.Start();
                         pFrm.Processing = client.Start;
                         pFrm.ShowDialog();
                     }
@@ -390,6 +399,7 @@ namespace Team2_POP
             }
             catch (Exception ex)
             {
+                WriteLog(ex);
                 CustomMessageBox.ShowDialog("오류", ex.Message, MessageBoxIcon.Error);
             }
         }
@@ -407,34 +417,42 @@ namespace Team2_POP
             try
             {
                 ReceiveEventArgs e = (ReceiveEventArgs)re;
-                
+
                 if (e.IsCompleted)
                 {
                     CustomMessageBox.ShowDialog("성공", e.Message, MessageBoxIcon.Information);
+
+                    // 서버 접수완료인 경우는 생산중 창을 닫지 않는다.
+                    if (e.Message != "서버 : 접수 완료")
+                    {
+                        if (!pFrm.IsDisposed)
+                            pFrm.Invoke(new CloseDelegate(pFrm.Close));
+                    }
                 }
                 else
                 {
                     CustomMessageBox.ShowDialog("실패", e.Message, MessageBoxIcon.Error);
+                    if(!pFrm.IsDisposed)
+                     pFrm.Invoke(new CloseDelegate(pFrm.Close));
                 }
 
-                client = null;
-                // 생산대기중 창을 닫음
-                pFrm.Invoke(new CloseDelegate(pFrm.Close));
-                dgvWork.DataSource = null;
-                dgvProduce.DataSource = null;
-                dgvPerformance.DataSource = null;
-
+                // 클라이언트 부분을 해제함
+                //client = null;
             }
             catch (Exception ex)
             {
+                WriteLog(ex);
                 CustomMessageBox.ShowDialog("오류", ex.Message, MessageBoxIcon.Error);
                 if (pFrm != null)
+                {
                     pFrm.Invoke(new CloseDelegate(pFrm.Close));
+                }
             }
         }
 
 
 
+        #region 작업자 불량유형
         // 작업자 설정버튼을 누른 경우
         private void btnWorker_Click(object sender, EventArgs e)
         {
@@ -451,7 +469,7 @@ namespace Team2_POP
             if (bResult)
                 CustomMessageBox.ShowDialog("작업자 설정 성공", $"{produceID}의 \n작업자 : {lblWorkerName.Text}에게 할당했습니다.", MessageBoxIcon.Question);
             else
-                CustomMessageBox.ShowDialog("작업자 설정 실패", $"{produceID}의 작업 할당을 실패했습니다.", MessageBoxIcon.Error);
+                CustomMessageBox.ShowDialog("작업자 설정 실패", $"{produceID}의 생산되지 않은 작업이 \n이미 할당되었습니다.", MessageBoxIcon.Error);
         }
 
 
@@ -478,9 +496,11 @@ namespace Team2_POP
             }
             catch (Exception ex)
             {
+                WriteLog(ex);
                 CustomMessageBox.ShowDialog(Resources.MsgDefectiveResultFailHeader, ex.Message, MessageBoxIcon.Error);
             }
         }
+        #endregion
 
         #endregion
 
@@ -555,6 +575,7 @@ namespace Team2_POP
             }
             catch (Exception ex)
             {
+                WriteLog(ex);
                 CustomMessageBox.ShowDialog("오류", ex.Message, MessageBoxIcon.Error);
             }
         }
@@ -606,7 +627,8 @@ namespace Team2_POP
             }
             catch (Exception ex)
             {
-                CustomMessageBox.ShowDialog("에러", ex.Message, MessageBoxIcon.Error);
+                WriteLog(ex);
+                CustomMessageBox.ShowDialog("에러", ex.Message, MessageBoxIcon.Error);                
             }
         }
 
@@ -639,13 +661,11 @@ namespace Team2_POP
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.No;
-            this.Close();
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
-            this.Close();
         }
 
 
@@ -664,20 +684,25 @@ namespace Team2_POP
         {
             try
             {
-                this.Invoke(new Action(delegate ()
-                { lblTime.Text = DateTime.Now.ToString(); }
-                ));
+                if (!this.IsDisposed && !timer.Enabled)
+                {
+                    this.Invoke(new Action(delegate ()
+                    { lblTime.Text = DateTime.Now.ToString(); }
+                    ));
+                }
             }
             catch (Exception ex)
             {
                 // 시간관련하여 컨트롤에 에러가 발생한 경우 
-                CustomMessageBox.ShowDialog("에러", ex.Message, MessageBoxIcon.Error);
+                //CustomMessageBox.ShowDialog("에러", ex.Message, MessageBoxIcon.Error);
                 if (timer.Enabled)
                 {
                     timer.Stop();
                     timer.Enabled = false;
                     timer.Close();
                 }
+
+                WriteLog(ex);
             }
         }
 
@@ -685,13 +710,14 @@ namespace Team2_POP
         {
             // 타이머를 종료함
             timer.Stop();
+            timer.Enabled = false;
+            timer.Close();
             timer.Dispose();
             if (client != null)
             {
                 // 서버접속을 종료함
                 client.DisConnected();
             }
-            e.Cancel = false;
         }
 
 
@@ -702,7 +728,7 @@ namespace Team2_POP
         //===================
         private void WriteLog(Exception ex)
         {
-
+            WriteLog(ex);
         }
 
         private void btnWorkStart_Click(object sender, EventArgs e)

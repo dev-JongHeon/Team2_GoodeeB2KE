@@ -99,13 +99,11 @@ namespace Team2_POP
         private void btnOK_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
-            Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
-            Close();
+            DialogResult = DialogResult.Cancel;            
         }
     }
 }

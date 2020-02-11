@@ -5,7 +5,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Team2_DAC.SSD.DataSets;
 using Team2_VO;
 
 namespace Team2_DAC
@@ -105,7 +104,7 @@ namespace Team2_DAC
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "UpdateBalju_Processed";
+                    cmd.CommandText = "SSD_UpdateBalju_Processed";
                     cmd.Parameters.AddWithValue("@Balju_ID", balju_ID);
                     conn.Open();
                     check = cmd.ExecuteNonQuery();
@@ -134,7 +133,7 @@ namespace Team2_DAC
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "DeleteBalju";
+                    cmd.CommandText = "SSD_DeleteBalju";
                     cmd.Parameters.AddWithValue("@Balju_ID", balju_ID);
                     conn.Open();
                     check = cmd.ExecuteNonQuery();
@@ -157,39 +156,5 @@ namespace Team2_DAC
                 }
             }
         }
-
-        public DataSet GetBaljuList_DataSet(string id)
-        {
-            try
-            {
-                dsBalju ds = new dsBalju();
-                StringBuilder sb = new StringBuilder();
-                using (SqlConnection conn = this.conn) 
-                {
-                    sb.Append("SELECT Balju_ID, Company_Name, Balju_Date, Employees_Name ");
-                    sb.Append("FROM   BaljuList ");
-                    
-                    conn.Open();
-                    SqlDataAdapter da = new SqlDataAdapter(sb.ToString(), conn);
-                    da.Fill(ds, "dtBalju");
-                    sb.Clear();                    
-
-                    sb.Append("SSD_GetBaljuDetail_List");
-                    da = new SqlDataAdapter(sb.ToString(), conn);
-                    da.SelectCommand.CommandType = CommandType.StoredProcedure;
-                    da.SelectCommand.Parameters.AddWithValue("@Search", id);
-                    da.Fill(ds, "dtBalju_Detail");
-
-                    conn.Close();
-                    return ds;
-                }
-            }
-            catch
-            {
-                return null;
-            }
-        }
     }
-
-
 }

@@ -69,13 +69,13 @@ namespace Team2_POP
             StringBuilder msg = new StringBuilder();
 
             if (lblDefItem.Text != cboDefItem.Text)
-                msg.Append(string.Format(Properties.Resources.MsgChoice1, "불량번호"));
+                msg.AppendLine(string.Format(Properties.Resources.MsgChoice1, "불량번호"));
 
             if (lblDefectiveName.Tag == null)
-                msg.Append(string.Format(Properties.Resources.MsgChoice2, "불량유형"));
+                msg.AppendLine(string.Format(Properties.Resources.MsgChoice2, "불량유형"));
 
             if (lblHandle.Tag == null)
-                msg.Append(string.Format(Properties.Resources.MsgChoice2, "불량처리유형"));
+                msg.AppendLine(string.Format(Properties.Resources.MsgChoice2, "불량처리유형"));
 
             if (msg.Length > 1)
             {

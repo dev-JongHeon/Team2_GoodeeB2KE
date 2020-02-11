@@ -50,8 +50,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnDownTime = new System.Windows.Forms.Button();
             this.btnNextDate = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.btnPreDate = new System.Windows.Forms.Button();
             this.lblDate = new System.Windows.Forms.Label();
             this.btnDate = new System.Windows.Forms.Button();
             this.btnWorkStart = new System.Windows.Forms.Button();
@@ -69,6 +67,10 @@
             this.splitContainer7 = new System.Windows.Forms.SplitContainer();
             this.lblTime = new System.Windows.Forms.Label();
             this.lblWorker = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnPreDate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -122,6 +124,8 @@
             this.splitContainer7.Panel1.SuspendLayout();
             this.splitContainer7.Panel2.SuspendLayout();
             this.splitContainer7.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -421,11 +425,11 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19F));
             this.tableLayoutPanel1.Controls.Add(this.btnDownTime, 6, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnNextDate, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnPreDate, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblDate, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnDate, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnWorkStart, 5, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel3, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -461,35 +465,6 @@
             this.btnNextDate.TabIndex = 3;
             this.btnNextDate.UseVisualStyleBackColor = false;
             this.btnNextDate.Click += new System.EventHandler(this.btnNextDate_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Font = new System.Drawing.Font("나눔고딕", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(3, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(184, 82);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "조회일자";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnPreDate
-            // 
-            this.btnPreDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
-            this.btnPreDate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnPreDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPreDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPreDate.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnPreDate.Image = global::Team2_POP.Properties.Resources.Img_LeftArrow;
-            this.btnPreDate.Location = new System.Drawing.Point(193, 3);
-            this.btnPreDate.Name = "btnPreDate";
-            this.btnPreDate.Size = new System.Drawing.Size(184, 76);
-            this.btnPreDate.TabIndex = 1;
-            this.btnPreDate.UseVisualStyleBackColor = false;
-            this.btnPreDate.Click += new System.EventHandler(this.btnPreDate_Click);
             // 
             // lblDate
             // 
@@ -750,6 +725,49 @@
             this.lblWorker.TabIndex = 1;
             this.lblWorker.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(184, 76);
+            this.panel2.TabIndex = 9;
+            // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.Font = new System.Drawing.Font("나눔고딕", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(0, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(184, 76);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "조회일자";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.btnPreDate);
+            this.panel3.Location = new System.Drawing.Point(193, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(184, 76);
+            this.panel3.TabIndex = 10;
+            // 
+            // btnPreDate
+            // 
+            this.btnPreDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
+            this.btnPreDate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnPreDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPreDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPreDate.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnPreDate.Image = global::Team2_POP.Properties.Resources.Img_LeftArrow;
+            this.btnPreDate.Location = new System.Drawing.Point(0, 0);
+            this.btnPreDate.Name = "btnPreDate";
+            this.btnPreDate.Size = new System.Drawing.Size(184, 76);
+            this.btnPreDate.TabIndex = 2;
+            this.btnPreDate.UseVisualStyleBackColor = false;
+            // 
             // PopMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -818,6 +836,8 @@
             this.splitContainer7.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer7)).EndInit();
             this.splitContainer7.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -828,8 +848,6 @@
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button btnNextDate;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button btnPreDate;
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.Button btnDate;
@@ -865,6 +883,10 @@
         private System.Windows.Forms.SplitContainer splitContainer11;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button btnPreDate;
     }
 }
 

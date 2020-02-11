@@ -10,7 +10,7 @@ using Team2_ERP.Service;
 using Team2_VO;
 using Microsoft.Office.Interop.Excel;
 using DevExpress.XtraReports.UI;
-using Team2_DAC.SSD.DataSets;
+using Team2_ERP.Properties;
 
 namespace Team2_ERP
 {
@@ -143,7 +143,12 @@ namespace Team2_ERP
                     string Balju_ID = dgv_Balju.CurrentRow.Cells[0].Value.ToString();
                     service.UpdateBalju_Processed(Balju_ID);
                     Func_Refresh();  // 새로고침
-                    main.NoticeMessage = "완료 처리되었습니다.";
+                    main.NoticeMessage = notice;
+                }
+                else
+                {
+                    MessageBox.Show("처리를 취소하셨습니다.");
+                    main.NoticeMessage = notice;
                 }
             }
         }
@@ -156,9 +161,14 @@ namespace Team2_ERP
                 {
                     string Balju_ID = dgv_Balju.CurrentRow.Cells[0].Value.ToString();
                     service.DeleteBalju(Balju_ID);
+                    Func_Refresh();  // 새로고침
+                    main.NoticeMessage = notice;
                 }
-                Func_Refresh();  // 새로고침
-                main.NoticeMessage = notice;
+                else
+                {
+                    MessageBox.Show("처리를 취소하셨습니다.");
+                    main.NoticeMessage = notice;
+                }
             }  
         }
 
@@ -193,6 +203,7 @@ namespace Team2_ERP
             ds.Tables[0].TableName = "dtBalju";
             ds.Tables[1].TableName = "dtBalju_Detail";
             ds.Relations.Add("dtBalju_dtBalju_Detail", ds.Tables[0].Columns["Balju_ID"], ds.Tables[1].Columns["Balju_ID"]);
+            
             //dOrg.Tables.Add(UtilClass.ConvertToDataTable(BaljuDetail_AllList));
             //ds = (dsBalju)dOrg;
             ds.AcceptChanges();
@@ -207,9 +218,7 @@ namespace Team2_ERP
             using (ReportPrintTool printTool = new ReportPrintTool(br))
             {
                 printTool.ShowRibbonPreviewDialog();
-            }
-            
-            
+            }  
         }
         #endregion
 

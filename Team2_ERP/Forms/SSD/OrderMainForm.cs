@@ -99,24 +99,41 @@ namespace Team2_ERP
 
         public override void Modify(object sender, EventArgs e)  // 발주완료(수령)처리, 출하대기목록 Insert, 작업insert, 생산insert 
         {
-            if (MessageBox.Show("정말 해당주문을 처리하시겠습니까?", "알림", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (dgv_Order.DataSource != null)
             {
-                string orderID = dgv_Order.CurrentRow.Cells[0].Value.ToString();
-                service.UpOrder_InsShipment(orderID, Session.Employee_ID);
+                if (MessageBox.Show("정말 해당주문을 처리하시겠습니까?", "알림", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    string orderID = dgv_Order.CurrentRow.Cells[0].Value.ToString();
+                    service.UpOrder_InsShipment(orderID, Session.Employee_ID);
+                    Func_Refresh();  // 새로고침
+                    main.NoticeMessage = notice;
+                }
+                else
+                {
+                    MessageBox.Show("처리를 취소하셨습니다.");
+                    main.NoticeMessage = notice;
+                } 
             }
-            Func_Refresh();  // 새로고침
-            main.NoticeMessage = notice;
         }
 
         public override void Delete(object sender, EventArgs e)  // 삭제
         {
-            if (MessageBox.Show("정말 해당주문을 취소하시겠습니까?", "알림", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+
+            if (dgv_Order.DataSource != null)
             {
-                string order_ID = dgv_Order.CurrentRow.Cells[0].Value.ToString();
-                service.DeleteOrder(order_ID);
+                if (MessageBox.Show("정말 해당주문을 취소하시겠습니까?", "알림", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    string order_ID = dgv_Order.CurrentRow.Cells[0].Value.ToString();
+                    service.DeleteOrder(order_ID);
+                    Func_Refresh();  // 새로고침
+                    main.NoticeMessage = notice;
+                }
+                else
+                {
+                    MessageBox.Show("처리를 취소하셨습니다.");
+                    main.NoticeMessage = notice;
+                }
             }
-            Func_Refresh();  // 새로고침
-            main.NoticeMessage = notice;
         }
 
         public override void Search(object sender, EventArgs e)  // 검색

@@ -73,6 +73,10 @@ namespace Team2_POP
                     CustomMessageBox.ShowDialog(Properties.Resources.MsgDowntimeSetResultFailHeader
                         , Properties.Resources.MsgDowntimeSetResultFailContent ,MessageBoxIcon.Error);
             }
+            else
+            {
+                CustomMessageBox.ShowDialog("비가동 전환오류", "비가동 유형을 선택해주세요.", MessageBoxIcon.Warning, MessageBoxButtons.OK);
+            }
         }
     }
 }

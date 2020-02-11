@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraReports.UI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -53,6 +54,7 @@ namespace Team2_ERP
 
             Search_Period.Startdate.BackColor = Color.LightYellow;
             Search_Period.Enddate.BackColor = Color.LightYellow;
+            Group_Rdo.Enabled = false;
         }
         private void Func_Refresh()  // 새로고침 기능
         {
@@ -68,6 +70,7 @@ namespace Team2_ERP
             rdo_All.Checked = false;
             rdo_In.Checked = false;
             rdo_Out.Checked = false;
+            Group_Rdo.Enabled = false;
         }
 
         #region 라디오버튼 검색조건
@@ -137,6 +140,7 @@ namespace Team2_ERP
                 dgv_Stock.DataSource = SearchedList;
                 rdo_All.Checked = true;  // 라디오버튼 '전체'에 체크
                 main.NoticeMessage = Properties.Settings.Default.SearchDone;
+                Group_Rdo.Enabled = true;
             }
         }
 
@@ -159,7 +163,23 @@ namespace Team2_ERP
 
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
+            BaljuCompletedReport br = new BaljuCompletedReport();
+            dsBalju ds = new dsBalju();
 
+            ds.Relations.Clear();
+            ds.Tables.Clear();
+            ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+            ds.Tables[0].TableName = "dtBalju";
+            ds.Tables[1].TableName = "dtBalju_Detail";
+            ds.Relations.Add("dtBalju_dtBalju_Detail", ds.Tables[0].Columns["Balju_ID"], ds.Tables[1].Columns["Balju_ID"]);
+
+            //ds.AcceptChanges();
+
+            br.DataSource = ds;
+            using (ReportPrintTool printTool = new ReportPrintTool(br))
+            {
+                printTool.ShowRibbonPreviewDialog();
+            }
         }
         #endregion
 
