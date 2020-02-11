@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
+using Team2_ERP.Properties;
 using Team2_VO;
 using Excel = Microsoft.Office.Interop.Excel;
 
@@ -58,10 +59,10 @@ namespace Team2_ERP
 
             dgvProduce.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvProduce.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvProduce.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvProduce.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvProduce.Columns[9].DefaultCellStyle.Format = "#0개";
+            dgvProduce.Columns[11].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvProduce.Columns[10].DefaultCellStyle.Format = "#0개";
+            dgvProduce.Columns[11].DefaultCellStyle.Format = "#0개";
 
             UtilClass.SettingDgv(dgvPerformance);
             UtilClass.AddNewColum(dgvPerformance, "생산지시번호", "PerformanceProduce_ID", false, 130);
@@ -111,7 +112,7 @@ namespace Team2_ERP
             }
             isFirst = false;
             ClearSearchOption();
-            frm.NoticeMessage = Properties.Settings.Default.RefreshDone;
+            frm.NoticeMessage = Resources.RefreshDone;
         }
 
         private void ClearSearchOption()
@@ -169,11 +170,19 @@ namespace Team2_ERP
         {
             if (searchPeriodStart.Startdate.Tag == null && searchPeriodStart.Enddate.Tag == null)
             {
-                frm.NoticeMessage = Properties.Settings.Default.PeriodError;
+                frm.NoticeMessage = Resources.PeriodError;
             }
             else
             {
                 searchedlist = list;
+                if (searchPeriodStart.Startdate.Tag != null && searchPeriodStart.Enddate.Tag != null)
+                {
+                    searchedlist = (from item in searchedlist
+                                    where Convert.ToDateTime(item.Produce_StartDate) >= Convert.ToDateTime(searchPeriodStart.Startdate.Tag.ToString()) && Convert.ToDateTime(item.Produce_StartDate) <= Convert.ToDateTime(searchPeriodStart.Enddate.Tag.ToString())
+                                    orderby item.Produce_StartDate
+                                    select item
+                                    ).ToList();
+                }
                 if (searchPeriodEnd.Startdate.Tag != null && searchPeriodEnd.Enddate.Tag != null)
                 {
                     searchedlist = (from item in searchedlist
@@ -199,16 +208,9 @@ namespace Team2_ERP
                                     where item.Product_ID == searchProduct.CodeTextBox.Tag.ToString()
                                     select item).ToList();
                 }
-                if (searchPeriodStart.Startdate.Tag != null && searchPeriodStart.Enddate.Tag != null)
-                {
-                    searchedlist = (from item in searchedlist
-                                    where Convert.ToDateTime(item.Produce_StartDate) >= Convert.ToDateTime(searchPeriodStart.Startdate.Tag.ToString()) && Convert.ToDateTime(item.Produce_StartDate) <= Convert.ToDateTime(searchPeriodStart.Enddate.Tag.ToString())
-                                    orderby item.Produce_StartDate
-                                    select item
-                                    ).ToList();
-                }
+                
                 dgvProduce.DataSource = searchedlist;
-                frm.NoticeMessage = Properties.Settings.Default.SearchDone;
+                frm.NoticeMessage = Resources.SearchDone;
                 GetPerformance();
        
             }
@@ -264,7 +266,7 @@ namespace Team2_ERP
             }
             else
             {
-                frm.NoticeMessage = Properties.Settings.Default.ExcelError;
+                frm.NoticeMessage = Resources.ExcelError;
             }
         }
 

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Team2_ERP.Properties;
 using Team2_ERP.Service.CMG;
 using Team2_VO;
 
@@ -189,7 +190,7 @@ namespace Team2_ERP
                 MessageBox.Show(err.Message);
             }
             ClearSearchOption();
-            frm.NoticeMessage = Properties.Settings.Default.RefreshDone;
+            frm.NoticeMessage = Resources.RefreshDone;
             isFirst = false;
         }
 
@@ -256,7 +257,7 @@ namespace Team2_ERP
             {
                 if (searchPeriod.Startdate.Tag == null && searchPeriod.Enddate.Tag == null)
                 {
-                    frm.NoticeMessage = Properties.Settings.Default.PeriodError;
+                    frm.NoticeMessage = Resources.PeriodError;
                 }
                 else
                 {
@@ -264,7 +265,7 @@ namespace Team2_ERP
                     if (searchPeriod.Startdate.Tag != null && searchPeriod.Enddate.Tag != null)
                     {
                         searchedlist = (from item in searchedlist
-                                        where Convert.ToDateTime(item.Downtime_StartDate) >= Convert.ToDateTime(searchPeriod.Startdate.Tag.ToString()) && Convert.ToDateTime(item.Downtime_StartDate) <= Convert.ToDateTime(searchPeriod.Enddate.Tag.ToString())
+                                        where Convert.ToDateTime(Convert.ToDateTime(item.Downtime_StartDate).ToShortDateString()) >= Convert.ToDateTime(searchPeriod.Startdate.Tag.ToString()) && Convert.ToDateTime(Convert.ToDateTime(item.Downtime_StartDate).ToShortDateString()) <= Convert.ToDateTime(searchPeriod.Enddate.Tag.ToString())
                                         select item).ToList();
                     }
                     if (searchFactory.CodeTextBox.Tag != null)
@@ -293,7 +294,7 @@ namespace Team2_ERP
                     }
 
                     dgvDowntime.DataSource = searchedlist;
-                    frm.NoticeMessage = Properties.Settings.Default.SearchDone;
+                    frm.NoticeMessage = Resources.SearchDone;
                 }
             }
             else if (tabDowntime.SelectedIndex == 1)
@@ -305,11 +306,11 @@ namespace Team2_ERP
                     ds1 = service.GetDowntimeByLine(sb.ToString().TrimEnd(','));
                     DataTable searcheddt = ds1.Tables[0].Copy();
                     BindingDgv(dgvDowntimeByLine, searcheddt);
-                    frm.NoticeMessage = Properties.Settings.Default.SearchDone;
+                    frm.NoticeMessage = Resources.SearchDone;
                 }
                 else
                 {
-                    frm.NoticeMessage = Properties.Settings.Default.PeriodError;
+                    frm.NoticeMessage = Resources.PeriodError;
                 }
             }
             else if (tabDowntime.SelectedIndex == 2)
@@ -321,11 +322,11 @@ namespace Team2_ERP
                     ds2 = service.GetDowntimeByType(sb.ToString().TrimEnd(','));
                     DataTable searcheddt2 = ds2.Tables[0].Copy();
                     BindingDgv(dgvDowntimeByType, searcheddt2);
-                    frm.NoticeMessage = Properties.Settings.Default.SearchDone;
+                    frm.NoticeMessage = Resources.SearchDone;
                 }
                 else
                 {
-                    frm.NoticeMessage = Properties.Settings.Default.PeriodError;
+                    frm.NoticeMessage = Resources.PeriodError;
                 }
             }
 
@@ -371,7 +372,7 @@ namespace Team2_ERP
             }
             else
             {
-                frm.NoticeMessage = Properties.Settings.Default.ExcelError;
+                frm.NoticeMessage = Resources.ExcelError;
             }
         }
 

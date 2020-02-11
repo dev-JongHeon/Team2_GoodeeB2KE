@@ -37,5 +37,29 @@ namespace Team2_VO
                 return false;
             }
         }
+
+        public override int GetHashCode()
+        {
+            var hashCode = 155131702;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Product_ID);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Product_Name);
+            hashCode = hashCode * -1521134295 + Combination_RequiredQty.GetHashCode();
+            hashCode = hashCode * -1521134295 + Product_Price.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Combination_Product_ID);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Category_Division);
+            hashCode = hashCode * -1521134295 + Combination_ID.GetHashCode();
+            hashCode = hashCode * -1521134295 + Combination_DeletedYN.GetHashCode();
+            return hashCode;
+        }
+
+        public static bool operator ==(BOMVO left, BOMVO right)
+        {
+            return EqualityComparer<BOMVO>.Default.Equals(left, right);
+        }
+
+        public static bool operator !=(BOMVO left, BOMVO right)
+        {
+            return !(left == right);
+        }
     }
 }

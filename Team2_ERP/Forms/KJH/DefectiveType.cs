@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Team2_ERP.Properties;
 using Team2_VO;
 
 namespace Team2_ERP
@@ -32,7 +33,7 @@ namespace Team2_ERP
         private void SettingDefectiveType()
         {
             UtilClass.SettingDgv(dgvDefectiveType);
-            UtilClass.AddNewColum(dgvDefectiveType, "불량유형번호", "DefecID", true, 130);
+            UtilClass.AddNewColum(dgvDefectiveType, "불량유형번호", "DefecID", false, 130);
             UtilClass.AddNewColum(dgvDefectiveType, "불량유형명", "DefecName", true, 130);
             UtilClass.AddNewColum(dgvDefectiveType, "불량유형설명", "DefecExplain", true, 300);
         }
@@ -89,7 +90,7 @@ namespace Team2_ERP
             }
             isFirst = false;
             ClearSearchOption();
-            frm.NoticeMessage = Properties.Settings.Default.RefreshDone;
+            frm.NoticeMessage = Resources.RefreshDone;
         }
 
         private void ClearSearchOption()
@@ -127,26 +128,26 @@ namespace Team2_ERP
             }
             else
             {
-                frm.NoticeMessage = Properties.Settings.Default.ModDefectiveTypeError;
+                frm.NoticeMessage = Resources.ModDefectiveTypeError;
             }
         }
         public override void Delete(object sender, EventArgs e)
         {
             if (dgvDefectiveType.SelectedRows.Count > 0)
             {
-                if (MessageBox.Show(Properties.Settings.Default.IsDelete, Properties.Settings.Default.MsgBoxTitleDelete, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show(Resources.IsDelete, Resources.MsgBoxTitleDelete, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     try
                     {
                         DefectiveTypeService service = new DefectiveTypeService();
                         if (service.DeleteDefectiveType(dgvDefectiveType.SelectedRows[0].Cells[0].Value.ToString()))
                         {
-                            frm.NoticeMessage = Properties.Settings.Default.DeleteDone;
+                            frm.NoticeMessage = Resources.DeleteDone;
                             
                         }
                         else
                         {
-                            frm.NoticeMessage = Properties.Settings.Default.DeleteError;
+                            frm.NoticeMessage = Resources.DeleteError;
                         }
                         
                     }
@@ -159,7 +160,7 @@ namespace Team2_ERP
             }
             else
             {
-                frm.NoticeMessage = Properties.Settings.Default.DelDefectiveTypeError;
+                frm.NoticeMessage = Resources.DelDefectiveTypeError;
             }
         }
 

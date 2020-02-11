@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Team2_ERP.Properties;
 using Team2_VO;
 
 namespace Team2_ERP
@@ -32,7 +33,7 @@ namespace Team2_ERP
         private void SettingDgvDefectiveHandle()
         {
             UtilClass.SettingDgv(dgvDefectiveHandle);
-            UtilClass.AddNewColum(dgvDefectiveHandle, "불량처리유형번호", "HandleID", true, 170);
+            UtilClass.AddNewColum(dgvDefectiveHandle, "불량처리유형번호", "HandleID", false, 170);
             UtilClass.AddNewColum(dgvDefectiveHandle, "불량처리유형명", "HandleName", true, 150);
             UtilClass.AddNewColum(dgvDefectiveHandle, "불량처리유형설명", "HandleExplain", true, 300);
         }
@@ -54,7 +55,7 @@ namespace Team2_ERP
                 MessageBox.Show(err.Message);
             }
             txtSearch.CodeTextBox.Clear();
-            frm.NoticeMessage = Properties.Settings.Default.RefreshDone;
+            frm.NoticeMessage = Resources.RefreshDone;
         }
 
         private void DefectiveHandle_Shown(object sender, EventArgs e)
@@ -82,7 +83,7 @@ namespace Team2_ERP
                                                       where item.HandleID == txtSearch.CodeTextBox.Tag.ToString()
                                                       select item).ToList();
                 dgvDefectiveHandle.DataSource = searchedlist;
-                frm.NoticeMessage = Properties.Settings.Default.SearchDone;
+                frm.NoticeMessage = Resources.SearchDone;
             }
             else
             {
@@ -113,7 +114,7 @@ namespace Team2_ERP
             }
             else
             {
-                frm.NoticeMessage = Properties.Settings.Default.ModDefectiveHandleError;
+                frm.NoticeMessage = Resources.ModDefectiveHandleError;
             }
         }
 
@@ -121,19 +122,19 @@ namespace Team2_ERP
         {
             if (dgvDefectiveHandle.SelectedRows.Count > 0)
             {
-                if (MessageBox.Show(Properties.Settings.Default.IsDelete, Properties.Settings.Default.MsgBoxTitleDelete, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show(Resources.IsDelete, Resources.MsgBoxTitleDelete, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     try
                     {
                         DefectiveHandleService service = new DefectiveHandleService();
                         if (service.DeleteDefectiveHandle(dgvDefectiveHandle.SelectedRows[0].Cells[0].Value.ToString()))
                         {
-                            frm.NoticeMessage = Properties.Settings.Default.DeleteDone;
+                            frm.NoticeMessage = Resources.DeleteDone;
 
                         }
                         else
                         {
-                            frm.NoticeMessage = Properties.Settings.Default.DeleteError;
+                            frm.NoticeMessage = Resources.DeleteError;
                         }
 
                     }
@@ -146,7 +147,7 @@ namespace Team2_ERP
             }
             else
             {
-                frm.NoticeMessage = Properties.Settings.Default.DelDefectiveHandleError;
+                frm.NoticeMessage = Resources.DelDefectiveHandleError;
             }
         }
 

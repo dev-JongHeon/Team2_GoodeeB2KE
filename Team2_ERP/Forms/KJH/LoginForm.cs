@@ -133,7 +133,7 @@ namespace Team2_ERP
                     }
                     else
                     {
-                        MessageBox.Show(Properties.Settings.Default.LoginPwdError, Properties.Settings.Default.MsgBoxTitleError, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(Properties.Resources.LoginPwdError, Properties.Resources.MsgBoxTitleError, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         txtEmpPwd.Focus();
                         txtEmpPwd.SelectAll();
                     }
@@ -147,17 +147,17 @@ namespace Team2_ERP
             {
                 if (txtEmpID.TextLength < 1)
                 {
-                    MessageBox.Show(Properties.Settings.Default.LoginEmpIDError, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Properties.Resources.LoginEmpIDError, Properties.Resources.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     btnSearch.PerformClick();
                 }
                 else if (txtEmpName.TextLength < 1)
                 {
-                    MessageBox.Show(Properties.Settings.Default.LoginEmpNameError, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Properties.Resources.LoginEmpNameError, Properties.Resources.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     btnSearch.PerformClick();
                 }
                 else
                 {
-                    MessageBox.Show(Properties.Settings.Default.LoginPwdError, Properties.Settings.Default.MsgBoxTitleError, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Properties.Resources.LoginPwdError, Properties.Resources.MsgBoxTitleError, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtEmpPwd.Focus();
                     txtEmpPwd.SelectAll();
                 }
@@ -184,11 +184,11 @@ namespace Team2_ERP
             {
                 if (txtEmpID.TextLength < 1)
                 {
-                    MessageBox.Show(Properties.Settings.Default.LoginEmpIDError, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Properties.Resources.LoginEmpIDError, Properties.Resources.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else if (txtEmpName.TextLength < 1)
                 {
-                    MessageBox.Show(Properties.Settings.Default.LoginEmpNameError, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Properties.Resources.LoginEmpNameError, Properties.Resources.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     btnSearch.PerformClick();
                 }
                 else
@@ -242,26 +242,5 @@ namespace Team2_ERP
 
         #endregion
 
-        private void LoginForm_Load(object sender, EventArgs e)
-        {
-            bool startLoaction = true;
-            int startLoactionX = Properties.Settings.Default.LoginStartLocation.X;
-            int startLoactionY = Properties.Settings.Default.LoginStartLocation.Y;
-            int screenX = Screen.PrimaryScreen.Bounds.Width;
-            int screenY = Screen.PrimaryScreen.Bounds.Height;
-            int screenCmpX = startLoactionX + this.Size.Width;
-            int screenCmpY = startLoactionY + this.Size.Height;
-
-            startLoaction &= !(startLoactionX < 0 || startLoactionY < 0);
-            startLoaction &= !(screenX < screenCmpX || screenY < screenCmpY);
-
-            if (startLoaction) this.Location = Properties.Settings.Default.LoginStartLocation;
-        }
-
-        private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Properties.Settings.Default.LoginStartLocation = this.Location;
-            Properties.Settings.Default.Save();
-        }
     }
 }

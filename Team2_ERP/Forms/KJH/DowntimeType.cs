@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Team2_ERP.Properties;
 using Team2_VO;
 
 namespace Team2_ERP
@@ -32,7 +33,7 @@ namespace Team2_ERP
         private void SettingDgvDowntimeType()
         {
             UtilClass.SettingDgv(dgvDowntimeType);
-            UtilClass.AddNewColum(dgvDowntimeType, "비가동유형번호", "DownID", true, 170);
+            UtilClass.AddNewColum(dgvDowntimeType, "비가동유형번호", "DownID", false, 170);
             UtilClass.AddNewColum(dgvDowntimeType, "비가동유형명", "DownName", true, 130);
             UtilClass.AddNewColum(dgvDowntimeType, "비가동유형설명", "DownExplain", true, 300);
         }
@@ -55,7 +56,7 @@ namespace Team2_ERP
             }
             isFirst = false;
             ClearSearhOption();
-            frm.NoticeMessage = Properties.Settings.Default.RefreshDone;
+            frm.NoticeMessage = Resources.RefreshDone;
         }
 
         private void ClearSearhOption()
@@ -79,7 +80,7 @@ namespace Team2_ERP
                                                       where item.DownID == searchDowntimeType.CodeTextBox.Tag.ToString()
                                                       select item).ToList();
                 dgvDowntimeType.DataSource = searchedlist;
-                frm.NoticeMessage = Properties.Settings.Default.SearchDone;
+                frm.NoticeMessage = Resources.SearchDone;
             }
             else
             {
@@ -116,26 +117,26 @@ namespace Team2_ERP
             }
             else
             {
-                frm.NoticeMessage = Properties.Settings.Default.ModDowntimeTypeError;
+                frm.NoticeMessage = Resources.ModDowntimeTypeError;
             }
         }
         public override void Delete(object sender, EventArgs e)
         {
             if (dgvDowntimeType.SelectedRows.Count > 0)
             {
-                if (MessageBox.Show(Properties.Settings.Default.IsDelete, Properties.Settings.Default.MsgBoxTitleDelete, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show(Resources.IsDelete, Resources.MsgBoxTitleDelete, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     try
                     {
                         DefectiveTypeService service = new DefectiveTypeService();
                         if (service.DeleteDefectiveType(dgvDowntimeType.SelectedRows[0].Cells[0].Value.ToString()))
                         {
-                            frm.NoticeMessage = Properties.Settings.Default.DeleteDone;
+                            frm.NoticeMessage = Resources.DeleteDone;
 
                         }
                         else
                         {
-                            frm.NoticeMessage = Properties.Settings.Default.DeleteError;
+                            frm.NoticeMessage = Resources.DeleteError;
                         }
 
                     }
@@ -148,7 +149,7 @@ namespace Team2_ERP
             }
             else
             {
-                frm.NoticeMessage = Properties.Settings.Default.DelDowntimeTypeError;
+                frm.NoticeMessage = Resources.DelDowntimeTypeError;
             }
         }
 
