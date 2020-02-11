@@ -110,13 +110,14 @@ namespace Team2_DAC
 
         public bool DeleteResource(string code)
         {
-            string sql = $"Update Product set Product_DeletedYN = {1} where Product_ID = @Product_ID ";
+            string sql = "CMG_DeleteResource";
 
             try
             {
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@Product_ID", code);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
                     conn.Open();
                     var rowsAffected = cmd.ExecuteNonQuery();

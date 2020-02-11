@@ -52,8 +52,10 @@ namespace Team2_ERP
         private void InitCombo()
         {
             StandardService service = new StandardService();
+            List<ComboItemVO> productList = (from item in service.GetComboProductCategory() where item.ID.Contains("CP") select item).ToList();
+            UtilClass.ComboBinding(cboProductCategory, productList, "선택");
             List<ComboItemVO> categoryList = (from item in service.GetComboProductCategory() where item.ID.Contains("CS") select item).ToList();
-            UtilClass.ComboBinding(cboCategory, categoryList, "선택");
+            UtilClass.ComboBinding(cboSemiProductCategory, categoryList, "선택");
             CategoryLabelName(categoryList);
 
         }
@@ -75,7 +77,7 @@ namespace Team2_ERP
         {
             StandardService service = new StandardService();
             list = service.GetAllProduct();
-            List<ProductVO> resourceList = (from item in list where item.Product_Category.Contains($"{cboCategory.SelectedValue.ToString()}") select item).ToList();
+            List<ProductVO> resourceList = (from item in list where item.Product_Category.Contains($"{cboSemiProductCategory.SelectedValue.ToString()}") select item).ToList();
             dgvProduct.DataSource = resourceList;
         }
 
@@ -143,10 +145,10 @@ namespace Team2_ERP
 
         private void cboCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboCategory.SelectedIndex < 1)
+            if (cboSemiProductCategory.SelectedIndex < 1)
                 return;
 
-            if (!cboCategory.SelectedValue.ToString().Contains("CS"))
+            if (!cboSemiProductCategory.SelectedValue.ToString().Contains("CS"))
                 return;
 
             LoadGridView();
@@ -181,6 +183,7 @@ namespace Team2_ERP
             {
                 Product_Name = txtProductName.Text,
                 Product_Price = Convert.ToInt32(txtProductMoney.Text.Replace(",", "").Replace("원", "")),
+                Product_Category = cboProductCategory.SelectedValue.ToString(),
                 Product_Image = ImageData,
                 Product_Qty = Convert.ToInt32(numProductQty.Value)
             };
@@ -232,6 +235,7 @@ namespace Team2_ERP
                 Product_Name = txtProductName.Text,
                 Product_Image = ImageData,
                 Product_Price = Convert.ToInt32(txtProductMoney.Text.Replace(",", "").Replace("원", "")),
+                Product_Category = cboProductCategory.SelectedValue.ToString(),
                 Product_Qty = Convert.ToInt32(numProductQty.Value)
             };
 

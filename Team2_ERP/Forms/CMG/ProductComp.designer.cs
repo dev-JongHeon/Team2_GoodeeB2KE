@@ -30,7 +30,7 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.cboCategory = new System.Windows.Forms.ComboBox();
+            this.cboSemiProductCategory = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvProduct = new System.Windows.Forms.DataGridView();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -45,6 +45,7 @@
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.cboProductCategory = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).BeginInit();
@@ -96,7 +97,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(796, 407);
-            this.splitContainer1.SplitterDistance = 242;
+            this.splitContainer1.SplitterDistance = 280;
             this.splitContainer1.TabIndex = 0;
             // 
             // splitContainer3
@@ -108,29 +109,30 @@
             // 
             // splitContainer3.Panel1
             // 
-            this.splitContainer3.Panel1.Controls.Add(this.cboCategory);
+            this.splitContainer3.Panel1.Controls.Add(this.cboProductCategory);
+            this.splitContainer3.Panel1.Controls.Add(this.cboSemiProductCategory);
             this.splitContainer3.Panel1.Controls.Add(this.label1);
             // 
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.dgvProduct);
-            this.splitContainer3.Size = new System.Drawing.Size(242, 407);
+            this.splitContainer3.Size = new System.Drawing.Size(280, 407);
             this.splitContainer3.SplitterDistance = 80;
             this.splitContainer3.TabIndex = 0;
             // 
-            // cboCategory
+            // cboSemiProductCategory
             // 
-            this.cboCategory.FormattingEnabled = true;
-            this.cboCategory.Location = new System.Drawing.Point(59, 46);
-            this.cboCategory.Name = "cboCategory";
-            this.cboCategory.Size = new System.Drawing.Size(121, 22);
-            this.cboCategory.TabIndex = 3;
-            this.cboCategory.SelectedIndexChanged += new System.EventHandler(this.cboCategory_SelectedIndexChanged);
+            this.cboSemiProductCategory.FormattingEnabled = true;
+            this.cboSemiProductCategory.Location = new System.Drawing.Point(149, 45);
+            this.cboSemiProductCategory.Name = "cboSemiProductCategory";
+            this.cboSemiProductCategory.Size = new System.Drawing.Size(121, 22);
+            this.cboSemiProductCategory.TabIndex = 3;
+            this.cboSemiProductCategory.SelectedIndexChanged += new System.EventHandler(this.cboCategory_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(33, 19);
+            this.label1.Location = new System.Drawing.Point(19, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 14);
             this.label1.TabIndex = 2;
@@ -144,7 +146,7 @@
             this.dgvProduct.Location = new System.Drawing.Point(0, 0);
             this.dgvProduct.Name = "dgvProduct";
             this.dgvProduct.RowTemplate.Height = 23;
-            this.dgvProduct.Size = new System.Drawing.Size(242, 323);
+            this.dgvProduct.Size = new System.Drawing.Size(280, 323);
             this.dgvProduct.TabIndex = 0;
             this.dgvProduct.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProduct_CellDoubleClick);
             // 
@@ -170,21 +172,21 @@
             this.splitContainer2.Panel2.Controls.Add(this.label3);
             this.splitContainer2.Panel2.Controls.Add(this.txtProductName);
             this.splitContainer2.Panel2.Controls.Add(this.label2);
-            this.splitContainer2.Size = new System.Drawing.Size(550, 407);
-            this.splitContainer2.SplitterDistance = 310;
+            this.splitContainer2.Size = new System.Drawing.Size(512, 407);
+            this.splitContainer2.SplitterDistance = 309;
             this.splitContainer2.TabIndex = 0;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(363, 19);
+            this.pictureBox1.Location = new System.Drawing.Point(350, 19);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(177, 249);
+            this.pictureBox1.Size = new System.Drawing.Size(152, 249);
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             // 
             // btnImageAdd
             // 
-            this.btnImageAdd.Location = new System.Drawing.Point(247, 284);
+            this.btnImageAdd.Location = new System.Drawing.Point(247, 283);
             this.btnImageAdd.Name = "btnImageAdd";
             this.btnImageAdd.Size = new System.Drawing.Size(75, 23);
             this.btnImageAdd.TabIndex = 6;
@@ -194,7 +196,7 @@
             // 
             // txtProductImage
             // 
-            this.txtProductImage.Location = new System.Drawing.Point(70, 285);
+            this.txtProductImage.Location = new System.Drawing.Point(70, 284);
             this.txtProductImage.Name = "txtProductImage";
             this.txtProductImage.ReadOnly = true;
             this.txtProductImage.Size = new System.Drawing.Size(171, 21);
@@ -204,7 +206,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label4.Location = new System.Drawing.Point(12, 288);
+            this.label4.Location = new System.Drawing.Point(12, 287);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 14);
             this.label4.TabIndex = 4;
@@ -271,6 +273,14 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // cboProductCategory
+            // 
+            this.cboProductCategory.FormattingEnabled = true;
+            this.cboProductCategory.Location = new System.Drawing.Point(22, 45);
+            this.cboProductCategory.Name = "cboProductCategory";
+            this.cboProductCategory.Size = new System.Drawing.Size(121, 22);
+            this.cboProductCategory.TabIndex = 4;
+            // 
             // ProductComp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -316,7 +326,7 @@
         private System.Windows.Forms.TextBox txtProductImage;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.SplitContainer splitContainer3;
-        private System.Windows.Forms.ComboBox cboCategory;
+        private System.Windows.Forms.ComboBox cboSemiProductCategory;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvProduct;
         private System.Windows.Forms.TextBox txtProductMoney;
@@ -326,5 +336,6 @@
         private System.Windows.Forms.NumericUpDown numProductQty;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ComboBox cboProductCategory;
     }
 }

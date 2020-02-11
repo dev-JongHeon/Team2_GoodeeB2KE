@@ -40,7 +40,7 @@ namespace Team2_ERP
         private void LoadGridView()
         {
             CodeTableService service = new CodeTableService();
-            list = (from item in service.GetAllCodeTable() where item.CodeTable_CodeID.Contains("CS") || item.CodeTable_CodeID.Contains("CM") select item).ToList();
+            list = (from item in service.GetAllCodeTable() where item.CodeTable_CodeID.Contains("CS") || item.CodeTable_CodeID.Contains("CM") || item.CodeTable_CodeID.Contains("CP") select item).ToList();
             dgvCategory.DataSource = list;
             dgvCategory.CurrentCell = null;
         }
@@ -112,7 +112,16 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)
         {
-            LoadGridView();
+            if(searchCategory.CodeTextBox.Text.Length < 1)
+            {
+                LoadGridView();
+            }
+            else
+            {
+                List<CodeTableVO> categoryList = (from item in list where item.CodeTable_CodeID.Equals(searchCategory.CodeTextBox.Tag.ToString()) select item).ToList();
+                dgvCategory.DataSource = categoryList;
+            }
+
             InitMessage();
         }
 
@@ -121,8 +130,7 @@ namespace Team2_ERP
             frm = (MainForm)this.ParentForm;
             InitGridView();
             CodeTableService service = new CodeTableService();
-            list = (from item in service.GetAllCodeTable() where item.CodeTable_CodeID.Contains("CS") || item.CodeTable_CodeID.Contains("CM") select item).ToList();
-            frm.NoticeMessage = "카테고리 목록 조회는 검색버튼을 눌러주세요.";
+            list = (from item in service.GetAllCodeTable() where item.CodeTable_CodeID.Contains("CS") || item.CodeTable_CodeID.Contains("CM") || item.CodeTable_CodeID.Contains("CP") select item).ToList();
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)

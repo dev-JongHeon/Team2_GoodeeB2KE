@@ -369,6 +369,7 @@ namespace Team2_DAC
                 cmd.Parameters.AddWithValue("@Product_Name", Pitem.Product_Name);
                 cmd.Parameters.AddWithValue("@Product_Price", Pitem.Product_Price);
                 cmd.Parameters.AddWithValue("@Product_Qty", Pitem.Product_Qty);
+                cmd.Parameters.AddWithValue("@Product_Category", Pitem.Product_Category);
                 cmd.Parameters.AddWithValue("@Product_Image", Pitem.Product_Image);
                 object obj = cmd.ExecuteScalar();
 
@@ -419,6 +420,7 @@ namespace Team2_DAC
                 cmd.Parameters.AddWithValue("@Product_Price", Pitem.Product_Price);
                 cmd.Parameters.AddWithValue("@Product_Qty", Pitem.Product_Qty);
                 cmd.Parameters.AddWithValue("@Product_Image", Pitem.Product_Image);
+                cmd.Parameters.AddWithValue("@Product_Category", Pitem.Product_Category);
                 cmd.Parameters.AddWithValue("@Product_ID", Pitem.Product_ID);
                 SqlDataReader reader = cmd.ExecuteReader();
                 list = Helper.DataReaderMapToList<CombinationVO>(reader);

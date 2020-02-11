@@ -36,6 +36,7 @@
             this.rdoSemiProduct = new System.Windows.Forms.RadioButton();
             this.rdoResource = new System.Windows.Forms.RadioButton();
             this.cboContext = new System.Windows.Forms.ComboBox();
+            this.rdoProduct = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).BeginInit();
@@ -126,11 +127,12 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.rdoProduct);
             this.groupBox1.Controls.Add(this.rdoSemiProduct);
             this.groupBox1.Controls.Add(this.rdoResource);
             this.groupBox1.Location = new System.Drawing.Point(61, 19);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(175, 66);
+            this.groupBox1.Size = new System.Drawing.Size(261, 66);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             // 
@@ -166,6 +168,17 @@
             this.cboContext.Size = new System.Drawing.Size(143, 22);
             this.cboContext.TabIndex = 9;
             // 
+            // rdoProduct
+            // 
+            this.rdoProduct.AutoSize = true;
+            this.rdoProduct.Location = new System.Drawing.Point(180, 29);
+            this.rdoProduct.Name = "rdoProduct";
+            this.rdoProduct.Size = new System.Drawing.Size(58, 18);
+            this.rdoProduct.TabIndex = 1;
+            this.rdoProduct.TabStop = true;
+            this.rdoProduct.Text = "완제품";
+            this.rdoProduct.UseVisualStyleBackColor = true;
+            // 
             // CategoryInsUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -197,5 +210,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rdoSemiProduct;
         private System.Windows.Forms.RadioButton rdoResource;
+        private System.Windows.Forms.RadioButton rdoProduct;
     }
 }

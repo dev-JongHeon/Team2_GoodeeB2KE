@@ -141,13 +141,21 @@ namespace Team2_ERP
                 if (code.Substring(0, 2).Equals("CM"))
                 {
                     rdoSemiProduct.Enabled = false;
+                    rdoProduct.Enabled = false;
                     rdoResource.Checked = true;
                     InitCombo();
                 }
                 else if(code.Substring(0, 2).Equals("CS"))
                 {
                     rdoResource.Enabled = false;
+                    rdoProduct.Enabled = false;
                     rdoSemiProduct.Checked = true;
+                }
+                else if(code.Substring(0, 2).Equals("CP"))
+                {
+                    rdoProduct.Checked = true;
+                    rdoResource.Enabled = false;
+                    rdoSemiProduct.Enabled = false;
                 }
             }
             else
