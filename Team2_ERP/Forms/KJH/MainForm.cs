@@ -845,5 +845,9 @@ namespace Team2_ERP
                 tabControl1.Invalidate();
         }
 
+        private void pictureBox1_DoubleClick(object sender, EventArgs e)
+        {
+            Process.Start("http://localhost:62028/");
+        }
     }
 }
