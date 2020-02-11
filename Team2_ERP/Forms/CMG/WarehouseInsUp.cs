@@ -29,6 +29,7 @@ namespace Team2_ERP
             if(editMode == EditMode.Update)
             {
                 mode = "Update";
+                lblName.Text = "창고 수정";
                 pbxTitle.Image = Properties.Resources.Edit_32x32;
 
                 code = item.Warehouse_ID;
@@ -39,6 +40,7 @@ namespace Team2_ERP
             else
             {
                 mode = "Insert";
+                lblName.Text = "창고 등록";
                 pbxTitle.Image = Properties.Resources.AddFile_32x32;
             }
         }

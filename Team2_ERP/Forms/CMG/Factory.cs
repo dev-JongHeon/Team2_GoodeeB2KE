@@ -60,10 +60,8 @@ namespace Team2_ERP
             FList = service.GetAllFactory();
             dgvFactory.DataSource = FList;
             dgvFactory.CurrentCell = null;
-
-            LList = service.GetAllLine();
-            dgvLine.DataSource = LList;
-            dgvLine.CurrentCell = null;
+            dgvLine.DataSource = null;
+            searchLineName.Visible = false;
         }
 
         private void Factory_Load(object sender, EventArgs e)
@@ -72,7 +70,7 @@ namespace Team2_ERP
             frm = (MainForm)this.ParentForm;
             StandardService service = new StandardService();
             FList = service.GetAllFactory();
-            LList = service.GetAllLine();
+            searchLineName.Visible = false;
         }
 
         private void InitMessage()
@@ -120,6 +118,7 @@ namespace Team2_ERP
             dgvLine.DataSource = null;
             searchFactoryName.CodeTextBox.Text = "";
             searchLineName.CodeTextBox.Text = "";
+            searchLineName.Visible = false;
         }
 
         public override void New(object sender, EventArgs e)
@@ -201,7 +200,7 @@ namespace Team2_ERP
         public override void Search(object sender, EventArgs e)
         {
             //공장, 공정 두개 다 검색할 때
-            if(searchFactoryName.CodeTextBox.Text.Length > 0 && searchLineName.CodeTextBox.Text.Length > 0)
+            if (searchFactoryName.CodeTextBox.Text.Length > 0 && searchLineName.CodeTextBox.Text.Length > 0)
             {
                 dgvFactory.DataSource = null;
                 List<FactoryVO> searchFList = (from item in FList where item.Factory_ID == Convert.ToInt32(searchFactoryName.CodeTextBox.Tag) select item).ToList();
@@ -220,10 +219,9 @@ namespace Team2_ERP
                 dgvFactory.DataSource = searchList;
             }
             //공정만 검색할 때
-            else if(searchLineName.CodeTextBox.Text.Length > 0)
+            else if (searchLineName.CodeTextBox.Text.Length > 0)
             {
                 dgvLine.DataSource = null;
-                dgvFactory.DataSource = null;
                 List<LineVO> searchLList = (from item in LList where item.Line_ID == Convert.ToInt32(searchLineName.CodeTextBox.Tag) select item).ToList();
                 dgvLine.DataSource = searchLList;
             }
@@ -299,6 +297,20 @@ namespace Team2_ERP
                     Line_ID = Convert.ToInt32(dgvLine.Rows[e.RowIndex].Cells[0].Value),
                     Line_Name = dgvLine.Rows[e.RowIndex].Cells[1].Value.ToString()
                 };
+            }
+        }
+
+        private void dgvFactory_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            searchLineName.Visible = true;
+
+            if (e.RowIndex < dgvFactory.Rows.Count && e.RowIndex > -1)
+            {
+                StandardService service = new StandardService();
+                factoryItem = new FactoryVO();
+                factoryItem.Factory_ID = Convert.ToInt32(dgvFactory.Rows[e.RowIndex].Cells[0].Value);
+                LList = service.GetAllLine(factoryItem.Factory_ID);
+                dgvLine.DataSource = LList;
             }
         }
     }

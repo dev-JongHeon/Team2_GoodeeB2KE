@@ -434,10 +434,28 @@
     <Compile Include="Forms\SSD\StockStatus.designer.cs">
       <DependentUpon>StockStatus.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SSD\BaljuReport.cs">
+    <Compile Include="Reports\OrderReport.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Forms\SSD\BaljuReport.Designer.cs">
+    <Compile Include="Reports\OrderReport.Designer.cs">
+      <DependentUpon>OrderReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\InOutMaterialWarehouseReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\InOutMaterialWarehouseReport.Designer.cs">
+      <DependentUpon>InOutMaterialWarehouseReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\BaljuCompletedReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\BaljuCompletedReport.Designer.cs">
+      <DependentUpon>BaljuCompletedReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\BaljuReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\BaljuReport.Designer.cs">
       <DependentUpon>BaljuReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Service\KJH\AuthService.cs" />
@@ -644,7 +662,16 @@
     <EmbeddedResource Include="Forms\SSD\StockStatus.resx">
       <DependentUpon>StockStatus.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SSD\BaljuReport.resx">
+    <EmbeddedResource Include="Reports\OrderReport.resx">
+      <DependentUpon>OrderReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\InOutMaterialWarehouseReport.resx">
+      <DependentUpon>InOutMaterialWarehouseReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\BaljuCompletedReport.resx">
+      <DependentUpon>BaljuCompletedReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\BaljuReport.resx">
       <DependentUpon>BaljuReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />

@@ -110,6 +110,7 @@
             this.dgvFactory.Size = new System.Drawing.Size(1364, 368);
             this.dgvFactory.TabIndex = 9;
             this.dgvFactory.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFactory_CellClick);
+            this.dgvFactory.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFactory_CellDoubleClick);
             // 
             // panel7
             // 

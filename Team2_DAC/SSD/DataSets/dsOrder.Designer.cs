@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace Team2_DAC {
+namespace Team2_DAC.SSD.DataSets {
     
     
     /// <summary>
@@ -20,21 +20,19 @@ namespace Team2_DAC {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("dsBalju")]
+    [global::System.Xml.Serialization.XmlRootAttribute("dsOrder")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class dsBalju : global::System.Data.DataSet {
+    public partial class dsOrder : global::System.Data.DataSet {
         
-        private dtBaljuDataTable tabledtBalju;
+        private DataTable1DataTable tableDataTable1;
         
-        private dtBalju_DetailDataTable tabledtBalju_Detail;
-        
-        private global::System.Data.DataRelation relationdtBalju_dtBalju_Detail;
+        private DataTable2DataTable tableDataTable2;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public dsBalju() {
+        public dsOrder() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -45,7 +43,7 @@ namespace Team2_DAC {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        protected dsBalju(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected dsOrder(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -58,11 +56,11 @@ namespace Team2_DAC {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["dtBalju"] != null)) {
-                    base.Tables.Add(new dtBaljuDataTable(ds.Tables["dtBalju"]));
+                if ((ds.Tables["DataTable1"] != null)) {
+                    base.Tables.Add(new DataTable1DataTable(ds.Tables["DataTable1"]));
                 }
-                if ((ds.Tables["dtBalju_Detail"] != null)) {
-                    base.Tables.Add(new dtBalju_DetailDataTable(ds.Tables["dtBalju_Detail"]));
+                if ((ds.Tables["DataTable2"] != null)) {
+                    base.Tables.Add(new DataTable2DataTable(ds.Tables["DataTable2"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -86,9 +84,9 @@ namespace Team2_DAC {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public dtBaljuDataTable dtBalju {
+        public DataTable1DataTable DataTable1 {
             get {
-                return this.tabledtBalju;
+                return this.tableDataTable1;
             }
         }
         
@@ -96,9 +94,9 @@ namespace Team2_DAC {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public dtBalju_DetailDataTable dtBalju_Detail {
+        public DataTable2DataTable DataTable2 {
             get {
-                return this.tabledtBalju_Detail;
+                return this.tableDataTable2;
             }
         }
         
@@ -144,7 +142,7 @@ namespace Team2_DAC {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            dsBalju cln = ((dsBalju)(base.Clone()));
+            dsOrder cln = ((dsOrder)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -169,11 +167,11 @@ namespace Team2_DAC {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["dtBalju"] != null)) {
-                    base.Tables.Add(new dtBaljuDataTable(ds.Tables["dtBalju"]));
+                if ((ds.Tables["DataTable1"] != null)) {
+                    base.Tables.Add(new DataTable1DataTable(ds.Tables["DataTable1"]));
                 }
-                if ((ds.Tables["dtBalju_Detail"] != null)) {
-                    base.Tables.Add(new dtBalju_DetailDataTable(ds.Tables["dtBalju_Detail"]));
+                if ((ds.Tables["DataTable2"] != null)) {
+                    base.Tables.Add(new DataTable2DataTable(ds.Tables["DataTable2"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -208,48 +206,43 @@ namespace Team2_DAC {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tabledtBalju = ((dtBaljuDataTable)(base.Tables["dtBalju"]));
+            this.tableDataTable1 = ((DataTable1DataTable)(base.Tables["DataTable1"]));
             if ((initTable == true)) {
-                if ((this.tabledtBalju != null)) {
-                    this.tabledtBalju.InitVars();
+                if ((this.tableDataTable1 != null)) {
+                    this.tableDataTable1.InitVars();
                 }
             }
-            this.tabledtBalju_Detail = ((dtBalju_DetailDataTable)(base.Tables["dtBalju_Detail"]));
+            this.tableDataTable2 = ((DataTable2DataTable)(base.Tables["DataTable2"]));
             if ((initTable == true)) {
-                if ((this.tabledtBalju_Detail != null)) {
-                    this.tabledtBalju_Detail.InitVars();
+                if ((this.tableDataTable2 != null)) {
+                    this.tableDataTable2.InitVars();
                 }
             }
-            this.relationdtBalju_dtBalju_Detail = this.Relations["dtBalju_dtBalju_Detail"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "dsBalju";
+            this.DataSetName = "dsOrder";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/dsBalju.xsd";
+            this.Namespace = "http://tempuri.org/dsOrder.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tabledtBalju = new dtBaljuDataTable();
-            base.Tables.Add(this.tabledtBalju);
-            this.tabledtBalju_Detail = new dtBalju_DetailDataTable();
-            base.Tables.Add(this.tabledtBalju_Detail);
-            this.relationdtBalju_dtBalju_Detail = new global::System.Data.DataRelation("dtBalju_dtBalju_Detail", new global::System.Data.DataColumn[] {
-                        this.tabledtBalju.Balju_IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tabledtBalju_Detail.Balju_IDColumn}, false);
-            this.Relations.Add(this.relationdtBalju_dtBalju_Detail);
+            this.tableDataTable1 = new DataTable1DataTable();
+            base.Tables.Add(this.tableDataTable1);
+            this.tableDataTable2 = new DataTable2DataTable();
+            base.Tables.Add(this.tableDataTable2);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private bool ShouldSerializedtBalju() {
+        private bool ShouldSerializeDataTable1() {
             return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private bool ShouldSerializedtBalju_Detail() {
+        private bool ShouldSerializeDataTable2() {
             return false;
         }
         
@@ -264,7 +257,7 @@ namespace Team2_DAC {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            dsBalju ds = new dsBalju();
+            dsOrder ds = new dsOrder();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -309,32 +302,24 @@ namespace Team2_DAC {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public delegate void dtBaljuRowChangeEventHandler(object sender, dtBaljuRowChangeEvent e);
+        public delegate void DataTable1RowChangeEventHandler(object sender, DataTable1RowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public delegate void dtBalju_DetailRowChangeEventHandler(object sender, dtBalju_DetailRowChangeEvent e);
+        public delegate void DataTable2RowChangeEventHandler(object sender, DataTable2RowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class dtBaljuDataTable : global::System.Data.TypedTableBase<dtBaljuRow> {
+        public partial class DataTable1DataTable : global::System.Data.TypedTableBase<DataTable1Row> {
             
-            private global::System.Data.DataColumn columnBalju_ID;
-            
-            private global::System.Data.DataColumn columnBalju_Date;
-            
-            private global::System.Data.DataColumn columnCompany_Name;
-            
-            private global::System.Data.DataColumn columnEmployees_Name;
-            
-            private global::System.Data.DataColumn columnBalju_ReceiptDate;
+            private global::System.Data.DataColumn columnDataColumn1;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtBaljuDataTable() {
-                this.TableName = "dtBalju";
+            public DataTable1DataTable() {
+                this.TableName = "DataTable1";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -342,7 +327,7 @@ namespace Team2_DAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal dtBaljuDataTable(global::System.Data.DataTable table) {
+            internal DataTable1DataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -359,48 +344,16 @@ namespace Team2_DAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected dtBaljuDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected DataTable1DataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn Balju_IDColumn {
+            public global::System.Data.DataColumn DataColumn1Column {
                 get {
-                    return this.columnBalju_ID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn Balju_DateColumn {
-                get {
-                    return this.columnBalju_Date;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn Company_NameColumn {
-                get {
-                    return this.columnCompany_Name;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn Employees_NameColumn {
-                get {
-                    return this.columnEmployees_Name;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn Balju_ReceiptDateColumn {
-                get {
-                    return this.columnBalju_ReceiptDate;
+                    return this.columnDataColumn1;
                 }
             }
             
@@ -415,56 +368,45 @@ namespace Team2_DAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtBaljuRow this[int index] {
+            public DataTable1Row this[int index] {
                 get {
-                    return ((dtBaljuRow)(this.Rows[index]));
+                    return ((DataTable1Row)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event dtBaljuRowChangeEventHandler dtBaljuRowChanging;
+            public event DataTable1RowChangeEventHandler DataTable1RowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event dtBaljuRowChangeEventHandler dtBaljuRowChanged;
+            public event DataTable1RowChangeEventHandler DataTable1RowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event dtBaljuRowChangeEventHandler dtBaljuRowDeleting;
+            public event DataTable1RowChangeEventHandler DataTable1RowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event dtBaljuRowChangeEventHandler dtBaljuRowDeleted;
+            public event DataTable1RowChangeEventHandler DataTable1RowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void AdddtBaljuRow(dtBaljuRow row) {
+            public void AddDataTable1Row(DataTable1Row row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtBaljuRow AdddtBaljuRow(string Balju_ID, string Balju_Date, string Company_Name, string Employees_Name, string Balju_ReceiptDate) {
-                dtBaljuRow rowdtBaljuRow = ((dtBaljuRow)(this.NewRow()));
+            public DataTable1Row AddDataTable1Row(string DataColumn1) {
+                DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        Balju_ID,
-                        Balju_Date,
-                        Company_Name,
-                        Employees_Name,
-                        Balju_ReceiptDate};
-                rowdtBaljuRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowdtBaljuRow);
-                return rowdtBaljuRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtBaljuRow FindByBalju_ID(string Balju_ID) {
-                return ((dtBaljuRow)(this.Rows.Find(new object[] {
-                            Balju_ID})));
+                        DataColumn1};
+                rowDataTable1Row.ItemArray = columnValuesArray;
+                this.Rows.Add(rowDataTable1Row);
+                return rowDataTable1Row;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                dtBaljuDataTable cln = ((dtBaljuDataTable)(base.Clone()));
+                DataTable1DataTable cln = ((DataTable1DataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -472,62 +414,46 @@ namespace Team2_DAC {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new dtBaljuDataTable();
+                return new DataTable1DataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
-                this.columnBalju_ID = base.Columns["Balju_ID"];
-                this.columnBalju_Date = base.Columns["Balju_Date"];
-                this.columnCompany_Name = base.Columns["Company_Name"];
-                this.columnEmployees_Name = base.Columns["Employees_Name"];
-                this.columnBalju_ReceiptDate = base.Columns["Balju_ReceiptDate"];
+                this.columnDataColumn1 = base.Columns["DataColumn1"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             private void InitClass() {
-                this.columnBalju_ID = new global::System.Data.DataColumn("Balju_ID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnBalju_ID);
-                this.columnBalju_Date = new global::System.Data.DataColumn("Balju_Date", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnBalju_Date);
-                this.columnCompany_Name = new global::System.Data.DataColumn("Company_Name", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCompany_Name);
-                this.columnEmployees_Name = new global::System.Data.DataColumn("Employees_Name", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEmployees_Name);
-                this.columnBalju_ReceiptDate = new global::System.Data.DataColumn("Balju_ReceiptDate", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnBalju_ReceiptDate);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnBalju_ID}, true));
-                this.columnBalju_ID.AllowDBNull = false;
-                this.columnBalju_ID.Unique = true;
+                this.columnDataColumn1 = new global::System.Data.DataColumn("DataColumn1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDataColumn1);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtBaljuRow NewdtBaljuRow() {
-                return ((dtBaljuRow)(this.NewRow()));
+            public DataTable1Row NewDataTable1Row() {
+                return ((DataTable1Row)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new dtBaljuRow(builder);
+                return new DataTable1Row(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(dtBaljuRow);
+                return typeof(DataTable1Row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.dtBaljuRowChanged != null)) {
-                    this.dtBaljuRowChanged(this, new dtBaljuRowChangeEvent(((dtBaljuRow)(e.Row)), e.Action));
+                if ((this.DataTable1RowChanged != null)) {
+                    this.DataTable1RowChanged(this, new DataTable1RowChangeEvent(((DataTable1Row)(e.Row)), e.Action));
                 }
             }
             
@@ -535,8 +461,8 @@ namespace Team2_DAC {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.dtBaljuRowChanging != null)) {
-                    this.dtBaljuRowChanging(this, new dtBaljuRowChangeEvent(((dtBaljuRow)(e.Row)), e.Action));
+                if ((this.DataTable1RowChanging != null)) {
+                    this.DataTable1RowChanging(this, new DataTable1RowChangeEvent(((DataTable1Row)(e.Row)), e.Action));
                 }
             }
             
@@ -544,8 +470,8 @@ namespace Team2_DAC {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.dtBaljuRowDeleted != null)) {
-                    this.dtBaljuRowDeleted(this, new dtBaljuRowChangeEvent(((dtBaljuRow)(e.Row)), e.Action));
+                if ((this.DataTable1RowDeleted != null)) {
+                    this.DataTable1RowDeleted(this, new DataTable1RowChangeEvent(((DataTable1Row)(e.Row)), e.Action));
                 }
             }
             
@@ -553,14 +479,14 @@ namespace Team2_DAC {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.dtBaljuRowDeleting != null)) {
-                    this.dtBaljuRowDeleting(this, new dtBaljuRowChangeEvent(((dtBaljuRow)(e.Row)), e.Action));
+                if ((this.DataTable1RowDeleting != null)) {
+                    this.DataTable1RowDeleting(this, new DataTable1RowChangeEvent(((DataTable1Row)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void RemovedtBaljuRow(dtBaljuRow row) {
+            public void RemoveDataTable1Row(DataTable1Row row) {
                 this.Rows.Remove(row);
             }
             
@@ -569,7 +495,7 @@ namespace Team2_DAC {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                dsBalju ds = new dsBalju();
+                dsOrder ds = new dsOrder();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -587,7 +513,7 @@ namespace Team2_DAC {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "dtBaljuDataTable";
+                attribute2.FixedValue = "DataTable1DataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -633,18 +559,12 @@ namespace Team2_DAC {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class dtBalju_DetailDataTable : global::System.Data.TypedTableBase<dtBalju_DetailRow> {
-            
-            private global::System.Data.DataColumn columnProduct_Name;
-            
-            private global::System.Data.DataColumn columnBaljuDetail_Qty;
-            
-            private global::System.Data.DataColumn columnBalju_ID;
+        public partial class DataTable2DataTable : global::System.Data.TypedTableBase<DataTable2Row> {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtBalju_DetailDataTable() {
-                this.TableName = "dtBalju_Detail";
+            public DataTable2DataTable() {
+                this.TableName = "DataTable2";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -652,7 +572,7 @@ namespace Team2_DAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal dtBalju_DetailDataTable(global::System.Data.DataTable table) {
+            internal DataTable2DataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -669,33 +589,9 @@ namespace Team2_DAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected dtBalju_DetailDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected DataTable2DataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn Product_NameColumn {
-                get {
-                    return this.columnProduct_Name;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn BaljuDetail_QtyColumn {
-                get {
-                    return this.columnBaljuDetail_Qty;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn Balju_IDColumn {
-                get {
-                    return this.columnBalju_ID;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -709,50 +605,44 @@ namespace Team2_DAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtBalju_DetailRow this[int index] {
+            public DataTable2Row this[int index] {
                 get {
-                    return ((dtBalju_DetailRow)(this.Rows[index]));
+                    return ((DataTable2Row)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event dtBalju_DetailRowChangeEventHandler dtBalju_DetailRowChanging;
+            public event DataTable2RowChangeEventHandler DataTable2RowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event dtBalju_DetailRowChangeEventHandler dtBalju_DetailRowChanged;
+            public event DataTable2RowChangeEventHandler DataTable2RowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event dtBalju_DetailRowChangeEventHandler dtBalju_DetailRowDeleting;
+            public event DataTable2RowChangeEventHandler DataTable2RowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event dtBalju_DetailRowChangeEventHandler dtBalju_DetailRowDeleted;
+            public event DataTable2RowChangeEventHandler DataTable2RowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void AdddtBalju_DetailRow(dtBalju_DetailRow row) {
+            public void AddDataTable2Row(DataTable2Row row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtBalju_DetailRow AdddtBalju_DetailRow(string Product_Name, int BaljuDetail_Qty, dtBaljuRow parentdtBaljuRowBydtBalju_dtBalju_Detail) {
-                dtBalju_DetailRow rowdtBalju_DetailRow = ((dtBalju_DetailRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        Product_Name,
-                        BaljuDetail_Qty,
-                        null};
-                if ((parentdtBaljuRowBydtBalju_dtBalju_Detail != null)) {
-                    columnValuesArray[2] = parentdtBaljuRowBydtBalju_dtBalju_Detail[0];
-                }
-                rowdtBalju_DetailRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowdtBalju_DetailRow);
-                return rowdtBalju_DetailRow;
+            public DataTable2Row AddDataTable2Row() {
+                DataTable2Row rowDataTable2Row = ((DataTable2Row)(this.NewRow()));
+                object[] columnValuesArray = new object[0];
+                rowDataTable2Row.ItemArray = columnValuesArray;
+                this.Rows.Add(rowDataTable2Row);
+                return rowDataTable2Row;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                dtBalju_DetailDataTable cln = ((dtBalju_DetailDataTable)(base.Clone()));
+                DataTable2DataTable cln = ((DataTable2DataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -760,52 +650,43 @@ namespace Team2_DAC {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new dtBalju_DetailDataTable();
+                return new DataTable2DataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
-                this.columnProduct_Name = base.Columns["Product_Name"];
-                this.columnBaljuDetail_Qty = base.Columns["BaljuDetail_Qty"];
-                this.columnBalju_ID = base.Columns["Balju_ID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             private void InitClass() {
-                this.columnProduct_Name = new global::System.Data.DataColumn("Product_Name", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnProduct_Name);
-                this.columnBaljuDetail_Qty = new global::System.Data.DataColumn("BaljuDetail_Qty", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnBaljuDetail_Qty);
-                this.columnBalju_ID = new global::System.Data.DataColumn("Balju_ID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnBalju_ID);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtBalju_DetailRow NewdtBalju_DetailRow() {
-                return ((dtBalju_DetailRow)(this.NewRow()));
+            public DataTable2Row NewDataTable2Row() {
+                return ((DataTable2Row)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new dtBalju_DetailRow(builder);
+                return new DataTable2Row(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(dtBalju_DetailRow);
+                return typeof(DataTable2Row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.dtBalju_DetailRowChanged != null)) {
-                    this.dtBalju_DetailRowChanged(this, new dtBalju_DetailRowChangeEvent(((dtBalju_DetailRow)(e.Row)), e.Action));
+                if ((this.DataTable2RowChanged != null)) {
+                    this.DataTable2RowChanged(this, new DataTable2RowChangeEvent(((DataTable2Row)(e.Row)), e.Action));
                 }
             }
             
@@ -813,8 +694,8 @@ namespace Team2_DAC {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.dtBalju_DetailRowChanging != null)) {
-                    this.dtBalju_DetailRowChanging(this, new dtBalju_DetailRowChangeEvent(((dtBalju_DetailRow)(e.Row)), e.Action));
+                if ((this.DataTable2RowChanging != null)) {
+                    this.DataTable2RowChanging(this, new DataTable2RowChangeEvent(((DataTable2Row)(e.Row)), e.Action));
                 }
             }
             
@@ -822,8 +703,8 @@ namespace Team2_DAC {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.dtBalju_DetailRowDeleted != null)) {
-                    this.dtBalju_DetailRowDeleted(this, new dtBalju_DetailRowChangeEvent(((dtBalju_DetailRow)(e.Row)), e.Action));
+                if ((this.DataTable2RowDeleted != null)) {
+                    this.DataTable2RowDeleted(this, new DataTable2RowChangeEvent(((DataTable2Row)(e.Row)), e.Action));
                 }
             }
             
@@ -831,14 +712,14 @@ namespace Team2_DAC {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.dtBalju_DetailRowDeleting != null)) {
-                    this.dtBalju_DetailRowDeleting(this, new dtBalju_DetailRowChangeEvent(((dtBalju_DetailRow)(e.Row)), e.Action));
+                if ((this.DataTable2RowDeleting != null)) {
+                    this.DataTable2RowDeleting(this, new DataTable2RowChangeEvent(((DataTable2Row)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void RemovedtBalju_DetailRow(dtBalju_DetailRow row) {
+            public void RemoveDataTable2Row(DataTable2Row row) {
                 this.Rows.Remove(row);
             }
             
@@ -847,7 +728,7 @@ namespace Team2_DAC {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                dsBalju ds = new dsBalju();
+                dsOrder ds = new dsOrder();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -865,7 +746,7 @@ namespace Team2_DAC {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "dtBalju_DetailDataTable";
+                attribute2.FixedValue = "DataTable2DataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -909,259 +790,58 @@ namespace Team2_DAC {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class dtBaljuRow : global::System.Data.DataRow {
+        public partial class DataTable1Row : global::System.Data.DataRow {
             
-            private dtBaljuDataTable tabledtBalju;
+            private DataTable1DataTable tableDataTable1;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal dtBaljuRow(global::System.Data.DataRowBuilder rb) : 
+            internal DataTable1Row(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tabledtBalju = ((dtBaljuDataTable)(this.Table));
+                this.tableDataTable1 = ((DataTable1DataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string Balju_ID {
-                get {
-                    return ((string)(this[this.tabledtBalju.Balju_IDColumn]));
-                }
-                set {
-                    this[this.tabledtBalju.Balju_IDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string Balju_Date {
+            public string DataColumn1 {
                 get {
                     try {
-                        return ((string)(this[this.tabledtBalju.Balju_DateColumn]));
+                        return ((string)(this[this.tableDataTable1.DataColumn1Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("\'dtBalju\' 테이블의 \'Balju_Date\' 열의 값이 DBNull입니다.", e);
+                        throw new global::System.Data.StrongTypingException("\'DataTable1\' 테이블의 \'DataColumn1\' 열의 값이 DBNull입니다.", e);
                     }
                 }
                 set {
-                    this[this.tabledtBalju.Balju_DateColumn] = value;
+                    this[this.tableDataTable1.DataColumn1Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string Company_Name {
-                get {
-                    try {
-                        return ((string)(this[this.tabledtBalju.Company_NameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("\'dtBalju\' 테이블의 \'Company_Name\' 열의 값이 DBNull입니다.", e);
-                    }
-                }
-                set {
-                    this[this.tabledtBalju.Company_NameColumn] = value;
-                }
+            public bool IsDataColumn1Null() {
+                return this.IsNull(this.tableDataTable1.DataColumn1Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string Employees_Name {
-                get {
-                    try {
-                        return ((string)(this[this.tabledtBalju.Employees_NameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("\'dtBalju\' 테이블의 \'Employees_Name\' 열의 값이 DBNull입니다.", e);
-                    }
-                }
-                set {
-                    this[this.tabledtBalju.Employees_NameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string Balju_ReceiptDate {
-                get {
-                    try {
-                        return ((string)(this[this.tabledtBalju.Balju_ReceiptDateColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("\'dtBalju\' 테이블의 \'Balju_ReceiptDate\' 열의 값이 DBNull입니다.", e);
-                    }
-                }
-                set {
-                    this[this.tabledtBalju.Balju_ReceiptDateColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsBalju_DateNull() {
-                return this.IsNull(this.tabledtBalju.Balju_DateColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetBalju_DateNull() {
-                this[this.tabledtBalju.Balju_DateColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsCompany_NameNull() {
-                return this.IsNull(this.tabledtBalju.Company_NameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetCompany_NameNull() {
-                this[this.tabledtBalju.Company_NameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsEmployees_NameNull() {
-                return this.IsNull(this.tabledtBalju.Employees_NameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetEmployees_NameNull() {
-                this[this.tabledtBalju.Employees_NameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsBalju_ReceiptDateNull() {
-                return this.IsNull(this.tabledtBalju.Balju_ReceiptDateColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetBalju_ReceiptDateNull() {
-                this[this.tabledtBalju.Balju_ReceiptDateColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtBalju_DetailRow[] GetdtBalju_DetailRows() {
-                if ((this.Table.ChildRelations["dtBalju_dtBalju_Detail"] == null)) {
-                    return new dtBalju_DetailRow[0];
-                }
-                else {
-                    return ((dtBalju_DetailRow[])(base.GetChildRows(this.Table.ChildRelations["dtBalju_dtBalju_Detail"])));
-                }
+            public void SetDataColumn1Null() {
+                this[this.tableDataTable1.DataColumn1Column] = global::System.Convert.DBNull;
             }
         }
         
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class dtBalju_DetailRow : global::System.Data.DataRow {
+        public partial class DataTable2Row : global::System.Data.DataRow {
             
-            private dtBalju_DetailDataTable tabledtBalju_Detail;
+            private DataTable2DataTable tableDataTable2;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal dtBalju_DetailRow(global::System.Data.DataRowBuilder rb) : 
+            internal DataTable2Row(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tabledtBalju_Detail = ((dtBalju_DetailDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string Product_Name {
-                get {
-                    try {
-                        return ((string)(this[this.tabledtBalju_Detail.Product_NameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("\'dtBalju_Detail\' 테이블의 \'Product_Name\' 열의 값이 DBNull입니다.", e);
-                    }
-                }
-                set {
-                    this[this.tabledtBalju_Detail.Product_NameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public int BaljuDetail_Qty {
-                get {
-                    try {
-                        return ((int)(this[this.tabledtBalju_Detail.BaljuDetail_QtyColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("\'dtBalju_Detail\' 테이블의 \'BaljuDetail_Qty\' 열의 값이 DBNull입니다.", e);
-                    }
-                }
-                set {
-                    this[this.tabledtBalju_Detail.BaljuDetail_QtyColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string Balju_ID {
-                get {
-                    try {
-                        return ((string)(this[this.tabledtBalju_Detail.Balju_IDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("\'dtBalju_Detail\' 테이블의 \'Balju_ID\' 열의 값이 DBNull입니다.", e);
-                    }
-                }
-                set {
-                    this[this.tabledtBalju_Detail.Balju_IDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtBaljuRow dtBaljuRow {
-                get {
-                    return ((dtBaljuRow)(this.GetParentRow(this.Table.ParentRelations["dtBalju_dtBalju_Detail"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["dtBalju_dtBalju_Detail"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsProduct_NameNull() {
-                return this.IsNull(this.tabledtBalju_Detail.Product_NameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetProduct_NameNull() {
-                this[this.tabledtBalju_Detail.Product_NameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsBaljuDetail_QtyNull() {
-                return this.IsNull(this.tabledtBalju_Detail.BaljuDetail_QtyColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetBaljuDetail_QtyNull() {
-                this[this.tabledtBalju_Detail.BaljuDetail_QtyColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsBalju_IDNull() {
-                return this.IsNull(this.tabledtBalju_Detail.Balju_IDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetBalju_IDNull() {
-                this[this.tabledtBalju_Detail.Balju_IDColumn] = global::System.Convert.DBNull;
+                this.tableDataTable2 = ((DataTable2DataTable)(this.Table));
             }
         }
         
@@ -1169,22 +849,22 @@ namespace Team2_DAC {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public class dtBaljuRowChangeEvent : global::System.EventArgs {
+        public class DataTable1RowChangeEvent : global::System.EventArgs {
             
-            private dtBaljuRow eventRow;
+            private DataTable1Row eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtBaljuRowChangeEvent(dtBaljuRow row, global::System.Data.DataRowAction action) {
+            public DataTable1RowChangeEvent(DataTable1Row row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtBaljuRow Row {
+            public DataTable1Row Row {
                 get {
                     return this.eventRow;
                 }
@@ -1203,22 +883,22 @@ namespace Team2_DAC {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public class dtBalju_DetailRowChangeEvent : global::System.EventArgs {
+        public class DataTable2RowChangeEvent : global::System.EventArgs {
             
-            private dtBalju_DetailRow eventRow;
+            private DataTable2Row eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtBalju_DetailRowChangeEvent(dtBalju_DetailRow row, global::System.Data.DataRowAction action) {
+            public DataTable2RowChangeEvent(DataTable2Row row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtBalju_DetailRow Row {
+            public DataTable2Row Row {
                 get {
                     return this.eventRow;
                 }
