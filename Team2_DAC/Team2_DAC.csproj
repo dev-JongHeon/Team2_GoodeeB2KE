@@ -82,6 +82,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsOrder.xsd</DependentUpon>
     </Compile>
+    <Compile Include="SSD\DataSets\dsStockReceipt.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsStockReceipt.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SSD\OrderDAC.cs" />
     <Compile Include="SSD\ShipmentDAC.cs" />
     <Compile Include="SSD\StockDAC.cs" />
@@ -119,6 +124,17 @@
     </None>
     <None Include="SSD\DataSets\dsOrder.xss">
       <DependentUpon>dsOrder.xsd</DependentUpon>
+    </None>
+    <None Include="SSD\DataSets\dsStockReceipt.xsc">
+      <DependentUpon>dsStockReceipt.xsd</DependentUpon>
+    </None>
+    <None Include="SSD\DataSets\dsStockReceipt.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsStockReceipt.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="SSD\DataSets\dsStockReceipt.xss">
+      <DependentUpon>dsStockReceipt.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
