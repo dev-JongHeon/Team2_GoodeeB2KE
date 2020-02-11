@@ -62,6 +62,7 @@ namespace Team2_POP
             }
             catch (Exception ex)
             {
+                WriteLog(ex);
                 CustomMessageBox.ShowDialog("서버접속끊김", "서버와의 연결이 끊겼습니다.", MessageBoxIcon.Error
                     , MessageBoxButtons.OK);
                 ErrorMessage(ex);
@@ -95,7 +96,7 @@ namespace Team2_POP
             }
             catch (Exception ex)
             {
-                string sss = ex.Message;
+                WriteLog(ex);
             }
         }
 
@@ -121,6 +122,7 @@ namespace Team2_POP
 
             catch (Exception ex)
             {
+                WriteLog(ex);
                 ErrorMessage(ex);
                 return client.Connected;
             }
@@ -150,7 +152,7 @@ namespace Team2_POP
             }
             catch(Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                WriteLog(ex);
             }
         }
 
@@ -171,6 +173,7 @@ namespace Team2_POP
             }
             catch (Exception ex)
             {
+                WriteLog(ex);
                 ErrorMessage(ex);
             }
         }
@@ -183,6 +186,7 @@ namespace Team2_POP
             }
             catch (Exception ex)
             {
+                WriteLog(ex);
                 ErrorMessage(ex);
                 DisConnected();
             }
@@ -248,12 +252,14 @@ namespace Team2_POP
 
             catch (Exception ex)
             {
+                WriteLog(ex);
                 ErrorMessage(ex);
             }
         }
 
         private void ErrorMessage(Exception ex)
         {
+            WriteLog(ex);
             FormCollection frms = Application.OpenForms;
             for (int i = 0; i < frms.Count; i++)
             {
@@ -281,6 +287,11 @@ namespace Team2_POP
                     }
                 }
             }
+        }
+
+        private void WriteLog(Exception ex)
+        {
+            Program.Log.WriteError(ex.Message, ex);
         }
     }
 }

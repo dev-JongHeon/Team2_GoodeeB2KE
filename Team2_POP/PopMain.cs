@@ -399,6 +399,7 @@ namespace Team2_POP
             }
             catch (Exception ex)
             {
+                WriteLog(ex);
                 CustomMessageBox.ShowDialog("오류", ex.Message, MessageBoxIcon.Error);
             }
         }
@@ -426,7 +427,6 @@ namespace Team2_POP
                     {
                         if (!pFrm.IsDisposed)
                             pFrm.Invoke(new CloseDelegate(pFrm.Close));
-                        //client = null; // 임시
                     }
                 }
                 else
@@ -434,7 +434,6 @@ namespace Team2_POP
                     CustomMessageBox.ShowDialog("실패", e.Message, MessageBoxIcon.Error);
                     if(!pFrm.IsDisposed)
                      pFrm.Invoke(new CloseDelegate(pFrm.Close));
-                    //client = null; //임시
                 }
 
                 // 클라이언트 부분을 해제함
@@ -442,11 +441,11 @@ namespace Team2_POP
             }
             catch (Exception ex)
             {
+                WriteLog(ex);
                 CustomMessageBox.ShowDialog("오류", ex.Message, MessageBoxIcon.Error);
                 if (pFrm != null)
                 {
                     pFrm.Invoke(new CloseDelegate(pFrm.Close));
-                    //client.DisConnected(); // 임시
                 }
             }
         }
@@ -497,6 +496,7 @@ namespace Team2_POP
             }
             catch (Exception ex)
             {
+                WriteLog(ex);
                 CustomMessageBox.ShowDialog(Resources.MsgDefectiveResultFailHeader, ex.Message, MessageBoxIcon.Error);
             }
         }
@@ -575,6 +575,7 @@ namespace Team2_POP
             }
             catch (Exception ex)
             {
+                WriteLog(ex);
                 CustomMessageBox.ShowDialog("오류", ex.Message, MessageBoxIcon.Error);
             }
         }
@@ -626,7 +627,8 @@ namespace Team2_POP
             }
             catch (Exception ex)
             {
-                CustomMessageBox.ShowDialog("에러", ex.Message, MessageBoxIcon.Error);
+                WriteLog(ex);
+                CustomMessageBox.ShowDialog("에러", ex.Message, MessageBoxIcon.Error);                
             }
         }
 
@@ -699,6 +701,8 @@ namespace Team2_POP
                     timer.Enabled = false;
                     timer.Close();
                 }
+
+                WriteLog(ex);
             }
         }
 
@@ -724,7 +728,7 @@ namespace Team2_POP
         //===================
         private void WriteLog(Exception ex)
         {
-
+            WriteLog(ex);
         }
 
         private void btnWorkStart_Click(object sender, EventArgs e)
