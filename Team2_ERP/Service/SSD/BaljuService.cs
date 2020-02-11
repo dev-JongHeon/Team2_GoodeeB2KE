@@ -40,11 +40,5 @@ namespace Team2_ERP.Service
             BaljuDAC dac = new BaljuDAC();
             dac.DeleteBalju(balju_ID);
         }
-
-        public DataSet GetBaljuList_DataSet(string id)
-        {
-            BaljuDAC dac = new BaljuDAC();
-            return dac.GetBaljuList_DataSet(id);
-        }
     }
 }
