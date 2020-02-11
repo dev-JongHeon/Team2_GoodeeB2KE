@@ -123,7 +123,6 @@ namespace Team2_ERP
                                     where item.Balju_Date.Date.CompareTo(Convert.ToDateTime(Search_Period.Startdate.Text)) >= 0 &&
                                             item.Balju_Date.Date.CompareTo(Convert.ToDateTime(Search_Period.Enddate.Text)) <= 0
                                      select item).ToList();
-
                 }
                 dgv_Balju.DataSource = SearchedList;
                 dgv_BaljuDetail.DataSource = null;
@@ -141,7 +140,7 @@ namespace Team2_ERP
                 if (MessageBox.Show("정말로 발주완료 처리하시겠습니까?", "알림", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     string Balju_ID = dgv_Balju.CurrentRow.Cells[0].Value.ToString();
-                    service.UpdateBalju_Processed(Balju_ID);
+                    service.UpdateBalju_Processed(Balju_ID, Session.Employee_ID);
                     Func_Refresh();  // 새로고침
                     main.NoticeMessage = notice;
                 }
@@ -207,12 +206,6 @@ namespace Team2_ERP
             //dOrg.Tables.Add(UtilClass.ConvertToDataTable(BaljuDetail_AllList));
             //ds = (dsBalju)dOrg;
             ds.AcceptChanges();
-
-            //StringBuilder sb = new StringBuilder();
-            //foreach (DataGridViewRow row in dgv_Balju.Rows)
-            //{
-            //    sb.Append($"'{row.Cells[0].Value.ToString()}',");
-            //}
 
             br.DataSource = ds;
             using (ReportPrintTool printTool = new ReportPrintTool(br))

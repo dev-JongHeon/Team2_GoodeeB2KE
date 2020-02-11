@@ -95,7 +95,7 @@ namespace Team2_DAC
             }
         }
 
-        public void UpdateBalju_Processed(string balju_ID)
+        public void UpdateBalju_Processed(string baljuID, int employeeID)
         {
             int check = 0;
             try
@@ -105,7 +105,8 @@ namespace Team2_DAC
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "SSD_UpdateBalju_Processed";
-                    cmd.Parameters.AddWithValue("@Balju_ID", balju_ID);
+                    cmd.Parameters.AddWithValue("@Balju_ID", baljuID);
+                    cmd.Parameters.AddWithValue("@employee_ID", employeeID);
                     conn.Open();
                     check = cmd.ExecuteNonQuery();
                     conn.Close();

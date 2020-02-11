@@ -78,19 +78,19 @@ namespace Team2_ERP
         {
             if (rdo_All.Checked)
             {
-                dgv_Stock.DataSource = (from list_Stock in StockReceipt_AllList
+                dgv_Stock.DataSource = (from list_Stock in SearchedList
                                         where list_Stock.Warehouse_Division == false
                                         select list_Stock).ToList();
             }
             else if (rdo_In.Checked)
             {
-                dgv_Stock.DataSource = (from list_Stock in StockReceipt_AllList
+                dgv_Stock.DataSource = (from list_Stock in SearchedList
                                         where list_Stock.Warehouse_Division == false && list_Stock.StockReceipt_Division1 == "입고"
                                         select list_Stock).ToList();
             }
             else if (rdo_Out.Checked)
             {
-                dgv_Stock.DataSource = (from list_Stock in StockReceipt_AllList
+                dgv_Stock.DataSource = (from list_Stock in SearchedList
                                         where list_Stock.Warehouse_Division == false && list_Stock.StockReceipt_Division1 == "출고"
                                         select list_Stock).ToList();
             }
@@ -163,15 +163,13 @@ namespace Team2_ERP
 
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
-            BaljuCompletedReport br = new BaljuCompletedReport();
-            dsBalju ds = new dsBalju();
+            InOutMaterialWarehouseReport br = new InOutMaterialWarehouseReport();
+            dsStockReceipt ds = new dsStockReceipt();
 
             ds.Relations.Clear();
             ds.Tables.Clear();
             ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
-            ds.Tables[0].TableName = "dtBalju";
-            ds.Tables[1].TableName = "dtBalju_Detail";
-            ds.Relations.Add("dtBalju_dtBalju_Detail", ds.Tables[0].Columns["Balju_ID"], ds.Tables[1].Columns["Balju_ID"]);
+            ds.Tables[0].TableName = "dtStockReceipt";
 
             //ds.AcceptChanges();
 

@@ -10,7 +10,8 @@
 
 #pragma warning disable 1591
 
-namespace Team2_DAC.SSD.DataSets {
+namespace Team2_DAC
+{
     
     
     /// <summary>
@@ -279,7 +280,21 @@ namespace Team2_DAC.SSD.DataSets {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class dtStockReceiptDataTable : global::System.Data.TypedTableBase<dtStockReceiptRow> {
             
-            private global::System.Data.DataColumn columnDataColumn1;
+            private global::System.Data.DataColumn columnStockReceipt_ID;
+            
+            private global::System.Data.DataColumn columnStockReceipt_Division1;
+            
+            private global::System.Data.DataColumn columnStockReceipt_Date;
+            
+            private global::System.Data.DataColumn columnWarehouse_Name;
+            
+            private global::System.Data.DataColumn columnProduct_ID;
+            
+            private global::System.Data.DataColumn columnProduct_Name;
+            
+            private global::System.Data.DataColumn columnStockReceipt_Quantity;
+            
+            private global::System.Data.DataColumn columnEmployees_Name;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -316,9 +331,65 @@ namespace Team2_DAC.SSD.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn DataColumn1Column {
+            public global::System.Data.DataColumn StockReceipt_IDColumn {
                 get {
-                    return this.columnDataColumn1;
+                    return this.columnStockReceipt_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn StockReceipt_Division1Column {
+                get {
+                    return this.columnStockReceipt_Division1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn StockReceipt_DateColumn {
+                get {
+                    return this.columnStockReceipt_Date;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn Warehouse_NameColumn {
+                get {
+                    return this.columnWarehouse_Name;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn Product_IDColumn {
+                get {
+                    return this.columnProduct_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn Product_NameColumn {
+                get {
+                    return this.columnProduct_Name;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn StockReceipt_QuantityColumn {
+                get {
+                    return this.columnStockReceipt_Quantity;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn Employees_NameColumn {
+                get {
+                    return this.columnEmployees_Name;
                 }
             }
             
@@ -359,10 +430,17 @@ namespace Team2_DAC.SSD.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtStockReceiptRow AdddtStockReceiptRow(string DataColumn1) {
+            public dtStockReceiptRow AdddtStockReceiptRow(string StockReceipt_ID, string StockReceipt_Division1, string StockReceipt_Date, string Warehouse_Name, string Product_ID, string Product_Name, string StockReceipt_Quantity, string Employees_Name) {
                 dtStockReceiptRow rowdtStockReceiptRow = ((dtStockReceiptRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        DataColumn1};
+                        StockReceipt_ID,
+                        StockReceipt_Division1,
+                        StockReceipt_Date,
+                        Warehouse_Name,
+                        Product_ID,
+                        Product_Name,
+                        StockReceipt_Quantity,
+                        Employees_Name};
                 rowdtStockReceiptRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtStockReceiptRow);
                 return rowdtStockReceiptRow;
@@ -385,14 +463,35 @@ namespace Team2_DAC.SSD.DataSets {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
-                this.columnDataColumn1 = base.Columns["DataColumn1"];
+                this.columnStockReceipt_ID = base.Columns["StockReceipt_ID"];
+                this.columnStockReceipt_Division1 = base.Columns["StockReceipt_Division1"];
+                this.columnStockReceipt_Date = base.Columns["StockReceipt_Date"];
+                this.columnWarehouse_Name = base.Columns["Warehouse_Name"];
+                this.columnProduct_ID = base.Columns["Product_ID"];
+                this.columnProduct_Name = base.Columns["Product_Name"];
+                this.columnStockReceipt_Quantity = base.Columns["StockReceipt_Quantity"];
+                this.columnEmployees_Name = base.Columns["Employees_Name"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             private void InitClass() {
-                this.columnDataColumn1 = new global::System.Data.DataColumn("DataColumn1", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDataColumn1);
+                this.columnStockReceipt_ID = new global::System.Data.DataColumn("StockReceipt_ID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStockReceipt_ID);
+                this.columnStockReceipt_Division1 = new global::System.Data.DataColumn("StockReceipt_Division1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStockReceipt_Division1);
+                this.columnStockReceipt_Date = new global::System.Data.DataColumn("StockReceipt_Date", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStockReceipt_Date);
+                this.columnWarehouse_Name = new global::System.Data.DataColumn("Warehouse_Name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnWarehouse_Name);
+                this.columnProduct_ID = new global::System.Data.DataColumn("Product_ID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProduct_ID);
+                this.columnProduct_Name = new global::System.Data.DataColumn("Product_Name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProduct_Name);
+                this.columnStockReceipt_Quantity = new global::System.Data.DataColumn("StockReceipt_Quantity", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStockReceipt_Quantity);
+                this.columnEmployees_Name = new global::System.Data.DataColumn("Employees_Name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEmployees_Name);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -535,30 +634,226 @@ namespace Team2_DAC.SSD.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string DataColumn1 {
+            public string StockReceipt_ID {
                 get {
                     try {
-                        return ((string)(this[this.tabledtStockReceipt.DataColumn1Column]));
+                        return ((string)(this[this.tabledtStockReceipt.StockReceipt_IDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("\'dtStockReceipt\' 테이블의 \'DataColumn1\' 열의 값이 DBNull입니다.", e);
+                        throw new global::System.Data.StrongTypingException("\'dtStockReceipt\' 테이블의 \'StockReceipt_ID\' 열의 값이 DBNull입니다.", e);
                     }
                 }
                 set {
-                    this[this.tabledtStockReceipt.DataColumn1Column] = value;
+                    this[this.tabledtStockReceipt.StockReceipt_IDColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsDataColumn1Null() {
-                return this.IsNull(this.tabledtStockReceipt.DataColumn1Column);
+            public string StockReceipt_Division1 {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtStockReceipt.StockReceipt_Division1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("\'dtStockReceipt\' 테이블의 \'StockReceipt_Division1\' 열의 값이 DBNull입니다.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtStockReceipt.StockReceipt_Division1Column] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetDataColumn1Null() {
-                this[this.tabledtStockReceipt.DataColumn1Column] = global::System.Convert.DBNull;
+            public string StockReceipt_Date {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtStockReceipt.StockReceipt_DateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("\'dtStockReceipt\' 테이블의 \'StockReceipt_Date\' 열의 값이 DBNull입니다.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtStockReceipt.StockReceipt_DateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string Warehouse_Name {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtStockReceipt.Warehouse_NameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("\'dtStockReceipt\' 테이블의 \'Warehouse_Name\' 열의 값이 DBNull입니다.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtStockReceipt.Warehouse_NameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string Product_ID {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtStockReceipt.Product_IDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("\'dtStockReceipt\' 테이블의 \'Product_ID\' 열의 값이 DBNull입니다.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtStockReceipt.Product_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string Product_Name {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtStockReceipt.Product_NameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("\'dtStockReceipt\' 테이블의 \'Product_Name\' 열의 값이 DBNull입니다.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtStockReceipt.Product_NameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string StockReceipt_Quantity {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtStockReceipt.StockReceipt_QuantityColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("\'dtStockReceipt\' 테이블의 \'StockReceipt_Quantity\' 열의 값이 DBNull입니다.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtStockReceipt.StockReceipt_QuantityColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string Employees_Name {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtStockReceipt.Employees_NameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("\'dtStockReceipt\' 테이블의 \'Employees_Name\' 열의 값이 DBNull입니다.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtStockReceipt.Employees_NameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsStockReceipt_IDNull() {
+                return this.IsNull(this.tabledtStockReceipt.StockReceipt_IDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetStockReceipt_IDNull() {
+                this[this.tabledtStockReceipt.StockReceipt_IDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsStockReceipt_Division1Null() {
+                return this.IsNull(this.tabledtStockReceipt.StockReceipt_Division1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetStockReceipt_Division1Null() {
+                this[this.tabledtStockReceipt.StockReceipt_Division1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsStockReceipt_DateNull() {
+                return this.IsNull(this.tabledtStockReceipt.StockReceipt_DateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetStockReceipt_DateNull() {
+                this[this.tabledtStockReceipt.StockReceipt_DateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsWarehouse_NameNull() {
+                return this.IsNull(this.tabledtStockReceipt.Warehouse_NameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetWarehouse_NameNull() {
+                this[this.tabledtStockReceipt.Warehouse_NameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsProduct_IDNull() {
+                return this.IsNull(this.tabledtStockReceipt.Product_IDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetProduct_IDNull() {
+                this[this.tabledtStockReceipt.Product_IDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsProduct_NameNull() {
+                return this.IsNull(this.tabledtStockReceipt.Product_NameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetProduct_NameNull() {
+                this[this.tabledtStockReceipt.Product_NameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsStockReceipt_QuantityNull() {
+                return this.IsNull(this.tabledtStockReceipt.StockReceipt_QuantityColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetStockReceipt_QuantityNull() {
+                this[this.tabledtStockReceipt.StockReceipt_QuantityColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsEmployees_NameNull() {
+                return this.IsNull(this.tabledtStockReceipt.Employees_NameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetEmployees_NameNull() {
+                this[this.tabledtStockReceipt.Employees_NameColumn] = global::System.Convert.DBNull;
             }
         }
         

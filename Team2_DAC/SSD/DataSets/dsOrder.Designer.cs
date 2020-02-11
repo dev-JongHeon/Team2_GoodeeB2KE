@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace Team2_DAC.SSD.DataSets {
+namespace Team2_DAC {
     
     
     /// <summary>
