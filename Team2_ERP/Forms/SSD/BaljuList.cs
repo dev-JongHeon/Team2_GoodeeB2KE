@@ -5,12 +5,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Team2_DAC;
 using Team2_ERP.Service;
 using Team2_VO;
-using Microsoft.Office.Interop.Excel;
 using DevExpress.XtraReports.UI;
-using Team2_ERP.Properties;
 
 namespace Team2_ERP
 {
@@ -22,6 +19,7 @@ namespace Team2_ERP
         List<BaljuDetail> BaljuDetail_AllList = null;  // Details
         List<Balju> SearchedList = null;  // 검색용
         MainForm main;
+        CheckBox headerCheckBox = new CheckBox();
         #endregion
 
         public BaljuList()
@@ -37,6 +35,19 @@ namespace Team2_ERP
 
         private void LoadData()
         {
+            DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
+            chk.HeaderText = "";
+            chk.Name = "chk";
+            chk.Width = 30;
+            dgv_Balju.Columns.Add(chk);
+
+            Point headerCellLocation = this.dgv_Balju.GetCellDisplayRectangle(0, -1, true).Location;
+            headerCheckBox.Location = new Point(headerCellLocation.X + 8, headerCellLocation.Y + 2);
+            headerCheckBox.BackColor = Color.White;
+            headerCheckBox.Size = new Size(18, 18);
+            //headerCheckBox.Click += new EventHandler(HeaderCheckBox_Click);
+            dgv_Balju.Controls.Add(headerCheckBox);
+
             UtilClass.SettingDgv(dgv_Balju);
             //dgv_Balju.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             UtilClass.AddNewColum(dgv_Balju, "발주지시번호", "Balju_ID", true, 130);
