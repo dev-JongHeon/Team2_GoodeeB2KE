@@ -25,7 +25,8 @@ namespace Team2_DAC
                 {
                     StringBuilder sb = new StringBuilder();
                     sb.Append("SELECT Order_ID, Customer_UserID, Customer_Name, Order_Date, Order_Address1, Order_Address2,                             Order_DeletedYN, Order_State, TotalPrice ");
-                    sb.Append("FROM   Order_top");
+                    sb.Append("FROM   Order_top ");
+                    sb.Append("ORDER BY Order_ID DESC ");
 
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
@@ -76,8 +77,9 @@ namespace Team2_DAC
                 {
                     StringBuilder sb = new StringBuilder();
                     sb.Append("SELECT Order_ID, Customer_UserID, Customer_Name, Order_Date, OrderCompleted_Date, Order_Address1,                        Order_Address2, TotalPrice ");
-                    sb.Append("FROM   OrderCompleted_top");
-                    
+                    sb.Append("FROM   OrderCompleted_top ");
+                    sb.Append("ORDER BY Order_ID DESC ");
+
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandText = sb.ToString();
