@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraReports.UI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using Team2_DAC;
 using Team2_ERP.Service;
 using Team2_VO;
 
@@ -37,8 +39,8 @@ namespace Team2_ERP
             UtilClass.SettingDgv(dgv_Shipment);
             UtilClass.AddNewColum(dgv_Shipment, "출하번호", "Shipment_ID", true);
             UtilClass.AddNewColum(dgv_Shipment, "주문번호", "Order_ID", true);
-            UtilClass.AddNewColum(dgv_Shipment, "주문일시", "Order_Date", true, 170);
-            UtilClass.AddNewColum(dgv_Shipment, "주문처리일시", "OrderCompleted_Date", true, 170);
+            UtilClass.AddNewColum(dgv_Shipment, "주문일시", "Order_Date", false, 170);
+            UtilClass.AddNewColum(dgv_Shipment, "주문처리일시", "OrderCompleted_Date", false, 170);
             UtilClass.AddNewColum(dgv_Shipment, "고객ID", "Customer_userID", true, 90);
             UtilClass.AddNewColum(dgv_Shipment, "고객성명", "Customer_Name", true);
             UtilClass.AddNewColum(dgv_Shipment, "출하요청날짜", "Shipment_RequiredDate", true, 170);
@@ -186,7 +188,27 @@ namespace Team2_ERP
 
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
+            if (dgv_Shipment.Rows.Count > 0)
+            {
+                ShipmentCompletedReport br = new ShipmentCompletedReport();
+                dsShipment ds = new dsShipment();
 
+                ds.Relations.Clear();
+                ds.Tables.Clear();
+                ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+                ds.Tables.Add(UtilClass.ConvertToDataTable(ShipmentDetail_AllList));
+                ds.Tables[0].TableName = "dtShipment";
+                ds.Tables[1].TableName = "dtShipmentDetail";
+                ds.Relations.Add("dtShipment_dtShipmentDetail", ds.Tables[0].Columns["Shipment_ID"], ds.Tables[1].Columns["Shipment_ID"]);
+
+                //ds.AcceptChanges();
+
+                br.DataSource = ds;
+                using (ReportPrintTool printTool = new ReportPrintTool(br))
+                {
+                    printTool.ShowRibbonPreviewDialog();
+                } 
+            }
         }
         #endregion
 

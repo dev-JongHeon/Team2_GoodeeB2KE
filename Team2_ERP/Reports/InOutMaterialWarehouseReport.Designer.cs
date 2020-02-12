@@ -338,7 +338,7 @@ namespace Team2_ERP
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(Team2_DAC.dsStockReceipt);
+            this.objectDataSource1.DataSource = typeof(dsStockReceipt);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // xrTableCell13
@@ -549,7 +549,6 @@ namespace Team2_ERP
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell2;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell3;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell5;
-        private dsBalju dsBalju1;
         private DevExpress.XtraReports.UI.PageFooterBand PageFooter;
         private DevExpress.XtraReports.UI.XRLabel xrLabel8;
         private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo1;

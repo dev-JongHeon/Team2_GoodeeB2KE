@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraReports.UI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -149,7 +150,27 @@ namespace Team2_ERP
 
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
+            if (dgv_Order.Rows.Count > 0)
+            {
+                OrderCompletedReport br = new OrderCompletedReport();
+                dsOrder ds = new dsOrder();
 
+                ds.Relations.Clear();
+                ds.Tables.Clear();
+                ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+                ds.Tables.Add(UtilClass.ConvertToDataTable(OrderDetail_AllList));
+                ds.Tables[0].TableName = "dtOrder";
+                ds.Tables[1].TableName = "dtOrderDetail";
+                ds.Relations.Add("dtOrder_dtOrderDetail", ds.Tables[0].Columns["Order_ID"], ds.Tables[1].Columns["Order_ID"]);
+
+                //ds.AcceptChanges();
+
+                br.DataSource = ds;
+                using (ReportPrintTool printTool = new ReportPrintTool(br))
+                {
+                    printTool.ShowRibbonPreviewDialog();
+                } 
+            }
         }
         #endregion
 

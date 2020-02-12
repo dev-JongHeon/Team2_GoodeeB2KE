@@ -192,25 +192,28 @@ namespace Team2_ERP
 
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
-            BaljuReport br = new BaljuReport();
-            dsBalju ds = new dsBalju();
-                        
-            ds.Relations.Clear();
-            ds.Tables.Clear();
-            ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
-            ds.Tables.Add(UtilClass.ConvertToDataTable(BaljuDetail_AllList));
-            ds.Tables[0].TableName = "dtBalju";
-            ds.Tables[1].TableName = "dtBalju_Detail";
-            ds.Relations.Add("dtBalju_dtBalju_Detail", ds.Tables[0].Columns["Balju_ID"], ds.Tables[1].Columns["Balju_ID"]);
-            
-            //dOrg.Tables.Add(UtilClass.ConvertToDataTable(BaljuDetail_AllList));
-            //ds = (dsBalju)dOrg;
-            ds.AcceptChanges();
-
-            br.DataSource = ds;
-            using (ReportPrintTool printTool = new ReportPrintTool(br))
+            if (dgv_Balju.Rows.Count > 0)
             {
-                printTool.ShowRibbonPreviewDialog();
+                BaljuReport br = new BaljuReport();
+                dsBalju ds = new dsBalju();
+
+                ds.Relations.Clear();
+                ds.Tables.Clear();
+                ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+                ds.Tables.Add(UtilClass.ConvertToDataTable(BaljuDetail_AllList));
+                ds.Tables[0].TableName = "dtBalju";
+                ds.Tables[1].TableName = "dtBalju_Detail";
+                ds.Relations.Add("dtBalju_dtBalju_Detail", ds.Tables[0].Columns["Balju_ID"], ds.Tables[1].Columns["Balju_ID"]);
+
+                //dOrg.Tables.Add(UtilClass.ConvertToDataTable(BaljuDetail_AllList));
+                //ds = (dsBalju)dOrg;
+                ds.AcceptChanges();
+
+                br.DataSource = ds;
+                using (ReportPrintTool printTool = new ReportPrintTool(br))
+                {
+                    printTool.ShowRibbonPreviewDialog();
+                } 
             }  
         }
         #endregion

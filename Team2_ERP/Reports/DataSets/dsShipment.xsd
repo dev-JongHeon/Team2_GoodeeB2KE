@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsShipment" targetNamespace="http://tempuri.org/dsShipment.xsd" xmlns:mstns="http://tempuri.org/dsShipment.xsd" xmlns="http://tempuri.org/dsShipment.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsShipment" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsShipment" msprop:Generator_UserDSName="dsShipment">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dtShipment" msprop:Generator_TableClassName="dtShipmentDataTable" msprop:Generator_TableVarName="tabledtShipment" msprop:Generator_TablePropName="dtShipment" msprop:Generator_RowDeletingName="dtShipmentRowDeleting" msprop:Generator_RowChangingName="dtShipmentRowChanging" msprop:Generator_RowEvHandlerName="dtShipmentRowChangeEventHandler" msprop:Generator_RowDeletedName="dtShipmentRowDeleted" msprop:Generator_UserTableName="dtShipment" msprop:Generator_RowChangedName="dtShipmentRowChanged" msprop:Generator_RowEvArgName="dtShipmentRowChangeEvent" msprop:Generator_RowClassName="dtShipmentRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Shipment_ID" msprop:Generator_ColumnVarNameInTable="columnShipment_ID" msprop:Generator_ColumnPropNameInRow="Shipment_ID" msprop:Generator_ColumnPropNameInTable="Shipment_IDColumn" msprop:Generator_UserColumnName="Shipment_ID" type="xs:string" minOccurs="0" />
+              <xs:element name="Order_ID" msprop:Generator_ColumnVarNameInTable="columnOrder_ID" msprop:Generator_ColumnPropNameInRow="Order_ID" msprop:Generator_ColumnPropNameInTable="Order_IDColumn" msprop:Generator_UserColumnName="Order_ID" type="xs:string" minOccurs="0" />
+              <xs:element name="Customer_userID" msprop:Generator_ColumnVarNameInTable="columnCustomer_userID" msprop:Generator_ColumnPropNameInRow="Customer_userID" msprop:Generator_ColumnPropNameInTable="Customer_userIDColumn" msprop:Generator_UserColumnName="Customer_userID" type="xs:string" minOccurs="0" />
+              <xs:element name="Customer_Name" msprop:Generator_ColumnVarNameInTable="columnCustomer_Name" msprop:Generator_ColumnPropNameInRow="Customer_Name" msprop:Generator_ColumnPropNameInTable="Customer_NameColumn" msprop:Generator_UserColumnName="Customer_Name" type="xs:string" minOccurs="0" />
+              <xs:element name="Shipment_RequiredDate" msprop:Generator_ColumnVarNameInTable="columnShipment_RequiredDate" msprop:Generator_ColumnPropNameInRow="Shipment_RequiredDate" msprop:Generator_ColumnPropNameInTable="Shipment_RequiredDateColumn" msprop:Generator_UserColumnName="Shipment_RequiredDate" type="xs:string" minOccurs="0" />
+              <xs:element name="Employees_Name" msprop:Generator_ColumnVarNameInTable="columnEmployees_Name" msprop:Generator_ColumnPropNameInRow="Employees_Name" msprop:Generator_ColumnPropNameInTable="Employees_NameColumn" msprop:Generator_UserColumnName="Employees_Name" type="xs:string" minOccurs="0" />
+              <xs:element name="Shipment_DoneDate" msprop:Generator_ColumnVarNameInTable="columnShipment_DoneDate" msprop:Generator_ColumnPropNameInRow="Shipment_DoneDate" msprop:Generator_ColumnPropNameInTable="Shipment_DoneDateColumn" msprop:Generator_UserColumnName="Shipment_DoneDate" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dtShipmentDetail" msprop:Generator_TableClassName="dtShipmentDetailDataTable" msprop:Generator_TableVarName="tabledtShipmentDetail" msprop:Generator_TablePropName="dtShipmentDetail" msprop:Generator_RowDeletingName="dtShipmentDetailRowDeleting" msprop:Generator_RowChangingName="dtShipmentDetailRowChanging" msprop:Generator_RowEvHandlerName="dtShipmentDetailRowChangeEventHandler" msprop:Generator_RowDeletedName="dtShipmentDetailRowDeleted" msprop:Generator_UserTableName="dtShipmentDetail" msprop:Generator_RowChangedName="dtShipmentDetailRowChanged" msprop:Generator_RowEvArgName="dtShipmentDetailRowChangeEvent" msprop:Generator_RowClassName="dtShipmentDetailRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Shipment_ID" msprop:Generator_ColumnVarNameInTable="columnShipment_ID" msprop:Generator_ColumnPropNameInRow="Shipment_ID" msprop:Generator_ColumnPropNameInTable="Shipment_IDColumn" msprop:Generator_UserColumnName="Shipment_ID" type="xs:string" minOccurs="0" />
+              <xs:element name="Product_ID" msprop:Generator_ColumnVarNameInTable="columnProduct_ID" msprop:Generator_ColumnPropNameInRow="Product_ID" msprop:Generator_ColumnPropNameInTable="Product_IDColumn" msprop:Generator_UserColumnName="Product_ID" type="xs:string" minOccurs="0" />
+              <xs:element name="Product_Name" msprop:Generator_ColumnVarNameInTable="columnProduct_Name" msprop:Generator_ColumnPropNameInRow="Product_Name" msprop:Generator_ColumnPropNameInTable="Product_NameColumn" msprop:Generator_UserColumnName="Product_Name" type="xs:string" minOccurs="0" />
+              <xs:element name="OrderDetail_Qty" msprop:Generator_ColumnVarNameInTable="columnOrderDetail_Qty" msprop:Generator_ColumnPropNameInRow="OrderDetail_Qty" msprop:Generator_ColumnPropNameInTable="OrderDetail_QtyColumn" msprop:Generator_UserColumnName="OrderDetail_Qty" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="dtShipment_dtShipmentDetail" msdata:parent="dtShipment" msdata:child="dtShipmentDetail" msdata:parentkey="Shipment_ID" msdata:childkey="Shipment_ID" msprop:Generator_UserChildTable="dtShipmentDetail" msprop:Generator_ChildPropName="GetdtShipmentDetailRows" msprop:Generator_UserRelationName="dtShipment_dtShipmentDetail" msprop:Generator_ParentPropName="dtShipmentRow" msprop:Generator_RelationVarName="relationdtShipment_dtShipmentDetail" msprop:Generator_UserParentTable="dtShipment" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>

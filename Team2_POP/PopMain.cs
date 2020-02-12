@@ -44,6 +44,10 @@ namespace Team2_POP
             SettingControl();
             InitData();
             GetTime();
+
+            // 처음 컨트롤 포커스
+            this.ActiveControl = btnDate;
+            btnDate.Focus();
         }
 
         #endregion
@@ -61,25 +65,19 @@ namespace Team2_POP
             BtnDisable(btnProduceStart);
 
             #region 이미지관련          
-            ImageList list1 = new ImageList();
-            ImageList list2 = new ImageList();
-            ImageList list3 = new ImageList();
-            ImageList list4 = new ImageList();
+            
+            
+            
+            picLeft.Image = Resources.Img_LeftButton;
+            picRight.Image = Resources.Img_RightButton;
+            picLogout.Image = Resources.Img_Logout;
+            picExit.Image = Resources.Img_Exit;
 
-            list1.Images.Add(Resources.Img_LeftArrow);
-            list2.Images.Add(Resources.Img_RightArrow);
-            list3.Images.Add(Resources.Img_Exit);
-            list4.Images.Add(Resources.Img_Logout);
+            picLeft.SizeMode = picRight.SizeMode = picLogout.SizeMode = picExit.SizeMode
+                = PictureBoxSizeMode.StretchImage;
 
-            list1.ImageSize = btnPreDate.Size;
-            list2.ImageSize = btnNextDate.Size;
-            list3.ImageSize = btnExit.Size;
-            list4.ImageSize = btnLogout.Size;
-
-            btnPreDate.Image = list1.Images[0];
-            btnNextDate.Image = list2.Images[0];
-            btnExit.Image = list3.Images[0];
-            btnLogout.Image = list4.Images[0];
+            
+         
             #endregion
 
 
@@ -93,6 +91,8 @@ namespace Team2_POP
                 splitContainer6.IsSplitterFixed = splitContainer7.IsSplitterFixed = splitContainer8.IsSplitterFixed
                 = splitContainer9.IsSplitterFixed = splitContainer10.IsSplitterFixed =
                 splitContainer11.IsSplitterFixed = true;
+
+            //panelHaderRight.BorderStyle = panelHaderLeft.BorderStyle = panel1.BorderStyle = BorderStyle.None;
 
             #region 그리드뷰 디자인
             // =============================================
@@ -684,7 +684,7 @@ namespace Team2_POP
         {
             try
             {
-                if (!this.IsDisposed && !timer.Enabled)
+                if (!this.IsDisposed && timer.Enabled)
                 {
                     this.Invoke(new Action(delegate ()
                     { lblTime.Text = DateTime.Now.ToString(); }
@@ -736,6 +736,44 @@ namespace Team2_POP
 
         }
 
+        private void picLeft_MouseHover(object sender, EventArgs e)
+        {
+            picLeft.BorderStyle = BorderStyle.FixedSingle;
+        }
 
+        private void picRight_MouseHover(object sender, EventArgs e)
+        {
+            picRight.BorderStyle = BorderStyle.FixedSingle;
+        }
+
+        private void picLeft_MouseLeave(object sender, EventArgs e)
+        {
+            picLeft.BorderStyle = BorderStyle.None;
+        }
+
+        private void picRight_MouseLeave(object sender, EventArgs e)
+        {
+            picRight.BorderStyle = BorderStyle.None;
+        }
+
+        private void picLogout_MouseHover(object sender, EventArgs e)
+        {
+            picLogout.BorderStyle = BorderStyle.FixedSingle;
+        }
+
+        private void picLogout_MouseLeave(object sender, EventArgs e)
+        {
+            picLogout.BorderStyle = BorderStyle.None;
+        }
+
+        private void picExit_MouseHover(object sender, EventArgs e)
+        {
+            picExit.BorderStyle = BorderStyle.FixedSingle;
+        }
+
+        private void picExit_MouseLeave(object sender, EventArgs e)
+        {
+            picExit.BorderStyle = BorderStyle.None;
+        }
     }
 }

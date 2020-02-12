@@ -171,6 +171,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\icons8-right-button-96.png" />
+    <None Include="Resources\icons8-prev-96.png" />
+    <None Include="Resources\icons8-forward-button-100.png" />
+    <None Include="Resources\icons8-back-arrow-100.png" />
     <None Include="Resources\생산.gif" />
     <None Include="Resources\Img_Producing.gif" />
     <None Include="Resources\Warning.png" />
