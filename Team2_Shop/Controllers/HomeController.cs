@@ -15,8 +15,12 @@ namespace Team2_Shop.Controllers
 
         public ActionResult Login(string id, string pwd)
         {
-            Console.WriteLine(id, pwd);
-            return View("Index");
+            if (id == null || pwd == null)
+                return View("Index");
+            else
+
+
+                return View("Index");
         }
     }
 }
