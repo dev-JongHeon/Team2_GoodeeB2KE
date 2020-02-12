@@ -35,18 +35,18 @@ namespace Team2_ERP
 
         private void LoadData()
         {
-            DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
-            chk.HeaderText = "";
-            chk.Name = "chk";
-            chk.Width = 30;
-            dgv_Balju.Columns.Add(chk);
+            //DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
+            //chk.HeaderText = "";
+            //chk.Name = "chk";
+            //chk.Width = 30;
+            //dgv_Balju.Columns.Add(chk);
 
-            Point headerCellLocation = this.dgv_Balju.GetCellDisplayRectangle(0, -1, true).Location;
-            headerCheckBox.Location = new Point(headerCellLocation.X + 8, headerCellLocation.Y + 2);
-            headerCheckBox.BackColor = Color.White;
-            headerCheckBox.Size = new Size(18, 18);
-            //headerCheckBox.Click += new EventHandler(HeaderCheckBox_Click);
-            dgv_Balju.Controls.Add(headerCheckBox);
+            //Point headerCellLocation = this.dgv_Balju.GetCellDisplayRectangle(0, -1, true).Location;
+            //headerCheckBox.Location = new Point(headerCellLocation.X + 8, headerCellLocation.Y + 2);
+            //headerCheckBox.BackColor = Color.White;
+            //headerCheckBox.Size = new Size(18, 18);
+            ////headerCheckBox.Click += new EventHandler(HeaderCheckBox_Click);
+            //dgv_Balju.Controls.Add(headerCheckBox);
 
             UtilClass.SettingDgv(dgv_Balju);
             //dgv_Balju.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsWork" targetNamespace="http://tempuri.org/dsWork.xsd" xmlns:mstns="http://tempuri.org/dsWork.xsd" xmlns="http://tempuri.org/dsWork.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsWork" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsWork" msprop:Generator_UserDSName="dsWork">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dtWork" msprop:Generator_TableClassName="dtWorkDataTable" msprop:Generator_TableVarName="tabledtWork" msprop:Generator_TablePropName="dtWork" msprop:Generator_RowDeletingName="dtWorkRowDeleting" msprop:Generator_RowChangingName="dtWorkRowChanging" msprop:Generator_RowEvHandlerName="dtWorkRowChangeEventHandler" msprop:Generator_RowDeletedName="dtWorkRowDeleted" msprop:Generator_UserTableName="dtWork" msprop:Generator_RowChangedName="dtWorkRowChanged" msprop:Generator_RowEvArgName="dtWorkRowChangeEvent" msprop:Generator_RowClassName="dtWorkRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Work_ID" msprop:Generator_ColumnVarNameInTable="columnWork_ID" msprop:Generator_ColumnPropNameInRow="Work_ID" msprop:Generator_ColumnPropNameInTable="Work_IDColumn" msprop:Generator_UserColumnName="Work_ID" type="xs:string" minOccurs="0" />
+              <xs:element name="Work_StartDate" msprop:Generator_ColumnVarNameInTable="columnWork_StartDate" msprop:Generator_ColumnPropNameInRow="Work_StartDate" msprop:Generator_ColumnPropNameInTable="Work_StartDateColumn" msprop:Generator_UserColumnName="Work_StartDate" type="xs:string" minOccurs="0" />
+              <xs:element name="Work_EndDate" msprop:Generator_ColumnVarNameInTable="columnWork_EndDate" msprop:Generator_ColumnPropNameInRow="Work_EndDate" msprop:Generator_ColumnPropNameInTable="Work_EndDateColumn" msprop:Generator_UserColumnName="Work_EndDate" type="xs:string" minOccurs="0" />
+              <xs:element name="Shipment_ID" msprop:Generator_ColumnVarNameInTable="columnShipment_ID" msprop:Generator_ColumnPropNameInRow="Shipment_ID" msprop:Generator_ColumnPropNameInTable="Shipment_IDColumn" msprop:Generator_UserColumnName="Shipment_ID" type="xs:string" minOccurs="0" />
+              <xs:element name="Shipment_RequiredDate" msprop:Generator_ColumnVarNameInTable="columnShipment_RequiredDate" msprop:Generator_ColumnPropNameInRow="Shipment_RequiredDate" msprop:Generator_ColumnPropNameInTable="Shipment_RequiredDateColumn" msprop:Generator_UserColumnName="Shipment_RequiredDate" type="xs:string" minOccurs="0" />
+              <xs:element name="Work_State" msprop:Generator_ColumnVarNameInTable="columnWork_State" msprop:Generator_ColumnPropNameInRow="Work_State" msprop:Generator_ColumnPropNameInTable="Work_StateColumn" msprop:Generator_UserColumnName="Work_State" type="xs:string" minOccurs="0" />
+              <xs:element name="Employees_Name" msprop:Generator_ColumnVarNameInTable="columnEmployees_Name" msprop:Generator_ColumnPropNameInRow="Employees_Name" msprop:Generator_ColumnPropNameInTable="Employees_NameColumn" msprop:Generator_UserColumnName="Employees_Name" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dtWorkDetail" msprop:Generator_TableClassName="dtWorkDetailDataTable" msprop:Generator_TableVarName="tabledtWorkDetail" msprop:Generator_TablePropName="dtWorkDetail" msprop:Generator_RowDeletingName="dtWorkDetailRowDeleting" msprop:Generator_RowChangingName="dtWorkDetailRowChanging" msprop:Generator_RowEvHandlerName="dtWorkDetailRowChangeEventHandler" msprop:Generator_RowDeletedName="dtWorkDetailRowDeleted" msprop:Generator_UserTableName="dtWorkDetail" msprop:Generator_RowChangedName="dtWorkDetailRowChanged" msprop:Generator_RowEvArgName="dtWorkDetailRowChangeEvent" msprop:Generator_RowClassName="dtWorkDetailRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ProduceWork_ID" msprop:Generator_ColumnVarNameInTable="columnProduceWork_ID" msprop:Generator_ColumnPropNameInRow="ProduceWork_ID" msprop:Generator_ColumnPropNameInTable="ProduceWork_IDColumn" msprop:Generator_UserColumnName="ProduceWork_ID" type="xs:string" minOccurs="0" />
+              <xs:element name="Produce_ID" msprop:Generator_ColumnVarNameInTable="columnProduce_ID" msprop:Generator_ColumnPropNameInRow="Produce_ID" msprop:Generator_ColumnPropNameInTable="Produce_IDColumn" msprop:Generator_UserColumnName="Produce_ID" type="xs:string" minOccurs="0" />
+              <xs:element name="Produce_StartDate" msprop:Generator_ColumnVarNameInTable="columnProduce_StartDate" msprop:Generator_ColumnPropNameInRow="Produce_StartDate" msprop:Generator_ColumnPropNameInTable="Produce_StartDateColumn" msprop:Generator_UserColumnName="Produce_StartDate" type="xs:string" minOccurs="0" />
+              <xs:element name="Factory_Name" msprop:Generator_ColumnVarNameInTable="columnFactory_Name" msprop:Generator_ColumnPropNameInRow="Factory_Name" msprop:Generator_ColumnPropNameInTable="Factory_NameColumn" msprop:Generator_UserColumnName="Factory_Name" type="xs:string" minOccurs="0" />
+              <xs:element name="Line_Name" msprop:Generator_ColumnVarNameInTable="columnLine_Name" msprop:Generator_ColumnPropNameInRow="Line_Name" msprop:Generator_ColumnPropNameInTable="Line_NameColumn" msprop:Generator_UserColumnName="Line_Name" type="xs:string" minOccurs="0" />
+              <xs:element name="Product_Name" msprop:Generator_ColumnVarNameInTable="columnProduct_Name" msprop:Generator_ColumnPropNameInRow="Product_Name" msprop:Generator_ColumnPropNameInTable="Product_NameColumn" msprop:Generator_UserColumnName="Product_Name" type="xs:string" minOccurs="0" />
+              <xs:element name="Produce_QtyRequested" msprop:Generator_ColumnVarNameInTable="columnProduce_QtyRequested" msprop:Generator_ColumnPropNameInRow="Produce_QtyRequested" msprop:Generator_ColumnPropNameInTable="Produce_QtyRequestedColumn" msprop:Generator_UserColumnName="Produce_QtyRequested" type="xs:string" minOccurs="0" />
+              <xs:element name="Produce_QtyReleased" msprop:Generator_ColumnVarNameInTable="columnProduce_QtyReleased" msprop:Generator_ColumnPropNameInRow="Produce_QtyReleased" msprop:Generator_ColumnPropNameInTable="Produce_QtyReleasedColumn" msprop:Generator_UserColumnName="Produce_QtyReleased" type="xs:string" minOccurs="0" />
+              <xs:element name="Produce_State" msprop:Generator_ColumnVarNameInTable="columnProduce_State" msprop:Generator_ColumnPropNameInRow="Produce_State" msprop:Generator_ColumnPropNameInTable="Produce_StateColumn" msprop:Generator_UserColumnName="Produce_State" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="dtWork_dtWorkDetail" msdata:parent="dtWork" msdata:child="dtWorkDetail" msdata:parentkey="Work_ID" msdata:childkey="ProduceWork_ID" msprop:Generator_UserChildTable="dtWorkDetail" msprop:Generator_ChildPropName="GetdtWorkDetailRows" msprop:Generator_UserRelationName="dtWork_dtWorkDetail" msprop:Generator_ParentPropName="dtWorkRow" msprop:Generator_RelationVarName="relationdtWork_dtWorkDetail" msprop:Generator_UserParentTable="dtWork" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraReports.UI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -224,7 +225,25 @@ namespace Team2_ERP
 
         public override void Print(object sender, EventArgs e)
         {
-            MessageBox.Show("프린트");
+            if (dgvWorkList.Rows.Count > 0)
+            {
+                WorkReport wr = new WorkReport();
+                dsWork ds = new dsWork();
+
+                ds.Relations.Clear();
+                ds.Tables.Clear();
+                ds.Tables.Add(UtilClass.ConvertToDataTable(searchedlist));
+                ds.Tables.Add(UtilClass.ConvertToDataTable(produces));
+                ds.Tables[0].TableName = "dtWork";
+                ds.Tables[1].TableName = "dtWorkDetail";
+                ds.Relations.Add("dtWork_dtWorkDetail", ds.Tables[0].Columns["Work_ID"], ds.Tables[1].Columns["ProduceWork_ID"]);
+
+                wr.DataSource = ds;
+                using (ReportPrintTool printTool = new ReportPrintTool(wr))
+                {
+                    printTool.ShowRibbonPreviewDialog();
+                }
+            }
         }
 
         private void rbxAll_CheckedChanged(object sender, EventArgs e)
