@@ -143,6 +143,16 @@ namespace Team2_POP.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap Img_LeftButton {
+            get {
+                object obj = ResourceManager.GetObject("Img_LeftButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap Img_Logo {
             get {
                 object obj = ResourceManager.GetObject("Img_Logo", resourceCulture);
@@ -176,6 +186,16 @@ namespace Team2_POP.Properties {
         internal static System.Drawing.Bitmap Img_RightArrow {
             get {
                 object obj = ResourceManager.GetObject("Img_RightArrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Img_RightButton {
+            get {
+                object obj = ResourceManager.GetObject("Img_RightButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
