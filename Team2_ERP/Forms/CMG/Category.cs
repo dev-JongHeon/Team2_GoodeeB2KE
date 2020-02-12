@@ -55,6 +55,7 @@ namespace Team2_ERP
         {
             InitMessage();
             dgvCategory.DataSource = null;
+            searchCategory.CodeTextBox.Text = "";
         }
 
         public override void New(object sender, EventArgs e)

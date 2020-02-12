@@ -82,6 +82,7 @@ namespace Team2_ERP
         private void EmployeesInsUp_Load(object sender, EventArgs e)
         {
             InitCombo();
+            txtEmployeesPassword.PasswordChar = '*';
 
             if(mode.Equals("Insert"))
             {
@@ -92,6 +93,7 @@ namespace Team2_ERP
             {
                 dtpEmployeesHireDate.Enabled = false;
                 dtpEmployeesResignDate.Enabled = true;
+                txtEmployeesPassword.Enabled = false;
             }
         }
 
