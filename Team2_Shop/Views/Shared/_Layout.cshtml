@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Starter</title>
+    <title>구디 홈쇼핑</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="~/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -65,7 +65,7 @@ desired effect
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>B2KE</b></span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg">                    
+                <span class="logo-lg">
                     <b>구디 B2KE</b>Shop
                 </span>
             </a>
@@ -92,20 +92,7 @@ desired effect
                                     <!-- inner menu: contains the messages -->
                                     <ul class="menu">
                                         <li>
-                                            <!-- start message -->
-                                            <a href="#">
-                                                <div class="pull-left">
-                                                    <!-- User Image -->
-                                                    <img src="~/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                                                </div>
-                                                <!-- Message title and timestamp -->
-                                                <h4>
-                                                    Support Team
-                                                    <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                                                </h4>
-                                                <!-- The message -->
-                                                <p>Why not buy a new awesome theme?</p>
-                                            </a>
+
                                         </li>
                                         <!-- end message -->
                                     </ul>
@@ -115,7 +102,6 @@ desired effect
                             </ul>
                         </li>
                         <!-- /.messages-menu -->
-
                         <!-- Notifications Menu -->
                         <li class="dropdown notifications-menu">
                             <!-- Menu toggle button -->
@@ -129,10 +115,7 @@ desired effect
                                     <!-- Inner Menu: contains the notifications -->
                                     <ul class="menu">
                                         <li>
-                                            <!-- start notification -->
-                                            <a href="#">
-                                                <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                                            </a>
+
                                         </li>
                                         <!-- end notification -->
                                     </ul>
@@ -147,7 +130,7 @@ desired effect
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fas fa-user"></i>
                             </a>
-                            <ul class="dropdown-menu">                                
+                            <ul class="dropdown-menu">
                                 <li>
                                     <!-- Inner menu: contains the tasks -->
                                     <ul class="menu">
@@ -170,31 +153,59 @@ desired effect
                                             </a>
                                         </li>
                                     </ul>
-                                </li>                                
+                                </li>
                             </ul>
                         </li>
-                       
-                        
-                        
+
+
+
                     </ul>
                 </div>
             </nav>
         </header>
+
+
+        <!-- 모달폼 로그인관련 -->
+        <div class="modal modal-success fade" id="modal-success">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Success Modal</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>One fine body&hellip;</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-outline">Save changes</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
+        <!--end 모달폼-->
+
+
         <!-- Left side column. contains the logo and sidebar -->
         <aside class="main-sidebar">
 
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
-                                
-               
+
+
                 <!-- Sidebar Menu -->
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header"><span>MENU</span></li>
                     <!-- Optionally, you can add icons to the links -->
-                    <li class="active"><a href="#"><i class="fas fa-bicycle"></i> <span>상품목록</span></a></li>
+                    <li class="active"><a href="#"><i class="fas fa-bicycle"></i> <span style="text-align:right"> 상품목록</span></a></li>
 
-                    <li><a href="#"><i class="fas fa-clipboard-list"></i> <span>주문내역</span></a></li>
-                    <li><a href="#"><i class="fas fa-truck"></i> <span>배송조회</span></a></li>
+                    <li><a href="#"><i class="fas fa-clipboard-list"></i> <span> 주문내역</span></a></li>
+                    <li><a href="#"><i class="fas fa-truck"></i> <span> 배송조회</span></a></li>
 
 
                 </ul>
@@ -206,12 +217,10 @@ desired effect
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            
-
             <!-- Main content -->
             <section class="content container-fluid">
 
-               @RenderBody()
+                @RenderBody()
 
             </section>
             <!-- /.content -->
@@ -301,7 +310,7 @@ desired effect
         </aside>
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
-        immediately after the control sidebar -->
+    immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     </div>
     <!-- ./wrapper -->
