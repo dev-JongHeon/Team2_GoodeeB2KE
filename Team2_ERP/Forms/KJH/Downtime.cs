@@ -216,6 +216,7 @@ namespace Team2_ERP
             ActiveControl = searchFactory;
             searchFactory.Focus();
             frm.NoticeMessage = notice;
+            frm.인쇄ToolStripMenuItem.DropDownItems[1].Visible = false;
         }
 
         public override void MenuStripONOFF(bool flag)
@@ -229,6 +230,7 @@ namespace Team2_ERP
         private void Downtime_Deactivate(object sender, EventArgs e)
         {
             new SettingMenuStrip().UnsetMenu(this);
+            frm.인쇄ToolStripMenuItem.DropDownItems[1].Visible = true;
         }
 
         private void Downtime_Shown(object sender, EventArgs e)

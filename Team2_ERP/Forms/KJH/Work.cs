@@ -120,6 +120,7 @@ namespace Team2_ERP
             MenuByAuth(Auth);
             ActiveControl = searchSales;
             searchSales.Focus();
+            
         }
 
         public override void MenuStripONOFF(bool flag)
@@ -133,6 +134,7 @@ namespace Team2_ERP
         private void Work_Deactivate(object sender, EventArgs e)
         {
             new SettingMenuStrip().UnsetMenu(this);
+            
         }
 
         private void Work_Shown(object sender, EventArgs e)
