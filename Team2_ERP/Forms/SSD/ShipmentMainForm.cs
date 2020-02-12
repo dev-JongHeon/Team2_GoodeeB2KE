@@ -172,23 +172,26 @@ namespace Team2_ERP
 
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
-            ShipmentReport br = new ShipmentReport();
-            dsShipment ds = new dsShipment();
-
-            ds.Relations.Clear();
-            ds.Tables.Clear();
-            ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
-            ds.Tables.Add(UtilClass.ConvertToDataTable(ShipmentDetail_AllList));
-            ds.Tables[0].TableName = "dtShipment";
-            ds.Tables[1].TableName = "dtShipmentDetail";
-            ds.Relations.Add("dtShipment_dtShipmentDetail", ds.Tables[0].Columns["Shipment_ID"], ds.Tables[1].Columns["Shipment_ID"]);
-
-            //ds.AcceptChanges();
-
-            br.DataSource = ds;
-            using (ReportPrintTool printTool = new ReportPrintTool(br))
+            if (dgv_Shipment.Rows.Count > 0)
             {
-                printTool.ShowRibbonPreviewDialog();
+                ShipmentReport br = new ShipmentReport();
+                dsShipment ds = new dsShipment();
+
+                ds.Relations.Clear();
+                ds.Tables.Clear();
+                ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+                ds.Tables.Add(UtilClass.ConvertToDataTable(ShipmentDetail_AllList));
+                ds.Tables[0].TableName = "dtShipment";
+                ds.Tables[1].TableName = "dtShipmentDetail";
+                ds.Relations.Add("dtShipment_dtShipmentDetail", ds.Tables[0].Columns["Shipment_ID"], ds.Tables[1].Columns["Shipment_ID"]);
+
+                //ds.AcceptChanges();
+
+                br.DataSource = ds;
+                using (ReportPrintTool printTool = new ReportPrintTool(br))
+                {
+                    printTool.ShowRibbonPreviewDialog();
+                } 
             }
         }
         #endregion

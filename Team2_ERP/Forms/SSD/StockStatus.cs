@@ -113,20 +113,23 @@ namespace Team2_ERP
 
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
-            StockStatusReport br = new StockStatusReport();
-            dsStockStatus ds = new dsStockStatus();
-
-            ds.Relations.Clear();
-            ds.Tables.Clear();
-            ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
-            ds.Tables[0].TableName = "dtStockStatus";
-
-            //ds.AcceptChanges();
-
-            br.DataSource = ds;
-            using (ReportPrintTool printTool = new ReportPrintTool(br))
+            if (dgv_StockStatus.Rows.Count > 0)
             {
-                printTool.ShowRibbonPreviewDialog();
+                StockStatusReport br = new StockStatusReport();
+                dsStockStatus ds = new dsStockStatus();
+
+                ds.Relations.Clear();
+                ds.Tables.Clear();
+                ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+                ds.Tables[0].TableName = "dtStockStatus";
+
+                //ds.AcceptChanges();
+
+                br.DataSource = ds;
+                using (ReportPrintTool printTool = new ReportPrintTool(br))
+                {
+                    printTool.ShowRibbonPreviewDialog();
+                } 
             }
         }
         #endregion

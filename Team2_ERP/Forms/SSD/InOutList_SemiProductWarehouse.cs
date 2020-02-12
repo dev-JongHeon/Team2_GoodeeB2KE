@@ -162,20 +162,23 @@ namespace Team2_ERP
 
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
-            InOutSemiProductWarehouseReport br = new InOutSemiProductWarehouseReport();
-            dsStockReceipt ds = new dsStockReceipt();
-
-            ds.Relations.Clear();
-            ds.Tables.Clear();
-            ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
-            ds.Tables[0].TableName = "dtStockReceipt";
-
-            //ds.AcceptChanges();
-
-            br.DataSource = ds;
-            using (ReportPrintTool printTool = new ReportPrintTool(br))
+            if (dgv_Stock.Rows.Count > 0)
             {
-                printTool.ShowRibbonPreviewDialog();
+                InOutSemiProductWarehouseReport br = new InOutSemiProductWarehouseReport();
+                dsStockReceipt ds = new dsStockReceipt();
+
+                ds.Relations.Clear();
+                ds.Tables.Clear();
+                ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+                ds.Tables[0].TableName = "dtStockReceipt";
+
+                //ds.AcceptChanges();
+
+                br.DataSource = ds;
+                using (ReportPrintTool printTool = new ReportPrintTool(br))
+                {
+                    printTool.ShowRibbonPreviewDialog();
+                } 
             }
         } 
         #endregion
