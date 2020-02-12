@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraReports.UI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -161,7 +162,24 @@ namespace Team2_ERP
 
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
+            if (dgv_Stock.Rows.Count > 0)
+            {
+                InOutSemiProductWarehouseReport br = new InOutSemiProductWarehouseReport();
+                dsStockReceipt ds = new dsStockReceipt();
 
+                ds.Relations.Clear();
+                ds.Tables.Clear();
+                ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+                ds.Tables[0].TableName = "dtStockReceipt";
+
+                //ds.AcceptChanges();
+
+                br.DataSource = ds;
+                using (ReportPrintTool printTool = new ReportPrintTool(br))
+                {
+                    printTool.ShowRibbonPreviewDialog();
+                } 
+            }
         } 
         #endregion
 
