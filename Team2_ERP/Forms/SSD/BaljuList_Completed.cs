@@ -58,8 +58,8 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_BaljuDetail, "발주요청수량", "BaljuDetail_Qty", true, 130);
             dgv_BaljuDetail.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-            Search_Period.Startdate.BackColor = Color.LightYellow;
-            Search_Period.Enddate.BackColor = Color.LightYellow;
+            Search_ReceiptPeriod.Startdate.BackColor = Color.LightYellow;
+            Search_ReceiptPeriod.Enddate.BackColor = Color.LightYellow;
         }
 
         private void dgv_BaljuCompleted_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
@@ -105,7 +105,7 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)  // 검색
         {
-            if (Search_Period.Startdate.Text == "    -  -") { main.NoticeMessage = Properties.Settings.Default.PeriodError; }
+            if (Search_ReceiptPeriod.Startdate.Text == "    -  -") { main.NoticeMessage = Properties.Settings.Default.PeriodError; }
             else
             {
                 SearchedList = BaljuCompleted_AllList;
