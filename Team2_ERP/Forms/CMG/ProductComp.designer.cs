@@ -39,13 +39,15 @@
             this.btnImageAdd = new System.Windows.Forms.Button();
             this.txtProductImage = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.numProductQty = new System.Windows.Forms.NumericUpDown();
-            this.label5 = new System.Windows.Forms.Label();
+            this.nummargin = new System.Windows.Forms.NumericUpDown();
             this.txtProductMoney = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.label5 = new System.Windows.Forms.Label();
+            this.numSafety = new System.Windows.Forms.NumericUpDown();
             this.panel1.SuspendLayout();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).BeginInit();
@@ -66,7 +68,8 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numProductQty)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nummargin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSafety)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -197,11 +200,13 @@
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.numProductQty);
-            this.splitContainer2.Panel2.Controls.Add(this.label5);
+            this.splitContainer2.Panel2.Controls.Add(this.numSafety);
+            this.splitContainer2.Panel2.Controls.Add(this.nummargin);
             this.splitContainer2.Panel2.Controls.Add(this.txtProductMoney);
+            this.splitContainer2.Panel2.Controls.Add(this.label6);
             this.splitContainer2.Panel2.Controls.Add(this.label3);
             this.splitContainer2.Panel2.Controls.Add(this.txtProductName);
+            this.splitContainer2.Panel2.Controls.Add(this.label5);
             this.splitContainer2.Panel2.Controls.Add(this.label2);
             this.splitContainer2.Size = new System.Drawing.Size(673, 407);
             this.splitContainer2.SplitterDistance = 309;
@@ -245,41 +250,41 @@
             this.label4.TabIndex = 4;
             this.label4.Text = "이미지";
             // 
-            // numProductQty
+            // nummargin
             // 
-            this.numProductQty.Location = new System.Drawing.Point(444, 36);
-            this.numProductQty.Name = "numProductQty";
-            this.numProductQty.Size = new System.Drawing.Size(61, 21);
-            this.numProductQty.TabIndex = 9;
-            this.numProductQty.Value = new decimal(new int[] {
-            1,
+            this.nummargin.Location = new System.Drawing.Point(445, 19);
+            this.nummargin.Maximum = new decimal(new int[] {
+            20,
             0,
             0,
             0});
-            this.numProductQty.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label5.Location = new System.Drawing.Point(388, 38);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(29, 14);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "개수";
+            this.nummargin.Name = "nummargin";
+            this.nummargin.Size = new System.Drawing.Size(45, 21);
+            this.nummargin.TabIndex = 10;
+            this.nummargin.ValueChanged += new System.EventHandler(this.nummargin_ValueChanged);
             // 
             // txtProductMoney
             // 
-            this.txtProductMoney.Location = new System.Drawing.Point(444, 66);
+            this.txtProductMoney.Location = new System.Drawing.Point(445, 56);
             this.txtProductMoney.Name = "txtProductMoney";
             this.txtProductMoney.Size = new System.Drawing.Size(217, 21);
             this.txtProductMoney.TabIndex = 7;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label6.Location = new System.Drawing.Point(389, 21);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(29, 14);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "마진";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label3.Location = new System.Drawing.Point(388, 69);
+            this.label3.Location = new System.Drawing.Point(389, 59);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 14);
             this.label3.TabIndex = 6;
@@ -287,7 +292,7 @@
             // 
             // txtProductName
             // 
-            this.txtProductName.Location = new System.Drawing.Point(444, 6);
+            this.txtProductName.Location = new System.Drawing.Point(99, 19);
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(219, 21);
             this.txtProductName.TabIndex = 5;
@@ -296,7 +301,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label2.Location = new System.Drawing.Point(388, 9);
+            this.label2.Location = new System.Drawing.Point(26, 22);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 14);
             this.label2.TabIndex = 4;
@@ -305,6 +310,33 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label5.Location = new System.Drawing.Point(26, 59);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(62, 14);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "안전재고량";
+            // 
+            // numSafety
+            // 
+            this.numSafety.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numSafety.Location = new System.Drawing.Point(99, 57);
+            this.numSafety.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numSafety.Name = "numSafety";
+            this.numSafety.Size = new System.Drawing.Size(73, 21);
+            this.numSafety.TabIndex = 11;
             // 
             // ProductComp
             // 
@@ -337,7 +369,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numProductQty)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nummargin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSafety)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -358,9 +391,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtProductName;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown numProductQty;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ComboBox cboProductCategory;
+        private System.Windows.Forms.NumericUpDown nummargin;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown numSafety;
+        private System.Windows.Forms.Label label5;
     }
 }
