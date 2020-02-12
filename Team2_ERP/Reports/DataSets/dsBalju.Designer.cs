@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace Team2_DAC
+namespace Team2_ERP 
 {
     
     
@@ -21,17 +21,21 @@ namespace Team2_DAC
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("dsStockReceipt")]
+    [global::System.Xml.Serialization.XmlRootAttribute("dsBalju")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class dsStockReceipt : global::System.Data.DataSet {
+    public partial class dsBalju : global::System.Data.DataSet {
         
-        private dtStockReceiptDataTable tabledtStockReceipt;
+        private dtBaljuDataTable tabledtBalju;
+        
+        private dtBalju_DetailDataTable tabledtBalju_Detail;
+        
+        private global::System.Data.DataRelation relationdtBalju_dtBalju_Detail;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public dsStockReceipt() {
+        public dsBalju() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -42,7 +46,7 @@ namespace Team2_DAC
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        protected dsStockReceipt(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected dsBalju(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -55,8 +59,11 @@ namespace Team2_DAC
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["dtStockReceipt"] != null)) {
-                    base.Tables.Add(new dtStockReceiptDataTable(ds.Tables["dtStockReceipt"]));
+                if ((ds.Tables["dtBalju"] != null)) {
+                    base.Tables.Add(new dtBaljuDataTable(ds.Tables["dtBalju"]));
+                }
+                if ((ds.Tables["dtBalju_Detail"] != null)) {
+                    base.Tables.Add(new dtBalju_DetailDataTable(ds.Tables["dtBalju_Detail"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -80,9 +87,19 @@ namespace Team2_DAC
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public dtStockReceiptDataTable dtStockReceipt {
+        public dtBaljuDataTable dtBalju {
             get {
-                return this.tabledtStockReceipt;
+                return this.tabledtBalju;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public dtBalju_DetailDataTable dtBalju_Detail {
+            get {
+                return this.tabledtBalju_Detail;
             }
         }
         
@@ -128,7 +145,7 @@ namespace Team2_DAC
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            dsStockReceipt cln = ((dsStockReceipt)(base.Clone()));
+            dsBalju cln = ((dsBalju)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -153,8 +170,11 @@ namespace Team2_DAC
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["dtStockReceipt"] != null)) {
-                    base.Tables.Add(new dtStockReceiptDataTable(ds.Tables["dtStockReceipt"]));
+                if ((ds.Tables["dtBalju"] != null)) {
+                    base.Tables.Add(new dtBaljuDataTable(ds.Tables["dtBalju"]));
+                }
+                if ((ds.Tables["dtBalju_Detail"] != null)) {
+                    base.Tables.Add(new dtBalju_DetailDataTable(ds.Tables["dtBalju_Detail"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -189,29 +209,48 @@ namespace Team2_DAC
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tabledtStockReceipt = ((dtStockReceiptDataTable)(base.Tables["dtStockReceipt"]));
+            this.tabledtBalju = ((dtBaljuDataTable)(base.Tables["dtBalju"]));
             if ((initTable == true)) {
-                if ((this.tabledtStockReceipt != null)) {
-                    this.tabledtStockReceipt.InitVars();
+                if ((this.tabledtBalju != null)) {
+                    this.tabledtBalju.InitVars();
                 }
             }
+            this.tabledtBalju_Detail = ((dtBalju_DetailDataTable)(base.Tables["dtBalju_Detail"]));
+            if ((initTable == true)) {
+                if ((this.tabledtBalju_Detail != null)) {
+                    this.tabledtBalju_Detail.InitVars();
+                }
+            }
+            this.relationdtBalju_dtBalju_Detail = this.Relations["dtBalju_dtBalju_Detail"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "dsStockReceipt";
+            this.DataSetName = "dsBalju";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/dsStockReceipt.xsd";
+            this.Namespace = "http://tempuri.org/dsBalju.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tabledtStockReceipt = new dtStockReceiptDataTable();
-            base.Tables.Add(this.tabledtStockReceipt);
+            this.tabledtBalju = new dtBaljuDataTable();
+            base.Tables.Add(this.tabledtBalju);
+            this.tabledtBalju_Detail = new dtBalju_DetailDataTable();
+            base.Tables.Add(this.tabledtBalju_Detail);
+            this.relationdtBalju_dtBalju_Detail = new global::System.Data.DataRelation("dtBalju_dtBalju_Detail", new global::System.Data.DataColumn[] {
+                        this.tabledtBalju.Balju_IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tabledtBalju_Detail.Balju_IDColumn}, false);
+            this.Relations.Add(this.relationdtBalju_dtBalju_Detail);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private bool ShouldSerializedtStockReceipt() {
+        private bool ShouldSerializedtBalju() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private bool ShouldSerializedtBalju_Detail() {
             return false;
         }
         
@@ -226,7 +265,7 @@ namespace Team2_DAC
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            dsStockReceipt ds = new dsStockReceipt();
+            dsBalju ds = new dsBalju();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -271,35 +310,32 @@ namespace Team2_DAC
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public delegate void dtStockReceiptRowChangeEventHandler(object sender, dtStockReceiptRowChangeEvent e);
+        public delegate void dtBaljuRowChangeEventHandler(object sender, dtBaljuRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public delegate void dtBalju_DetailRowChangeEventHandler(object sender, dtBalju_DetailRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class dtStockReceiptDataTable : global::System.Data.TypedTableBase<dtStockReceiptRow> {
+        public partial class dtBaljuDataTable : global::System.Data.TypedTableBase<dtBaljuRow> {
             
-            private global::System.Data.DataColumn columnStockReceipt_ID;
+            private global::System.Data.DataColumn columnBalju_ID;
             
-            private global::System.Data.DataColumn columnStockReceipt_Division1;
+            private global::System.Data.DataColumn columnBalju_Date;
             
-            private global::System.Data.DataColumn columnStockReceipt_Date;
-            
-            private global::System.Data.DataColumn columnWarehouse_Name;
-            
-            private global::System.Data.DataColumn columnProduct_ID;
-            
-            private global::System.Data.DataColumn columnProduct_Name;
-            
-            private global::System.Data.DataColumn columnStockReceipt_Quantity;
+            private global::System.Data.DataColumn columnCompany_Name;
             
             private global::System.Data.DataColumn columnEmployees_Name;
             
+            private global::System.Data.DataColumn columnBalju_ReceiptDate;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtStockReceiptDataTable() {
-                this.TableName = "dtStockReceipt";
+            public dtBaljuDataTable() {
+                this.TableName = "dtBalju";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -307,7 +343,7 @@ namespace Team2_DAC
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal dtStockReceiptDataTable(global::System.Data.DataTable table) {
+            internal dtBaljuDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -324,64 +360,32 @@ namespace Team2_DAC
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected dtStockReceiptDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected dtBaljuDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn StockReceipt_IDColumn {
+            public global::System.Data.DataColumn Balju_IDColumn {
                 get {
-                    return this.columnStockReceipt_ID;
+                    return this.columnBalju_ID;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn StockReceipt_Division1Column {
+            public global::System.Data.DataColumn Balju_DateColumn {
                 get {
-                    return this.columnStockReceipt_Division1;
+                    return this.columnBalju_Date;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn StockReceipt_DateColumn {
+            public global::System.Data.DataColumn Company_NameColumn {
                 get {
-                    return this.columnStockReceipt_Date;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn Warehouse_NameColumn {
-                get {
-                    return this.columnWarehouse_Name;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn Product_IDColumn {
-                get {
-                    return this.columnProduct_ID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn Product_NameColumn {
-                get {
-                    return this.columnProduct_Name;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn StockReceipt_QuantityColumn {
-                get {
-                    return this.columnStockReceipt_Quantity;
+                    return this.columnCompany_Name;
                 }
             }
             
@@ -390,6 +394,14 @@ namespace Team2_DAC
             public global::System.Data.DataColumn Employees_NameColumn {
                 get {
                     return this.columnEmployees_Name;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn Balju_ReceiptDateColumn {
+                get {
+                    return this.columnBalju_ReceiptDate;
                 }
             }
             
@@ -404,52 +416,56 @@ namespace Team2_DAC
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtStockReceiptRow this[int index] {
+            public dtBaljuRow this[int index] {
                 get {
-                    return ((dtStockReceiptRow)(this.Rows[index]));
+                    return ((dtBaljuRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event dtStockReceiptRowChangeEventHandler dtStockReceiptRowChanging;
+            public event dtBaljuRowChangeEventHandler dtBaljuRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event dtStockReceiptRowChangeEventHandler dtStockReceiptRowChanged;
+            public event dtBaljuRowChangeEventHandler dtBaljuRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event dtStockReceiptRowChangeEventHandler dtStockReceiptRowDeleting;
+            public event dtBaljuRowChangeEventHandler dtBaljuRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event dtStockReceiptRowChangeEventHandler dtStockReceiptRowDeleted;
+            public event dtBaljuRowChangeEventHandler dtBaljuRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void AdddtStockReceiptRow(dtStockReceiptRow row) {
+            public void AdddtBaljuRow(dtBaljuRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtStockReceiptRow AdddtStockReceiptRow(string StockReceipt_ID, string StockReceipt_Division1, string StockReceipt_Date, string Warehouse_Name, string Product_ID, string Product_Name, string StockReceipt_Quantity, string Employees_Name) {
-                dtStockReceiptRow rowdtStockReceiptRow = ((dtStockReceiptRow)(this.NewRow()));
+            public dtBaljuRow AdddtBaljuRow(string Balju_ID, string Balju_Date, string Company_Name, string Employees_Name, string Balju_ReceiptDate) {
+                dtBaljuRow rowdtBaljuRow = ((dtBaljuRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        StockReceipt_ID,
-                        StockReceipt_Division1,
-                        StockReceipt_Date,
-                        Warehouse_Name,
-                        Product_ID,
-                        Product_Name,
-                        StockReceipt_Quantity,
-                        Employees_Name};
-                rowdtStockReceiptRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowdtStockReceiptRow);
-                return rowdtStockReceiptRow;
+                        Balju_ID,
+                        Balju_Date,
+                        Company_Name,
+                        Employees_Name,
+                        Balju_ReceiptDate};
+                rowdtBaljuRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowdtBaljuRow);
+                return rowdtBaljuRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public dtBaljuRow FindByBalju_ID(string Balju_ID) {
+                return ((dtBaljuRow)(this.Rows.Find(new object[] {
+                            Balju_ID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                dtStockReceiptDataTable cln = ((dtStockReceiptDataTable)(base.Clone()));
+                dtBaljuDataTable cln = ((dtBaljuDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -457,67 +473,62 @@ namespace Team2_DAC
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new dtStockReceiptDataTable();
+                return new dtBaljuDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
-                this.columnStockReceipt_ID = base.Columns["StockReceipt_ID"];
-                this.columnStockReceipt_Division1 = base.Columns["StockReceipt_Division1"];
-                this.columnStockReceipt_Date = base.Columns["StockReceipt_Date"];
-                this.columnWarehouse_Name = base.Columns["Warehouse_Name"];
-                this.columnProduct_ID = base.Columns["Product_ID"];
-                this.columnProduct_Name = base.Columns["Product_Name"];
-                this.columnStockReceipt_Quantity = base.Columns["StockReceipt_Quantity"];
+                this.columnBalju_ID = base.Columns["Balju_ID"];
+                this.columnBalju_Date = base.Columns["Balju_Date"];
+                this.columnCompany_Name = base.Columns["Company_Name"];
                 this.columnEmployees_Name = base.Columns["Employees_Name"];
+                this.columnBalju_ReceiptDate = base.Columns["Balju_ReceiptDate"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             private void InitClass() {
-                this.columnStockReceipt_ID = new global::System.Data.DataColumn("StockReceipt_ID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnStockReceipt_ID);
-                this.columnStockReceipt_Division1 = new global::System.Data.DataColumn("StockReceipt_Division1", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnStockReceipt_Division1);
-                this.columnStockReceipt_Date = new global::System.Data.DataColumn("StockReceipt_Date", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnStockReceipt_Date);
-                this.columnWarehouse_Name = new global::System.Data.DataColumn("Warehouse_Name", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnWarehouse_Name);
-                this.columnProduct_ID = new global::System.Data.DataColumn("Product_ID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnProduct_ID);
-                this.columnProduct_Name = new global::System.Data.DataColumn("Product_Name", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnProduct_Name);
-                this.columnStockReceipt_Quantity = new global::System.Data.DataColumn("StockReceipt_Quantity", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnStockReceipt_Quantity);
+                this.columnBalju_ID = new global::System.Data.DataColumn("Balju_ID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBalju_ID);
+                this.columnBalju_Date = new global::System.Data.DataColumn("Balju_Date", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBalju_Date);
+                this.columnCompany_Name = new global::System.Data.DataColumn("Company_Name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCompany_Name);
                 this.columnEmployees_Name = new global::System.Data.DataColumn("Employees_Name", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEmployees_Name);
+                this.columnBalju_ReceiptDate = new global::System.Data.DataColumn("Balju_ReceiptDate", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBalju_ReceiptDate);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnBalju_ID}, true));
+                this.columnBalju_ID.AllowDBNull = false;
+                this.columnBalju_ID.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtStockReceiptRow NewdtStockReceiptRow() {
-                return ((dtStockReceiptRow)(this.NewRow()));
+            public dtBaljuRow NewdtBaljuRow() {
+                return ((dtBaljuRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new dtStockReceiptRow(builder);
+                return new dtBaljuRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(dtStockReceiptRow);
+                return typeof(dtBaljuRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.dtStockReceiptRowChanged != null)) {
-                    this.dtStockReceiptRowChanged(this, new dtStockReceiptRowChangeEvent(((dtStockReceiptRow)(e.Row)), e.Action));
+                if ((this.dtBaljuRowChanged != null)) {
+                    this.dtBaljuRowChanged(this, new dtBaljuRowChangeEvent(((dtBaljuRow)(e.Row)), e.Action));
                 }
             }
             
@@ -525,8 +536,8 @@ namespace Team2_DAC
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.dtStockReceiptRowChanging != null)) {
-                    this.dtStockReceiptRowChanging(this, new dtStockReceiptRowChangeEvent(((dtStockReceiptRow)(e.Row)), e.Action));
+                if ((this.dtBaljuRowChanging != null)) {
+                    this.dtBaljuRowChanging(this, new dtBaljuRowChangeEvent(((dtBaljuRow)(e.Row)), e.Action));
                 }
             }
             
@@ -534,8 +545,8 @@ namespace Team2_DAC
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.dtStockReceiptRowDeleted != null)) {
-                    this.dtStockReceiptRowDeleted(this, new dtStockReceiptRowChangeEvent(((dtStockReceiptRow)(e.Row)), e.Action));
+                if ((this.dtBaljuRowDeleted != null)) {
+                    this.dtBaljuRowDeleted(this, new dtBaljuRowChangeEvent(((dtBaljuRow)(e.Row)), e.Action));
                 }
             }
             
@@ -543,14 +554,14 @@ namespace Team2_DAC
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.dtStockReceiptRowDeleting != null)) {
-                    this.dtStockReceiptRowDeleting(this, new dtStockReceiptRowChangeEvent(((dtStockReceiptRow)(e.Row)), e.Action));
+                if ((this.dtBaljuRowDeleting != null)) {
+                    this.dtBaljuRowDeleting(this, new dtBaljuRowChangeEvent(((dtBaljuRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void RemovedtStockReceiptRow(dtStockReceiptRow row) {
+            public void RemovedtBaljuRow(dtBaljuRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -559,7 +570,7 @@ namespace Team2_DAC
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                dsStockReceipt ds = new dsStockReceipt();
+                dsBalju ds = new dsBalju();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -577,7 +588,285 @@ namespace Team2_DAC
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "dtStockReceiptDataTable";
+                attribute2.FixedValue = "dtBaljuDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class dtBalju_DetailDataTable : global::System.Data.TypedTableBase<dtBalju_DetailRow> {
+            
+            private global::System.Data.DataColumn columnProduct_Name;
+            
+            private global::System.Data.DataColumn columnBaljuDetail_Qty;
+            
+            private global::System.Data.DataColumn columnBalju_ID;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public dtBalju_DetailDataTable() {
+                this.TableName = "dtBalju_Detail";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal dtBalju_DetailDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected dtBalju_DetailDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn Product_NameColumn {
+                get {
+                    return this.columnProduct_Name;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn BaljuDetail_QtyColumn {
+                get {
+                    return this.columnBaljuDetail_Qty;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn Balju_IDColumn {
+                get {
+                    return this.columnBalju_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public dtBalju_DetailRow this[int index] {
+                get {
+                    return ((dtBalju_DetailRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event dtBalju_DetailRowChangeEventHandler dtBalju_DetailRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event dtBalju_DetailRowChangeEventHandler dtBalju_DetailRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event dtBalju_DetailRowChangeEventHandler dtBalju_DetailRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event dtBalju_DetailRowChangeEventHandler dtBalju_DetailRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void AdddtBalju_DetailRow(dtBalju_DetailRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public dtBalju_DetailRow AdddtBalju_DetailRow(string Product_Name, int BaljuDetail_Qty, dtBaljuRow parentdtBaljuRowBydtBalju_dtBalju_Detail) {
+                dtBalju_DetailRow rowdtBalju_DetailRow = ((dtBalju_DetailRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        Product_Name,
+                        BaljuDetail_Qty,
+                        null};
+                if ((parentdtBaljuRowBydtBalju_dtBalju_Detail != null)) {
+                    columnValuesArray[2] = parentdtBaljuRowBydtBalju_dtBalju_Detail[0];
+                }
+                rowdtBalju_DetailRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowdtBalju_DetailRow);
+                return rowdtBalju_DetailRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                dtBalju_DetailDataTable cln = ((dtBalju_DetailDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new dtBalju_DetailDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal void InitVars() {
+                this.columnProduct_Name = base.Columns["Product_Name"];
+                this.columnBaljuDetail_Qty = base.Columns["BaljuDetail_Qty"];
+                this.columnBalju_ID = base.Columns["Balju_ID"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            private void InitClass() {
+                this.columnProduct_Name = new global::System.Data.DataColumn("Product_Name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProduct_Name);
+                this.columnBaljuDetail_Qty = new global::System.Data.DataColumn("BaljuDetail_Qty", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBaljuDetail_Qty);
+                this.columnBalju_ID = new global::System.Data.DataColumn("Balju_ID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBalju_ID);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public dtBalju_DetailRow NewdtBalju_DetailRow() {
+                return ((dtBalju_DetailRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new dtBalju_DetailRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(dtBalju_DetailRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.dtBalju_DetailRowChanged != null)) {
+                    this.dtBalju_DetailRowChanged(this, new dtBalju_DetailRowChangeEvent(((dtBalju_DetailRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.dtBalju_DetailRowChanging != null)) {
+                    this.dtBalju_DetailRowChanging(this, new dtBalju_DetailRowChangeEvent(((dtBalju_DetailRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.dtBalju_DetailRowDeleted != null)) {
+                    this.dtBalju_DetailRowDeleted(this, new dtBalju_DetailRowChangeEvent(((dtBalju_DetailRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.dtBalju_DetailRowDeleting != null)) {
+                    this.dtBalju_DetailRowDeleting(this, new dtBalju_DetailRowChangeEvent(((dtBalju_DetailRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void RemovedtBalju_DetailRow(dtBalju_DetailRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                dsBalju ds = new dsBalju();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "dtBalju_DetailDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -621,126 +910,57 @@ namespace Team2_DAC
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class dtStockReceiptRow : global::System.Data.DataRow {
+        public partial class dtBaljuRow : global::System.Data.DataRow {
             
-            private dtStockReceiptDataTable tabledtStockReceipt;
+            private dtBaljuDataTable tabledtBalju;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal dtStockReceiptRow(global::System.Data.DataRowBuilder rb) : 
+            internal dtBaljuRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tabledtStockReceipt = ((dtStockReceiptDataTable)(this.Table));
+                this.tabledtBalju = ((dtBaljuDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string StockReceipt_ID {
+            public string Balju_ID {
                 get {
-                    try {
-                        return ((string)(this[this.tabledtStockReceipt.StockReceipt_IDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("\'dtStockReceipt\' 테이블의 \'StockReceipt_ID\' 열의 값이 DBNull입니다.", e);
-                    }
+                    return ((string)(this[this.tabledtBalju.Balju_IDColumn]));
                 }
                 set {
-                    this[this.tabledtStockReceipt.StockReceipt_IDColumn] = value;
+                    this[this.tabledtBalju.Balju_IDColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string StockReceipt_Division1 {
+            public string Balju_Date {
                 get {
                     try {
-                        return ((string)(this[this.tabledtStockReceipt.StockReceipt_Division1Column]));
+                        return ((string)(this[this.tabledtBalju.Balju_DateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("\'dtStockReceipt\' 테이블의 \'StockReceipt_Division1\' 열의 값이 DBNull입니다.", e);
+                        throw new global::System.Data.StrongTypingException("\'dtBalju\' 테이블의 \'Balju_Date\' 열의 값이 DBNull입니다.", e);
                     }
                 }
                 set {
-                    this[this.tabledtStockReceipt.StockReceipt_Division1Column] = value;
+                    this[this.tabledtBalju.Balju_DateColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string StockReceipt_Date {
+            public string Company_Name {
                 get {
                     try {
-                        return ((string)(this[this.tabledtStockReceipt.StockReceipt_DateColumn]));
+                        return ((string)(this[this.tabledtBalju.Company_NameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("\'dtStockReceipt\' 테이블의 \'StockReceipt_Date\' 열의 값이 DBNull입니다.", e);
+                        throw new global::System.Data.StrongTypingException("\'dtBalju\' 테이블의 \'Company_Name\' 열의 값이 DBNull입니다.", e);
                     }
                 }
                 set {
-                    this[this.tabledtStockReceipt.StockReceipt_DateColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string Warehouse_Name {
-                get {
-                    try {
-                        return ((string)(this[this.tabledtStockReceipt.Warehouse_NameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("\'dtStockReceipt\' 테이블의 \'Warehouse_Name\' 열의 값이 DBNull입니다.", e);
-                    }
-                }
-                set {
-                    this[this.tabledtStockReceipt.Warehouse_NameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string Product_ID {
-                get {
-                    try {
-                        return ((string)(this[this.tabledtStockReceipt.Product_IDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("\'dtStockReceipt\' 테이블의 \'Product_ID\' 열의 값이 DBNull입니다.", e);
-                    }
-                }
-                set {
-                    this[this.tabledtStockReceipt.Product_IDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string Product_Name {
-                get {
-                    try {
-                        return ((string)(this[this.tabledtStockReceipt.Product_NameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("\'dtStockReceipt\' 테이블의 \'Product_Name\' 열의 값이 DBNull입니다.", e);
-                    }
-                }
-                set {
-                    this[this.tabledtStockReceipt.Product_NameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string StockReceipt_Quantity {
-                get {
-                    try {
-                        return ((string)(this[this.tabledtStockReceipt.StockReceipt_QuantityColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("\'dtStockReceipt\' 테이블의 \'StockReceipt_Quantity\' 열의 값이 DBNull입니다.", e);
-                    }
-                }
-                set {
-                    this[this.tabledtStockReceipt.StockReceipt_QuantityColumn] = value;
+                    this[this.tabledtBalju.Company_NameColumn] = value;
                 }
             }
             
@@ -749,111 +969,200 @@ namespace Team2_DAC
             public string Employees_Name {
                 get {
                     try {
-                        return ((string)(this[this.tabledtStockReceipt.Employees_NameColumn]));
+                        return ((string)(this[this.tabledtBalju.Employees_NameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("\'dtStockReceipt\' 테이블의 \'Employees_Name\' 열의 값이 DBNull입니다.", e);
+                        throw new global::System.Data.StrongTypingException("\'dtBalju\' 테이블의 \'Employees_Name\' 열의 값이 DBNull입니다.", e);
                     }
                 }
                 set {
-                    this[this.tabledtStockReceipt.Employees_NameColumn] = value;
+                    this[this.tabledtBalju.Employees_NameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsStockReceipt_IDNull() {
-                return this.IsNull(this.tabledtStockReceipt.StockReceipt_IDColumn);
+            public string Balju_ReceiptDate {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtBalju.Balju_ReceiptDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("\'dtBalju\' 테이블의 \'Balju_ReceiptDate\' 열의 값이 DBNull입니다.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtBalju.Balju_ReceiptDateColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetStockReceipt_IDNull() {
-                this[this.tabledtStockReceipt.StockReceipt_IDColumn] = global::System.Convert.DBNull;
+            public bool IsBalju_DateNull() {
+                return this.IsNull(this.tabledtBalju.Balju_DateColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsStockReceipt_Division1Null() {
-                return this.IsNull(this.tabledtStockReceipt.StockReceipt_Division1Column);
+            public void SetBalju_DateNull() {
+                this[this.tabledtBalju.Balju_DateColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetStockReceipt_Division1Null() {
-                this[this.tabledtStockReceipt.StockReceipt_Division1Column] = global::System.Convert.DBNull;
+            public bool IsCompany_NameNull() {
+                return this.IsNull(this.tabledtBalju.Company_NameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsStockReceipt_DateNull() {
-                return this.IsNull(this.tabledtStockReceipt.StockReceipt_DateColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetStockReceipt_DateNull() {
-                this[this.tabledtStockReceipt.StockReceipt_DateColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsWarehouse_NameNull() {
-                return this.IsNull(this.tabledtStockReceipt.Warehouse_NameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetWarehouse_NameNull() {
-                this[this.tabledtStockReceipt.Warehouse_NameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsProduct_IDNull() {
-                return this.IsNull(this.tabledtStockReceipt.Product_IDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetProduct_IDNull() {
-                this[this.tabledtStockReceipt.Product_IDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsProduct_NameNull() {
-                return this.IsNull(this.tabledtStockReceipt.Product_NameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetProduct_NameNull() {
-                this[this.tabledtStockReceipt.Product_NameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsStockReceipt_QuantityNull() {
-                return this.IsNull(this.tabledtStockReceipt.StockReceipt_QuantityColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetStockReceipt_QuantityNull() {
-                this[this.tabledtStockReceipt.StockReceipt_QuantityColumn] = global::System.Convert.DBNull;
+            public void SetCompany_NameNull() {
+                this[this.tabledtBalju.Company_NameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsEmployees_NameNull() {
-                return this.IsNull(this.tabledtStockReceipt.Employees_NameColumn);
+                return this.IsNull(this.tabledtBalju.Employees_NameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetEmployees_NameNull() {
-                this[this.tabledtStockReceipt.Employees_NameColumn] = global::System.Convert.DBNull;
+                this[this.tabledtBalju.Employees_NameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsBalju_ReceiptDateNull() {
+                return this.IsNull(this.tabledtBalju.Balju_ReceiptDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetBalju_ReceiptDateNull() {
+                this[this.tabledtBalju.Balju_ReceiptDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public dtBalju_DetailRow[] GetdtBalju_DetailRows() {
+                if ((this.Table.ChildRelations["dtBalju_dtBalju_Detail"] == null)) {
+                    return new dtBalju_DetailRow[0];
+                }
+                else {
+                    return ((dtBalju_DetailRow[])(base.GetChildRows(this.Table.ChildRelations["dtBalju_dtBalju_Detail"])));
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class dtBalju_DetailRow : global::System.Data.DataRow {
+            
+            private dtBalju_DetailDataTable tabledtBalju_Detail;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal dtBalju_DetailRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tabledtBalju_Detail = ((dtBalju_DetailDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string Product_Name {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtBalju_Detail.Product_NameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("\'dtBalju_Detail\' 테이블의 \'Product_Name\' 열의 값이 DBNull입니다.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtBalju_Detail.Product_NameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int BaljuDetail_Qty {
+                get {
+                    try {
+                        return ((int)(this[this.tabledtBalju_Detail.BaljuDetail_QtyColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("\'dtBalju_Detail\' 테이블의 \'BaljuDetail_Qty\' 열의 값이 DBNull입니다.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtBalju_Detail.BaljuDetail_QtyColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string Balju_ID {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtBalju_Detail.Balju_IDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("\'dtBalju_Detail\' 테이블의 \'Balju_ID\' 열의 값이 DBNull입니다.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtBalju_Detail.Balju_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public dtBaljuRow dtBaljuRow {
+                get {
+                    return ((dtBaljuRow)(this.GetParentRow(this.Table.ParentRelations["dtBalju_dtBalju_Detail"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["dtBalju_dtBalju_Detail"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsProduct_NameNull() {
+                return this.IsNull(this.tabledtBalju_Detail.Product_NameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetProduct_NameNull() {
+                this[this.tabledtBalju_Detail.Product_NameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsBaljuDetail_QtyNull() {
+                return this.IsNull(this.tabledtBalju_Detail.BaljuDetail_QtyColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetBaljuDetail_QtyNull() {
+                this[this.tabledtBalju_Detail.BaljuDetail_QtyColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsBalju_IDNull() {
+                return this.IsNull(this.tabledtBalju_Detail.Balju_IDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetBalju_IDNull() {
+                this[this.tabledtBalju_Detail.Balju_IDColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -861,22 +1170,56 @@ namespace Team2_DAC
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public class dtStockReceiptRowChangeEvent : global::System.EventArgs {
+        public class dtBaljuRowChangeEvent : global::System.EventArgs {
             
-            private dtStockReceiptRow eventRow;
+            private dtBaljuRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtStockReceiptRowChangeEvent(dtStockReceiptRow row, global::System.Data.DataRowAction action) {
+            public dtBaljuRowChangeEvent(dtBaljuRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtStockReceiptRow Row {
+            public dtBaljuRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public class dtBalju_DetailRowChangeEvent : global::System.EventArgs {
+            
+            private dtBalju_DetailRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public dtBalju_DetailRowChangeEvent(dtBalju_DetailRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public dtBalju_DetailRow Row {
                 get {
                     return this.eventRow;
                 }

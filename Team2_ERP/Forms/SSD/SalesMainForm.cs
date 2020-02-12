@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraReports.UI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -6,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Team2_DAC;
 using Team2_ERP.Service;
 using Team2_VO;
 
@@ -132,7 +134,21 @@ namespace Team2_ERP
 
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
+            SalesReport br = new SalesReport();
+            dsSales ds = new dsSales();
 
+            ds.Relations.Clear();
+            ds.Tables.Clear();
+            ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+            ds.Tables[0].TableName = "dtSales";
+
+            //ds.AcceptChanges();
+
+            br.DataSource = ds;
+            using (ReportPrintTool printTool = new ReportPrintTool(br))
+            {
+                printTool.ShowRibbonPreviewDialog();
+            }
         }
         #endregion
 

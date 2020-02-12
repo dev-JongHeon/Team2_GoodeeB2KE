@@ -10,7 +10,8 @@
 
 #pragma warning disable 1591
 
-namespace Team2_DAC {
+namespace Team2_ERP
+{
     
     
     /// <summary>
@@ -20,19 +21,17 @@ namespace Team2_DAC {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("dsOrder")]
+    [global::System.Xml.Serialization.XmlRootAttribute("dsStockStatus")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class dsOrder : global::System.Data.DataSet {
+    public partial class dsStockStatus : global::System.Data.DataSet {
         
-        private dtOrderDataTable tabledtOrder;
-        
-        private dtOrderDetailDataTable tabledtOrderDetail;
+        private dtStockStatusDataTable tabledtStockStatus;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public dsOrder() {
+        public dsStockStatus() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -43,7 +42,7 @@ namespace Team2_DAC {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        protected dsOrder(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected dsStockStatus(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -56,11 +55,8 @@ namespace Team2_DAC {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["dtOrder"] != null)) {
-                    base.Tables.Add(new dtOrderDataTable(ds.Tables["dtOrder"]));
-                }
-                if ((ds.Tables["dtOrderDetail"] != null)) {
-                    base.Tables.Add(new dtOrderDetailDataTable(ds.Tables["dtOrderDetail"]));
+                if ((ds.Tables["dtStockStatus"] != null)) {
+                    base.Tables.Add(new dtStockStatusDataTable(ds.Tables["dtStockStatus"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -84,19 +80,9 @@ namespace Team2_DAC {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public dtOrderDataTable dtOrder {
+        public dtStockStatusDataTable dtStockStatus {
             get {
-                return this.tabledtOrder;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public dtOrderDetailDataTable dtOrderDetail {
-            get {
-                return this.tabledtOrderDetail;
+                return this.tabledtStockStatus;
             }
         }
         
@@ -142,7 +128,7 @@ namespace Team2_DAC {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            dsOrder cln = ((dsOrder)(base.Clone()));
+            dsStockStatus cln = ((dsStockStatus)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -167,11 +153,8 @@ namespace Team2_DAC {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["dtOrder"] != null)) {
-                    base.Tables.Add(new dtOrderDataTable(ds.Tables["dtOrder"]));
-                }
-                if ((ds.Tables["dtOrderDetail"] != null)) {
-                    base.Tables.Add(new dtOrderDetailDataTable(ds.Tables["dtOrderDetail"]));
+                if ((ds.Tables["dtStockStatus"] != null)) {
+                    base.Tables.Add(new dtStockStatusDataTable(ds.Tables["dtStockStatus"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -206,16 +189,10 @@ namespace Team2_DAC {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tabledtOrder = ((dtOrderDataTable)(base.Tables["dtOrder"]));
+            this.tabledtStockStatus = ((dtStockStatusDataTable)(base.Tables["dtStockStatus"]));
             if ((initTable == true)) {
-                if ((this.tabledtOrder != null)) {
-                    this.tabledtOrder.InitVars();
-                }
-            }
-            this.tabledtOrderDetail = ((dtOrderDetailDataTable)(base.Tables["dtOrderDetail"]));
-            if ((initTable == true)) {
-                if ((this.tabledtOrderDetail != null)) {
-                    this.tabledtOrderDetail.InitVars();
+                if ((this.tabledtStockStatus != null)) {
+                    this.tabledtStockStatus.InitVars();
                 }
             }
         }
@@ -223,26 +200,18 @@ namespace Team2_DAC {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "dsOrder";
+            this.DataSetName = "dsStockStatus";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/dsOrder.xsd";
+            this.Namespace = "http://tempuri.org/dsStockStatus.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tabledtOrder = new dtOrderDataTable();
-            base.Tables.Add(this.tabledtOrder);
-            this.tabledtOrderDetail = new dtOrderDetailDataTable();
-            base.Tables.Add(this.tabledtOrderDetail);
+            this.tabledtStockStatus = new dtStockStatusDataTable();
+            base.Tables.Add(this.tabledtStockStatus);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private bool ShouldSerializedtOrder() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private bool ShouldSerializedtOrderDetail() {
+        private bool ShouldSerializedtStockStatus() {
             return false;
         }
         
@@ -257,7 +226,7 @@ namespace Team2_DAC {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            dsOrder ds = new dsOrder();
+            dsStockStatus ds = new dsStockStatus();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -302,24 +271,33 @@ namespace Team2_DAC {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public delegate void dtOrderRowChangeEventHandler(object sender, dtOrderRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public delegate void dtOrderDetailRowChangeEventHandler(object sender, dtOrderDetailRowChangeEvent e);
+        public delegate void dtStockStatusRowChangeEventHandler(object sender, dtStockStatusRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class dtOrderDataTable : global::System.Data.TypedTableBase<dtOrderRow> {
+        public partial class dtStockStatusDataTable : global::System.Data.TypedTableBase<dtStockStatusRow> {
             
-            private global::System.Data.DataColumn columnDataColumn1;
+            private global::System.Data.DataColumn columnProduct_ID;
+            
+            private global::System.Data.DataColumn columnProduct_Name;
+            
+            private global::System.Data.DataColumn columnCodeTable_CodeName;
+            
+            private global::System.Data.DataColumn columnWarehouse_ID;
+            
+            private global::System.Data.DataColumn columnWarehouse_Name;
+            
+            private global::System.Data.DataColumn columnProduct_Price;
+            
+            private global::System.Data.DataColumn columnProduct_Qty;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtOrderDataTable() {
-                this.TableName = "dtOrder";
+            public dtStockStatusDataTable() {
+                this.TableName = "dtStockStatus";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -327,7 +305,7 @@ namespace Team2_DAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal dtOrderDataTable(global::System.Data.DataTable table) {
+            internal dtStockStatusDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -344,16 +322,64 @@ namespace Team2_DAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected dtOrderDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected dtStockStatusDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn DataColumn1Column {
+            public global::System.Data.DataColumn Product_IDColumn {
                 get {
-                    return this.columnDataColumn1;
+                    return this.columnProduct_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn Product_NameColumn {
+                get {
+                    return this.columnProduct_Name;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn CodeTable_CodeNameColumn {
+                get {
+                    return this.columnCodeTable_CodeName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn Warehouse_IDColumn {
+                get {
+                    return this.columnWarehouse_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn Warehouse_NameColumn {
+                get {
+                    return this.columnWarehouse_Name;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn Product_PriceColumn {
+                get {
+                    return this.columnProduct_Price;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn Product_QtyColumn {
+                get {
+                    return this.columnProduct_Qty;
                 }
             }
             
@@ -368,45 +394,51 @@ namespace Team2_DAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtOrderRow this[int index] {
+            public dtStockStatusRow this[int index] {
                 get {
-                    return ((dtOrderRow)(this.Rows[index]));
+                    return ((dtStockStatusRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event dtOrderRowChangeEventHandler dtOrderRowChanging;
+            public event dtStockStatusRowChangeEventHandler dtStockStatusRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event dtOrderRowChangeEventHandler dtOrderRowChanged;
+            public event dtStockStatusRowChangeEventHandler dtStockStatusRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event dtOrderRowChangeEventHandler dtOrderRowDeleting;
+            public event dtStockStatusRowChangeEventHandler dtStockStatusRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event dtOrderRowChangeEventHandler dtOrderRowDeleted;
+            public event dtStockStatusRowChangeEventHandler dtStockStatusRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void AdddtOrderRow(dtOrderRow row) {
+            public void AdddtStockStatusRow(dtStockStatusRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtOrderRow AdddtOrderRow(string DataColumn1) {
-                dtOrderRow rowdtOrderRow = ((dtOrderRow)(this.NewRow()));
+            public dtStockStatusRow AdddtStockStatusRow(string Product_ID, string Product_Name, string CodeTable_CodeName, string Warehouse_ID, string Warehouse_Name, string Product_Price, string Product_Qty) {
+                dtStockStatusRow rowdtStockStatusRow = ((dtStockStatusRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        DataColumn1};
-                rowdtOrderRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowdtOrderRow);
-                return rowdtOrderRow;
+                        Product_ID,
+                        Product_Name,
+                        CodeTable_CodeName,
+                        Warehouse_ID,
+                        Warehouse_Name,
+                        Product_Price,
+                        Product_Qty};
+                rowdtStockStatusRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowdtStockStatusRow);
+                return rowdtStockStatusRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                dtOrderDataTable cln = ((dtOrderDataTable)(base.Clone()));
+                dtStockStatusDataTable cln = ((dtStockStatusDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -414,46 +446,64 @@ namespace Team2_DAC {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new dtOrderDataTable();
+                return new dtStockStatusDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
-                this.columnDataColumn1 = base.Columns["DataColumn1"];
+                this.columnProduct_ID = base.Columns["Product_ID"];
+                this.columnProduct_Name = base.Columns["Product_Name"];
+                this.columnCodeTable_CodeName = base.Columns["CodeTable_CodeName"];
+                this.columnWarehouse_ID = base.Columns["Warehouse_ID"];
+                this.columnWarehouse_Name = base.Columns["Warehouse_Name"];
+                this.columnProduct_Price = base.Columns["Product_Price"];
+                this.columnProduct_Qty = base.Columns["Product_Qty"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             private void InitClass() {
-                this.columnDataColumn1 = new global::System.Data.DataColumn("DataColumn1", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDataColumn1);
+                this.columnProduct_ID = new global::System.Data.DataColumn("Product_ID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProduct_ID);
+                this.columnProduct_Name = new global::System.Data.DataColumn("Product_Name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProduct_Name);
+                this.columnCodeTable_CodeName = new global::System.Data.DataColumn("CodeTable_CodeName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCodeTable_CodeName);
+                this.columnWarehouse_ID = new global::System.Data.DataColumn("Warehouse_ID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnWarehouse_ID);
+                this.columnWarehouse_Name = new global::System.Data.DataColumn("Warehouse_Name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnWarehouse_Name);
+                this.columnProduct_Price = new global::System.Data.DataColumn("Product_Price", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProduct_Price);
+                this.columnProduct_Qty = new global::System.Data.DataColumn("Product_Qty", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProduct_Qty);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtOrderRow NewdtOrderRow() {
-                return ((dtOrderRow)(this.NewRow()));
+            public dtStockStatusRow NewdtStockStatusRow() {
+                return ((dtStockStatusRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new dtOrderRow(builder);
+                return new dtStockStatusRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(dtOrderRow);
+                return typeof(dtStockStatusRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.dtOrderRowChanged != null)) {
-                    this.dtOrderRowChanged(this, new dtOrderRowChangeEvent(((dtOrderRow)(e.Row)), e.Action));
+                if ((this.dtStockStatusRowChanged != null)) {
+                    this.dtStockStatusRowChanged(this, new dtStockStatusRowChangeEvent(((dtStockStatusRow)(e.Row)), e.Action));
                 }
             }
             
@@ -461,8 +511,8 @@ namespace Team2_DAC {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.dtOrderRowChanging != null)) {
-                    this.dtOrderRowChanging(this, new dtOrderRowChangeEvent(((dtOrderRow)(e.Row)), e.Action));
+                if ((this.dtStockStatusRowChanging != null)) {
+                    this.dtStockStatusRowChanging(this, new dtStockStatusRowChangeEvent(((dtStockStatusRow)(e.Row)), e.Action));
                 }
             }
             
@@ -470,8 +520,8 @@ namespace Team2_DAC {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.dtOrderRowDeleted != null)) {
-                    this.dtOrderRowDeleted(this, new dtOrderRowChangeEvent(((dtOrderRow)(e.Row)), e.Action));
+                if ((this.dtStockStatusRowDeleted != null)) {
+                    this.dtStockStatusRowDeleted(this, new dtStockStatusRowChangeEvent(((dtStockStatusRow)(e.Row)), e.Action));
                 }
             }
             
@@ -479,14 +529,14 @@ namespace Team2_DAC {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.dtOrderRowDeleting != null)) {
-                    this.dtOrderRowDeleting(this, new dtOrderRowChangeEvent(((dtOrderRow)(e.Row)), e.Action));
+                if ((this.dtStockStatusRowDeleting != null)) {
+                    this.dtStockStatusRowDeleting(this, new dtStockStatusRowChangeEvent(((dtStockStatusRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void RemovedtOrderRow(dtOrderRow row) {
+            public void RemovedtStockStatusRow(dtStockStatusRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -495,7 +545,7 @@ namespace Team2_DAC {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                dsOrder ds = new dsOrder();
+                dsStockStatus ds = new dsStockStatus();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -513,240 +563,7 @@ namespace Team2_DAC {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "dtOrderDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class dtOrderDetailDataTable : global::System.Data.TypedTableBase<dtOrderDetailRow> {
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtOrderDetailDataTable() {
-                this.TableName = "dtOrderDetail";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal dtOrderDetailDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected dtOrderDetailDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtOrderDetailRow this[int index] {
-                get {
-                    return ((dtOrderDetailRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event dtOrderDetailRowChangeEventHandler dtOrderDetailRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event dtOrderDetailRowChangeEventHandler dtOrderDetailRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event dtOrderDetailRowChangeEventHandler dtOrderDetailRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event dtOrderDetailRowChangeEventHandler dtOrderDetailRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void AdddtOrderDetailRow(dtOrderDetailRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtOrderDetailRow AdddtOrderDetailRow() {
-                dtOrderDetailRow rowdtOrderDetailRow = ((dtOrderDetailRow)(this.NewRow()));
-                object[] columnValuesArray = new object[0];
-                rowdtOrderDetailRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowdtOrderDetailRow);
-                return rowdtOrderDetailRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                dtOrderDetailDataTable cln = ((dtOrderDetailDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new dtOrderDetailDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal void InitVars() {
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            private void InitClass() {
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtOrderDetailRow NewdtOrderDetailRow() {
-                return ((dtOrderDetailRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new dtOrderDetailRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(dtOrderDetailRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.dtOrderDetailRowChanged != null)) {
-                    this.dtOrderDetailRowChanged(this, new dtOrderDetailRowChangeEvent(((dtOrderDetailRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.dtOrderDetailRowChanging != null)) {
-                    this.dtOrderDetailRowChanging(this, new dtOrderDetailRowChangeEvent(((dtOrderDetailRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.dtOrderDetailRowDeleted != null)) {
-                    this.dtOrderDetailRowDeleted(this, new dtOrderDetailRowChangeEvent(((dtOrderDetailRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.dtOrderDetailRowDeleting != null)) {
-                    this.dtOrderDetailRowDeleting(this, new dtOrderDetailRowChangeEvent(((dtOrderDetailRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void RemovedtOrderDetailRow(dtOrderDetailRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                dsOrder ds = new dsOrder();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "dtOrderDetailDataTable";
+                attribute2.FixedValue = "dtStockStatusDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -790,58 +607,211 @@ namespace Team2_DAC {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class dtOrderRow : global::System.Data.DataRow {
+        public partial class dtStockStatusRow : global::System.Data.DataRow {
             
-            private dtOrderDataTable tabledtOrder;
+            private dtStockStatusDataTable tabledtStockStatus;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal dtOrderRow(global::System.Data.DataRowBuilder rb) : 
+            internal dtStockStatusRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tabledtOrder = ((dtOrderDataTable)(this.Table));
+                this.tabledtStockStatus = ((dtStockStatusDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string DataColumn1 {
+            public string Product_ID {
                 get {
                     try {
-                        return ((string)(this[this.tabledtOrder.DataColumn1Column]));
+                        return ((string)(this[this.tabledtStockStatus.Product_IDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("\'dtOrder\' 테이블의 \'DataColumn1\' 열의 값이 DBNull입니다.", e);
+                        throw new global::System.Data.StrongTypingException("\'dtStockStatus\' 테이블의 \'Product_ID\' 열의 값이 DBNull입니다.", e);
                     }
                 }
                 set {
-                    this[this.tabledtOrder.DataColumn1Column] = value;
+                    this[this.tabledtStockStatus.Product_IDColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsDataColumn1Null() {
-                return this.IsNull(this.tabledtOrder.DataColumn1Column);
+            public string Product_Name {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtStockStatus.Product_NameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("\'dtStockStatus\' 테이블의 \'Product_Name\' 열의 값이 DBNull입니다.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtStockStatus.Product_NameColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetDataColumn1Null() {
-                this[this.tabledtOrder.DataColumn1Column] = global::System.Convert.DBNull;
+            public string CodeTable_CodeName {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtStockStatus.CodeTable_CodeNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("\'dtStockStatus\' 테이블의 \'CodeTable_CodeName\' 열의 값이 DBNull입니다.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtStockStatus.CodeTable_CodeNameColumn] = value;
+                }
             }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class dtOrderDetailRow : global::System.Data.DataRow {
-            
-            private dtOrderDetailDataTable tabledtOrderDetail;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal dtOrderDetailRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tabledtOrderDetail = ((dtOrderDetailDataTable)(this.Table));
+            public string Warehouse_ID {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtStockStatus.Warehouse_IDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("\'dtStockStatus\' 테이블의 \'Warehouse_ID\' 열의 값이 DBNull입니다.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtStockStatus.Warehouse_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string Warehouse_Name {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtStockStatus.Warehouse_NameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("\'dtStockStatus\' 테이블의 \'Warehouse_Name\' 열의 값이 DBNull입니다.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtStockStatus.Warehouse_NameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string Product_Price {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtStockStatus.Product_PriceColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("\'dtStockStatus\' 테이블의 \'Product_Price\' 열의 값이 DBNull입니다.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtStockStatus.Product_PriceColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string Product_Qty {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtStockStatus.Product_QtyColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("\'dtStockStatus\' 테이블의 \'Product_Qty\' 열의 값이 DBNull입니다.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtStockStatus.Product_QtyColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsProduct_IDNull() {
+                return this.IsNull(this.tabledtStockStatus.Product_IDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetProduct_IDNull() {
+                this[this.tabledtStockStatus.Product_IDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsProduct_NameNull() {
+                return this.IsNull(this.tabledtStockStatus.Product_NameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetProduct_NameNull() {
+                this[this.tabledtStockStatus.Product_NameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsCodeTable_CodeNameNull() {
+                return this.IsNull(this.tabledtStockStatus.CodeTable_CodeNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetCodeTable_CodeNameNull() {
+                this[this.tabledtStockStatus.CodeTable_CodeNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsWarehouse_IDNull() {
+                return this.IsNull(this.tabledtStockStatus.Warehouse_IDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetWarehouse_IDNull() {
+                this[this.tabledtStockStatus.Warehouse_IDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsWarehouse_NameNull() {
+                return this.IsNull(this.tabledtStockStatus.Warehouse_NameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetWarehouse_NameNull() {
+                this[this.tabledtStockStatus.Warehouse_NameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsProduct_PriceNull() {
+                return this.IsNull(this.tabledtStockStatus.Product_PriceColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetProduct_PriceNull() {
+                this[this.tabledtStockStatus.Product_PriceColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsProduct_QtyNull() {
+                return this.IsNull(this.tabledtStockStatus.Product_QtyColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetProduct_QtyNull() {
+                this[this.tabledtStockStatus.Product_QtyColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -849,56 +819,22 @@ namespace Team2_DAC {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public class dtOrderRowChangeEvent : global::System.EventArgs {
+        public class dtStockStatusRowChangeEvent : global::System.EventArgs {
             
-            private dtOrderRow eventRow;
+            private dtStockStatusRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtOrderRowChangeEvent(dtOrderRow row, global::System.Data.DataRowAction action) {
+            public dtStockStatusRowChangeEvent(dtStockStatusRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtOrderRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public class dtOrderDetailRowChangeEvent : global::System.EventArgs {
-            
-            private dtOrderDetailRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtOrderDetailRowChangeEvent(dtOrderDetailRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtOrderDetailRow Row {
+            public dtStockStatusRow Row {
                 get {
                     return this.eventRow;
                 }

@@ -434,6 +434,90 @@
     <Compile Include="Forms\SSD\StockStatus.designer.cs">
       <DependentUpon>StockStatus.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\DataSets\dsBalju.cs">
+      <DependentUpon>dsBalju.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\DataSets\dsBalju.Designer.cs">
+      <DependentUpon>dsBalju.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\DataSets\dsOrder.cs">
+      <DependentUpon>dsOrder.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\DataSets\dsOrder.Designer.cs">
+      <DependentUpon>dsOrder.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\DataSets\dsSales.cs">
+      <DependentUpon>dsSales.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\DataSets\dsSales.Designer.cs">
+      <DependentUpon>dsSales.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\DataSets\dsShipment.cs">
+      <DependentUpon>dsShipment.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\DataSets\dsShipment.Designer.cs">
+      <DependentUpon>dsShipment.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\DataSets\dsStockReceipt.cs">
+      <DependentUpon>dsStockReceipt.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\DataSets\dsStockReceipt.Designer.cs">
+      <DependentUpon>dsStockReceipt.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\DataSets\dsStockStatus.cs">
+      <DependentUpon>dsStockStatus.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\DataSets\dsStockStatus.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsStockStatus.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\StockStatusReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\StockStatusReport.Designer.cs">
+      <DependentUpon>StockStatusReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ShipmentReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ShipmentReport.Designer.cs">
+      <DependentUpon>ShipmentReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ShipmentCompletedReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ShipmentCompletedReport.Designer.cs">
+      <DependentUpon>ShipmentCompletedReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\SalesReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\SalesReport.Designer.cs">
+      <DependentUpon>SalesReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\InOutSemiProductWarehouseReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\InOutSemiProductWarehouseReport.Designer.cs">
+      <DependentUpon>InOutSemiProductWarehouseReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\OrderCompletedReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\OrderCompletedReport.Designer.cs">
+      <DependentUpon>OrderCompletedReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\OrderReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -662,6 +746,24 @@
     <EmbeddedResource Include="Forms\SSD\StockStatus.resx">
       <DependentUpon>StockStatus.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\StockStatusReport.resx">
+      <DependentUpon>StockStatusReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ShipmentReport.resx">
+      <DependentUpon>ShipmentReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ShipmentCompletedReport.resx">
+      <DependentUpon>ShipmentCompletedReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\SalesReport.resx">
+      <DependentUpon>SalesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\InOutSemiProductWarehouseReport.resx">
+      <DependentUpon>InOutSemiProductWarehouseReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\OrderCompletedReport.resx">
+      <DependentUpon>OrderCompletedReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\OrderReport.resx">
       <DependentUpon>OrderReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -711,6 +813,72 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\1486564410-chat_81504.png" />
+    <None Include="Reports\DataSets\dsBalju.xsc">
+      <DependentUpon>dsBalju.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DataSets\dsBalju.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsBalju.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Reports\DataSets\dsBalju.xss">
+      <DependentUpon>dsBalju.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DataSets\dsOrder.xsc">
+      <DependentUpon>dsOrder.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DataSets\dsOrder.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsOrder.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Reports\DataSets\dsOrder.xss">
+      <DependentUpon>dsOrder.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DataSets\dsSales.xsc">
+      <DependentUpon>dsSales.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DataSets\dsSales.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsSales.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Reports\DataSets\dsSales.xss">
+      <DependentUpon>dsSales.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DataSets\dsShipment.xsc">
+      <DependentUpon>dsShipment.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DataSets\dsShipment.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsShipment.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Reports\DataSets\dsShipment.xss">
+      <DependentUpon>dsShipment.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DataSets\dsStockReceipt.xsc">
+      <DependentUpon>dsStockReceipt.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DataSets\dsStockReceipt.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsStockReceipt.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Reports\DataSets\dsStockReceipt.xss">
+      <DependentUpon>dsStockReceipt.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DataSets\dsStockStatus.xsc">
+      <DependentUpon>dsStockStatus.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DataSets\dsStockStatus.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsStockStatus.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\DataSets\dsStockStatus.xss">
+      <DependentUpon>dsStockStatus.xsd</DependentUpon>
+    </None>
     <None Include="Resources\Action_Export_ToExcel_32x32.png" />
     <None Include="Resources\Action_Export_ToExcel.png" />
     <Content Include="Resources\Action_Logoff.png" />
