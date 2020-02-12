@@ -43,6 +43,7 @@ namespace Team2_POP
         {
             lblPerformance.Text = Performance_ID;
 
+
             #region 콤보박스 바인딩 - 불량유형, 불량처리 유형
 
             Service service = new Service();
@@ -102,22 +103,30 @@ namespace Team2_POP
             }
         }
 
+        // 데이터 초기화해주는 함수
         private void ResetData()
         {
+            cboDefectiveName.SelectedIndex = cboDefItem.SelectedIndex = cboHandle.SelectedIndex = 0;
+
             // 초기화
+
             lblDefectiveName.Text = "선택된 불량유형";
             lblDefItem.Text = "선택된 불량품목";
             lblHandle.Text = "선택된 불량 처리유형";
             lblDefectiveName.Tag = null;
             lblHandle.Tag = null;
+
+            InitData();
         }
 
+        //저장을 누를때
         private void btnSave_Click(object sender, EventArgs e)
         {
             Save();
             DialogResult = DialogResult.OK;
         }
 
+        // 계속 저장 누를때
         private void btnSaveAs_Click(object sender, EventArgs e)
         {
             Save();
