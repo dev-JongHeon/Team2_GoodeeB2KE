@@ -30,7 +30,7 @@ namespace Team2_ERP
             UtilClass.SettingDgv(dgvCustomer);
 
             UtilClass.AddNewColum(dgvCustomer, "아이디", "Customer_UserID", true, 100);
-            UtilClass.AddNewColum(dgvCustomer, "비밀번호", "Customer_PWD", true, 100);
+            UtilClass.AddNewColum(dgvCustomer, "비밀번호", "Customer_PWD", false, 100);
             UtilClass.AddNewColum(dgvCustomer, "이름", "Customer_Name", true, 100);
             UtilClass.AddNewColum(dgvCustomer, "연락처", "Customer_Phone", true, 100);
             UtilClass.AddNewColum(dgvCustomer, "이메일", "Customer_Email", true, 100);

@@ -135,7 +135,7 @@ namespace Team2_ERP
             else
                 UpdateFactory();
 
-            if(txtFactoryName.Text.Length > 0 && !cboFactoryDivision.SelectedText.Equals("선택") && maskedFactoryNumber.Text.Replace("_", "").Replace("-", "").Trim().Length < 0 && addrFactory.Address1.Length > 0 && addrFactory.Address2.Length > 0)
+            if(txtFactoryName.Text.Length > 0 && !cboFactoryDivision.SelectedText.Equals("선택") && maskedFactoryNumber.Text.Replace("_", "").Replace("-", "").Trim().Length > 10 && addrFactory.Address1.Length > 0 && addrFactory.Address2.Length > 0)
             {
                 if(mode.Equals("Insert"))
                 {

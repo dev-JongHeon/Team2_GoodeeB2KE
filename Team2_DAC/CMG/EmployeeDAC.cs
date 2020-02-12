@@ -137,12 +137,13 @@ namespace Team2_DAC
 
         public bool DeleteEmployee(int code)
         {
-            string sql = $"Update Employee set Employees_DeletedYN = {1} where Employees_ID = @Employees_ID ";
+            string sql = "CMG_DeleteEmployee ";
 
             try
             {
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Employees_ID", code);
 
                     conn.Open();

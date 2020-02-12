@@ -82,6 +82,7 @@ namespace Team2_ERP
         private void EmployeesInsUp_Load(object sender, EventArgs e)
         {
             InitCombo();
+            txtEmployeesPassword.PasswordChar = '*';
 
             if(mode.Equals("Insert"))
             {
@@ -92,6 +93,7 @@ namespace Team2_ERP
             {
                 dtpEmployeesHireDate.Enabled = false;
                 dtpEmployeesResignDate.Enabled = true;
+                txtEmployeesPassword.Enabled = false;
             }
         }
 
@@ -137,7 +139,7 @@ namespace Team2_ERP
         {
             if (mode.Equals("Insert"))
             {
-                if(txtEmployeesName.Text.Length > 0 && cboEmployeesCategory.SelectedValue != null && dtpEmployeesHireDate.Value != null && txtEmployeesPassword.Text.Length > 0 && maskedEmployeesPhoneNumber.Text.Replace("_", "").Replace("-", "").Trim().Length < 10 && dtpEmployeesBirthDay.Value != null)
+                if(txtEmployeesName.Text.Length > 0 && cboEmployeesCategory.SelectedValue != null && dtpEmployeesHireDate.Value != null && txtEmployeesPassword.Text.Length > 0 && maskedEmployeesPhoneNumber.Text.Replace("_", "").Replace("-", "").Trim().Length > 10 && dtpEmployeesBirthDay.Value != null)
                 {
                     InsertEmployee();
                     DialogResult = MessageBox.Show(Properties.Settings.Default.AddDone, Properties.Settings.Default.AddDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -149,7 +151,7 @@ namespace Team2_ERP
             }
             else
             {
-                if (txtEmployeesName.Text.Length > 0 && cboEmployeesCategory.SelectedValue != null && dtpEmployeesResignDate.Value != null && txtEmployeesPassword.Text.Length > 0 && maskedEmployeesPhoneNumber.Text.Replace("_", "").Replace("-", "").Trim().Length < 10 && dtpEmployeesBirthDay.Value != null)
+                if (txtEmployeesName.Text.Length > 0 && cboEmployeesCategory.SelectedValue != null && dtpEmployeesResignDate.Value != null && txtEmployeesPassword.Text.Length > 0 && maskedEmployeesPhoneNumber.Text.Replace("_", "").Replace("-", "").Trim().Length > 10 && dtpEmployeesBirthDay.Value != null)
                 {
                     UpdateEmployee();
                     DialogResult = MessageBox.Show(Properties.Settings.Default.ModDone, Properties.Settings.Default.ModDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
