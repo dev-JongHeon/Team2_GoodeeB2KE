@@ -142,6 +142,7 @@ namespace Team2_ERP
 
         private void Resource_Deactivate(object sender, EventArgs e)
         {
+            ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = true;
             new SettingMenuStrip().UnsetMenu(this);
         }
 

@@ -100,6 +100,7 @@ namespace Team2_ERP
             //서브메뉴 이벤트 삭제
             tool.DropDownItems.Clear();
             tool.DropDownItemClicked -= ItemSelect;
+            ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = true;
             new SettingMenuStrip().UnsetMenu(this);
         }
 
