@@ -28,7 +28,7 @@ namespace Team2_ERP
 
         private void pictureBox1_DoubleClick(object sender, EventArgs e)
         {
-            Process.Start("http://localhost:62028/");
+            Process.Start("http://gdb2keeis.azurewebsites.net/");
         }
     }
 }

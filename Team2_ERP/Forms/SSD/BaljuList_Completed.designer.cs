@@ -52,7 +52,7 @@
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer1.SplitterDistance = 367;
             this.splitContainer1.SplitterWidth = 3;
             // 
@@ -68,11 +68,11 @@
             // 
             // panel_Search
             // 
-            this.panel_Search.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel_Search.Margin = new System.Windows.Forms.Padding(2);
             // 
             // panel4
             // 
-            this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2);
             // 
             // panel5
             // 
@@ -80,11 +80,11 @@
             this.panel5.Controls.Add(this.Search_Company);
             this.panel5.Controls.Add(this.Search_Employee);
             this.panel5.Controls.Add(this.Search_Period);
-            this.panel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2);
             // 
             // panel_Title
             // 
-            this.panel_Title.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel_Title.Margin = new System.Windows.Forms.Padding(2);
             // 
             // lblFormName
             // 
@@ -93,7 +93,7 @@
             // 
             // linepanel1
             // 
-            this.linepanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.linepanel1.Margin = new System.Windows.Forms.Padding(2);
             // 
             // dgv_BaljuCompleted
             // 
@@ -128,7 +128,7 @@
             this.Search_Company.ControlType = Team2_ERP.SearchUserControl.Mode.Company;
             this.Search_Company.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Search_Company.Labelname = "회사";
-            this.Search_Company.Location = new System.Drawing.Point(89, 38);
+            this.Search_Company.Location = new System.Drawing.Point(89, 72);
             this.Search_Company.Name = "Search_Company";
             this.Search_Company.Size = new System.Drawing.Size(312, 25);
             this.Search_Company.TabIndex = 2;
@@ -139,7 +139,7 @@
             this.Search_Employee.ControlType = Team2_ERP.SearchUserControl.Mode.Employee;
             this.Search_Employee.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Search_Employee.Labelname = "사원";
-            this.Search_Employee.Location = new System.Drawing.Point(89, 6);
+            this.Search_Employee.Location = new System.Drawing.Point(438, 9);
             this.Search_Employee.Name = "Search_Employee";
             this.Search_Employee.Size = new System.Drawing.Size(312, 25);
             this.Search_Employee.TabIndex = 1;
@@ -147,8 +147,8 @@
             // Search_Period
             // 
             this.Search_Period.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Search_Period.Labelname = "요청일자";
-            this.Search_Period.Location = new System.Drawing.Point(89, 69);
+            this.Search_Period.Labelname = "발주요청일자";
+            this.Search_Period.Location = new System.Drawing.Point(89, 40);
             this.Search_Period.Name = "Search_Period";
             this.Search_Period.Size = new System.Drawing.Size(312, 26);
             this.Search_Period.TabIndex = 3;
@@ -157,7 +157,7 @@
             // 
             this.Search_ReceiptPeriod.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Search_ReceiptPeriod.Labelname = "수령일자";
-            this.Search_ReceiptPeriod.Location = new System.Drawing.Point(447, 6);
+            this.Search_ReceiptPeriod.Location = new System.Drawing.Point(89, 8);
             this.Search_ReceiptPeriod.Name = "Search_ReceiptPeriod";
             this.Search_ReceiptPeriod.Size = new System.Drawing.Size(312, 26);
             this.Search_ReceiptPeriod.TabIndex = 4;
@@ -167,7 +167,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.ClientSize = new System.Drawing.Size(1364, 820);
             this.FormName = "발주완료현황";
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "BaljuList_Completed";
             this.Activated += new System.EventHandler(this.BaljuList_Completed_Activated);
             this.Deactivate += new System.EventHandler(this.BaljuList_Completed_Deactivate);

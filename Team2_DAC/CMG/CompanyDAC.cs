@@ -91,7 +91,7 @@ namespace Team2_DAC
                     cmd.Parameters.AddWithValue("@Company_Address1", str[0]);
                     cmd.Parameters.AddWithValue("@Company_Address2", str[1]);
                     cmd.Parameters.AddWithValue("@Company_Number", item.Company_Number);
-                    if (item.Company_Fax == string.Empty)
+                    if (item.Company_Fax == null)
                         cmd.Parameters.AddWithValue("@Company_Fax", DBNull.Value);
                     else
                         cmd.Parameters.AddWithValue("@Company_Fax", item.Company_Fax);

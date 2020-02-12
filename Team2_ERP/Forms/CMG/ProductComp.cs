@@ -91,7 +91,7 @@ namespace Team2_ERP
                 spc.LblName.Tag = countList[i].ID;
 
                 spc.Qty.ValueChanged += new EventHandler(TotalPrice);
-                numProductQty.ValueChanged += new EventHandler(TotalPrice);
+                nummargin.ValueChanged += new EventHandler(TotalPrice);
 
                 splitContainer2.Panel1.Controls.Add(spc);
             }
@@ -111,7 +111,7 @@ namespace Team2_ERP
                         sum += Convert.ToInt32(list.Find(i => i.Product_ID == spc.TxtName.Tag.ToString()).Product_Price * spc.Qty.Value);
 
                     txtProductMoney.Tag = sum;
-                    numericUpDown1_ValueChanged(this, null);
+                    nummargin_ValueChanged(this, null);
                 }
             }
         }
@@ -156,14 +156,6 @@ namespace Team2_ERP
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            if (numProductQty.Value > 0)
-            {
-                txtProductMoney.Text = (Convert.ToInt32(txtProductMoney.Tag) * Convert.ToInt32(numProductQty.Value)).ToString("#,##0") + "원";
-            }
-            else
-            {
-                txtProductMoney.Text = "0원";
-            }
         }
 
         private void InsertProduct()
@@ -184,8 +176,8 @@ namespace Team2_ERP
                 Product_Name = txtProductName.Text,
                 Product_Price = Convert.ToInt32(txtProductMoney.Text.Replace(",", "").Replace("원", "")),
                 Product_Category = cboProductCategory.SelectedValue.ToString(),
-                Product_Image = ImageData,
-                Product_Qty = Convert.ToInt32(numProductQty.Value)
+                Product_Safety = Convert.ToInt32(numSafety.Value),
+                Product_Image = ImageData
             };
 
             List<CombinationVO> citemList = new List<CombinationVO>();
@@ -235,8 +227,8 @@ namespace Team2_ERP
                 Product_Name = txtProductName.Text,
                 Product_Image = ImageData,
                 Product_Price = Convert.ToInt32(txtProductMoney.Text.Replace(",", "").Replace("원", "")),
-                Product_Category = cboProductCategory.SelectedValue.ToString(),
-                Product_Qty = Convert.ToInt32(numProductQty.Value)
+                Product_Safety = Convert.ToInt32(numSafety.Value),
+                Product_Category = cboProductCategory.SelectedValue.ToString()
             };
 
             List<CombinationVO> citemList = new List<CombinationVO>();
@@ -264,7 +256,7 @@ namespace Team2_ERP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if(spc.TxtName.Tag != null && txtProductImage.Text.Length > 0 && txtProductName.Text.Length > 0 && numProductQty.Value > 0 && txtProductMoney.Text.Length > 0)
+            if(spc.TxtName.Tag != null && txtProductImage.Text.Length > 0 && txtProductName.Text.Length > 0 && txtProductMoney.Text.Length > 0 && numSafety.Value > 0)
             {
                 if(mode.Equals("Insert"))
                 {
@@ -335,6 +327,18 @@ namespace Team2_ERP
                         }
                     }
                 }
+            }
+        }
+
+        private void nummargin_ValueChanged(object sender, EventArgs e)
+        {
+            if (nummargin.Value > 0)
+            {
+                txtProductMoney.Text = (Convert.ToInt32(txtProductMoney.Tag) + (Convert.ToInt32(txtProductMoney.Tag) * Convert.ToInt32(nummargin.Value)) * 0.01).ToString("#,##0") + "원";
+            }
+            else
+            {
+                txtProductMoney.Text = Convert.ToInt32(txtProductMoney.Tag).ToString("#,##0") + "원";
             }
         }
     }

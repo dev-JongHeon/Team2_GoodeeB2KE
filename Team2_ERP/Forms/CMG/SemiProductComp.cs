@@ -98,7 +98,6 @@ namespace Team2_ERP
                 spc.LblName.Tag = countList[i].ID;
 
                 spc.Qty.ValueChanged += new EventHandler(TotalPrice);
-                numQty.ValueChanged += new EventHandler(TotalPrice);
 
                 splitContainer2.Panel1.Controls.Add(spc);
             }
@@ -119,7 +118,6 @@ namespace Team2_ERP
                         sum += Convert.ToInt32(list.Find(i => i.Product_ID == spc.TxtName.Tag.ToString()).Product_Price * spc.Qty.Value);
 
                     txtSemiproductMoney.Tag = sum;
-                    numericUpDown1_ValueChanged(this, null);
                 }
             }
         }
@@ -175,7 +173,6 @@ namespace Team2_ERP
             {
                 Product_Name = txtSemiproductName.Text,
                 Product_Price = Convert.ToInt32(txtSemiproductMoney.Text.Replace(",", "").Replace("원", "")),
-                Product_Qty = Convert.ToInt32(numQty.Value),
                 Warehouse_ID = Convert.ToInt32(cboWarehouse.SelectedValue),
                 Product_Safety = Convert.ToInt32(numSafety.Value),
                 Product_Category = cboCategory.SelectedValue.ToString()
@@ -210,7 +207,6 @@ namespace Team2_ERP
                 Product_ID = pCode,
                 Product_Name = txtSemiproductName.Text,
                 Product_Price = Convert.ToInt32(txtSemiproductMoney.Text.Replace(",", "").Replace("원", "")),
-                Product_Qty = Convert.ToInt32(numQty.Value),
                 Product_Safety = Convert.ToInt32(numSafety.Value),
                 Warehouse_ID = Convert.ToInt32(cboWarehouse.SelectedValue),
                 Product_Category = cboCategory.SelectedValue.ToString()
@@ -240,7 +236,7 @@ namespace Team2_ERP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (spc.TxtName.Tag != null && cboWarehouse.SelectedValue != null && txtSemiproductName.Text.Length > 0 && numSafety.Value > 0 && numQty.Value > 0 && txtSemiproductMoney.Text.Length > 0)
+            if (spc.TxtName.Tag != null && cboWarehouse.SelectedValue != null && txtSemiproductName.Text.Length > 0 && numSafety.Value > 0 && txtSemiproductMoney.Text.Length > 0)
             {
                 if (mode.Equals("Insert"))
                 {
@@ -256,19 +252,6 @@ namespace Team2_ERP
             else
             {
                 MessageBox.Show(Properties.Settings.Default.isEssential, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        //반제품 조합의 개수만큼 단가를 조정한다.
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-            if (numQty.Value > 0)
-            {
-                txtSemiproductMoney.Text = (Convert.ToInt32(txtSemiproductMoney.Tag) * Convert.ToInt32(numQty.Value)).ToString("#,##0") + "원";
-            }
-            else
-            {
-                txtSemiproductMoney.Text = "0원";
             }
         }
 
