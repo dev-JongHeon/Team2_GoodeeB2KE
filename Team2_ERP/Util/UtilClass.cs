@@ -795,8 +795,8 @@ namespace Team2_ERP
         #region comboBox 바인딩 관련 유틸리티
         public static void ComboBinding(ComboBox combo, List<ComboItemVO> list)
         {
-            combo.ValueMember = "Code";
-            combo.DisplayMember = "CodeNm";
+            combo.ValueMember = "ID";
+            combo.DisplayMember = "Name";
             combo.DataSource = list;
         }
 

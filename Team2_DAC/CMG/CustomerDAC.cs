@@ -20,7 +20,7 @@ namespace Team2_DAC
 
         public List<CustomerVO> GetAllCustomer()
         {
-            string sql = "select Customer_ID, Customer_UserID, Customer_PWD, Customer_Name, Customer_Phone, Customer_Email, Customer_Birth, (Customer_Address1 + '　' + Customer_Address2) as Customer_Address, Customer_DeletedYN from Customer ";
+            string sql = "select Customer_ID, Customer_UserID, Customer_PWD, Customer_Name, Customer_Phone, Customer_Email, Customer_Birth, (Customer_Address1 + '　' + Customer_Address2) as Customer_Address, Customer_DeletedYN from Customer where Customer_DeletedYN = 0 ";
 
             try
             {
