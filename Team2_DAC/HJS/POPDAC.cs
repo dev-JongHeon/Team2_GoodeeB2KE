@@ -565,7 +565,7 @@ namespace Team2_DAC
         public bool SetDefective(string defectiveID, string handleCode, string defecCode)
         {
             StringBuilder qryUpdate = new StringBuilder();
-            qryUpdate.Append(" UPDATE Defective SET Defective_HandleDate = GETDATE() ");
+            qryUpdate.Append(" UPDATE Defective SET Defective_HandleDate = (SELECT [dbo].[GetKSTDate] ()) ");
             qryUpdate.Append(" ,Defective_handle = @HandleCode, Defective_Code = @DefectiveCode ");
             qryUpdate.Append(" WHERE Defective_ID = @defectiveID ");
 

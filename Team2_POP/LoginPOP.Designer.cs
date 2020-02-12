@@ -65,7 +65,7 @@
             // 
             this.cboLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboLine.FormattingEnabled = true;
-            this.cboLine.Location = new System.Drawing.Point(511, 195);
+            this.cboLine.Location = new System.Drawing.Point(511, 108);
             this.cboLine.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
             this.cboLine.Name = "cboLine";
             this.cboLine.Size = new System.Drawing.Size(624, 48);
@@ -75,7 +75,7 @@
             // 
             this.cboWorker.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboWorker.FormattingEnabled = true;
-            this.cboWorker.Location = new System.Drawing.Point(511, 107);
+            this.cboWorker.Location = new System.Drawing.Point(511, 198);
             this.cboWorker.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
             this.cboWorker.Name = "cboWorker";
             this.cboWorker.Size = new System.Drawing.Size(624, 48);
