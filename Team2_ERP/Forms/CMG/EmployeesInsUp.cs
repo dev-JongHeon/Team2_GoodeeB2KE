@@ -68,6 +68,7 @@ namespace Team2_ERP
                 eCode = item.Employees_ID;
                 txtEmployeesName.Text = item.Employees_Name;
                 maskedEmployeesPhoneNumber.Text = item.Employees_Phone;
+                dtpEmployeesBirthDay.Value = Convert.ToDateTime(item.Employees_Birth);
                 dtpEmployeesHireDate.Value = Convert.ToDateTime(item.Employees_Hiredate);
             }
         }
@@ -151,7 +152,7 @@ namespace Team2_ERP
             }
             else
             {
-                if (txtEmployeesName.Text.Length > 0 && cboEmployeesCategory.SelectedValue != null && dtpEmployeesResignDate.Value != null && txtEmployeesPassword.Text.Length > 0 && maskedEmployeesPhoneNumber.Text.Replace("_", "").Replace("-", "").Trim().Length > 10 && dtpEmployeesBirthDay.Value != null)
+                if (txtEmployeesName.Text.Length > 0 && cboEmployeesCategory.SelectedValue != null && dtpEmployeesResignDate.Value != null && maskedEmployeesPhoneNumber.Text.Replace("_", "").Replace("-", "").Trim().Length > 10 && dtpEmployeesBirthDay.Value != null)
                 {
                     UpdateEmployee();
                     DialogResult = MessageBox.Show(Properties.Settings.Default.ModDone, Properties.Settings.Default.ModDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
