@@ -31,6 +31,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer8 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.lblFactory = new System.Windows.Forms.Label();
             this.lblWorkerName = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -41,6 +42,7 @@
             this.splitContainer9 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer10 = new System.Windows.Forms.SplitContainer();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.splitContainer11 = new System.Windows.Forms.SplitContainer();
             this.picLogout = new System.Windows.Forms.PictureBox();
@@ -48,9 +50,14 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnDownTime = new System.Windows.Forms.Button();
+            this.lblDate = new System.Windows.Forms.Label();
             this.btnDate = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.picLeft = new System.Windows.Forms.PictureBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.picRight = new System.Windows.Forms.PictureBox();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.dgvWork = new System.Windows.Forms.DataGridView();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
@@ -65,13 +72,6 @@
             this.splitContainer7 = new System.Windows.Forms.SplitContainer();
             this.lblTime = new System.Windows.Forms.Label();
             this.lblWorker = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.picLeft = new System.Windows.Forms.PictureBox();
-            this.lblDate = new System.Windows.Forms.Label();
-            this.picRight = new System.Windows.Forms.PictureBox();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -104,6 +104,10 @@
             this.splitContainer2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLeft)).BeginInit();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
@@ -128,10 +132,6 @@
             this.splitContainer7.Panel1.SuspendLayout();
             this.splitContainer7.Panel2.SuspendLayout();
             this.splitContainer7.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLeft)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picRight)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -200,6 +200,14 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(1387, 51);
             this.tableLayoutPanel2.TabIndex = 4;
+            // 
+            // panel5
+            // 
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(480, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(904, 45);
+            this.panel5.TabIndex = 13;
             // 
             // lblFactory
             // 
@@ -337,6 +345,14 @@
             this.splitContainer10.SplitterDistance = 300;
             this.splitContainer10.TabIndex = 1;
             // 
+            // panel6
+            // 
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(300, 51);
+            this.panel6.TabIndex = 14;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
@@ -446,6 +462,20 @@
             this.btnDownTime.UseVisualStyleBackColor = false;
             this.btnDownTime.Click += new System.EventHandler(this.btnDownTime_Click);
             // 
+            // lblDate
+            // 
+            this.lblDate.AutoSize = true;
+            this.lblDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
+            this.lblDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblDate.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 24.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblDate.ForeColor = System.Drawing.Color.White;
+            this.lblDate.Location = new System.Drawing.Point(415, 0);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(335, 82);
+            this.lblDate.TabIndex = 2;
+            this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblDate.Click += new System.EventHandler(this.lblDate_Click);
+            // 
             // btnDate
             // 
             this.btnDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
@@ -481,6 +511,48 @@
             this.label4.TabIndex = 1;
             this.label4.Text = "조회일자";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.picLeft);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel3.Location = new System.Drawing.Point(265, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(144, 76);
+            this.panel3.TabIndex = 10;
+            // 
+            // picLeft
+            // 
+            this.picLeft.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picLeft.Location = new System.Drawing.Point(0, 0);
+            this.picLeft.Name = "picLeft";
+            this.picLeft.Size = new System.Drawing.Size(144, 76);
+            this.picLeft.TabIndex = 0;
+            this.picLeft.TabStop = false;
+            this.picLeft.Click += new System.EventHandler(this.btnPreDate_Click);
+            this.picLeft.MouseLeave += new System.EventHandler(this.picLeft_MouseLeave);
+            this.picLeft.MouseHover += new System.EventHandler(this.picLeft_MouseHover);
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.picRight);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel4.Location = new System.Drawing.Point(756, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(144, 76);
+            this.panel4.TabIndex = 11;
+            // 
+            // picRight
+            // 
+            this.picRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picRight.Location = new System.Drawing.Point(0, 0);
+            this.picRight.Name = "picRight";
+            this.picRight.Size = new System.Drawing.Size(144, 76);
+            this.picRight.TabIndex = 0;
+            this.picRight.TabStop = false;
+            this.picRight.Click += new System.EventHandler(this.btnNextDate_Click);
+            this.picRight.MouseLeave += new System.EventHandler(this.picRight_MouseLeave);
+            this.picRight.MouseHover += new System.EventHandler(this.picRight_MouseHover);
             // 
             // splitContainer3
             // 
@@ -697,78 +769,6 @@
             this.lblWorker.TabIndex = 1;
             this.lblWorker.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.picRight);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(756, 3);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(144, 76);
-            this.panel4.TabIndex = 11;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.picLeft);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(265, 3);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(144, 76);
-            this.panel3.TabIndex = 10;
-            // 
-            // picLeft
-            // 
-            this.picLeft.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picLeft.Location = new System.Drawing.Point(0, 0);
-            this.picLeft.Name = "picLeft";
-            this.picLeft.Size = new System.Drawing.Size(144, 76);
-            this.picLeft.TabIndex = 0;
-            this.picLeft.TabStop = false;
-            this.picLeft.Click += new System.EventHandler(this.btnPreDate_Click);
-            this.picLeft.MouseLeave += new System.EventHandler(this.picLeft_MouseLeave);
-            this.picLeft.MouseHover += new System.EventHandler(this.picLeft_MouseHover);
-            // 
-            // lblDate
-            // 
-            this.lblDate.AutoSize = true;
-            this.lblDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(89)))));
-            this.lblDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDate.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 24.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblDate.ForeColor = System.Drawing.Color.White;
-            this.lblDate.Location = new System.Drawing.Point(415, 0);
-            this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(335, 82);
-            this.lblDate.TabIndex = 2;
-            this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblDate.Click += new System.EventHandler(this.lblDate_Click);
-            // 
-            // picRight
-            // 
-            this.picRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picRight.Location = new System.Drawing.Point(0, 0);
-            this.picRight.Name = "picRight";
-            this.picRight.Size = new System.Drawing.Size(144, 76);
-            this.picRight.TabIndex = 0;
-            this.picRight.TabStop = false;
-            this.picRight.Click += new System.EventHandler(this.btnNextDate_Click);
-            this.picRight.MouseLeave += new System.EventHandler(this.picRight_MouseLeave);
-            this.picRight.MouseHover += new System.EventHandler(this.picRight_MouseHover);
-            // 
-            // panel5
-            // 
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(480, 3);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(904, 45);
-            this.panel5.TabIndex = 13;
-            // 
-            // panel6
-            // 
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(0, 0);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(300, 51);
-            this.panel6.TabIndex = 14;
-            // 
             // PopMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -816,6 +816,10 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picLeft)).EndInit();
+            this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picRight)).EndInit();
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
@@ -840,10 +844,6 @@
             this.splitContainer7.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer7)).EndInit();
             this.splitContainer7.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picLeft)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picRight)).EndInit();
             this.ResumeLayout(false);
 
         }
