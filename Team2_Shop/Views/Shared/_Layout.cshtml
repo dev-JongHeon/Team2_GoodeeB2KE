@@ -55,6 +55,7 @@ desired effect
 |---------------------------------------------------------|
 -->
 <body class="hold-transition skin-purple-light sidebar-mini">
+    @model Team2_Shop.Models.LoginModel
     <div class="wrapper">
 
         <!-- Main Header -->
@@ -136,22 +137,25 @@ desired effect
                                     <ul class="menu">
                                         <li>
                                             <!-- start notification -->
-                                            <a href="#modal-success">
-                                                <i class="fa fa-users text-aqua"></i> 로그인
-                                            </a>
+                                            <button type="button" class="btn btn-block" data-toggle="modal" data-target="#modal-login">
+                                                <i class="fas fa-key text-aqua"></i> 로그인
+                                            </button>
                                         </li>
+
                                         <li>
                                             <!-- start notification -->
-                                            <a href="#">
+                                            <button type="button" class="btn btn-block text-left" data-toggle="modal" data-target="#">
                                                 <i class="fa fa-users text-aqua"></i> 마이페이지
-                                            </a>
+                                            </button>
                                         </li>
+
                                         <li>
                                             <!-- start notification -->
-                                            <a href="#">
-                                                <i class="fa fa-users text-aqua"></i> 로그아웃
-                                            </a>
+                                            <button type="button" class="btn btn-block" data-toggle="modal" data-target="#modal-logout">
+                                                <i class="fas fa-unlock-alt text-aqua"></i> 로그아웃
+                                            </button>
                                         </li>
+
                                     </ul>
                                 </li>
                             </ul>
@@ -166,7 +170,50 @@ desired effect
 
 
         <!-- 모달폼 로그인관련 -->
-        <div class="modal modal-success fade" id="modal-success">
+        <div class="modal modal-info fade" id="modal-login">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">로그인 화면</h4>
+                    </div>
+                    @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="bg-yellow">
+                            <div class="box-body">
+                                @Html.ValidationSummary(true)
+                                <div class="col-sm-10">
+                                    @Html.TextBoxFor(m => m.UserID, new { placeholder = "아이디를 입력해주세요." })
+                                    <br />
+                                    @Html.ValidationMessageFor(m => m.UserID)
+                                    <br />
+                                </div>
+                                <div class="col-sm-10">
+                                    @Html.TextBoxFor(m => m.UserPwd, new { placeholder = "비밀번호를 입력해주세요." })
+                                    <br />
+                                    @Html.ValidationMessageFor(m => m.UserPwd)
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary btn-outline">로그인</button>
+                            <button type="submit" class="btn btn-outline pull-left">회원가입</button>
+                            <button type="button" class="btn btn-outline pull-right" data-dismiss="modal">닫기</button>
+
+                        </div>
+                    }
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
+        <!-- 모달폼 로그아웃관련 -->
+        <div class="modal modal-success fade" id="modal-logout">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -189,8 +236,6 @@ desired effect
         </div>
 
         <!--end 모달폼-->
-
-
         <!-- Left side column. contains the logo and sidebar -->
         <aside class="main-sidebar">
 
@@ -310,7 +355,7 @@ desired effect
         </aside>
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
-    immediately after the control sidebar -->
+        immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     </div>
     <!-- ./wrapper -->

@@ -109,7 +109,7 @@ namespace Team2_POP
             UtilClass.AddNewColum(dgvWork, "출하지시번호", "Shipment_ID", true, 170);
             UtilClass.AddNewColum(dgvWork, "작업 현황", "Work_State", true);
             UtilClass.AddNewColum(dgvWork, "작업지시자 사번", "Employees_ID", false);
-            UtilClass.AddNewColum(dgvWork, "작업지시자 이름", "Employees_Name", true, 120);
+            UtilClass.AddNewColum(dgvWork, "작업지시자 이름", "Employees_Name", true, 250);
             UtilClass.AddNewColum(dgvWork, "출하 요청일", "Shipment_RequiredDate", true, 150);
 
             // 생산 그리드뷰
@@ -210,6 +210,8 @@ namespace Team2_POP
         /// <param name="isNotFirst">(true : 가동상태 false: 비가동상태)</param>
         private void IsDowntime(bool isNotFirst)
         {
+            dgvWork.DataSource = dgvProduce.DataSource = dgvPerformance.DataSource = null;
+
             bool bResult = new Service().IsDowntime(WorkerInfo.LineID);
             pictureBox1.Tag = bResult;
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -219,12 +221,14 @@ namespace Team2_POP
             {
                 pictureBox1.Image = Resources.Img_CircleGreen;
                 btnDownTime.Text = "비가동 전환";
+                BtnEnable(btnDate);
             }
             // 비가동일때
             else
             {
                 pictureBox1.Image = Resources.Img_CircleRed;
                 btnDownTime.Text = "가동 전환";
+                BtnDisable(btnDate);
             }
 
             // true : 처음이 아닐때만 
@@ -647,15 +651,15 @@ namespace Team2_POP
         private void BtnEnable(Button btn)
         {
             btn.Enabled = true;
-            btn.BackColor = Color.FromArgb(8, 15, 23);
+            btn.BackColor = Color.FromArgb(40, 40, 89);
             btn.ForeColor = Color.White;
         }
 
         private void BtnDisable(Button btn)
         {
             btn.Enabled = false;
-            btn.BackColor = Color.LightGray;
-            btn.ForeColor = Color.DarkGray;
+            btn.BackColor = Color.FromArgb(20, 20, 69);
+            btn.ForeColor = Color.Gray;
         }
 
         private void btnExit_Click(object sender, EventArgs e)

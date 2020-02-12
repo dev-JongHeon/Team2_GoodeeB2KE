@@ -57,6 +57,7 @@
     <Compile Include="HJS\POPDAC.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="HJS\ShopDAC.cs" />
     <Compile Include="KJH\AuthDAC.cs" />
     <Compile Include="KJH\ProduceDAC.cs" />
     <Compile Include="KJH\WorkDAC.cs" />

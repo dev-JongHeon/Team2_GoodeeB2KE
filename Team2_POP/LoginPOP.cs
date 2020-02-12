@@ -14,7 +14,7 @@ namespace Team2_POP
     public partial class LoginPOP : Form
     {
         List<ComboItemVO> factory;
-
+        WorkerInfoPOP workerInfo;
 
         public LoginPOP()
         {
@@ -22,7 +22,7 @@ namespace Team2_POP
         }
 
         private void LoginPOP_Load(object sender, EventArgs e)
-        {            
+        {
             SettingControl();
             InitData();
 
@@ -65,7 +65,7 @@ namespace Team2_POP
             }
 
             // 유효성 검사
-            WorkerInfoPOP workerInfo = new WorkerInfoPOP
+            workerInfo = new WorkerInfoPOP
             {
                 WorkID = Convert.ToInt32(cboWorker.SelectedValue),
                 Worker = cboWorker.Text,
@@ -85,8 +85,9 @@ namespace Team2_POP
             // 폼을 다시 로드하는 효과를 줌.
             if (Main.ShowDialog() == DialogResult.OK)
             {
-                SettingControl();
                 InitData();
+
+                cboFactory.SelectedValue = Main.WorkerInfo.FactoryID;
                 Show();
             }
             // 종료 버튼을 누른 경우
@@ -104,6 +105,13 @@ namespace Team2_POP
 
                 UtilClass.ComboBinding(cboWorker, new Service().GetWorker(Convert.ToInt32(facDivision)), "작업자 선택");
                 UtilClass.ComboBinding(cboLine, new Service().GetLineList(Convert.ToInt32(cboFactory.SelectedValue)), "공정 선택");
+
+                if (workerInfo != null)
+                {
+                    cboLine.SelectedValue = workerInfo.LineID.ToString();
+                    //cboLine.SelectedIndex = ((List<ComboItemVO>)cboLine.DataSource).FindIndex(k => k.ID == workerInfo.LineID.ToString());
+                    workerInfo = null;
+                }                
             }
             else
             {
@@ -111,7 +119,6 @@ namespace Team2_POP
                 UtilClass.ComboBinding(cboLine, list, "공장을 먼저 선택해주세요");
                 UtilClass.ComboBinding(cboWorker, list, "공장을 먼저 선택해주세요");
             }
-
         }
 
         private void btnClose_Click(object sender, EventArgs e)
