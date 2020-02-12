@@ -75,7 +75,7 @@ namespace Team2_ERP
         {
             InitMessage();
 
-            if (item.CodeTable_CodeID == string.Empty)
+            if (dgvCategory.SelectedRows.Count < 1)
             {
                 frm.NoticeMessage = "수정할 카테고리를 선택해주세요.";
             }
@@ -95,7 +95,7 @@ namespace Team2_ERP
         {
             InitMessage();
 
-            if (item.CodeTable_CodeID == string.Empty)
+            if (dgvCategory.SelectedRows.Count < 1)
             {
                 frm.NoticeMessage = "삭제할 카테고리를 선택해주세요.";
             }
