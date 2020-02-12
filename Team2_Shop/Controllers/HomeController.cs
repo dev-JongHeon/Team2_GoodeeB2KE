@@ -13,18 +13,10 @@ namespace Team2_Shop.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Login(string id, string pwd)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            Console.WriteLine(id, pwd);
+            return View("Index");
         }
     }
 }
