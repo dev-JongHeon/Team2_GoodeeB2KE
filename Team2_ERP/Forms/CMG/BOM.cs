@@ -200,6 +200,7 @@ namespace Team2_ERP
             ((MainForm)MdiParent).수정ToolStripMenuItem.Visible = flag;
             ((MainForm)MdiParent).삭제ToolStripMenuItem.Visible = flag;
             ((MainForm)MdiParent).인쇄ToolStripMenuItem.Visible = flag;
+            ((MainForm)MdiParent).인쇄ToolStripMenuItem.DropDownItems[1].Visible = false;
         }
 
         public override void Refresh(object sender, EventArgs e)
