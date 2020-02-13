@@ -32,8 +32,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -57,7 +59,6 @@
     <Compile Include="HJS\POPDAC.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="HJS\ShopDAC.cs" />
     <Compile Include="KJH\AuthDAC.cs" />
     <Compile Include="KJH\ProduceDAC.cs" />
     <Compile Include="KJH\WorkDAC.cs" />
@@ -87,6 +88,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(SolutionDir)\Team2_DAC\ConnectionInfo.xml" "$(SolutionDir)\Team2_ERP\bin\Debug"</PostBuildEvent>
+    <PostBuildEvent>copy "$(SolutionDir)\Team2_DAC\ConnectionInfo.xml" "$(SolutionDir)\Team2_ERP\bin\Debug"
+</PostBuildEvent>
   </PropertyGroup>
 </Project>

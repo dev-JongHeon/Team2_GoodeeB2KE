@@ -1,0 +1,60 @@
+﻿@model Team2_Shop.Models.CartIndexViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>장바구니</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>상품사진</th>
+            <th>상품명</th>
+            <th>수량</th>
+            <th class="text-right">가격</th>
+            <th class="text-right">subTotal</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var line in Model.Cart.Lines)
+        {
+            <tr>
+                <td> <img src="data:image;base64,@System.Convert.ToBase64String(line.Product.Product_Image)" class="img-thumbnail">   </td>
+                <td class="text-left">@line.Product.Product_Name</td>
+                <td class="text-center">@line.Qty</td>
+                <td class="text-right">@line.Product.Product_Price.ToString("c")</td>
+                <td class="text-right">
+                    @((line.Qty * line.Product.Product_Price).ToString("c"))
+                </td>
+                <td>
+
+                    @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                    {
+                        @Html.Hidden("ProductID", line.Product.Product_ID)
+                        @Html.Hidden("returnUrl", Model.ReturnUrl)
+                        <input type="submit" value="삭제"
+                               class="btn btn-sm btn-warning" />
+                    }
+
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right">Total:</td>
+            <td class="text-right">
+                @Model.Cart.ComputeTotalValue().ToString("c")
+            </td>
+            <td></td>
+        </tr>
+    </tfoot>
+</table>
+
+<div class="text-center">
+    <a href="@Model.ReturnUrl" class="btn btn-primary">쇼핑 계속하기</a>
+    @Html.ActionLink("결제하기", "Checkout", null,
+      new { @class = "btn btn-primary" })
+</div>

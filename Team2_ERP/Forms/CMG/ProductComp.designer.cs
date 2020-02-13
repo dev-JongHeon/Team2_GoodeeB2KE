@@ -39,6 +39,7 @@
             this.btnImageAdd = new System.Windows.Forms.Button();
             this.txtProductImage = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.lblOrigin = new System.Windows.Forms.Label();
             this.nummargin = new System.Windows.Forms.NumericUpDown();
             this.txtProductMoney = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -47,7 +48,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label5 = new System.Windows.Forms.Label();
-            this.numSafety = new System.Windows.Forms.NumericUpDown();
             this.panel1.SuspendLayout();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).BeginInit();
@@ -69,7 +69,6 @@
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nummargin)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numSafety)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -149,7 +148,7 @@
             // cboProductCategory
             // 
             this.cboProductCategory.FormattingEnabled = true;
-            this.cboProductCategory.Location = new System.Drawing.Point(22, 45);
+            this.cboProductCategory.Location = new System.Drawing.Point(28, 45);
             this.cboProductCategory.Name = "cboProductCategory";
             this.cboProductCategory.Size = new System.Drawing.Size(121, 22);
             this.cboProductCategory.TabIndex = 4;
@@ -200,13 +199,13 @@
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.numSafety);
+            this.splitContainer2.Panel2.Controls.Add(this.label5);
+            this.splitContainer2.Panel2.Controls.Add(this.lblOrigin);
             this.splitContainer2.Panel2.Controls.Add(this.nummargin);
             this.splitContainer2.Panel2.Controls.Add(this.txtProductMoney);
             this.splitContainer2.Panel2.Controls.Add(this.label6);
             this.splitContainer2.Panel2.Controls.Add(this.label3);
             this.splitContainer2.Panel2.Controls.Add(this.txtProductName);
-            this.splitContainer2.Panel2.Controls.Add(this.label5);
             this.splitContainer2.Panel2.Controls.Add(this.label2);
             this.splitContainer2.Size = new System.Drawing.Size(673, 407);
             this.splitContainer2.SplitterDistance = 309;
@@ -215,7 +214,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.InitialImage = null;
+            this.pictureBox1.InitialImage = global::Team2_ERP.Properties.Resources._default;
             this.pictureBox1.Location = new System.Drawing.Point(412, 45);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(251, 212);
@@ -250,6 +249,14 @@
             this.label4.TabIndex = 4;
             this.label4.Text = "이미지";
             // 
+            // lblOrigin
+            // 
+            this.lblOrigin.AutoSize = true;
+            this.lblOrigin.Location = new System.Drawing.Point(126, 59);
+            this.lblOrigin.Name = "lblOrigin";
+            this.lblOrigin.Size = new System.Drawing.Size(0, 14);
+            this.lblOrigin.TabIndex = 11;
+            // 
             // nummargin
             // 
             this.nummargin.Location = new System.Drawing.Point(445, 19);
@@ -269,6 +276,7 @@
             this.txtProductMoney.Name = "txtProductMoney";
             this.txtProductMoney.Size = new System.Drawing.Size(217, 21);
             this.txtProductMoney.TabIndex = 7;
+            this.txtProductMoney.Text = "0원";
             // 
             // label6
             // 
@@ -314,29 +322,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label5.Location = new System.Drawing.Point(26, 59);
+            this.label5.Location = new System.Drawing.Point(495, 24);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(62, 14);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "안전재고량";
-            // 
-            // numSafety
-            // 
-            this.numSafety.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.numSafety.Location = new System.Drawing.Point(99, 57);
-            this.numSafety.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.numSafety.Name = "numSafety";
-            this.numSafety.Size = new System.Drawing.Size(73, 21);
-            this.numSafety.TabIndex = 11;
+            this.label5.Size = new System.Drawing.Size(168, 14);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "최대 20%까지 설정 가능합니다.";
             // 
             // ProductComp
             // 
@@ -370,7 +360,6 @@
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nummargin)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numSafety)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -395,7 +384,7 @@
         private System.Windows.Forms.ComboBox cboProductCategory;
         private System.Windows.Forms.NumericUpDown nummargin;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.NumericUpDown numSafety;
+        private System.Windows.Forms.Label lblOrigin;
         private System.Windows.Forms.Label label5;
     }
 }

@@ -52,7 +52,7 @@ namespace Team2_DAC
                 {
                     StringBuilder sb = new StringBuilder();
                     sb.Append("SELECT Shipment_ID, Order_ID, Order_Date, OrderCompleted_Date, Customer_userID, Customer_Name,                           Shipment_RequiredDate, Employees_Name, Shipment_DoneDate ");
-                    sb.Append("FROM   ShipmentCompleted_top");
+                    sb.Append("FROM   ShipmentCompleted_top ");
                     sb.Append("ORDER BY Shipment_ID DESC ");
 
                     cmd.Connection = conn;

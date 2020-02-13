@@ -55,9 +55,14 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Balju, "거래처명칭", "Company_Name", true, 500);
             UtilClass.AddNewColum(dgv_Balju, "발주요청일시", "Balju_Date", true, 170);
             UtilClass.AddNewColum(dgv_Balju, "등록사원", "Employees_Name", true, 100);
+            UtilClass.AddNewColum(dgv_Balju, "총액", "Total", true);
             UtilClass.AddNewColum(dgv_Balju, "삭제여부", "Balju_DeletedYN", false);
+
             dgv_Balju.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_Balju.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
+            dgv_Balju.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv_Balju.Columns[5].DefaultCellStyle.Format = "#,#0원";
+
             Balju_AllList = service.GetBaljuList();  // 발주리스트 갱신
 
             UtilClass.SettingDgv(dgv_BaljuDetail);
@@ -205,26 +210,29 @@ namespace Team2_ERP
         {
             if (dgv_Balju.Rows.Count > 0)
             {
-                BaljuReport br = new BaljuReport();
-                dsBalju ds = new dsBalju();
-
-                ds.Relations.Clear();
-                ds.Tables.Clear();
-                ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
-                ds.Tables.Add(UtilClass.ConvertToDataTable(BaljuDetail_AllList));
-                ds.Tables[0].TableName = "dtBalju";
-                ds.Tables[1].TableName = "dtBalju_Detail";
-                ds.Relations.Add("dtBalju_dtBalju_Detail", ds.Tables[0].Columns["Balju_ID"], ds.Tables[1].Columns["Balju_ID"]);
-
-                //dOrg.Tables.Add(UtilClass.ConvertToDataTable(BaljuDetail_AllList));
-                //ds = (dsBalju)dOrg;
-                ds.AcceptChanges();
-
-                br.DataSource = ds;
-                using (ReportPrintTool printTool = new ReportPrintTool(br))
+                using (WaitForm frm = new WaitForm())
                 {
-                    printTool.ShowRibbonPreviewDialog();
-                } 
+                    BaljuReport br = new BaljuReport();
+                    dsBalju ds = new dsBalju();
+
+                    ds.Relations.Clear();
+                    ds.Tables.Clear();
+                    ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+                    ds.Tables.Add(UtilClass.ConvertToDataTable(BaljuDetail_AllList));
+                    ds.Tables[0].TableName = "dtBalju";
+                    ds.Tables[1].TableName = "dtBalju_Detail";
+                    ds.Relations.Add("dtBalju_dtBalju_Detail", ds.Tables[0].Columns["Balju_ID"], ds.Tables[1].Columns["Balju_ID"]);
+
+                    //dOrg.Tables.Add(UtilClass.ConvertToDataTable(BaljuDetail_AllList));
+                    //ds = (dsBalju)dOrg;
+                    ds.AcceptChanges();
+
+                    br.DataSource = ds;
+                    using (ReportPrintTool printTool = new ReportPrintTool(br))
+                    {
+                        printTool.ShowRibbonPreviewDialog();
+                    }  
+                }
             }  
         }
         #endregion

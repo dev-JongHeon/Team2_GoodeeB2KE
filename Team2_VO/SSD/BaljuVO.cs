@@ -27,6 +27,9 @@ namespace Team2_VO
         [FieldName("사원명")]
         public string Employees_Name { get; set; }
 
+        [FieldName("총액")]
+        public int Total { get; set; }
+
         [FieldName("발주삭제여부")]
         public bool Balju_DeletedYN { get; set; }
     }

@@ -74,7 +74,7 @@
             this.Search_Customer.ControlType = Team2_ERP.SearchUserControl.Mode.Customer;
             this.Search_Customer.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Search_Customer.Labelname = "고객";
-            this.Search_Customer.Location = new System.Drawing.Point(59, 22);
+            this.Search_Customer.Location = new System.Drawing.Point(19, 57);
             this.Search_Customer.Name = "Search_Customer";
             this.Search_Customer.Size = new System.Drawing.Size(312, 25);
             this.Search_Customer.TabIndex = 0;
@@ -106,7 +106,7 @@
             // 
             this.Search_Period.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Search_Period.Labelname = "주문일자";
-            this.Search_Period.Location = new System.Drawing.Point(59, 56);
+            this.Search_Period.Location = new System.Drawing.Point(19, 26);
             this.Search_Period.Name = "Search_Period";
             this.Search_Period.Size = new System.Drawing.Size(312, 25);
             this.Search_Period.TabIndex = 2;
