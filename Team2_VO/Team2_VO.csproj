@@ -58,7 +58,7 @@
     <Compile Include="CMG\EmployeeVO.cs" />
     <Compile Include="CMG\ResourceVO.cs" />
     <Compile Include="CMG\WarehouseVO.cs" />
-    <Compile Include="CodeTableVO.cs" />
+    <Compile Include="CMG\CodeTableVO.cs" />
     <Compile Include="Common\ComboItemVO.cs" />
     <Compile Include="Common\SearchedInfoVO.cs" />
     <Compile Include="HJS\DowntimePOP.cs" />

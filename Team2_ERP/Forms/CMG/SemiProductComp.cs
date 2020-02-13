@@ -162,7 +162,10 @@ namespace Team2_ERP
         {
             InitGridView();
             InitCombo();
-            UpdateInfoLoad();
+            if(mode.Equals("Update"))
+            {
+                UpdateInfoLoad();
+            }
         }
 
         //반제품의 카테고리 목록을 보여주고 해당하는 카테고리를 선택하면 유저컨트롤 생성 메서드에 해당하는 카테고리의 ID를 보낸다.
