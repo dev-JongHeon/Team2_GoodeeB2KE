@@ -55,9 +55,14 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Balju, "거래처명칭", "Company_Name", true, 500);
             UtilClass.AddNewColum(dgv_Balju, "발주요청일시", "Balju_Date", true, 170);
             UtilClass.AddNewColum(dgv_Balju, "등록사원", "Employees_Name", true, 100);
+            UtilClass.AddNewColum(dgv_Balju, "총액", "Total", true);
             UtilClass.AddNewColum(dgv_Balju, "삭제여부", "Balju_DeletedYN", false);
+
             dgv_Balju.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_Balju.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
+            dgv_Balju.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv_Balju.Columns[5].DefaultCellStyle.Format = "#,#0원";
+
             Balju_AllList = service.GetBaljuList();  // 발주리스트 갱신
 
             UtilClass.SettingDgv(dgv_BaljuDetail);

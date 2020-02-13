@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Team2_DAC;
+using Team2_Shop.DAC;
+using Team2_Shop.Models;
+
 
 namespace Team2_Shop
 {
@@ -13,10 +15,24 @@ namespace Team2_Shop
         /// </summary>
         /// <param name="id">유저의 아이디</param>
         /// <param name="pwd">유저의 비밀번호</param>
-        public void CheckUser(string id, string pwd)
+        public WebCustomerModel CheckUser(WebLoginModel loginInfo)
         {
-            ShopDAC dAC = new ShopDAC();
-            
-        }        
+            return new ShopDAC().CheckUser(loginInfo);
+        }
+
+        public List<Product> GetProducts(int page, int pageSize)
+        {
+            return new ProductDAC().GetProducts(page, pageSize);
+        }
+
+        public int GetProductTotalCount()
+        {
+            return new ProductDAC().GetProductTotalCount();
+        }
+        
+        public Product GetProductInfo(string productID)
+        {
+            return new ProductDAC().GetProductInfo(productID);
+        }
     }
 }

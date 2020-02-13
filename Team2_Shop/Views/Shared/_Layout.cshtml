@@ -22,7 +22,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect. -->
     @*<link rel="stylesheet" href="~/dist/css/skins/skin-blue.min.css">*@
-    <link rel="stylesheet" href="~/dist/css/skins/skin-purple-light.min.css">
+    <link rel="stylesheet" href="~/dist/css/skins/skin-red-light.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -54,15 +54,14 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="hold-transition skin-purple-light sidebar-mini">
-    @model Team2_Shop.Models.LoginModel
+<body class="hold-transition skin-red-light sidebar-mini">
     <div class="wrapper">
 
         <!-- Main Header -->
         <header class="main-header">
 
             <!-- Logo -->
-            <a href="index2.html" class="logo">
+            <a href="/Home/Index" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>B2KE</b></span>
                 <!-- logo for regular state and mobile devices -->
@@ -132,112 +131,43 @@ desired effect
                                 <i class="fas fa-user"></i>
                             </a>
                             <ul class="dropdown-menu">
-                                <li>
-                                    <!-- Inner menu: contains the tasks -->
+                                <li>                                   
                                     <ul class="menu">
-                                        <li>
-                                            <!-- start notification -->
-                                            <button type="button" class="btn btn-block" data-toggle="modal" data-target="#modal-login">
+
+                                        <!--  -->
+                                        @if (Session["UserInfo"] == null)
+                                        {
+                                        <li class="btn-block text-center">
+                                            <a href="/Login/Index">
                                                 <i class="fas fa-key text-aqua"></i> 로그인
-                                            </button>
+                                            </a>
                                         </li>
-
-                                        <li>
-                                            <!-- start notification -->
-                                            <button type="button" class="btn btn-block text-left" data-toggle="modal" data-target="#">
+                                        }
+                                        else
+                                        {
+                                        <li class="btn-block text-center">
+                                            <a href="~/Login/Index">
                                                 <i class="fa fa-users text-aqua"></i> 마이페이지
-                                            </button>
+                                            </a>
                                         </li>
 
-                                        <li>
-                                            <!-- start notification -->
-                                            <button type="button" class="btn btn-block" data-toggle="modal" data-target="#modal-logout">
+                                        <li class="btn-block text-center">
+                                            <a href="~/Login/LogOut">
                                                 <i class="fas fa-unlock-alt text-aqua"></i> 로그아웃
-                                            </button>
+                                            </a>
                                         </li>
-
+                                        }
                                     </ul>
                                 </li>
                             </ul>
                         </li>
-
-
-
                     </ul>
                 </div>
             </nav>
         </header>
 
 
-        <!-- 모달폼 로그인관련 -->
-        <div class="modal modal-info fade" id="modal-login">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title">로그인 화면</h4>
-                    </div>
-                    @using (Html.BeginForm("Login", "Home", FormMethod.Post))
-                    {
-                        @Html.AntiForgeryToken()
 
-                        <div class="form-horizontal login-box-body">
-                            <hr />
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="form-group">
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.UserID, new { htmlAttributes = new { @class= "form-control" , placeholder = "아이디를 입력해주세요." } })
-                                    @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.UserPwd, new { htmlAttributes = new { @class= "form-control",     placeholder = "비밀번호를 입력해주세요." } })
-                                    @Html.ValidationMessageFor(model => model.UserPwd, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-
-                            <div class="alert">
-                                <button type="button" class="btn btn-primary pull-right" data-dismiss="modal">닫기</button>
-                                <button type="submit" class="btn btn-primary pull-right margin-r-5">로그인</button>
-                                <button type="submit" class="btn btn-info pull-left ">회원가입</button>
-                            </div>
-                        </div>
-                    }
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
-
-        <!-- 모달폼 로그아웃관련 -->
-        <div class="modal modal-success fade" id="modal-logout">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title">Success Modal</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>One fine body&hellip;</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-outline">Save changes</button>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
-
-        <!--end 모달폼-->
         <!-- Left side column. contains the logo and sidebar -->
         <aside class="main-sidebar">
 
@@ -249,10 +179,13 @@ desired effect
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header"><span>MENU</span></li>
                     <!-- Optionally, you can add icons to the links -->
-                    <li class="active"><a href="#"><i class="fas fa-bicycle"></i> <span style="text-align:right"> 상품목록</span></a></li>
+                    <li class="active"><a href="/Product/Index"><i class="fas fa-bicycle"></i> <span style="text-align:right"> 상품목록</span></a></li>
 
+                    @if (Session["UserInfo"] != null)
+                    {
                     <li><a href="#"><i class="fas fa-clipboard-list"></i> <span> 주문내역</span></a></li>
                     <li><a href="#"><i class="fas fa-truck"></i> <span> 배송조회</span></a></li>
+                    }
 
 
                 </ul>

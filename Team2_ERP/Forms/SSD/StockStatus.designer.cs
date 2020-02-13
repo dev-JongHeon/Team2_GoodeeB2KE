@@ -73,7 +73,7 @@
             this.Search_Product.ControlType = Team2_ERP.SearchUserControl.Mode.Product;
             this.Search_Product.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Search_Product.Labelname = "제품";
-            this.Search_Product.Location = new System.Drawing.Point(50, 26);
+            this.Search_Product.Location = new System.Drawing.Point(50, 16);
             this.Search_Product.Name = "Search_Product";
             this.Search_Product.Size = new System.Drawing.Size(312, 25);
             this.Search_Product.TabIndex = 33;
@@ -84,7 +84,7 @@
             this.Search_Warehouse.ControlType = Team2_ERP.SearchUserControl.Mode.Warehouse;
             this.Search_Warehouse.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Search_Warehouse.Labelname = "창고";
-            this.Search_Warehouse.Location = new System.Drawing.Point(50, 53);
+            this.Search_Warehouse.Location = new System.Drawing.Point(50, 43);
             this.Search_Warehouse.Name = "Search_Warehouse";
             this.Search_Warehouse.Size = new System.Drawing.Size(312, 25);
             this.Search_Warehouse.TabIndex = 35;
@@ -95,7 +95,7 @@
             this.Search_Category.ControlType = Team2_ERP.SearchUserControl.Mode.ProductCategory;
             this.Search_Category.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Search_Category.Labelname = "카테고리";
-            this.Search_Category.Location = new System.Drawing.Point(388, 26);
+            this.Search_Category.Location = new System.Drawing.Point(50, 70);
             this.Search_Category.Name = "Search_Category";
             this.Search_Category.Size = new System.Drawing.Size(312, 25);
             this.Search_Category.TabIndex = 36;

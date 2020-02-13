@@ -73,13 +73,11 @@ namespace Team2_ERP
             // TopMargin
             // 
             this.TopMargin.Dpi = 254F;
-            this.TopMargin.HeightF = 92F;
             this.TopMargin.Name = "TopMargin";
             // 
             // BottomMargin
             // 
             this.BottomMargin.Dpi = 254F;
-            this.BottomMargin.HeightF = 200F;
             this.BottomMargin.Name = "BottomMargin";
             // 
             // Detail
@@ -442,9 +440,14 @@ namespace Team2_ERP
             this.xrPageInfo1.StylePriority.UseTextAlignment = false;
             this.xrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSourceType = null;
+            this.objectDataSource1.Name = "objectDataSource1";
+            // 
             // objectDataSource2
             // 
-            this.objectDataSource2.DataSource = typeof(dsSales);
+            this.objectDataSource2.DataSource = typeof(Team2_ERP.dsSales);
             this.objectDataSource2.Name = "objectDataSource2";
             // 
             // SalesReport
@@ -463,7 +466,7 @@ namespace Team2_ERP
             this.DataSource = this.objectDataSource2;
             this.Dpi = 254F;
             this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Margins = new System.Drawing.Printing.Margins(90, 100, 92, 200);
+            this.Margins = new System.Drawing.Printing.Margins(90, 100, 100, 100);
             this.PageHeight = 2970;
             this.PageWidth = 2100;
             this.PaperKind = System.Drawing.Printing.PaperKind.A4;

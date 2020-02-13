@@ -168,18 +168,18 @@
     <Compile Include="DowntimeReport.Designer.cs">
       <DependentUpon>DowntimeReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="dsProduce.cs">
+    <Compile Include="Reports\DataSets\dsProduce.cs">
       <DependentUpon>dsProduce.xsd</DependentUpon>
     </Compile>
-    <Compile Include="dsProduce.Designer.cs">
-      <DependentUpon>dsProduce.xsd</DependentUpon>
+    <Compile Include="Reports\DataSets\dsProduce.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>dsProduce.xsd</DependentUpon>
     </Compile>
-    <Compile Include="dsWork.cs">
+    <Compile Include="Reports\DataSets\dsWork.cs">
       <DependentUpon>dsWork.xsd</DependentUpon>
     </Compile>
-    <Compile Include="dsWork.Designer.cs">
+    <Compile Include="Reports\DataSets\dsWork.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dsWork.xsd</DependentUpon>
@@ -514,6 +514,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsStockStatus.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reports\ProduceReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ProduceReport.Designer.cs">
+      <DependentUpon>ProduceReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\WorkReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -784,6 +790,9 @@
     <EmbeddedResource Include="Forms\SSD\StockStatus.resx">
       <DependentUpon>StockStatus.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ProduceReport.resx">
+      <DependentUpon>ProduceReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\WorkReport.resx">
       <DependentUpon>WorkReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -828,26 +837,26 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="dsProduce.xsc">
+    <None Include="Reports\DataSets\dsProduce.xsc">
       <DependentUpon>dsProduce.xsd</DependentUpon>
     </None>
-    <None Include="dsProduce.xsd">
+    <None Include="Reports\DataSets\dsProduce.xsd">
+      <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>dsProduce.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </None>
-    <None Include="dsProduce.xss">
+    <None Include="Reports\DataSets\dsProduce.xss">
       <DependentUpon>dsProduce.xsd</DependentUpon>
     </None>
-    <None Include="dsWork.xsc">
+    <None Include="Reports\DataSets\dsWork.xsc">
       <DependentUpon>dsWork.xsd</DependentUpon>
     </None>
-    <None Include="dsWork.xsd">
+    <None Include="Reports\DataSets\dsWork.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>dsWork.Designer.cs</LastGenOutput>
     </None>
-    <None Include="dsWork.xss">
+    <None Include="Reports\DataSets\dsWork.xss">
       <DependentUpon>dsWork.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
