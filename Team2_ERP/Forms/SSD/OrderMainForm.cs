@@ -188,24 +188,27 @@ namespace Team2_ERP
         {
             if (dgv_Order.Rows.Count > 0)
             {
-                OrderReport br = new OrderReport();
-                dsOrder ds = new dsOrder();
-
-                ds.Relations.Clear();
-                ds.Tables.Clear();
-                ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
-                ds.Tables.Add(UtilClass.ConvertToDataTable(OrderDetail_AllList));
-                ds.Tables[0].TableName = "dtOrder";
-                ds.Tables[1].TableName = "dtOrderDetail";
-                ds.Relations.Add("dtOrder_dtOrderDetail", ds.Tables[0].Columns["Order_ID"], ds.Tables[1].Columns["Order_ID"]);
-
-                //ds.AcceptChanges();
-
-                br.DataSource = ds;
-                using (ReportPrintTool printTool = new ReportPrintTool(br))
+                using (WaitForm frm = new WaitForm())
                 {
-                    printTool.ShowRibbonPreviewDialog();
-                } 
+                    OrderReport br = new OrderReport();
+                    dsOrder ds = new dsOrder();
+
+                    ds.Relations.Clear();
+                    ds.Tables.Clear();
+                    ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+                    ds.Tables.Add(UtilClass.ConvertToDataTable(OrderDetail_AllList));
+                    ds.Tables[0].TableName = "dtOrder";
+                    ds.Tables[1].TableName = "dtOrderDetail";
+                    ds.Relations.Add("dtOrder_dtOrderDetail", ds.Tables[0].Columns["Order_ID"], ds.Tables[1].Columns["Order_ID"]);
+
+                    //ds.AcceptChanges();
+
+                    br.DataSource = ds;
+                    using (ReportPrintTool printTool = new ReportPrintTool(br))
+                    {
+                        printTool.ShowRibbonPreviewDialog();
+                    }  
+                }
             }
         }  
         #endregion

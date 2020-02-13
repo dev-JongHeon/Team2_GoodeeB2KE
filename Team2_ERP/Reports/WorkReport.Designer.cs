@@ -343,7 +343,7 @@ namespace Team2_ERP
             // 
             // xrTable1
             // 
-            this.xrTable1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(234)))), ((int)(((byte)(250)))));
+            this.xrTable1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(236)))), ((int)(((byte)(241)))));
             this.xrTable1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
@@ -595,7 +595,9 @@ namespace Team2_ERP
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Produce_QtyRequested]")});
             this.xrTableCell20.Multiline = true;
             this.xrTableCell20.Name = "xrTableCell20";
+            this.xrTableCell20.StylePriority.UseTextAlignment = false;
             this.xrTableCell20.Text = "xrTableCell10";
+            this.xrTableCell20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             this.xrTableCell20.Weight = 1.3549661965731326D;
             // 
             // xrTableCell21
@@ -605,7 +607,9 @@ namespace Team2_ERP
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Produce_QtyReleased]")});
             this.xrTableCell21.Multiline = true;
             this.xrTableCell21.Name = "xrTableCell21";
+            this.xrTableCell21.StylePriority.UseTextAlignment = false;
             this.xrTableCell21.Text = "xrTableCell14";
+            this.xrTableCell21.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             this.xrTableCell21.Weight = 1.4348715080795493D;
             // 
             // xrTableCell22

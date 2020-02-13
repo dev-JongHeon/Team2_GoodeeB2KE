@@ -165,24 +165,27 @@ namespace Team2_ERP
         {
             if (dgv_BaljuCompleted.Rows.Count > 0)
             {
-                BaljuCompletedReport br = new BaljuCompletedReport();
-                dsBalju ds = new dsBalju();
-
-                ds.Relations.Clear();
-                ds.Tables.Clear();
-                ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
-                ds.Tables.Add(UtilClass.ConvertToDataTable(BaljuDetail_AllList));
-                ds.Tables[0].TableName = "dtBalju";
-                ds.Tables[1].TableName = "dtBalju_Detail";
-                ds.Relations.Add("dtBalju_dtBalju_Detail", ds.Tables[0].Columns["Balju_ID"], ds.Tables[1].Columns["Balju_ID"]);
-
-                //ds.AcceptChanges();
-
-                br.DataSource = ds;
-                using (ReportPrintTool printTool = new ReportPrintTool(br))
+                using (WaitForm frm = new WaitForm())
                 {
-                    printTool.ShowRibbonPreviewDialog();
-                } 
+                    BaljuCompletedReport br = new BaljuCompletedReport();
+                    dsBalju ds = new dsBalju();
+
+                    ds.Relations.Clear();
+                    ds.Tables.Clear();
+                    ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+                    ds.Tables.Add(UtilClass.ConvertToDataTable(BaljuDetail_AllList));
+                    ds.Tables[0].TableName = "dtBalju";
+                    ds.Tables[1].TableName = "dtBalju_Detail";
+                    ds.Relations.Add("dtBalju_dtBalju_Detail", ds.Tables[0].Columns["Balju_ID"], ds.Tables[1].Columns["Balju_ID"]);
+
+                    //ds.AcceptChanges();
+
+                    br.DataSource = ds;
+                    using (ReportPrintTool printTool = new ReportPrintTool(br))
+                    {
+                        printTool.ShowRibbonPreviewDialog();
+                    }  
+                }
             }
         }
         #endregion
