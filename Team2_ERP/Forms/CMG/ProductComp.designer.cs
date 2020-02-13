@@ -39,6 +39,7 @@
             this.btnImageAdd = new System.Windows.Forms.Button();
             this.txtProductImage = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.lblOrigin = new System.Windows.Forms.Label();
             this.nummargin = new System.Windows.Forms.NumericUpDown();
             this.txtProductMoney = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -46,7 +47,7 @@
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.lblOrigin = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).BeginInit();
@@ -198,6 +199,7 @@
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.label5);
             this.splitContainer2.Panel2.Controls.Add(this.lblOrigin);
             this.splitContainer2.Panel2.Controls.Add(this.nummargin);
             this.splitContainer2.Panel2.Controls.Add(this.txtProductMoney);
@@ -246,6 +248,14 @@
             this.label4.Size = new System.Drawing.Size(40, 14);
             this.label4.TabIndex = 4;
             this.label4.Text = "이미지";
+            // 
+            // lblOrigin
+            // 
+            this.lblOrigin.AutoSize = true;
+            this.lblOrigin.Location = new System.Drawing.Point(126, 59);
+            this.lblOrigin.Name = "lblOrigin";
+            this.lblOrigin.Size = new System.Drawing.Size(0, 14);
+            this.lblOrigin.TabIndex = 11;
             // 
             // nummargin
             // 
@@ -309,14 +319,14 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // lblOrigin
+            // label5
             // 
-            this.lblOrigin.AutoSize = true;
-            this.lblOrigin.Location = new System.Drawing.Point(126, 59);
-            this.lblOrigin.Name = "lblOrigin";
-            this.lblOrigin.Size = new System.Drawing.Size(41, 14);
-            this.lblOrigin.TabIndex = 11;
-            this.lblOrigin.Text = "label5";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(495, 24);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(168, 14);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "최대 20%까지 설정 가능합니다.";
             // 
             // ProductComp
             // 
@@ -375,5 +385,6 @@
         private System.Windows.Forms.NumericUpDown nummargin;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblOrigin;
+        private System.Windows.Forms.Label label5;
     }
 }

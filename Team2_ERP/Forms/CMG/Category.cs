@@ -141,7 +141,8 @@ namespace Team2_ERP
                 item = new CodeTableVO
                 {
                     CodeTable_CodeID = dgvCategory.Rows[e.RowIndex].Cells[0].Value.ToString(),
-                    CodeTable_CodeName = dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString()
+                    CodeTable_CodeName = dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                    CodeTable_CodeExplain = dgvCategory.Rows[e.RowIndex].Cells[2].Value.ToString()
                 };
             }
         }
