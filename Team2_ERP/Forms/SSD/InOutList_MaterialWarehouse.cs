@@ -165,21 +165,24 @@ namespace Team2_ERP
         {
             if (dgv_Stock.Rows.Count > 0)
             {
-                InOutMaterialWarehouseReport br = new InOutMaterialWarehouseReport();
-                dsStockReceipt ds = new dsStockReceipt();
-
-                ds.Relations.Clear();
-                ds.Tables.Clear();
-                ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
-                ds.Tables[0].TableName = "dtStockReceipt";
-
-                //ds.AcceptChanges();
-
-                br.DataSource = ds;
-                using (ReportPrintTool printTool = new ReportPrintTool(br))
+                using (WaitForm frm = new WaitForm())
                 {
-                    printTool.ShowRibbonPreviewDialog();
-                } 
+                    InOutMaterialWarehouseReport br = new InOutMaterialWarehouseReport();
+                    dsStockReceipt ds = new dsStockReceipt();
+
+                    ds.Relations.Clear();
+                    ds.Tables.Clear();
+                    ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+                    ds.Tables[0].TableName = "dtStockReceipt";
+
+                    //ds.AcceptChanges();
+
+                    br.DataSource = ds;
+                    using (ReportPrintTool printTool = new ReportPrintTool(br))
+                    {
+                        printTool.ShowRibbonPreviewDialog();
+                    }  
+                }
             }
         }
         #endregion

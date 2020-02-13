@@ -66,16 +66,15 @@ namespace Team2_ERP
             this.xrPageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.DetailReport = new DevExpress.XtraReports.UI.DetailReportBand();
             this.Detail1 = new DevExpress.XtraReports.UI.DetailBand();
+            this.dsShipment2 = new Team2_ERP.dsShipment();
             this.xrTable3 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow3 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell15 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell12 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.dsShipment2 = new Team2_ERP.dsShipment();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsShipment2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // TopMargin
@@ -161,7 +160,7 @@ namespace Team2_ERP
             this.xrTableCell6.Name = "xrTableCell6";
             this.xrTableCell6.StylePriority.UseTextAlignment = false;
             this.xrTableCell6.Text = "xrTableCell6";
-            this.xrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell6.Weight = 1.4643122296389319D;
             // 
             // xrTableCell7
@@ -192,7 +191,7 @@ namespace Team2_ERP
             this.xrTableCell17.Multiline = true;
             this.xrTableCell17.Name = "xrTableCell17";
             this.xrTableCell17.Text = "xrTableCell17";
-            this.xrTableCell17.Weight = 2.4470116975981933D;
+            this.xrTableCell17.Weight = 2.4470114377559136D;
             // 
             // xrTableCell10
             // 
@@ -202,7 +201,7 @@ namespace Team2_ERP
             this.xrTableCell10.Multiline = true;
             this.xrTableCell10.Name = "xrTableCell10";
             this.xrTableCell10.Text = "xrTableCell10";
-            this.xrTableCell10.Weight = 0.97677178843836576D;
+            this.xrTableCell10.Weight = 1.2170721097343518D;
             // 
             // xrTableCell14
             // 
@@ -212,7 +211,7 @@ namespace Team2_ERP
             this.xrTableCell14.Multiline = true;
             this.xrTableCell14.Name = "xrTableCell14";
             this.xrTableCell14.Text = "xrTableCell14";
-            this.xrTableCell14.Weight = 2.6470555781140459D;
+            this.xrTableCell14.Weight = 2.40675551666034D;
             // 
             // ReportHeader
             // 
@@ -432,7 +431,7 @@ namespace Team2_ERP
             this.xrTableCell9.Name = "xrTableCell9";
             this.xrTableCell9.StylePriority.UseBorders = false;
             this.xrTableCell9.Text = "출하지시자";
-            this.xrTableCell9.Weight = 0.64008951343978282D;
+            this.xrTableCell9.Weight = 0.79756086073694D;
             // 
             // xrTableCell13
             // 
@@ -443,7 +442,7 @@ namespace Team2_ERP
             this.xrTableCell13.Name = "xrTableCell13";
             this.xrTableCell13.StylePriority.UseBorders = false;
             this.xrTableCell13.Text = "출하처리일시";
-            this.xrTableCell13.Weight = 1.7346448357815412D;
+            this.xrTableCell13.Weight = 1.577173488484384D;
             // 
             // PageFooter
             // 
@@ -491,20 +490,25 @@ namespace Team2_ERP
             this.Detail1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable3});
             this.Detail1.Dpi = 254F;
-            this.Detail1.HeightF = 61.12514F;
+            this.Detail1.HeightF = 75F;
             this.Detail1.HierarchyPrintOptions.Indent = 50.8F;
             this.Detail1.Name = "Detail1";
+            // 
+            // dsShipment2
+            // 
+            this.dsShipment2.DataSetName = "dsShipment";
+            this.dsShipment2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // xrTable3
             // 
             this.xrTable3.Dpi = 254F;
             this.xrTable3.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrTable3.LocationFloat = new DevExpress.Utils.PointFloat(564.2581F, 0F);
+            this.xrTable3.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
             this.xrTable3.Name = "xrTable3";
             this.xrTable3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
             this.xrTable3.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow3});
-            this.xrTable3.SizeF = new System.Drawing.SizeF(1345.742F, 61.12514F);
+            this.xrTable3.SizeF = new System.Drawing.SizeF(1867.96F, 75F);
             this.xrTable3.StylePriority.UseFont = false;
             this.xrTable3.StylePriority.UseTextAlignment = false;
             this.xrTable3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
@@ -512,24 +516,11 @@ namespace Team2_ERP
             // xrTableRow3
             // 
             this.xrTableRow3.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell15,
             this.xrTableCell11,
             this.xrTableCell12});
             this.xrTableRow3.Dpi = 254F;
             this.xrTableRow3.Name = "xrTableRow3";
             this.xrTableRow3.Weight = 1D;
-            // 
-            // xrTableCell15
-            // 
-            this.xrTableCell15.Dpi = 254F;
-            this.xrTableCell15.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Product_ID]")});
-            this.xrTableCell15.Multiline = true;
-            this.xrTableCell15.Name = "xrTableCell15";
-            this.xrTableCell15.StylePriority.UseTextAlignment = false;
-            this.xrTableCell15.Text = "xrTableCell15";
-            this.xrTableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.xrTableCell15.Weight = 0.8120687394661843D;
             // 
             // xrTableCell11
             // 
@@ -541,7 +532,7 @@ namespace Team2_ERP
             this.xrTableCell11.StylePriority.UseTextAlignment = false;
             this.xrTableCell11.Text = "xrTableCell7";
             this.xrTableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.xrTableCell11.Weight = 1.3518698120362593D;
+            this.xrTableCell11.Weight = 3.6964471516793349D;
             // 
             // xrTableCell12
             // 
@@ -553,13 +544,8 @@ namespace Team2_ERP
             this.xrTableCell12.StylePriority.UseTextAlignment = false;
             this.xrTableCell12.Text = "xrTableCell8";
             this.xrTableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.xrTableCell12.TextFormatString = "{0}개";
-            this.xrTableCell12.Weight = 0.69603233485560234D;
-            // 
-            // dsShipment2
-            // 
-            this.dsShipment2.DataSetName = "dsShipment";
-            this.dsShipment2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.xrTableCell12.TextFormatString = "{0}  EA";
+            this.xrTableCell12.Weight = 0.58878011211039871D;
             // 
             // ShipmentCompletedReport
             // 
@@ -589,8 +575,8 @@ namespace Team2_ERP
             this.Watermark.ImageViewMode = DevExpress.XtraPrinting.Drawing.ImageViewMode.Zoom;
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsShipment2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
@@ -632,11 +618,10 @@ namespace Team2_ERP
         private DevExpress.XtraReports.UI.XRLabel xrLabel9;
         private DevExpress.XtraReports.UI.DetailReportBand DetailReport;
         private DevExpress.XtraReports.UI.DetailBand Detail1;
+        private dsShipment dsShipment2;
         private DevExpress.XtraReports.UI.XRTable xrTable3;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow3;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell15;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell11;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell12;
-        private dsShipment dsShipment2;
     }
 }

@@ -182,7 +182,7 @@ namespace Team2_ERP
         {
             List<Shipment> master = SearchedList.ToList();
             List<ShipmentDetail> detail = ShipmentDetail_AllList.ToList();
-            string[] exceptColumns = { "" };
+            string[] exceptColumns = { "OrderCompleted_Date" };
             UtilClass.ExportTo2DataGridView(master, detail, exceptColumns);
         }
 
@@ -190,24 +190,27 @@ namespace Team2_ERP
         {
             if (dgv_Shipment.Rows.Count > 0)
             {
-                ShipmentCompletedReport br = new ShipmentCompletedReport();
-                dsShipment ds = new dsShipment();
-
-                ds.Relations.Clear();
-                ds.Tables.Clear();
-                ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
-                ds.Tables.Add(UtilClass.ConvertToDataTable(ShipmentDetail_AllList));
-                ds.Tables[0].TableName = "dtShipment";
-                ds.Tables[1].TableName = "dtShipmentDetail";
-                ds.Relations.Add("dtShipment_dtShipmentDetail", ds.Tables[0].Columns["Shipment_ID"], ds.Tables[1].Columns["Shipment_ID"]);
-
-                //ds.AcceptChanges();
-
-                br.DataSource = ds;
-                using (ReportPrintTool printTool = new ReportPrintTool(br))
+                using (WaitForm frm = new WaitForm())
                 {
-                    printTool.ShowRibbonPreviewDialog();
-                } 
+                    ShipmentCompletedReport sr = new ShipmentCompletedReport();
+                    dsShipment ds = new dsShipment();
+
+                    ds.Relations.Clear();
+                    ds.Tables.Clear();
+                    ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+                    ds.Tables.Add(UtilClass.ConvertToDataTable(ShipmentDetail_AllList));
+                    ds.Tables[0].TableName = "dtShipment";
+                    ds.Tables[1].TableName = "dtShipmentDetail";
+                    ds.Relations.Add("dtShipment_dtShipmentDetail", ds.Tables[0].Columns["Shipment_ID"], ds.Tables[1].Columns["Shipment_ID"]);
+
+                    //ds.AcceptChanges();
+
+                    sr.DataSource = ds;
+                    using (ReportPrintTool printTool = new ReportPrintTool(sr))
+                    {
+                        printTool.ShowRibbonPreviewDialog();
+                    }  
+                }
             }
         }
         #endregion
@@ -232,9 +235,5 @@ namespace Team2_ERP
             new SettingMenuStrip().UnsetMenu(this);
         }
         #endregion
-
-
-
-
     }
 }
