@@ -1,54 +1,73 @@
 ﻿@model Team2_Shop.Models.Product
 
-    <div class="panel panel-body">
+<div class="panel panel-body">
 
-        <!-- 상품 이미지 -->
-        <div class="img-bordered">
-            <img src="data:image;base64,@System.Convert.ToBase64String(Model.Product_Image)" class="img-thumbnail">
-        </div>
-
-        <!-- 상품 이름 -->
-        <div class="user-block">
-            <strong class="pull-left">@Model.Product_Name</strong>
-        </div>
-
-        <!-- 상품 가격 -->
-        <div class="pull-left">
-            <h4> @Model.Product_Price.ToString("c") </h4>
-        </div>
-
-
-
-        @using (Html.BeginForm("AddToCart", "Cart"))
-        {
-            <button class="btn-block btn-foursquare" type="button" data-toggle="modal" data-target="#modal-check">
-                <i class="fas fa-shopping-basket"></i>  장바구니 담기
-                @Html.Hidden("productId", @Model.Product_ID)
-                @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-            </button>
-
-            <div class="modal fade" id="modal-check">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h4 class="modal-title">장바구니 추가여부</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>장바구니에 추가하시겠습니까? </p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-block pull-left">장바구니 추가</button>
-                            <button type="button" class="btn btn-block pull-right" data-dismiss="modal">닫기</button>
-                        </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
-            <!-- /.modal -->
-        }
+    <!-- 상품 이미지 -->
+    <div class="img-bordered">
+        <img src="data:image;base64,@System.Convert.ToBase64String(Model.Product_Image)" class="img-thumbnail">
     </div>
 
+    <!-- 상품 이름 -->
+    <div class="user-block">
+        <strong class="pull-left">@Model.Product_Name</strong>
+    </div>
+
+    <!-- 상품 가격 -->
+    <div class="pull-left">
+        <h4> @Model.Product_Price.ToString("c") </h4>
+    </div>
+
+
+
+    @using (Html.BeginForm("AddToCart", "Cart"))
+    {
+        <button class="btn-block btn-foursquare" type="button" data-toggle="modal" data-target="#modal-check">
+            <i class="fas fa-shopping-basket"></i>  장바구니 담기
+            @Html.Hidden("productId", @Model.Product_ID)
+            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+        </button>
+
+        <div class="modal fade" id="modal-check">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">장바구니 추가여부</h4>
+                    </div>
+                    <div class="modal-body text-center">
+                        <b>@Model.Product_Name</b>를<br />
+                        장바구니에 추가하시겠습니까?
+                    </div>
+                    <div class="modal-footer">
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-block btn-primary pull-left">장바구니 추가</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-block btn-default pull-right" data-dismiss="modal">닫기</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+
+    }
+</div>
+
+@section Scripts{
+<script>
+// 부모창에서 모달로 데이터넘기기 참고 url : http://zzznara2.tistory.com/590
+$(document).ready(function() {
+$('#modal-check').on('show.bs.modal', function (event) {
+var button = $(event.relatedTarget);
+var deleteUrl = button.data('title');
+var modal = $(this);
+
+})
+});
+</script>
+    }

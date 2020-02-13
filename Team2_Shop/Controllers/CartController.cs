@@ -26,8 +26,7 @@ namespace Team2_Shop.Controllers
             Service product = new Service();
             Product item = product.GetProductInfo(productId);
 
-            GetCart().AddItem(item, 1);
-
+            GetCart().AddItem(item, 1);            
             return RedirectToAction("Index", new { returnUrl });
         }
             

@@ -26,7 +26,7 @@ namespace Team2_Shop.DAC
                     TotalItems = product.GetProductTotalCount()
                 },               
             };
-
+            
             return View(model);
         }
     }
