@@ -125,15 +125,8 @@ namespace Team2_ERP
             }
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void UpdateInfoLoad()
         {
-            this.Close();
-        }
-
-        private void SemiProductComp_Load(object sender, EventArgs e)
-        {
-            InitGridView();
-            InitCombo();
             StandardService service = new StandardService();
             list = service.GetAllProduct();
             List<BOMVO> productList = service.GetAllCombination($"'{pCode}'");
@@ -158,6 +151,18 @@ namespace Team2_ERP
                     spc.Qty.ValueChanged += new EventHandler(TotalPrice);
                 }
             }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void SemiProductComp_Load(object sender, EventArgs e)
+        {
+            InitGridView();
+            InitCombo();
+            UpdateInfoLoad();
         }
 
         //반제품의 카테고리 목록을 보여주고 해당하는 카테고리를 선택하면 유저컨트롤 생성 메서드에 해당하는 카테고리의 ID를 보낸다.

@@ -19,7 +19,6 @@ namespace Team2_ERP
 
         string mode = string.Empty;
         string pCode = string.Empty;
-        string pName = string.Empty;
         string pCategory = string.Empty;
 
         int count = 0;
@@ -48,7 +47,7 @@ namespace Team2_ERP
                 pbxTitle.Image = Properties.Resources.Edit_32x32;
                 pCategory = item.Product_Category;
                 pCode = item.Product_ID;
-                pName = item.Product_Name;
+                txtProductName.Text = item.Product_Name;
             }
         }
 
@@ -136,6 +135,35 @@ namespace Team2_ERP
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
+        private void UpdateInfoLoad()
+        {
+            StandardService service = new StandardService();
+            list = service.GetAllProduct();
+            productList = service.GetAllCombination($"'{pCode}'");
+            foreach (Control control in splitContainer2.Panel1.Controls)
+            {
+                if (control is SemiProductCompControl)
+                {
+                    SemiProductCompControl spc = (SemiProductCompControl)control;
+
+                    for (int i = 0; i < productList.Count; i++)
+                    {
+                        if (spc.LblName.Tag.ToString().Equals(productList[i].Product_Category))
+                        {
+                            spc.TxtName.Text = productList[i].Product_Name;
+                            spc.TxtName.Tag = productList[i].Combination_Product_ID;
+                            spc.Qty.Tag = productList[i].Product_Price;
+                            spc.Qty.Value = productList[i].Combination_RequiredQty;
+                            spc.LblMoney.Tag = 1;
+                            spc.LblMoney.Text = productList[i].Product_Price.ToString("#,##0") + "원";
+                        }
+                    }
+                    spc.Qty.ValueChanged += new EventHandler(TotalPrice);
+                    nummargin.ValueChanged += new EventHandler(TotalPrice);
+                }
+            }
+        }
+
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -154,33 +182,8 @@ namespace Team2_ERP
             }
             else
             {
-                StandardService service = new StandardService();
-                list = service.GetAllProduct();
-                txtProductName.Text = pName;
                 GetImage();
-                productList = service.GetAllCombination($"'{pCode}'");
-                foreach (Control control in splitContainer2.Panel1.Controls)
-                {
-                    if (control is SemiProductCompControl)
-                    {
-                        SemiProductCompControl spc = (SemiProductCompControl)control;
-
-                        for (int i = 0; i < productList.Count; i++)
-                        {
-                            if (spc.LblName.Tag.ToString().Equals(productList[i].Product_Category))
-                            {
-                                spc.TxtName.Text = productList[i].Product_Name;
-                                spc.TxtName.Tag = productList[i].Combination_Product_ID;
-                                spc.Qty.Tag = productList[i].Product_Price;
-                                spc.Qty.Value = productList[i].Combination_RequiredQty;
-                                spc.LblMoney.Tag = 1;
-                                spc.LblMoney.Text = productList[i].Product_Price.ToString("#,##0") + "원";
-                            }
-                        }
-                        spc.Qty.ValueChanged += new EventHandler(TotalPrice);
-                        nummargin.ValueChanged += new EventHandler(TotalPrice);
-                    }
-                }
+                UpdateInfoLoad();
             }
         }
 
