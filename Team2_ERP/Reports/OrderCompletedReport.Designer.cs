@@ -87,13 +87,11 @@ namespace Team2_ERP
             // TopMargin
             // 
             this.TopMargin.Dpi = 254F;
-            this.TopMargin.HeightF = 92F;
             this.TopMargin.Name = "TopMargin";
             // 
             // BottomMargin
             // 
             this.BottomMargin.Dpi = 254F;
-            this.BottomMargin.HeightF = 200F;
             this.BottomMargin.Name = "BottomMargin";
             // 
             // Detail
@@ -574,7 +572,7 @@ namespace Team2_ERP
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(dsOrder);
+            this.objectDataSource1.DataSource = typeof(Team2_ERP.dsOrder);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // DetailReport1
@@ -623,7 +621,7 @@ namespace Team2_ERP
             this.DataSource = this.objectDataSource1;
             this.Dpi = 254F;
             this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Margins = new System.Drawing.Printing.Margins(90, 100, 92, 200);
+            this.Margins = new System.Drawing.Printing.Margins(90, 100, 100, 100);
             this.PageHeight = 2970;
             this.PageWidth = 2100;
             this.PaperKind = System.Drawing.Printing.PaperKind.A4;

@@ -55,7 +55,6 @@ namespace Team2_ERP
             this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.dsBalju1 = new Team2_ERP.dsBalju();
             this.PageFooter = new DevExpress.XtraReports.UI.PageFooterBand();
             this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrPageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
@@ -67,20 +66,17 @@ namespace Team2_ERP
             this.Detail3 = new DevExpress.XtraReports.UI.DetailBand();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsBalju1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // TopMargin
             // 
             this.TopMargin.Dpi = 254F;
-            this.TopMargin.HeightF = 92F;
             this.TopMargin.Name = "TopMargin";
             // 
             // BottomMargin
             // 
             this.BottomMargin.Dpi = 254F;
-            this.BottomMargin.HeightF = 200F;
             this.BottomMargin.Name = "BottomMargin";
             // 
             // Detail
@@ -371,11 +367,6 @@ namespace Team2_ERP
             this.xrTableCell5.Text = "등록사원";
             this.xrTableCell5.Weight = 0.76658392930789221D;
             // 
-            // dsBalju1
-            // 
-            this.dsBalju1.DataSetName = "dsBalju";
-            this.dsBalju1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // PageFooter
             // 
             this.PageFooter.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
@@ -458,8 +449,6 @@ namespace Team2_ERP
             // 
             this.DetailReport2.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.Detail3});
-            this.DetailReport2.DataMember = "dtBalju.dtBalju_dtBalju_Detail";
-            this.DetailReport2.DataSource = this.dsBalju1;
             this.DetailReport2.Dpi = 254F;
             this.DetailReport2.Level = 0;
             this.DetailReport2.Name = "DetailReport2";
@@ -483,13 +472,9 @@ namespace Team2_ERP
             this.PageHeader,
             this.PageFooter,
             this.DetailReport2});
-            this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
-            this.dsBalju1});
-            this.DataMember = "dtBalju";
-            this.DataSource = this.dsBalju1;
             this.Dpi = 254F;
             this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Margins = new System.Drawing.Printing.Margins(90, 100, 92, 200);
+            this.Margins = new System.Drawing.Printing.Margins(90, 100, 100, 100);
             this.PageHeight = 2970;
             this.PageWidth = 2100;
             this.PaperKind = System.Drawing.Printing.PaperKind.A4;
@@ -501,7 +486,6 @@ namespace Team2_ERP
             this.Watermark.ImageViewMode = DevExpress.XtraPrinting.Drawing.ImageViewMode.Zoom;
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsBalju1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
@@ -526,7 +510,6 @@ namespace Team2_ERP
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell2;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell3;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell5;
-        private dsBalju dsBalju1;
         private DevExpress.XtraReports.UI.PageFooterBand PageFooter;
         private DevExpress.XtraReports.UI.XRLabel xrLabel8;
         private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo1;

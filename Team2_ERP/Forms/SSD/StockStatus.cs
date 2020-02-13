@@ -115,7 +115,7 @@ namespace Team2_ERP
         {
             if (dgv_StockStatus.Rows.Count > 0)
             {
-                StockStatusReport br = new StockStatusReport();
+                StockStatusReport sr = new StockStatusReport();
                 dsStockStatus ds = new dsStockStatus();
 
                 ds.Relations.Clear();
@@ -125,8 +125,8 @@ namespace Team2_ERP
 
                 //ds.AcceptChanges();
 
-                br.DataSource = ds;
-                using (ReportPrintTool printTool = new ReportPrintTool(br))
+                sr.DataSource = ds;
+                using (ReportPrintTool printTool = new ReportPrintTool(sr))
                 {
                     printTool.ShowRibbonPreviewDialog();
                 } 

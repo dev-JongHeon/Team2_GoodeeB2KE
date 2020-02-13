@@ -134,20 +134,23 @@ namespace Team2_ERP
 
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
-            SalesReport br = new SalesReport();
-            dsSales ds = new dsSales();
-
-            ds.Relations.Clear();
-            ds.Tables.Clear();
-            ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
-            ds.Tables[0].TableName = "dtSales";
-
-            //ds.AcceptChanges();
-
-            br.DataSource = ds;
-            using (ReportPrintTool printTool = new ReportPrintTool(br))
+            if (dgv_SalesStatus.Rows.Count > 0)
             {
-                printTool.ShowRibbonPreviewDialog();
+                SalesReport br = new SalesReport();
+                dsSales ds = new dsSales();
+
+                ds.Relations.Clear();
+                ds.Tables.Clear();
+                ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+                ds.Tables[0].TableName = "dtSales";
+
+                //ds.AcceptChanges();
+
+                br.DataSource = ds;
+                using (ReportPrintTool printTool = new ReportPrintTool(br))
+                {
+                    printTool.ShowRibbonPreviewDialog();
+                } 
             }
         }
         #endregion

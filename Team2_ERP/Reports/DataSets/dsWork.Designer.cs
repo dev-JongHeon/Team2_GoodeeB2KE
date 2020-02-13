@@ -10,7 +10,8 @@
 
 #pragma warning disable 1591
 
-namespace Team2_ERP {
+namespace Team2_ERP
+{
     
     
     /// <summary>
