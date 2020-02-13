@@ -30,6 +30,12 @@ namespace Team2_POP
 
         private void singleMonthCalandar1_DateSelected(object sender, DateRangeEventArgs e)
         {
+            if (e.Start > DateTime.Now.Date)
+            {
+                CustomMessageBox.ShowDialog("날짜 불러오기 실패", "오늘보다 큰 날짜의 작업은 조회할 수 없습니다.", MessageBoxIcon.Error);
+                return;
+            }
+
             DSelected = e.Start;
             DialogResult = DialogResult.OK;
         }

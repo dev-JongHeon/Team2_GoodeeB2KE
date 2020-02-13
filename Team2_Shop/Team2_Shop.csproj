@@ -122,13 +122,29 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="DAC\EmailOrderProcessor.cs" />
+    <Compile Include="DAC\Helper.cs" />
+    <Compile Include="DAC\ProductDAC.cs" />
+    <Compile Include="DAC\ShopDAC.cs" />
+    <Compile Include="HtmlHelpers\PagingHelpers.cs" />
+    <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\CartIndexViewModel.cs" />
+    <Compile Include="Models\PagingInfo.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductListViewModel.cs" />
+    <Compile Include="Models\ShipInfo.cs" />
+    <Compile Include="Models\WebCustomerModel.cs" />
+    <Compile Include="Models\WebLoginModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service.cs" />
+    <Compile Include="Utill\UtillClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.css" />
@@ -7406,6 +7422,10 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\ProductSummary.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

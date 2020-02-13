@@ -538,6 +538,11 @@ namespace Team2_POP
         {
             // DAC단에서 내일 날짜의 작업을 가져옴
             // 라벨 날짜를 내일 날짜로 변경
+            if(lblDate.Text == DateTime.Now.Date.ToShortDateString())
+            {
+                CustomMessageBox.ShowDialog("날짜 불러오기 실패", "오늘보다 큰 날짜의 작업은 조회할 수 없습니다.", MessageBoxIcon.Error);
+                return;
+            }
             lblDate.Text = DateTime.Parse(lblDate.Text).AddDays(1).ToShortDateString();
         }
 

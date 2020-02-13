@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@model Team2_Shop.Models.ProductListViewModel
+
+<br />
+
+@foreach (var p in Model.Products)
+{
+    <div class="col-sm-12 col-md-6 col-lg-4">
+        @Html.Partial("ProductSummary", p)
+    </div>
+}
+<div class="btn-group pull-right">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x}))
+</div>
