@@ -19,6 +19,7 @@ namespace Team2_VO
         public string Combination_Product_ID { get; set; }
         public string Category_Division { get; set; }
         public int Combination_ID { get; set; }
+        public string Product_Category { get; set; }
         public bool Combination_DeletedYN { get; set; }
 
         public override string ToString()

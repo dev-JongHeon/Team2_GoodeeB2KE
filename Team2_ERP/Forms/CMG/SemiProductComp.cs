@@ -41,6 +41,8 @@ namespace Team2_ERP
                 pbxTitle.Image = Properties.Resources.Edit_32x32;
                 pCode = item.Product_ID;
                 pCategory = item.Product_Category;
+                txtSemiproductName.Text = item.Product_Name;
+                numSafety.Value = item.Product_Safety;
             }
         }
 
@@ -118,6 +120,7 @@ namespace Team2_ERP
                         sum += Convert.ToInt32(list.Find(i => i.Product_ID == spc.TxtName.Tag.ToString()).Product_Price * spc.Qty.Value);
 
                     txtSemiproductMoney.Tag = sum;
+                    txtSemiproductMoney.Text = Convert.ToInt32(txtSemiproductMoney.Tag).ToString("#,##0") + "원";
                 }
             }
         }
@@ -131,6 +134,30 @@ namespace Team2_ERP
         {
             InitGridView();
             InitCombo();
+            StandardService service = new StandardService();
+            list = service.GetAllProduct();
+            List<BOMVO> productList = service.GetAllCombination($"'{pCode}'");
+            foreach (Control control in splitContainer2.Panel1.Controls)
+            {
+                if (control is SemiProductCompControl)
+                {
+                    SemiProductCompControl spc = (SemiProductCompControl)control;
+
+                    for (int i = 0; i < productList.Count; i++)
+                    {
+                        if (spc.LblName.Tag.ToString().Equals(productList[i].Product_Category))
+                        {
+                            spc.TxtName.Text = productList[i].Product_Name;
+                            spc.TxtName.Tag = productList[i].Combination_Product_ID;
+                            spc.Qty.Tag = productList[i].Product_Price;
+                            spc.Qty.Value = productList[i].Combination_RequiredQty;
+                            spc.LblMoney.Tag = 1;
+                            spc.LblMoney.Text = productList[i].Product_Price.ToString("#,##0") + "원";
+                        }
+                    }
+                    spc.Qty.ValueChanged += new EventHandler(TotalPrice);
+                }
+            }
         }
 
         //반제품의 카테고리 목록을 보여주고 해당하는 카테고리를 선택하면 유저컨트롤 생성 메서드에 해당하는 카테고리의 ID를 보낸다.
@@ -268,15 +295,32 @@ namespace Team2_ERP
 
                         if (spc.LblName.Tag.ToString() == dgvSemiProduct.SelectedRows[0].Cells[2].Value.ToString())
                         {
-                            spc.TxtName.Text = dgvSemiProduct.SelectedRows[0].Cells[0].Value.ToString();
-                            spc.TxtName.Tag = dgvSemiProduct.SelectedRows[0].Cells[3].Value;
-                            spc.LblMoney.Text = Convert.ToInt32(dgvSemiProduct.SelectedRows[0].Cells[1].Value).ToString("#,##0") + "원";
-                            if (txtSemiproductMoney.Text.Equals("0원") || txtSemiproductMoney.Text.Length < 1)
-                                txtSemiproductMoney.Text = spc.LblMoney.Text;
+                            if (spc.TxtName.Tag == null)
+                            {
+                                spc.TxtName.Text = dgvSemiProduct.SelectedRows[0].Cells[0].Value.ToString();
+                                spc.TxtName.Tag = dgvSemiProduct.SelectedRows[0].Cells[3].Value;
+                                spc.LblMoney.Text = Convert.ToInt32(dgvSemiProduct.SelectedRows[0].Cells[1].Value).ToString("#,##0") + "원";
+                                spc.LblMoney.Tag = 1;
+                                spc.Qty.Tag = dgvSemiProduct.SelectedRows[0].Cells[1].Value;
+                                spc.Qty.Value += 1;
+                            }
                             else
-                                txtSemiproductMoney.Text = (Convert.ToInt32(txtSemiproductMoney.Text.Replace(",", "").Replace("원", "")) + Convert.ToInt32(spc.LblMoney.Text.Replace(",", "").Replace("원", ""))).ToString("#,##0") + "원";
-
-                            spc.Qty.Tag = dgvSemiProduct.SelectedRows[0].Cells[1].Value;
+                            {
+                                if (spc.TxtName.Tag.ToString() == dgvSemiProduct.SelectedRows[0].Cells[3].Value.ToString())
+                                {
+                                    spc.Qty.Value += 1;
+                                }
+                                else
+                                {
+                                    spc.TxtName.Text = dgvSemiProduct.SelectedRows[0].Cells[0].Value.ToString();
+                                    spc.TxtName.Tag = dgvSemiProduct.SelectedRows[0].Cells[3].Value;
+                                    spc.LblMoney.Text = Convert.ToInt32(dgvSemiProduct.SelectedRows[0].Cells[1].Value).ToString("#,##0") + "원";
+                                    spc.LblMoney.Tag = 2;
+                                    spc.Qty.Tag = dgvSemiProduct.SelectedRows[0].Cells[1].Value;
+                                    spc.Qty.Value = 0;
+                                    spc.Qty.Value += 1;
+                                }
+                            }
                         }
                     }
                 }

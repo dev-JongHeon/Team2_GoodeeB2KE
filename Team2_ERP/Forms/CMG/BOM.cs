@@ -44,7 +44,7 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgvBOM, "개수", "Product_Qty", false, 100);
             UtilClass.AddNewColum(dgvBOM, "안전개수", "Product_Safety", false, 100);
             UtilClass.AddNewColum(dgvBOM, "삭제여부", "Product_DeletedYN", false, 100);
-            UtilClass.AddNewColum(dgvBOM, "카테고리", "Category_Division", false, 100);
+            UtilClass.AddNewColum(dgvBOM, "카테고리이름", "Category_Division", false, 100);
             UtilClass.AddNewColum(dgvBOM, "이미지", "Product_Image", false, 100);
             dgvBOM.Columns[4].DefaultCellStyle.Format = "#,##0원";
 
@@ -334,7 +334,9 @@ namespace Team2_ERP
                 {
                     Product_ID = dgvBOM.Rows[e.RowIndex].Cells[0].Value.ToString(),
                     Product_Category = dgvBOM.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                    Product_Name = dgvBOM.Rows[e.RowIndex].Cells[3].Value.ToString()
+                    Product_Name = dgvBOM.Rows[e.RowIndex].Cells[3].Value.ToString(),
+                    Product_Price = Convert.ToInt32(dgvBOM.Rows[e.RowIndex].Cells[4].Value),
+                    Product_Safety = Convert.ToInt32(dgvBOM.Rows[e.RowIndex].Cells[8].Value)
                 };
 
                 dgvBOMDetail1.DataSource = null;
