@@ -23,6 +23,7 @@ namespace Team2_VO
         public string Product_Category { get; set; }
         public bool Product_DeletedYN { get; set; }
         public string Category_Division { get; set; }
+        public int Product_Origin { get; set; }
         public byte[] Product_Image { get; set; }
     }
 }

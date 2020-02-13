@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraReports.UI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -281,7 +282,25 @@ namespace Team2_ERP
 
         public override void Print(object sender, EventArgs e)
         {
-            MessageBox.Show("프린트");
+            if (dgvProduce.Rows.Count > 0)
+            {
+                ProduceReport pr = new ProduceReport();
+                dsProduce ds = new dsProduce();
+
+                ds.Relations.Clear();
+                ds.Tables.Clear();
+                ds.Tables.Add(UtilClass.ConvertToDataTable(searchedlist));
+                ds.Tables.Add(UtilClass.ConvertToDataTable(performances));
+                ds.Tables[0].TableName = "dtProduce";
+                ds.Tables[1].TableName = "dtProduceDetail";
+                ds.Relations.Add("dtProduce_dtProduceDetail", ds.Tables[0].Columns["Produce_ID"], ds.Tables[1].Columns["PerformanceProduce_ID"]);
+
+                pr.DataSource = ds;
+                using (ReportPrintTool printTool = new ReportPrintTool(pr))
+                {
+                    printTool.ShowRibbonPreviewDialog();
+                }
+            }
         }
 
         private void dgvProduce_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

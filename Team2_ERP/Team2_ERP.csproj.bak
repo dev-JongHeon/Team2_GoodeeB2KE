@@ -498,6 +498,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsStockStatus.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reports\ProduceReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ProduceReport.Designer.cs">
+      <DependentUpon>ProduceReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\WorkReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -767,6 +773,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SSD\StockStatus.resx">
       <DependentUpon>StockStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ProduceReport.resx">
+      <DependentUpon>ProduceReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\WorkReport.resx">
       <DependentUpon>WorkReport.cs</DependentUpon>
