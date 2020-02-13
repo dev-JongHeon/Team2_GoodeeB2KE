@@ -12,7 +12,7 @@
   <xs:element name="dsBalju" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsBalju" msprop:Generator_UserDSName="dsBalju">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="dtBalju" msprop:Generator_TableClassName="dtBaljuDataTable" msprop:Generator_TableVarName="tabledtBalju" msprop:Generator_RowChangedName="dtBaljuRowChanged" msprop:Generator_TablePropName="dtBalju" msprop:Generator_RowDeletingName="dtBaljuRowDeleting" msprop:Generator_RowChangingName="dtBaljuRowChanging" msprop:Generator_RowEvHandlerName="dtBaljuRowChangeEventHandler" msprop:Generator_RowDeletedName="dtBaljuRowDeleted" msprop:Generator_RowClassName="dtBaljuRow" msprop:Generator_UserTableName="dtBalju" msprop:Generator_RowEvArgName="dtBaljuRowChangeEvent">
+        <xs:element name="dtBalju" msprop:Generator_TableClassName="dtBaljuDataTable" msprop:Generator_TableVarName="tabledtBalju" msprop:Generator_TablePropName="dtBalju" msprop:Generator_RowDeletingName="dtBaljuRowDeleting" msprop:Generator_RowChangingName="dtBaljuRowChanging" msprop:Generator_RowEvHandlerName="dtBaljuRowChangeEventHandler" msprop:Generator_RowDeletedName="dtBaljuRowDeleted" msprop:Generator_UserTableName="dtBalju" msprop:Generator_RowChangedName="dtBaljuRowChanged" msprop:Generator_RowEvArgName="dtBaljuRowChangeEvent" msprop:Generator_RowClassName="dtBaljuRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Balju_ID" msprop:Generator_ColumnVarNameInTable="columnBalju_ID" msprop:Generator_ColumnPropNameInRow="Balju_ID" msprop:Generator_ColumnPropNameInTable="Balju_IDColumn" msprop:Generator_UserColumnName="Balju_ID" type="xs:string" />
@@ -20,10 +20,11 @@
               <xs:element name="Company_Name" msprop:Generator_ColumnVarNameInTable="columnCompany_Name" msprop:Generator_ColumnPropNameInRow="Company_Name" msprop:Generator_ColumnPropNameInTable="Company_NameColumn" msprop:Generator_UserColumnName="Company_Name" type="xs:string" minOccurs="0" />
               <xs:element name="Employees_Name" msprop:Generator_ColumnVarNameInTable="columnEmployees_Name" msprop:Generator_ColumnPropNameInRow="Employees_Name" msprop:Generator_ColumnPropNameInTable="Employees_NameColumn" msprop:Generator_UserColumnName="Employees_Name" type="xs:string" minOccurs="0" />
               <xs:element name="Balju_ReceiptDate" msprop:Generator_ColumnVarNameInTable="columnBalju_ReceiptDate" msprop:Generator_ColumnPropNameInRow="Balju_ReceiptDate" msprop:Generator_ColumnPropNameInTable="Balju_ReceiptDateColumn" msprop:Generator_UserColumnName="Balju_ReceiptDate" type="xs:string" minOccurs="0" />
+              <xs:element name="Total" msprop:Generator_ColumnVarNameInTable="columnTotal" msprop:Generator_ColumnPropNameInRow="Total" msprop:Generator_ColumnPropNameInTable="TotalColumn" msprop:Generator_UserColumnName="Total" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="dtBalju_Detail" msprop:Generator_TableClassName="dtBalju_DetailDataTable" msprop:Generator_TableVarName="tabledtBalju_Detail" msprop:Generator_RowChangedName="dtBalju_DetailRowChanged" msprop:Generator_TablePropName="dtBalju_Detail" msprop:Generator_RowDeletingName="dtBalju_DetailRowDeleting" msprop:Generator_RowChangingName="dtBalju_DetailRowChanging" msprop:Generator_RowEvHandlerName="dtBalju_DetailRowChangeEventHandler" msprop:Generator_RowDeletedName="dtBalju_DetailRowDeleted" msprop:Generator_RowClassName="dtBalju_DetailRow" msprop:Generator_UserTableName="dtBalju_Detail" msprop:Generator_RowEvArgName="dtBalju_DetailRowChangeEvent">
+        <xs:element name="dtBalju_Detail" msprop:Generator_TableClassName="dtBalju_DetailDataTable" msprop:Generator_TableVarName="tabledtBalju_Detail" msprop:Generator_TablePropName="dtBalju_Detail" msprop:Generator_RowDeletingName="dtBalju_DetailRowDeleting" msprop:Generator_RowChangingName="dtBalju_DetailRowChanging" msprop:Generator_RowEvHandlerName="dtBalju_DetailRowChangeEventHandler" msprop:Generator_RowDeletedName="dtBalju_DetailRowDeleted" msprop:Generator_UserTableName="dtBalju_Detail" msprop:Generator_RowChangedName="dtBalju_DetailRowChanged" msprop:Generator_RowEvArgName="dtBalju_DetailRowChangeEvent" msprop:Generator_RowClassName="dtBalju_DetailRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Product_Name" msprop:Generator_ColumnVarNameInTable="columnProduct_Name" msprop:Generator_ColumnPropNameInRow="Product_Name" msprop:Generator_ColumnPropNameInTable="Product_NameColumn" msprop:Generator_UserColumnName="Product_Name" type="xs:string" minOccurs="0" />
@@ -41,7 +42,7 @@
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="dtBalju_dtBalju_Detail" msdata:parent="dtBalju" msdata:child="dtBalju_Detail" msdata:parentkey="Balju_ID" msdata:childkey="Balju_ID" msprop:Generator_UserChildTable="dtBalju_Detail" msprop:Generator_ChildPropName="GetdtBalju_DetailRows" msprop:Generator_UserRelationName="dtBalju_dtBalju_Detail" msprop:Generator_ParentPropName="dtBaljuRow" msprop:Generator_RelationVarName="relationdtBalju_dtBalju_Detail" msprop:Generator_UserParentTable="dtBalju" />
+      <msdata:Relationship name="dtBalju_dtBalju_Detail" msdata:parent="dtBalju" msdata:child="dtBalju_Detail" msdata:parentkey="Balju_ID" msdata:childkey="Balju_ID" msprop:Generator_UserChildTable="dtBalju_Detail" msprop:Generator_ChildPropName="GetdtBalju_DetailRows" msprop:Generator_UserRelationName="dtBalju_dtBalju_Detail" msprop:Generator_RelationVarName="relationdtBalju_dtBalju_Detail" msprop:Generator_UserParentTable="dtBalju" msprop:Generator_ParentPropName="dtBaljuRow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

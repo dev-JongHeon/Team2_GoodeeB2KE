@@ -115,21 +115,24 @@ namespace Team2_ERP
         {
             if (dgv_StockStatus.Rows.Count > 0)
             {
-                StockStatusReport br = new StockStatusReport();
-                dsStockStatus ds = new dsStockStatus();
-
-                ds.Relations.Clear();
-                ds.Tables.Clear();
-                ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
-                ds.Tables[0].TableName = "dtStockStatus";
-
-                //ds.AcceptChanges();
-
-                br.DataSource = ds;
-                using (ReportPrintTool printTool = new ReportPrintTool(br))
+                using (WaitForm frm = new WaitForm())
                 {
-                    printTool.ShowRibbonPreviewDialog();
-                } 
+                    StockStatusReport sr = new StockStatusReport();
+                    dsStockStatus ds = new dsStockStatus();
+
+                    ds.Relations.Clear();
+                    ds.Tables.Clear();
+                    ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+                    ds.Tables[0].TableName = "dtStockStatus";
+
+                    //ds.AcceptChanges();
+
+                    sr.DataSource = ds;
+                    using (ReportPrintTool printTool = new ReportPrintTool(sr))
+                    {
+                        printTool.ShowRibbonPreviewDialog();
+                    }  
+                }
             }
         }
         #endregion

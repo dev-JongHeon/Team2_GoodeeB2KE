@@ -134,31 +134,38 @@ namespace Team2_ERP
 
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
-            SalesReport br = new SalesReport();
-            dsSales ds = new dsSales();
-
-            ds.Relations.Clear();
-            ds.Tables.Clear();
-            ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
-            ds.Tables[0].TableName = "dtSales";
-
-            //ds.AcceptChanges();
-
-            br.DataSource = ds;
-            using (ReportPrintTool printTool = new ReportPrintTool(br))
+            if (dgv_SalesStatus.Rows.Count > 0)
             {
-                printTool.ShowRibbonPreviewDialog();
+                using (WaitForm frm = new WaitForm())
+                {
+                    SalesReport br = new SalesReport();
+                    dsSales ds = new dsSales();
+
+                    ds.Relations.Clear();
+                    ds.Tables.Clear();
+                    ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+                    ds.Tables[0].TableName = "dtSales";
+
+                    //ds.AcceptChanges();
+
+                    br.DataSource = ds;
+                    using (ReportPrintTool printTool = new ReportPrintTool(br))
+                    {
+                        printTool.ShowRibbonPreviewDialog();
+                    }  
+                }
             }
         }
         #endregion
 
         #region Activated, OnOff, DeActivate
 
-        private void OrderMainForm_Activated(object sender, EventArgs e)
+        private void SalesMainForm_Activated(object sender, EventArgs e)
         {
             MenuByAuth(Auth);
             main.NoticeMessage = notice;
         }
+
         public override void MenuStripONOFF(bool flag)
         {
             main.신규ToolStripMenuItem.Visible = false;
@@ -167,7 +174,7 @@ namespace Team2_ERP
             main.인쇄ToolStripMenuItem.Visible = flag;
         }
 
-        private void OrderMainForm_Deactivate(object sender, EventArgs e)
+        private void SalesMainForm_Deactivate(object sender, EventArgs e)
         {
             new SettingMenuStrip().UnsetMenu(this);
         }

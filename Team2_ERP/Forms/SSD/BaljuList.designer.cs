@@ -111,7 +111,7 @@
             // 
             this.Search_Period.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Search_Period.Labelname = "발주요청일자";
-            this.Search_Period.Location = new System.Drawing.Point(92, 70);
+            this.Search_Period.Location = new System.Drawing.Point(23, 10);
             this.Search_Period.Name = "Search_Period";
             this.Search_Period.Size = new System.Drawing.Size(312, 26);
             this.Search_Period.TabIndex = 3;
@@ -122,7 +122,7 @@
             this.Search_Company.ControlType = Team2_ERP.SearchUserControl.Mode.Company;
             this.Search_Company.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Search_Company.Labelname = "회사";
-            this.Search_Company.Location = new System.Drawing.Point(92, 8);
+            this.Search_Company.Location = new System.Drawing.Point(23, 42);
             this.Search_Company.Name = "Search_Company";
             this.Search_Company.Size = new System.Drawing.Size(312, 25);
             this.Search_Company.TabIndex = 1;
@@ -146,7 +146,7 @@
             this.Search_Employee.ControlType = Team2_ERP.SearchUserControl.Mode.Employee;
             this.Search_Employee.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Search_Employee.Labelname = "사원";
-            this.Search_Employee.Location = new System.Drawing.Point(92, 39);
+            this.Search_Employee.Location = new System.Drawing.Point(23, 73);
             this.Search_Employee.Name = "Search_Employee";
             this.Search_Employee.Size = new System.Drawing.Size(312, 25);
             this.Search_Employee.TabIndex = 2;

@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace Team2_ERP
+namespace Team2_ERP 
 {
     
     
@@ -294,6 +294,10 @@ namespace Team2_ERP
             
             private global::System.Data.DataColumn columnProduct_Qty;
             
+            private global::System.Data.DataColumn columnProduct_Safety;
+            
+            private global::System.Data.DataColumn columnCount_Subtract;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public dtStockStatusDataTable() {
@@ -385,6 +389,22 @@ namespace Team2_ERP
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn Product_SafetyColumn {
+                get {
+                    return this.columnProduct_Safety;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn Count_SubtractColumn {
+                get {
+                    return this.columnCount_Subtract;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -420,7 +440,7 @@ namespace Team2_ERP
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtStockStatusRow AdddtStockStatusRow(string Product_ID, string Product_Name, string CodeTable_CodeName, string Warehouse_ID, string Warehouse_Name, string Product_Price, string Product_Qty) {
+            public dtStockStatusRow AdddtStockStatusRow(string Product_ID, string Product_Name, string CodeTable_CodeName, string Warehouse_ID, string Warehouse_Name, string Product_Price, string Product_Qty, string Product_Safety, string Count_Subtract) {
                 dtStockStatusRow rowdtStockStatusRow = ((dtStockStatusRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Product_ID,
@@ -429,7 +449,9 @@ namespace Team2_ERP
                         Warehouse_ID,
                         Warehouse_Name,
                         Product_Price,
-                        Product_Qty};
+                        Product_Qty,
+                        Product_Safety,
+                        Count_Subtract};
                 rowdtStockStatusRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtStockStatusRow);
                 return rowdtStockStatusRow;
@@ -459,6 +481,8 @@ namespace Team2_ERP
                 this.columnWarehouse_Name = base.Columns["Warehouse_Name"];
                 this.columnProduct_Price = base.Columns["Product_Price"];
                 this.columnProduct_Qty = base.Columns["Product_Qty"];
+                this.columnProduct_Safety = base.Columns["Product_Safety"];
+                this.columnCount_Subtract = base.Columns["Count_Subtract"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -478,6 +502,10 @@ namespace Team2_ERP
                 base.Columns.Add(this.columnProduct_Price);
                 this.columnProduct_Qty = new global::System.Data.DataColumn("Product_Qty", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnProduct_Qty);
+                this.columnProduct_Safety = new global::System.Data.DataColumn("Product_Safety", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProduct_Safety);
+                this.columnCount_Subtract = new global::System.Data.DataColumn("Count_Subtract", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCount_Subtract);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -732,6 +760,38 @@ namespace Team2_ERP
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string Product_Safety {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtStockStatus.Product_SafetyColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("\'dtStockStatus\' 테이블의 \'Product_Safety\' 열의 값이 DBNull입니다.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtStockStatus.Product_SafetyColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string Count_Subtract {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtStockStatus.Count_SubtractColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("\'dtStockStatus\' 테이블의 \'Count_Subtract\' 열의 값이 DBNull입니다.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtStockStatus.Count_SubtractColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsProduct_IDNull() {
                 return this.IsNull(this.tabledtStockStatus.Product_IDColumn);
             }
@@ -812,6 +872,30 @@ namespace Team2_ERP
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetProduct_QtyNull() {
                 this[this.tabledtStockStatus.Product_QtyColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsProduct_SafetyNull() {
+                return this.IsNull(this.tabledtStockStatus.Product_SafetyColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetProduct_SafetyNull() {
+                this[this.tabledtStockStatus.Product_SafetyColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsCount_SubtractNull() {
+                return this.IsNull(this.tabledtStockStatus.Count_SubtractColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetCount_SubtractNull() {
+                this[this.tabledtStockStatus.Count_SubtractColumn] = global::System.Convert.DBNull;
             }
         }
         

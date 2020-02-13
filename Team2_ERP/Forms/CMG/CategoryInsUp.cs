@@ -18,6 +18,7 @@ namespace Team2_ERP
 
         string mode = string.Empty;
         string code = string.Empty;
+        string info = string.Empty;
 
         public CategoryInsUp(EditMode editMode, CodeTableVO item)
         {
@@ -29,6 +30,7 @@ namespace Team2_ERP
                 lblName.Text = "카테고리 수정";
                 code = item.CodeTable_CodeID;
                 txtName.Text = item.CodeTable_CodeName;
+                info = item.CodeTable_CodeExplain;
                 pbxTitle.Image = Properties.Resources.Edit_32x32;
             }
             else
@@ -143,6 +145,8 @@ namespace Team2_ERP
                     rdoSemiProduct.Enabled = false;
                     rdoProduct.Enabled = false;
                     rdoResource.Checked = true;
+                    cboContext.Visible = true;
+                    txtContext.Visible = false;
                     InitCombo();
                 }
                 else if(code.Substring(0, 2).Equals("CS"))
@@ -150,17 +154,24 @@ namespace Team2_ERP
                     rdoResource.Enabled = false;
                     rdoProduct.Enabled = false;
                     rdoSemiProduct.Checked = true;
+                    cboContext.Visible = false;
+                    txtContext.Visible = true;
+                    txtContext.Text = info;
                 }
                 else if(code.Substring(0, 2).Equals("CP"))
                 {
                     rdoProduct.Checked = true;
                     rdoResource.Enabled = false;
                     rdoSemiProduct.Enabled = false;
+                    cboContext.Visible = false;
+                    txtContext.Visible = true;
+                    txtContext.Text = info;
                 }
             }
             else
             {
                 rdoResource.Checked = true;
+                cboContext.Visible = true;
                 txtContext.Visible = false;
                 InitCombo();
             }

@@ -19,13 +19,14 @@ namespace Team2_ERP
 
         string mode = string.Empty;
         string pCode = string.Empty;
-        string pName = string.Empty;
+        string pCategory = string.Empty;
 
         int count = 0;
 
         byte[] filePath;
 
         List<ProductVO> list = null;
+        List<BOMVO> productList = null;
 
         SemiProductCompControl spc;
 
@@ -44,20 +45,28 @@ namespace Team2_ERP
                 lblName.Text = "완제품 수정";
                 mode = "Update";
                 pbxTitle.Image = Properties.Resources.Edit_32x32;
+                pCategory = item.Product_Category;
                 pCode = item.Product_ID;
-                pName = item.Product_Name;
+                txtProductName.Text = item.Product_Name;
             }
         }
 
         private void InitCombo()
         {
             StandardService service = new StandardService();
-            List<ComboItemVO> productList = (from item in service.GetComboProductCategory() where item.ID.Contains("CP") select item).ToList();
-            UtilClass.ComboBinding(cboProductCategory, productList, "선택");
+            if (mode.Equals("Insert"))
+            {
+                List<ComboItemVO> productList = (from item in service.GetComboProductCategory() where item.ID.Contains("CP") select item).ToList();
+                UtilClass.ComboBinding(cboProductCategory, productList, "선택");
+            }
+            else
+            {
+                List<ComboItemVO> productList = (from item in service.GetComboProductCategory() where item.ID.Equals(pCategory) select item).ToList();
+                UtilClass.ComboBinding(cboProductCategory, productList);
+            }
             List<ComboItemVO> categoryList = (from item in service.GetComboProductCategory() where item.ID.Contains("CS") select item).ToList();
             UtilClass.ComboBinding(cboSemiProductCategory, categoryList, "선택");
             CategoryLabelName(categoryList);
-
         }
 
         private void InitGridView()
@@ -126,6 +135,35 @@ namespace Team2_ERP
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
+        private void UpdateInfoLoad()
+        {
+            StandardService service = new StandardService();
+            list = service.GetAllProduct();
+            productList = service.GetAllCombination($"'{pCode}'");
+            foreach (Control control in splitContainer2.Panel1.Controls)
+            {
+                if (control is SemiProductCompControl)
+                {
+                    SemiProductCompControl spc = (SemiProductCompControl)control;
+
+                    for (int i = 0; i < productList.Count; i++)
+                    {
+                        if (spc.LblName.Tag.ToString().Equals(productList[i].Product_Category))
+                        {
+                            spc.TxtName.Text = productList[i].Product_Name;
+                            spc.TxtName.Tag = productList[i].Combination_Product_ID;
+                            spc.Qty.Tag = productList[i].Product_Price;
+                            spc.Qty.Value = productList[i].Combination_RequiredQty;
+                            spc.LblMoney.Tag = 1;
+                            spc.LblMoney.Text = productList[i].Product_Price.ToString("#,##0") + "원";
+                        }
+                    }
+                    spc.Qty.ValueChanged += new EventHandler(TotalPrice);
+                    nummargin.ValueChanged += new EventHandler(TotalPrice);
+                }
+            }
+        }
+
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -134,12 +172,18 @@ namespace Team2_ERP
 
         private void ProductComp_Load(object sender, EventArgs e)
         {
+            lblOrigin.Visible = false;
             InitCombo();
             InitGridView();
-            if (mode.Equals("Update"))
+            if (mode.Equals("Insert"))
             {
-                txtProductName.Text = pName;
+                pictureBox1.Image = pictureBox1.InitialImage;
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+            else
+            {
                 GetImage();
+                UpdateInfoLoad();
             }
         }
 
@@ -152,10 +196,6 @@ namespace Team2_ERP
                 return;
 
             LoadGridView();
-        }
-
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
         }
 
         private void InsertProduct()
@@ -176,7 +216,7 @@ namespace Team2_ERP
                 Product_Name = txtProductName.Text,
                 Product_Price = Convert.ToInt32(txtProductMoney.Text.Replace(",", "").Replace("원", "")),
                 Product_Category = cboProductCategory.SelectedValue.ToString(),
-                Product_Safety = Convert.ToInt32(numSafety.Value),
+                Product_Origin = Convert.ToInt32(lblOrigin.Text),
                 Product_Image = ImageData
             };
 
@@ -227,7 +267,7 @@ namespace Team2_ERP
                 Product_Name = txtProductName.Text,
                 Product_Image = ImageData,
                 Product_Price = Convert.ToInt32(txtProductMoney.Text.Replace(",", "").Replace("원", "")),
-                Product_Safety = Convert.ToInt32(numSafety.Value),
+                Product_Origin = Convert.ToInt32(lblOrigin.Text),
                 Product_Category = cboProductCategory.SelectedValue.ToString()
             };
 
@@ -256,9 +296,9 @@ namespace Team2_ERP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if(spc.TxtName.Tag != null && txtProductImage.Text.Length > 0 && txtProductName.Text.Length > 0 && txtProductMoney.Text.Length > 0 && numSafety.Value > 0)
+            if (spc.TxtName.Tag != null && pictureBox1.Image != pictureBox1.InitialImage && txtProductName.Text.Length > 0 && txtProductMoney.Text.Length > 0)
             {
-                if(mode.Equals("Insert"))
+                if (mode.Equals("Insert"))
                 {
                     InsertProduct();
                     DialogResult = MessageBox.Show(Properties.Settings.Default.AddDone, Properties.Settings.Default.AddDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -315,15 +355,32 @@ namespace Team2_ERP
 
                         if (spc.LblName.Tag.ToString() == dgvProduct.SelectedRows[0].Cells[2].Value.ToString())
                         {
-                            spc.TxtName.Text = dgvProduct.SelectedRows[0].Cells[0].Value.ToString();
-                            spc.TxtName.Tag = dgvProduct.SelectedRows[0].Cells[3].Value;
-                            spc.LblMoney.Text = Convert.ToInt32(dgvProduct.SelectedRows[0].Cells[1].Value).ToString("#,##0") + "원";
-                            if (txtProductMoney.Text.Equals("0원") || txtProductMoney.Text.Length < 1)
-                                txtProductMoney.Text = spc.LblMoney.Text;
+                            if (spc.TxtName.Tag == null)
+                            {
+                                spc.TxtName.Text = dgvProduct.SelectedRows[0].Cells[0].Value.ToString();
+                                spc.TxtName.Tag = dgvProduct.SelectedRows[0].Cells[3].Value;
+                                spc.LblMoney.Text = Convert.ToInt32(dgvProduct.SelectedRows[0].Cells[1].Value).ToString("#,##0") + "원";
+                                spc.LblMoney.Tag = 1;
+                                spc.Qty.Tag = dgvProduct.SelectedRows[0].Cells[1].Value;
+                                spc.Qty.Value += 1;
+                            }
                             else
-                                txtProductMoney.Text = (Convert.ToInt32(txtProductMoney.Text.Replace(",", "").Replace("원", "")) + Convert.ToInt32(spc.LblMoney.Text.Replace(",", "").Replace("원", ""))).ToString("#,##0") + "원";
-
-                            spc.Qty.Tag = dgvProduct.SelectedRows[0].Cells[1].Value;
+                            {
+                                if (spc.TxtName.Tag.ToString() == dgvProduct.SelectedRows[0].Cells[3].Value.ToString())
+                                {
+                                    spc.Qty.Value += 1;
+                                }
+                                else
+                                {
+                                    spc.TxtName.Text = dgvProduct.SelectedRows[0].Cells[0].Value.ToString();
+                                    spc.TxtName.Tag = dgvProduct.SelectedRows[0].Cells[3].Value;
+                                    spc.LblMoney.Text = Convert.ToInt32(dgvProduct.SelectedRows[0].Cells[1].Value).ToString("#,##0") + "원";
+                                    spc.LblMoney.Tag = 2;
+                                    spc.Qty.Tag = dgvProduct.SelectedRows[0].Cells[1].Value;
+                                    spc.Qty.Value = 0;
+                                    spc.Qty.Value += 1;
+                                }
+                            }
                         }
                     }
                 }
@@ -332,7 +389,9 @@ namespace Team2_ERP
 
         private void nummargin_ValueChanged(object sender, EventArgs e)
         {
-            if (nummargin.Value > 0)
+            lblOrigin.Text = Convert.ToInt32(txtProductMoney.Tag).ToString("#,##0") + "원";
+
+            if (nummargin.Value > 0 && txtProductMoney.Tag != null)
             {
                 txtProductMoney.Text = (Convert.ToInt32(txtProductMoney.Tag) + (Convert.ToInt32(txtProductMoney.Tag) * Convert.ToInt32(nummargin.Value)) * 0.01).ToString("#,##0") + "원";
             }

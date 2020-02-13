@@ -80,7 +80,7 @@
             this.Search_Employees.ControlType = Team2_ERP.SearchUserControl.Mode.Employee;
             this.Search_Employees.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Search_Employees.Labelname = "출하지시자";
-            this.Search_Employees.Location = new System.Drawing.Point(443, 52);
+            this.Search_Employees.Location = new System.Drawing.Point(351, 41);
             this.Search_Employees.Name = "Search_Employees";
             this.Search_Employees.Size = new System.Drawing.Size(312, 25);
             this.Search_Employees.TabIndex = 6;
@@ -89,7 +89,7 @@
             // 
             this.Search_OrderPeriod.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Search_OrderPeriod.Labelname = "주문일자";
-            this.Search_OrderPeriod.Location = new System.Drawing.Point(73, 21);
+            this.Search_OrderPeriod.Location = new System.Drawing.Point(14, 41);
             this.Search_OrderPeriod.Name = "Search_OrderPeriod";
             this.Search_OrderPeriod.Size = new System.Drawing.Size(312, 25);
             this.Search_OrderPeriod.TabIndex = 4;
@@ -100,7 +100,7 @@
             this.Search_Customer.ControlType = Team2_ERP.SearchUserControl.Mode.Customer;
             this.Search_Customer.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Search_Customer.Labelname = "고객";
-            this.Search_Customer.Location = new System.Drawing.Point(73, 52);
+            this.Search_Customer.Location = new System.Drawing.Point(351, 10);
             this.Search_Customer.Name = "Search_Customer";
             this.Search_Customer.Size = new System.Drawing.Size(312, 25);
             this.Search_Customer.TabIndex = 3;
@@ -132,7 +132,7 @@
             // 
             this.Search_ShipmentIndexPeriod.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Search_ShipmentIndexPeriod.Labelname = "주문처리일자";
-            this.Search_ShipmentIndexPeriod.Location = new System.Drawing.Point(442, 21);
+            this.Search_ShipmentIndexPeriod.Location = new System.Drawing.Point(14, 10);
             this.Search_ShipmentIndexPeriod.Name = "Search_ShipmentIndexPeriod";
             this.Search_ShipmentIndexPeriod.Size = new System.Drawing.Size(312, 25);
             this.Search_ShipmentIndexPeriod.TabIndex = 7;
@@ -141,7 +141,7 @@
             // 
             this.Search_ShipmentRequiredDate.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Search_ShipmentRequiredDate.Labelname = "출하요청날짜";
-            this.Search_ShipmentRequiredDate.Location = new System.Drawing.Point(811, 21);
+            this.Search_ShipmentRequiredDate.Location = new System.Drawing.Point(14, 72);
             this.Search_ShipmentRequiredDate.Name = "Search_ShipmentRequiredDate";
             this.Search_ShipmentRequiredDate.Size = new System.Drawing.Size(312, 25);
             this.Search_ShipmentRequiredDate.TabIndex = 8;

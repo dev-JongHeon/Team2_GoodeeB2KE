@@ -11,16 +11,6 @@ namespace Team2_Shop.Controllers
         public ActionResult Index()
         {
             return View();
-        }
-
-        public ActionResult Login(string id, string pwd)
-        {
-            if (id == null || pwd == null)
-                return View("Index");
-            else
-
-
-                return View("Index");
-        }
+        }       
     }
 }

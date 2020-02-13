@@ -243,6 +243,7 @@
             this.txtSemiproductMoney.Name = "txtSemiproductMoney";
             this.txtSemiproductMoney.Size = new System.Drawing.Size(186, 21);
             this.txtSemiproductMoney.TabIndex = 1;
+            this.txtSemiproductMoney.Text = "0원";
             // 
             // label3
             // 

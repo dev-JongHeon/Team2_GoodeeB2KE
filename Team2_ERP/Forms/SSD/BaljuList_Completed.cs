@@ -44,11 +44,14 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_BaljuCompleted, "발주요청일시", "Balju_Date", true, 170);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "등록사원", "Employees_Name", true);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "수령일시", "Balju_ReceiptDate", true, 170);
+            UtilClass.AddNewColum(dgv_BaljuCompleted, "총액", "Total", true, 170);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "삭제여부", "Balju_DeletedYN", false);
             dgv_BaljuCompleted.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_BaljuCompleted.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
             dgv_BaljuCompleted.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_BaljuCompleted.Columns[5].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
+            dgv_BaljuCompleted.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv_BaljuCompleted.Columns[6].DefaultCellStyle.Format = "#,#0원";
             BaljuCompleted_AllList = service.GetBalju_CompletedList(); // 발주리스트 갱신
 
             UtilClass.SettingDgv(dgv_BaljuDetail);
@@ -162,24 +165,27 @@ namespace Team2_ERP
         {
             if (dgv_BaljuCompleted.Rows.Count > 0)
             {
-                BaljuCompletedReport br = new BaljuCompletedReport();
-                dsBalju ds = new dsBalju();
-
-                ds.Relations.Clear();
-                ds.Tables.Clear();
-                ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
-                ds.Tables.Add(UtilClass.ConvertToDataTable(BaljuDetail_AllList));
-                ds.Tables[0].TableName = "dtBalju";
-                ds.Tables[1].TableName = "dtBalju_Detail";
-                ds.Relations.Add("dtBalju_dtBalju_Detail", ds.Tables[0].Columns["Balju_ID"], ds.Tables[1].Columns["Balju_ID"]);
-
-                //ds.AcceptChanges();
-
-                br.DataSource = ds;
-                using (ReportPrintTool printTool = new ReportPrintTool(br))
+                using (WaitForm frm = new WaitForm())
                 {
-                    printTool.ShowRibbonPreviewDialog();
-                } 
+                    BaljuCompletedReport br = new BaljuCompletedReport();
+                    dsBalju ds = new dsBalju();
+
+                    ds.Relations.Clear();
+                    ds.Tables.Clear();
+                    ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+                    ds.Tables.Add(UtilClass.ConvertToDataTable(BaljuDetail_AllList));
+                    ds.Tables[0].TableName = "dtBalju";
+                    ds.Tables[1].TableName = "dtBalju_Detail";
+                    ds.Relations.Add("dtBalju_dtBalju_Detail", ds.Tables[0].Columns["Balju_ID"], ds.Tables[1].Columns["Balju_ID"]);
+
+                    //ds.AcceptChanges();
+
+                    br.DataSource = ds;
+                    using (ReportPrintTool printTool = new ReportPrintTool(br))
+                    {
+                        printTool.ShowRibbonPreviewDialog();
+                    }  
+                }
             }
         }
         #endregion

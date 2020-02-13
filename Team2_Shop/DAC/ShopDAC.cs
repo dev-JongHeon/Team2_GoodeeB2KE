@@ -5,16 +5,18 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Configuration;
+using Team2_Shop.Models;
 
-namespace Team2_DAC
+namespace Team2_Shop.DAC
 {
-    public class ShopDAC : ConnectionInfo
+    public class ShopDAC
     {
         SqlConnection conn = null;
         public ShopDAC()
         {
             conn = new SqlConnection();
-            conn.ConnectionString = this.ConnectionString;
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["WebDB"].ConnectionString;
         }
 
         // 오류가 난경우 로그를 기록하는 메서드
@@ -50,6 +52,37 @@ namespace Team2_DAC
         // 유저관련 -----------------------------
         // 로그인 관련 (로그인, 회원가입)
         // 프로필 관련 (주문내역, 배송조회)
+
+        public WebCustomerModel CheckUser(WebLoginModel loginInfo)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "proc_Web_LoginCheck";
+
+                    FillParameter(cmd, new string[] { "@UID", "@PWD" }, new object[] { loginInfo.UserID, loginInfo.UserPwd });
+
+                    conn.Open();
+                    List<WebCustomerModel> list = Helper.DataReaderMapToList<WebCustomerModel>(cmd.ExecuteReader());
+                    conn.Close();
+
+                    return list.Find(e => e.Customer_UserID.Equals(loginInfo.UserID, StringComparison.OrdinalIgnoreCase));
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteErrorLog(ex);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
 
         // 상품관련 ----------------------------
         // 상품목록

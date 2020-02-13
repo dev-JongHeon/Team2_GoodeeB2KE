@@ -111,7 +111,7 @@
             this.Search_Customer.ControlType = Team2_ERP.SearchUserControl.Mode.Customer;
             this.Search_Customer.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Search_Customer.Labelname = "고객ID";
-            this.Search_Customer.Location = new System.Drawing.Point(58, 14);
+            this.Search_Customer.Location = new System.Drawing.Point(349, 14);
             this.Search_Customer.Margin = new System.Windows.Forms.Padding(4);
             this.Search_Customer.Name = "Search_Customer";
             this.Search_Customer.Size = new System.Drawing.Size(401, 30);
@@ -122,20 +122,20 @@
             this.Search_OrderIndexPeriod.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Search_OrderIndexPeriod.ImeMode = System.Windows.Forms.ImeMode.On;
             this.Search_OrderIndexPeriod.Labelname = "주문일자";
-            this.Search_OrderIndexPeriod.Location = new System.Drawing.Point(58, 43);
+            this.Search_OrderIndexPeriod.Location = new System.Drawing.Point(13, 14);
             this.Search_OrderIndexPeriod.Margin = new System.Windows.Forms.Padding(4);
             this.Search_OrderIndexPeriod.Name = "Search_OrderIndexPeriod";
-            this.Search_OrderIndexPeriod.Size = new System.Drawing.Size(401, 30);
+            this.Search_OrderIndexPeriod.Size = new System.Drawing.Size(312, 30);
             this.Search_OrderIndexPeriod.TabIndex = 2;
             // 
             // Search_ShipmentPeriod
             // 
             this.Search_ShipmentPeriod.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Search_ShipmentPeriod.Labelname = "출하처리일자";
-            this.Search_ShipmentPeriod.Location = new System.Drawing.Point(404, 14);
+            this.Search_ShipmentPeriod.Location = new System.Drawing.Point(13, 47);
             this.Search_ShipmentPeriod.Margin = new System.Windows.Forms.Padding(4);
             this.Search_ShipmentPeriod.Name = "Search_ShipmentPeriod";
-            this.Search_ShipmentPeriod.Size = new System.Drawing.Size(401, 30);
+            this.Search_ShipmentPeriod.Size = new System.Drawing.Size(312, 30);
             this.Search_ShipmentPeriod.TabIndex = 3;
             // 
             // dgv_SalesStatus
@@ -194,6 +194,8 @@
             this.FormName = "매출현황";
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "SalesMainForm";
+            this.Activated += new System.EventHandler(this.SalesMainForm_Activated);
+            this.Deactivate += new System.EventHandler(this.SalesMainForm_Deactivate);
             this.Load += new System.EventHandler(this.SalesMainForm_Load);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
