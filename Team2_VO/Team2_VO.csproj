@@ -43,7 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CMG\BOMVO.cs" />
-    <Compile Include="CMG\CombinationVO.cs" />
     <Compile Include="CMG\CompanyVO.cs" />
     <Compile Include="CMG\CustomerVO.cs" />
     <Compile Include="CMG\FactoryVO.cs" />

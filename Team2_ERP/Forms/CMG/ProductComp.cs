@@ -56,19 +56,23 @@ namespace Team2_ERP
             StandardService service = new StandardService();
             if (mode.Equals("Insert"))
             {
+                //완제품의 모든 카테고리 목록 바인딩
                 List<ComboItemVO> productList = (from item in service.GetComboProductCategory() where item.ID.Contains("CP") select item).ToList();
                 UtilClass.ComboBinding(cboProductCategory, productList, "선택");
             }
             else
             {
+                //수정할 완제품의 카테고리만 바인딩
                 List<ComboItemVO> productList = (from item in service.GetComboProductCategory() where item.ID.Equals(pCategory) select item).ToList();
                 UtilClass.ComboBinding(cboProductCategory, productList);
             }
+            //반제품의 모든 카테고리 목록 바인딩
             List<ComboItemVO> categoryList = (from item in service.GetComboProductCategory() where item.ID.Contains("CS") select item).ToList();
             UtilClass.ComboBinding(cboSemiProductCategory, categoryList, "선택");
             CategoryLabelName(categoryList);
         }
 
+        //데이터그리드뷰 설정
         private void InitGridView()
         {
             UtilClass.SettingDgv(dgvProduct);
@@ -90,6 +94,7 @@ namespace Team2_ERP
             dgvProduct.DataSource = resourceList;
         }
 
+        //사용자컨트롤을 반제품 카테고리 수 만큼 생성하고 라벨 이름을 반제품 카테고리명으로 바꾸고 태그에 카테고리ID를 할당한다.
         private void CategoryLabelName(List<ComboItemVO> countList)
         {
             for (int i = 1; i < countList.Count; i++)
@@ -106,6 +111,7 @@ namespace Team2_ERP
             }
         }
 
+        //반제품의 개수를 수정하면 하단에 있는 단가를 수정한다.
         private void TotalPrice(object sender, EventArgs e)
         {
             int sum = 0;
@@ -125,6 +131,7 @@ namespace Team2_ERP
             }
         }
 
+        //수정할 때 수정하는 완제품의 이미지를 가져온다.
         private void GetImage()
         {
             StandardService service = new StandardService();
@@ -135,6 +142,7 @@ namespace Team2_ERP
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
+        //수정할 완제품의 조합데이터를 List에 받아서 사용자 컨트롤에 할당
         private void UpdateInfoLoad()
         {
             StandardService service = new StandardService();
@@ -175,11 +183,13 @@ namespace Team2_ERP
             lblOrigin.Visible = false;
             InitCombo();
             InitGridView();
+            //신규등록일 때 기본이미지를 PictureBox에 준다.
             if (mode.Equals("Insert"))
             {
                 pictureBox1.Image = pictureBox1.InitialImage;
                 pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             }
+            //수정일 때 수정하는 완제품의 이미지를 가져오고 완제품의 조합데이터를 가져온다.
             else
             {
                 GetImage();
@@ -189,9 +199,11 @@ namespace Team2_ERP
 
         private void cboCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //반제품의 목록을 선택 안했을 때
             if (cboSemiProductCategory.SelectedIndex < 1)
                 return;
 
+            //반제품의 목록이 아닌 다른것을 선택했을 때
             if (!cboSemiProductCategory.SelectedValue.ToString().Contains("CS"))
                 return;
 
@@ -200,6 +212,7 @@ namespace Team2_ERP
 
         private void InsertProduct()
         {
+            //이미지를 Byte 배열로 변환
             Cursor currentCursor = this.Cursor;
             this.Cursor = Cursors.WaitCursor;
             string localFile = pictureBox1.Tag.ToString().Replace("\\", "/");
@@ -220,7 +233,7 @@ namespace Team2_ERP
                 Product_Image = ImageData
             };
 
-            List<CombinationVO> citemList = new List<CombinationVO>();
+            List<BOMVO> citemList = new List<BOMVO>();
 
             foreach (Control control in splitContainer2.Panel1.Controls)
             {
@@ -228,7 +241,7 @@ namespace Team2_ERP
                 {
                     SemiProductCompControl spc = (SemiProductCompControl)control;
 
-                    CombinationVO citem = new CombinationVO
+                    BOMVO citem = new BOMVO
                     {
                         Combination_Product_ID = spc.TxtName.Tag.ToString(),
                         Combination_RequiredQty = Convert.ToInt32(spc.Qty.Value)
@@ -245,6 +258,7 @@ namespace Team2_ERP
 
         private void UpdateProduct()
         {
+            //이미지를 Byte배열로 변환
             Cursor currentCursor = this.Cursor;
             this.Cursor = Cursors.WaitCursor;
             string localFile = pictureBox1.Tag.ToString().Replace("\\", "/");
@@ -271,7 +285,7 @@ namespace Team2_ERP
                 Product_Category = cboProductCategory.SelectedValue.ToString()
             };
 
-            List<CombinationVO> citemList = new List<CombinationVO>();
+            List<BOMVO> citemList = new List<BOMVO>();
 
             foreach (Control control in splitContainer2.Panel1.Controls)
             {
@@ -279,7 +293,7 @@ namespace Team2_ERP
                 {
                     SemiProductCompControl spc = (SemiProductCompControl)control;
 
-                    CombinationVO citem = new CombinationVO
+                    BOMVO citem = new BOMVO
                     {
                         Combination_Product_ID = spc.TxtName.Tag.ToString(),
                         Combination_RequiredQty = Convert.ToInt32(spc.Qty.Value)
@@ -317,6 +331,7 @@ namespace Team2_ERP
 
         private void btnImageAdd_Click(object sender, EventArgs e)
         {
+            //찾아보기 버튼을 누를 때 이미지 확장자로만 선택할 수 있게 하고 이미지를 선택하면 PictureBox에 보인다.
             Cursor currentCursor = this.Cursor;
             try
             {
@@ -343,6 +358,7 @@ namespace Team2_ERP
             }
         }
 
+        //반제품을 선택하면 해당하는 반제품 카테고리 ID와 유저컨트롤 태그 ID를 비교해서 맞는 부분에 반제품 이름과 가격을 설정한다.
         private void dgvProduct_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > -1 && dgvProduct.SelectedRows.Count > 0)
@@ -353,30 +369,34 @@ namespace Team2_ERP
                     {
                         SemiProductCompControl spc = (SemiProductCompControl)control;
 
+                        //데이터그리드뷰에서 선택한 반제품 카테고리와 사용자 컨트롤 반제품 카테고리가 같을 때
                         if (spc.LblName.Tag.ToString() == dgvProduct.SelectedRows[0].Cells[2].Value.ToString())
                         {
+                            //사용자컨트롤에 아무정보가 없을 때
                             if (spc.TxtName.Tag == null)
                             {
-                                spc.TxtName.Text = dgvProduct.SelectedRows[0].Cells[0].Value.ToString();
-                                spc.TxtName.Tag = dgvProduct.SelectedRows[0].Cells[3].Value;
-                                spc.LblMoney.Text = Convert.ToInt32(dgvProduct.SelectedRows[0].Cells[1].Value).ToString("#,##0") + "원";
+                                spc.TxtName.Text = dgvProduct.SelectedRows[0].Cells[0].Value.ToString(); //제품이름
+                                spc.TxtName.Tag = dgvProduct.SelectedRows[0].Cells[3].Value; //제품ID
+                                spc.LblMoney.Text = Convert.ToInt32(dgvProduct.SelectedRows[0].Cells[1].Value).ToString("#,##0") + "원"; //제품가격
                                 spc.LblMoney.Tag = 1;
-                                spc.Qty.Tag = dgvProduct.SelectedRows[0].Cells[1].Value;
+                                spc.Qty.Tag = dgvProduct.SelectedRows[0].Cells[1].Value; //제품가격
                                 spc.Qty.Value += 1;
                             }
+                            //사용자컨트롤에 정보가 있을 때
                             else
                             {
+                                //데이터그리드뷰에서 선택한 반제품 ID와 사용자컨트롤에 있는 반제품의 ID가 같을 때
                                 if (spc.TxtName.Tag.ToString() == dgvProduct.SelectedRows[0].Cells[3].Value.ToString())
                                 {
                                     spc.Qty.Value += 1;
                                 }
                                 else
                                 {
-                                    spc.TxtName.Text = dgvProduct.SelectedRows[0].Cells[0].Value.ToString();
-                                    spc.TxtName.Tag = dgvProduct.SelectedRows[0].Cells[3].Value;
-                                    spc.LblMoney.Text = Convert.ToInt32(dgvProduct.SelectedRows[0].Cells[1].Value).ToString("#,##0") + "원";
+                                    spc.TxtName.Text = dgvProduct.SelectedRows[0].Cells[0].Value.ToString(); //제품이름
+                                    spc.TxtName.Tag = dgvProduct.SelectedRows[0].Cells[3].Value; //제품ID
+                                    spc.LblMoney.Text = Convert.ToInt32(dgvProduct.SelectedRows[0].Cells[1].Value).ToString("#,##0") + "원"; //제품가격
                                     spc.LblMoney.Tag = 2;
-                                    spc.Qty.Tag = dgvProduct.SelectedRows[0].Cells[1].Value;
+                                    spc.Qty.Tag = dgvProduct.SelectedRows[0].Cells[1].Value; //제품가격
                                     spc.Qty.Value = 0;
                                     spc.Qty.Value += 1;
                                 }
@@ -389,14 +409,18 @@ namespace Team2_ERP
 
         private void nummargin_ValueChanged(object sender, EventArgs e)
         {
+            //마진을 수정해도 원가정보는 변하지 않게 한다.
             lblOrigin.Text = Convert.ToInt32(txtProductMoney.Tag).ToString("#,##0") + "원";
 
+            //마진을 수정할 때
             if (nummargin.Value > 0 && txtProductMoney.Tag != null)
             {
+                //원가 + (원가 * 0.01)한 값을 가격에 보여준다.
                 txtProductMoney.Text = (Convert.ToInt32(txtProductMoney.Tag) + (Convert.ToInt32(txtProductMoney.Tag) * Convert.ToInt32(nummargin.Value)) * 0.01).ToString("#,##0") + "원";
             }
             else
             {
+                //원가를 가격에 보여준다.
                 txtProductMoney.Text = Convert.ToInt32(txtProductMoney.Tag).ToString("#,##0") + "원";
             }
         }

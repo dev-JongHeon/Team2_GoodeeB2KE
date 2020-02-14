@@ -209,13 +209,13 @@ namespace Team2_ERP.Service.CMG
             return dac.GetComboResourceCategory(div);
         }
 
-        public void InsertSemiProduct(ProductVO Pitem, List<CombinationVO> citemList, int count)
+        public void InsertSemiProduct(ProductVO Pitem, List<BOMVO> citemList, int count)
         {
             BOMDAC dac = new BOMDAC();
             dac.InsertSemiProduct(Pitem, citemList, count);
         }
 
-        public void UpdateSemiProduct(ProductVO Pitem, List<CombinationVO> citemList, int count)
+        public void UpdateSemiProduct(ProductVO Pitem, List<BOMVO> citemList, int count)
         {
             BOMDAC dac = new BOMDAC();
             dac.UpdateSemiProduct(Pitem, citemList, count);
@@ -227,13 +227,13 @@ namespace Team2_ERP.Service.CMG
             dac.DeleteSemiProduct(Pitem);
         }
 
-        public void InsertProduct(ProductVO Pitem, List<CombinationVO> citemList, int count)
+        public void InsertProduct(ProductVO Pitem, List<BOMVO> citemList, int count)
         {
             BOMDAC dac = new BOMDAC();
             dac.InsertProduct(Pitem, citemList, count);
         }
 
-        public void UpdateProduct(ProductVO Pitem, List<CombinationVO> citemList, int count)
+        public void UpdateProduct(ProductVO Pitem, List<BOMVO> citemList, int count)
         {
             BOMDAC dac = new BOMDAC();
             dac.UpdateProduct(Pitem, citemList, count);

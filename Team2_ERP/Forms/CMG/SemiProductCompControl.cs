@@ -38,21 +38,25 @@ namespace Team2_ERP
             InitializeComponent();
         }
 
-        //개수를 수정할 때 0보다 크면 해당하는 원자재 제품의 가격과 개수를 곱한다. 만약 개수가 0이면 0원으로 보여준다.
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
+            //제품의 이름이 없을 때
             if (txtName.Text != string.Empty)
             {
+                //제품의 개수가 0이상 일 때
                 if (numericUpDown1.Value > 0)
                 {
+                    //제품의 가격 * 제품의 개수
                     lblMoney.Text = (int.Parse(numericUpDown1.Tag.ToString()) * Convert.ToInt32(numericUpDown1.Value)).ToString("#,##0") + "원";
                 }
                 else
                 {
+                    //제품의 개수가 0이고 맨 처음 등록할 때
                     if (numericUpDown1.Value == 0 && lblMoney.Tag.ToString() == "1")
                     {
                         if (MessageBox.Show("상품을 삭제하시겠습니까?", "삭제", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
+                            //제품정보 삭제
                             lblMoney.Text = "";
                             lblMoney.Tag = null;
                             txtName.Clear();
@@ -61,9 +65,11 @@ namespace Team2_ERP
                         }
                         else
                         {
+                            //개수를 다시 1로 늘린다.
                             numericUpDown1.Value = 1;
                         }
                     }
+                    //제품의 개수가 0이고 맨 처음 등록이 아닐 때
                     else
                     {
                         lblMoney.Tag = 1;
@@ -71,6 +77,7 @@ namespace Team2_ERP
                     }
                 }
             }
+            //제품정보가 없는데 제품의 개수를 조정하려고 할 때
             else
             {
                 numericUpDown1.Value = 0;
