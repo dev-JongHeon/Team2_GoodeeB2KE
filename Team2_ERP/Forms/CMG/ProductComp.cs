@@ -53,7 +53,7 @@ namespace Team2_ERP
 
         private void InitCombo()
         {
-            StandardService service = new StandardService();
+            BOMService service = new BOMService();
             if (mode.Equals("Insert"))
             {
                 //완제품의 모든 카테고리 목록 바인딩
@@ -88,7 +88,7 @@ namespace Team2_ERP
 
         private void LoadGridView()
         {
-            StandardService service = new StandardService();
+            BOMService service = new BOMService();
             list = service.GetAllProduct();
             List<ProductVO> resourceList = (from item in list where item.Product_Category.Contains($"{cboSemiProductCategory.SelectedValue.ToString()}") select item).ToList();
             dgvProduct.DataSource = resourceList;
@@ -134,7 +134,7 @@ namespace Team2_ERP
         //수정할 때 수정하는 완제품의 이미지를 가져온다.
         private void GetImage()
         {
-            StandardService service = new StandardService();
+            BOMService service = new BOMService();
             List<ProductVO> productList = service.GetImage(pCode);
             filePath = productList[0].Product_Image;
             MemoryStream ms = new MemoryStream(filePath);
@@ -145,7 +145,7 @@ namespace Team2_ERP
         //수정할 완제품의 조합데이터를 List에 받아서 사용자 컨트롤에 할당
         private void UpdateInfoLoad()
         {
-            StandardService service = new StandardService();
+            BOMService service = new BOMService();
             list = service.GetAllProduct();
             productList = service.GetAllCombination($"'{pCode}'");
             foreach (Control control in splitContainer2.Panel1.Controls)
@@ -252,7 +252,7 @@ namespace Team2_ERP
                 }
             }
 
-            StandardService service = new StandardService();
+            BOMService service = new BOMService();
             service.InsertProduct(Pitem, citemList, count);
         }
 
@@ -304,7 +304,7 @@ namespace Team2_ERP
                 }
             }
 
-            StandardService service = new StandardService();
+            BOMService service = new BOMService();
             service.UpdateProduct(Pitem, citemList, count);
         }
 

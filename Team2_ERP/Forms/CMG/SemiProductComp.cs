@@ -49,7 +49,7 @@ namespace Team2_ERP
         //반제품 카테고리 목록을 가져오는 콤보 바인딩 메서드
         private void InitCombo()
         {
-            StandardService service = new StandardService();
+            BOMService service = new BOMService();
             if (mode.Equals("Insert"))
             {
                 List<ComboItemVO> categoryList = (from item in service.GetComboProductCategory() where item.ID.Contains("CS") select item).ToList();
@@ -84,7 +84,7 @@ namespace Team2_ERP
         // DataGridView 가져오기
         private void LoadGridView()
         {
-            StandardService service = new StandardService();
+            BOMService service = new BOMService();
             list = service.GetAllProduct();
             List<ProductVO> resourceList = (from item in list where item.Product_Category.Contains($"{cboCategoryDetail.SelectedValue.ToString()}") select item).ToList();
             dgvSemiProduct.DataSource = resourceList;
@@ -129,7 +129,7 @@ namespace Team2_ERP
         //수정할 반제품의 조합데이터를 List에 받아서 사용자 컨트롤에 할당
         private void UpdateInfoLoad()
         {
-            StandardService service = new StandardService();
+            BOMService service = new BOMService();
             list = service.GetAllProduct();
             List<BOMVO> productList = service.GetAllCombination($"'{pCode}'");
             foreach (Control control in splitContainer2.Panel1.Controls)
@@ -179,7 +179,7 @@ namespace Team2_ERP
             if (!cboCategory.SelectedValue.ToString().Contains("CS"))
                 return;
 
-            StandardService service = new StandardService();
+            BOMService service = new BOMService();
             if (mode.Equals("Insert"))
             {
                 List<ComboItemVO> resourceList = service.GetComboResourceCategory(cboCategory.SelectedValue.ToString());
@@ -234,7 +234,7 @@ namespace Team2_ERP
                 }
             }
 
-            StandardService service = new StandardService();
+            BOMService service = new BOMService();
             service.InsertSemiProduct(Pitem, citemList, splitContainer2.Panel1.Controls.Count);
         }
 
@@ -269,7 +269,7 @@ namespace Team2_ERP
                 }
             }
 
-            StandardService service = new StandardService();
+            BOMService service = new BOMService();
             service.UpdateSemiProduct(Pitem, citemList, splitContainer2.Panel1.Controls.Count);
         }
 

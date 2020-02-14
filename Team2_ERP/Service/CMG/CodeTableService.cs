@@ -39,5 +39,11 @@ namespace Team2_ERP.Service.CMG
             CodeTableDAC dac = new CodeTableDAC();
             return dac.DeleteCodeTable(code);
         }
+
+        public List<ComboItemVO> GetComboProductCategory()
+        {
+            BOMDAC dac = new BOMDAC();
+            return dac.GetComboProductCategory();
+        }
     }
 }

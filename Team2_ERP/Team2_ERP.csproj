@@ -586,6 +586,7 @@
     <Compile Include="Reports\BaljuReport.Designer.cs">
       <DependentUpon>BaljuReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Service\CMG\BOMService.cs" />
     <Compile Include="Service\KJH\AuthService.cs" />
     <Compile Include="Service\KJH\DefectiveHandleService.cs" />
     <Compile Include="Service\KJH\ExcelService.cs" />
