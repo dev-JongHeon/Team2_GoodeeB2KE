@@ -32,7 +32,6 @@
             this.lblFairName = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cboDowntime = new System.Windows.Forms.ComboBox();
-            this.btnSelect = new System.Windows.Forms.Button();
             this.lblDowntimeName = new System.Windows.Forms.Label();
             this.btnToggle = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
@@ -71,33 +70,24 @@
             this.cboDowntime.FormattingEnabled = true;
             this.cboDowntime.Location = new System.Drawing.Point(19, 176);
             this.cboDowntime.Name = "cboDowntime";
-            this.cboDowntime.Size = new System.Drawing.Size(285, 39);
+            this.cboDowntime.Size = new System.Drawing.Size(355, 39);
             this.cboDowntime.TabIndex = 2;
-            // 
-            // btnSelect
-            // 
-            this.btnSelect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSelect.Location = new System.Drawing.Point(327, 175);
-            this.btnSelect.Name = "btnSelect";
-            this.btnSelect.Size = new System.Drawing.Size(119, 39);
-            this.btnSelect.TabIndex = 3;
-            this.btnSelect.Text = "선택";
-            this.btnSelect.UseVisualStyleBackColor = true;
-            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
+            this.cboDowntime.SelectedIndexChanged += new System.EventHandler(this.cboDowntime_SelectedIndexChanged);
             // 
             // lblDowntimeName
             // 
             this.lblDowntimeName.AutoSize = true;
-            this.lblDowntimeName.Location = new System.Drawing.Point(12, 233);
+            this.lblDowntimeName.Location = new System.Drawing.Point(202, 67);
             this.lblDowntimeName.Name = "lblDowntimeName";
             this.lblDowntimeName.Size = new System.Drawing.Size(172, 31);
             this.lblDowntimeName.TabIndex = 4;
             this.lblDowntimeName.Text = "비가동 유형명";
+            this.lblDowntimeName.Visible = false;
             // 
             // btnToggle
             // 
             this.btnToggle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnToggle.Location = new System.Drawing.Point(19, 293);
+            this.btnToggle.Location = new System.Drawing.Point(19, 246);
             this.btnToggle.Name = "btnToggle";
             this.btnToggle.Size = new System.Drawing.Size(165, 62);
             this.btnToggle.TabIndex = 5;
@@ -108,7 +98,7 @@
             // btnClose
             // 
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Location = new System.Drawing.Point(281, 293);
+            this.btnClose.Location = new System.Drawing.Point(208, 246);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(165, 62);
             this.btnClose.TabIndex = 6;
@@ -121,11 +111,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(458, 386);
+            this.ClientSize = new System.Drawing.Size(403, 337);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnToggle);
             this.Controls.Add(this.lblDowntimeName);
-            this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.cboDowntime);
             this.Controls.Add(this.lblFairName);
             this.Controls.Add(this.label3);
@@ -148,7 +137,6 @@
         private System.Windows.Forms.Label lblFairName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cboDowntime;
-        private System.Windows.Forms.Button btnSelect;
         private System.Windows.Forms.Label lblDowntimeName;
         private System.Windows.Forms.Button btnToggle;
         private System.Windows.Forms.Button btnClose;

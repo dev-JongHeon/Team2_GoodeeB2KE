@@ -14,6 +14,8 @@ namespace Team2_Machine
     public class ServerMachine
     {
         TcpListener listener;
+        string lineID;
+        ClientInfo clientInfo;
 
         public ServerMachine()
         {
@@ -28,6 +30,7 @@ namespace Team2_Machine
         {
             listener = new TcpListener(IPAddress.Any, 5000);
             listener.Start();
+            clientInfo = new ClientInfo();
 
             while (true)
             {
@@ -73,11 +76,9 @@ namespace Team2_Machine
 
                         // 접속 정보를 담음
                         if (Convert.ToInt32(workList[0]) == 0)
-                        {
-                            Console.WriteLine($"{DateTime.Now.ToString("yyyymmdd HH:MM:ss")} 클라이언트 접속 \n접속공정 - {Convert.ToInt32(workList[1])}");
-
-                            ClientInfo info = new ClientInfo();
-                            info.SetClient(client, Convert.ToInt32(workList[1]), Convert.ToBoolean(workList[2]));
+                        {                            
+                            Console.WriteLine($"{DateTime.Now.ToString("yyyymmdd HH:MM:ss")} 클라이언트 접속 \n접속공정 - {Convert.ToInt32(workList[1])}");                            
+                            clientInfo.SetClient(client, Convert.ToInt32(workList[1]), Convert.ToBoolean(workList[2]));
                         }
                         else if (Convert.ToInt32(workList[0]) == 1)
                         {
@@ -89,11 +90,14 @@ namespace Team2_Machine
                                 isCompleted = false;
                             }
 
-                            string lineID = workList[4];
+                            lineID = workList[4];
                             // 최초 : 라인아이디(0), 메세지(1), 성공여부(2)
                             Write(stream, new object[] { lineID, msg, isCompleted });
 
                             OperationMachine machine = new OperationMachine();
+
+                            machine.MsgSender += new MessageEventHandler(RecieveMonitor);
+                            machine.LineID = int.Parse(lineID);
                             machine.PerformanceID = workList[1];
                             machine.RequestQty = Convert.ToInt32(workList[2]);
                             int totalQty = machine.ProductionMachine();
@@ -117,10 +121,12 @@ namespace Team2_Machine
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 Console.WriteLine(ex.Message);
             }
             finally
             {
+                clientInfo.DeleteClient(Convert.ToInt32(lineID));
                 stream.Close();
                 client.Close();
                 Console.WriteLine($"{DateTime.Now.ToString("yyyymmdd HH:MM:ss")} 클라이언트 접속해제");
@@ -148,7 +154,34 @@ namespace Team2_Machine
             }
             catch (Exception ex)
             {
-                string msg = ex.Message;
+                WriteErrorLog(ex);
+            }
+        }
+
+        // 모니터링 화면에 메세지를 보내는 함수
+        public void RecieveMonitor(object sender, MessageEventArgs e)
+        {
+            try
+            {
+                string msg = e.Message;
+
+                if (e.Message.Length > 1)
+                {
+
+                    List<ClientInfo> list = clientInfo.GetClient();
+                    ClientInfo client = list.Find(c => c.Line == false);
+
+                    // 라인아이디, 생산총 개수, 투입개수 , 성공수량, 실패수량
+                    StreamWriter writer = new StreamWriter(client.ClientData.GetStream());
+                    //writer.AutoFlush = true;
+                    writer.Write(msg);
+                    writer.Flush();
+                }
+
+            }
+            catch(Exception ex)
+            {
+                WriteErrorLog(ex);
             }
         }
        
@@ -161,12 +194,7 @@ namespace Team2_Machine
 
         private void WriteErrorLog(Exception ex)
         {
-
-        }
-
-        private void WriteLog(string log)
-        {
-            string logTxt = string.Concat(DateTime.UtcNow.ToString("yyyyMMdd HH:mm:ss"), log);
+            Program.Log.WriteError(ex.Message, ex);
         }
     }
 }

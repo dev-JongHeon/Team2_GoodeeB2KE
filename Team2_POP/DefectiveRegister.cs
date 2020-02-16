@@ -49,7 +49,7 @@ namespace Team2_POP
             Service service = new Service();
 
             List<ComboItemVO> list = service.GetDefectiveCode();
-            
+
             UtilClass.ComboBinding(cboDefectiveName, list.FindAll(c => c.CodeType.Contains("Defec")), "불량유형 선택");
             UtilClass.ComboBinding(cboHandle, list.FindAll(c => c.CodeType.Contains("Handle")), "불량처리유형 선택");
 
@@ -61,11 +61,11 @@ namespace Team2_POP
             List<string> listDefective = service.GetDefective(Performance_ID);
 
             UtilClass.ComboBinding(cboDefItem, listDefective, "코드 선택");
-            
+
             #endregion
         }
 
-        private void Save()
+        private bool Save()
         {
             StringBuilder msg = new StringBuilder();
 
@@ -82,25 +82,27 @@ namespace Team2_POP
             {
                 CustomMessageBox.ShowDialog(Properties.Resources.MsgDefectiveValidate, msg.ToString(), MessageBoxIcon.Warning, MessageBoxButtons.OK);
                 ResetData();
-                return;
+                return false;
             }
 
             string defectiveID = lblDefItem.Text;                    // 불량번호
             string defecCode = lblDefectiveName.Tag.ToString();      // 불량유형코드
             string handleCode = lblHandle.Tag.ToString();            // 불량처리코드
-                
+
 
             bool bResult = new Service().SetDefective(defectiveID, handleCode, defecCode);
-            if(bResult) // 성공한 경우
+            if (bResult) // 성공한 경우
                 CustomMessageBox.ShowDialog(Properties.Resources.MsgDefectiveResultSucceesHeader
-                    ,string.Format(Properties.Resources.MsgDefectiveResultSucceesContents, defectiveID, lblDefectiveName.Text, lblHandle.Text)
+                    , string.Format(Properties.Resources.MsgDefectiveResultSucceesContents, defectiveID, lblDefectiveName.Text, lblHandle.Text)
                     , MessageBoxIcon.Question);
 
             else // 실패한 경우
             {
                 CustomMessageBox.ShowDialog(Properties.Resources.MsgDefectiveResultFailHeader
-                    ,string.Format(Properties.Resources.MsgDefectiveResultFailContents, defectiveID) , MessageBoxIcon.Error);
+                    , string.Format(Properties.Resources.MsgDefectiveResultFailContents, defectiveID), MessageBoxIcon.Error);
             }
+
+            return bResult;
         }
 
         // 데이터 초기화해주는 함수
@@ -122,8 +124,8 @@ namespace Team2_POP
         //저장을 누를때
         private void btnSave_Click(object sender, EventArgs e)
         {
-            Save();
-            DialogResult = DialogResult.OK;
+            if (Save())
+                DialogResult = DialogResult.OK;
         }
 
         // 계속 저장 누를때
@@ -136,8 +138,8 @@ namespace Team2_POP
         #region 버튼 이벤트
         private void btnDefProSelect_Click(object sender, EventArgs e)
         {
-            if(cboDefItem.SelectedIndex != 0)
-            lblDefItem.Text = cboDefItem.Text;
+            if (cboDefItem.SelectedIndex != 0)
+                lblDefItem.Text = cboDefItem.Text;
         }
 
         private void btnDefNameSelect_Click(object sender, EventArgs e)
@@ -159,5 +161,38 @@ namespace Team2_POP
         }
         #endregion
 
+        private void cboDefItem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboDefItem.SelectedIndex != 0)
+                lblDefItem.Text = cboDefItem.Text;
+        }
+
+        private void cboDefectiveName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboDefectiveName.SelectedIndex != 0)
+            {
+                lblDefectiveName.Tag = cboDefectiveName.SelectedValue.ToString();
+                lblDefectiveName.Text = cboDefectiveName.Text;
+            }
+            else
+            {
+                lblDefectiveName.Tag = null;
+                lblDefectiveName.Text = cboDefectiveName.Text;
+            }
+        }
+
+        private void cboHandle_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboHandle.SelectedIndex != 0)
+            {
+                lblHandle.Tag = cboHandle.SelectedValue.ToString();
+                lblHandle.Text = cboHandle.Text;
+            }
+            else
+            {
+                lblHandle.Tag = null;
+                lblHandle.Text = cboHandle.Text;
+            }
+        }
     }
 }

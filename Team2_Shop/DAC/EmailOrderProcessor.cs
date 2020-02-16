@@ -62,7 +62,6 @@ namespace Team2_Shop.DAC
                     .AppendLine()
                     .AppendLine("---")
                     .AppendLine("배송지정보:")
-                    .AppendLine(orderInfo.Name)
                     .AppendLine(orderInfo.Addr1)
                     .AppendLine(orderInfo.Addr2 ?? "")
                     .AppendLine(orderInfo.Message ?? "")
