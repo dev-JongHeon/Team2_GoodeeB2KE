@@ -30,18 +30,15 @@
         {
             this.btnSave = new System.Windows.Forms.Button();
             this.lblDefItem = new System.Windows.Forms.Label();
-            this.btnDefProSelect = new System.Windows.Forms.Button();
             this.cboDefItem = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblPerformance = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.cboDefectiveName = new System.Windows.Forms.ComboBox();
-            this.btnDefNameSelect = new System.Windows.Forms.Button();
             this.lblDefectiveName = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.cboHandle = new System.Windows.Forms.ComboBox();
-            this.btnHandle = new System.Windows.Forms.Button();
             this.lblHandle = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSaveAs = new System.Windows.Forms.Button();
@@ -66,17 +63,7 @@
             this.lblDefItem.Size = new System.Drawing.Size(197, 31);
             this.lblDefItem.TabIndex = 10;
             this.lblDefItem.Text = "선택된 불량품목";
-            // 
-            // btnDefProSelect
-            // 
-            this.btnDefProSelect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDefProSelect.Location = new System.Drawing.Point(340, 175);
-            this.btnDefProSelect.Name = "btnDefProSelect";
-            this.btnDefProSelect.Size = new System.Drawing.Size(104, 39);
-            this.btnDefProSelect.TabIndex = 2;
-            this.btnDefProSelect.Text = "선택";
-            this.btnDefProSelect.UseVisualStyleBackColor = true;
-            this.btnDefProSelect.Click += new System.EventHandler(this.btnDefProSelect_Click);
+            this.lblDefItem.Visible = false;
             // 
             // cboDefItem
             // 
@@ -87,6 +74,7 @@
             this.cboDefItem.Name = "cboDefItem";
             this.cboDefItem.Size = new System.Drawing.Size(293, 39);
             this.cboDefItem.TabIndex = 1;
+            this.cboDefItem.SelectedIndexChanged += new System.EventHandler(this.cboDefItem_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -137,17 +125,7 @@
             this.cboDefectiveName.Name = "cboDefectiveName";
             this.cboDefectiveName.Size = new System.Drawing.Size(293, 39);
             this.cboDefectiveName.TabIndex = 4;
-            // 
-            // btnDefNameSelect
-            // 
-            this.btnDefNameSelect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDefNameSelect.Location = new System.Drawing.Point(340, 335);
-            this.btnDefNameSelect.Name = "btnDefNameSelect";
-            this.btnDefNameSelect.Size = new System.Drawing.Size(104, 39);
-            this.btnDefNameSelect.TabIndex = 5;
-            this.btnDefNameSelect.Text = "선택";
-            this.btnDefNameSelect.UseVisualStyleBackColor = true;
-            this.btnDefNameSelect.Click += new System.EventHandler(this.btnDefNameSelect_Click);
+            this.cboDefectiveName.SelectedIndexChanged += new System.EventHandler(this.cboDefectiveName_SelectedIndexChanged);
             // 
             // lblDefectiveName
             // 
@@ -157,6 +135,7 @@
             this.lblDefectiveName.Size = new System.Drawing.Size(197, 31);
             this.lblDefectiveName.TabIndex = 6;
             this.lblDefectiveName.Text = "선택된 불량유형";
+            this.lblDefectiveName.Visible = false;
             // 
             // label7
             // 
@@ -177,17 +156,7 @@
             this.cboHandle.Name = "cboHandle";
             this.cboHandle.Size = new System.Drawing.Size(293, 39);
             this.cboHandle.TabIndex = 7;
-            // 
-            // btnHandle
-            // 
-            this.btnHandle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHandle.Location = new System.Drawing.Point(340, 493);
-            this.btnHandle.Name = "btnHandle";
-            this.btnHandle.Size = new System.Drawing.Size(104, 39);
-            this.btnHandle.TabIndex = 8;
-            this.btnHandle.Text = "선택";
-            this.btnHandle.UseVisualStyleBackColor = true;
-            this.btnHandle.Click += new System.EventHandler(this.btnHandle_Click);
+            this.cboHandle.SelectedIndexChanged += new System.EventHandler(this.cboHandle_SelectedIndexChanged);
             // 
             // lblHandle
             // 
@@ -197,6 +166,7 @@
             this.lblHandle.Size = new System.Drawing.Size(255, 31);
             this.lblHandle.TabIndex = 9;
             this.lblHandle.Text = "선택된 불량 처리유형";
+            this.lblHandle.Visible = false;
             // 
             // btnClose
             // 
@@ -231,13 +201,10 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lblHandle);
             this.Controls.Add(this.lblDefectiveName);
-            this.Controls.Add(this.btnHandle);
             this.Controls.Add(this.lblDefItem);
             this.Controls.Add(this.cboHandle);
-            this.Controls.Add(this.btnDefNameSelect);
             this.Controls.Add(this.cboDefectiveName);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.btnDefProSelect);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cboDefItem);
             this.Controls.Add(this.label2);
@@ -259,18 +226,15 @@
 
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label lblDefItem;
-        private System.Windows.Forms.Button btnDefProSelect;
         private System.Windows.Forms.ComboBox cboDefItem;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblPerformance;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cboDefectiveName;
-        private System.Windows.Forms.Button btnDefNameSelect;
         private System.Windows.Forms.Label lblDefectiveName;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cboHandle;
-        private System.Windows.Forms.Button btnHandle;
         private System.Windows.Forms.Label lblHandle;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSaveAs;

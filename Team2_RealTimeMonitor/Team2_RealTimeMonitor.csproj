@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,25 +49,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LineState.cs">
+    <Compile Include="CircleProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CircleProgressBar.Designer.cs">
+      <DependentUpon>CircleProgressBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoggingUtility.cs" />
+    <Compile Include="RealTimeLineState.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LineState.designer.cs">
-      <DependentUpon>LineState.cs</DependentUpon>
+    <Compile Include="RealTimeLineState.Designer.cs">
+      <DependentUpon>RealTimeLineState.cs</DependentUpon>
     </Compile>
-    <Compile Include="Monitor.cs">
+    <Compile Include="LineMonitorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Monitor.designer.cs">
-      <DependentUpon>Monitor.cs</DependentUpon>
+    <Compile Include="LineMonitorControl.Designer.cs">
+      <DependentUpon>LineMonitorControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="LineState.resx">
-      <DependentUpon>LineState.cs</DependentUpon>
+    <Compile Include="Service.cs" />
+    <EmbeddedResource Include="CircleProgressBar.resx">
+      <DependentUpon>CircleProgressBar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Monitor.resx">
-      <DependentUpon>Monitor.cs</DependentUpon>
+    <EmbeddedResource Include="RealTimeLineState.resx">
+      <DependentUpon>RealTimeLineState.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LineMonitorControl.resx">
+      <DependentUpon>LineMonitorControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -74,7 +88,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -89,10 +105,23 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Team2_DAC\Team2_DAC.csproj">
+      <Project>{4E16EA1B-F52F-44C3-BD77-B6A353A93901}</Project>
+      <Name>Team2_DAC</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Team2_VO\Team2_VO.csproj">
       <Project>{fadad5a8-d7be-466a-a7e0-679c91bb281c}</Project>
       <Name>Team2_VO</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_Circle_Green_34211.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_Circle_Red_34214.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_Circle_Yellow_34215.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

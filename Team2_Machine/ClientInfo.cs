@@ -10,20 +10,23 @@ namespace Team2_Machine
     // 클라이언트들이 모여있는 클래스
     public class ClientInfo
     {
+        public bool Line { get { return IsLine; } }
+        public TcpClient ClientData { get { return Client; } }
+
         List<ClientInfo> list = new List<ClientInfo>();
         TcpClient Client;
-        bool IsBoard;
+        bool IsLine;
         int ID;
 
         public ClientInfo()
-        {           
+        {
         }
 
         public void SetClient(TcpClient client, int ID, bool isBaord)
         {
             ClientInfo info = new ClientInfo();
             info.Client = client;
-            info.IsBoard = isBaord;
+            info.IsLine = isBaord;
             info.ID = ID;
             list.Add(info);
         }

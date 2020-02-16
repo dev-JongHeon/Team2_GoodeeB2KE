@@ -52,11 +52,7 @@ namespace Team2_POP
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
-           if(cboDowntime.SelectedIndex > 0)
-            {
-                lblDowntimeName.Text = cboDowntime.Text;
-                lblDowntimeName.Tag = cboDowntime.SelectedValue;
-            }
+          
         }
 
         private void btnToggle_Click(object sender, EventArgs e)
@@ -76,6 +72,20 @@ namespace Team2_POP
             else
             {
                 CustomMessageBox.ShowDialog("비가동 전환오류", "비가동 유형을 선택해주세요.", MessageBoxIcon.Warning, MessageBoxButtons.OK);
+            }
+        }
+
+        private void cboDowntime_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboDowntime.SelectedIndex > 0)
+            {
+                lblDowntimeName.Text = cboDowntime.Text;
+                lblDowntimeName.Tag = cboDowntime.SelectedValue;
+            }
+            else
+            {
+                lblDowntimeName.Text = cboDowntime.Text;
+                lblDowntimeName.Tag = null;
             }
         }
     }
