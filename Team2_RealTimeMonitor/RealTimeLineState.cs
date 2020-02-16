@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -27,6 +28,12 @@ namespace Team2_RealTimeMonitor
         {
             InitializeComponent();
         }
+
+        /*----------------
+         - SettingControl : 컨트롤 디자인, 프로퍼티 설정
+         - InitData : 데이터 바인딩
+         - 
+        ---------------- */ 
 
         private void RealTimeLineState_Load(object sender, EventArgs e)
         {
@@ -86,14 +93,16 @@ namespace Team2_RealTimeMonitor
 
                 netStream = client.GetStream();
 
+                // 서버에 접속
                 string msg = string.Join(",", new object[] { 0, 100, false });
                 StreamWriter writer = new StreamWriter(netStream);
                 writer.Write(msg);
                 writer.Flush();
 
+                // 0.5초마다 생산되는 부분이 있으면 읽음
                 timer = new System.Timers.Timer();
                 timer.AutoReset = true;
-                timer.Interval = 1000;
+                timer.Interval = 500;
                 timer.Elapsed += Timer_Elapsed;
 
                 timer.Enabled = true;
@@ -146,13 +155,18 @@ namespace Team2_RealTimeMonitor
 
                 string[] msg = Encoding.UTF8.GetString(buff, 0, nbytes).Split(',');
 
-                if (msg.Length > 1)
+                if (msg.Length > 0)
                 {
-                    foreach (Control control in this.Controls)
+                    msg.ToList().ForEach(m => Debug.WriteLine(m));
+
+                    foreach (Control control in Controls)
                     {
                         if (control is LineMonitorControl)
                         {
                             LineMonitorControl lineMonitor = (LineMonitorControl)control;
+
+                            Debug.WriteLine( $"태그값 : {lineMonitor.Tag}");
+
                             if (lineMonitor.Tag.ToString() == msg[0])
                             {
                                 lineMonitor.LabelRequestText = msg[1];
@@ -164,10 +178,11 @@ namespace Team2_RealTimeMonitor
                                     lineMonitor.PictureStateImage = Properties.Resources.Img_CircleYellow;
                                 else
                                     lineMonitor.PictureStateImage = Properties.Resources.Img_CircleGreen;
-
+                                
                                 lineMonitor.CircleProgress.Value = (int.Parse(lineMonitor.LabelProduceText) / int.Parse(lineMonitor.LabelRequestText)) * 100;
 
-
+                                
+                                Debug.WriteLine( $" 서클 값 : {lineMonitor.CircleProgress.Value}");
 
                                 break;
                             }
