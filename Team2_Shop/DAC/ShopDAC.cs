@@ -87,7 +87,57 @@ namespace Team2_Shop.DAC
         // 상품관련 ----------------------------
         // 상품목록
 
-        
 
+        // 주문관련
+        // 주문테이블, 주문상세 테이블 삽입하는 코드
+        public bool CheckOut(Cart cart, ShipInfo shipInfo)
+        {
+            int iResult = 0;
+            conn.Open();
+            SqlTransaction sTrans = conn.BeginTransaction();
+
+            try
+            {
+                // 주문을 삽입하는 코드
+                using (SqlCommand orderCmd = new SqlCommand())
+                {
+                    orderCmd.Connection = conn;
+                    orderCmd.Transaction = sTrans;
+                    orderCmd.CommandText = "proc_InsertOrder";
+                    orderCmd.CommandType = CommandType.StoredProcedure;
+
+                    FillParameter(orderCmd, new string[] { "@CustomerID", "@Addr1", "@Addr2" }, new object[] { shipInfo.CustomerID, shipInfo.Addr1, shipInfo.Addr2 });
+
+                    string orderID =  orderCmd.ExecuteScalar().ToString();
+
+                    // 주문 상세 삽입코드
+                    for (int i = 0; i < cart.Lines.Count; i++)
+                    {
+                        using(SqlCommand detailCmd = new SqlCommand())
+                        {
+                            detailCmd.Connection = conn;
+                            detailCmd.Transaction = sTrans;
+                            detailCmd.CommandText = "INSERT INTO OrderDetail(Order_ID, Product_ID, OrderDetail_Qty) VALUES (@OrdID, @PrdID, @Qty)";
+
+                            FillParameter(detailCmd, new string[] { "@OrdID", "@PrdID", "@Qty" }, new object[] { orderID, cart.Lines[i].Product.Product_ID, cart.Lines[i].Qty });
+
+                            iResult += detailCmd.ExecuteNonQuery();
+                        }
+                    }
+                }
+                sTrans.Commit();
+                return iResult > 0;
+            }
+            catch (Exception ex)
+            {
+                sTrans.Rollback();
+                WriteErrorLog(ex);
+                return iResult > 0;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }

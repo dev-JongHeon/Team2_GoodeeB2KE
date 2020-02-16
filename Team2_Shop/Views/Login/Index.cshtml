@@ -31,8 +31,11 @@
     <![endif]-->
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    
 </head>
 <body class="hold-transition login-page">
+
+
     <div class="login-box">
         <div class="login-logo">
             <a href="../../index2.html"><b>구디B2KE</b> Shop</a>
@@ -40,8 +43,8 @@
         <!-- /.login-logo -->
         <div class="login-box-body">
             <p class="login-box-msg">아이디 비밀번호를 입력해주세요.</p>
-            
-            
+
+
             <form action="~/Login/Login" method="post">
                 <div class="form-group has-feedback">
                     @Html.EditorFor(m => m.UserID, new { htmlAttributes = new { @class = "form-control", placeholder = "아이디" } })
@@ -52,7 +55,7 @@
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
                 <div class="row">
-                    <div class="col-xs-8">                        
+                    <div class="col-xs-8">
                     </div>
                     <!-- /.col -->
                     <div class="col-xs-4">
@@ -63,8 +66,8 @@
             </form>
 
 
-            <div class="social-auth-links text-center">               
-                
+            <div class="social-auth-links text-center">
+
             </div>
             <!-- /.social-auth-links -->
 
@@ -82,7 +85,7 @@
     <!-- iCheck -->
     <script src="~/plugins/iCheck/icheck.min.js"></script>
     <script>
-    $(function () {
+        $(function () {
             $('input').iCheck({
                 checkboxClass: 'icheckbox_square-blue',
                 radioClass: 'iradio_square-blue',

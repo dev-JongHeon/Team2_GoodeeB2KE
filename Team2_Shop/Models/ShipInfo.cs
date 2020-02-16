@@ -12,6 +12,8 @@ namespace Team2_Shop.Models
         [Display(Name = "이름")]
         public string Name { get; set; }
 
+        public int CustomerID { get; set; }
+
         [Required(ErrorMessage = "주소1을 입력해주세요.")]
         [Display(Name = "주소1")]
         public string Addr1 { get; set; }

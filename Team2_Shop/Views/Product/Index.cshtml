@@ -13,6 +13,7 @@
         @Html.Partial("ProductSummary", p)
     </div>
 }
+
 <div class="btn-group pull-right">
-    @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x}))
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x }))
 </div>

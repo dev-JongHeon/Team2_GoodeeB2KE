@@ -48,6 +48,18 @@ namespace Team2_Shop.Controllers
 
         public ActionResult Checkout()
         {
+            Cart cart = GetCart();
+            if (cart.Lines.Count() == 0)
+            {
+                return RedirectToAction("Index", "Product");
+            }
+
+            if (Session["UserInfo"] == null)
+            {
+                ViewBag.Message = "로그인정보가 없어 로그인 페이지로 이동합니다.";
+                return RedirectToAction("Index", "Login");
+            }
+
             return View();
         }
 
@@ -61,15 +73,28 @@ namespace Team2_Shop.Controllers
                 ModelState.AddModelError("", "장바구니가 비었습니다.");
             }
 
+
             if (ModelState.IsValid) //유효성검사
             {
                 //입력받은 배송정보로 주문완료 메일을 발송
-                EmailOrderProcessor order = new EmailOrderProcessor(new EmailSettings());
-                order.ProcessOrder(cart, info);
-                //장바구니 비워주기
-                cart.Clear();
-                return View("Completed");
-            }
+                //EmailOrderProcessor order = new EmailOrderProcessor(new EmailSettings());
+                //order.ProcessOrder(cart, info);
+
+                info.CustomerID = ((WebCustomerModel)Session["UserInfo"]).Customer_ID;
+
+                Service service = new Service();
+                bool bResult =  service.CheckOut(cart, info);
+
+                // 주문에 성공한 경우
+                if (bResult)
+                {
+                    //장바구니 비워주기
+                    cart.Clear();
+                    return View("Completed");
+                }
+
+                return View(info);
+            }            
             else
             {
                 return View(info);
@@ -85,6 +110,19 @@ namespace Team2_Shop.Controllers
                 Session["Cart"] = cart;
             }
             return cart;
+        }
+
+        public ActionResult IsCart(string productId, string returnUrl, string productName)
+        {
+
+            ProductUrl product = new ProductUrl
+            {
+                Product_ID = productId,
+                Product_Name = productName,
+                Return_Url = returnUrl
+            };
+
+            return PartialView("../Product/ProductModal", product);
         }
     }
 }

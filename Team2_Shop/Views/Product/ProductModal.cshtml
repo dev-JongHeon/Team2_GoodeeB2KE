@@ -1,1 +1,35 @@
-﻿
+﻿@model Team2_Shop.Models.ProductUrl
+
+
+@using (Html.BeginForm("AddToCart", "Cart"))
+{
+    <div class="modal fade" id="modal-check">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">장바구니 추가여부</h4>
+                </div>
+                <div class="modal-body text-center">
+                       @Html.Hidden("returnUrl", Model.Return_Url)
+                       @Html.Hidden("productId", Model.Product_ID)
+                    <b>@Model.Product_Name</b>를<br />
+                    장바구니에 추가하시겠습니까?
+                </div>
+                <div class="modal-footer">
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-block btn-primary pull-left">장바구니 추가</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-block btn-default pull-right" data-dismiss="modal">닫기</button>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+}
