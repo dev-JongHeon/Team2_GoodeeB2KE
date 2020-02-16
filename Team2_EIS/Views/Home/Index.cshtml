@@ -1,6 +1,38 @@
-﻿@{
+﻿@model Team2_EIS.Models.EISInfo
+@using System.Data
+@using System.Text;
+@using System.Globalization
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    StringBuilder sb = new StringBuilder();
+    StringBuilder sb2 = new StringBuilder();
+    StringBuilder sb3 = new StringBuilder();
+    foreach (DataRow row in Model.info.Tables["midline"].Rows)
+    {
+        sb.Append($"{row["name"]},");
+        sb2.Append($"{row["success"]},");
+        sb3.Append($"{row["fail"]},");
+    }
+    string lines = sb.ToString().TrimEnd(',');
+    string success = sb2.ToString().TrimEnd(',');
+    string fail = sb3.ToString().TrimEnd(',');
+
+    StringBuilder name = new StringBuilder();
+    StringBuilder qty = new StringBuilder();
+    foreach (DataRow row in Model.info.Tables["midtop5"].Rows)
+    {
+        name.Append($"{row["name"]},");
+        qty.Append($"{row["qty"]},");
+    }
+    string[] names = name.ToString().TrimEnd(',').Split(',');
+    string[] qtys = qty.ToString().TrimEnd(',').Split(',');
+
+    NumberFormatInfo nf = new CultureInfo("ko-KR", false).NumberFormat;
+
+
 }
 <section class="content-header container-fluid" style="text-align:left">
     <h1>
@@ -8,59 +40,114 @@
         <small>EIS(Executive Information System)</small>
     </h1>
 </section>
+
+
 <!-- Main content -->
 <section class="content container-fluid">
     <div class="row">
         <!-- Info boxes -->
         <div class="row">
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                <div class="info-box">
-                    <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
-                    <div class="info-box-content">
-                        <span class="info-box-text">금일 완제품 생산완료비율</span>
-                        <span class="info-box-number">90<small>%</small></span>
-                    </div>
-                    <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                <div class="info-box">
-                    <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+            @foreach (DataRow row in @Model.info.Tables["top"].Rows)
+            {
+                <div class="col-md-3 col-sm-6 col-xs-12">
 
-                    <div class="info-box-content">
-                        <span class="info-box-text">금일 반제품 생산완료비율</span>
-                        <span class="info-box-number">90<small>%</small></span>
+                    <div class="info-box">
+                        <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">금일 완제품 생산완료비율</span>
+                            <span class="info-box-number">@row["prate"]<small>%</small></span>
+                            @if (Convert.ToInt32(row["pratediff"]) < 0)
+                            {
+                                <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> @row["pratediff"]%</span>
+                            }
+                            else if (Convert.ToInt32(row["pratediff"]) == 0)
+                            {
+                                <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> @row["pratediff"]%</span>
+                            }
+                            else
+                            {
+                                <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> @row["pratediff"]%</span>
+                            }
+                        </div>
+                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box-content -->
+                    <!-- /.info-box -->
                 </div>
-                <!-- /.info-box -->
-            </div>
-            <!-- fix for small devices only -->
-            <div class="clearfix visible-sm-block"></div>
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                <div class="info-box">
-                    <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
-                    <div class="info-box-content">
-                        <span class="info-box-text">금일 판매량</span>
-                        <span class="info-box-number">760</span>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">금일 반제품 생산완료비율</span>
+                            <span class="info-box-number">@row["srate"]<small>%</small></span>
+                            @if (Convert.ToInt32(row["sratediff"]) < 0)
+                            {
+                                <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> @row["sratediff"]%</span>
+                            }
+                            else if (Convert.ToInt32(row["sratediff"]) == 0)
+                            {
+                                <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> @row["sratediff"]%</span>
+                            }
+                            else
+                            {
+                                <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> @row["sratediff"]%</span>
+                            }
+                        </div>
+                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box-content -->
+                    <!-- /.info-box -->
                 </div>
-                <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                <div class="info-box">
-                    <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
-                    <div class="info-box-content">
-                        <span class="info-box-text">금일 새로운 가입자수</span>
-                        <span class="info-box-number">2,000</span>
+                <!-- fix for small devices only -->
+                <div class="clearfix visible-sm-block"></div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">금일 판매량</span>
+                            <span class="info-box-number">@row["torder"]</span>
+                            @if (Convert.ToInt32(row["orderdiff"]) < 0)
+                            {
+                                <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> @row["orderdiff"]%</span>
+                            }
+                            else if (Convert.ToInt32(row["orderdiff"]) == 0)
+                            {
+                                <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> @row["orderdiff"]%</span>
+                            }
+                            else
+                            {
+                                <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> @row["orderdiff"]%</span>
+                            }
+
+                        </div>
+                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box-content -->
+                    <!-- /.info-box -->
                 </div>
-                <!-- /.info-box -->
-            </div>
+                <!-- /.col -->
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">금일 새로운 가입자수</span>
+                            <span class="info-box-number">@row["todaymember"]</span>
+                            @if (Convert.ToInt32(@row["memberdiff"]) < 0)
+                            {
+                                <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> @row["memberdiff"]%</span>
+                            }
+                            else if (Convert.ToInt32(@row["memberdiff"]) == 0)
+                            {
+                                <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> @row["memberdiff"]%</span>
+                            }
+                            else
+                            {
+                                <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> @row["memberdiff"]%</span>
+                            }
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+            }
             <!-- /.col -->
         </div>
     </div>
@@ -81,70 +168,89 @@
                             <p class="text-center">
                                 <strong>금일 공정별 양품, 불량품 수</strong>
                             </p>
-                            <div class="chart">
-                                <canvas id="barChart" style="height:250px"></canvas>
+                            <div class="col-md-1"></div>
+                            <ul class="chart-legend clearfix pull-left">
+                                <li><i class="fa fa-square text-green"></i> 양품</li>
+                                <li><i class="fa fa-square text-red"></i> 불량품</li>
+                            </ul>
+                            <div class="description-block border-right ">
+                                <div class="chart">
+                                    <canvas id="barChart" style="height:250px"></canvas>
+                                </div>
                             </div>
-                            </div>
+                        </div>
                             <div class="col-md-6 col-sm-6 col-xs-14">
                                 <p class="text-center">
-                                    <strong>판매순위 TOP5</strong>
+                                    <strong>전체상품 판매순위 TOP5</strong>
                                 </p>
-                                    <div class="description-block border-left ">
-                                        <div class="chart-responsive">
-                                            <canvas id="pieChart" height="200"></canvas>
-                                        </div>
-                                    </div>
-                                
-                                <div class="col-md-6 col-sm-4 col-xs-14 center-block">
-                                    <ul class="chart-legend clearfix">
-                                        <li><i class="fa fa-circle-o text-red"></i> Chrome</li>
-                                        <li><i class="fa fa-circle-o text-green"></i> IE</li>
-                                        <li><i class="fa fa-circle-o text-yellow"></i> FireFox</li>
-                                        <li><i class="fa fa-circle-o text-aqua"></i> Safari</li>
-                                        <li><i class="fa fa-circle-o text-light-blue"></i> Opera</li>
-                                    </ul>
+                                <div class="chart-responsive">
+                                    <canvas id="pieChart" height="170"></canvas>
                                 </div>
-                                </div>
+                                @*<div class="col-md-6 col-sm-4 col-xs-14 ">*@
+                                <div class="col-md-1"></div>
+                                <ul class="chart-legend clearfix pull-left">
+                                    <li><i class="fa fa-circle-o text-red"></i> @names[0]</li>
+                                    <li><i class="fa fa-circle-o text-green"></i> @names[1]</li>
+                                    <li><i class="fa fa-circle-o text-yellow"></i> @names[2]</li>
+                                    <li><i class="fa fa-circle-o text-aqua"></i> @names[3]</li>
+                                    <li><i class="fa fa-circle-o text-light-blue"></i> @names[4]</li>
+                                </ul>
+                                @*</div>*@
                             </div>
                         </div>
-                    <div class="box-footer with-border">
-                        <div class="row">
-                            <div class="col-sm-4 col-xs-6">
-                                <div class="description-block border-right">
-                                    <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 17%</span>
-                                    <h5 class="description-header">$35,210.43</h5>
-                                    <span class="description-text">금일 수익</span>
-                                </div>
-                                <!-- /.description-block -->
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-sm-4 col-xs-6">
-                                <div class="description-block border-right">
-                                    <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> 0%</span>
-                                    <h5 class="description-header">$10,390.90</h5>
-                                    <span class="description-text">금일 생산비용</span>
-                                </div>
-                                <!-- /.description-block -->
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-sm-4 col-xs-6">
-                                <div class="description-block">
-                                    <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 20%</span>
-                                    <h5 class="description-header">$24,813.53</h5>
-                                    <span class="description-text">금일 순이익</span>
-                                </div>
-                                <!-- /.description-block -->
-                            </div>
-                        </div>
-                        <!-- /.row -->
-                    </div>
-                    <!-- /.box-footer -->
                 </div>
-                <!-- /.box -->
+                <div class="box-footer with-border">
+                    <div class="row">
+                        @foreach (DataRow row in Model.info.Tables["midsales"].Rows)
+                        {
+                        <div class="col-sm-4 col-xs-6">
+                            <div class="description-block border-right">
+                                @if (Convert.ToInt32(@row["revenuediff"]) < 0)
+                                {
+                                    <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> @row["revenuediff"]%</span>
+                                }
+                                else if (Convert.ToInt32(@row["revenuediff"]) == 0)
+                                {
+                                    <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> @row["revenuediff"]%</span>
+                                }
+                                else
+                                {
+                                    <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> @row["revenuediff"]%</span>
+                                }
+                            <h5 class="description-header">@Convert.ToInt32(row["todayrevenue"]).ToString("C", nf)</h5>
+                                <span class="description-text">금일 수익</span>
+                            </div>
+                            <!-- /.description-block -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-4 col-xs-6">
+                            <div class="description-block border-right">
+                                <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> 0%</span>
+                                <h5 class="description-header">$10,390.90</h5>
+                                <span class="description-text">금일 생산비용</span>
+                            </div>
+                            <!-- /.description-block -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-4 col-xs-6">
+                            <div class="description-block">
+                                <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 20%</span>
+                                <h5 class="description-header">$24,813.53</h5>
+                                <span class="description-text">금일 순이익</span>
+                            </div>
+                            <!-- /.description-block -->
+                        </div>
+                        }
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.box-footer -->
             </div>
+            <!-- /.box -->
         </div>
-  
-   
+    </div>
+
+
     <div class="row">
         <div class="col-md-14">
             <div class="box box-info">
@@ -238,69 +344,73 @@
              * -------
              * Here we will create a few charts using ChartJS
              */
+            var temp = "@lines";
+            var arrtemp = temp.split(',');
             var areaChartData = {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                labels: arrtemp,
                 datasets: [
                     {
-                        label: 'Electronics',
-                        fillColor: 'rgba(210, 214, 222, 1)',
-                        strokeColor: 'rgba(210, 214, 222, 1)',
-                        pointColor: 'rgba(210, 214, 222, 1)',
-                        pointStrokeColor: '#c1c7d1',
-                        pointHighlightFill: '#fff',
-                        pointHighlightStroke: 'rgba(220,220,220,1)',
-                        data: [65, 59, 80, 81, 56, 55, 40]
-                    },
-                    {
-                        label: 'Digital Goods',
+                        label: '양품',
                         fillColor: 'rgba(60,141,188,0.9)',
                         strokeColor: 'rgba(60,141,188,0.8)',
                         pointColor: '#3b8bba',
                         pointStrokeColor: 'rgba(60,141,188,1)',
                         pointHighlightFill: '#fff',
                         pointHighlightStroke: 'rgba(60,141,188,1)',
-                        data: [28, 48, 40, 19, 86, 27, 90]
+                        data: [@success]
+                    },
+                    {
+                        label: '불량품',
+                        fillColor: 'rgba(210, 214, 222, 1)',
+                        strokeColor: 'rgba(210, 214, 222, 1)',
+                        pointColor: 'rgba(210, 214, 222, 1)',
+                        pointStrokeColor: '#c1c7d1',
+                        pointHighlightFill: '#fff',
+                        pointHighlightStroke: 'rgba(220,220,220,1)',
+                        data: [@fail]
                     }
                 ]
             }
-            // -------------
-            // - PIE CHART -
-            // -------------
-            // Get context with jQuery - using jQuery's .get() method.
+                    // -------------
+                    // - PIE CHART -
+                    // -------------
+                    // Get context with jQuery - using jQuery's .get() method.
+
+
             var pieChartCanvas = $('#pieChart').get(0).getContext('2d');
             var pieChart = new Chart(pieChartCanvas);
             var PieData = [
-                {
-                    value: 700,
-                    color: '#f56954',
-                    highlight: '#f56954',
-                    label: 'Chrome'
-                },
-                {
-                    value: 500,
-                    color: '#00a65a',
-                    highlight: '#00a65a',
-                    label: 'IE'
-                },
-                {
-                    value: 400,
-                    color: '#f39c12',
-                    highlight: '#f39c12',
-                    label: 'FireFox'
-                },
-                {
-                    value: 600,
-                    color: '#00c0ef',
-                    highlight: '#00c0ef',
-                    label: 'Safari'
-                },
-                {
-                    value: 300,
-                    color: '#3c8dbc',
-                    highlight: '#3c8dbc',
-                    label: 'Opera'
-                }
-            ];
+                        {
+                            value: @qtys[0],
+                            color: '#f56954',
+                            highlight: '#f56954',
+                            label: '@names[0]'
+                        },
+                        {
+                            value: @qtys[1],
+                            color: '#00a65a',
+                            highlight: '#00a65a',
+                            label: '@names[1]'
+                        },
+                        {
+                            value: @qtys[2],
+                            color: '#f39c12',
+                            highlight: '#f39c12',
+                            label: '@names[2]'
+                        },
+                        {
+                            value: @qtys[3],
+                            color: '#00c0ef',
+                            highlight: '#00c0ef',
+                            label: '@names[3]'
+                        },
+                        {
+                            value: @qtys[4],
+                            color: '#3c8dbc',
+                            highlight: '#3c8dbc',
+                            label: '@names[4]'
+                        }
+                       ];
             var pieOptions = {
                 // Boolean - Whether we should show a stroke on each segment
                 segmentShowStroke: true,
@@ -325,7 +435,7 @@
                 // String - A legend template
                 legendTemplate: '<ul class=\'<%=name.toLowerCase()%>-legend\'><% for (var i=0; i<segments.length; i++){%><li><span style=\'background-color:<%=segments[i].fillColor%>\'></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>',
                 // String - A tooltip template
-                tooltipTemplate: '<%=value %> <%=label%> users'
+                tooltipTemplate: '[<%=label%>] <%=value %>대'
             };
             // Create pie or douhnut chart
             // You can switch between pie and douhnut using the method below.
@@ -341,9 +451,12 @@
             var barChartCanvas = $('#barChart').get(0).getContext('2d')
             var barChart = new Chart(barChartCanvas)
             var barChartData = areaChartData
-            barChartData.datasets[1].fillColor = '#00a65a'
-            barChartData.datasets[1].strokeColor = '#00a65a'
-            barChartData.datasets[1].pointColor = '#00a65a'
+            barChartData.datasets[1].fillColor = '#de4b39'
+            barChartData.datasets[1].strokeColor = '#de4b39'
+            barChartData.datasets[1].pointColor = '#de4b39'
+            barChartData.datasets[0].fillColor = '#00a65a'
+            barChartData.datasets[0].strokeColor = '#00a65a'
+            barChartData.datasets[0].pointColor = '#00a65a'
             var barChartOptions = {
                 //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
                 scaleBeginAtZero: true,

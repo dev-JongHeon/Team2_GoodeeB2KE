@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using Team2_EIS.DAC;
+using Team2_EIS.Models;
 
 namespace Team2_EIS.Controllers
 {
@@ -10,21 +14,11 @@ namespace Team2_EIS.Controllers
     {
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            EISInfo eis = new EISInfo();
+            eis.info = new DataSet();
+            EISProcess proc = new EISProcess();
+            eis.info=proc.GetTop(eis.info);
+            return View(eis);
         }
     }
 }
