@@ -171,11 +171,18 @@ namespace Team2_Machine
                     List<ClientInfo> list = clientInfo.GetClient();
                     ClientInfo client = list.Find(c => c.Line == false);
 
-                    // 라인아이디, 생산총 개수, 투입개수 , 성공수량, 실패수량
-                    StreamWriter writer = new StreamWriter(client.ClientData.GetStream());
-                    //writer.AutoFlush = true;
-                    writer.Write(msg);
-                    writer.Flush();
+                    if (client.ClientData.Client.Connected)
+                    {
+                        // 라인아이디, 생산총 개수, 투입개수 , 성공수량, 실패수량
+                        StreamWriter writer = new StreamWriter(client.ClientData.GetStream());
+                        //writer.AutoFlush = true;
+                        writer.Write(msg);
+                        writer.Flush();
+                    }
+                    else
+                    {
+                        client.ClientData.Client.Disconnect(true);
+                    }
                 }
 
             }

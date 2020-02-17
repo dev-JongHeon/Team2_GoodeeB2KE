@@ -49,7 +49,6 @@ namespace Team2_RealTimeMonitor
             ConnectServer();
         }
 
-
         private void SettingControl()
         {
             splitHeader.IsSplitterFixed = splitMain.IsSplitterFixed = splitBody.IsSplitterFixed = true;
@@ -76,6 +75,8 @@ namespace Team2_RealTimeMonitor
                 lineControl.LabelLineNameText = listSemi[i].Line_Name;
                 lineControl.Tag = listSemi[i].Line_ID.ToString();
 
+                lineControl.CircleProgress.ProgressColor2 = Color.Red;
+                lineControl.CircleProgress.ProgressColor1 = Color.Violet;
                 lineMonitors.Add(lineControl);
                 flowLayoutSemiProductLine.Controls.Add(lineControl);
             }
@@ -87,6 +88,8 @@ namespace Team2_RealTimeMonitor
                 lineControl.LabelLineNameText = listProduct[i].Line_Name;
                 lineControl.Tag = listProduct[i].Line_ID.ToString();
 
+                lineControl.CircleProgress.ProgressColor2 = Color.Red;
+                lineControl.CircleProgress.ProgressColor1 = Color.Violet;
                 lineMonitors.Add(lineControl);
                 flowLayoutProductLine.Controls.Add(lineControl);
             }
@@ -97,7 +100,7 @@ namespace Team2_RealTimeMonitor
             try
             {
                 // 서버와 연결을 함 Write 한번 => (While Read)
-                IPEndPoint clientIP = new IPEndPoint(IPAddress.Parse(host), new Random((int)DateTime.UtcNow.Ticks).Next(5001, 8901));
+                IPEndPoint clientIP = new IPEndPoint(IPAddress.Parse(host), new Random((int)DateTime.UtcNow.Ticks).Next(7001, 8901));
                 client = new TcpClient(clientIP);
                 client.ConnectAsync(host, port).Wait();
                 client.NoDelay = true;
@@ -135,8 +138,6 @@ namespace Team2_RealTimeMonitor
                 {
                     await Read();
                 }
-
-                ResetControl();
             }
             catch (Exception ex)
             {
@@ -223,41 +224,59 @@ namespace Team2_RealTimeMonitor
         //msg =  LineID, RequestQty, iTotalCnt, itemQuality, 1 - itemQuality
         private void ReWrite(LineMonitorControl lineMonitor, string[] msg)
         {
+            // 불량이 한개도 없는 경우 연두색
+            if (lineMonitor.LabelDefectiveText == "0")
+            {
+                lineMonitor.CircleProgress.ProgressColor1 = Color.AliceBlue;
+                lineMonitor.CircleProgress.ProgressColor2 = Color.Green;                
+            }
+            // 불량이 한개라도 있는 경우 주황색
+            else
+            {
+                lineMonitor.CircleProgress.ProgressColor1 = Color.Violet;
+                lineMonitor.CircleProgress.ProgressColor2 = Color.Yellow;
+            }
+
+            lineMonitor.CircleProgress.Invoke((MethodInvoker)lineMonitor.CircleProgress.Invalidate);
+
+
             lineMonitor.LabelRequestText = msg[1];
             lineMonitor.LabelImportText = msg[2];
             lineMonitor.LabelProduceText = (int.Parse(lineMonitor.LabelProduceText) + int.Parse(msg[3])).ToString();
-            lineMonitor.LabelDefectiveText = (int.Parse(lineMonitor.LabelDefectiveText) + int.Parse(msg[4])).ToString(); ;
+            lineMonitor.LabelDefectiveText = (int.Parse(lineMonitor.LabelDefectiveText) + int.Parse(msg[4])).ToString();
+          
 
-            if (Convert.ToInt32(lineMonitor.LabelDefectiveText) > 1)
-                lineMonitor.PictureStateImage = Properties.Resources.Img_CircleYellow;
-            else
-                lineMonitor.PictureStateImage = Properties.Resources.Img_CircleGreen;
+            //lineMonitor.CircleProgress.Increment((int)Math.Truncate((decimal)(int.Parse(lineMonitor.LabelProduceText) / int.Parse(lineMonitor.LabelRequestText)) * 100));
+            lineMonitor.CircleProgress.Invoke(
+            (MethodInvoker)delegate
+            {
+                lineMonitor.CircleProgress.Increment((int)Math.Truncate((int.Parse(lineMonitor.LabelProduceText) / decimal.Parse(lineMonitor.LabelRequestText)) * 100));
+            }
+            );
 
-            lineMonitor.CircleProgress.Increment(int.Parse(lineMonitor.LabelProduceText) / int.Parse(lineMonitor.LabelRequestText) * 100);
+            if (lineMonitor.LabelProduceText.Equals(lineMonitor.LabelRequestText))
+                ResetControl(lineMonitor);
         }
 
 
 
-        /*------------------------
+        /*--------------------------
          *  컨트롤 초기화해주는 코드
-         ------------------------*/
-        private void ResetControl()
+         --------------------------*/
+        private void ResetControl(LineMonitorControl control)
         {
             try
             {
-                for (int i = 0; i < lineMonitors.Count; i++)
-                {
-                    if (lineMonitors[i].CircleProgress.Value == 100)
-                    {
-                        lineMonitors[i].CircleProgress.Decrement((int)lineMonitors[i].CircleProgress.Value);
-                        lineMonitors[i].LabelRequestText = "0";
-                        lineMonitors[i].LabelImportText = "0";
-                        lineMonitors[i].LabelProduceText = "0";
-                        lineMonitors[i].LabelDefectiveText = "0";
-                    }
-                }
+                control.LabelRequestText = "0";
+                control.LabelImportText = "0";
+                control.LabelProduceText = "0";
+                control.LabelDefectiveText = "0";
+                control.CircleProgress.ProgressColor1 = Color.Violet;
+                control.CircleProgress.ProgressColor2 = Color.Red;
+                control.CircleProgress.Invoke((MethodInvoker)delegate { control.CircleProgress.Decrement((int)control.CircleProgress.Value); });
+
             }
-            catch(AggregateException ex)
+            catch (AggregateException ex)
             {
                 WriteLog(ex);
             }

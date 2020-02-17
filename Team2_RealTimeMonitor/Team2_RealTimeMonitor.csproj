@@ -52,10 +52,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CircleProgressBar.cs">
+    <Compile Include="Custom\CircleProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CircleProgressBar.Designer.cs">
+    <Compile Include="Custom\CircleProgressBar.Designer.cs">
       <DependentUpon>CircleProgressBar.cs</DependentUpon>
     </Compile>
     <Compile Include="LoggingUtility.cs" />
@@ -65,22 +65,22 @@
     <Compile Include="RealTimeLineState.Designer.cs">
       <DependentUpon>RealTimeLineState.cs</DependentUpon>
     </Compile>
-    <Compile Include="LineMonitorControl.cs">
+    <Compile Include="Custom\LineMonitorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="LineMonitorControl.Designer.cs">
+    <Compile Include="Custom\LineMonitorControl.Designer.cs">
       <DependentUpon>LineMonitorControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service.cs" />
-    <EmbeddedResource Include="CircleProgressBar.resx">
+    <EmbeddedResource Include="Custom\CircleProgressBar.resx">
       <DependentUpon>CircleProgressBar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RealTimeLineState.resx">
       <DependentUpon>RealTimeLineState.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LineMonitorControl.resx">
+    <EmbeddedResource Include="Custom\LineMonitorControl.resx">
       <DependentUpon>LineMonitorControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

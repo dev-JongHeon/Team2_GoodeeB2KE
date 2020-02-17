@@ -411,7 +411,7 @@ namespace Team2_POP
                 else
                 {
                     CustomMessageBox.ShowDialog(Resources.MsgProduceStartConnectResultHeader
-                        , "처리하는 과정에서 오류가 발생하였습니다. \n다시 시도해주세요.", MessageBoxIcon.Error);
+                        , Resources.MsgProduceStartLengthFailContent, MessageBoxIcon.Error);
                 }
 
             }
@@ -498,9 +498,11 @@ namespace Team2_POP
 
             // 작업자 설정을 성공한 경우
             if (bResult)
-                CustomMessageBox.ShowDialog("작업자 설정 성공", $"{produceID}의 \n작업자 : {lblWorkerName.Text}에게 할당했습니다.", MessageBoxIcon.Question);
+                CustomMessageBox.ShowDialog(string.Format(Resources.MsgWorkerSetResultHeader, "성공")
+                    , string.Format(Resources.MsgWorkerSucceesContent, produceID, lblWorkerName.Text), MessageBoxIcon.Question);
             else
-                CustomMessageBox.ShowDialog("작업자 설정 실패", $"{produceID}의 생산되지 않은 작업이 \n이미 할당되었습니다.", MessageBoxIcon.Error);
+                CustomMessageBox.ShowDialog(string.Format(Resources.MsgWorkerSetResultHeader, "실패")
+                    , string.Format(Resources.MsgWorkerSetFailResultContent, produceID), MessageBoxIcon.Error);
         }
 
 
@@ -511,7 +513,8 @@ namespace Team2_POP
             {
                 if (dgvPerformance.SelectedRows.Count < 1)
                 {
-                    CustomMessageBox.ShowDialog("불량 선택 실패", "실적 목록을 선택해주세요.", MessageBoxIcon.Warning);
+                    CustomMessageBox.ShowDialog(Resources.MsgPerformanceSelectFailHeader
+                        ,Resources.MsgPerformanceSelectFailContent, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -569,11 +572,12 @@ namespace Team2_POP
         {
             // DAC단에서 내일 날짜의 작업을 가져옴
             // 라벨 날짜를 내일 날짜로 변경
-            if(lblDate.Text == DateTime.Now.Date.ToShortDateString())
-            {
-                CustomMessageBox.ShowDialog("날짜 불러오기 실패", "오늘보다 큰 날짜의 작업은 조회할 수 없습니다.", MessageBoxIcon.Error);
-                return;
-            }
+            //if(lblDate.Text == DateTime.Now.Date.ToShortDateString())
+            //{
+            //    CustomMessageBox.ShowDialog(Resources.MsgGetDateLoadFailHeader,
+            //        Resources.MsgGetDateLoadFailContent, MessageBoxIcon.Error);
+            //    return;
+            //}
             lblDate.Text = DateTime.Parse(lblDate.Text).AddDays(1).ToShortDateString();
         }
 
@@ -607,7 +611,7 @@ namespace Team2_POP
                     if (list == null)
                     {
                         DialogResult dResult = CustomMessageBox.ShowDialog(Resources.MsgLoadResultFailHeader
-                            , "생산데이터를 불러오는 중에 실패했습니다. 다시 시도하시겠습니까?", MessageBoxIcon.Information, MessageBoxButtons.OKCancel);
+                            , Resources.MsgProduceListLoadFailContent, MessageBoxIcon.Information, MessageBoxButtons.OKCancel);
                         if (dResult == DialogResult.OK)
                         {
                             list = service.GetProduce(workID, WorkerInfo.LineID);

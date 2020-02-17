@@ -202,7 +202,6 @@ namespace Team2_ERP
 
         private void rdo_CheckedChanged(object sender, EventArgs e)
         {
-            dgvEmployee.DataSource = null;
             if(rdoWork.Checked)
             {
                 searchResigndate.Visible = false;

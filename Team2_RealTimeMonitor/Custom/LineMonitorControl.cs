@@ -38,13 +38,7 @@ namespace Team2_RealTimeMonitor
             get { return lblLineName.Text; }
             set { lblLineName.Text = value; }
         }
-        
-
-        public Image PictureStateImage
-        {
-            get { return picState.Image; }
-            set { picState.Image = value; }
-        }
+       
 
         public CircleProgressBar CircleProgress
         {
@@ -58,6 +52,9 @@ namespace Team2_RealTimeMonitor
         {
             InitializeComponent();
             InitData();
+
+            circleProgress.ProgressColor1 = Color.AliceBlue;
+            circleProgress.ProgressColor2 = Color.Red;
         }
 
         private void InitData()
@@ -70,13 +67,9 @@ namespace Team2_RealTimeMonitor
             panelContent.BackColor = Color.FromArgb(93, 93, 93);
 
             // 스플릿 컨테이너 설정
-            splitBody.IsSplitterFixed = splitHeader.IsSplitterFixed = splitLeftTable.IsSplitterFixed 
+            splitBody.IsSplitterFixed = splitLeftTable.IsSplitterFixed 
                 = splitRightContent.IsSplitterFixed = splitRightTable.IsSplitterFixed 
-                = splitTable.IsSplitterFixed = splitContainer1.IsSplitterFixed = splitContainer2.IsSplitterFixed 
-                = true;
-
-            picState.SizeMode = PictureBoxSizeMode.StretchImage;
-            picState.Image = Properties.Resources.Img_CircleRed;
+                = splitTable.IsSplitterFixed = splitContainer1.IsSplitterFixed = true;
         }
     }
 }

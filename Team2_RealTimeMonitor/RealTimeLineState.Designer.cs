@@ -31,14 +31,14 @@
             this.splitMain = new System.Windows.Forms.SplitContainer();
             this.splitHeader = new System.Windows.Forms.SplitContainer();
             this.panelHeaderLeft = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.panelHeaderRight = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.splitBody = new System.Windows.Forms.SplitContainer();
             this.panelBodyLeft = new System.Windows.Forms.Panel();
             this.flowLayoutProductLine = new System.Windows.Forms.FlowLayoutPanel();
             this.panelBodyRight = new System.Windows.Forms.Panel();
             this.flowLayoutSemiProductLine = new System.Windows.Forms.FlowLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitMain)).BeginInit();
             this.splitMain.Panel1.SuspendLayout();
             this.splitMain.Panel2.SuspendLayout();
@@ -89,7 +89,7 @@
             // 
             this.splitHeader.Panel2.Controls.Add(this.panelHeaderRight);
             this.splitHeader.Size = new System.Drawing.Size(1904, 92);
-            this.splitHeader.SplitterDistance = 700;
+            this.splitHeader.SplitterDistance = 600;
             this.splitHeader.TabIndex = 0;
             // 
             // panelHeaderLeft
@@ -98,8 +98,19 @@
             this.panelHeaderLeft.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelHeaderLeft.Location = new System.Drawing.Point(0, 0);
             this.panelHeaderLeft.Name = "panelHeaderLeft";
-            this.panelHeaderLeft.Size = new System.Drawing.Size(700, 92);
+            this.panelHeaderLeft.Size = new System.Drawing.Size(600, 92);
             this.panelHeaderLeft.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("나눔고딕", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(600, 92);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "완제품 공장";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelHeaderRight
             // 
@@ -107,8 +118,19 @@
             this.panelHeaderRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelHeaderRight.Location = new System.Drawing.Point(0, 0);
             this.panelHeaderRight.Name = "panelHeaderRight";
-            this.panelHeaderRight.Size = new System.Drawing.Size(1200, 92);
+            this.panelHeaderRight.Size = new System.Drawing.Size(1300, 92);
             this.panelHeaderRight.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Font = new System.Drawing.Font("나눔고딕", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(1300, 92);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "반제품 공장";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // splitBody
             // 
@@ -124,7 +146,7 @@
             // 
             this.splitBody.Panel2.Controls.Add(this.panelBodyRight);
             this.splitBody.Size = new System.Drawing.Size(1904, 945);
-            this.splitBody.SplitterDistance = 700;
+            this.splitBody.SplitterDistance = 600;
             this.splitBody.TabIndex = 0;
             // 
             // panelBodyLeft
@@ -133,7 +155,7 @@
             this.panelBodyLeft.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelBodyLeft.Location = new System.Drawing.Point(0, 0);
             this.panelBodyLeft.Name = "panelBodyLeft";
-            this.panelBodyLeft.Size = new System.Drawing.Size(700, 945);
+            this.panelBodyLeft.Size = new System.Drawing.Size(600, 945);
             this.panelBodyLeft.TabIndex = 0;
             // 
             // flowLayoutProductLine
@@ -141,7 +163,7 @@
             this.flowLayoutProductLine.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutProductLine.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutProductLine.Name = "flowLayoutProductLine";
-            this.flowLayoutProductLine.Size = new System.Drawing.Size(700, 945);
+            this.flowLayoutProductLine.Size = new System.Drawing.Size(600, 945);
             this.flowLayoutProductLine.TabIndex = 0;
             // 
             // panelBodyRight
@@ -150,7 +172,7 @@
             this.panelBodyRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelBodyRight.Location = new System.Drawing.Point(0, 0);
             this.panelBodyRight.Name = "panelBodyRight";
-            this.panelBodyRight.Size = new System.Drawing.Size(1200, 945);
+            this.panelBodyRight.Size = new System.Drawing.Size(1300, 945);
             this.panelBodyRight.TabIndex = 0;
             // 
             // flowLayoutSemiProductLine
@@ -158,30 +180,8 @@
             this.flowLayoutSemiProductLine.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutSemiProductLine.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutSemiProductLine.Name = "flowLayoutSemiProductLine";
-            this.flowLayoutSemiProductLine.Size = new System.Drawing.Size(1200, 945);
+            this.flowLayoutSemiProductLine.Size = new System.Drawing.Size(1300, 945);
             this.flowLayoutSemiProductLine.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("나눔고딕", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(700, 92);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "완제품 공장";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label2
-            // 
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("나눔고딕", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(0, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(1200, 92);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "반제품 공장";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // RealTimeLineState
             // 

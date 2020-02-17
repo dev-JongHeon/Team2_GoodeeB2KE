@@ -33,10 +33,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rdoProduct = new System.Windows.Forms.RadioButton();
             this.rdoSemiProduct = new System.Windows.Forms.RadioButton();
             this.rdoResource = new System.Windows.Forms.RadioButton();
             this.cboContext = new System.Windows.Forms.ComboBox();
-            this.rdoProduct = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).BeginInit();
@@ -109,21 +109,19 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(58, 125);
+            this.label1.Location = new System.Drawing.Point(38, 125);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 14);
+            this.label1.Size = new System.Drawing.Size(0, 14);
             this.label1.TabIndex = 7;
-            this.label1.Text = "카테고리이름";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label2.Location = new System.Drawing.Point(58, 184);
+            this.label2.Location = new System.Drawing.Point(38, 184);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 14);
+            this.label2.Size = new System.Drawing.Size(0, 14);
             this.label2.TabIndex = 7;
-            this.label2.Text = "카테고리설명";
             // 
             // groupBox1
             // 
@@ -135,6 +133,17 @@
             this.groupBox1.Size = new System.Drawing.Size(261, 66);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
+            // 
+            // rdoProduct
+            // 
+            this.rdoProduct.AutoSize = true;
+            this.rdoProduct.Location = new System.Drawing.Point(180, 29);
+            this.rdoProduct.Name = "rdoProduct";
+            this.rdoProduct.Size = new System.Drawing.Size(58, 18);
+            this.rdoProduct.TabIndex = 1;
+            this.rdoProduct.TabStop = true;
+            this.rdoProduct.Text = "완제품";
+            this.rdoProduct.UseVisualStyleBackColor = true;
             // 
             // rdoSemiProduct
             // 
@@ -167,17 +176,6 @@
             this.cboContext.Name = "cboContext";
             this.cboContext.Size = new System.Drawing.Size(143, 22);
             this.cboContext.TabIndex = 9;
-            // 
-            // rdoProduct
-            // 
-            this.rdoProduct.AutoSize = true;
-            this.rdoProduct.Location = new System.Drawing.Point(180, 29);
-            this.rdoProduct.Name = "rdoProduct";
-            this.rdoProduct.Size = new System.Drawing.Size(58, 18);
-            this.rdoProduct.TabIndex = 1;
-            this.rdoProduct.TabStop = true;
-            this.rdoProduct.Text = "완제품";
-            this.rdoProduct.UseVisualStyleBackColor = true;
             // 
             // CategoryInsUp
             // 

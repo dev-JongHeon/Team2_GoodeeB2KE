@@ -96,7 +96,7 @@
             // 
             this.searchCustomerBirth.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.searchCustomerBirth.Labelname = "생년 월일";
-            this.searchCustomerBirth.Location = new System.Drawing.Point(333, 39);
+            this.searchCustomerBirth.Location = new System.Drawing.Point(352, 39);
             this.searchCustomerBirth.Name = "searchCustomerBirth";
             this.searchCustomerBirth.Size = new System.Drawing.Size(312, 25);
             this.searchCustomerBirth.TabIndex = 1;

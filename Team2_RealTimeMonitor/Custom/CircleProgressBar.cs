@@ -25,6 +25,10 @@ namespace Team2_RealTimeMonitor
         private long _Maximum = 100;
         private Color _ProgressColor1 = Color.FromArgb(92, 92, 92);
         private Color _ProgressColor2 = Color.FromArgb(92, 92, 92);
+        private Color _ProgressColor3 = Color.FromArgb(92, 92, 92);
+        private Color _ProgressColor4 = Color.FromArgb(92, 92, 92);
+
+
         private _ProgressShape ProgressShapeVal;
         #endregion
 
@@ -73,6 +77,26 @@ namespace Team2_RealTimeMonitor
             }
         }
 
+        public Color ProgressColor3
+        {
+            get { return _ProgressColor3; }
+            set
+            {
+                _ProgressColor3 = value;
+                Invalidate();
+            }
+        }
+
+        public Color ProgressColor4
+        {
+            get { return _ProgressColor4; }
+            set
+            {
+                _ProgressColor4 = value;
+                Invalidate();
+            }
+        }
+
         public _ProgressShape ProgressShape
         {
             get { return ProgressShapeVal; }
@@ -117,7 +141,7 @@ namespace Team2_RealTimeMonitor
 
         public void Increment(int Val)
         {
-            this._Value += Val;
+            this._Value = Val;
             Invalidate();
         }
 
@@ -136,7 +160,7 @@ namespace Team2_RealTimeMonitor
                 {
                     graphics.SmoothingMode = SmoothingMode.AntiAlias;
                     graphics.Clear(this.BackColor);
-                    using (LinearGradientBrush brush = new LinearGradientBrush(this.ClientRectangle, this._ProgressColor1, this._ProgressColor2, LinearGradientMode.ForwardDiagonal))
+                    using (LinearGradientBrush brush = new LinearGradientBrush(this.ClientRectangle, this._ProgressColor3, this._ProgressColor4, LinearGradientMode.ForwardDiagonal))
                     {
                         using (Pen pen = new Pen(brush, 14f))
                         {
@@ -155,7 +179,7 @@ namespace Team2_RealTimeMonitor
                             graphics.DrawArc(pen, 0x12, 0x12, (this.Width - 0x23) - 2, (this.Height - 0x23) - 2, -90, (int)Math.Round((double)((360.0 / ((double)this._Maximum)) * this._Value)));
                         }
                     }
-                    using (LinearGradientBrush brush2 = new LinearGradientBrush(this.ClientRectangle, Color.FromArgb(0x34, 0x34, 0x34), Color.FromArgb(0x34, 0x34, 0x34), LinearGradientMode.Vertical))
+                    using (LinearGradientBrush brush2 = new LinearGradientBrush(this.ClientRectangle, this._ProgressColor1, this._ProgressColor2, LinearGradientMode.Vertical))
                     {
                         graphics.FillEllipse(brush2, 0x18, 0x18, (this.Width - 0x30) - 1, (this.Height - 0x30) - 1);
                     }

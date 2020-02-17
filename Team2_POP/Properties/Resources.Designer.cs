@@ -346,11 +346,57 @@ namespace Team2_POP.Properties {
         }
         
         /// <summary>
+        ///   오늘보다 큰 날짜의 작업은 조회할 수 없습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgGetDateLoadFailContent {
+            get {
+                return ResourceManager.GetString("MsgGetDateLoadFailContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   날짜 불러오기 실패과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgGetDateLoadFailHeader {
+            get {
+                return ResourceManager.GetString("MsgGetDateLoadFailHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   데이터 불러오기 실패과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string MsgLoadResultFailHeader {
             get {
                 return ResourceManager.GetString("MsgLoadResultFailHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   실적 목록을 선택해주세요.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgPerformanceSelectFailContent {
+            get {
+                return ResourceManager.GetString("MsgPerformanceSelectFailContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   불량 선택 실패과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgPerformanceSelectFailHeader {
+            get {
+                return ResourceManager.GetString("MsgPerformanceSelectFailHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   생산데이터를 불러오는 중에 실패했습니다. 
+        ///다시 시도하시겠습니까?과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgProduceListLoadFailContent {
+            get {
+                return ResourceManager.GetString("MsgProduceListLoadFailContent", resourceCulture);
             }
         }
         
@@ -416,6 +462,35 @@ namespace Team2_POP.Properties {
         internal static string MsgProduceStartResultHeader {
             get {
                 return ResourceManager.GetString("MsgProduceStartResultHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   {produceID}의 생산되지 않은 작업이
+        ///이미 할당되어 있습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgWorkerSetFailResultContent {
+            get {
+                return ResourceManager.GetString("MsgWorkerSetFailResultContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   작업자 설정 {0}과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgWorkerSetResultHeader {
+            get {
+                return ResourceManager.GetString("MsgWorkerSetResultHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   생산번호 : {0}를 
+        ///작업자 : {1}에게 할당했습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgWorkerSucceesContent {
+            get {
+                return ResourceManager.GetString("MsgWorkerSucceesContent", resourceCulture);
             }
         }
         
