@@ -16,13 +16,20 @@ using Team2_VO;
 
 namespace Team2_RealTimeMonitor
 {
+    public delegate void LineDelegate(LineMonitorControl lineMonitorControl, string[] msg);
+
     public partial class RealTimeLineState : Form
     {
+        #region 전역변수
+
         System.Timers.Timer timer;
         TcpClient client;
         string host = "127.0.0.1";
         int port = 5000;
         NetworkStream netStream;
+        List<LineMonitorControl> lineMonitors;
+
+        #endregion
 
         public RealTimeLineState()
         {
@@ -32,8 +39,8 @@ namespace Team2_RealTimeMonitor
         /*----------------
          - SettingControl : 컨트롤 디자인, 프로퍼티 설정
          - InitData : 데이터 바인딩
-         - 
-        ---------------- */ 
+         - ConnectServer : 서버에 접속
+        ---------------- */
 
         private void RealTimeLineState_Load(object sender, EventArgs e)
         {
@@ -42,9 +49,10 @@ namespace Team2_RealTimeMonitor
             ConnectServer();
         }
 
+
         private void SettingControl()
         {
-            splitContainer1.IsSplitterFixed = splitContainer2.IsSplitterFixed = splitContainer3.IsSplitterFixed = true;
+            splitHeader.IsSplitterFixed = splitMain.IsSplitterFixed = splitBody.IsSplitterFixed = true;
         }
 
         private void InitData()
@@ -52,6 +60,7 @@ namespace Team2_RealTimeMonitor
             // DB에서 공장아이디, 라인아이디, 라인이름을 불러옴
             Service service = new Service();
             List<LineMonitor> list = service.GetLineInfo();
+            lineMonitors = new List<LineMonitorControl>();
 
             // 공장아이디가 완제품 공장인것은 왼쪽 레이아웃
             // 공장아이디가 반제품 공장인것은 오른쪽 레이아웃
@@ -67,6 +76,7 @@ namespace Team2_RealTimeMonitor
                 lineControl.LabelLineNameText = listSemi[i].Line_Name;
                 lineControl.Tag = listSemi[i].Line_ID.ToString();
 
+                lineMonitors.Add(lineControl);
                 flowLayoutSemiProductLine.Controls.Add(lineControl);
             }
 
@@ -77,6 +87,7 @@ namespace Team2_RealTimeMonitor
                 lineControl.LabelLineNameText = listProduct[i].Line_Name;
                 lineControl.Tag = listProduct[i].Line_ID.ToString();
 
+                lineMonitors.Add(lineControl);
                 flowLayoutProductLine.Controls.Add(lineControl);
             }
         }
@@ -90,8 +101,8 @@ namespace Team2_RealTimeMonitor
                 client = new TcpClient(clientIP);
                 client.ConnectAsync(host, port).Wait();
                 client.NoDelay = true;
-
                 netStream = client.GetStream();
+
 
                 // 서버에 접속
                 string msg = string.Join(",", new object[] { 0, 100, false });
@@ -115,6 +126,7 @@ namespace Team2_RealTimeMonitor
             }
         }
 
+        // 매초 발생하는 타이머 이벤트
         private async void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             try
@@ -123,6 +135,7 @@ namespace Team2_RealTimeMonitor
                 {
                     await Read();
                 }
+
                 ResetControl();
             }
             catch (Exception ex)
@@ -134,6 +147,9 @@ namespace Team2_RealTimeMonitor
             }
         }
 
+
+
+        // 서버로부터 메세지를 수신받는 코드
         public async Task Read()
         {
             if (!netStream.CanRead) return;
@@ -146,12 +162,10 @@ namespace Team2_RealTimeMonitor
 
                 byte[] buff = new byte[1024];
 
-                int nbytes = await netStream.ReadAsync(buff, 0, buff.Length);                         
+                int nbytes = await netStream.ReadAsync(buff, 0, buff.Length);
 
-                if(nbytes < 1)
-                {
+                if (nbytes < 1)
                     return;
-                }
 
                 string[] msg = Encoding.UTF8.GetString(buff, 0, nbytes).Split(',');
 
@@ -159,72 +173,103 @@ namespace Team2_RealTimeMonitor
                 {
                     msg.ToList().ForEach(m => Debug.WriteLine(m));
 
-                    foreach (Control control in Controls)
+
+                    for (int i = 0; i < lineMonitors.Count; i++)
                     {
-                        if (control is LineMonitorControl)
+                        if (lineMonitors[i].Tag.ToString() == msg[0])
                         {
-                            LineMonitorControl lineMonitor = (LineMonitorControl)control;
 
-                            Debug.WriteLine( $"태그값 : {lineMonitor.Tag}");
-
-                            if (lineMonitor.Tag.ToString() == msg[0])
-                            {
-                                lineMonitor.LabelRequestText = msg[1];
-                                lineMonitor.LabelImportText = msg[2];
-                                lineMonitor.LabelProduceText = (int.Parse(lineMonitor.LabelProduceText) + int.Parse(msg[3])).ToString();
-                                lineMonitor.LabelDefectiveText = (int.Parse(lineMonitor.LabelDefectiveText) + int.Parse(msg[4])).ToString(); ;
-
-                                if (Convert.ToInt32(lineMonitor.LabelDefectiveText) > 1)
-                                    lineMonitor.PictureStateImage = Properties.Resources.Img_CircleYellow;
-                                else
-                                    lineMonitor.PictureStateImage = Properties.Resources.Img_CircleGreen;
-                                
-                                lineMonitor.CircleProgress.Value = (int.Parse(lineMonitor.LabelProduceText) / int.Parse(lineMonitor.LabelRequestText)) * 100;
-
-                                
-                                Debug.WriteLine( $" 서클 값 : {lineMonitor.CircleProgress.Value}");
-
-                                break;
-                            }
+                            lineMonitors[i].Invoke(new LineDelegate(ReWrite), lineMonitors[i], msg);
+                            Debug.WriteLine($" 서클 값 : {lineMonitors[i].CircleProgress.Value}");
+                            break;
                         }
                     }
+
+                    #region 주석
+                    //foreach (LineMonitorControl lineMonitor in lineMonitors)
+                    //{
+                    //    Debug.WriteLine($"태그값 : {lineMonitor.Tag}");
+
+                    //    if (lineMonitor.Tag.ToString() == msg[0])
+                    //    {
+                    //        lineMonitor.LabelRequestText = msg[1];
+                    //        lineMonitor.LabelImportText = msg[2];
+                    //        lineMonitor.LabelProduceText = (int.Parse(lineMonitor.LabelProduceText) + int.Parse(msg[3])).ToString();
+                    //        lineMonitor.LabelDefectiveText = (int.Parse(lineMonitor.LabelDefectiveText) + int.Parse(msg[4])).ToString(); ;
+
+                    //        if (Convert.ToInt32(lineMonitor.LabelDefectiveText) > 1)
+                    //            lineMonitor.PictureStateImage = Properties.Resources.Img_CircleYellow;
+                    //        else
+                    //            lineMonitor.PictureStateImage = Properties.Resources.Img_CircleGreen;
+
+                    //        lineMonitor.CircleProgress.Value = (int.Parse(lineMonitor.LabelProduceText) / int.Parse(lineMonitor.LabelRequestText)) * 100;
+
+
+                    //        Debug.WriteLine($" 서클 값 : {lineMonitor.CircleProgress.Value}");
+
+                    //        break;
+
+                    //    }
+                    //}
+                    #endregion
                 }
             }
-
-
             catch (Exception ex)
             {
                 WriteLog(ex);
             }
         }
 
+        //msg =  LineID, RequestQty, iTotalCnt, itemQuality, 1 - itemQuality
+        private void ReWrite(LineMonitorControl lineMonitor, string[] msg)
+        {
+            lineMonitor.LabelRequestText = msg[1];
+            lineMonitor.LabelImportText = msg[2];
+            lineMonitor.LabelProduceText = (int.Parse(lineMonitor.LabelProduceText) + int.Parse(msg[3])).ToString();
+            lineMonitor.LabelDefectiveText = (int.Parse(lineMonitor.LabelDefectiveText) + int.Parse(msg[4])).ToString(); ;
+
+            if (Convert.ToInt32(lineMonitor.LabelDefectiveText) > 1)
+                lineMonitor.PictureStateImage = Properties.Resources.Img_CircleYellow;
+            else
+                lineMonitor.PictureStateImage = Properties.Resources.Img_CircleGreen;
+
+            lineMonitor.CircleProgress.Increment(int.Parse(lineMonitor.LabelProduceText) / int.Parse(lineMonitor.LabelRequestText) * 100);
+        }
+
+
+
+        /*------------------------
+         *  컨트롤 초기화해주는 코드
+         ------------------------*/
         private void ResetControl()
         {
             try
             {
-                foreach (Control control in this.Controls)
+                for (int i = 0; i < lineMonitors.Count; i++)
                 {
-                    if (control is LineMonitorControl)
+                    if (lineMonitors[i].CircleProgress.Value == 100)
                     {
-                        LineMonitorControl lineMonitor = (LineMonitorControl)control;
-
-                        if (lineMonitor.CircleProgress.Value == 100)
-                        {
-                            lineMonitor.CircleProgress.Value = 0;
-                            lineMonitor.LabelRequestText = "0";
-                            lineMonitor.LabelImportText = "0";
-                            lineMonitor.LabelProduceText = "0";
-                            lineMonitor.LabelDefectiveText = "0";
-                        }
+                        lineMonitors[i].CircleProgress.Decrement((int)lineMonitors[i].CircleProgress.Value);
+                        lineMonitors[i].LabelRequestText = "0";
+                        lineMonitors[i].LabelImportText = "0";
+                        lineMonitors[i].LabelProduceText = "0";
+                        lineMonitors[i].LabelDefectiveText = "0";
                     }
                 }
             }
-            catch(Exception ex)
+            catch(AggregateException ex)
+            {
+                WriteLog(ex);
+            }
+            catch (Exception ex)
             {
                 WriteLog(ex);
             }
         }
 
+        /*------------------------
+         *  로그 기록해주는 코드
+         ------------------------*/
         private void WriteLog(Exception ex)
         {
             Program.Log.WriteError(ex.Message, ex);

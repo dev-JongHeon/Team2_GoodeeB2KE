@@ -196,11 +196,13 @@ namespace Team2_POP
 
             //client.Received -= Receive;
             client.Received += new ReceiveEventHandler(Receive);
-            client.Connect();
 
-            client.LineID = WorkerInfo.LineID;
-            client.IsLine = true;
-            client.Certification();
+            if (client.Connect())
+            {
+                client.LineID = WorkerInfo.LineID;
+                client.IsLine = true;
+                client.Certification();
+            }
         }
 
 
@@ -211,6 +213,7 @@ namespace Team2_POP
         private void IsDowntime(bool isNotFirst)
         {
             dgvWork.DataSource = dgvProduce.DataSource = dgvPerformance.DataSource = null;
+            lblWorker.Text = string.Empty;
 
             bool bResult = new Service().IsDowntime(WorkerInfo.LineID);
             pictureBox1.Tag = bResult;
@@ -229,6 +232,9 @@ namespace Team2_POP
                 pictureBox1.Image = Resources.Img_CircleRed;
                 btnDownTime.Text = "가동 전환";
                 BtnDisable(btnDate);
+                BtnDisable(btnDefective);
+                BtnDisable(btnProduceStart);
+                BtnDisable(btnWorker);
             }
 
             // true : 처음이 아닐때만 
@@ -253,6 +259,7 @@ namespace Team2_POP
             dgvWork.DataSource = null;
             dgvProduce.DataSource = null;
             dgvPerformance.DataSource = null;
+            lblWorker.Text = string.Empty;
 
             if (list.Count > 0)
                 dgvWork.DataSource = list;
@@ -322,7 +329,8 @@ namespace Team2_POP
         {
             if (dgvPerformance.SelectedRows.Count < 1)
             {
-                CustomMessageBox.ShowDialog("데이터 오류", "생산실적을 선택해주세요.", MessageBoxIcon.Warning);
+                CustomMessageBox.ShowDialog(Resources.MsgProduceStartResultHeader
+                    , Resources.MsgProduceStartResultContent, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -344,6 +352,8 @@ namespace Team2_POP
             dgvWork.DataSource = null;
             dgvProduce.DataSource = null;
             dgvPerformance.DataSource = null;
+            lblWorker.Text = string.Empty;
+
         }
 
         // 생산을 시작하는 경우
@@ -351,12 +361,12 @@ namespace Team2_POP
         {
             string[] result = null;
 
-            // 생산실적의 선택된 데이터가 없는 경우
-            if (dgvProduce.SelectedRows.Count < 1)
-            {
-                CustomMessageBox.ShowDialog("데이터 오류", "생산목록을 선택해주세요.", MessageBoxIcon.Warning);
-                return;
-            }
+            //// 생산실적의 선택된 데이터가 없는 경우
+            //if (dgvProduce.SelectedRows.Count < 1)
+            //{
+            //    CustomMessageBox.ShowDialog("데이터 오류", "생산목록을 선택해주세요.", MessageBoxIcon.Warning);
+            //    return;
+            //}
 
             try
             {
@@ -380,7 +390,8 @@ namespace Team2_POP
 
                         if (!bConnect)
                         {
-                            CustomMessageBox.ShowDialog("기계통신오류", "기계와의 작동이 원할하지 않습니다. \n기계서버의 상태를 점검한후 다시 시도해주세요.", MessageBoxIcon.Error);
+                            CustomMessageBox.ShowDialog(Resources.MsgProduceStartConnectResultHeader
+                                , Resources.MsgProduceStartConnectResultContent, MessageBoxIcon.Error);
                             ConnectServer();
                         }
                     }
@@ -388,7 +399,9 @@ namespace Team2_POP
                     //서버와 연결된 경우 (정상실행)
                     else
                     {
-                        CustomMessageBox.ShowDialog("접수 성공", "생산을 시작합니다.", MessageBoxIcon.Question);
+                        CustomMessageBox.ShowDialog(Resources.MsgProduceStartAcceptSucceesHeader
+                            , Resources.MsgProduceStartAcceptSucceesContent, MessageBoxIcon.Question);
+
                         pFrm = new ProducingForm();
                         pFrm.Processing = client.Start;
                         pFrm.ShowDialog();
@@ -397,14 +410,15 @@ namespace Team2_POP
                 // 비정상 수량
                 else
                 {
-                    CustomMessageBox.ShowDialog("데이터 통신 오류", "처리하는 과정에서 오류가 발생하였습니다. \n다시 시도해주세요.", MessageBoxIcon.Error);
+                    CustomMessageBox.ShowDialog(Resources.MsgProduceStartConnectResultHeader
+                        , "처리하는 과정에서 오류가 발생하였습니다. \n다시 시도해주세요.", MessageBoxIcon.Error);
                 }
 
             }
             catch (Exception ex)
             {
                 WriteLog(ex);
-                CustomMessageBox.ShowDialog("오류", ex.Message, MessageBoxIcon.Error);
+                CustomMessageBox.ShowDialog(Resources.MsgCommonResultFailHeader, ex.Message, MessageBoxIcon.Error);
             }
         }
 
@@ -435,7 +449,18 @@ namespace Team2_POP
                 }
                 else
                 {
-                    CustomMessageBox.ShowDialog("실패", e.Message, MessageBoxIcon.Error);
+                    if(e.Message == "하나 이상의 오류가 발생했습니다.")
+                    {
+                        if (pFrm != null)
+                        {
+                            if (!pFrm.IsDisposed)
+                                pFrm.Invoke(new CloseDelegate(pFrm.Close));
+                        }
+                        return;
+                    }
+
+
+                    CustomMessageBox.ShowDialog(Resources.MsgCommonResultFailHeader, e.Message, MessageBoxIcon.Error);
                     if(!pFrm.IsDisposed)
                      pFrm.Invoke(new CloseDelegate(pFrm.Close));
                 }
@@ -446,7 +471,7 @@ namespace Team2_POP
             catch (Exception ex)
             {
                 WriteLog(ex);
-                CustomMessageBox.ShowDialog("오류", ex.Message, MessageBoxIcon.Error);
+                CustomMessageBox.ShowDialog(Resources.MsgCommonResultFailHeader, ex.Message, MessageBoxIcon.Error);
                 if (pFrm != null)
                 {
                     pFrm.Invoke(new CloseDelegate(pFrm.Close));
@@ -467,6 +492,8 @@ namespace Team2_POP
 
             bool bResult = new Service().SetWorker(produceID, Convert.ToInt32(lblWorkerName.Tag));
             dgvPerformance.DataSource = null;
+            lblWorker.Text = string.Empty;
+
             dgvPerformance.DataSource = new Service().GetPerformance(produceID);
 
             // 작업자 설정을 성공한 경우
@@ -499,6 +526,7 @@ namespace Team2_POP
 
                     dgvProduce.DataSource = null;
                     dgvPerformance.DataSource = null;
+                    lblWorker.Text = string.Empty;
                 }
             }
             catch (Exception ex)
@@ -561,6 +589,11 @@ namespace Team2_POP
             {
                 dgvProduce.DataSource = null;
                 dgvPerformance.DataSource = null;
+                lblWorker.Text = string.Empty;
+
+                BtnDisable(btnDefective);
+                BtnDisable(btnProduceStart);
+                BtnDisable(btnWorker);
 
                 if (e.RowIndex > -1 && e.ColumnIndex > -1 && dgvWork.SelectedRows[0].Cells[0].Value != null)
                 {
@@ -588,7 +621,7 @@ namespace Team2_POP
             catch (Exception ex)
             {
                 WriteLog(ex);
-                CustomMessageBox.ShowDialog("오류", ex.Message, MessageBoxIcon.Error);
+                CustomMessageBox.ShowDialog(Resources.MsgCommonResultFailHeader, ex.Message, MessageBoxIcon.Error);
             }
         }
         //=====================
@@ -599,6 +632,7 @@ namespace Team2_POP
             try
             {
                 dgvPerformance.DataSource = null;
+                lblWorker.Text = string.Empty;
 
                 if (e.RowIndex > -1 && e.ColumnIndex > -1)
                 {
@@ -640,7 +674,7 @@ namespace Team2_POP
             catch (Exception ex)
             {
                 WriteLog(ex);
-                CustomMessageBox.ShowDialog("에러", ex.Message, MessageBoxIcon.Error);                
+                CustomMessageBox.ShowDialog(Resources.MsgCommonResultFailHeader, ex.Message, MessageBoxIcon.Error);                
             }
         }
 
@@ -734,14 +768,15 @@ namespace Team2_POP
 
 
         #endregion
-
-        //===================
-        //    테스트 구역
-        //===================
+        
+        
+        // 오류난 로그를 작성하는 코드
         private void WriteLog(Exception ex)
         {
             WriteLog(ex);
         }
+
+        #region 이미지 관련 이벤트
 
         private void picLeft_MouseHover(object sender, EventArgs e)
         {
@@ -782,5 +817,6 @@ namespace Team2_POP
         {
             picExit.BorderStyle = BorderStyle.None;
         }
+        #endregion
     }
 }

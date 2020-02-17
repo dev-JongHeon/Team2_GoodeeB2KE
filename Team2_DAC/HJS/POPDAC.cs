@@ -195,7 +195,8 @@ namespace Team2_DAC
             qrySelect.Append(" SELECT CONVERT(NVARCHAR(2), Factory_ID) AS ID, Factory_Name AS Name ");
             qrySelect.Append(" ,CONVERT(NVARCHAR(1), Factory_Division) AS CodeType ");
             qrySelect.Append(" FROM Factory ");
-            
+            qrySelect.Append(" WHERE FACTORY_DELETEDYN = 0 ");
+
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -234,7 +235,7 @@ namespace Team2_DAC
                     StringBuilder qryString = new StringBuilder();
                     qryString.Append(" SELECT CONVERT(NVARCHAR(5), Line_ID) AS ID, Line_Name AS Name  ");
                     qryString.Append(" FROM Line ");
-                    qryString.Append(" WHERE Factory_ID = @Factory_ID ");
+                    qryString.Append(" WHERE Factory_ID = @Factory_ID AND LINE_DELETEDYN = 0");
 
                     cmd.CommandText = qryString.ToString();
 
