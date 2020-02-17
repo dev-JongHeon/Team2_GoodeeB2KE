@@ -102,7 +102,7 @@
             this.searchSales.ControlType = Team2_ERP.SearchUserControl.Mode.DepSales;
             this.searchSales.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.searchSales.Labelname = "작업지시자";
-            this.searchSales.Location = new System.Drawing.Point(12, 11);
+            this.searchSales.Location = new System.Drawing.Point(148, 13);
             this.searchSales.Name = "searchSales";
             this.searchSales.Size = new System.Drawing.Size(312, 25);
             this.searchSales.TabIndex = 0;
@@ -111,7 +111,7 @@
             // 
             this.searchPeriodwork.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.searchPeriodwork.Labelname = "작업지시일";
-            this.searchPeriodwork.Location = new System.Drawing.Point(12, 42);
+            this.searchPeriodwork.Location = new System.Drawing.Point(148, 44);
             this.searchPeriodwork.Name = "searchPeriodwork";
             this.searchPeriodwork.Size = new System.Drawing.Size(312, 25);
             this.searchPeriodwork.TabIndex = 1;
@@ -120,7 +120,7 @@
             // 
             this.searchPeriodRequire.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.searchPeriodRequire.Labelname = "납기일";
-            this.searchPeriodRequire.Location = new System.Drawing.Point(12, 73);
+            this.searchPeriodRequire.Location = new System.Drawing.Point(148, 75);
             this.searchPeriodRequire.Name = "searchPeriodRequire";
             this.searchPeriodRequire.Size = new System.Drawing.Size(312, 25);
             this.searchPeriodRequire.TabIndex = 2;
@@ -131,7 +131,7 @@
             this.gbxSearch.Controls.Add(this.rbx0);
             this.gbxSearch.Controls.Add(this.rbx1);
             this.gbxSearch.Controls.Add(this.rbxAll);
-            this.gbxSearch.Location = new System.Drawing.Point(330, 5);
+            this.gbxSearch.Location = new System.Drawing.Point(7, 4);
             this.gbxSearch.Name = "gbxSearch";
             this.gbxSearch.Size = new System.Drawing.Size(135, 100);
             this.gbxSearch.TabIndex = 62;

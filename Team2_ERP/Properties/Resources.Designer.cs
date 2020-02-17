@@ -284,6 +284,15 @@ namespace Team2_ERP.Properties {
         }
         
         /// <summary>
+        ///   유효하지 않은 날짜형식입니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string CalendarValidError {
+            get {
+                return ResourceManager.GetString("CalendarValidError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   처리를 취소하셨습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string Cancel {

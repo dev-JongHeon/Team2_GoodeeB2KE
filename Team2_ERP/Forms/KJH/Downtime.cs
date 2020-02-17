@@ -257,7 +257,7 @@ namespace Team2_ERP
         {
             if (tabDowntime.SelectedIndex == 0)
             {
-                if (searchPeriod.Startdate.Tag == null && searchPeriod.Enddate.Tag == null)
+                if (searchPeriod.Startdate.Tag == null || searchPeriod.Enddate.Tag == null)
                 {
                     frm.NoticeMessage = Resources.PeriodError;
                 }

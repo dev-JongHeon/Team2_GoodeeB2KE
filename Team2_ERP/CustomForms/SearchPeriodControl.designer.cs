@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.txtEnd = new System.Windows.Forms.MaskedTextBox();
@@ -36,9 +37,11 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblName = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -69,6 +72,7 @@
             this.txtEnd.Location = new System.Drawing.Point(120, 2);
             this.txtEnd.Mask = "9999/99/99";
             this.txtEnd.Name = "txtEnd";
+            this.txtEnd.ReadOnly = true;
             this.txtEnd.Size = new System.Drawing.Size(84, 22);
             this.txtEnd.TabIndex = 1;
             this.txtEnd.Click += new System.EventHandler(this.txtEnd_Click);
@@ -81,6 +85,7 @@
             this.txtStart.Location = new System.Drawing.Point(6, 2);
             this.txtStart.Mask = "9999/99/99";
             this.txtStart.Name = "txtStart";
+            this.txtStart.ReadOnly = true;
             this.txtStart.Size = new System.Drawing.Size(83, 22);
             this.txtStart.TabIndex = 0;
             this.txtStart.Click += new System.EventHandler(this.txtStart_Click);
@@ -129,6 +134,10 @@
             this.lblName.TabIndex = 8;
             this.lblName.Text = "기간 선택";
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // SearchPeriodControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -142,6 +151,7 @@
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -156,5 +166,6 @@
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.MaskedTextBox txtEnd;
         private System.Windows.Forms.MaskedTextBox txtStart;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

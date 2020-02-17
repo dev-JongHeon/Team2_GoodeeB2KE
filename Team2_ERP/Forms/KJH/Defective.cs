@@ -112,7 +112,7 @@ namespace Team2_ERP
 
                 dgvDefectiveByLine.Columns.Clear();
                 SettingByLineColumns(dtbyline.Columns);
-                dgvDefectiveByLine.Columns[2].Visible = false;
+                dgvDefectiveByLine.Columns[1].Visible = false;
                 SetDoNotSort(dgvDefectiveByLine);
 
                 dgvDefectiveByDefecType.Columns.Clear();
@@ -280,7 +280,7 @@ namespace Team2_ERP
         {
             if (tabDefective.SelectedIndex==0)
             {
-                if(searchPeriod.Startdate.Tag == null && searchPeriod.Enddate.Tag == null)
+                if(searchPeriod.Startdate.Tag == null || searchPeriod.Enddate.Tag == null)
                 {
                     frm.NoticeMessage = Resources.PeriodError;
                 }

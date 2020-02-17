@@ -486,4 +486,8 @@
     <value>설정</value>
     <comment>김종헌 메세지박스 설정 제목</comment>
   </data>
+  <data name="CalendarValidError" xml:space="preserve">
+    <value>유효하지 않은 날짜형식입니다.</value>
+    <comment>김종헌 달력유효성 실패 메세지</comment>
+  </data>
 </root>

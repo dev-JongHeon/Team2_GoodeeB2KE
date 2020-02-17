@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Globalization;
+using Team2_ERP.Properties;
 
 namespace Team2_ERP
 {
@@ -30,26 +31,26 @@ namespace Team2_ERP
             set { txtEnd = value; }
             get { return txtEnd; }
         }
-        
-        public DateTime sdate { set => txtStart.Text = value.ToString();  }
-        public DateTime edate { set => txtEnd.Text = value.ToString();  }
-        
+
+        public DateTime sdate { set => txtStart.Text = value.ToString(); }
+        public DateTime edate { set => txtEnd.Text = value.ToString(); }
+
 
         public SearchPeriodControl()
         {
             InitializeComponent();
-            
+
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            errorProvider1.SetError(txtStart, "");
+            errorProvider1.SetError(txtEnd, "");
             if (txtStart.Tag != null && txtEnd.Tag != null)
             {
                 DateTime start;
                 DateTime end;
-                DateTime.TryParse(txtStart.Tag.ToString(), out start);
-                DateTime.TryParse(txtEnd.Tag.ToString(), out end);
-                if (start == null || end == null)
+                if (!DateTime.TryParse(txtEnd.Tag.ToString(), out end) || !DateTime.TryParse(txtStart.Tag.ToString(), out start))
                 {
                     frm = new CalendarForm();
                 }
@@ -62,7 +63,7 @@ namespace Team2_ERP
             {
                 frm = new CalendarForm();
             }
-             
+
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 sdate = frm.Startdate;
@@ -84,25 +85,24 @@ namespace Team2_ERP
 
         private void txtStart_TextChanged(object sender, EventArgs e)
         {
-            if (txtStart.Text== "    -  -")
+            if (txtStart.Text == "    -  -")
             {
-                txtEnd.Clear();
+                //txtEnd.Clear();
+                //txtEnd.Tag = null;
                 txtStart.Tag = null;
-                txtEnd.Tag = null;
+                
             }
             else
             {
                 txtStart.Tag = txtStart.Text;
             }
-            
+
         }
 
         private void txtEnd_TextChanged(object sender, EventArgs e)
         {
             if (txtEnd.Text == "    -  -")
             {
-                txtStart.Clear();
-                txtStart.Tag = null;
                 txtEnd.Tag = null;
             }
             else
@@ -117,12 +117,13 @@ namespace Team2_ERP
             if (!(e.KeyChar == Convert.ToChar(Keys.Back)))
             {
                 e.Handled = true;
-            }
-            else
-            {
                 txtStart.Tag = null;
                 txtEnd.Tag = null;
             }
+            
         }
+
+        
+
     }
 }

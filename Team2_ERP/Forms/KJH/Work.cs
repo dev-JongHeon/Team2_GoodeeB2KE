@@ -160,7 +160,7 @@ namespace Team2_ERP
         public override void Search(object sender, EventArgs e)
         {
 
-            if (searchPeriodwork.Startdate.Tag == null && searchPeriodwork.Enddate.Tag == null)
+            if (searchPeriodwork.Startdate.Tag == null || searchPeriodwork.Enddate.Tag == null)
             {
                 frm.NoticeMessage = Resources.PeriodError;
             }
