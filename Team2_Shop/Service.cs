@@ -34,5 +34,10 @@ namespace Team2_Shop
         {
             return new ProductDAC().GetProductInfo(productID);
         }
+
+        public bool CheckOut(Cart cart, ShipInfo shipInfo)
+        {
+            return new ShopDAC().CheckOut(cart, shipInfo);
+        }
     }
 }

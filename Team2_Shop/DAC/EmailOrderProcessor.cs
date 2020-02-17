@@ -29,6 +29,7 @@ namespace Team2_Shop.DAC
             emailSettings = settings;
         }
 
+        // 주문받고 처리하는곳
         public void ProcessOrder(Cart cart, ShipInfo orderInfo)
         {
             using (var smtpClient = new SmtpClient())
@@ -61,7 +62,6 @@ namespace Team2_Shop.DAC
                     .AppendLine()
                     .AppendLine("---")
                     .AppendLine("배송지정보:")
-                    .AppendLine(orderInfo.Name)
                     .AppendLine(orderInfo.Addr1)
                     .AppendLine(orderInfo.Addr2 ?? "")
                     .AppendLine(orderInfo.Message ?? "")

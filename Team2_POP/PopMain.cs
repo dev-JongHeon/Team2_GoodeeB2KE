@@ -496,6 +496,9 @@ namespace Team2_POP
                     defective.Performance_ID = performanceRow.Cells[0].Value.ToString();
 
                     defective.ShowDialog();
+
+                    dgvProduce.DataSource = null;
+                    dgvPerformance.DataSource = null;
                 }
             }
             catch (Exception ex)
@@ -738,11 +741,6 @@ namespace Team2_POP
         private void WriteLog(Exception ex)
         {
             WriteLog(ex);
-        }
-
-        private void btnWorkStart_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void picLeft_MouseHover(object sender, EventArgs e)

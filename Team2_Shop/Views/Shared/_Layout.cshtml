@@ -82,24 +82,7 @@ desired effect
                         <!-- Messages: style can be found in dropdown.less-->
                         <li class="dropdown messages-menu">
                             <!-- Menu toggle button -->
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-envelope-o"></i>
-                                <span class="label label-success">4</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">You have 4 messages</li>
-                                <li>
-                                    <!-- inner menu: contains the messages -->
-                                    <ul class="menu">
-                                        <li>
-
-                                        </li>
-                                        <!-- end message -->
-                                    </ul>
-                                    <!-- /.menu -->
-                                </li>
-                                <li class="footer"><a href="#">See All Messages</a></li>
-                            </ul>
+                            @Html.Action("Summary", "Cart")
                         </li>
                         <!-- /.messages-menu -->
                         <!-- Notifications Menu -->
@@ -131,31 +114,31 @@ desired effect
                                 <i class="fas fa-user"></i>
                             </a>
                             <ul class="dropdown-menu">
-                                <li>                                   
+                                <li>
                                     <ul class="menu">
 
                                         <!--  -->
                                         @if (Session["UserInfo"] == null)
                                         {
-                                        <li class="btn-block text-center">
-                                            <a href="/Login/Index">
-                                                <i class="fas fa-key text-aqua"></i> 로그인
-                                            </a>
-                                        </li>
+                                            <li class="btn-block text-center">
+                                                <a href="/Login/Index">
+                                                    <i class="fas fa-key text-aqua"></i> 로그인
+                                                </a>
+                                            </li>
                                         }
                                         else
                                         {
-                                        <li class="btn-block text-center">
-                                            <a href="~/Login/Index">
-                                                <i class="fa fa-users text-aqua"></i> 마이페이지
-                                            </a>
-                                        </li>
+                                            <li class="btn-block text-center">
+                                                <a href="~/Login/Index">
+                                                    <i class="fa fa-users text-aqua"></i> 마이페이지
+                                                </a>
+                                            </li>
 
-                                        <li class="btn-block text-center">
-                                            <a href="~/Login/LogOut">
-                                                <i class="fas fa-unlock-alt text-aqua"></i> 로그아웃
-                                            </a>
-                                        </li>
+                                            <li class="btn-block text-center">
+                                                <a href="~/Login/LogOut">
+                                                    <i class="fas fa-unlock-alt text-aqua"></i> 로그아웃
+                                                </a>
+                                            </li>
                                         }
                                     </ul>
                                 </li>
@@ -183,8 +166,8 @@ desired effect
 
                     @if (Session["UserInfo"] != null)
                     {
-                    <li><a href="#"><i class="fas fa-clipboard-list"></i> <span> 주문내역</span></a></li>
-                    <li><a href="#"><i class="fas fa-truck"></i> <span> 배송조회</span></a></li>
+                        <li><a href="#"><i class="fas fa-clipboard-list"></i> <span> 주문내역</span></a></li>
+                        <li><a href="#"><i class="fas fa-truck"></i> <span> 배송조회</span></a></li>
                     }
 
 
@@ -305,5 +288,6 @@ desired effect
     <!-- Optionally, you can add Slimscroll and FastClick plugins.
          Both of these plugins are recommended to enhance the
          user experience. -->
+    @RenderSection("scripts", required: false)
 </body>
 </html>

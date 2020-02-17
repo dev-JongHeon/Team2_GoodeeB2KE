@@ -179,7 +179,7 @@ namespace Team2_ERP
 
         private void InitCombo()
         {
-            StandardService service = new StandardService();
+            CodeTableService service = new CodeTableService();
             List<ComboItemVO> categoryList = (from item in service.GetComboProductCategory() where item.ID.Contains("CS") select item).ToList();
             UtilClass.ComboBinding(cboContext, categoryList, "선택");
         }

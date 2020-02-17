@@ -176,7 +176,7 @@ namespace Team2_DAC
             }
         }
 
-        public void InsertSemiProduct(ProductVO Pitem, List<CombinationVO> citemList, int count)
+        public void InsertSemiProduct(ProductVO Pitem, List<BOMVO> citemList, int count)
         {
             conn.Open();
 
@@ -226,13 +226,13 @@ namespace Team2_DAC
             }
         }
 
-        public void UpdateSemiProduct(ProductVO Pitem, List<CombinationVO> citemList, int count)
+        public void UpdateSemiProduct(ProductVO Pitem, List<BOMVO> citemList, int count)
         {
             conn.Open();
 
             SqlTransaction trans = conn.BeginTransaction();
 
-            List<CombinationVO> list = null;
+            List<BOMVO> list = null;
 
             try
             {
@@ -248,7 +248,7 @@ namespace Team2_DAC
                 cmd.Parameters.AddWithValue("@Product_Safety", Pitem.Product_Safety);
                 cmd.Parameters.AddWithValue("@Product_ID", Pitem.Product_ID);
                 SqlDataReader reader = cmd.ExecuteReader();
-                list = Helper.DataReaderMapToList<CombinationVO>(reader);
+                list = Helper.DataReaderMapToList<BOMVO>(reader);
 
                 string combiSql = "Update Combination Set Combination_Product_ID = @Combination_Product_ID, Combination_RequiredQty = @Combination_RequiredQty Where Combination_ID = @Combination_ID ";
 
@@ -283,7 +283,7 @@ namespace Team2_DAC
 
             SqlTransaction trans = conn.BeginTransaction();
 
-            List<CombinationVO> list = null;
+            List<BOMVO> list = null;
 
             try
             {
@@ -294,7 +294,7 @@ namespace Team2_DAC
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Product_ID", Pitem.Product_ID);
                 SqlDataReader reader = cmd.ExecuteReader();
-                list = Helper.DataReaderMapToList<CombinationVO>(reader);
+                list = Helper.DataReaderMapToList<BOMVO>(reader);
 
                 string combiSql = "Update Combination Set Combination_DeletedYN = 1 Where Combination_ID = @Combination_ID ";
 
@@ -321,7 +321,7 @@ namespace Team2_DAC
             }
         }
 
-        public void InsertProduct(ProductVO Pitem, List<CombinationVO> citemList, int count)
+        public void InsertProduct(ProductVO Pitem, List<BOMVO> citemList, int count)
         {
             conn.Open();
 
@@ -371,13 +371,13 @@ namespace Team2_DAC
             }
         }
 
-        public void UpdateProduct(ProductVO Pitem, List<CombinationVO> citemList, int count)
+        public void UpdateProduct(ProductVO Pitem, List<BOMVO> citemList, int count)
         {
             conn.Open();
 
             SqlTransaction trans = conn.BeginTransaction();
 
-            List<CombinationVO> list = null;
+            List<BOMVO> list = null;
 
             try
             {
@@ -393,7 +393,7 @@ namespace Team2_DAC
                 cmd.Parameters.AddWithValue("@Product_Origin", Pitem.Product_Origin);
                 cmd.Parameters.AddWithValue("@Product_ID", Pitem.Product_ID);
                 SqlDataReader reader = cmd.ExecuteReader();
-                list = Helper.DataReaderMapToList<CombinationVO>(reader);
+                list = Helper.DataReaderMapToList<BOMVO>(reader);
 
                 string combiSql = "Update Combination Set Combination_Product_ID = @Combination_Product_ID, Combination_RequiredQty = @Combination_RequiredQty Where Combination_ID = @Combination_ID ";
 
@@ -428,7 +428,7 @@ namespace Team2_DAC
 
             SqlTransaction trans = conn.BeginTransaction();
 
-            List<CombinationVO> list = null;
+            List<BOMVO> list = null;
 
             try
             {
@@ -439,7 +439,7 @@ namespace Team2_DAC
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Product_ID", Pitem.Product_ID);
                 SqlDataReader reader = cmd.ExecuteReader();
-                list = Helper.DataReaderMapToList<CombinationVO>(reader);
+                list = Helper.DataReaderMapToList<BOMVO>(reader);
 
                 string combiSql = "Update Combination Set Combination_DeletedYN = 1 Where Combination_ID = @Combination_ID ";
 

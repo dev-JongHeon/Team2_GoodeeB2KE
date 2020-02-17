@@ -43,13 +43,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CMG\BOMVO.cs" />
-    <Compile Include="CMG\CombinationVO.cs" />
     <Compile Include="CMG\CompanyVO.cs" />
     <Compile Include="CMG\CustomerVO.cs" />
     <Compile Include="CMG\FactoryVO.cs" />
     <Compile Include="CMG\LineVO.cs" />
     <Compile Include="CMG\ProductVO.cs" />
     <Compile Include="FieldNameAttribute.cs" />
+    <Compile Include="HJS\LineMonitor.cs" />
     <Compile Include="HJS\WorkerInfoPOP.cs" />
     <Compile Include="KJH\PerformanceVO.cs" />
     <Compile Include="KJH\ProduceVO.cs" />

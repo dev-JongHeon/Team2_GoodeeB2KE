@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Team2_ERP.Properties;
 using Team2_ERP.Service.CMG;
 using Team2_VO;
 
@@ -15,6 +16,7 @@ namespace Team2_ERP
     public partial class Employees : BaseForm
     {
         List<EmployeeVO> list;
+        List<EmployeeVO> searchList;
 
         MainForm frm;
 
@@ -146,31 +148,26 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)
         {
-            if (searchEmployeeName.CodeTextBox.Text.Length > 0 && searchDepartmentName.CodeTextBox.Text.Length > 0)
+            searchList = list;
+            if(searchDepartmentName.CodeTextBox.Tag != null)
             {
-                List<EmployeeVO> searchList = (from item in list where item.Employees_ID.Equals(Convert.ToInt32(searchEmployeeName.CodeTextBox.Tag)) && item.CodeTable_CodeID.Equals(searchDepartmentName.CodeTextBox.Tag.ToString()) && item.Employees_DeletedYN == false select item).ToList();
-                dgvEmployee.DataSource = null;
-                dgvEmployee.DataSource = searchList;
+                searchList = (from item in searchList where item.CodeTable_CodeID.Equals(searchDepartmentName.CodeTextBox.Tag.ToString()) select item).ToList();
             }
-            else if (searchEmployeeName.CodeTextBox.Text.Length > 0)
+            if (searchEmployeeName.CodeTextBox.Tag != null)
             {
-                List<EmployeeVO> searchList = (from item in list where item.Employees_ID.Equals(Convert.ToInt32(searchEmployeeName.CodeTextBox.Tag)) && item.Employees_DeletedYN == false select item).ToList();
-                dgvEmployee.DataSource = null;
-                dgvEmployee.DataSource = searchList;
+                searchList = (from item in searchList where item.Employees_ID.Equals(Convert.ToInt32(searchEmployeeName.CodeTextBox.Tag)) select item).ToList();
             }
-            else if (searchDepartmentName.CodeTextBox.Text.Length > 0)
+            if(searchHiredate.Startdate.Tag != null && searchHiredate.Enddate.Tag != null)
             {
-                List<EmployeeVO> searchList = (from item in list where item.CodeTable_CodeID.Equals(searchDepartmentName.CodeTextBox.Tag.ToString()) && item.Employees_DeletedYN == false select item).ToList();
-                dgvEmployee.DataSource = null;
-                dgvEmployee.DataSource = searchList;
+                searchList = (from item in searchList where Convert.ToDateTime(Convert.ToDateTime(item.Employees_Hiredate).ToShortDateString()) >= Convert.ToDateTime(searchHiredate.Startdate.Tag.ToString()) && Convert.ToDateTime(Convert.ToDateTime(item.Employees_Hiredate).ToShortDateString()) <= Convert.ToDateTime(searchHiredate.Enddate.Tag.ToString()) select item).ToList();
             }
-            else
+            if(searchResigndate.Startdate.Tag != null && searchResigndate.Enddate.Tag != null)
             {
-                LoadGridView();
+                searchList = (from item in searchList where Convert.ToDateTime(Convert.ToDateTime(item.Employees_Resigndate).ToShortDateString()) >= Convert.ToDateTime(searchResigndate.Startdate.Tag.ToString()) && Convert.ToDateTime(Convert.ToDateTime(item.Employees_Resigndate).ToShortDateString()) <= Convert.ToDateTime(searchResigndate.Enddate.Tag.ToString()) select item).ToList();
             }
-
+            dgvEmployee.DataSource = searchList;
             dgvEmployee.CurrentCell = null;
-            InitMessage();
+            frm.NoticeMessage = Resources.SearchDone;
         }
 
         private void dgvEmployee_CellClick(object sender, DataGridViewCellEventArgs e)

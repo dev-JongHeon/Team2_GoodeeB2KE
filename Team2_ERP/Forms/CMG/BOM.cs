@@ -89,7 +89,7 @@ namespace Team2_ERP
         // DataGridView 가져오기
         private void LoadGridView()
         {
-            StandardService service = new StandardService();
+            BOMService service = new BOMService();
 
             if(rdoResource.Checked)
             {
@@ -266,7 +266,7 @@ namespace Team2_ERP
                 {
                     if (MessageBox.Show("삭제하시겠습니까?", "안내", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        StandardService service = new StandardService();
+                        BOMService service = new BOMService();
                         service.DeleteSemiProduct(item);
                         GridViewReset();
                         InitMessage();
@@ -277,7 +277,7 @@ namespace Team2_ERP
                 {
                     if (MessageBox.Show("삭제하시겠습니까?", "안내", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        StandardService service = new StandardService();
+                        BOMService service = new BOMService();
                         service.DeleteProduct(item);
                         GridViewReset();
                         InitMessage();

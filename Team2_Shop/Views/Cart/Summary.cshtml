@@ -1,0 +1,33 @@
+﻿@model Team2_Shop.Models.Cart
+
+
+<!-- 카트에 몇개 담겨 있는지 표시해주는 토글-->
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    <i class="fa fa-envelope-o"></i>
+    <span class="label label-success">@Model.Lines.Sum(x => x.Qty)</span>
+</a>
+
+<!-- 드랍다운 메뉴 -->
+<ul class="dropdown-menu">
+    <li class="header">
+        <div class="list-group-item-text">
+            <div class="text-right">
+               장바구니 담긴 수량 &nbsp;:&nbsp; <b>@Model.Lines.Sum(x => x.Qty)&nbsp; 개</b>
+            </div>
+            <br />
+            <div class="text-right">
+                총 결제 예상 금액 &nbsp;:&nbsp; <b>@Model.ComputeTotalValue().ToString("#,##0") &nbsp;원</b>
+            </div>
+        </div>
+    </li>
+    <li class="btn-block text-center">
+        <div class="hidden-xs">
+            @Html.ActionLink("장바구니 페이지 이동", "Index", "Cart",
+                new { returnUrl = Request.Url.PathAndQuery },
+                new { @class = "btn btn-block text-center text-orange" })
+        </div>
+        <div class="visible-xs">
+            <span style="color:yellow"><i class="fas fa-shopping-cart"></i>Cart</span>
+        </div>
+    </li>
+</ul>

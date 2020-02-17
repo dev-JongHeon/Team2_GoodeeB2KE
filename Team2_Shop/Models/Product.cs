@@ -12,4 +12,9 @@ namespace Team2_Shop.Models
         public int Product_Price { get; set; }
         public byte[] Product_Image { get; set; }
     }
+
+    public class ProductUrl : Product
+    {
+        public string Return_Url { get; set; }
+    }
 }

@@ -49,7 +49,7 @@ namespace Team2_ERP
         //반제품 카테고리 목록을 가져오는 콤보 바인딩 메서드
         private void InitCombo()
         {
-            StandardService service = new StandardService();
+            BOMService service = new BOMService();
             if (mode.Equals("Insert"))
             {
                 List<ComboItemVO> categoryList = (from item in service.GetComboProductCategory() where item.ID.Contains("CS") select item).ToList();
@@ -67,6 +67,7 @@ namespace Team2_ERP
             UtilClass.ComboBinding(cboWarehouse, warehouseList, "선택");
         }
 
+        //데이터그리드뷰 설정
         private void InitGridView()
         {
             UtilClass.SettingDgv(dgvSemiProduct);
@@ -83,7 +84,7 @@ namespace Team2_ERP
         // DataGridView 가져오기
         private void LoadGridView()
         {
-            StandardService service = new StandardService();
+            BOMService service = new BOMService();
             list = service.GetAllProduct();
             List<ProductVO> resourceList = (from item in list where item.Product_Category.Contains($"{cboCategoryDetail.SelectedValue.ToString()}") select item).ToList();
             dgvSemiProduct.DataSource = resourceList;
@@ -125,9 +126,10 @@ namespace Team2_ERP
             }
         }
 
+        //수정할 반제품의 조합데이터를 List에 받아서 사용자 컨트롤에 할당
         private void UpdateInfoLoad()
         {
-            StandardService service = new StandardService();
+            BOMService service = new BOMService();
             list = service.GetAllProduct();
             List<BOMVO> productList = service.GetAllCombination($"'{pCode}'");
             foreach (Control control in splitContainer2.Panel1.Controls)
@@ -177,7 +179,7 @@ namespace Team2_ERP
             if (!cboCategory.SelectedValue.ToString().Contains("CS"))
                 return;
 
-            StandardService service = new StandardService();
+            BOMService service = new BOMService();
             if (mode.Equals("Insert"))
             {
                 List<ComboItemVO> resourceList = service.GetComboResourceCategory(cboCategory.SelectedValue.ToString());
@@ -202,6 +204,7 @@ namespace Team2_ERP
             LoadGridView();
         }
 
+        //Product 테이블과 Combination 테이블에 등록
         private void InsertSemiProduct()
         {
             ProductVO Pitem = new ProductVO
@@ -213,7 +216,7 @@ namespace Team2_ERP
                 Product_Category = cboCategory.SelectedValue.ToString()
             };
 
-            List<CombinationVO> citemList = new List<CombinationVO>();
+            List<BOMVO> citemList = new List<BOMVO>();
 
             foreach (Control control in splitContainer2.Panel1.Controls)
             {
@@ -221,7 +224,7 @@ namespace Team2_ERP
                 {
                     SemiProductCompControl spc = (SemiProductCompControl)control;
 
-                    CombinationVO citem = new CombinationVO
+                    BOMVO citem = new BOMVO
                     {
                         Combination_Product_ID = spc.TxtName.Tag.ToString(),
                         Combination_RequiredQty = Convert.ToInt32(spc.Qty.Value)
@@ -231,10 +234,11 @@ namespace Team2_ERP
                 }
             }
 
-            StandardService service = new StandardService();
+            BOMService service = new BOMService();
             service.InsertSemiProduct(Pitem, citemList, splitContainer2.Panel1.Controls.Count);
         }
 
+        //Product 테이블과 Combination 테이블 수정
         private void UpdateSemiProduct()
         {
             ProductVO Pitem = new ProductVO
@@ -247,7 +251,7 @@ namespace Team2_ERP
                 Product_Category = cboCategory.SelectedValue.ToString()
             };
 
-            List<CombinationVO> citemList = new List<CombinationVO>();
+            List<BOMVO> citemList = new List<BOMVO>();
 
             foreach (Control control in splitContainer2.Panel1.Controls)
             {
@@ -255,7 +259,7 @@ namespace Team2_ERP
                 {
                     SemiProductCompControl spc = (SemiProductCompControl)control;
 
-                    CombinationVO citem = new CombinationVO
+                    BOMVO citem = new BOMVO
                     {
                         Combination_Product_ID = spc.TxtName.Tag.ToString(),
                         Combination_RequiredQty = Convert.ToInt32(spc.Qty.Value)
@@ -265,7 +269,7 @@ namespace Team2_ERP
                 }
             }
 
-            StandardService service = new StandardService();
+            BOMService service = new BOMService();
             service.UpdateSemiProduct(Pitem, citemList, splitContainer2.Panel1.Controls.Count);
         }
 
@@ -301,30 +305,34 @@ namespace Team2_ERP
                     {
                         SemiProductCompControl spc = (SemiProductCompControl)control;
 
+                        //데이터그리드뷰에서 선택한 원자재 카테고리와 사용자 컨트롤 원자재 카테고리가 같을 때
                         if (spc.LblName.Tag.ToString() == dgvSemiProduct.SelectedRows[0].Cells[2].Value.ToString())
                         {
+                            //사용자컨트롤에 아무정보가 없을 때
                             if (spc.TxtName.Tag == null)
                             {
-                                spc.TxtName.Text = dgvSemiProduct.SelectedRows[0].Cells[0].Value.ToString();
-                                spc.TxtName.Tag = dgvSemiProduct.SelectedRows[0].Cells[3].Value;
-                                spc.LblMoney.Text = Convert.ToInt32(dgvSemiProduct.SelectedRows[0].Cells[1].Value).ToString("#,##0") + "원";
+                                spc.TxtName.Text = dgvSemiProduct.SelectedRows[0].Cells[0].Value.ToString(); //제품이름
+                                spc.TxtName.Tag = dgvSemiProduct.SelectedRows[0].Cells[3].Value; //제품ID
+                                spc.LblMoney.Text = Convert.ToInt32(dgvSemiProduct.SelectedRows[0].Cells[1].Value).ToString("#,##0") + "원"; //제품가격
                                 spc.LblMoney.Tag = 1;
-                                spc.Qty.Tag = dgvSemiProduct.SelectedRows[0].Cells[1].Value;
+                                spc.Qty.Tag = dgvSemiProduct.SelectedRows[0].Cells[1].Value; //제품가격
                                 spc.Qty.Value += 1;
                             }
+                            //사용자컨트롤에 정보가 있을 때
                             else
                             {
+                                //데이터그리드뷰에서 선택한 원자재 ID와 사용자컨트롤에 있는 원자재의 ID가 같을 때
                                 if (spc.TxtName.Tag.ToString() == dgvSemiProduct.SelectedRows[0].Cells[3].Value.ToString())
                                 {
                                     spc.Qty.Value += 1;
                                 }
                                 else
                                 {
-                                    spc.TxtName.Text = dgvSemiProduct.SelectedRows[0].Cells[0].Value.ToString();
-                                    spc.TxtName.Tag = dgvSemiProduct.SelectedRows[0].Cells[3].Value;
-                                    spc.LblMoney.Text = Convert.ToInt32(dgvSemiProduct.SelectedRows[0].Cells[1].Value).ToString("#,##0") + "원";
+                                    spc.TxtName.Text = dgvSemiProduct.SelectedRows[0].Cells[0].Value.ToString(); //제품이름
+                                    spc.TxtName.Tag = dgvSemiProduct.SelectedRows[0].Cells[3].Value; //제품ID
+                                    spc.LblMoney.Text = Convert.ToInt32(dgvSemiProduct.SelectedRows[0].Cells[1].Value).ToString("#,##0") + "원"; //제품가격
                                     spc.LblMoney.Tag = 2;
-                                    spc.Qty.Tag = dgvSemiProduct.SelectedRows[0].Cells[1].Value;
+                                    spc.Qty.Tag = dgvSemiProduct.SelectedRows[0].Cells[1].Value; //제품가격
                                     spc.Qty.Value = 0;
                                     spc.Qty.Value += 1;
                                 }
