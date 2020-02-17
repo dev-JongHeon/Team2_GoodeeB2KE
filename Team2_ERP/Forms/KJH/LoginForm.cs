@@ -155,6 +155,12 @@ namespace Team2_ERP
                     MessageBox.Show(Properties.Resources.LoginEmpNameError, Properties.Resources.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     btnSearch.PerformClick();
                 }
+                else if (txtEmpPwd.TextLength == 0)
+                {
+                    MessageBox.Show(Properties.Resources.LoginPwdError, Properties.Resources.MsgBoxTitleError, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtEmpPwd.Focus();
+                    txtEmpPwd.SelectAll();
+                }
                 else
                 {
                     MessageBox.Show(Properties.Resources.LoginPwdError, Properties.Resources.MsgBoxTitleError, MessageBoxButtons.OK, MessageBoxIcon.Warning);

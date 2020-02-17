@@ -267,72 +267,89 @@
   </data>
   <data name="AddDone" xml:space="preserve">
     <value>등록 완료</value>
-    <comment>추가 버튼 후 하단에 성공메세지</comment>
+    <comment>김종헌 추가 버튼 후 하단에 성공메세지</comment>
   </data>
   <data name="AddError" xml:space="preserve">
     <value>등록 실패</value>
-    <comment>추가 버튼 후 하단에 실패메세지</comment>
+    <comment>김종헌 추가 버튼 후 하단에 실패메세지</comment>
   </data>
   <data name="AuthDone" xml:space="preserve">
     <value>권한설정 완료</value>
-    <comment>권한설정 버튼 후 하단에 성공메세지</comment>
+    <comment>김종헌 권한설정 버튼 후 하단에 성공메세지</comment>
   </data>
   <data name="AuthError" xml:space="preserve">
     <value>권한설정 실패</value>
-    <comment>권한설정 버튼 후 하단에 실패메세지</comment>
+    <comment>김종헌 권한설정 버튼 후 하단에 실패메세지</comment>
   </data>
   <data name="CalendarError" xml:space="preserve">
     <value>시작날짜가 종료날짜보다 큽니다.</value>
+    <comment>김종헌 Calendar에서 시작날짜보다 종료날짜가 더 클때 실패메세지</comment>
   </data>
   <data name="CalendarMaxError" xml:space="preserve">
     <value>최대검색가능기간은 1년입니다.</value>
+    <comment>김종헌 Calendar에서 1년이상의 날짜차이가 날때 실패메세지</comment>
   </data>
   <data name="DelDefectiveHandleError" xml:space="preserve">
     <value>삭제할 불량처리유형을 선택하지 않으셨습니다.</value>
+    <comment>김종헌 삭제할 불량처리유형을 선택하지 않았을 때 실패메세지</comment>
   </data>
   <data name="DelDefectiveTypeError" xml:space="preserve">
     <value>삭제할 불량유형을 선택하지 않으셨습니다.</value>
+    <comment>김종헌 삭제할 불량유형을 선택하지 않았을 때 실패메세지</comment>
   </data>
   <data name="DelDowntimeTypeError" xml:space="preserve">
     <value>삭제할 비가동유형을 선택하지 않으셨습니다.</value>
+    <comment>김종헌 삭제할 비가동유형을 선택하지 않았을 때 실패메세지</comment>
   </data>
   <data name="DeleteDone" xml:space="preserve">
     <value>삭제 완료</value>
+    <comment>김종헌 삭제완료 메세지</comment>
   </data>
   <data name="DeleteError" xml:space="preserve">
     <value>삭제 실패</value>
+    <comment>김종헌 삭제실패 메세지</comment>
   </data>
   <data name="ExcelError" xml:space="preserve">
     <value>엑셀로 내보낼 데이터가 없습니다.</value>
+    <comment>김종헌 엑셀버튼누를때 datagridview가 비어있을 때 실패메세지</comment>
   </data>
   <data name="IsDelete" xml:space="preserve">
     <value>정말로 삭제하시겠습니까?</value>
+    <comment>김종헌 삭제여부를 묻는 메세지</comment>
   </data>
   <data name="isEssential" xml:space="preserve">
     <value>필수항목을 입력하지 않으셨습니다.</value>
+    <comment>김종헌 필수항목여부를 묻는 메세지</comment>
   </data>
   <data name="LoginEmpIDError" xml:space="preserve">
     <value>사원번호가 비어있습니다.
 사원을 선택하여주세요.</value>
+    <comment>김종헌 사원번호가 비어있을 때 실패 메세지</comment>
   </data>
   <data name="LoginEmpNameError" xml:space="preserve">
     <value>사원명이 비어있습니다.
 사원을 선택하여주세요.</value>
+    <comment>김종헌 사원명이 비어있을 때 실패 메세지</comment>
   </data>
   <data name="LoginPwdError" xml:space="preserve">
     <value>입력한 비밀번호가 잘못되었습니다.</value>
+    <comment>김종헌 비밀번호가 틀렸을때 실패 메세지</comment>
   </data>
   <data name="ModAuthError" xml:space="preserve">
     <value>권한설정할 사원을 선택하지 않으셨습니다.</value>
+    <comment>김종헌 권한설정 할 사원을 선택하지 않았을 때 실패 메세지</comment>
   </data>
   <data name="ModDefectiveHandleError" xml:space="preserve">
     <value>수정할 불량처리유형을 선택하지 않으셨습니다.</value>
+    <comment>김종헌 수정할 불량처리유형을 선택하지 않았을 때 실패 메세지</comment>
   </data>
   <data name="ModDefectiveTypeError" xml:space="preserve">
     <value>수정할 불량유형을 선택하지 않으셨습니다.</value>
+    <comment>김종헌 수정할 불량유형을 선택하지 않았을 때 실패 메세지</comment>
   </data>
   <data name="ModDone" xml:space="preserve">
     <value>수정 완료</value>
+    <comment>김종헌 수정완료 메세지</comment>
   </data>
   <data name="ModDowntimeTypeError" xml:space="preserve">
     <value>수정할 비가동유형을 선택하지 않으셨습니다.</value>
@@ -396,20 +413,26 @@
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>처리를 취소하셨습니다.</value>
+    <comment>선도 - 처리취소 시</comment>
   </data>
   <data name="IsBalju" xml:space="preserve">
     <value>정말 발주완료 처리하시겠습니까?</value>
+    <comment>선도 - 발주현황에서 처리 버튼 눌렀을 때</comment>
   </data>
   <data name="IsCancelOrder" xml:space="preserve">
     <value>정말 해당주문을 취소하시겠습니까?</value>
+    <comment>선도 - 주문현황에서 주문취소 버튼 눌렀을 때</comment>
   </data>
   <data name="IsDeleteBalju" xml:space="preserve">
     <value>정말 해당 발주요청을 삭제하시겠습니까?</value>
+    <comment>선도 - 발주현황에서 삭제 버튼 눌렀을 때</comment>
   </data>
   <data name="IsOrder" xml:space="preserve">
     <value>정말 해당주문을 처리하시겠습니까?</value>
+    <comment>선도 - 주문현황에서 삭제 버튼 눌렀을 때</comment>
   </data>
   <data name="Notice" xml:space="preserve">
     <value>알림</value>
+    <comment>선도 - "알림"</comment>
   </data>
 </root>
