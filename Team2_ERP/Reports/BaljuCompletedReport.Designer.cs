@@ -364,7 +364,7 @@ namespace Team2_ERP
             this.xrTableCell1.Dpi = 254F;
             this.xrTableCell1.Multiline = true;
             this.xrTableCell1.Name = "xrTableCell1";
-            this.xrTableCell1.Text = "발주ID";
+            this.xrTableCell1.Text = "발주지시번호";
             this.xrTableCell1.Weight = 0.78074478757966759D;
             // 
             // xrTableCell2
@@ -375,7 +375,7 @@ namespace Team2_ERP
             this.xrTableCell2.Multiline = true;
             this.xrTableCell2.Name = "xrTableCell2";
             this.xrTableCell2.StylePriority.UseBorders = false;
-            this.xrTableCell2.Text = "거 래 처 명";
+            this.xrTableCell2.Text = "거래처명";
             this.xrTableCell2.Weight = 1.7064449967949813D;
             // 
             // xrTableCell3
