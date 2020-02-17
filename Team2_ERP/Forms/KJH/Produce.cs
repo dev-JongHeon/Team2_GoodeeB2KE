@@ -284,21 +284,24 @@ namespace Team2_ERP
         {
             if (dgvProduce.Rows.Count > 0)
             {
-                ProduceReport pr = new ProduceReport();
-                dsProduce ds = new dsProduce();
-
-                ds.Relations.Clear();
-                ds.Tables.Clear();
-                ds.Tables.Add(UtilClass.ConvertToDataTable(searchedlist));
-                ds.Tables.Add(UtilClass.ConvertToDataTable(performances));
-                ds.Tables[0].TableName = "dtProduce";
-                ds.Tables[1].TableName = "dtProduceDetail";
-                ds.Relations.Add("dtProduce_dtProduceDetail", ds.Tables[0].Columns["Produce_ID"], ds.Tables[1].Columns["PerformanceProduce_ID"]);
-
-                pr.DataSource = ds;
-                using (ReportPrintTool printTool = new ReportPrintTool(pr))
+                using (WaitForm frm = new WaitForm())
                 {
-                    printTool.ShowRibbonPreviewDialog();
+                    ProduceReport pr = new ProduceReport();
+                    dsProduce ds = new dsProduce();
+
+                    ds.Relations.Clear();
+                    ds.Tables.Clear();
+                    ds.Tables.Add(UtilClass.ConvertToDataTable(searchedlist));
+                    ds.Tables.Add(UtilClass.ConvertToDataTable(performances));
+                    ds.Tables[0].TableName = "dtProduce";
+                    ds.Tables[1].TableName = "dtProduceDetail";
+                    ds.Relations.Add("dtProduce_dtProduceDetail", ds.Tables[0].Columns["Produce_ID"], ds.Tables[1].Columns["PerformanceProduce_ID"]);
+
+                    pr.DataSource = ds;
+                    using (ReportPrintTool printTool = new ReportPrintTool(pr))
+                    {
+                        printTool.ShowRibbonPreviewDialog();
+                    } 
                 }
             }
         }

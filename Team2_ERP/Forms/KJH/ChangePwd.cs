@@ -88,5 +88,13 @@ namespace Team2_ERP
                 errorProvider1.SetError(txtNewPwd2, "");
             }
         }
+
+        private void txtNewPwd2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                btnOK.PerformClick();
+            }
+        }
     }
 }

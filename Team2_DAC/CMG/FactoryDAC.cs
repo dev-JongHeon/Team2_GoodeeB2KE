@@ -115,13 +115,14 @@ namespace Team2_DAC
 
         public bool DeleteFactory(int code)
         {
-            string sql = $"Update Factory set Factory_DeletedYN = {1} where Factory_ID = @Factory_ID ";
+            string sql = "CMG_DeleteFactory";
 
             try
             {
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@Factory_ID", code);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
                     conn.Open();
                     var rowsAffected = cmd.ExecuteNonQuery();

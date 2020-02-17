@@ -135,7 +135,7 @@ namespace Team2_ERP
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[StockReceipt_ID]")});
             this.xrTableCell4.Multiline = true;
             this.xrTableCell4.Name = "xrTableCell4";
-            this.xrTableCell4.Weight = 1.3226129092526169D;
+            this.xrTableCell4.Weight = 1.1330656819985756D;
             // 
             // xrTableCell6
             // 
@@ -146,7 +146,7 @@ namespace Team2_ERP
             this.xrTableCell6.Multiline = true;
             this.xrTableCell6.Name = "xrTableCell6";
             this.xrTableCell6.StylePriority.UseBorders = false;
-            this.xrTableCell6.Weight = 0.79745370392297532D;
+            this.xrTableCell6.Weight = 0.56800273595152739D;
             // 
             // xrTableCell7
             // 
@@ -157,7 +157,7 @@ namespace Team2_ERP
             this.xrTableCell7.Multiline = true;
             this.xrTableCell7.Name = "xrTableCell7";
             this.xrTableCell7.StylePriority.UseBorders = false;
-            this.xrTableCell7.Weight = 0.91349940016722375D;
+            this.xrTableCell7.Weight = 1.2427119637387434D;
             // 
             // xrTableCell8
             // 
@@ -168,7 +168,7 @@ namespace Team2_ERP
             this.xrTableCell8.Multiline = true;
             this.xrTableCell8.Name = "xrTableCell8";
             this.xrTableCell8.StylePriority.UseBorders = false;
-            this.xrTableCell8.Weight = 1.1017826811021885D;
+            this.xrTableCell8.Weight = 1.191568312756158D;
             // 
             // xrTableCell10
             // 
@@ -191,7 +191,7 @@ namespace Team2_ERP
             this.xrTableCell16.Name = "xrTableCell16";
             this.xrTableCell16.StylePriority.UseBorders = false;
             this.xrTableCell16.Text = "품명";
-            this.xrTableCell16.Weight = 0.76658392930789221D;
+            this.xrTableCell16.Weight = 1.0858213919358311D;
             // 
             // xrTableCell17
             // 
@@ -203,7 +203,7 @@ namespace Team2_ERP
             this.xrTableCell17.Name = "xrTableCell17";
             this.xrTableCell17.StylePriority.UseBorders = false;
             this.xrTableCell17.Text = "수불수량";
-            this.xrTableCell17.Weight = 0.76658392930789221D;
+            this.xrTableCell17.Weight = 0.42739476892175443D;
             // 
             // xrTableCell18
             // 
@@ -215,7 +215,7 @@ namespace Team2_ERP
             this.xrTableCell18.Name = "xrTableCell18";
             this.xrTableCell18.StylePriority.UseBorders = false;
             this.xrTableCell18.Text = "등록사원";
-            this.xrTableCell18.Weight = 0.76658392930789221D;
+            this.xrTableCell18.Weight = 0.78653562706609126D;
             // 
             // ReportHeader
             // 
@@ -381,7 +381,7 @@ namespace Team2_ERP
             this.xrTableCell1.Multiline = true;
             this.xrTableCell1.Name = "xrTableCell1";
             this.xrTableCell1.Text = "수불번호";
-            this.xrTableCell1.Weight = 1.3226129092526169D;
+            this.xrTableCell1.Weight = 1.1330656819985756D;
             // 
             // xrTableCell2
             // 
@@ -391,8 +391,8 @@ namespace Team2_ERP
             this.xrTableCell2.Multiline = true;
             this.xrTableCell2.Name = "xrTableCell2";
             this.xrTableCell2.StylePriority.UseBorders = false;
-            this.xrTableCell2.Text = "수불유형";
-            this.xrTableCell2.Weight = 0.79745404912398377D;
+            this.xrTableCell2.Text = "유형";
+            this.xrTableCell2.Weight = 0.56800285101853021D;
             // 
             // xrTableCell3
             // 
@@ -403,7 +403,7 @@ namespace Team2_ERP
             this.xrTableCell3.Name = "xrTableCell3";
             this.xrTableCell3.StylePriority.UseBorders = false;
             this.xrTableCell3.Text = "처리일시";
-            this.xrTableCell3.Weight = 0.91349940016722375D;
+            this.xrTableCell3.Weight = 1.2427119637387434D;
             // 
             // xrTableCell5
             // 
@@ -414,7 +414,7 @@ namespace Team2_ERP
             this.xrTableCell5.Name = "xrTableCell5";
             this.xrTableCell5.StylePriority.UseBorders = false;
             this.xrTableCell5.Text = "창고명";
-            this.xrTableCell5.Weight = 1.101782623568687D;
+            this.xrTableCell5.Weight = 1.1915684853566622D;
             // 
             // xrTableCell9
             // 
@@ -436,7 +436,7 @@ namespace Team2_ERP
             this.xrTableCell13.Name = "xrTableCell13";
             this.xrTableCell13.StylePriority.UseBorders = false;
             this.xrTableCell13.Text = "품명";
-            this.xrTableCell13.Weight = 0.76658392930789221D;
+            this.xrTableCell13.Weight = 1.0858209316678196D;
             // 
             // xrTableCell14
             // 
@@ -446,8 +446,8 @@ namespace Team2_ERP
             this.xrTableCell14.Multiline = true;
             this.xrTableCell14.Name = "xrTableCell14";
             this.xrTableCell14.StylePriority.UseBorders = false;
-            this.xrTableCell14.Text = "수불수량";
-            this.xrTableCell14.Weight = 0.76658392930789221D;
+            this.xrTableCell14.Text = "수량";
+            this.xrTableCell14.Weight = 0.42739568945777723D;
             // 
             // xrTableCell15
             // 
@@ -458,7 +458,7 @@ namespace Team2_ERP
             this.xrTableCell15.Name = "xrTableCell15";
             this.xrTableCell15.StylePriority.UseBorders = false;
             this.xrTableCell15.Text = "등록사원";
-            this.xrTableCell15.Weight = 0.76658392930789221D;
+            this.xrTableCell15.Weight = 0.78653516679807978D;
             // 
             // PageFooter
             // 

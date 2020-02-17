@@ -229,7 +229,7 @@ namespace Team2_ERP
                 Product_Name = txtProductName.Text,
                 Product_Price = Convert.ToInt32(txtProductMoney.Text.Replace(",", "").Replace("원", "")),
                 Product_Category = cboProductCategory.SelectedValue.ToString(),
-                Product_Origin = Convert.ToInt32(lblOrigin.Text),
+                Product_Origin = Convert.ToInt32(lblOrigin.Text.Replace(",", "").Replace("원", "")),
                 Product_Image = ImageData
             };
 
