@@ -396,20 +396,26 @@
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>처리를 취소하셨습니다.</value>
+    <comment>선도 - 처리취소 시</comment>
   </data>
   <data name="IsBalju" xml:space="preserve">
     <value>정말 발주완료 처리하시겠습니까?</value>
+    <comment>선도 - 발주현황에서 처리 버튼 눌렀을 때</comment>
   </data>
   <data name="IsCancelOrder" xml:space="preserve">
     <value>정말 해당주문을 취소하시겠습니까?</value>
+    <comment>선도 - 주문현황에서 주문취소 버튼 눌렀을 때</comment>
   </data>
   <data name="IsDeleteBalju" xml:space="preserve">
     <value>정말 해당 발주요청을 삭제하시겠습니까?</value>
+    <comment>선도 - 발주현황에서 삭제 버튼 눌렀을 때</comment>
   </data>
   <data name="IsOrder" xml:space="preserve">
     <value>정말 해당주문을 처리하시겠습니까?</value>
+    <comment>선도 - 주문현황에서 삭제 버튼 눌렀을 때</comment>
   </data>
   <data name="Notice" xml:space="preserve">
     <value>알림</value>
+    <comment>선도 - "알림"</comment>
   </data>
 </root>
