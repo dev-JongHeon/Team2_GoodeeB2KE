@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Team2_ERP.Properties;
 using Team2_ERP.Service.CMG;
 using Team2_VO;
 
@@ -53,19 +54,17 @@ namespace Team2_ERP
 
         public override void Refresh(object sender, EventArgs e)
         {
-            InitMessage();
+            frm.NoticeMessage = Resources.RefreshDone;
             dgvCategory.DataSource = null;
             searchCategory.CodeTextBox.Text = "";
         }
 
         public override void New(object sender, EventArgs e)
         {
-            InitMessage();
-
-            CategoryInsUp frm = new CategoryInsUp(CategoryInsUp.EditMode.Insert, null);
-            if (frm.ShowDialog() == DialogResult.OK)
+            CategoryInsUp popup = new CategoryInsUp(CategoryInsUp.EditMode.Insert, null);
+            if (popup.ShowDialog() == DialogResult.OK)
             {
-                frm.Close();
+                frm.NoticeMessage = Resources.AddDone;
                 dgvCategory.DataSource = null;
                 LoadGridView();
             }
@@ -73,18 +72,16 @@ namespace Team2_ERP
 
         public override void Modify(object sender, EventArgs e)
         {
-            InitMessage();
-
             if (dgvCategory.SelectedRows.Count < 1)
             {
-                frm.NoticeMessage = "수정할 카테고리를 선택해주세요.";
+                frm.NoticeMessage = Resources.ModEmpty;
             }
             else
             {
-                CategoryInsUp frm = new CategoryInsUp(CategoryInsUp.EditMode.Update, item);
-                if (frm.ShowDialog() == DialogResult.OK)
+                CategoryInsUp popup = new CategoryInsUp(CategoryInsUp.EditMode.Update, item);
+                if (popup.ShowDialog() == DialogResult.OK)
                 {
-                    frm.Close();
+                    frm.NoticeMessage = Resources.ModDone;
                     dgvCategory.DataSource = null;
                     LoadGridView();
                 }
@@ -93,11 +90,9 @@ namespace Team2_ERP
 
         public override void Delete(object sender, EventArgs e)
         {
-            InitMessage();
-
             if (dgvCategory.SelectedRows.Count < 1)
             {
-                frm.NoticeMessage = "삭제할 카테고리를 선택해주세요.";
+                frm.NoticeMessage = Resources.DelEmpty;
             }
             else
             {
@@ -105,6 +100,7 @@ namespace Team2_ERP
                 {
                     CodeTableService service = new CodeTableService();
                     service.DeleteCodeTable(item.CodeTable_CodeID);
+                    frm.NoticeMessage = Resources.DeleteDone;
                     dgvCategory.DataSource = null;
                     LoadGridView();
                 }
@@ -123,7 +119,7 @@ namespace Team2_ERP
                 dgvCategory.DataSource = categoryList;
             }
 
-            InitMessage();
+            frm.NoticeMessage = Resources.SearchDone;
         }
 
         private void Category_Load(object sender, EventArgs e)

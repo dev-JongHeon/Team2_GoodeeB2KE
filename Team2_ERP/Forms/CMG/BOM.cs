@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Team2_ERP.Properties;
 using Team2_ERP.Service.CMG;
 using Team2_VO;
 
@@ -179,21 +180,21 @@ namespace Team2_ERP
         {
             if (e.ClickedItem.Text == "반제품")
             {
-                SemiProductComp frm = new SemiProductComp(SemiProductComp.EditMode.Insert, null);
-                if (frm.ShowDialog() == DialogResult.OK)
+                SemiProductComp popup = new SemiProductComp(SemiProductComp.EditMode.Insert, null);
+                if (popup.ShowDialog() == DialogResult.OK)
                 {
-                    frm.Close();
-                    dgvBOM.DataSource = null;
+                    frm.NoticeMessage = Resources.AddDone;
+                    GridViewReset();
                     LoadGridView();
                 }
             }
             else
             {
-                ProductComp frm = new ProductComp(ProductComp.EditMode.Insert, null);
-                if (frm.ShowDialog() == DialogResult.OK)
+                ProductComp popup = new ProductComp(ProductComp.EditMode.Insert, null);
+                if (popup.ShowDialog() == DialogResult.OK)
                 {
-                    frm.Close();
-                    dgvBOM.DataSource = null;
+                    frm.NoticeMessage = Resources.AddDone;
+                    GridViewReset();
                     LoadGridView();
                 }
             }
@@ -210,7 +211,7 @@ namespace Team2_ERP
 
         public override void Refresh(object sender, EventArgs e)
         {
-            InitMessage();
+            frm.NoticeMessage = Resources.RefreshDone;
             GridViewReset();
             searchProductName.CodeTextBox.Text = "";
         }
@@ -224,15 +225,16 @@ namespace Team2_ERP
         {
             if (dgvBOM.SelectedRows.Count < 1)
             {
-                frm.NoticeMessage = "수정하실 항목을 선택해주세요.";
+                frm.NoticeMessage = Resources.ModEmpty;
             }
             else
             {
                 if (item.Product_Category.Contains("CS"))
                 {
-                    SemiProductComp frm = new SemiProductComp(SemiProductComp.EditMode.Update, item);
-                    if (frm.ShowDialog() == DialogResult.OK)
+                    SemiProductComp popup = new SemiProductComp(SemiProductComp.EditMode.Update, item);
+                    if (popup.ShowDialog() == DialogResult.OK)
                     {
+                        frm.NoticeMessage = Resources.ModDone;
                         GridViewReset();
                         InitMessage();
                         LoadGridView();
@@ -240,9 +242,10 @@ namespace Team2_ERP
                 }
                 else if (item.Product_Category.Contains("CP"))
                 {
-                    ProductComp frm = new ProductComp(ProductComp.EditMode.Update, item);
-                    if (frm.ShowDialog() == DialogResult.OK)
+                    ProductComp popup = new ProductComp(ProductComp.EditMode.Update, item);
+                    if (popup.ShowDialog() == DialogResult.OK)
                     {
+                        frm.NoticeMessage = Resources.ModDone;
                         GridViewReset();
                         InitMessage();
                         LoadGridView();
@@ -250,18 +253,16 @@ namespace Team2_ERP
                 }
                 else
                 {
-                    frm.NoticeMessage = "원자재 항목은 원자재 탭에서 수정 가능합니다.";
+                    frm.NoticeMessage = Resources.ModResourceError;
                 }
             }
         }
 
         public override void Delete(object sender, EventArgs e)
         {
-            InitMessage();
-
             if (dgvBOM.SelectedRows.Count < 1)
             {
-                frm.NoticeMessage = "삭제하실 항목을 선택해주세요.";
+                frm.NoticeMessage = Resources.DelEmpty;
             }
             else
             {
@@ -271,6 +272,7 @@ namespace Team2_ERP
                     {
                         BOMService service = new BOMService();
                         service.DeleteSemiProduct(item);
+                        frm.NoticeMessage = Resources.DeleteDone;
                         GridViewReset();
                         InitMessage();
                         LoadGridView();
@@ -282,6 +284,7 @@ namespace Team2_ERP
                     {
                         BOMService service = new BOMService();
                         service.DeleteProduct(item);
+                        frm.NoticeMessage = Resources.DeleteDone;
                         GridViewReset();
                         InitMessage();
                         LoadGridView();
@@ -289,7 +292,7 @@ namespace Team2_ERP
                 }
                 else
                 {
-                    frm.NoticeMessage = "원자재 항목은 원자재 탭에서 삭제 가능합니다.";
+                    frm.NoticeMessage = Resources.DelResourceError;
                 }
             }
         }
@@ -306,7 +309,7 @@ namespace Team2_ERP
             }
 
             dgvBOM.CurrentCell = null;
-            InitMessage();
+            frm.NoticeMessage = Resources.SearchDone;
         }
 
         public override void Excel(object sender, EventArgs e)
@@ -319,6 +322,10 @@ namespace Team2_ERP
                     frm.ShowDialog();
                 }
             }
+            else
+            {
+                frm.NoticeMessage = Resources.ExcelError;
+            }
         }
 
         private void ExcelExport()
@@ -327,8 +334,7 @@ namespace Team2_ERP
             List<BOMVO> detail1 = bomList.ToList();
             List<BOMVO> detail2 = bomReverseList.ToList();
             string[] gg = new string[] { "Product_Category", "Warehouse_ID", "Warehouse_Name", "Product_Qty", "Product_Safety", "Product_DeletedYN", "Category_Division", "Product_Image", "Combination_ID", "Combination_Product_ID", "Combination_DeletedYN", "Product_Origin" };
-
-                UtilClass.ExportTo2DataGridView(allList, detail1, detail2, gg);
+            UtilClass.ExportTo2DataGridView(allList, detail1, detail2, gg);
         }
 
         private void dgvBOM_CellClick(object sender, DataGridViewCellEventArgs e)

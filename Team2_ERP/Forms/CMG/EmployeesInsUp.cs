@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Team2_ERP.Properties;
 using Team2_ERP.Service.CMG;
 using Team2_VO;
 
@@ -27,13 +28,13 @@ namespace Team2_ERP
             {
                 lblName.Text = "사원등록";
                 mode = "Insert";
-                pbxTitle.Image = Properties.Resources.AddFile_32x32;
+                pbxTitle.Image = Resources.AddFile_32x32;
             }
             else
             {
                 lblName.Text = "사원수정";
                 mode = "Update";
-                pbxTitle.Image = Properties.Resources.Edit_32x32;
+                pbxTitle.Image = Resources.Edit_32x32;
                 eCode = item.Employees_ID;
                 txtEmployeesName.Text = item.Employees_Name;
                 maskedEmployeesPhoneNumber.Text = item.Employees_Phone;
@@ -112,11 +113,11 @@ namespace Team2_ERP
                 if(txtEmployeesName.Text.Length > 0 && cboEmployeesCategory.SelectedValue != null && dtpEmployeesHireDate.Value != null && txtEmployeesPassword.Text.Length > 0 && maskedEmployeesPhoneNumber.Text.Replace("_", "").Replace("-", "").Trim().Length > 10 && dtpEmployeesBirthDay.Value != null)
                 {
                     InsertEmployee();
-                    DialogResult = MessageBox.Show(Properties.Settings.Default.AddDone, Properties.Settings.Default.AddDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DialogResult = MessageBox.Show(Resources.AddDone, Resources.AddDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show(Properties.Settings.Default.isEssential, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Resources.isEssential, Resources.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else
@@ -124,11 +125,11 @@ namespace Team2_ERP
                 if (txtEmployeesName.Text.Length > 0 && cboEmployeesCategory.SelectedValue != null && dtpEmployeesResignDate.Value != null && maskedEmployeesPhoneNumber.Text.Replace("_", "").Replace("-", "").Trim().Length > 10 && dtpEmployeesBirthDay.Value != null)
                 {
                     UpdateEmployee();
-                    DialogResult = MessageBox.Show(Properties.Settings.Default.ModDone, Properties.Settings.Default.ModDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DialogResult = MessageBox.Show(Resources.ModDone, Resources.ModDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show(Properties.Settings.Default.isEssential, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Resources.isEssential, Resources.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }

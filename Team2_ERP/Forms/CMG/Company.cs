@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Team2_ERP.Properties;
 using Team2_ERP.Service.CMG;
 using Team2_VO;
 
@@ -65,19 +66,17 @@ namespace Team2_ERP
 
         public override void Refresh(object sender, EventArgs e)
         {
-            InitMessage();
+            frm.NoticeMessage = Resources.RefreshDone;
             dgvCompany.DataSource = null;
             searchCompanyName.CodeTextBox.Text = "";
         }
 
         public override void New(object sender, EventArgs e)
         {
-            InitMessage();
-
-            CompanyInsUp frm = new CompanyInsUp(CompanyInsUp.EditMode.Insert, null);
-            if (frm.ShowDialog() == DialogResult.OK)
+            CompanyInsUp popup = new CompanyInsUp(CompanyInsUp.EditMode.Insert, null);
+            if (popup.ShowDialog() == DialogResult.OK)
             {
-                frm.Close();
+                frm.NoticeMessage = Resources.AddDone;
                 dgvCompany.DataSource = null;
                 LoadGridView();
             }
@@ -85,18 +84,16 @@ namespace Team2_ERP
 
         public override void Modify(object sender, EventArgs e)
         {
-            InitMessage();
-
             if (dgvCompany.SelectedRows.Count < 1)
             {
-                frm.NoticeMessage = "수정할 거래처를 선택해주세요.";
+                frm.NoticeMessage = Resources.ModEmpty;
             }
             else
             {
-                CompanyInsUp frm = new CompanyInsUp(CompanyInsUp.EditMode.Update, item);
-                if (frm.ShowDialog() == DialogResult.OK)
+                CompanyInsUp popup = new CompanyInsUp(CompanyInsUp.EditMode.Update, item);
+                if (popup.ShowDialog() == DialogResult.OK)
                 {
-                    frm.Close();
+                    frm.NoticeMessage = Resources.ModDone;
                     dgvCompany.DataSource = null;
                     LoadGridView();
                 }
@@ -105,11 +102,9 @@ namespace Team2_ERP
 
         public override void Delete(object sender, EventArgs e)
         {
-            InitMessage();
-
             if (dgvCompany.SelectedRows.Count < 1)
             {
-                frm.NoticeMessage = "삭제할 거래처를 선택해주세요.";
+                frm.NoticeMessage = Resources.DelEmpty;
             }
             else
             {
@@ -117,6 +112,7 @@ namespace Team2_ERP
                 {
                     StandardService service = new StandardService();
                     service.DeleteCompany(item.Company_ID);
+                    frm.NoticeMessage = Resources.DeleteDone;
                     dgvCompany.DataSource = null;
                     LoadGridView();
                 }
@@ -133,9 +129,9 @@ namespace Team2_ERP
             else
             {
                 LoadGridView();
-                InitMessage();
             }
 
+            frm.NoticeMessage = Resources.SearchDone;
             dgvCompany.CurrentCell = null;
         }
 

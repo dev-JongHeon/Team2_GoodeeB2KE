@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Team2_ERP.Properties;
 using Team2_ERP.Service.CMG;
 using Team2_VO;
 
@@ -68,39 +69,35 @@ namespace Team2_ERP
 
         public override void Refresh(object sender, EventArgs e)
         {
-            InitMessage();
+            frm.NoticeMessage = Resources.RefreshDone;
             dgvResource.DataSource = null;
             searchResourceName.CodeTextBox.Text = "";
         }
 
         public override void New(object sender, EventArgs e)
         {
-            InitMessage();
-
-            ResourceInsUp frm = new ResourceInsUp(ResourceInsUp.EditMode.Insert, null);
-            if (frm.ShowDialog() == DialogResult.OK)
+            ResourceInsUp popup = new ResourceInsUp(ResourceInsUp.EditMode.Insert, null);
+            if (popup.ShowDialog() == DialogResult.OK)
             {
-                frm.Close();
                 dgvResource.DataSource = null;
+                frm.NoticeMessage = Resources.AddDone;
                 LoadGridView();
             }
         }
 
         public override void Modify(object sender, EventArgs e)
         {
-            InitMessage();
-
-            if (item == null)
+            if (dgvResource.SelectedRows.Count < 1)
             {
-                frm.NoticeMessage = "수정할 제품을 선택해주세요.";
+                frm.NoticeMessage = Resources.ModEmpty;
             }
             else
             {
-                ResourceInsUp frm = new ResourceInsUp(ResourceInsUp.EditMode.Update, item);
-                if (frm.ShowDialog() == DialogResult.OK)
+                ResourceInsUp popup = new ResourceInsUp(ResourceInsUp.EditMode.Update, item);
+                if (popup.ShowDialog() == DialogResult.OK)
                 {
-                    frm.Close();
                     dgvResource.DataSource = null;
+                    frm.NoticeMessage = Resources.ModDone;
                     LoadGridView();
                 }
             }
@@ -108,11 +105,9 @@ namespace Team2_ERP
 
         public override void Delete(object sender, EventArgs e)
         {
-            InitMessage();
-
             if (dgvResource.SelectedRows.Count < 1)
             {
-                frm.NoticeMessage = "삭제할 제품을 선택해주세요.";
+                frm.NoticeMessage = Resources.DelEmpty;
             }
             else
             {
@@ -121,6 +116,7 @@ namespace Team2_ERP
                     StandardService service = new StandardService();
                     service.DeleteResource(item.Product_ID);
                     dgvResource.DataSource = null;
+                    frm.NoticeMessage = Resources.DeleteDone;
                     LoadGridView();
                 }
             }
@@ -138,6 +134,8 @@ namespace Team2_ERP
             {
                 LoadGridView();
             }
+
+            frm.NoticeMessage = Resources.SearchDone;
         }
 
         private void Resource_Deactivate(object sender, EventArgs e)

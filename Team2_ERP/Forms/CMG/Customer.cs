@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Team2_ERP.Properties;
 using Team2_ERP.Service.CMG;
 using Team2_VO;
 
@@ -64,7 +65,7 @@ namespace Team2_ERP
 
         public override void Refresh(object sender, EventArgs e)
         {
-            InitMessage();
+            frm.NoticeMessage = Resources.RefreshDone;
             dgvCustomer.DataSource = null;
             searchCustomerName.CodeTextBox.Text = "";
         }
@@ -92,7 +93,7 @@ namespace Team2_ERP
             }
 
             dgvCustomer.CurrentCell = null;
-            InitMessage();
+            frm.NoticeMessage = Resources.SearchDone;
         }
 
         private void Customer_Deactivate(object sender, EventArgs e)

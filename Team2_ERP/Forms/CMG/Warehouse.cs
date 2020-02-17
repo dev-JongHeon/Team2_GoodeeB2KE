@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Team2_ERP.Properties;
 using Team2_ERP.Service.CMG;
 using Team2_VO;
 
@@ -85,19 +86,17 @@ namespace Team2_ERP
 
         public override void Refresh(object sender, EventArgs e)
         {
-            InitMessage();
+            frm.NoticeMessage = Resources.RefreshDone;
             dgvWarehouse.DataSource = null;
             searchWarehouseName.CodeTextBox.Text = "";
         }
 
         public override void New(object sender, EventArgs e)
         {
-            InitMessage();
-
-            WarehouseInsUp frm = new WarehouseInsUp(WarehouseInsUp.EditMode.Insert, null);
-            if (frm.ShowDialog() == DialogResult.OK)
+            WarehouseInsUp popup = new WarehouseInsUp(WarehouseInsUp.EditMode.Insert, null);
+            if (popup.ShowDialog() == DialogResult.OK)
             {
-                frm.Close();
+                frm.NoticeMessage = Resources.AddDone;
                 dgvWarehouse.DataSource = null;
                 LoadGridView();
             }
@@ -105,18 +104,16 @@ namespace Team2_ERP
 
         public override void Modify(object sender, EventArgs e)
         {
-            InitMessage();
-
             if (dgvWarehouse.SelectedRows.Count < 1)
             {
-                frm.NoticeMessage = "수정할 창고를 선택해주세요.";
+                frm.NoticeMessage = Resources.ModEmpty;
             }
             else
             {
-                WarehouseInsUp frm = new WarehouseInsUp(WarehouseInsUp.EditMode.Update, item);
-                if (frm.ShowDialog() == DialogResult.OK)
+                WarehouseInsUp popup = new WarehouseInsUp(WarehouseInsUp.EditMode.Update, item);
+                if (popup.ShowDialog() == DialogResult.OK)
                 {
-                    frm.Close();
+                    frm.NoticeMessage = Resources.ModEmpty;
                     dgvWarehouse.DataSource = null;
                     LoadGridView();
                 }
@@ -125,11 +122,9 @@ namespace Team2_ERP
 
         public override void Delete(object sender, EventArgs e)
         {
-            InitMessage();
-
             if (dgvWarehouse.SelectedRows.Count < 1)
             {
-                frm.NoticeMessage = "삭제할 창고를 선택해주세요.";
+                frm.NoticeMessage = Resources.DelEmpty;
             }
             else
             {
@@ -156,6 +151,7 @@ namespace Team2_ERP
                 LoadGridView();
             }
 
+            frm.NoticeMessage = Resources.SearchDone;
             dgvWarehouse.CurrentCell = null;
         }
 

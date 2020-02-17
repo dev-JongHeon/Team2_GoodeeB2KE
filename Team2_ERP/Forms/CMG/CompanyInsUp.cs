@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Team2_ERP.Properties;
 using Team2_ERP.Service.CMG;
 using Team2_VO;
 
@@ -28,13 +29,13 @@ namespace Team2_ERP
             {
                 lblName.Text = "거래처 등록";
                 mode = "Insert";
-                pbxTitle.Image = Properties.Resources.AddFile_32x32;
+                pbxTitle.Image = Resources.AddFile_32x32;
             }
             else
             {
                 lblName.Text = "거래처 수정";
                 mode = "Update";
-                pbxTitle.Image = Properties.Resources.Edit_32x32;
+                pbxTitle.Image = Resources.Edit_32x32;
                 code = item.Company_ID;
                 txtCompanyName.Text = item.Company_Name;
                 maskedCompanyNumber.Text = item.Company_Number;
@@ -105,17 +106,17 @@ namespace Team2_ERP
                 if(mode.Equals("Insert"))
                 {
                     InsertCompany();
-                    DialogResult = MessageBox.Show(Properties.Settings.Default.AddDone, Properties.Settings.Default.AddDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DialogResult = MessageBox.Show(Resources.AddDone, Resources.AddDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
                     UpdateCompany();
-                    DialogResult = MessageBox.Show(Properties.Settings.Default.ModDone, Properties.Settings.Default.ModDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DialogResult = MessageBox.Show(Resources.ModDone, Resources.ModDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else
             {
-                MessageBox.Show(Properties.Settings.Default.isEssential, Properties.Settings.Default.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Resources.isEssential, Resources.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

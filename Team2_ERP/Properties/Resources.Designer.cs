@@ -351,6 +351,15 @@ namespace Team2_ERP.Properties {
         }
         
         /// <summary>
+        ///   삭제할 정보가 없습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string DelEmpty {
+            get {
+                return ResourceManager.GetString("DelEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   삭제 완료과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string DeleteDone {
@@ -375,6 +384,15 @@ namespace Team2_ERP.Properties {
             get {
                 object obj = ResourceManager.GetObject("DeleteList_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   원자재 항목은 원자재 탭에서 삭제 가능합니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string DelResourceError {
+            get {
+                return ResourceManager.GetString("DelResourceError", resourceCulture);
             }
         }
         
@@ -655,11 +673,29 @@ namespace Team2_ERP.Properties {
         }
         
         /// <summary>
+        ///   수정할 정보가 없습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string ModEmpty {
+            get {
+                return ResourceManager.GetString("ModEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   수정 실패과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string ModError {
             get {
                 return ResourceManager.GetString("ModError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   원자재 항목은 원자재 탭에서 수정 가능합니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string ModResourceError {
+            get {
+                return ResourceManager.GetString("ModResourceError", resourceCulture);
             }
         }
         
