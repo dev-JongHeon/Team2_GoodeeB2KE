@@ -27,8 +27,19 @@
         name.Append($"{row["name"]},");
         qty.Append($"{row["qty"]},");
     }
+
+    string[] tmpnames = name.ToString().TrimEnd(',').Split(',');
+    if (tmpnames.Length < 5)
+    {
+        for(int i=0; i < 5 - tmpnames.Length; i++)
+        {
+            name.Append("없음,");
+            qty.Append("0,");
+        }
+    }
     string[] names = name.ToString().TrimEnd(',').Split(',');
     string[] qtys = qty.ToString().TrimEnd(',').Split(',');
+
 
     NumberFormatInfo nf = new CultureInfo("ko-KR", false).NumberFormat;
 
@@ -223,10 +234,22 @@
                             <!-- /.description-block -->
                         </div>
                         <!-- /.col -->
+                           
                         <div class="col-sm-4 col-xs-6">
                             <div class="description-block border-right">
-                                <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> 0%</span>
-                                <h5 class="description-header">$10,390.90</h5>
+                                @if (Convert.ToInt32(@row["costdiff"]) < 0)
+                                {
+                                    <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> @row["costdiff"]%</span>
+                                }
+                                else if (Convert.ToInt32(@row["costdiff"]) == 0)
+                                {
+                                    <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> @row["costdiff"]%</span>
+                                }
+                                else
+                                {
+                                    <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> @row["costdiff"]%</span>
+                                }
+                            <h5 class="description-header">@Convert.ToInt32(row["todaycost"]).ToString("C", nf)</h5>
                                 <span class="description-text">금일 생산비용</span>
                             </div>
                             <!-- /.description-block -->
@@ -234,8 +257,19 @@
                         <!-- /.col -->
                         <div class="col-sm-4 col-xs-6">
                             <div class="description-block">
-                                <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 20%</span>
-                                <h5 class="description-header">$24,813.53</h5>
+                                @if (Convert.ToInt32(@row["profitdiff"]) < 0)
+                                {
+                                    <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> @row["profitdiff"]%</span>
+                                }
+                                else if (Convert.ToInt32(@row["profitdiff"]) == 0)
+                                {
+                                    <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> @row["profitdiff"]%</span>
+                                }
+                                else
+                                {
+                                    <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> @row["profitdiff"]%</span>
+                                }
+                            <h5 class="description-header">@Convert.ToInt32(row["todayprofit"]).ToString("C", nf)</h5>
                                 <span class="description-text">금일 순이익</span>
                             </div>
                             <!-- /.description-block -->

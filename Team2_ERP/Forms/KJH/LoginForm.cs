@@ -168,7 +168,6 @@ namespace Team2_ERP
                     txtEmpPwd.Focus();
                     txtEmpPwd.SelectAll();
                 }
-                
             }
         }
 
@@ -201,7 +200,6 @@ namespace Team2_ERP
                     btnSearch.PerformClick();
                 }
             }
-
         }
         #endregion
 
