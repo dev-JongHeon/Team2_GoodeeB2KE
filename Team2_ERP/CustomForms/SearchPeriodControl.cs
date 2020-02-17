@@ -43,10 +43,20 @@ namespace Team2_ERP
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            
             if (txtStart.Tag != null && txtEnd.Tag != null)
             {
-                frm = new CalendarForm(Convert.ToDateTime(txtStart.Tag.ToString()), Convert.ToDateTime(txtEnd.Tag.ToString()));
+                DateTime start;
+                DateTime end;
+                DateTime.TryParse(txtStart.Tag.ToString(), out start);
+                DateTime.TryParse(txtEnd.Tag.ToString(), out end);
+                if (start == null || end == null)
+                {
+                    frm = new CalendarForm();
+                }
+                else
+                {
+                    frm = new CalendarForm(start, end);
+                }
             }
             else
             {
@@ -80,6 +90,10 @@ namespace Team2_ERP
                 txtStart.Tag = null;
                 txtEnd.Tag = null;
             }
+            else
+            {
+                txtStart.Tag = txtStart.Text;
+            }
             
         }
 
@@ -91,6 +105,11 @@ namespace Team2_ERP
                 txtStart.Tag = null;
                 txtEnd.Tag = null;
             }
+            else
+            {
+                txtEnd.Tag = txtEnd.Text;
+            }
+
         }
 
         private void txtStart_KeyPress(object sender, KeyPressEventArgs e)

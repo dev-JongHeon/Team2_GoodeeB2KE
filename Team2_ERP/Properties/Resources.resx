@@ -478,4 +478,12 @@
     <value>처리할 데이터가 없습니다.</value>
     <comment>선도 - 처리할 데이터 없을 때 NoticeMessage</comment>
   </data>
+  <data name="AuthQuestion" xml:space="preserve">
+    <value>권한을 설정하시겠습니까?</value>
+    <comment>김종헌 권한설정물음 메세지</comment>
+  </data>
+  <data name="MsgBoxTitleSetting" xml:space="preserve">
+    <value>설정</value>
+    <comment>김종헌 메세지박스 설정 제목</comment>
+  </data>
 </root>

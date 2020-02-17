@@ -91,16 +91,19 @@ namespace Team2_ERP
                 {
                     authlist.Add(new AuthVO { Form = item.Cells[0].Value.ToString(), Auth = Convert.ToBoolean(item.Cells[1].EditedFormattedValue) });
                 }
-                AuthService service = new AuthService();
-                if (service.UpdateAuth(uid, authlist))
-                {
-                    frm.NoticeMessage = Resources.AuthDone;
+                if (DialogResult.Yes == MessageBox.Show(Resources.AuthQuestion, Resources.MsgBoxTitleSetting, MessageBoxButtons.YesNo, MessageBoxIcon.Question)){
+                    AuthService service = new AuthService();
+                    if (service.UpdateAuth(uid, authlist))
+                    {
+                        frm.NoticeMessage = Resources.AuthDone;
+                    }
+                    else
+                    {
+                        frm.NoticeMessage = Resources.AuthError;
+                    }
+                    isFirst = true;
+                    RefreshClicked();
                 }
-                else
-                {
-                    frm.NoticeMessage = Resources.AuthError;
-                }
-                RefreshClicked();
             }
             else
             {

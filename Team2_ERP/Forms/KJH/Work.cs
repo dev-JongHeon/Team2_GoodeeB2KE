@@ -71,8 +71,8 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgvProduce, "투입수량", "Produce_QtyReleased", true);
             UtilClass.AddNewColum(dgvProduce, "생산상태", "Produce_State", true);
 
-            dgvProduce.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvProduce.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvProduce.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvProduce.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvProduce.Columns[11].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvProduce.Columns[10].DefaultCellStyle.Format = "#0개";
@@ -91,13 +91,13 @@ namespace Team2_ERP
             }
             dgvWorkList.DataSource = null;
             dgvProduce.DataSource = null;
-            ClearSearchOption();
             if (!isFirst)
             {
                 dgvWorkList.DataSource = list;
                 ClearDgv();
                 rbxAll.Checked = true;
             }
+            ClearSearchOption();
             frm.NoticeMessage = Resources.RefreshDone;
             isFirst = false;
         }
@@ -255,32 +255,35 @@ namespace Team2_ERP
 
         private void rbxAll_CheckedChanged(object sender, EventArgs e)
         {
-            if (rbx0.Checked)
+            if (!isFirst)
             {
-                filteredlist = (from item in searchedlist
-                                where item.Work_State == "작업대기"
-                                select item).ToList();
+                if (rbx0.Checked)
+                {
+                    filteredlist = (from item in searchedlist
+                                    where item.Work_State == "작업대기"
+                                    select item).ToList();
 
-            }
-            else if (rbx1.Checked)
-            {
-                filteredlist = (from item in searchedlist
-                                where item.Work_State == "작업중"
-                                select item).ToList();
+                }
+                else if (rbx1.Checked)
+                {
+                    filteredlist = (from item in searchedlist
+                                    where item.Work_State == "작업중"
+                                    select item).ToList();
 
-            }
-            else if (rbx2.Checked)
-            {
-                filteredlist = (from item in searchedlist
-                                where item.Work_State == "작업완료"
-                                select item).ToList();
+                }
+                else if (rbx2.Checked)
+                {
+                    filteredlist = (from item in searchedlist
+                                    where item.Work_State == "작업완료"
+                                    select item).ToList();
 
+                }
+                else if (rbxAll.Checked)
+                {
+                    filteredlist = searchedlist;
+                }
+                dgvWorkList.DataSource = filteredlist;
             }
-            else if (rbxAll.Checked)
-            {
-                filteredlist = searchedlist;
-            }
-            dgvWorkList.DataSource = filteredlist;
 
         }
 

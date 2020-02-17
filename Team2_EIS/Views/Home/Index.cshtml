@@ -228,7 +228,7 @@
                                 {
                                     <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> @row["revenuediff"]%</span>
                                 }
-                            <h5 class="description-header">@Convert.ToInt32(row["todayrevenue"]).ToString("C", nf)</h5>
+                            <h5 class="description-header">@Convert.ToDecimal(row["todayrevenue"]).ToString("C", nf)</h5>
                                 <span class="description-text">금일 수익</span>
                             </div>
                             <!-- /.description-block -->
@@ -249,7 +249,7 @@
                                 {
                                     <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> @row["costdiff"]%</span>
                                 }
-                            <h5 class="description-header">@Convert.ToInt32(row["todaycost"]).ToString("C", nf)</h5>
+                            <h5 class="description-header">@Convert.ToDecimal(row["todaycost"]).ToString("C", nf)</h5>
                                 <span class="description-text">금일 생산비용</span>
                             </div>
                             <!-- /.description-block -->
@@ -269,7 +269,7 @@
                                 {
                                     <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> @row["profitdiff"]%</span>
                                 }
-                            <h5 class="description-header">@Convert.ToInt32(row["todayprofit"]).ToString("C", nf)</h5>
+                            <h5 class="description-header">@Convert.ToDecimal(row["todayprofit"]).ToString("C", nf)</h5>
                                 <span class="description-text">금일 순이익</span>
                             </div>
                             <!-- /.description-block -->
@@ -312,7 +312,7 @@
                                 @foreach(DataRow row in Model.info.Tables["bottomorder"].Rows)
                                 {
                                 <tr>
-                                    <td><span><strong>@row["id"]</strong></span></td>
+                                    <td><span>@row["id"]</span></td>
                                     <td>@row["name"]</td>
                                     @if (Convert.ToInt32(row["state"]) == 0)
                                     {
