@@ -153,7 +153,7 @@ namespace Team2_ERP
         {
             if (dgv_Balju.DataSource != null)
             {
-                if (MessageBox.Show("정말로 발주완료 처리하시겠습니까?", "알림", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show(Properties.Resources.IsBalju, notice, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     string Balju_ID = dgv_Balju.CurrentRow.Cells[0].Value.ToString();
                     service.UpdateBalju_Processed(Balju_ID, Session.Employee_ID);
@@ -162,7 +162,7 @@ namespace Team2_ERP
                 }
                 else
                 {
-                    MessageBox.Show("처리를 취소하셨습니다.");
+                    MessageBox.Show(Properties.Resources.Cancel);
                     main.NoticeMessage = notice;
                 }
             }
@@ -172,7 +172,7 @@ namespace Team2_ERP
         {
             if (dgv_Balju.DataSource != null)
             {
-                if (MessageBox.Show("정말로 해당 발주요청을 삭제하시겠습니까?", "알림", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show(Properties.Resources.IsDeleteBalju, Properties.Resources.Notice, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     string Balju_ID = dgv_Balju.CurrentRow.Cells[0].Value.ToString();
                     service.DeleteBalju(Balju_ID);
@@ -181,7 +181,7 @@ namespace Team2_ERP
                 }
                 else
                 {
-                    MessageBox.Show("처리를 취소하셨습니다.");
+                    MessageBox.Show(Properties.Resources.Cancel);
                     main.NoticeMessage = notice;
                 }
             }  

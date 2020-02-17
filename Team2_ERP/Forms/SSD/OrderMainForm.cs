@@ -103,7 +103,7 @@ namespace Team2_ERP
         {
             if (dgv_Order.DataSource != null)
             {
-                if (MessageBox.Show("정말 해당주문을 처리하시겠습니까?", "알림", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show(Properties.Resources.IsOrder, Properties.Resources.Notice, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     string orderID = dgv_Order.CurrentRow.Cells[0].Value.ToString();
                     service.UpOrder_InsShipment(orderID, Session.Employee_ID);
@@ -112,7 +112,7 @@ namespace Team2_ERP
                 }
                 else
                 {
-                    MessageBox.Show("처리를 취소하셨습니다.");
+                    MessageBox.Show(Properties.Resources.Cancel);
                     main.NoticeMessage = notice;
                 } 
             }
@@ -123,7 +123,7 @@ namespace Team2_ERP
 
             if (dgv_Order.DataSource != null)
             {
-                if (MessageBox.Show("정말 해당주문을 취소하시겠습니까?", "알림", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show(Properties.Resources.IsCancelOrder, Properties.Resources.Notice, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     string order_ID = dgv_Order.CurrentRow.Cells[0].Value.ToString();
                     service.DeleteOrder(order_ID);
@@ -132,7 +132,7 @@ namespace Team2_ERP
                 }
                 else
                 {
-                    MessageBox.Show("처리를 취소하셨습니다.");
+                    MessageBox.Show(Properties.Resources.Cancel);
                     main.NoticeMessage = notice;
                 }
             }

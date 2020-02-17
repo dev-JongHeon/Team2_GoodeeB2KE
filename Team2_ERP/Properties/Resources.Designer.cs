@@ -275,6 +275,15 @@ namespace Team2_ERP.Properties {
         }
         
         /// <summary>
+        ///   처리를 취소하셨습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
         internal static System.Drawing.Bitmap chat_26_icon_icons_com_65943 {
@@ -449,6 +458,24 @@ namespace Team2_ERP.Properties {
         }
         
         /// <summary>
+        ///   정말 발주완료 처리하시겠습니까?과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string IsBalju {
+            get {
+                return ResourceManager.GetString("IsBalju", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   정말 해당주문을 취소하시겠습니까?과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string IsCancelOrder {
+            get {
+                return ResourceManager.GetString("IsCancelOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   정말로 삭제하시겠습니까?과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string IsDelete {
@@ -458,11 +485,29 @@ namespace Team2_ERP.Properties {
         }
         
         /// <summary>
+        ///   정말 해당 발주요청을 삭제하시겠습니까?과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string IsDeleteBalju {
+            get {
+                return ResourceManager.GetString("IsDeleteBalju", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   필수항목을 입력하지 않으셨습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string isEssential {
             get {
                 return ResourceManager.GetString("isEssential", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   정말 해당주문을 처리하시겠습니까?과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string IsOrder {
+            get {
+                return ResourceManager.GetString("IsOrder", resourceCulture);
             }
         }
         
@@ -690,6 +735,15 @@ namespace Team2_ERP.Properties {
             get {
                 object obj = ResourceManager.GetObject("Next_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   알림과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string Notice {
+            get {
+                return ResourceManager.GetString("Notice", resourceCulture);
             }
         }
         
