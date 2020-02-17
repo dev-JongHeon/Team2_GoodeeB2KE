@@ -132,7 +132,7 @@ namespace Team2_DAC
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "SSD_UpOrder_InsShipment";
+                    cmd.CommandText = "SSD_UpOrder_InsShipment2";
                     cmd.Parameters.AddWithValue("@Order_ID", orderID);
                     cmd.Parameters.AddWithValue("@Employee_ID", employeeID);
                     conn.Open();
