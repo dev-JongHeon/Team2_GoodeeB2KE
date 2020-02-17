@@ -624,14 +624,14 @@ namespace Team2_ERP
 
                     #region Detail1그리기
                     lastrow++;
-                    TestWorkSheet.Range[TestWorkSheet.Cells[lastrow, 1], TestWorkSheet.Cells[lastrow, 8]].Merge(true);
+                    TestWorkSheet.Range[TestWorkSheet.Cells[lastrow, 1], TestWorkSheet.Cells[lastrow, 4]].Merge(true);
                     TestWorkSheet.Cells[lastrow, 1].Value = "정 전 개";
                     TestWorkSheet.Cells[lastrow, 1].Font.Name = "나눔고딕";
                     TestWorkSheet.Cells[lastrow, 1].Font.Bold = true;
                     TestWorkSheet.Cells[lastrow, 1].Font.Size = 14;
                     TestWorkSheet.Cells[lastrow, 1].VerticalAlignment = Excel.XlHAlign.xlHAlignCenter;
                     TestWorkSheet.Cells[lastrow, 1].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-                    TestWorkSheet.Range[TestWorkSheet.Cells[lastrow, 1], TestWorkSheet.Cells[lastrow, 8]].Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                    TestWorkSheet.Range[TestWorkSheet.Cells[lastrow, 1], TestWorkSheet.Cells[lastrow,4]].Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
                     columnIndex = 0;
                     foreach (PropertyInfo prop in typeof(D).GetProperties())
                     {
@@ -652,6 +652,11 @@ namespace Team2_ERP
                         }
                     }
 
+                    if (detaillist.Count == 0)
+                    {
+                        lastrow++;
+                        lastrow2 = lastrow + 3;
+                    }
                     foreach (D data in detaillist)
                     {
                         if (data.ToString() == id)
@@ -679,14 +684,14 @@ namespace Team2_ERP
 
                     #region Detail2그리기
                     lastrow2++;
-                    TestWorkSheet.Range[TestWorkSheet.Cells[lastrow2, 1], TestWorkSheet.Cells[lastrow2, 8]].Merge(true);
+                    TestWorkSheet.Range[TestWorkSheet.Cells[lastrow2, 1], TestWorkSheet.Cells[lastrow2, 4]].Merge(true);
                     TestWorkSheet.Cells[lastrow2, 1].Value = "역 전 개";
                     TestWorkSheet.Cells[lastrow2, 1].Font.Name = "나눔고딕";
                     TestWorkSheet.Cells[lastrow2, 1].Font.Bold = true;
                     TestWorkSheet.Cells[lastrow2, 1].Font.Size = 14;
                     TestWorkSheet.Cells[lastrow2, 1].VerticalAlignment = Excel.XlHAlign.xlHAlignCenter;
                     TestWorkSheet.Cells[lastrow2, 1].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-                    TestWorkSheet.Range[TestWorkSheet.Cells[lastrow2, 1], TestWorkSheet.Cells[lastrow2, 8]].Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                    TestWorkSheet.Range[TestWorkSheet.Cells[lastrow2, 1], TestWorkSheet.Cells[lastrow2, 4]].Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
                     columnIndex = 0;
                     foreach (PropertyInfo prop in typeof(U).GetProperties())
                     {
