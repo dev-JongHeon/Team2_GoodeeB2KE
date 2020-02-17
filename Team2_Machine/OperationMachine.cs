@@ -65,7 +65,7 @@ namespace Team2_Machine
                     //생산중 - 모니터링 화면
 
                     // 라인아이디, 요청개수, 진행개수 ,성공개수, 실패개수
-                    msg = string.Join(",", LineID, RequestQty, currentQty, itemQuality, 1 - itemQuality);
+                    msg = string.Join(",", LineID, RequestQty, iTotalCnt, itemQuality, 1 - itemQuality);
                     me.Message = msg;
 
                     if (MsgSender != null)
@@ -77,6 +77,12 @@ namespace Team2_Machine
                 service.EndProduce(PerformanceID);
 
                 // 생산 완료 - 모니터링 화면
+                msg = string.Join(",", LineID, RequestQty, iTotalCnt, 1, 0);
+                me.Message = msg;
+
+                if (MsgSender != null)
+                    MsgSender.Invoke(this, me);
+
 
                 return iTotalCnt;
             }

@@ -784,6 +784,15 @@ namespace Team2_ERP.Properties {
         }
         
         /// <summary>
+        ///   처리할 데이터가 없습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string NonData {
+            get {
+                return ResourceManager.GetString("NonData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   알림과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string Notice {

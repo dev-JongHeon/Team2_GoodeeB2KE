@@ -55,6 +55,7 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_OrderDetail, "제품명", "Product_Name", true, 300);
             UtilClass.AddNewColum(dgv_OrderDetail, "주문수량", "OrderDetail_Qty", true);
             dgv_OrderDetail.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv_OrderDetail.Columns[3].DefaultCellStyle.Format = "#,#0개";
 
             Search_Period.Startdate.BackColor = Color.LightYellow;
             Search_Period.Enddate.BackColor = Color.LightYellow;
@@ -101,7 +102,11 @@ namespace Team2_ERP
 
         public override void Modify(object sender, EventArgs e)  // 발주완료(수령)처리, 출하대기목록 Insert, 작업insert, 생산insert 
         {
-            if (dgv_Order.DataSource != null)
+            if (dgv_Order.Rows.Count == 0)
+            {
+                main.NoticeMessage = Properties.Resources.NonData;
+            }
+            else
             {
                 if (MessageBox.Show(Properties.Resources.IsOrder, Properties.Resources.Notice, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
@@ -112,7 +117,7 @@ namespace Team2_ERP
                 }
                 else
                 {
-                    MessageBox.Show(Properties.Resources.Cancel);
+                    MessageBox.Show(Properties.Resources.Cancel, Properties.Resources.Notice);
                     main.NoticeMessage = notice;
                 } 
             }
@@ -120,8 +125,11 @@ namespace Team2_ERP
 
         public override void Delete(object sender, EventArgs e)  // 삭제
         {
-
-            if (dgv_Order.DataSource != null)
+            if (dgv_Order.Rows.Count == 0)
+            {
+                main.NoticeMessage = Properties.Resources.NonData;
+            }
+            else
             {
                 if (MessageBox.Show(Properties.Resources.IsCancelOrder, Properties.Resources.Notice, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
@@ -167,7 +175,11 @@ namespace Team2_ERP
 
         public override void Excel(object sender, EventArgs e)
         {
-            if (dgv_Order.Rows.Count > 0)
+            if (dgv_Order.Rows.Count == 0)
+            {
+                main.NoticeMessage = Properties.Resources.ExcelError;
+            }
+            else
             {
                 using (WaitForm frm = new WaitForm())
                 {
@@ -186,7 +198,11 @@ namespace Team2_ERP
 
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
-            if (dgv_Order.Rows.Count > 0)
+            if (dgv_Order.Rows.Count == 0)
+            {
+                main.NoticeMessage = Properties.Resources.NonData;
+            }
+            else
             {
                 using (WaitForm frm = new WaitForm())
                 {

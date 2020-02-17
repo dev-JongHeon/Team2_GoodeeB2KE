@@ -63,8 +63,6 @@ namespace Team2_POP
             catch (Exception ex)
             {
                 WriteLog(ex);
-                CustomMessageBox.ShowDialog("서버접속끊김", "서버와의 연결이 끊겼습니다.", MessageBoxIcon.Error
-                    , MessageBoxButtons.OK);
                 ErrorMessage(ex);
                 timer.Stop();
                 timer.Enabled = false;
@@ -103,15 +101,17 @@ namespace Team2_POP
         // 서버 연결
         public bool Connect()
         {
+
             IPEndPoint clientIP = new IPEndPoint(IPAddress.Parse(host), new Random((int)DateTime.UtcNow.Ticks).Next(5001, 8901));
             client = new TcpClient(clientIP);
-            client.ConnectAsync(host, port).Wait();
-            client.NoDelay = true;
-
-            netStream = client.GetStream();
-
             try
             {
+                client.ConnectAsync(host, port).Wait();
+                client.NoDelay = true;
+
+                netStream = client.GetStream();
+
+
                 if (client.Connected)
                 {
                     Connected = client.Connected;
@@ -119,7 +119,6 @@ namespace Team2_POP
 
                 return client.Connected;
             }
-
             catch (Exception ex)
             {
                 WriteLog(ex);
@@ -150,7 +149,7 @@ namespace Team2_POP
                     client.Dispose();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 WriteLog(ex);
             }
@@ -168,7 +167,7 @@ namespace Team2_POP
                 string ProductionInstruction = string.Join(",", objArr);
                 StreamWriter writer = new StreamWriter(stream);
 
-                writer.AutoFlush = true;                
+                writer.AutoFlush = true;
                 writer.Write(ProductionInstruction);
             }
             catch (Exception ex)

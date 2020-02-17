@@ -117,7 +117,11 @@ namespace Team2_ERP
 
         public override void Excel(object sender, EventArgs e)
         {
-            if (dgv_SalesStatus.Rows.Count > 0)
+            if (dgv_SalesStatus.Rows.Count == 0)
+            {
+                main.NoticeMessage = Properties.Resources.ExcelError;
+            }
+            else
             {
                 using (WaitForm frm = new WaitForm())
                 {
@@ -134,7 +138,11 @@ namespace Team2_ERP
 
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
-            if (dgv_SalesStatus.Rows.Count > 0)
+            if (dgv_SalesStatus.Rows.Count == 0)
+            {
+                main.NoticeMessage = Properties.Resources.NonData;
+            }
+            else
             {
                 using (WaitForm frm = new WaitForm())
                 {

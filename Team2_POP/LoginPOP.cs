@@ -13,23 +13,31 @@ namespace Team2_POP
 {
     public partial class LoginPOP : Form
     {
+        #region 전역변수
         List<ComboItemVO> factory;
         WorkerInfoPOP workerInfo;
+        private Point mousePoint;
+        #endregion
 
         public LoginPOP()
         {
             InitializeComponent();
         }
 
+        #region 화면 초기
+        /* ===================================
+         *  SettingControl : 콤보박스 디자인
+         *  InitData : 콤보박스 바인딩
+        =====================================*/
         private void LoginPOP_Load(object sender, EventArgs e)
         {
             SettingControl();
             InitData();
-
         }
 
         private void SettingControl()
         {
+            // 콤보박스 디자인
             cboFactory.DropDownStyle = cboLine.DropDownStyle = cboWorker.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
@@ -44,7 +52,9 @@ namespace Team2_POP
             UtilClass.ComboBinding(cboLine, list, "공장을 먼저 선택해주세요");
             UtilClass.ComboBinding(cboWorker, list, "공장을 먼저 선택해주세요");
         }
+        #endregion
 
+        // 연결 선택시
         private void btnConnect_Click(object sender, EventArgs e)
         {
             StringBuilder msg = new StringBuilder();
@@ -76,7 +86,6 @@ namespace Team2_POP
             };
 
             // 로그인이 완료되면 메인 화면을 띄워주는 코드
-
             PopMain Main = new PopMain();
             Hide();
             Main.WorkerInfo = workerInfo;
@@ -97,10 +106,14 @@ namespace Team2_POP
 
         }
 
+        /* =============================================
+         *  공장 콤보박스를 선택했을경우 발생하는 이벤트
+        =============================================== */
         private void cboFactory_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboFactory.SelectedIndex > 0)
             {
+                // 공장리스트에서 공장타입번호가 같은것만 찾아서 공정 리스트를 호출 바인딩함
                 string facDivision = factory.Find(f => f.ID == cboFactory.SelectedValue.ToString()).CodeType;
 
                 UtilClass.ComboBinding(cboWorker, new Service().GetWorker(Convert.ToInt32(facDivision)), "작업자 선택");
@@ -125,5 +138,21 @@ namespace Team2_POP
         {
             this.Close();
         }
+
+        #region 로그인 화면 Dragable
+        private void LoginPOP_MouseDown(object sender, MouseEventArgs e)
+        {
+            mousePoint = new Point(e.X, e.Y);
+        }
+
+        private void LoginPOP_MouseMove(object sender, MouseEventArgs e)
+        {
+            if ((e.Button & MouseButtons.Left) == MouseButtons.Left)
+            {
+                Location = new Point(this.Left - (mousePoint.X - e.X),
+                    this.Top - (mousePoint.Y - e.Y));
+            }
+        }
+        #endregion
     }
 }

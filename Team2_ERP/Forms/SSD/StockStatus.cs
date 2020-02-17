@@ -45,8 +45,11 @@ namespace Team2_ERP
             dgv_StockStatus.Columns[5].DefaultCellStyle.Format = "#,#0원";
             dgv_StockStatus.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgv_StockStatus.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv_StockStatus.Columns[6].DefaultCellStyle.Format = "#,#0개";
             dgv_StockStatus.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv_StockStatus.Columns[7].DefaultCellStyle.Format = "#,#0개";
             dgv_StockStatus.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv_StockStatus.Columns[8].DefaultCellStyle.Format = "#,#0개";
             StockStatus_AllList = service.GetStockStatus();
         }
 
@@ -96,7 +99,11 @@ namespace Team2_ERP
 
         public override void Excel(object sender, EventArgs e)
         {
-            if (dgv_StockStatus.Rows.Count > 0)
+            if (dgv_StockStatus.Rows.Count == 0)
+            {
+                main.NoticeMessage = Properties.Resources.ExcelError;
+            }
+            else
             {
                 using (WaitForm frm = new WaitForm())
                 {
@@ -113,7 +120,11 @@ namespace Team2_ERP
 
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
-            if (dgv_StockStatus.Rows.Count > 0)
+            if (dgv_StockStatus.Rows.Count == 0)
+            {
+                main.NoticeMessage = Properties.Resources.NonData;
+            }
+            else
             {
                 using (WaitForm frm = new WaitForm())
                 {
