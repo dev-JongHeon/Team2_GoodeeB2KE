@@ -56,6 +56,8 @@ namespace Team2_ERP
         {
             InitGridView();
             frm = (MainForm)this.ParentForm;
+            rdoWork.Checked = true;
+            searchResigndate.Visible = false;
             StandardService service = new StandardService();
             list = service.GetAllEmployee();
         }
@@ -148,26 +150,44 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)
         {
-            searchList = list;
-            if(searchDepartmentName.CodeTextBox.Tag != null)
+            if(rdoWork.Checked)
             {
-                searchList = (from item in searchList where item.CodeTable_CodeID.Equals(searchDepartmentName.CodeTextBox.Tag.ToString()) select item).ToList();
+                searchList = (from item in list where item.Employees_Resigndate == null select item).ToList();
+                if (searchDepartmentName.CodeTextBox.Tag != null)
+                {
+                    searchList = (from item in searchList where item.CodeTable_CodeID.Equals(searchDepartmentName.CodeTextBox.Tag.ToString()) select item).ToList();
+                }
+                if (searchEmployeeName.CodeTextBox.Tag != null)
+                {
+                    searchList = (from item in searchList where item.Employees_ID.Equals(Convert.ToInt32(searchEmployeeName.CodeTextBox.Tag)) select item).ToList();
+                }
+                if (searchHiredate.Startdate.Tag != null && searchHiredate.Enddate.Tag != null)
+                {
+                    searchList = (from item in searchList where Convert.ToDateTime(Convert.ToDateTime(item.Employees_Hiredate).ToShortDateString()) >= Convert.ToDateTime(searchHiredate.Startdate.Tag.ToString()) && Convert.ToDateTime(Convert.ToDateTime(item.Employees_Hiredate).ToShortDateString()) <= Convert.ToDateTime(searchHiredate.Enddate.Tag.ToString()) select item).ToList();
+                }
+                dgvEmployee.DataSource = searchList;
+                dgvEmployee.CurrentCell = null;
+                frm.NoticeMessage = Resources.SearchDone;
             }
-            if (searchEmployeeName.CodeTextBox.Tag != null)
+            else
             {
-                searchList = (from item in searchList where item.Employees_ID.Equals(Convert.ToInt32(searchEmployeeName.CodeTextBox.Tag)) select item).ToList();
+                searchList = (from item in list where item.Employees_Hiredate == null select item).ToList();
+                if (searchDepartmentName.CodeTextBox.Tag != null)
+                {
+                    searchList = (from item in searchList where item.CodeTable_CodeID.Equals(searchDepartmentName.CodeTextBox.Tag.ToString()) select item).ToList();
+                }
+                if (searchEmployeeName.CodeTextBox.Tag != null)
+                {
+                    searchList = (from item in searchList where item.Employees_ID.Equals(Convert.ToInt32(searchEmployeeName.CodeTextBox.Tag)) select item).ToList();
+                }
+                if (searchHiredate.Startdate.Tag != null && searchHiredate.Enddate.Tag != null)
+                {
+                    searchList = (from item in searchList where Convert.ToDateTime(Convert.ToDateTime(item.Employees_Resigndate).ToShortDateString()) >= Convert.ToDateTime(searchResigndate.Startdate.Tag.ToString()) && Convert.ToDateTime(Convert.ToDateTime(item.Employees_Resigndate).ToShortDateString()) <= Convert.ToDateTime(searchResigndate.Enddate.Tag.ToString()) select item).ToList();
+                }
+                dgvEmployee.DataSource = searchList;
+                dgvEmployee.CurrentCell = null;
+                frm.NoticeMessage = Resources.SearchDone;
             }
-            if(searchHiredate.Startdate.Tag != null && searchHiredate.Enddate.Tag != null)
-            {
-                searchList = (from item in searchList where Convert.ToDateTime(Convert.ToDateTime(item.Employees_Hiredate).ToShortDateString()) >= Convert.ToDateTime(searchHiredate.Startdate.Tag.ToString()) && Convert.ToDateTime(Convert.ToDateTime(item.Employees_Hiredate).ToShortDateString()) <= Convert.ToDateTime(searchHiredate.Enddate.Tag.ToString()) select item).ToList();
-            }
-            if(searchResigndate.Startdate.Tag != null && searchResigndate.Enddate.Tag != null)
-            {
-                searchList = (from item in searchList where Convert.ToDateTime(Convert.ToDateTime(item.Employees_Resigndate).ToShortDateString()) >= Convert.ToDateTime(searchResigndate.Startdate.Tag.ToString()) && Convert.ToDateTime(Convert.ToDateTime(item.Employees_Resigndate).ToShortDateString()) <= Convert.ToDateTime(searchResigndate.Enddate.Tag.ToString()) select item).ToList();
-            }
-            dgvEmployee.DataSource = searchList;
-            dgvEmployee.CurrentCell = null;
-            frm.NoticeMessage = Resources.SearchDone;
         }
 
         private void dgvEmployee_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -182,6 +202,21 @@ namespace Team2_ERP
                     Employees_Phone = dgvEmployee.Rows[e.RowIndex].Cells[5].Value.ToString(),
                     Employees_Birth = dgvEmployee.Rows[e.RowIndex].Cells[6].Value.ToString()
                 };
+            }
+        }
+
+        private void rdo_CheckedChanged(object sender, EventArgs e)
+        {
+            dgvEmployee.DataSource = null;
+            if(rdoWork.Checked)
+            {
+                searchResigndate.Visible = false;
+                searchHiredate.Visible = true;
+            }
+            else
+            {
+                searchResigndate.Visible = true;
+                searchHiredate.Visible = false;
             }
         }
     }
