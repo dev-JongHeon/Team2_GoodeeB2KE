@@ -131,6 +131,8 @@
             this.Name = "CustomMessageBox";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.CustomMessageBox_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CustomMessageBox_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CustomMessageBox_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 

@@ -312,6 +312,7 @@ namespace Team2_ERP
                 factoryItem.Factory_ID = Convert.ToInt32(dgvFactory.Rows[e.RowIndex].Cells[0].Value);
                 LList = service.GetAllLine(factoryItem.Factory_ID);
                 dgvLine.DataSource = LList;
+                dgvLine.CurrentCell = null;
             }
         }
     }

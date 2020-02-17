@@ -33,8 +33,8 @@
             this.cboLine = new System.Windows.Forms.ComboBox();
             this.cboWorker = new System.Windows.Forms.ComboBox();
             this.btnConnect = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,15 +93,6 @@
             this.btnConnect.UseVisualStyleBackColor = false;
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
-            // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(18, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(391, 79);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "사원카드를 찍어주세요";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // btnClose
             // 
             this.btnClose.BackColor = System.Drawing.Color.SteelBlue;
@@ -113,6 +104,15 @@
             this.btnClose.Text = "종료";
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(18, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(391, 79);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "사원카드를 찍어주세요";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LoginPOP
             // 
@@ -134,6 +134,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "로그인 화면";
             this.Load += new System.EventHandler(this.LoginPOP_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LoginPOP_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LoginPOP_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
@@ -146,7 +148,7 @@
         private System.Windows.Forms.ComboBox cboLine;
         private System.Windows.Forms.ComboBox cboWorker;
         private System.Windows.Forms.Button btnConnect;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Label label1;
     }
 }

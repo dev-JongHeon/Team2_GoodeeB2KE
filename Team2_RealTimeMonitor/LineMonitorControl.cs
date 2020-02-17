@@ -57,7 +57,6 @@ namespace Team2_RealTimeMonitor
         public LineMonitorControl()
         {
             InitializeComponent();
-
             InitData();
         }
 

@@ -239,6 +239,15 @@ namespace Team2_POP.Properties {
         }
         
         /// <summary>
+        ///   오류 발생과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgCommonResultFailHeader {
+            get {
+                return ResourceManager.GetString("MsgCommonResultFailHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   선택하신 불량번호 : {0} 
         ///처리하지 못하었습니다. 
         ///다시시도해주세요.과(와) 유사한 지역화된 문자열을 찾습니다.
@@ -276,6 +285,16 @@ namespace Team2_POP.Properties {
         internal static string MsgDefectiveResultSucceesHeader {
             get {
                 return ResourceManager.GetString("MsgDefectiveResultSucceesHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   모든 불량내역을 처리했습니다. 
+        ///해당폼이 닫힙니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgDefectiveSaveAsAllCompleteContent {
+            get {
+                return ResourceManager.GetString("MsgDefectiveSaveAsAllCompleteContent", resourceCulture);
             }
         }
         
@@ -332,6 +351,71 @@ namespace Team2_POP.Properties {
         internal static string MsgLoadResultFailHeader {
             get {
                 return ResourceManager.GetString("MsgLoadResultFailHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   생산을 시작합니다과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgProduceStartAcceptSucceesContent {
+            get {
+                return ResourceManager.GetString("MsgProduceStartAcceptSucceesContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   접수 성공과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgProduceStartAcceptSucceesHeader {
+            get {
+                return ResourceManager.GetString("MsgProduceStartAcceptSucceesHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   기계와의 작동이 원할하지 않습니다. 
+        ///기계서버의 상태를 점검한 후 다시 시도해주세요.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgProduceStartConnectResultContent {
+            get {
+                return ResourceManager.GetString("MsgProduceStartConnectResultContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   기계통신 오류과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgProduceStartConnectResultHeader {
+            get {
+                return ResourceManager.GetString("MsgProduceStartConnectResultHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   &quot;처리하는 과정에서 오류가 발생하였습니다.
+        ///다시 시도해주세요.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgProduceStartLengthFailContent {
+            get {
+                return ResourceManager.GetString("MsgProduceStartLengthFailContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   생산실적을 선택해주세요.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgProduceStartResultContent {
+            get {
+                return ResourceManager.GetString("MsgProduceStartResultContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   데이터 오류과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgProduceStartResultHeader {
+            get {
+                return ResourceManager.GetString("MsgProduceStartResultHeader", resourceCulture);
             }
         }
         

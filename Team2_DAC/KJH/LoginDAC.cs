@@ -120,5 +120,26 @@ namespace Team2_DAC
                 throw new Exception(err.Message);
             }
         }
+
+        public bool OrderProcess()
+        {
+            try
+            {
+                string sql = "KJH_OrderProcess";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    int result = 0;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    conn.Open();
+                    result = Convert.ToInt32(cmd.ExecuteNonQuery());                  
+                    conn.Close();
+                    return result > 0;
+                }
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+        }
     }
 }

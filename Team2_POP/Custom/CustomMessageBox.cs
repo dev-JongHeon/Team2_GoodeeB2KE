@@ -12,6 +12,9 @@ namespace Team2_POP
 {
     public partial class CustomMessageBox : Form
     {
+        #region 전역변수
+
+        private Point mousePoint;
 
         static string buttonText = "확인";
         static bool buttonCancelVisible = false;
@@ -21,6 +24,8 @@ namespace Team2_POP
 
         static CustomMessageBox frm = null;
         static MessageBoxIcon option;
+
+        #endregion
 
         public CustomMessageBox()
         {
@@ -105,5 +110,23 @@ namespace Team2_POP
         {
             DialogResult = DialogResult.Cancel;            
         }
+
+
+        #region 메세지 폼 Dragable 코드       
+
+        private void CustomMessageBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            if ((e.Button & MouseButtons.Left) == MouseButtons.Left)
+            {
+                Location = new Point(this.Left - (mousePoint.X - e.X),
+                    this.Top - (mousePoint.Y - e.Y));
+            }
+        }
+
+        private void CustomMessageBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            mousePoint = new Point(e.X, e.Y);
+        }
+        #endregion
     }
 }

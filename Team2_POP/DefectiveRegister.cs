@@ -133,6 +133,13 @@ namespace Team2_POP
         {
             Save();
             ResetData();
+
+            // 모든 불량을 다 처리한 경우
+            if (cboDefItem.Items.Count < 2)
+            {
+                DialogResult = CustomMessageBox.ShowDialog(Properties.Resources.MsgDefectiveResultSucceesHeader
+                    , Properties.Resources.MsgDefectiveSaveAsAllCompleteContent, MessageBoxIcon.Information, MessageBoxButtons.OK);
+            }
         }
 
         #region 버튼 이벤트
@@ -161,12 +168,17 @@ namespace Team2_POP
         }
         #endregion
 
+
+        #region 콤보박스 선택 이벤트
+
+        // 불량코드를 선택한 경우
         private void cboDefItem_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboDefItem.SelectedIndex != 0)
                 lblDefItem.Text = cboDefItem.Text;
         }
 
+        // 불량유형을 선택한 경우
         private void cboDefectiveName_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboDefectiveName.SelectedIndex != 0)
@@ -181,6 +193,7 @@ namespace Team2_POP
             }
         }
 
+        // 불량처리를 선택한 경우
         private void cboHandle_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboHandle.SelectedIndex != 0)
@@ -194,5 +207,6 @@ namespace Team2_POP
                 lblHandle.Text = cboHandle.Text;
             }
         }
+        #endregion
     }
 }

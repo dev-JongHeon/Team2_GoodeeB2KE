@@ -33,13 +33,13 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtNewPwd2 = new Team2_ERP.NumTXT();
-            this.txtNewPwd = new Team2_ERP.NumTXT();
-            this.txtPrevPwd = new Team2_ERP.NumTXT();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtPrevPwd = new System.Windows.Forms.TextBox();
+            this.txtNewPwd = new System.Windows.Forms.TextBox();
+            this.txtNewPwd2 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -96,31 +96,6 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
-            // txtNewPwd2
-            // 
-            this.txtNewPwd2.Location = new System.Drawing.Point(134, 89);
-            this.txtNewPwd2.Name = "txtNewPwd2";
-            this.txtNewPwd2.PasswordChar = '*';
-            this.txtNewPwd2.Size = new System.Drawing.Size(134, 21);
-            this.txtNewPwd2.TabIndex = 2;
-            this.txtNewPwd2.Validating += new System.ComponentModel.CancelEventHandler(this.txtNewPwd2_Validating);
-            // 
-            // txtNewPwd
-            // 
-            this.txtNewPwd.Location = new System.Drawing.Point(134, 54);
-            this.txtNewPwd.Name = "txtNewPwd";
-            this.txtNewPwd.PasswordChar = '*';
-            this.txtNewPwd.Size = new System.Drawing.Size(134, 21);
-            this.txtNewPwd.TabIndex = 1;
-            // 
-            // txtPrevPwd
-            // 
-            this.txtPrevPwd.Location = new System.Drawing.Point(134, 17);
-            this.txtPrevPwd.Name = "txtPrevPwd";
-            this.txtPrevPwd.PasswordChar = '*';
-            this.txtPrevPwd.Size = new System.Drawing.Size(134, 21);
-            this.txtPrevPwd.TabIndex = 0;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -152,6 +127,32 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // txtPrevPwd
+            // 
+            this.txtPrevPwd.Location = new System.Drawing.Point(134, 17);
+            this.txtPrevPwd.Name = "txtPrevPwd";
+            this.txtPrevPwd.PasswordChar = '*';
+            this.txtPrevPwd.Size = new System.Drawing.Size(134, 21);
+            this.txtPrevPwd.TabIndex = 4;
+            // 
+            // txtNewPwd
+            // 
+            this.txtNewPwd.Location = new System.Drawing.Point(134, 54);
+            this.txtNewPwd.Name = "txtNewPwd";
+            this.txtNewPwd.PasswordChar = '*';
+            this.txtNewPwd.Size = new System.Drawing.Size(134, 21);
+            this.txtNewPwd.TabIndex = 5;
+            // 
+            // txtNewPwd2
+            // 
+            this.txtNewPwd2.Location = new System.Drawing.Point(134, 89);
+            this.txtNewPwd2.Name = "txtNewPwd2";
+            this.txtNewPwd2.PasswordChar = '*';
+            this.txtNewPwd2.Size = new System.Drawing.Size(134, 21);
+            this.txtNewPwd2.TabIndex = 6;
+            this.txtNewPwd2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNewPwd2_KeyPress);
+            this.txtNewPwd2.Validating += new System.ComponentModel.CancelEventHandler(this.txtNewPwd2_Validating);
+            // 
             // ChangePwd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -181,12 +182,12 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private NumTXT txtPrevPwd;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
-        private NumTXT txtNewPwd2;
-        private NumTXT txtNewPwd;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.TextBox txtNewPwd2;
+        private System.Windows.Forms.TextBox txtNewPwd;
+        private System.Windows.Forms.TextBox txtPrevPwd;
     }
 }

@@ -75,13 +75,16 @@ namespace Team2_ERP
 
             UtilClass.SettingDgv(dgvBOMDetail2);
 
-            UtilClass.AddNewColum(dgvBOMDetail1, "제품ID", "Product_ID", false, 100);
+            UtilClass.AddNewColum(dgvBOMDetail2, "제품ID", "Product_ID", false, 100);
             UtilClass.AddNewColum(dgvBOMDetail2, "분류", "Category_Division", true, 100);
             UtilClass.AddNewColum(dgvBOMDetail2, "제품명", "Product_Name", true, 100);
-            UtilClass.AddNewColum(dgvBOMDetail2, "상품개수", "Combination_RequiredQty", true, 100, DataGridViewContentAlignment.MiddleRight);
+            UtilClass.AddNewColum(dgvBOMDetail2, "조합개수", "Combination_RequiredQty", true, 100, DataGridViewContentAlignment.MiddleRight);
             UtilClass.AddNewColum(dgvBOMDetail2, "가격", "Product_Price", true, 100, DataGridViewContentAlignment.MiddleRight);
-            dgvBOMDetail2.Columns[2].DefaultCellStyle.Format = "#,##0개";
-            dgvBOMDetail2.Columns[3].DefaultCellStyle.Format = "#,##0원";
+            UtilClass.AddNewColum(dgvBOMDetail2, "조합ID", "Combination_ID", false, 100);
+            UtilClass.AddNewColum(dgvBOMDetail2, "조합제품ID", "Combination_Product_ID", false, 100);
+            UtilClass.AddNewColum(dgvBOMDetail2, "조합삭제여부", "Combination_DeletedYN", false, 100);
+            dgvBOMDetail2.Columns[3].DefaultCellStyle.Format = "#,##0개";
+            dgvBOMDetail2.Columns[4].DefaultCellStyle.Format = "#,##0원";
 
             dgvBOMDetail2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
         }
@@ -324,7 +327,8 @@ namespace Team2_ERP
             List<BOMVO> detail1 = bomList.ToList();
             List<BOMVO> detail2 = bomReverseList.ToList();
             string[] gg = new string[] { "Product_Category", "Warehouse_ID", "Warehouse_Name", "Product_Qty", "Product_Safety", "Product_DeletedYN", "Category_Division", "Product_Image", "Combination_ID", "Combination_Product_ID", "Combination_DeletedYN", "Product_Origin" };
-            UtilClass.ExportTo2DataGridView(allList, detail1, detail2, gg);
+
+                UtilClass.ExportTo2DataGridView(allList, detail1, detail2, gg);
         }
 
         private void dgvBOM_CellClick(object sender, DataGridViewCellEventArgs e)

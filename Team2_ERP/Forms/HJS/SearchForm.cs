@@ -35,6 +35,8 @@ namespace Team2_ERP
         {
             UtilClass.SettingDgv(dgvSearch);
             SettingData();
+            this.ActiveControl = txtSearch;
+            txtSearch.Select();
         }
 
         private void SettingData()

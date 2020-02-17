@@ -552,11 +552,20 @@ namespace Team2_ERP.Properties {
         }
         
         /// <summary>
-        ///   입력한 비밀번호가 잘못되었습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   입력한 암호가 잘못되었습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string LoginPwdError {
             get {
                 return ResourceManager.GetString("LoginPwdError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   암호를 입력하지 않으셨습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string LoginPwdInputNone {
+            get {
+                return ResourceManager.GetString("LoginPwdInputNone", resourceCulture);
             }
         }
         
