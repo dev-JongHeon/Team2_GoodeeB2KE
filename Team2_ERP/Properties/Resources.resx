@@ -474,4 +474,8 @@
     <value>원자재 항목은 원자재 탭에서 수정 가능합니다.</value>
     <comment>최명근 BOM폼에서 원자재 수정 시 오류 메세지</comment>
   </data>
+  <data name="NonData" xml:space="preserve">
+    <value>처리할 데이터가 없습니다.</value>
+    <comment>선도 - 처리할 데이터 없을 때 NoticeMessage</comment>
+  </data>
 </root>
