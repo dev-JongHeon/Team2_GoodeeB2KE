@@ -81,13 +81,11 @@ namespace Team2_ERP
                 searchList = list;
                 if(searchCustomerName.CodeTextBox.Tag != null)
                 {
-                    dgvCustomer.DataSource = null;
                     searchList = (from item in searchList where item.Customer_ID == Convert.ToInt32(searchCustomerName.CodeTextBox.Tag) select item).ToList();
                 }
                 if(searchCustomerBirth.Startdate.Tag != null && searchCustomerBirth.Enddate.Tag != null)
                 {
-                    dgvCustomer.DataSource = null;
-                    searchList = (from item in list where DateTime.Parse(item.Customer_Birth) >= DateTime.Parse(searchCustomerBirth.Startdate.Tag.ToString()) && DateTime.Parse(item.Customer_Birth) <= DateTime.Parse(searchCustomerBirth.Enddate.Tag.ToString()) select item).ToList();
+                    searchList = (from item in searchList where Convert.ToDateTime(Convert.ToDateTime(item.Customer_Birth).ToShortDateString()) >= Convert.ToDateTime(searchCustomerBirth.Startdate.Tag.ToString()) && Convert.ToDateTime(Convert.ToDateTime(item.Customer_Birth).ToShortDateString()) <= Convert.ToDateTime(searchCustomerBirth.Enddate.Tag.ToString()) select item).ToList();
                 }
                 dgvCustomer.DataSource = searchList;
             }

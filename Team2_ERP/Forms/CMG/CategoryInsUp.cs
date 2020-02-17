@@ -189,11 +189,22 @@ namespace Team2_ERP
         {
             if(rdoResource.Checked)
             {
+                label1.Text = "원자재 카테고리 이름";
+                label2.Text = "원자재 카테고리 설명";
                 cboContext.Visible = true;
                 txtContext.Visible = false;
             }
+            else if(rdoSemiProduct.Checked)
+            {
+                label1.Text = "반제품 카테고리 이름";
+                label2.Text = "반제품 카테고리 설명";
+                txtContext.Visible = true;
+                cboContext.Visible = false;
+            }
             else
             {
+                label1.Text = "완제품 카테고리 이름";
+                label2.Text = "완제품 카테고리 설명";
                 txtContext.Visible = true;
                 cboContext.Visible = false;
             }
