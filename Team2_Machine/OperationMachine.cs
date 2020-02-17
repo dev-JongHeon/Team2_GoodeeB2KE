@@ -57,10 +57,9 @@ namespace Team2_Machine
                     else
                         currentQty--;
 
-                    // 생산중
+
+                    // 생산중( 생산실적아이디, 생산성공개수, 실패개수)
                     service.Producing(PerformanceID, itemQuality, 1 - itemQuality);
-
-
 
                     //생산중 - 모니터링 화면
 
@@ -77,12 +76,8 @@ namespace Team2_Machine
                 service.EndProduce(PerformanceID);
 
                 // 생산 완료 - 모니터링 화면
-                msg = string.Join(",", LineID, RequestQty, iTotalCnt, 1, 0);
-                me.Message = msg;
-
-                if (MsgSender != null)
-                    MsgSender.Invoke(this, me);
-
+                // 라인아이디, 요청개수, 진행개수, 성공개수, 실패개수) -- 최종
+                
 
                 return iTotalCnt;
             }

@@ -32,16 +32,9 @@
             this.panelContent = new System.Windows.Forms.Panel();
             this.splitBody = new System.Windows.Forms.SplitContainer();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.panelCircleProgress = new System.Windows.Forms.Panel();
-            this.circleProgress = new Team2_RealTimeMonitor.CircleProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.splitRightContent = new System.Windows.Forms.SplitContainer();
-            this.splitHeader = new System.Windows.Forms.SplitContainer();
-            this.panelLineState = new System.Windows.Forms.Panel();
-            this.picState = new System.Windows.Forms.PictureBox();
-            this.panelLineName = new System.Windows.Forms.Panel();
             this.lblLineName = new System.Windows.Forms.Label();
             this.splitTable = new System.Windows.Forms.SplitContainer();
             this.splitLeftTable = new System.Windows.Forms.SplitContainer();
@@ -58,6 +51,8 @@
             this.panelImport = new System.Windows.Forms.Panel();
             this.lblImport = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.circleProgress = new Team2_RealTimeMonitor.CircleProgressBar();
             this.panelMain.SuspendLayout();
             this.panelContent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitBody)).BeginInit();
@@ -68,22 +63,11 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
-            this.panelCircleProgress.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitRightContent)).BeginInit();
             this.splitRightContent.Panel1.SuspendLayout();
             this.splitRightContent.Panel2.SuspendLayout();
             this.splitRightContent.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitHeader)).BeginInit();
-            this.splitHeader.Panel1.SuspendLayout();
-            this.splitHeader.Panel2.SuspendLayout();
-            this.splitHeader.SuspendLayout();
-            this.panelLineState.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picState)).BeginInit();
-            this.panelLineName.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitTable)).BeginInit();
             this.splitTable.Panel1.SuspendLayout();
             this.splitTable.Panel2.SuspendLayout();
@@ -100,6 +84,7 @@
             this.splitRightTable.SuspendLayout();
             this.panelDefective.SuspendLayout();
             this.panelImport.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMain
@@ -109,16 +94,15 @@
             this.panelMain.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.panelMain.Location = new System.Drawing.Point(0, 0);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(540, 231);
+            this.panelMain.Size = new System.Drawing.Size(516, 270);
             this.panelMain.TabIndex = 2;
             // 
             // panelContent
             // 
             this.panelContent.Controls.Add(this.splitBody);
-            this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContent.Location = new System.Drawing.Point(0, 0);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(540, 231);
+            this.panelContent.Size = new System.Drawing.Size(516, 260);
             this.panelContent.TabIndex = 0;
             // 
             // splitBody
@@ -134,8 +118,8 @@
             // splitBody.Panel2
             // 
             this.splitBody.Panel2.Controls.Add(this.splitRightContent);
-            this.splitBody.Size = new System.Drawing.Size(540, 231);
-            this.splitBody.SplitterDistance = 179;
+            this.splitBody.Size = new System.Drawing.Size(516, 260);
+            this.splitBody.SplitterDistance = 171;
             this.splitBody.TabIndex = 1;
             // 
             // splitContainer1
@@ -147,56 +131,15 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
+            this.splitContainer1.Panel1.Controls.Add(this.panel2);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
-            this.splitContainer1.Size = new System.Drawing.Size(179, 231);
-            this.splitContainer1.SplitterDistance = 136;
+            this.splitContainer1.Size = new System.Drawing.Size(171, 260);
+            this.splitContainer1.SplitterDistance = 151;
+            this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 0;
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.BackColor = System.Drawing.Color.Silver;
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.panelCircleProgress);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.BackColor = System.Drawing.Color.Silver;
-            this.splitContainer2.Size = new System.Drawing.Size(179, 136);
-            this.splitContainer2.SplitterDistance = 149;
-            this.splitContainer2.TabIndex = 0;
-            // 
-            // panelCircleProgress
-            // 
-            this.panelCircleProgress.BackColor = System.Drawing.Color.Silver;
-            this.panelCircleProgress.Controls.Add(this.circleProgress);
-            this.panelCircleProgress.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelCircleProgress.Location = new System.Drawing.Point(0, 0);
-            this.panelCircleProgress.Name = "panelCircleProgress";
-            this.panelCircleProgress.Size = new System.Drawing.Size(149, 136);
-            this.panelCircleProgress.TabIndex = 2;
-            // 
-            // circleProgress
-            // 
-            this.circleProgress.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.circleProgress.Location = new System.Drawing.Point(5, 3);
-            this.circleProgress.Maximum = ((long)(100));
-            this.circleProgress.Name = "circleProgress";
-            this.circleProgress.ProgressColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
-            this.circleProgress.ProgressColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
-            this.circleProgress.ProgressShape = Team2_RealTimeMonitor.CircleProgressBar._ProgressShape.Round;
-            this.circleProgress.Size = new System.Drawing.Size(130, 130);
-            this.circleProgress.TabIndex = 2;
-            this.circleProgress.Text = "circleProgressBar1";
-            this.circleProgress.Value = ((long)(0));
             // 
             // panel1
             // 
@@ -204,7 +147,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(179, 91);
+            this.panel1.Size = new System.Drawing.Size(171, 104);
             this.panel1.TabIndex = 0;
             // 
             // label1
@@ -214,7 +157,7 @@
             this.label1.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(179, 91);
+            this.label1.Size = new System.Drawing.Size(171, 104);
             this.label1.TabIndex = 2;
             this.label1.Text = "작업 진행률";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -228,59 +171,15 @@
             // 
             // splitRightContent.Panel1
             // 
-            this.splitRightContent.Panel1.Controls.Add(this.splitHeader);
+            this.splitRightContent.Panel1.Controls.Add(this.lblLineName);
             // 
             // splitRightContent.Panel2
             // 
             this.splitRightContent.Panel2.Controls.Add(this.splitTable);
-            this.splitRightContent.Size = new System.Drawing.Size(357, 231);
-            this.splitRightContent.SplitterDistance = 36;
+            this.splitRightContent.Size = new System.Drawing.Size(341, 260);
+            this.splitRightContent.SplitterDistance = 40;
+            this.splitRightContent.SplitterWidth = 5;
             this.splitRightContent.TabIndex = 0;
-            // 
-            // splitHeader
-            // 
-            this.splitHeader.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitHeader.Location = new System.Drawing.Point(0, 0);
-            this.splitHeader.Name = "splitHeader";
-            // 
-            // splitHeader.Panel1
-            // 
-            this.splitHeader.Panel1.Controls.Add(this.panelLineState);
-            // 
-            // splitHeader.Panel2
-            // 
-            this.splitHeader.Panel2.Controls.Add(this.panelLineName);
-            this.splitHeader.Size = new System.Drawing.Size(357, 36);
-            this.splitHeader.SplitterDistance = 60;
-            this.splitHeader.TabIndex = 0;
-            // 
-            // panelLineState
-            // 
-            this.panelLineState.BackColor = System.Drawing.Color.Silver;
-            this.panelLineState.Controls.Add(this.picState);
-            this.panelLineState.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelLineState.Location = new System.Drawing.Point(0, 0);
-            this.panelLineState.Name = "panelLineState";
-            this.panelLineState.Size = new System.Drawing.Size(60, 36);
-            this.panelLineState.TabIndex = 0;
-            // 
-            // picState
-            // 
-            this.picState.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picState.Location = new System.Drawing.Point(0, 0);
-            this.picState.Name = "picState";
-            this.picState.Size = new System.Drawing.Size(60, 36);
-            this.picState.TabIndex = 0;
-            this.picState.TabStop = false;
-            // 
-            // panelLineName
-            // 
-            this.panelLineName.Controls.Add(this.lblLineName);
-            this.panelLineName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelLineName.Location = new System.Drawing.Point(0, 0);
-            this.panelLineName.Name = "panelLineName";
-            this.panelLineName.Size = new System.Drawing.Size(293, 36);
-            this.panelLineName.TabIndex = 0;
             // 
             // lblLineName
             // 
@@ -289,8 +188,8 @@
             this.lblLineName.Font = new System.Drawing.Font("나눔고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblLineName.Location = new System.Drawing.Point(0, 0);
             this.lblLineName.Name = "lblLineName";
-            this.lblLineName.Size = new System.Drawing.Size(293, 36);
-            this.lblLineName.TabIndex = 0;
+            this.lblLineName.Size = new System.Drawing.Size(341, 40);
+            this.lblLineName.TabIndex = 1;
             this.lblLineName.Text = "반제품 구동부 공정";
             this.lblLineName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -307,8 +206,8 @@
             // splitTable.Panel2
             // 
             this.splitTable.Panel2.Controls.Add(this.splitRightTable);
-            this.splitTable.Size = new System.Drawing.Size(357, 191);
-            this.splitTable.SplitterDistance = 173;
+            this.splitTable.Size = new System.Drawing.Size(341, 215);
+            this.splitTable.SplitterDistance = 164;
             this.splitTable.TabIndex = 0;
             // 
             // splitLeftTable
@@ -325,8 +224,9 @@
             // splitLeftTable.Panel2
             // 
             this.splitLeftTable.Panel2.Controls.Add(this.panelRequestQty);
-            this.splitLeftTable.Size = new System.Drawing.Size(173, 191);
-            this.splitLeftTable.SplitterDistance = 95;
+            this.splitLeftTable.Size = new System.Drawing.Size(164, 215);
+            this.splitLeftTable.SplitterDistance = 106;
+            this.splitLeftTable.SplitterWidth = 5;
             this.splitLeftTable.TabIndex = 0;
             // 
             // panelProduceQty
@@ -337,15 +237,15 @@
             this.panelProduceQty.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelProduceQty.Location = new System.Drawing.Point(0, 0);
             this.panelProduceQty.Name = "panelProduceQty";
-            this.panelProduceQty.Size = new System.Drawing.Size(173, 95);
+            this.panelProduceQty.Size = new System.Drawing.Size(164, 106);
             this.panelProduceQty.TabIndex = 0;
             // 
             // lblProduce
             // 
             this.lblProduce.Font = new System.Drawing.Font("나눔고딕", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblProduce.Location = new System.Drawing.Point(4, 41);
+            this.lblProduce.Location = new System.Drawing.Point(2, 70);
             this.lblProduce.Name = "lblProduce";
-            this.lblProduce.Size = new System.Drawing.Size(167, 33);
+            this.lblProduce.Size = new System.Drawing.Size(160, 38);
             this.lblProduce.TabIndex = 1;
             this.lblProduce.Text = "0";
             this.lblProduce.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -353,9 +253,9 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("나눔고딕", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(2, 5);
+            this.label2.Location = new System.Drawing.Point(3, 6);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(164, 35);
+            this.label2.Size = new System.Drawing.Size(159, 41);
             this.label2.TabIndex = 0;
             this.label2.Text = "생산 진행 수량";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -368,15 +268,15 @@
             this.panelRequestQty.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRequestQty.Location = new System.Drawing.Point(0, 0);
             this.panelRequestQty.Name = "panelRequestQty";
-            this.panelRequestQty.Size = new System.Drawing.Size(173, 92);
+            this.panelRequestQty.Size = new System.Drawing.Size(164, 104);
             this.panelRequestQty.TabIndex = 0;
             // 
             // lblRequest
             // 
             this.lblRequest.Font = new System.Drawing.Font("나눔고딕", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblRequest.Location = new System.Drawing.Point(2, 52);
+            this.lblRequest.Location = new System.Drawing.Point(3, 66);
             this.lblRequest.Name = "lblRequest";
-            this.lblRequest.Size = new System.Drawing.Size(169, 33);
+            this.lblRequest.Size = new System.Drawing.Size(159, 38);
             this.lblRequest.TabIndex = 3;
             this.lblRequest.Text = "0";
             this.lblRequest.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -384,9 +284,9 @@
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("나눔고딕", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label4.Location = new System.Drawing.Point(2, 3);
+            this.label4.Location = new System.Drawing.Point(3, 6);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(164, 35);
+            this.label4.Size = new System.Drawing.Size(159, 41);
             this.label4.TabIndex = 2;
             this.label4.Text = "생산 요청 수량";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -405,8 +305,9 @@
             // splitRightTable.Panel2
             // 
             this.splitRightTable.Panel2.Controls.Add(this.panelImport);
-            this.splitRightTable.Size = new System.Drawing.Size(180, 191);
-            this.splitRightTable.SplitterDistance = 95;
+            this.splitRightTable.Size = new System.Drawing.Size(173, 215);
+            this.splitRightTable.SplitterDistance = 106;
+            this.splitRightTable.SplitterWidth = 5;
             this.splitRightTable.TabIndex = 0;
             // 
             // panelDefective
@@ -417,15 +318,15 @@
             this.panelDefective.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDefective.Location = new System.Drawing.Point(0, 0);
             this.panelDefective.Name = "panelDefective";
-            this.panelDefective.Size = new System.Drawing.Size(180, 95);
+            this.panelDefective.Size = new System.Drawing.Size(173, 106);
             this.panelDefective.TabIndex = 0;
             // 
             // lblDefective
             // 
             this.lblDefective.Font = new System.Drawing.Font("나눔고딕", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblDefective.Location = new System.Drawing.Point(3, 41);
+            this.lblDefective.Location = new System.Drawing.Point(4, 70);
             this.lblDefective.Name = "lblDefective";
-            this.lblDefective.Size = new System.Drawing.Size(174, 33);
+            this.lblDefective.Size = new System.Drawing.Size(164, 38);
             this.lblDefective.TabIndex = 2;
             this.lblDefective.Text = "0";
             this.lblDefective.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -433,9 +334,9 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("나눔고딕", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.Location = new System.Drawing.Point(5, 5);
+            this.label3.Location = new System.Drawing.Point(4, 6);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(164, 35);
+            this.label3.Size = new System.Drawing.Size(164, 41);
             this.label3.TabIndex = 1;
             this.label3.Text = "불량 발생 개수";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -448,15 +349,15 @@
             this.panelImport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelImport.Location = new System.Drawing.Point(0, 0);
             this.panelImport.Name = "panelImport";
-            this.panelImport.Size = new System.Drawing.Size(180, 92);
+            this.panelImport.Size = new System.Drawing.Size(173, 104);
             this.panelImport.TabIndex = 0;
             // 
             // lblImport
             // 
             this.lblImport.Font = new System.Drawing.Font("나눔고딕", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblImport.Location = new System.Drawing.Point(2, 53);
+            this.lblImport.Location = new System.Drawing.Point(2, 66);
             this.lblImport.Name = "lblImport";
-            this.lblImport.Size = new System.Drawing.Size(175, 33);
+            this.lblImport.Size = new System.Drawing.Size(166, 38);
             this.lblImport.TabIndex = 4;
             this.lblImport.Text = "0";
             this.lblImport.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -464,20 +365,47 @@
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("나눔고딕", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label5.Location = new System.Drawing.Point(5, 5);
+            this.label5.Location = new System.Drawing.Point(4, 6);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(164, 33);
+            this.label5.Size = new System.Drawing.Size(164, 38);
             this.label5.TabIndex = 3;
             this.label5.Text = "생산 투입 개수";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Silver;
+            this.panel2.Controls.Add(this.circleProgress);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(171, 151);
+            this.panel2.TabIndex = 0;
+            // 
+            // circleProgress
+            // 
+            this.circleProgress.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.circleProgress.Location = new System.Drawing.Point(19, 12);
+            this.circleProgress.Maximum = ((long)(100));
+            this.circleProgress.Name = "circleProgress";
+            this.circleProgress.ProgressColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
+            this.circleProgress.ProgressColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
+            this.circleProgress.ProgressColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
+            this.circleProgress.ProgressColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
+            this.circleProgress.ProgressShape = Team2_RealTimeMonitor.CircleProgressBar._ProgressShape.Flat;
+            this.circleProgress.Size = new System.Drawing.Size(126, 126);
+            this.circleProgress.TabIndex = 3;
+            this.circleProgress.Text = "circleProgressBar1";
+            this.circleProgress.Value = ((long)(0));
+            // 
             // LineMonitorControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panelMain);
+            this.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Name = "LineMonitorControl";
-            this.Size = new System.Drawing.Size(540, 231);
+            this.Size = new System.Drawing.Size(516, 270);
             this.panelMain.ResumeLayout(false);
             this.panelContent.ResumeLayout(false);
             this.splitBody.Panel1.ResumeLayout(false);
@@ -488,22 +416,11 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
-            this.panelCircleProgress.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.splitRightContent.Panel1.ResumeLayout(false);
             this.splitRightContent.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitRightContent)).EndInit();
             this.splitRightContent.ResumeLayout(false);
-            this.splitHeader.Panel1.ResumeLayout(false);
-            this.splitHeader.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitHeader)).EndInit();
-            this.splitHeader.ResumeLayout(false);
-            this.panelLineState.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picState)).EndInit();
-            this.panelLineName.ResumeLayout(false);
             this.splitTable.Panel1.ResumeLayout(false);
             this.splitTable.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitTable)).EndInit();
@@ -520,6 +437,7 @@
             this.splitRightTable.ResumeLayout(false);
             this.panelDefective.ResumeLayout(false);
             this.panelImport.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -530,17 +448,9 @@
         private System.Windows.Forms.Panel panelContent;
         private System.Windows.Forms.SplitContainer splitBody;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.Panel panelCircleProgress;
-        private CircleProgressBar circleProgress;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.SplitContainer splitRightContent;
-        private System.Windows.Forms.SplitContainer splitHeader;
-        private System.Windows.Forms.Panel panelLineState;
-        private System.Windows.Forms.PictureBox picState;
-        private System.Windows.Forms.Panel panelLineName;
-        private System.Windows.Forms.Label lblLineName;
         private System.Windows.Forms.SplitContainer splitTable;
         private System.Windows.Forms.SplitContainer splitLeftTable;
         private System.Windows.Forms.Panel panelProduceQty;
@@ -556,5 +466,8 @@
         private System.Windows.Forms.Label lblImport;
         private System.Windows.Forms.Label label5;
         public System.Windows.Forms.Label lblProduce;
+        private System.Windows.Forms.Label lblLineName;
+        private System.Windows.Forms.Panel panel2;
+        private CircleProgressBar circleProgress;
     }
 }
