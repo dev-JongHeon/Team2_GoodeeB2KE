@@ -88,7 +88,7 @@ namespace Team2_ERP
 
         public override void Refresh(object sender, EventArgs e)
         {
-            InitMessage();
+            frm.NoticeMessage = Resources.RefreshDone;
             dgvEmployee.DataSource = null;
             searchEmployeeName.CodeTextBox.Text = "";
             searchDepartmentName.CodeTextBox.Text = "";
@@ -96,12 +96,10 @@ namespace Team2_ERP
 
         public override void New(object sender, EventArgs e)
         {
-            InitMessage();
-
-            EmployeesInsUp frm = new EmployeesInsUp(EmployeesInsUp.EditMode.Insert, null);
-            if (frm.ShowDialog() == DialogResult.OK)
+            EmployeesInsUp popup = new EmployeesInsUp(EmployeesInsUp.EditMode.Insert, null);
+            if (popup.ShowDialog() == DialogResult.OK)
             {
-                frm.Close();
+                frm.NoticeMessage = Resources.AddDone;
                 dgvEmployee.DataSource = null;
                 LoadGridView();
             }
@@ -109,18 +107,16 @@ namespace Team2_ERP
 
         public override void Modify(object sender, EventArgs e)
         {
-            InitMessage();
-
             if (dgvEmployee.SelectedRows.Count < 1)
             {
-                frm.NoticeMessage = "수정할 사원을 선택해주세요.";
+                frm.NoticeMessage = Resources.ModEmpty;
             }
             else
             {
-                EmployeesInsUp frm = new EmployeesInsUp(EmployeesInsUp.EditMode.Update, item);
-                if (frm.ShowDialog() == DialogResult.OK)
+                EmployeesInsUp popup = new EmployeesInsUp(EmployeesInsUp.EditMode.Update, item);
+                if (popup.ShowDialog() == DialogResult.OK)
                 {
-                    frm.Close();
+                    frm.NoticeMessage = Resources.ModDone;
                     dgvEmployee.DataSource = null;
                     LoadGridView();
                 }
@@ -129,11 +125,9 @@ namespace Team2_ERP
 
         public override void Delete(object sender, EventArgs e)
         {
-            InitMessage();
-
             if (dgvEmployee.SelectedRows.Count < 1)
             {
-                frm.NoticeMessage = "삭제할 사원을 선택해주세요.";
+                frm.NoticeMessage = Resources.DelEmpty;
             }
 
             else
@@ -142,6 +136,7 @@ namespace Team2_ERP
                 {
                     StandardService service = new StandardService();
                     service.DeleteEmployee(item.Employees_ID);
+                    frm.NoticeMessage = Resources.DeleteDone;
                     dgvEmployee.DataSource = null;
                     LoadGridView();
                 }
@@ -150,7 +145,7 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)
         {
-            if(rdoWork.Checked)
+            if (rdoWork.Checked)
             {
                 searchList = (from item in list where item.Employees_Resigndate == null select item).ToList();
                 if (searchDepartmentName.CodeTextBox.Tag != null)
@@ -167,7 +162,6 @@ namespace Team2_ERP
                 }
                 dgvEmployee.DataSource = searchList;
                 dgvEmployee.CurrentCell = null;
-                frm.NoticeMessage = Resources.SearchDone;
             }
             else
             {
@@ -186,8 +180,9 @@ namespace Team2_ERP
                 }
                 dgvEmployee.DataSource = searchList;
                 dgvEmployee.CurrentCell = null;
-                frm.NoticeMessage = Resources.SearchDone;
             }
+
+            frm.NoticeMessage = Resources.SearchDone;
         }
 
         private void dgvEmployee_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -207,7 +202,6 @@ namespace Team2_ERP
 
         private void rdo_CheckedChanged(object sender, EventArgs e)
         {
-            dgvEmployee.DataSource = null;
             if(rdoWork.Checked)
             {
                 searchResigndate.Visible = false;

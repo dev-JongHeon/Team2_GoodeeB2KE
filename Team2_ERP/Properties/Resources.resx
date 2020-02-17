@@ -432,34 +432,46 @@
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>처리를 취소하셨습니다.</value>
-    <comment>선도 - 처리취소 시 메시지박스 내용</comment>
+    <comment>선도 - 처리취소 시</comment>
   </data>
   <data name="IsBalju" xml:space="preserve">
     <value>정말 발주완료 처리하시겠습니까?</value>
-    <comment>선도 - 발주현황에서 처리 버튼 눌렀을 때 메시지박스 내용</comment>
+    <comment>선도 - 발주현황에서 처리 버튼 눌렀을 때</comment>
   </data>
   <data name="IsCancelOrder" xml:space="preserve">
     <value>정말 해당주문을 취소하시겠습니까?</value>
-    <comment>선도 - 주문현황에서 주문취소 버튼 눌렀을 때 메시지박스 내용</comment>
+    <comment>선도 - 주문현황에서 주문취소 버튼 눌렀을 때</comment>
   </data>
   <data name="IsDeleteBalju" xml:space="preserve">
     <value>정말 해당 발주요청을 삭제하시겠습니까?</value>
-    <comment>선도 - 발주현황에서 삭제 버튼 눌렀을 때 메시지박스 내용</comment>
+    <comment>선도 - 발주현황에서 삭제 버튼 눌렀을 때</comment>
   </data>
   <data name="IsOrder" xml:space="preserve">
     <value>정말 해당주문을 처리하시겠습니까?</value>
-    <comment>선도 - 주문현황에서 삭제 버튼 눌렀을 때 메시지박스 내용</comment>
+    <comment>선도 - 주문현황에서 삭제 버튼 눌렀을 때</comment>
   </data>
   <data name="Notice" xml:space="preserve">
     <value>알림</value>
-    <comment>선도 - 메시지박스 알림 제목</comment>
+    <comment>선도 - "알림"</comment>
   </data>
   <data name="LoginPwdInputNone" xml:space="preserve">
     <value>암호를 입력하지 않으셨습니다.</value>
     <comment>김종헌 암호를 입력하지 않았을 때 실패 메세지</comment>
   </data>
-  <data name="NonData" xml:space="preserve">
-    <value>처리할 데이터가 없습니다.</value>
-    <comment>선도 - 처리할 데이터가 없을 시 NoticeMessage</comment>
+  <data name="DelEmpty" xml:space="preserve">
+    <value>삭제할 정보가 없습니다.</value>
+    <comment>최명근 삭제할 때 그리드 뷰 선택을 하지 않으면 삭제 오류 메세지</comment>
+  </data>
+  <data name="DelResourceError" xml:space="preserve">
+    <value>원자재 항목은 원자재 탭에서 삭제 가능합니다.</value>
+    <comment>최명근 BOM폼에서 원자재 삭제 시 오류 메세지</comment>
+  </data>
+  <data name="ModEmpty" xml:space="preserve">
+    <value>수정할 정보가 없습니다.</value>
+    <comment>최명근 수정할 때 그리드 뷰 선택을 하지 않으면 수정 오류 메세지</comment>
+  </data>
+  <data name="ModResourceError" xml:space="preserve">
+    <value>원자재 항목은 원자재 탭에서 수정 가능합니다.</value>
+    <comment>최명근 BOM폼에서 원자재 수정 시 오류 메세지</comment>
   </data>
 </root>

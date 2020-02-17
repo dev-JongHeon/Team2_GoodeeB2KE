@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Team2_ERP.Properties;
 using Team2_ERP.Service.CMG;
 using Team2_VO;
 
@@ -54,19 +55,18 @@ namespace Team2_ERP
 
         public override void Refresh(object sender, EventArgs e)
         {
-            InitMessage();
+            frm.NoticeMessage = Resources.RefreshDone;
             dgvDepartment.DataSource = null;
             searchDepartmentName.CodeTextBox.Text = "";
         }
 
         public override void New(object sender, EventArgs e)
         {
-            DepartmentInsUp frm = new DepartmentInsUp(DepartmentInsUp.EditMode.Insert, null);
-            if (frm.ShowDialog() == DialogResult.OK)
+            DepartmentInsUp popup = new DepartmentInsUp(DepartmentInsUp.EditMode.Insert, null);
+            if (popup.ShowDialog() == DialogResult.OK)
             {
-                frm.Close();
+                frm.NoticeMessage = Resources.AddDone;
                 dgvDepartment.DataSource = null;
-                InitMessage();
                 LoadGridView();
             }
         }
@@ -75,17 +75,16 @@ namespace Team2_ERP
         {
             if (dgvDepartment.SelectedRows.Count < 1)
             {
-                frm.NoticeMessage = "수정할 부서를 선택해주세요.";
+                frm.NoticeMessage = Resources.ModEmpty;
             }
             else
             {
-                DepartmentInsUp frm = new DepartmentInsUp(DepartmentInsUp.EditMode.Update, item);
+                DepartmentInsUp popup = new DepartmentInsUp(DepartmentInsUp.EditMode.Update, item);
 
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (popup.ShowDialog() == DialogResult.OK)
                 {
-                    frm.Close();
+                    frm.NoticeMessage = Resources.ModDone;
                     dgvDepartment.DataSource = null;
-                    InitMessage();
                     LoadGridView();
                 }
             }
@@ -93,11 +92,9 @@ namespace Team2_ERP
 
         public override void Delete(object sender, EventArgs e)
         {
-            InitMessage();
-
             if (dgvDepartment.SelectedRows.Count < 1)
             {
-                frm.NoticeMessage = "삭제할 부서를 선택해주세요.";
+                frm.NoticeMessage = Resources.DelEmpty;
             }
             else
             {
@@ -105,8 +102,8 @@ namespace Team2_ERP
                 {
                     CodeTableService service = new CodeTableService();
                     service.DeleteCodeTable(item.CodeTable_CodeID);
+                    frm.NoticeMessage = Resources.DeleteDone;
                     dgvDepartment.DataSource = null;
-                    InitMessage();
                     LoadGridView();
                 }
             }
@@ -123,9 +120,9 @@ namespace Team2_ERP
             else
             {
                 LoadGridView();
-                InitMessage();
             }
 
+            frm.NoticeMessage = Resources.SearchDone;
             dgvDepartment.CurrentCell = null;
         }
 

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Team2_ERP.Properties;
 using Team2_ERP.Service.CMG;
 using Team2_VO;
 
@@ -64,7 +65,7 @@ namespace Team2_ERP
 
         public override void Refresh(object sender, EventArgs e)
         {
-            InitMessage();
+            frm.NoticeMessage = Resources.RefreshDone;
             dgvCustomer.DataSource = null;
             searchCustomerName.CodeTextBox.Text = "";
         }
@@ -80,19 +81,17 @@ namespace Team2_ERP
                 searchList = list;
                 if(searchCustomerName.CodeTextBox.Tag != null)
                 {
-                    dgvCustomer.DataSource = null;
                     searchList = (from item in searchList where item.Customer_ID == Convert.ToInt32(searchCustomerName.CodeTextBox.Tag) select item).ToList();
                 }
                 if(searchCustomerBirth.Startdate.Tag != null && searchCustomerBirth.Enddate.Tag != null)
                 {
-                    dgvCustomer.DataSource = null;
-                    searchList = (from item in list where DateTime.Parse(item.Customer_Birth) >= DateTime.Parse(searchCustomerBirth.Startdate.Tag.ToString()) && DateTime.Parse(item.Customer_Birth) <= DateTime.Parse(searchCustomerBirth.Enddate.Tag.ToString()) select item).ToList();
+                    searchList = (from item in searchList where Convert.ToDateTime(Convert.ToDateTime(item.Customer_Birth).ToShortDateString()) >= Convert.ToDateTime(searchCustomerBirth.Startdate.Tag.ToString()) && Convert.ToDateTime(Convert.ToDateTime(item.Customer_Birth).ToShortDateString()) <= Convert.ToDateTime(searchCustomerBirth.Enddate.Tag.ToString()) select item).ToList();
                 }
                 dgvCustomer.DataSource = searchList;
             }
 
             dgvCustomer.CurrentCell = null;
-            InitMessage();
+            frm.NoticeMessage = Resources.SearchDone;
         }
 
         private void Customer_Deactivate(object sender, EventArgs e)

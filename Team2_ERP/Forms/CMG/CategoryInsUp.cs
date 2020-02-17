@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Team2_ERP.Properties;
 using Team2_ERP.Service.CMG;
 using Team2_VO;
 
@@ -31,13 +32,13 @@ namespace Team2_ERP
                 code = item.CodeTable_CodeID;
                 txtName.Text = item.CodeTable_CodeName;
                 info = item.CodeTable_CodeExplain;
-                pbxTitle.Image = Properties.Resources.Edit_32x32;
+                pbxTitle.Image = Resources.Edit_32x32;
             }
             else
             {
                 mode = "Insert";
                 lblName.Text = "카테고리 등록";
-                pbxTitle.Image = Properties.Resources.AddFile_32x32;
+                pbxTitle.Image = Resources.AddFile_32x32;
             }
         }
 
@@ -87,11 +88,11 @@ namespace Team2_ERP
                     if (txtName.Text.Length > 0 && cboContext.SelectedValue != null)
                     {
                         InsertCategory();
-                        DialogResult = MessageBox.Show(Properties.Settings.Default.AddDone, Properties.Settings.Default.AddDone, MessageBoxButtons.OK);
+                        DialogResult = MessageBox.Show(Resources.AddDone, Resources.AddDone, MessageBoxButtons.OK);
                     }
                     else
                     {
-                        MessageBox.Show(Properties.Settings.Default.AddError, Properties.Settings.Default.AddError);
+                        MessageBox.Show(Resources.AddError, Resources.AddError);
                     }
                 }
                 else
@@ -99,11 +100,11 @@ namespace Team2_ERP
                     if (txtName.Text.Length > 0 && txtContext.Text.Length > 0)
                     {
                         InsertCategory();
-                        DialogResult = MessageBox.Show(Properties.Settings.Default.AddDone, Properties.Settings.Default.AddDone, MessageBoxButtons.OK);
+                        DialogResult = MessageBox.Show(Resources.AddDone, Resources.AddDone, MessageBoxButtons.OK);
                     }
                     else
                     {
-                        MessageBox.Show(Properties.Settings.Default.AddError, Properties.Settings.Default.AddError);
+                        MessageBox.Show(Resources.AddError, Resources.AddError);
                     }
                 }
             }
@@ -114,11 +115,11 @@ namespace Team2_ERP
                     if(txtName.Text.Length > 0 && cboContext.SelectedValue != null)
                     {
                         UpdateCategory();
-                        DialogResult = MessageBox.Show(Properties.Settings.Default.ModDone, Properties.Settings.Default.ModDone, MessageBoxButtons.OK);
+                        DialogResult = MessageBox.Show(Resources.ModDone, Resources.ModDone, MessageBoxButtons.OK);
                     }
                     else
                     {
-                        MessageBox.Show(Properties.Settings.Default.ModError, Properties.Settings.Default.ModError);
+                        MessageBox.Show(Resources.ModError, Resources.ModError);
                     }
                 }
                 else
@@ -126,11 +127,11 @@ namespace Team2_ERP
                     if (txtName.Text.Length > 0 && txtContext.Text.Length > 0)
                     {
                         UpdateCategory();
-                        DialogResult = MessageBox.Show(Properties.Settings.Default.ModDone, Properties.Settings.Default.ModDone, MessageBoxButtons.OK);
+                        DialogResult = MessageBox.Show(Resources.ModDone, Resources.ModDone, MessageBoxButtons.OK);
                     }
                     else
                     {
-                        MessageBox.Show(Properties.Settings.Default.ModError, Properties.Settings.Default.ModError);
+                        MessageBox.Show(Resources.ModError, Resources.ModError);
                     }
                 }
             }
@@ -188,11 +189,22 @@ namespace Team2_ERP
         {
             if(rdoResource.Checked)
             {
+                label1.Text = "원자재 카테고리 이름";
+                label2.Text = "원자재 카테고리 설명";
                 cboContext.Visible = true;
                 txtContext.Visible = false;
             }
+            else if(rdoSemiProduct.Checked)
+            {
+                label1.Text = "반제품 카테고리 이름";
+                label2.Text = "반제품 카테고리 설명";
+                txtContext.Visible = true;
+                cboContext.Visible = false;
+            }
             else
             {
+                label1.Text = "완제품 카테고리 이름";
+                label2.Text = "완제품 카테고리 설명";
                 txtContext.Visible = true;
                 cboContext.Visible = false;
             }

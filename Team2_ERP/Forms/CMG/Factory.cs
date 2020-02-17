@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Team2_ERP.Properties;
 using Team2_ERP.Service.CMG;
 using Team2_VO;
 
@@ -114,7 +115,7 @@ namespace Team2_ERP
 
         public override void Refresh(object sender, EventArgs e)
         {
-            InitMessage();
+            frm.NoticeMessage = Resources.RefreshDone;
             dgvFactory.DataSource = null;
             dgvLine.DataSource = null;
             searchFactoryName.CodeTextBox.Text = "";
@@ -133,20 +134,20 @@ namespace Team2_ERP
             {
                 if (dgvLine.SelectedRows.Count < 1)
                 {
-                    FactoryInsUp frm = new FactoryInsUp(FactoryInsUp.EditMode.Update, factoryItem);
-                    if (frm.ShowDialog() == DialogResult.OK)
+                    FactoryInsUp popup = new FactoryInsUp(FactoryInsUp.EditMode.Update, factoryItem);
+                    if (popup.ShowDialog() == DialogResult.OK)
                     {
-                        frm.Close();
+                        frm.NoticeMessage = Resources.ModDone;
                         dgvFactory.DataSource = null;
                         LoadGridView();
                     }
                 }
                 else if (dgvFactory.SelectedRows.Count < 1)
                 {
-                    LineInsUp frm = new LineInsUp(LineInsUp.EditMode.Update, lineItem);
-                    if (frm.ShowDialog() == DialogResult.OK)
+                    LineInsUp popup = new LineInsUp(LineInsUp.EditMode.Update, lineItem);
+                    if (popup.ShowDialog() == DialogResult.OK)
                     {
-                        frm.Close();
+                        frm.NoticeMessage = Resources.ModDone;
                         dgvFactory.DataSource = null;
                         LoadGridView();
                     }
@@ -154,19 +155,17 @@ namespace Team2_ERP
             }
             else
             {
-                frm.NoticeMessage = "수정할 목록을 선택해주세요.";
+                frm.NoticeMessage = Resources.ModEmpty;
             }
         }
 
         public override void Delete(object sender, EventArgs e)
         {
-            InitMessage();
-
             if (dgvLine.SelectedRows.Count < 1)
             {
                 if (factoryItem == null)
                 {
-                    frm.NoticeMessage = "삭제할 공장을 선택해주세요.";
+                    frm.NoticeMessage = Resources.DelEmpty;
                 }
                 else
                 {
@@ -174,6 +173,7 @@ namespace Team2_ERP
                     {
                         StandardService service = new StandardService();
                         service.DeleteFactory(factoryItem.Factory_ID);
+                        frm.NoticeMessage = Resources.DeleteDone;
                         dgvFactory.DataSource = null;
                         LoadGridView();
                     }
@@ -183,7 +183,7 @@ namespace Team2_ERP
             {
                 if(lineItem == null)
                 {
-                    frm.NoticeMessage = "삭제할 공정을 선택해주세요.";
+                    frm.NoticeMessage = Resources.DelEmpty;
                 }
                 else
                 {
@@ -191,6 +191,7 @@ namespace Team2_ERP
                     {
                         StandardService service = new StandardService();
                         service.DeleteLine(lineItem.Factory_ID);
+                        frm.NoticeMessage = Resources.DeleteDone;
                         dgvFactory.DataSource = null;
                         LoadGridView();
                     }
@@ -231,6 +232,7 @@ namespace Team2_ERP
                 LoadGridView();
             }
 
+            frm.NoticeMessage = Resources.SearchDone;
             dgvFactory.CurrentCell = null;
             dgvLine.CurrentCell = null;
         }
@@ -239,20 +241,20 @@ namespace Team2_ERP
         {
             if (e.ClickedItem.Text == "공장")
             {
-                FactoryInsUp frm = new FactoryInsUp(FactoryInsUp.EditMode.Insert, null);
-                if (frm.ShowDialog() == DialogResult.OK)
+                FactoryInsUp popup = new FactoryInsUp(FactoryInsUp.EditMode.Insert, null);
+                if (popup.ShowDialog() == DialogResult.OK)
                 {
-                    frm.Close();
+                    frm.NoticeMessage = Resources.AddDone;
                     dgvFactory.DataSource = null;
                     LoadGridView();
                 }
             }
             else
             {
-                LineInsUp frm = new LineInsUp(LineInsUp.EditMode.Insert, null);
-                if (frm.ShowDialog() == DialogResult.OK)
+                LineInsUp popup = new LineInsUp(LineInsUp.EditMode.Insert, null);
+                if (popup.ShowDialog() == DialogResult.OK)
                 {
-                    frm.Close();
+                    frm.NoticeMessage = Resources.AddDone;
                     dgvFactory.DataSource = null;
                     LoadGridView();
                 }
