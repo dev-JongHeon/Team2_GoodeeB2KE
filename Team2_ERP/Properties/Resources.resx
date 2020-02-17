@@ -418,4 +418,8 @@
     <value>알림</value>
     <comment>선도 - "알림"</comment>
   </data>
+  <data name="NonData" xml:space="preserve">
+    <value>처리할 데이터가 없습니다.</value>
+    <comment>선도 - 버튼클릭 시 DataSoure = Null 일 때</comment>
+  </data>
 </root>

@@ -38,18 +38,18 @@ namespace Team2_ERP
             UtilClass.SettingDgv(dgv_Stock);
             UtilClass.AddNewColum(dgv_Stock, "수불번호", "StockReceipt_ID", true);
             UtilClass.AddNewColum(dgv_Stock, "수불유형", "StockReceipt_Division1", true);
-            UtilClass.AddNewColum(dgv_Stock, "처리일시", "StockReceipt_Date", true, 170);  // 2
+            UtilClass.AddNewColum(dgv_Stock, "처리일시", "StockReceipt_Date", true, 170);
             UtilClass.AddNewColum(dgv_Stock, "창고코드", "Warehouse_ID", true);
             UtilClass.AddNewColum(dgv_Stock, "창고명", "Warehouse_Name", true, 160);
             UtilClass.AddNewColum(dgv_Stock, "품번", "Product_ID", true, 70);
             UtilClass.AddNewColum(dgv_Stock, "품명", "Product_Name", true, 300);
-            UtilClass.AddNewColum(dgv_Stock, "수불수량", "StockReceipt_Quantity", true);  // 7
+            UtilClass.AddNewColum(dgv_Stock, "수불수량", "StockReceipt_Quantity", true);
             UtilClass.AddNewColum(dgv_Stock, "등록사원", "Employees_Name", true);
             UtilClass.AddNewColum(dgv_Stock, "창고유형", "Warehouse_Division", false);
             dgv_Stock.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_Stock.Columns[2].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
-
             dgv_Stock.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv_Stock.Columns[7].DefaultCellStyle.Format = "#,#0개";
             StockReceipt_AllList = service.GetStockReceipts(false); //  자재, 반제품 수불내역 전체 갱신
 
             Search_Period.Startdate.BackColor = Color.LightYellow;
@@ -146,7 +146,11 @@ namespace Team2_ERP
 
         public override void Excel(object sender, EventArgs e)
         {
-            if (dgv_Stock.Rows.Count > 0)
+            if (dgv_Stock.Rows.Count == 0)
+            { 
+                main.NoticeMessage = Properties.Resources.ExcelError; 
+            }
+            else
             {
                 using (WaitForm frm = new WaitForm())
                 {
@@ -163,7 +167,11 @@ namespace Team2_ERP
 
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
-            if (dgv_Stock.Rows.Count > 0)
+            if (dgv_Stock.Rows.Count == 0)
+            {
+                main.NoticeMessage = Properties.Resources.NonData;
+            }
+            else
             {
                 using (WaitForm frm = new WaitForm())
                 {

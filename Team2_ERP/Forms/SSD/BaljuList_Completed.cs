@@ -20,13 +20,13 @@ namespace Team2_ERP
         List<Balju> BaljuCompleted_AllList = null;  // Masterss
         List<BaljuDetail> BaljuDetail_AllList = null;  // Details
         List<Balju> SearchedList = null;  // 검색용
-        MainForm main; 
+        MainForm main;
         #endregion
 
         public BaljuList_Completed()
         {
             InitializeComponent();
-            
+
         }
 
         private void BaljuList_Completed_Load(object sender, EventArgs e)
@@ -60,6 +60,7 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_BaljuDetail, "품목명", "Product_Name", true, 500);
             UtilClass.AddNewColum(dgv_BaljuDetail, "발주요청수량", "BaljuDetail_Qty", true, 130);
             dgv_BaljuDetail.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv_BaljuDetail.Columns[3].DefaultCellStyle.Format = "#,#0개";
 
             Search_ReceiptPeriod.Startdate.BackColor = Color.LightYellow;
             Search_ReceiptPeriod.Enddate.BackColor = Color.LightYellow;
@@ -95,6 +96,8 @@ namespace Team2_ERP
             // 검색조건 초기화
             Search_Period.Startdate.Clear();
             Search_Period.Enddate.Clear();
+            Search_ReceiptPeriod.Startdate.Clear();
+            Search_ReceiptPeriod.Enddate.Clear();
             Search_Company.CodeTextBox.Clear();
             Search_Employee.CodeTextBox.Clear();
         }
@@ -115,20 +118,20 @@ namespace Team2_ERP
                 if (Search_Company.CodeTextBox.Text.Length > 0)   // 회사 검색조건 있으면
                 {
                     SearchedList = (from item in SearchedList
-                                              where item.Company_Name == Search_Company.CodeTextBox.Text
-                                              select item).ToList();
+                                    where item.Company_Name == Search_Company.CodeTextBox.Text
+                                    select item).ToList();
                 }
                 if (Search_Employee.CodeTextBox.Text.Length > 0)   // 사원 검색조건 있으면
                 {
                     SearchedList = (from item in SearchedList
-                                              where item.Employees_Name == Search_Employee.CodeTextBox.Text
-                                              select item).ToList();
+                                    where item.Employees_Name == Search_Employee.CodeTextBox.Text
+                                    select item).ToList();
                 }
                 if (Search_Period.Startdate.Text != "    -  -")   // 시작기간 text가 존재하면
                 {
                     SearchedList = (from item in SearchedList
-                                              where item.Balju_Date.Date.CompareTo(Convert.ToDateTime(Search_Period.Startdate.Text)) >= 0 &&                  item.Balju_Date.Date.CompareTo(Convert.ToDateTime(Search_Period.Enddate.Text)) <= 0
-                                              select item).ToList();
+                                    where item.Balju_Date.Date.CompareTo(Convert.ToDateTime(Search_Period.Startdate.Text)) >= 0 && item.Balju_Date.Date.CompareTo(Convert.ToDateTime(Search_Period.Enddate.Text)) <= 0
+                                    select item).ToList();
                 }
                 if (Search_ReceiptPeriod.Startdate.Text != "    -  -")
                 {
@@ -145,7 +148,11 @@ namespace Team2_ERP
 
         public override void Excel(object sender, EventArgs e)
         {
-            if (dgv_BaljuCompleted.Rows.Count > 0)
+            if (dgv_BaljuCompleted.Rows.Count == 0)
+            {
+                main.NoticeMessage = Properties.Resources.ExcelError;
+            }
+            else
             {
                 using (WaitForm frm = new WaitForm())
                 {
@@ -163,7 +170,11 @@ namespace Team2_ERP
         }
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
-            if (dgv_BaljuCompleted.Rows.Count > 0)
+            if (dgv_BaljuCompleted.Rows.Count == 0)
+            {
+                main.NoticeMessage = Properties.Resources.NonData;
+            }
+            else
             {
                 using (WaitForm frm = new WaitForm())
                 {
@@ -184,7 +195,7 @@ namespace Team2_ERP
                     using (ReportPrintTool printTool = new ReportPrintTool(br))
                     {
                         printTool.ShowRibbonPreviewDialog();
-                    }  
+                    }
                 }
             }
         }
@@ -196,7 +207,7 @@ namespace Team2_ERP
             MenuByAuth(Auth);
             main.NoticeMessage = notice;
         }
-        
+
         public override void MenuStripONOFF(bool flag)
         {
             main.신규ToolStripMenuItem.Visible = false;
@@ -208,7 +219,7 @@ namespace Team2_ERP
         private void BaljuList_Completed_Deactivate(object sender, EventArgs e)
         {
             new SettingMenuStrip().UnsetMenu(this);
-        } 
+        }
         #endregion
     }
 }

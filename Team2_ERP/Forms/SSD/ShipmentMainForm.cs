@@ -21,7 +21,7 @@ namespace Team2_ERP
         List<ShipmentDetail> ShipmentDetail_AllList = null;  // Detail
         List<Shipment> SearchedList = null;  // 검색용
         ShipmentService service = new ShipmentService();
-        MainForm main; 
+        MainForm main;
         #endregion
         public ShipmentMainForm()
         {
@@ -59,10 +59,11 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_ShipmentDetail, "제품명", "Product_Name", true, 300);
             UtilClass.AddNewColum(dgv_ShipmentDetail, "주문수량", "OrderDetail_Qty", true);
             dgv_ShipmentDetail.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv_ShipmentDetail.Columns[3].DefaultCellStyle.Format = "#,#0개";
 
             Search_OrderPeriod.Startdate.BackColor = Color.LightYellow;
             Search_OrderPeriod.Enddate.BackColor = Color.LightYellow;
-        } 
+        }
 
         private void dgv_Shipment_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
         {
@@ -115,34 +116,34 @@ namespace Team2_ERP
                 if (Search_OrderPeriod.Startdate.Text != "    -  -")  //주문일시 검색조건 존재한다면
                 {
                     SearchedList = (from item in SearchedList
-                                        where item.Order_Date.Date.CompareTo(Convert.ToDateTime(Search_OrderPeriod.Startdate.Text)) >= 0 &&
-                                               item.Order_Date.Date.CompareTo(Convert.ToDateTime(Search_OrderPeriod.Enddate.Text)) <= 0
-                                        select item).ToList();
+                                    where item.Order_Date.Date.CompareTo(Convert.ToDateTime(Search_OrderPeriod.Startdate.Text)) >= 0 &&
+                                           item.Order_Date.Date.CompareTo(Convert.ToDateTime(Search_OrderPeriod.Enddate.Text)) <= 0
+                                    select item).ToList();
                 }
 
                 if (Search_Customer.CodeTextBox.Text.Length > 0)  // 고객명 검색조건 있으면
                 {
                     SearchedList = (from item in SearchedList
-                                        where item.Customer_Name == Search_Customer.CodeTextBox.Text
-                                        select item).ToList();
+                                    where item.Customer_Name == Search_Customer.CodeTextBox.Text
+                                    select item).ToList();
                 }
 
                 if (Search_Employees.CodeTextBox.Text.Length > 0)  // 출하지시자 검색조건 있으면
                 {
                     SearchedList = (from item in SearchedList
-                                        where item.Employees_Name == Search_Employees.CodeTextBox.Text
-                                        select item).ToList();
+                                    where item.Employees_Name == Search_Employees.CodeTextBox.Text
+                                    select item).ToList();
                 }
 
                 if (Search_ShipmentIndexPeriod.Startdate.Text != "    -  -")  // 출하지시일시 검색조건 존재한다면
                 {
                     SearchedList = (from item in SearchedList
-                                        where item.Shipment_RequiredDate.Date.CompareTo
-                                              (Convert.ToDateTime(Search_ShipmentIndexPeriod.Startdate.Text)) >= 0
-                                              &&
-                                              item.Shipment_RequiredDate.Date.CompareTo
-                                              (Convert.ToDateTime(Search_ShipmentIndexPeriod.Enddate.Text)) <= 0
-                                        select item).ToList();
+                                    where item.Shipment_RequiredDate.Date.CompareTo
+                                          (Convert.ToDateTime(Search_ShipmentIndexPeriod.Startdate.Text)) >= 0
+                                          &&
+                                          item.Shipment_RequiredDate.Date.CompareTo
+                                          (Convert.ToDateTime(Search_ShipmentIndexPeriod.Enddate.Text)) <= 0
+                                    select item).ToList();
                 }
                 dgv_Shipment.DataSource = SearchedList;
                 dgv_ShipmentDetail.DataSource = null;
@@ -153,6 +154,10 @@ namespace Team2_ERP
 
         public override void Excel(object sender, EventArgs e)
         {
+            if (dgv_Shipment.Rows.Count == 0)
+            {
+                main.NoticeMessage = Properties.Resources.ExcelError;
+            }
             if (dgv_Shipment.Rows.Count > 0)
             {
                 using (WaitForm frm = new WaitForm())
@@ -172,9 +177,13 @@ namespace Team2_ERP
 
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
-            using (WaitForm frm = new WaitForm())
+            if (dgv_Shipment.Rows.Count == 0)
             {
-                if (dgv_Shipment.Rows.Count > 0)
+                main.NoticeMessage = Properties.Resources.NonData;
+            }
+            else
+            {
+                using (WaitForm frm = new WaitForm())
                 {
                     ShipmentReport br = new ShipmentReport();
                     dsShipment ds = new dsShipment();
@@ -194,7 +203,7 @@ namespace Team2_ERP
                     {
                         printTool.ShowRibbonPreviewDialog();
                     }
-                } 
+                }
             }
         }
         #endregion
