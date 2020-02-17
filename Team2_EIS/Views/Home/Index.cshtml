@@ -275,41 +275,29 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach(DataRow row in Model.info.Tables["bottomorder"].Rows)
+                                {
                                 <tr>
-                                    <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                    <td>Call of Duty IV</td>
-                                    <td><span class="label label-success">Shipped</span></td>
+                                    <td><span><strong>@row["id"]</strong></span></td>
+                                    <td>@row["name"]</td>
+                                    @if (Convert.ToInt32(row["state"]) == 0)
+                                    {
+                                        <td><span class="label label-danger">주문접수</span></td>
+                                    }
+                                    else if (Convert.ToInt32(row["state"]) == 1)
+                                    {
+                                        <td><span class="label label-warning">생산중</span></td>
+                                    }
+                                    else if (Convert.ToInt32(row["state"]) == 2)
+                                    {
+                                        <td><span class="label label-primary">배송중</span></td>
+                                    }
+                                    else if (Convert.ToInt32(row["state"]) == 3)
+                                    {
+                                        <td><span class="label label-success">배송완료</span></td>
+                                    }
                                 </tr>
-                                <tr>
-                                    <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                    <td>Samsung Smart TV</td>
-                                    <td><span class="label label-warning">Pending</span></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                    <td>iPhone 6 Plus</td>
-                                    <td><span class="label label-danger">Delivered</span></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                    <td>Samsung Smart TV</td>
-                                    <td><span class="label label-info">Processing</span></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                    <td>Samsung Smart TV</td>
-                                    <td><span class="label label-warning">Pending</span></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                    <td>iPhone 6 Plus</td>
-                                    <td><span class="label label-danger">Delivered</span></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                    <td>Call of Duty IV</td>
-                                    <td><span class="label label-success">Shipped</span></td>
-                                </tr>
+                                }
                             </tbody>
                         </table>
                     </div>

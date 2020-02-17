@@ -39,6 +39,10 @@ namespace Team2_EIS.DAC
                     adpt.SelectCommand.CommandText = sql;
                     adpt.Fill(ds, "midsales");
 
+                    sql = "KJH_EIS_RecentOrder";
+                    adpt.SelectCommand.CommandText = sql;
+                    adpt.Fill(ds, "bottomorder");
+
                     conn.Close();
                 }
                 
