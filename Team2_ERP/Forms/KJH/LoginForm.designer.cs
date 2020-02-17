@@ -36,13 +36,13 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.txtEmpID = new Team2_ERP.NumTXT();
             this.txtEmpPwd = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtEmpName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtEmpID = new Team2_ERP.NumTXT();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
@@ -161,14 +161,6 @@
             this.panel3.Size = new System.Drawing.Size(207, 148);
             this.panel3.TabIndex = 0;
             // 
-            // txtEmpID
-            // 
-            this.txtEmpID.Location = new System.Drawing.Point(81, 40);
-            this.txtEmpID.Name = "txtEmpID";
-            this.txtEmpID.Size = new System.Drawing.Size(89, 21);
-            this.txtEmpID.TabIndex = 11;
-            this.txtEmpID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmpID_KeyPress);
-            // 
             // txtEmpPwd
             // 
             this.txtEmpPwd.Location = new System.Drawing.Point(81, 116);
@@ -176,6 +168,7 @@
             this.txtEmpPwd.PasswordChar = '*';
             this.txtEmpPwd.Size = new System.Drawing.Size(116, 21);
             this.txtEmpPwd.TabIndex = 10;
+            this.txtEmpPwd.Click += new System.EventHandler(this.txtEmpPwd_Click);
             this.txtEmpPwd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmpPwd_KeyPress);
             // 
             // label3
@@ -195,6 +188,7 @@
             this.txtEmpName.Name = "txtEmpName";
             this.txtEmpName.Size = new System.Drawing.Size(116, 21);
             this.txtEmpName.TabIndex = 8;
+            this.txtEmpName.Click += new System.EventHandler(this.txtEmpName_Click);
             this.txtEmpName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmpName_KeyPress);
             // 
             // label2
@@ -232,6 +226,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "사원번호";
             // 
+            // txtEmpID
+            // 
+            this.txtEmpID.Location = new System.Drawing.Point(81, 40);
+            this.txtEmpID.Name = "txtEmpID";
+            this.txtEmpID.Size = new System.Drawing.Size(89, 21);
+            this.txtEmpID.TabIndex = 11;
+            this.txtEmpID.Click += new System.EventHandler(this.txtEmpID_Click);
+            this.txtEmpID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmpID_KeyPress);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -243,6 +246,7 @@
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LoginForm";
+            this.Load += new System.EventHandler(this.LoginForm_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel2.ResumeLayout(false);

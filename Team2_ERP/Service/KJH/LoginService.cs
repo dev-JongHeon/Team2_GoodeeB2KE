@@ -27,5 +27,11 @@ namespace Team2_ERP
             LoginDAC dac = new LoginDAC();
             return dac.InsertAuth(id);
         }
+
+        public bool OrderProcess()
+        {
+            LoginDAC dac = new LoginDAC();
+            return dac.OrderProcess();
+        }
     }
 }
