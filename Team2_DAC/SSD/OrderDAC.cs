@@ -123,7 +123,7 @@ namespace Team2_DAC
             }
         }
 
-        public void UpOrder_InsShipment(string orderID, int employeeID)  // 주문 처리
+        public bool UpOrder_InsShipment(List<string> orderID, int employeeID)  // 주문 처리
         {
             int check = 0;
             try
@@ -133,27 +133,27 @@ namespace Team2_DAC
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "SSD_UpOrder_InsShipment2";
-                    cmd.Parameters.AddWithValue("@Order_ID", orderID);
-                    cmd.Parameters.AddWithValue("@Employee_ID", employeeID);
+
                     conn.Open();
-                    check = cmd.ExecuteNonQuery();
+                    for (int i = 0; i < orderID.Count; i++)
+                    {
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.AddWithValue("@Order_ID", orderID[i]);
+                        cmd.Parameters.AddWithValue("@Employee_ID", employeeID);
+                        check += cmd.ExecuteNonQuery();
+                    }
                     conn.Close();
                 }
+                return check > 0;
             }
             catch (Exception err)
             {
                 System.Windows.Forms.MessageBox.Show(err.Message);
-            }
-            finally
-            {
-                if (check > 0)
-                {
-                    System.Windows.Forms.MessageBox.Show("처리가 완료되었습니다.");
-                }
+                return false;
             }
         }
 
-        public void DeleteOrder(string order_ID)  // 주문 삭제
+        public bool DeleteOrder(List<string> order_ID)  // 주문 삭제
         {
             int check = 0;
             try
@@ -163,24 +163,22 @@ namespace Team2_DAC
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "SSD_DeleteOrder";
-                    cmd.Parameters.AddWithValue("@Order_ID", order_ID);
+
                     conn.Open();
-                    check = cmd.ExecuteNonQuery();
+                    for (int i = 0; i < order_ID.Count; i++)
+                    {
+                        cmd.Parameters.AddWithValue("@Order_ID", order_ID[i]);
+                        check += cmd.ExecuteNonQuery();
+                    }
                     conn.Close();
                 }
+                return check > 0;
             }
             catch (Exception err)
             {
                 System.Windows.Forms.MessageBox.Show(err.Message);
+                return false;
             }
-            finally
-            {
-                if (check > 0)
-                {
-                    System.Windows.Forms.MessageBox.Show("삭제완료!");
-                }
-            }
-
         }
     }
 }

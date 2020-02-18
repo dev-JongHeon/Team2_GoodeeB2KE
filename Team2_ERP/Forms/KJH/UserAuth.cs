@@ -63,7 +63,7 @@ namespace Team2_ERP
                 dgvAuthList.DataSource = null;
                 if (!isFirst)
                 {
-                    dgvEmpList.DataSource = list; 
+                    dgvEmpList.DataSource = list;
                 }
                 ClearDgv();
                 isFirst = false;
@@ -91,7 +91,8 @@ namespace Team2_ERP
                 {
                     authlist.Add(new AuthVO { Form = item.Cells[0].Value.ToString(), Auth = Convert.ToBoolean(item.Cells[1].EditedFormattedValue) });
                 }
-                if (DialogResult.Yes == MessageBox.Show(Resources.AuthQuestion, Resources.MsgBoxTitleSetting, MessageBoxButtons.YesNo, MessageBoxIcon.Question)){
+                if (DialogResult.Yes == MessageBox.Show(Resources.AuthQuestion, Resources.MsgBoxTitleSetting, MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                {
                     AuthService service = new AuthService();
                     if (service.UpdateAuth(uid, authlist))
                     {
@@ -184,7 +185,7 @@ namespace Team2_ERP
                 try
                 {
                     AuthService service = new AuthService();
-                    dgvAuthList.DataSource=service.GetAuthByID(id);
+                    dgvAuthList.DataSource = service.GetAuthByID(id);
                     dgvAuthList.ClearSelection();
                     dgvAuthList.CurrentCell = null;
                 }
@@ -197,7 +198,7 @@ namespace Team2_ERP
 
         private void dgvAuthList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex>=0&&e.ColumnIndex == 1)
+            if (e.RowIndex >= 0 && e.ColumnIndex == 1)
             {
                 bool isChecked = true;
                 foreach (DataGridViewRow row in dgvAuthList.Rows)
@@ -227,22 +228,22 @@ namespace Team2_ERP
 
         private void dgvAuthList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-                bool isChecked = true;
-                foreach (DataGridViewRow row in dgvAuthList.Rows)
+            bool isChecked = true;
+            foreach (DataGridViewRow row in dgvAuthList.Rows)
+            {
+                if (!Convert.ToBoolean(row.Cells[1].EditedFormattedValue))
                 {
-                    if (!Convert.ToBoolean(row.Cells[1].EditedFormattedValue))
-                    {
-                        isChecked = false;
-                        break;
-                    }
+                    isChecked = false;
+                    break;
                 }
-                headerbox.Checked = isChecked;
             }
+            headerbox.Checked = isChecked;
+        }
 
         private void dgvAuthList_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         {
             Point headerLocation = dgvAuthList.GetCellDisplayRectangle(1, -1, true).Location;
-            headerbox.Location = new Point((headerLocation.X+dgvAuthList.Columns[1].Width / 2)-7, headerLocation.Y+ dgvAuthList.ColumnHeadersHeight / 5+1);
+            headerbox.Location = new Point((headerLocation.X + dgvAuthList.Columns[1].Width / 2) - 7, headerLocation.Y + dgvAuthList.ColumnHeadersHeight / 5 + 1);
         }
     }
 }
