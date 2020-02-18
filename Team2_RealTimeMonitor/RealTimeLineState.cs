@@ -47,11 +47,12 @@ namespace Team2_RealTimeMonitor
             SettingControl();
             InitData();
             ConnectServer();
+            this.ActiveControl = splitLeft.Panel1;
         }
 
         private void SettingControl()
         {
-            splitHeader.IsSplitterFixed = splitMain.IsSplitterFixed = splitBody.IsSplitterFixed = true;
+            splitMain.IsSplitterFixed = splitRight.IsSplitterFixed = splitLeft.IsSplitterFixed = true;
         }
 
         private void InitData()
@@ -65,6 +66,9 @@ namespace Team2_RealTimeMonitor
             // 공장아이디가 반제품 공장인것은 오른쪽 레이아웃
             // 컨트롤 Tag = 라인아이디
 
+
+            #region 계기판 컨트롤 리스트에 담는 코드
+
             List<LineMonitor> listSemi = list.FindAll(elem => elem.Factory_ID == 1);
             List<LineMonitor> listProduct = list.FindAll(elem => elem.Factory_ID == 2);
 
@@ -73,10 +77,17 @@ namespace Team2_RealTimeMonitor
             {
                 LineMonitorControl lineControl = new LineMonitorControl();
                 lineControl.LabelLineNameText = listSemi[i].Line_Name;
+
+                // 컨트롤 태그에 라인아이디를 지정
                 lineControl.Tag = listSemi[i].Line_ID.ToString();
 
-                lineControl.CircleProgress.ProgressColor2 = Color.Red;
-                lineControl.CircleProgress.ProgressColor1 = Color.Violet;
+                // ProgressColor 3,4 : 게이지
+                // ProgressColor 1,2 : 원 색깔 (Bottom :1, Top : 2)
+                lineControl.CircleProgress.ProgressColor1 = lineControl.panel2.BackColor;
+                lineControl.CircleProgress.ProgressColor2 = lineControl.panel2.BackColor;
+                lineControl.CircleProgress.ProgressColor3 = Color.Violet;
+                lineControl.CircleProgress.ProgressColor4 = Color.Red;
+
                 lineMonitors.Add(lineControl);
                 flowLayoutSemiProductLine.Controls.Add(lineControl);
             }
@@ -86,13 +97,22 @@ namespace Team2_RealTimeMonitor
             {
                 LineMonitorControl lineControl = new LineMonitorControl();
                 lineControl.LabelLineNameText = listProduct[i].Line_Name;
+
+                // 컨트롤 태그에 라인아이디를 지정
                 lineControl.Tag = listProduct[i].Line_ID.ToString();
 
-                lineControl.CircleProgress.ProgressColor2 = Color.Red;
-                lineControl.CircleProgress.ProgressColor1 = Color.Violet;
+                // ProgressColor 3,4 : 게이지
+                // ProgressColor 1,2 : 원 색깔 (Bottom :1, Top : 2)
+                lineControl.CircleProgress.ProgressColor1 = lineControl.panel2.BackColor;
+                lineControl.CircleProgress.ProgressColor2 = lineControl.panel2.BackColor;
+                lineControl.CircleProgress.ProgressColor3 = Color.Violet;
+                lineControl.CircleProgress.ProgressColor4 = Color.Red;              
+
                 lineMonitors.Add(lineControl);
                 flowLayoutProductLine.Controls.Add(lineControl);
             }
+
+            #endregion
         }
 
         private void ConnectServer()
@@ -142,6 +162,7 @@ namespace Team2_RealTimeMonitor
             catch (Exception ex)
             {
                 WriteLog(ex);
+                // 타이머 종료
                 timer.Stop();
                 timer.Enabled = false;
                 timer.Dispose();
@@ -227,14 +248,14 @@ namespace Team2_RealTimeMonitor
             // 불량이 한개도 없는 경우 연두색
             if (lineMonitor.LabelDefectiveText == "0")
             {
-                lineMonitor.CircleProgress.ProgressColor1 = Color.AliceBlue;
-                lineMonitor.CircleProgress.ProgressColor2 = Color.Green;                
+                lineMonitor.CircleProgress.ProgressColor3 = Color.AliceBlue;
+                lineMonitor.CircleProgress.ProgressColor4 = Color.Green;                
             }
             // 불량이 한개라도 있는 경우 주황색
             else
             {
-                lineMonitor.CircleProgress.ProgressColor1 = Color.Violet;
-                lineMonitor.CircleProgress.ProgressColor2 = Color.Yellow;
+                lineMonitor.CircleProgress.ProgressColor3 = Color.Violet;
+                lineMonitor.CircleProgress.ProgressColor4 = Color.Yellow;
             }
 
             lineMonitor.CircleProgress.Invoke((MethodInvoker)lineMonitor.CircleProgress.Invalidate);
@@ -271,8 +292,8 @@ namespace Team2_RealTimeMonitor
                 control.LabelImportText = "0";
                 control.LabelProduceText = "0";
                 control.LabelDefectiveText = "0";
-                control.CircleProgress.ProgressColor1 = Color.Violet;
-                control.CircleProgress.ProgressColor2 = Color.Red;
+                control.CircleProgress.ProgressColor3 = Color.Violet;
+                control.CircleProgress.ProgressColor4 = Color.Red;
                 control.CircleProgress.Invoke((MethodInvoker)delegate { control.CircleProgress.Decrement((int)control.CircleProgress.Value); });
 
             }

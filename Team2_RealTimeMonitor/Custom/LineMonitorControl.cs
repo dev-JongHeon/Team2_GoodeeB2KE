@@ -53,17 +53,17 @@ namespace Team2_RealTimeMonitor
             InitializeComponent();
             InitData();
 
-            circleProgress.ProgressColor1 = Color.AliceBlue;
-            circleProgress.ProgressColor2 = Color.Red;
+            circleProgress.ProgressColor1 = Color.FromArgb(93, 93, 93);
+            circleProgress.ProgressColor2 = Color.FromArgb(93, 93, 93);
         }
 
         private void InitData()
         {
-            panelMain.BackColor = Color.FromArgb(11, 11, 11);
-            panelMain.BorderStyle = BorderStyle.Fixed3D;
+            panelMain.BackColor = Color.White;
+            panelMain.BorderStyle = BorderStyle.None;
 
-            panelContent.Size = new Size(panelMain.Size.Width - 10, panelMain.Size.Height - 10);
-            panelContent.Location = new Point(panelMain.Location.X + 3, panelMain.Location.Y + 2);
+            panelContent.Size = new Size(panelMain.Size.Width - 6, panelMain.Size.Height - 6);
+            panelContent.Location = new Point(panelMain.Location.X + 3, panelMain.Location.Y + 3);
             panelContent.BackColor = Color.FromArgb(93, 93, 93);
 
             // 스플릿 컨테이너 설정
