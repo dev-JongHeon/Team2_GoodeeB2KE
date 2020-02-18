@@ -51,7 +51,8 @@ namespace Team2_ERP
             dgv_Order.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm";
             dgv_Order.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgv_Order.Columns[7].DefaultCellStyle.Format = "#,#0원";
-            Order_AllList = service.GetOrderCompletedList();
+            try { Order_AllList = service.GetOrderCompletedList(); }
+            catch (Exception err) { Log.WriteError(err.Message, err); }
 
             UtilClass.SettingDgv(dgv_OrderDetail);
             UtilClass.AddNewColum(dgv_OrderDetail, "주문번호", "Order_ID", false);
@@ -81,14 +82,17 @@ namespace Team2_ERP
             {
                 sb.Append($"'{row.Cells[0].Value.ToString()}',");
             }
-            OrderDetail_AllList = service.GetOrderDetailList(sb.ToString().Trim(','));  // 디테일 AllList 갱신
+
+            try { OrderDetail_AllList = service.GetOrderDetailList(sb.ToString().Trim(',')); }  // 디테일 AllList 갱신
+            catch (Exception err) { Log.WriteError(err.Message, err); }
         }
 
         private void Func_Refresh()  // 새로고침 기능
         {
             dgv_Order.DataSource = null;
             dgv_OrderDetail.DataSource = null;
-            Order_AllList = service.GetOrderCompletedList();
+            try { Order_AllList = service.GetOrderCompletedList(); }
+            catch (Exception err) { Log.WriteError(err.Message, err); }
             GetOrderDetail_List();            
 
             // 검색조건 초기화

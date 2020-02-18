@@ -51,7 +51,9 @@ namespace Team2_ERP
             dgv_Shipment.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
             dgv_Shipment.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_Shipment.Columns[6].DefaultCellStyle.Format = "yyyy-MM-dd";
-            Shipment_AllList = service.GetShipmentList();
+
+            try { Shipment_AllList = service.GetShipmentList(); }
+            catch (Exception err) { Log.WriteError(err.Message, err); }
 
             UtilClass.SettingDgv(dgv_ShipmentDetail);
             UtilClass.AddNewColum(dgv_ShipmentDetail, "출하번호", "Shipment_ID", false);
@@ -81,14 +83,19 @@ namespace Team2_ERP
             {
                 sb.Append($"'{row.Cells[0].Value.ToString()}',");
             }
-            ShipmentDetail_AllList = service.GetShipmentDetailList(sb.ToString().Trim(','));  // 디테일 AllList 갱신
+
+            try { ShipmentDetail_AllList = service.GetShipmentDetailList(sb.ToString().Trim(',')); } // 디테일 AllList 갱신
+            catch (Exception err) { Log.WriteError(err.Message, err); }
         }
 
         private void Func_Refresh()  // 새로고침 기능
         {
             dgv_Shipment.DataSource = null;
             dgv_ShipmentDetail.DataSource = null;
-            Shipment_AllList = service.GetShipmentList();
+
+            try { Shipment_AllList = service.GetShipmentList(); }
+            catch (Exception err) { Log.WriteError(err.Message, err); }
+
             GetShipmentDetail_List();
 
             // 검색조건 초기화

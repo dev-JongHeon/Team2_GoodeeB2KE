@@ -51,7 +51,9 @@ namespace Team2_ERP
             dgv_Stock.Columns[2].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
             dgv_Stock.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgv_Stock.Columns[7].DefaultCellStyle.Format = "#,#0개";
-            StockReceipt_AllList = service.GetStockReceipts(false); //  자재, 반제품 수불내역 전체 갱신
+
+            try { StockReceipt_AllList = service.GetStockReceipts(false); }  //  자재, 반제품 수불내역 전체 갱신
+            catch (Exception err) { Log.WriteError(err.Message, err); }
 
             Search_Period.Startdate.BackColor = Color.LightYellow;
             Search_Period.Enddate.BackColor = Color.LightYellow;
@@ -60,7 +62,9 @@ namespace Team2_ERP
         private void Func_Refresh()  // 새로고침 기능
         {
             dgv_Stock.DataSource = null;
-            StockReceipt_AllList = service.GetStockReceipts(false);
+
+            try { StockReceipt_AllList = service.GetStockReceipts(false); }  //  자재, 반제품 수불내역 전체 갱신
+            catch (Exception err) { Log.WriteError(err.Message, err); }
 
             // 검색조건 초기화
             Search_Period.Startdate.Clear();

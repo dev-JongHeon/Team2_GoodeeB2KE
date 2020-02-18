@@ -53,7 +53,9 @@ namespace Team2_ERP
             dgv_BaljuCompleted.Columns[5].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
             dgv_BaljuCompleted.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgv_BaljuCompleted.Columns[6].DefaultCellStyle.Format = "#,#0원";
-            BaljuCompleted_AllList = service.GetBalju_CompletedList(); // 발주리스트 갱신
+
+            try { BaljuCompleted_AllList = service.GetBalju_CompletedList(); }// 발주리스트 갱신
+            catch (Exception err) { Log.WriteError(err.Message, err); }
 
             UtilClass.SettingDgv(dgv_BaljuDetail);
             UtilClass.AddNewColum(dgv_BaljuDetail, "발주지시번호", "Balju_ID", false, 130);
@@ -83,7 +85,9 @@ namespace Team2_ERP
             {
                 sb.Append($"'{row.Cells[0].Value.ToString()}',");
             }
-            BaljuDetail_AllList = service.GetBalju_DetailList(sb.ToString().Trim(','));  // 디테일 AllList 갱신
+
+            try { BaljuDetail_AllList = service.GetBalju_DetailList(sb.ToString().Trim(',')); }  // 디테일 AllList 갱신
+            catch (Exception err) { Log.WriteError(err.Message, err); }
         }
 
 
@@ -91,7 +95,10 @@ namespace Team2_ERP
         {
             dgv_BaljuDetail.DataSource = null;
             dgv_BaljuCompleted.DataSource = null;
-            BaljuCompleted_AllList = service.GetBalju_CompletedList();
+
+            try { BaljuCompleted_AllList = service.GetBalju_CompletedList(); }
+            catch (Exception err) { Log.WriteError(err.Message, err); }
+
             GetBaljuCompletedDetail_List();
 
             // 검색조건 초기화

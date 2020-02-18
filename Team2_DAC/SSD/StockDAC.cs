@@ -45,7 +45,7 @@ namespace Team2_DAC
             }
             catch
             {
-                return null;
+                throw;
             }
         }
 
@@ -71,7 +71,7 @@ namespace Team2_DAC
             }
             catch
             {
-                return null;
+                throw;
             }
         }
     }

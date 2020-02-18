@@ -51,7 +51,9 @@ namespace Team2_ERP
             dgv_StockStatus.Columns[7].DefaultCellStyle.Format = "#,#0개";
             dgv_StockStatus.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgv_StockStatus.Columns[8].DefaultCellStyle.Format = "#,#0개";
-            StockStatus_AllList = service.GetStockStatus();
+
+            try { StockStatus_AllList = service.GetStockStatus(); }
+            catch (Exception err) { Log.WriteError(err.Message, err); }
         }
 
         private void SetDgvBySafety()
@@ -69,7 +71,8 @@ namespace Team2_ERP
         private void Func_Refresh()  // 새로고침 기능
         {
             dgv_StockStatus.DataSource = null;
-            StockStatus_AllList = service.GetStockStatus();
+            try { StockStatus_AllList = service.GetStockStatus(); }
+            catch (Exception err) { Log.WriteError(err.Message, err); }
 
             // 검색조건 초기화
             Search_Product.CodeTextBox.Clear();

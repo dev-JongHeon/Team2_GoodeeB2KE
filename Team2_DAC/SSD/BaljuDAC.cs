@@ -42,7 +42,7 @@ namespace Team2_DAC
             }
             catch
             {
-                return null;
+                throw;
             }
         }
 
@@ -69,7 +69,7 @@ namespace Team2_DAC
             }
             catch
             {
-                return null;
+                throw;
             }
         }
 
@@ -93,7 +93,7 @@ namespace Team2_DAC
             }
             catch
             {
-                return null;
+                throw;
             }
         }
 
@@ -120,10 +120,9 @@ namespace Team2_DAC
                 }
                 return check > 0;
             }
-            catch (Exception err)
+            catch
             {
-                System.Windows.Forms.MessageBox.Show(err.Message);
-                return false;
+                throw;
             }
         }
 
@@ -149,10 +148,9 @@ namespace Team2_DAC
                 }
                 return check > 0;
             }
-            catch (Exception err)
+            catch
             {
-                System.Windows.Forms.MessageBox.Show(err.Message);
-                return false;
+                throw;
             }
         }
     }

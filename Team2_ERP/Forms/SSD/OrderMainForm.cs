@@ -61,7 +61,8 @@ namespace Team2_ERP
             dgv_Order.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
             dgv_Order.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgv_Order.Columns[7].DefaultCellStyle.Format = "#,#0원";
-            Order_AllList = service.GetOrderList();
+            try { Order_AllList = service.GetOrderList(); }
+            catch (Exception err) { Log.WriteError(err.Message, err); }
 
             UtilClass.SettingDgv(dgv_OrderDetail);
             UtilClass.AddNewColum(dgv_OrderDetail, "주문번호", "Order_ID", false);
@@ -119,14 +120,16 @@ namespace Team2_ERP
             {
                 sb.Append($"'{row.Cells[1].Value.ToString()}',");
             }
-            OrderDetail_AllList = service.GetOrderDetailList(sb.ToString().Trim(','));  // 디테일 AllList 갱신
+            try { OrderDetail_AllList = service.GetOrderDetailList(sb.ToString().Trim(',')); }  // 디테일 AllList 갱신
+            catch (Exception err) { Log.WriteError(err.Message, err); }
         }
 
         private void Func_Refresh()  // 새로고침 기능
         {
             dgv_Order.DataSource = null;
             dgv_OrderDetail.DataSource = null;
-            Order_AllList = service.GetOrderList();
+            try { Order_AllList = service.GetOrderList(); }
+            catch (Exception err) { Log.WriteError(err.Message, err); }
             GetOrderDetail_List();
 
             // 검색조건 초기화
@@ -145,13 +148,10 @@ namespace Team2_ERP
 
         public override void Modify(object sender, EventArgs e)  // 발주완료(수령)처리, 출하대기목록 Insert, 작업insert, 생산insert 
         {
-            if (dgv_Order.Rows.Count == 0)
-            {
-                main.NoticeMessage = Properties.Resources.NonData;
-            }
+            if (dgv_Order.Rows.Count == 0) main.NoticeMessage = Resources.NonData;
             else
             {
-                if (MessageBox.Show(Properties.Resources.IsOrder, Properties.Resources.Notice, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show(Resources.IsOrder, Resources.Notice, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     List<string> IDList = new List<string>();
                     foreach (DataGridViewRow item in dgv_Order.Rows)
@@ -161,16 +161,19 @@ namespace Team2_ERP
                             IDList.Add(item.Cells[1].Value.ToString());
                         }
                     }
-                    bool check = service.UpOrder_InsShipment(IDList, Session.Employee_ID);
+                    bool check = true;
+
+                    try { check = service.UpOrder_InsShipment(IDList, Session.Employee_ID); }
+                    catch (Exception err) { Log.WriteError(err.Message, err); }
                     Func_Refresh();  // 새로고침
                     main.NoticeMessage = notice;
 
-                    if (check) MessageBox.Show(Properties.Resources.ProcessSuccess, Properties.Resources.Notice);
-                    else MessageBox.Show(Properties.Resources.ProcessFail, Properties.Resources.Notice, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    if (check) MessageBox.Show(Resources.ProcessSuccess, Resources.Notice);
+                    else MessageBox.Show(Resources.ProcessFail, Resources.Notice, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
-                    MessageBox.Show(Properties.Resources.Cancel, Properties.Resources.Notice);
+                    MessageBox.Show(Resources.Cancel, Resources.Notice);
                     main.NoticeMessage = notice;
                 } 
             }
@@ -178,13 +181,10 @@ namespace Team2_ERP
 
         public override void Delete(object sender, EventArgs e)  // 삭제
         {
-            if (dgv_Order.Rows.Count == 0)
-            {
-                main.NoticeMessage = Properties.Resources.NonData;
-            }
+            if (dgv_Order.Rows.Count == 0) main.NoticeMessage = Resources.NonData;
             else
             {
-                if (MessageBox.Show(Properties.Resources.IsCancelOrder, Properties.Resources.Notice, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show(Resources.IsCancelOrder, Resources.Notice, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     List<string> IDList = new List<string>();
                     foreach (DataGridViewRow item in dgv_Order.Rows)
@@ -194,16 +194,20 @@ namespace Team2_ERP
                             IDList.Add(item.Cells[1].Value.ToString());
                         }
                     }
-                    bool check = service.DeleteOrder(IDList);
+                    bool check = true;
+
+                    try { check = service.DeleteOrder(IDList); }
+                    catch (Exception err) { Log.WriteError(err.Message, err); }
+
                     Func_Refresh();  // 새로고침
                     main.NoticeMessage = notice;
 
-                    if (check) MessageBox.Show(Properties.Resources.ProcessSuccess, Properties.Resources.Notice);
-                    else MessageBox.Show(Properties.Resources.ProcessFail, Properties.Resources.Notice, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    if (check) MessageBox.Show(Resources.ProcessSuccess, Resources.Notice);
+                    else MessageBox.Show(Resources.ProcessFail, Resources.Notice, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
-                    MessageBox.Show(Properties.Resources.Cancel);
+                    MessageBox.Show(Resources.Cancel);
                     main.NoticeMessage = notice;
                 }
             }
@@ -231,6 +235,7 @@ namespace Team2_ERP
                 }
                 dgv_Order.DataSource = SearchedList;
                 dgv_OrderDetail.DataSource = null;
+                headerCheckbox.Checked = false;
                 GetOrderDetail_List();
                 main.NoticeMessage = Resources.SearchDone;
             }
@@ -240,7 +245,7 @@ namespace Team2_ERP
         {
             if (dgv_Order.Rows.Count == 0)
             {
-                main.NoticeMessage = Properties.Resources.ExcelError;
+                main.NoticeMessage = Resources.ExcelError;
             }
             else
             {
@@ -263,7 +268,7 @@ namespace Team2_ERP
         {
             if (dgv_Order.Rows.Count == 0)
             {
-                main.NoticeMessage = Properties.Resources.NonData;
+                main.NoticeMessage = Resources.NonData;
             }
             else
             {
