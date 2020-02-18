@@ -164,7 +164,8 @@ namespace Team2_ERP
                     Func_Refresh();  // 새로고침
                     main.NoticeMessage = notice;
 
-                    if (check) MessageBox.Show(Properties.Resources.);
+                    if (check) MessageBox.Show(Properties.Resources.ProcessSuccess, Properties.Resources.Notice);
+                    else MessageBox.Show(Properties.Resources.ProcessFail, Properties.Resources.Notice, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
@@ -184,10 +185,20 @@ namespace Team2_ERP
             {
                 if (MessageBox.Show(Properties.Resources.IsCancelOrder, Properties.Resources.Notice, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    string order_ID = dgv_Order.CurrentRow.Cells[0].Value.ToString();
-                    service.DeleteOrder(order_ID);
+                    List<string> IDList = new List<string>();
+                    foreach (DataGridViewRow item in dgv_Order.Rows)
+                    {
+                        if (Convert.ToBoolean(item.Cells[0].EditedFormattedValue) != false)
+                        {
+                            IDList.Add(item.Cells[1].Value.ToString());
+                        }
+                    }
+                    bool check = service.DeleteOrder(IDList);
                     Func_Refresh();  // 새로고침
                     main.NoticeMessage = notice;
+
+                    if (check) MessageBox.Show(Properties.Resources.ProcessSuccess, Properties.Resources.Notice);
+                    else MessageBox.Show(Properties.Resources.ProcessFail, Properties.Resources.Notice, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {

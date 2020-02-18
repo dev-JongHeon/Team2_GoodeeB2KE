@@ -200,10 +200,8 @@ namespace Team2_ERP
                     Func_Refresh();  // 새로고침
                     main.NoticeMessage = notice;
 
-                    if (check)
-                    {
-                        MessageBox.Show(Properties.Resources.);
-                    }
+                    if (check) MessageBox.Show(Properties.Resources.ProcessSuccess, Properties.Resources.Notice);
+                    else MessageBox.Show(Properties.Resources.ProcessFail, Properties.Resources.Notice, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
