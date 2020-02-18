@@ -167,6 +167,7 @@ namespace Team2_DAC
                     conn.Open();
                     for (int i = 0; i < order_ID.Count; i++)
                     {
+                        cmd.Parameters.Clear();
                         cmd.Parameters.AddWithValue("@Order_ID", order_ID[i]);
                         check += cmd.ExecuteNonQuery();
                     }
