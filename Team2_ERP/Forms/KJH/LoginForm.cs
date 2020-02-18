@@ -14,7 +14,11 @@ namespace Team2_ERP
     public partial class LoginForm : Form
     {
         #region 전역변수
-        private Point mousePoint;
+        private Point mousePoint; // 마우스 커서 위치 정보
+
+        /// <summary>
+        /// VO와 서비스
+        /// </summary>
         SearchedInfoVO info = new SearchedInfoVO();
         LoginVO logininfo = new LoginVO();
         LoginService service = new LoginService();
@@ -116,6 +120,7 @@ namespace Team2_ERP
                         SetSession();
                         MainForm frm = new MainForm(logininfo);
                         this.Hide();
+                        Log.WriteInfo($"{Session.Employee_Name}님 로그인");
                         if (frm.ShowDialog() == DialogResult.Cancel)
                         {
                             logininfo = frm.Logininfo;
@@ -125,6 +130,7 @@ namespace Team2_ERP
                             }
                             else
                             {
+                                Log.WriteInfo($"{Session.Employee_Name}님 로그아웃");
                                 this.Show();
                                 txtEmpID.Text = logininfo.Employee_ID.ToString("0000");
                                 txtEmpName.Text = logininfo.Employee_Name;
@@ -178,6 +184,7 @@ namespace Team2_ERP
         /// <param name="e"></param>
         private void btnPwdChange_Click(object sender, EventArgs e)
         {
+            
             if (txtEmpID.TextLength > 0 && txtEmpName.TextLength > 0)
             {
                 logininfo.Employee_ID = int.Parse(txtEmpID.Text);
@@ -268,7 +275,7 @@ namespace Team2_ERP
             }
             catch (Exception err)
             {
-                throw new Exception(err.Message);
+                Log.WriteError(err.Message, err);
             }
         }
     }

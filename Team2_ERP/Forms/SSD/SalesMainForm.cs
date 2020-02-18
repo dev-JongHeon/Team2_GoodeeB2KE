@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Team2_DAC;
+using Team2_ERP.Properties;
 using Team2_ERP.Service;
 using Team2_VO;
 
@@ -72,12 +73,12 @@ namespace Team2_ERP
         public override void Refresh(object sender, EventArgs e)  // 새로고침
         {
             Func_Refresh();
-            main.NoticeMessage = Properties.Settings.Default.RefreshDone;
+            main.NoticeMessage = Resources.RefreshDone;
         }
 
         public override void Search(object sender, EventArgs e)  // 검색
         {
-            if (Search_OrderIndexPeriod.Startdate.Text == "    -  -") { main.NoticeMessage = Properties.Settings.Default.PeriodError; }
+            if (Search_OrderIndexPeriod.Startdate.Text == "    -  -") { main.NoticeMessage = Resources.PeriodError; }
             else
             {
                 SearchedList = Order_AllList;
@@ -104,7 +105,7 @@ namespace Team2_ERP
                                      select item).ToList();
                 }
                 dgv_SalesStatus.DataSource = SearchedList;
-                main.NoticeMessage = Properties.Settings.Default.SearchDone;
+                main.NoticeMessage = Resources.SearchDone;
                 int total = 0;  // 매출총액 담을 변수
                 for (int i = 0; i < dgv_SalesStatus.RowCount; i++)  // 매출총액 계산
                 {

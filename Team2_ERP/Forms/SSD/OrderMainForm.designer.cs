@@ -89,6 +89,7 @@
             this.dgv_Order.RowTemplate.Height = 23;
             this.dgv_Order.Size = new System.Drawing.Size(1364, 368);
             this.dgv_Order.TabIndex = 0;
+            this.dgv_Order.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Order_CellContentClick);
             this.dgv_Order.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Order_CellDoubleClick);
             // 
             // dgv_OrderDetail

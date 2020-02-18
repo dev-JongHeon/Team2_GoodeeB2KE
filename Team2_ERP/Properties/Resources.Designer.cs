@@ -503,7 +503,7 @@ namespace Team2_ERP.Properties {
         }
         
         /// <summary>
-        ///   정말 해당주문을 취소하시겠습니까?과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   정말 해당주문을 삭제하시겠습니까?과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string IsCancelOrder {
             get {
@@ -868,12 +868,30 @@ namespace Team2_ERP.Properties {
         }
         
         /// <summary>
+        ///   처리실패과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string ProcessFail {
+            get {
+                return ResourceManager.GetString("ProcessFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
         internal static System.Drawing.Bitmap processing {
             get {
                 object obj = ResourceManager.GetObject("processing", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   처리완료과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string ProcessSuccess {
+            get {
+                return ResourceManager.GetString("ProcessSuccess", resourceCulture);
             }
         }
         

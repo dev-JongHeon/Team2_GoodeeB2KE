@@ -27,6 +27,7 @@ namespace Team2_WebAPI.Areas.HelpPage.Controllers
 
         public ActionResult Index()
         {
+            
             ViewBag.DocumentationProvider = Configuration.Services.GetDocumentationProvider();
             return View(Configuration.Services.GetApiExplorer().ApiDescriptions);
         }

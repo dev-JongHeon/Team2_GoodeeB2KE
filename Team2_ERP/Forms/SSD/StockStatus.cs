@@ -53,6 +53,18 @@ namespace Team2_ERP
             StockStatus_AllList = service.GetStockStatus();
         }
 
+        private void SetDgvBySafety()
+        {
+            foreach (DataGridViewRow row in dgv_StockStatus.Rows)
+            {
+                if (Convert.ToInt32(row.Cells[6].Value.ToString().TrimEnd('개')) < 
+                    Convert.ToInt32(row.Cells[7].Value.ToString().TrimEnd('개')))
+                {
+                    row.DefaultCellStyle.BackColor = Color.PaleVioletRed;   // 색 수정필요
+                }
+            }
+        }
+
         private void Func_Refresh()  // 새로고침 기능
         {
             dgv_StockStatus.DataSource = null;
@@ -94,6 +106,7 @@ namespace Team2_ERP
                                        select item).ToList();
             }
             dgv_StockStatus.DataSource = SearchedList;
+            SetDgvBySafety();
             main.NoticeMessage = Properties.Settings.Default.SearchDone;
         }
 

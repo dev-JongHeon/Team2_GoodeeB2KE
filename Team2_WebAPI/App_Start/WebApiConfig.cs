@@ -17,7 +17,7 @@ namespace Team2_WebAPI
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                 defaults: new { controller = "Help", action = "Index", id = RouteParameter.Optional }
             );
         }
     }

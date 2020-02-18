@@ -6,7 +6,7 @@
 @model Collection<ApiDescription>
 
 @{
-    ViewBag.Title = "ASP.NET Web API Help Page";
+    ViewBag.Title = "GooDee Academy TEAM2 API";
 
     // Group APIs by controller
     ILookup<HttpControllerDescriptor, ApiDescription> apiGroups = Model.ToLookup(api => api.ActionDescriptor.ControllerDescriptor);
@@ -23,9 +23,10 @@
 <div id="body" class="help-page">
     <section class="featured">
         <div class="content-wrapper">
-            <h2>Introduction</h2>
+            <h2>API Introduction</h2>
+            <strong>Goodee Academy TEAM2 Kim JongHeon, Choe Myeonggeun, Seo Seondo, Heo Jinseong</strong>
             <p>
-                Provide a general description of your APIs here.
+                A list and description of the APIs used in the project.
             </p>
         </div>
     </section>
@@ -35,4 +36,16 @@
             @Html.DisplayFor(m => group, "ApiGroup")
         }
     </section>
+    <div class="row">
+        <div class="col-md-14">
+            @*로고 이미지 부분*@
+            <img src="~/Areas/img/logo.png" style=" max-width: 100%;
+            height: auto;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;" />
+        </div>
+        @*/.row*@
+        @*/.col*@
+    </div>
 </div>
