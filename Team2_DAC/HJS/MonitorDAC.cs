@@ -46,6 +46,7 @@ namespace Team2_DAC
             return param;
         }
 
+        // 라인아이디를 가져오는 코드
         public List<LineMonitor> GetLineInfo()
         {
             try
@@ -53,7 +54,7 @@ namespace Team2_DAC
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = "SELECT Line_ID, Factory_ID, Line_Name FROM Line";                  
+                    cmd.CommandText = "SELECT Line_ID, Factory_ID, Line_Name FROM Line WHERE LINE_DeletedYN = 0";                  
 
                     conn.Open();
                     List<LineMonitor> list = Helper.DataReaderMapToList<LineMonitor>(cmd.ExecuteReader());
