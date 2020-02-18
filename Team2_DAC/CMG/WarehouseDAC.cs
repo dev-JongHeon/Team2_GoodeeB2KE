@@ -43,9 +43,9 @@ namespace Team2_DAC
             }
         }
 
-        public bool InsertResource(WarehouseVO item)
+        public bool InsertWarehouse(WarehouseVO item)
         {
-            string sql = "insert into Warehouse(Warehouse_Name, Warehouse_Address1, Warehouse_Address2, Warehouse_Number, Warehouse_Fax, Warehouse_Division) values (@Warehouse_Name, @Warehouse_Address1, @Warehouse_Address2, @Warehouse_Number, @Warehouse_Fax, @Warehouse_Division) ";
+            string sql = "insert into Warehouse(Warehouse_Name, Warehouse_Address1, Warehouse_Address2, Warehouse_Number, Warehouse_Fax, Warehouse_Division, Warehouse_AddrNumber) values (@Warehouse_Name, @Warehouse_Address1, @Warehouse_Address2, @Warehouse_Number, @Warehouse_Fax, @Warehouse_Division, @Warehouse_AddrNumber) ";
 
             string[] str = item.Warehouse_Address.Split('　');
             try
@@ -72,6 +72,7 @@ namespace Team2_DAC
                         cmd.Parameters.AddWithValue("@Warehouse_Fax", item.Warehouse_Fax);
                     }
                     cmd.Parameters.AddWithValue("@Warehouse_Division", item.Warehouse_Division);
+                    cmd.Parameters.AddWithValue("@Warehouse_AddrNumber", item.Warehouse_AddrNumber);
 
                     conn.Open();
                     var rowsAffected = cmd.ExecuteNonQuery();
@@ -90,7 +91,7 @@ namespace Team2_DAC
 
         public bool UpdateWarehouse(WarehouseVO item)
         {
-            string sql = "Update Warehouse set Warehouse_Name = @Warehouse_Name, Warehouse_Address1 = @Warehouse_Address1, Warehouse_Address2 = @Warehouse_Address2, Warehouse_Number = @Warehouse_Number, Warehouse_Fax = @Warehouse_Fax, Warehouse_Division = @Warehouse_Division where Warehouse_ID = @Warehouse_ID ";
+            string sql = "Update Warehouse set Warehouse_Name = @Warehouse_Name, Warehouse_Address1 = @Warehouse_Address1, Warehouse_Address2 = @Warehouse_Address2, Warehouse_Number = @Warehouse_Number, Warehouse_Fax = @Warehouse_Fax, Warehouse_Division = @Warehouse_Division, Warehouse_AddrNumber = @Warehouse_AddrNumber where Warehouse_ID = @Warehouse_ID ";
 
             string[] str = item.Warehouse_Address.Split('　');
             try
@@ -103,6 +104,7 @@ namespace Team2_DAC
                     cmd.Parameters.AddWithValue("@Warehouse_Number", item.Warehouse_Number);
                     cmd.Parameters.AddWithValue("@Warehouse_Fax", item.Warehouse_Fax);
                     cmd.Parameters.AddWithValue("@Warehouse_Division", item.Warehouse_Division);
+                    cmd.Parameters.AddWithValue("@Warehouse_AddrNumber", item.Warehouse_AddrNumber);
                     cmd.Parameters.AddWithValue("@Warehouse_ID", item.Warehouse_ID);
 
                     conn.Open();

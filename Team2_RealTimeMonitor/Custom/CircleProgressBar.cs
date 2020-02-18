@@ -23,10 +23,10 @@ namespace Team2_RealTimeMonitor
         #region 전역변수    
         private long _Value;
         private long _Maximum = 100;
-        private Color _ProgressColor1 = Color.FromArgb(92, 92, 92);
-        private Color _ProgressColor2 = Color.FromArgb(92, 92, 92);
-        private Color _ProgressColor3 = Color.FromArgb(92, 92, 92);
-        private Color _ProgressColor4 = Color.FromArgb(92, 92, 92);
+        private Color _ProgressColor1 = Color.Silver;
+        private Color _ProgressColor2 = Color.Silver;
+        private Color _ProgressColor3 = Color.Silver;
+        private Color _ProgressColor4 = Color.Silver;
 
 
         private _ProgressShape ProgressShapeVal;
@@ -179,12 +179,14 @@ namespace Team2_RealTimeMonitor
                             graphics.DrawArc(pen, 0x12, 0x12, (this.Width - 0x23) - 2, (this.Height - 0x23) - 2, -90, (int)Math.Round((double)((360.0 / ((double)this._Maximum)) * this._Value)));
                         }
                     }
-                    using (LinearGradientBrush brush2 = new LinearGradientBrush(this.ClientRectangle, this._ProgressColor1, this._ProgressColor2, LinearGradientMode.Vertical))
+                    using (LinearGradientBrush brush2 = new LinearGradientBrush(this.ClientRectangle, this._ProgressColor1, this._ProgressColor2, LinearGradientMode.ForwardDiagonal))
                     {
                         graphics.FillEllipse(brush2, 0x18, 0x18, (this.Width - 0x30) - 1, (this.Height - 0x30) - 1);
                     }
-                    SizeF MS = graphics.MeasureString(Convert.ToString(Convert.ToInt32((100 / _Maximum) * _Value)), Font);
-                    graphics.DrawString(Convert.ToString(Convert.ToInt32((100 / _Maximum) * _Value)), Font, Brushes.White, Convert.ToInt32(Width / 2 - MS.Width / 2), Convert.ToInt32(Height / 2 - MS.Height / 2));
+                    // 원 안에 숫자위치지정
+                    SizeF MS = graphics.MeasureString(Convert.ToString(Convert.ToInt32((100 / _Maximum) * _Value)), new Font("나눔고딕", 12, FontStyle.Bold));
+                    // 원 안에 숫자 디자인
+                    graphics.DrawString(Convert.ToString(Convert.ToInt32((100 / _Maximum) * _Value)), new Font("나눔고딕", 12, FontStyle.Bold), Brushes.White, Convert.ToInt32(Width / 2 - MS.Width / 2), Convert.ToInt32(Height / 2 - MS.Height / 2));
                     e.Graphics.DrawImage(bitmap, 0, 0);
                     graphics.Dispose();
                     bitmap.Dispose();

@@ -67,8 +67,6 @@
             // panel5
             // 
             this.panel5.Controls.Add(this.splitContainer1);
-            this.panel5.Location = new System.Drawing.Point(0, 32);
-            this.panel5.Size = new System.Drawing.Size(798, 441);
             // 
             // btnCancel
             // 
@@ -93,7 +91,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(796, 439);
+            this.splitContainer1.Size = new System.Drawing.Size(796, 407);
             this.splitContainer1.SplitterDistance = 289;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -113,12 +111,13 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.dgvSemiProduct);
-            this.splitContainer3.Size = new System.Drawing.Size(289, 439);
-            this.splitContainer3.SplitterDistance = 97;
+            this.splitContainer3.Size = new System.Drawing.Size(289, 407);
+            this.splitContainer3.SplitterDistance = 89;
             this.splitContainer3.TabIndex = 0;
             // 
             // cboCategoryDetail
             // 
+            this.cboCategoryDetail.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCategoryDetail.FormattingEnabled = true;
             this.cboCategoryDetail.Location = new System.Drawing.Point(151, 49);
             this.cboCategoryDetail.Name = "cboCategoryDetail";
@@ -128,6 +127,7 @@
             // 
             // cboCategory
             // 
+            this.cboCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCategory.FormattingEnabled = true;
             this.cboCategory.Location = new System.Drawing.Point(11, 49);
             this.cboCategory.Name = "cboCategory";
@@ -152,7 +152,7 @@
             this.dgvSemiProduct.Location = new System.Drawing.Point(0, 0);
             this.dgvSemiProduct.Name = "dgvSemiProduct";
             this.dgvSemiProduct.RowTemplate.Height = 23;
-            this.dgvSemiProduct.Size = new System.Drawing.Size(289, 338);
+            this.dgvSemiProduct.Size = new System.Drawing.Size(289, 314);
             this.dgvSemiProduct.TabIndex = 0;
             this.dgvSemiProduct.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSemiProduct_CellDoubleClick);
             // 
@@ -173,8 +173,8 @@
             this.splitContainer2.Panel2.Controls.Add(this.txtSemiproductName);
             this.splitContainer2.Panel2.Controls.Add(this.txtSemiproductMoney);
             this.splitContainer2.Panel2.Controls.Add(this.label3);
-            this.splitContainer2.Size = new System.Drawing.Size(503, 439);
-            this.splitContainer2.SplitterDistance = 276;
+            this.splitContainer2.Size = new System.Drawing.Size(503, 407);
+            this.splitContainer2.SplitterDistance = 255;
             this.splitContainer2.TabIndex = 0;
             // 
             // numSafety
@@ -206,6 +206,7 @@
             // 
             // cboWarehouse
             // 
+            this.cboWarehouse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboWarehouse.FormattingEnabled = true;
             this.cboWarehouse.Location = new System.Drawing.Point(303, 17);
             this.cboWarehouse.Name = "cboWarehouse";

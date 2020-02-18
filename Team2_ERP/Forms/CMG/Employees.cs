@@ -90,8 +90,12 @@ namespace Team2_ERP
         {
             frm.NoticeMessage = Resources.RefreshDone;
             dgvEmployee.DataSource = null;
-            searchEmployeeName.CodeTextBox.Text = "";
-            searchDepartmentName.CodeTextBox.Text = "";
+            searchEmployeeName.CodeTextBox.Clear();
+            searchDepartmentName.CodeTextBox.Clear();
+            searchHiredate.Startdate.Clear();
+            searchHiredate.Enddate.Clear();
+            searchResigndate.Startdate.Clear();
+            searchResigndate.Enddate.Clear();
         }
 
         public override void New(object sender, EventArgs e)

@@ -89,6 +89,7 @@
             // 
             // cboFactoryName
             // 
+            this.cboFactoryName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboFactoryName.FormattingEnabled = true;
             this.cboFactoryName.Location = new System.Drawing.Point(123, 75);
             this.cboFactoryName.Name = "cboFactoryName";
@@ -134,6 +135,7 @@
             // 
             // cboCategory
             // 
+            this.cboCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCategory.FormattingEnabled = true;
             this.cboCategory.Location = new System.Drawing.Point(122, 122);
             this.cboCategory.Name = "cboCategory";
