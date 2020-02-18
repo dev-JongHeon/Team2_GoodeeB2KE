@@ -154,7 +154,7 @@ namespace Team2_ERP
             this.xrTableCell4.Multiline = true;
             this.xrTableCell4.Name = "xrTableCell4";
             this.xrTableCell4.Text = "xrTableCell4";
-            this.xrTableCell4.Weight = 1.5316898335522708D;
+            this.xrTableCell4.Weight = 1.6288707334074655D;
             // 
             // xrTableCell6
             // 
@@ -166,7 +166,7 @@ namespace Team2_ERP
             this.xrTableCell6.StylePriority.UseTextAlignment = false;
             this.xrTableCell6.Text = "xrTableCell6";
             this.xrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell6.Weight = 1.5118461174833857D;
+            this.xrTableCell6.Weight = 1.4146652176281911D;
             // 
             // xrTableCell7
             // 
@@ -354,7 +354,7 @@ namespace Team2_ERP
             this.xrTable1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
             this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow1});
-            this.xrTable1.SizeF = new System.Drawing.SizeF(1910F, 137.5833F);
+            this.xrTable1.SizeF = new System.Drawing.SizeF(1910F, 135F);
             this.xrTable1.StylePriority.UseBackColor = false;
             this.xrTable1.StylePriority.UseBorders = false;
             this.xrTable1.StylePriority.UseFont = false;
@@ -381,7 +381,7 @@ namespace Team2_ERP
             this.xrTableCell1.Multiline = true;
             this.xrTableCell1.Name = "xrTableCell1";
             this.xrTableCell1.Text = "작업지시번호";
-            this.xrTableCell1.Weight = 1.0858437386013724D;
+            this.xrTableCell1.Weight = 1.1547370025179338D;
             // 
             // xrTableCell2
             // 
@@ -392,7 +392,7 @@ namespace Team2_ERP
             this.xrTableCell2.Name = "xrTableCell2";
             this.xrTableCell2.StylePriority.UseBorders = false;
             this.xrTableCell2.Text = "작업지시일";
-            this.xrTableCell2.Weight = 1.071776779224598D;
+            this.xrTableCell2.Weight = 1.0028835153080367D;
             // 
             // xrTableCell3
             // 
@@ -544,7 +544,7 @@ namespace Team2_ERP
             this.xrTableCell11.Multiline = true;
             this.xrTableCell11.Name = "xrTableCell11";
             this.xrTableCell11.Text = "xrTableCell4";
-            this.xrTableCell11.Weight = 1.7177340502122105D;
+            this.xrTableCell11.Weight = 1.9232745268980245D;
             // 
             // xrTableCell12
             // 
@@ -556,7 +556,7 @@ namespace Team2_ERP
             this.xrTableCell12.StylePriority.UseTextAlignment = false;
             this.xrTableCell12.Text = "xrTableCell6";
             this.xrTableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell12.Weight = 1.585630315698493D;
+            this.xrTableCell12.Weight = 1.6603722582382698D;
             // 
             // xrTableCell15
             // 
@@ -566,7 +566,7 @@ namespace Team2_ERP
             this.xrTableCell15.Multiline = true;
             this.xrTableCell15.Name = "xrTableCell15";
             this.xrTableCell15.Text = "xrTableCell7";
-            this.xrTableCell15.Weight = 1.5693944520190255D;
+            this.xrTableCell15.Weight = 1.4572816998510727D;
             // 
             // xrTableCell18
             // 
@@ -576,7 +576,7 @@ namespace Team2_ERP
             this.xrTableCell18.Multiline = true;
             this.xrTableCell18.Name = "xrTableCell18";
             this.xrTableCell18.Text = "xrTableCell8";
-            this.xrTableCell18.Weight = 1.71444398557467D;
+            this.xrTableCell18.Weight = 1.8078711712868223D;
             // 
             // xrTableCell19
             // 
@@ -586,7 +586,7 @@ namespace Team2_ERP
             this.xrTableCell19.Multiline = true;
             this.xrTableCell19.Name = "xrTableCell19";
             this.xrTableCell19.Text = "xrTableCell17";
-            this.xrTableCell19.Weight = 2.6793307641263544D;
+            this.xrTableCell19.Weight = 3.7727009553936637D;
             // 
             // xrTableCell20
             // 
@@ -598,7 +598,7 @@ namespace Team2_ERP
             this.xrTableCell20.StylePriority.UseTextAlignment = false;
             this.xrTableCell20.Text = "xrTableCell10";
             this.xrTableCell20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.xrTableCell20.Weight = 1.3549661965731326D;
+            this.xrTableCell20.Weight = 0.81254574812392244D;
             // 
             // xrTableCell21
             // 
@@ -610,7 +610,7 @@ namespace Team2_ERP
             this.xrTableCell21.StylePriority.UseTextAlignment = false;
             this.xrTableCell21.Text = "xrTableCell14";
             this.xrTableCell21.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.xrTableCell21.Weight = 1.4348715080795493D;
+            this.xrTableCell21.Weight = 0.77180771995979636D;
             // 
             // xrTableCell22
             // 
@@ -620,14 +620,14 @@ namespace Team2_ERP
             this.xrTableCell22.Multiline = true;
             this.xrTableCell22.Name = "xrTableCell22";
             this.xrTableCell22.Text = "xrTableCell22";
-            this.xrTableCell22.Weight = 1.4324960214709868D;
+            this.xrTableCell22.Weight = 1.2830132140028503D;
             // 
             // GroupHeader1
             // 
             this.GroupHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable4});
             this.GroupHeader1.Dpi = 254F;
-            this.GroupHeader1.HeightF = 171.9233F;
+            this.GroupHeader1.HeightF = 171.965F;
             this.GroupHeader1.Name = "GroupHeader1";
             // 
             // xrTable4
@@ -643,7 +643,7 @@ namespace Team2_ERP
             this.xrTable4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
             this.xrTable4.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow4});
-            this.xrTable4.SizeF = new System.Drawing.SizeF(1910F, 89.95832F);
+            this.xrTable4.SizeF = new System.Drawing.SizeF(1910F, 90F);
             this.xrTable4.StylePriority.UseBackColor = false;
             this.xrTable4.StylePriority.UseBorders = false;
             this.xrTable4.StylePriority.UseFont = false;
@@ -671,7 +671,7 @@ namespace Team2_ERP
             this.xrTableCell23.Multiline = true;
             this.xrTableCell23.Name = "xrTableCell23";
             this.xrTableCell23.Text = "생산지시번호";
-            this.xrTableCell23.Weight = 1.0099392069031947D;
+            this.xrTableCell23.Weight = 1.1307864252437749D;
             // 
             // xrTableCell24
             // 
@@ -682,7 +682,7 @@ namespace Team2_ERP
             this.xrTableCell24.Name = "xrTableCell24";
             this.xrTableCell24.StylePriority.UseBorders = false;
             this.xrTableCell24.Text = "생산시작일";
-            this.xrTableCell24.Weight = 0.93226923576656962D;
+            this.xrTableCell24.Weight = 0.97621365000041538D;
             // 
             // xrTableCell25
             // 
@@ -693,7 +693,7 @@ namespace Team2_ERP
             this.xrTableCell25.Name = "xrTableCell25";
             this.xrTableCell25.StylePriority.UseBorders = false;
             this.xrTableCell25.Text = "공장명";
-            this.xrTableCell25.Weight = 0.922722626845129D;
+            this.xrTableCell25.Weight = 0.85680597381535861D;
             // 
             // xrTableCell26
             // 
@@ -704,7 +704,7 @@ namespace Team2_ERP
             this.xrTableCell26.Name = "xrTableCell26";
             this.xrTableCell26.StylePriority.UseBorders = false;
             this.xrTableCell26.Text = "공정명";
-            this.xrTableCell26.Weight = 1.0080048278613503D;
+            this.xrTableCell26.Weight = 1.0629354565301634D;
             // 
             // xrTableCell27
             // 
@@ -715,7 +715,7 @@ namespace Team2_ERP
             this.xrTableCell27.Name = "xrTableCell27";
             this.xrTableCell27.StylePriority.UseBorders = false;
             this.xrTableCell27.Text = "품목명";
-            this.xrTableCell27.Weight = 1.5753090482362513D;
+            this.xrTableCell27.Weight = 2.2181537331990038D;
             // 
             // xrTableCell28
             // 
@@ -725,8 +725,8 @@ namespace Team2_ERP
             this.xrTableCell28.Multiline = true;
             this.xrTableCell28.Name = "xrTableCell28";
             this.xrTableCell28.StylePriority.UseBorders = false;
-            this.xrTableCell28.Text = "요청수량";
-            this.xrTableCell28.Weight = 0.79665037660475069D;
+            this.xrTableCell28.Text = "요청";
+            this.xrTableCell28.Weight = 0.47773815150285504D;
             // 
             // xrTableCell29
             // 
@@ -736,8 +736,8 @@ namespace Team2_ERP
             this.xrTableCell29.Multiline = true;
             this.xrTableCell29.Name = "xrTableCell29";
             this.xrTableCell29.StylePriority.UseBorders = false;
-            this.xrTableCell29.Text = "투입수량";
-            this.xrTableCell29.Weight = 0.8436300160445469D;
+            this.xrTableCell29.Text = "투입";
+            this.xrTableCell29.Weight = 0.45378064972190624D;
             // 
             // xrTableCell30
             // 
@@ -748,7 +748,7 @@ namespace Team2_ERP
             this.xrTableCell30.Name = "xrTableCell30";
             this.xrTableCell30.StylePriority.UseBorders = false;
             this.xrTableCell30.Text = "생산상태";
-            this.xrTableCell30.Weight = 0.84223417587120819D;
+            this.xrTableCell30.Weight = 0.75434547411952346D;
             // 
             // WorkReport
             // 
@@ -765,8 +765,8 @@ namespace Team2_ERP
             this.DataMember = "dtWork";
             this.DataSource = this.dsWork1;
             this.Dpi = 254F;
-            this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Margins = new System.Drawing.Printing.Margins(90, 100, 100, 100);
+            this.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margins = new System.Drawing.Printing.Margins(87, 100, 100, 100);
             this.PageHeight = 2970;
             this.PageWidth = 2100;
             this.PaperKind = System.Drawing.Printing.PaperKind.A4;
