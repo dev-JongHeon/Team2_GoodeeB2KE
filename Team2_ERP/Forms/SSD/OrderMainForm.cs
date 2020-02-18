@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Team2_DAC;
+using Team2_ERP.Properties;
 using Team2_ERP.Service;
 using Team2_VO;
 
@@ -139,7 +140,7 @@ namespace Team2_ERP
         public override void Refresh(object sender, EventArgs e)  // 새로고침
         {
             Func_Refresh();
-            main.NoticeMessage = Properties.Settings.Default.RefreshDone;
+            main.NoticeMessage = Resources.RefreshDone;
         }
 
         public override void Modify(object sender, EventArgs e)  // 발주완료(수령)처리, 출하대기목록 Insert, 작업insert, 생산insert 
@@ -210,7 +211,7 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)  // 검색
         {
-            if (Search_Period.Startdate.Text == "    -  -") { main.NoticeMessage = Properties.Settings.Default.PeriodError; }
+            if (Search_Period.Startdate.Text == "    -  -") { main.NoticeMessage = Resources.PeriodError; }
             else
             {
                 SearchedList = Order_AllList;
@@ -231,7 +232,7 @@ namespace Team2_ERP
                 dgv_Order.DataSource = SearchedList;
                 dgv_OrderDetail.DataSource = null;
                 GetOrderDetail_List();
-                main.NoticeMessage = Properties.Settings.Default.SearchDone;
+                main.NoticeMessage = Resources.SearchDone;
             }
         }
 
