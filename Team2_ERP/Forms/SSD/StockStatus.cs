@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Team2_DAC;
+using Team2_ERP.Properties;
 using Team2_ERP.Service;
 
 namespace Team2_ERP
@@ -80,7 +81,7 @@ namespace Team2_ERP
         public override void Refresh(object sender, EventArgs e)  // 새로고침
         {
             Func_Refresh();
-            main.NoticeMessage = Properties.Settings.Default.RefreshDone;
+            main.NoticeMessage = Resources.RefreshDone;
         }
 
         public override void Search(object sender, EventArgs e)  // 검색
@@ -107,7 +108,7 @@ namespace Team2_ERP
             }
             dgv_StockStatus.DataSource = SearchedList;
             SetDgvBySafety();
-            main.NoticeMessage = Properties.Settings.Default.SearchDone;
+            main.NoticeMessage = Resources.SearchDone;
         }
 
         public override void Excel(object sender, EventArgs e)
