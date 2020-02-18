@@ -10,6 +10,7 @@ namespace Team2_VO
     {
         public int Company_ID { get; set; }
         public string Company_Name { get; set; }
+        public string Company_AddrNumber { get; set; }
         public string Company_Address { get; set; }
         public string Company_Number { get; set; }
         public string Company_Fax { get; set; }

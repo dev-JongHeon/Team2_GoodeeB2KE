@@ -14,14 +14,25 @@ namespace Team2_ERP
     {
         [Description("우편번호 조회")]
         [Browsable(true), EditorBrowsable(EditorBrowsableState.Always)]
-        public string Zipcode { get { return textBox1.Text; } }
+        public string Zipcode 
+        { 
+            get { return textBox1.Text; }
+            set { textBox1.Text = value; }
+        }
         [Description("주소1 조회")]
         [Browsable(true), EditorBrowsable(EditorBrowsableState.Always)]
-        public string Address1 { get { return textBox2.Text; } }
+        public string Address1 
+        { 
+            get { return textBox2.Text; }
+            set { textBox2.Text = value; }
+        }
         [Description("주소2 조회")]
         [Browsable(true), EditorBrowsable(EditorBrowsableState.Always)]
-
-        public string Address2 { get { return textBox3.Text; } }
+        public string Address2 
+        { 
+            get { return textBox3.Text; }
+            set { textBox3.Text = value; }
+        }
 
         public AddressControl()
         {

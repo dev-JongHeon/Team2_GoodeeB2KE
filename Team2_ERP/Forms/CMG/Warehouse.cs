@@ -33,6 +33,7 @@ namespace Team2_ERP
 
             UtilClass.AddNewColum(dgvWarehouse, "창고코드", "Warehouse_ID", true, 100);
             UtilClass.AddNewColum(dgvWarehouse, "창고이름", "Warehouse_Name", true, 100);
+            UtilClass.AddNewColum(dgvWarehouse, "우편번호", "Warehouse_AddrNumber", true, 100);
             UtilClass.AddNewColum(dgvWarehouse, "창고주소", "Warehouse_Address", true, 100);
             UtilClass.AddNewColum(dgvWarehouse, "전화번호", "Warehouse_Number", true, 100);
             UtilClass.AddNewColum(dgvWarehouse, "FAX번호", "Warehouse_Fax", true, 100);
@@ -88,7 +89,7 @@ namespace Team2_ERP
         {
             frm.NoticeMessage = Resources.RefreshDone;
             dgvWarehouse.DataSource = null;
-            searchWarehouseName.CodeTextBox.Text = "";
+            searchWarehouseName.CodeTextBox.Clear();
         }
 
         public override void New(object sender, EventArgs e)
@@ -160,15 +161,18 @@ namespace Team2_ERP
             if (e.RowIndex < dgvWarehouse.Rows.Count && e.RowIndex > -1)
             {
                 // 전화번호가 없을 때
-                if (dgvWarehouse.Rows[e.RowIndex].Cells[3].Value == null)
+                if (dgvWarehouse.Rows[e.RowIndex].Cells[4].Value == null)
                 {
                     // 전화번호와 FAX번호 둘 다 없을 때
-                    if (dgvWarehouse.Rows[e.RowIndex].Cells[4].Value == null)
+                    if (dgvWarehouse.Rows[e.RowIndex].Cells[5].Value == null)
                     {
                         item = new WarehouseVO
                         {
                             Warehouse_ID = Convert.ToInt32(dgvWarehouse.Rows[e.RowIndex].Cells[0].Value),
-                            Warehouse_Name = dgvWarehouse.Rows[e.RowIndex].Cells[1].Value.ToString()
+                            Warehouse_Name = dgvWarehouse.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                            Warehouse_AddrNumber = dgvWarehouse.Rows[e.RowIndex].Cells[2].Value.ToString(),
+                            Warehouse_Address = dgvWarehouse.Rows[e.RowIndex].Cells[3].Value.ToString(),
+                            Warehouse_Division_Name = dgvWarehouse.Rows[e.RowIndex].Cells[6].Value.ToString()
                         };
                     }
                     // 전화번호는 없고 FAX번호만 있을 때

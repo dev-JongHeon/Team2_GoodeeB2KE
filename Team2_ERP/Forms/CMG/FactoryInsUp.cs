@@ -39,11 +39,20 @@ namespace Team2_ERP
                 lblName.Text = "공장수정";
                 pbxTitle.Image = Resources.Edit_32x32;
 
-                code = item.Factory_ID;
-                txtFactoryName.Text = item.Factory_Name;
-                maskedFactoryNumber.Text = item.Factory_Number;
-                maskedFactoryFaxNumber.Text = item.Factory_Fax;
+                UpdateInfo(item);
             }
+        }
+
+        private void UpdateInfo(FactoryVO item)
+        {
+            code = item.Factory_ID;
+            txtFactoryName.Text = item.Factory_Name;
+            maskedFactoryNumber.Text = item.Factory_Number;
+            maskedFactoryFaxNumber.Text = item.Factory_Fax;
+            string[] str = item.Factory_Address.Split('　');
+            addrFactory.Address1 = str[0];
+            addrFactory.Address2 = str[1];
+            addrFactory.Zipcode = item.Factory_AddrNumber;
         }
 
         private void InitCombo()
@@ -54,7 +63,7 @@ namespace Team2_ERP
 
             DataRow dr = dt.NewRow();
             dr["FName"] = "선택";
-            dr["Value"] = 0;
+            dr["Value"] = 2;
             dt.Rows.Add(dr);
 
             dr = dt.NewRow();
@@ -82,7 +91,8 @@ namespace Team2_ERP
                     Factory_Division = Convert.ToInt32(cboFactoryDivision.SelectedValue),
                     Factory_Number = maskedFactoryNumber.Text,
                     Factory_Fax = maskedFactoryFaxNumber.Text,
-                    Factory_Address = addrFactory.Address1 + "　" + addrFactory.Address2
+                    Factory_Address = addrFactory.Address1 + "　" + addrFactory.Address2,
+                    Factory_AddrNumber = addrFactory.Zipcode
                 };
 
                 if(item.Factory_Fax.Replace("-", "").Trim().Length < 10)
@@ -106,7 +116,8 @@ namespace Team2_ERP
                     Factory_Division = Convert.ToInt32(cboFactoryDivision.SelectedValue),
                     Factory_Number = maskedFactoryNumber.Text,
                     Factory_Fax = maskedFactoryFaxNumber.Text,
-                    Factory_Address = addrFactory.Address1 + "　" + addrFactory.Address2
+                    Factory_Address = addrFactory.Address1 + "　" + addrFactory.Address2,
+                    Factory_AddrNumber = addrFactory.Zipcode
                 };
 
                 if (item.Factory_Fax.Replace("-", "").Trim().Length < 10)
@@ -136,7 +147,7 @@ namespace Team2_ERP
             else
                 UpdateFactory();
 
-            if(txtFactoryName.Text.Length > 0 && !cboFactoryDivision.SelectedText.Equals("선택") && maskedFactoryNumber.Text.Replace("_", "").Replace("-", "").Trim().Length > 10 && addrFactory.Address1.Length > 0 && addrFactory.Address2.Length > 0)
+            if(txtFactoryName.Text.Length > 0 && !cboFactoryDivision.SelectedValue.Equals(2) && maskedFactoryNumber.Text.Replace("_", "").Replace("-", "").Trim().Length > 10 && addrFactory.Address1.Length > 0 && addrFactory.Address2.Length > 0)
             {
                 if(mode.Equals("Insert"))
                 {
