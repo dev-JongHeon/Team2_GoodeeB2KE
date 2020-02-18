@@ -123,6 +123,7 @@ namespace Team2_Shop.Controllers
             };
 
             return PartialView("../Product/ProductModal", product);
+            //return View("../Product/ProductModal" , product);
         }
     }
 }

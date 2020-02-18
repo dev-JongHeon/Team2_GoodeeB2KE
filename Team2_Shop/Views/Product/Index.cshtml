@@ -7,13 +7,39 @@
 
 <br />
 
-@foreach (var p in Model.Products)
-{
-    <div class="col-sm-12 col-md-6 col-lg-4">
-        @Html.Partial("ProductSummary", p)
-    </div>
-}
+<div class="panel-body">
 
-<div class="btn-group pull-right">
-    @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x }))
+    <div class="row">
+        @foreach (var p in Model.Products)
+        {
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                @Html.Partial("ProductSummary", p)
+            </div>
+        }
+
+        @Html.Partial("ProductModal")
+    </div>
+
+    <div class="row">
+        <div class="btn-group pull-right">
+            @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x }))
+        </div>
+    </div>
 </div>
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#modal-check').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget); // Button that triggered the modal
+                var productname = button.data('productname');
+                var productid = button.data('productid');
+                var returnurl = button.data('returnurl');// Extract info from data-* attributes
+                var modal = $(this);
+                modal.find('.productname').text(productname + '를 장바구니에 추가하시겠습니까?');
+                modal.find('.modal-footer > .col-md-6 > #productid').val(productid)
+                modal.find('#returnurl').val(returnurl)
+            });
+        });
+    </script>
+}

@@ -168,6 +168,9 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\gdb2keapi - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\gdb2keapi - ReadOnly - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\gdb2keapi - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
