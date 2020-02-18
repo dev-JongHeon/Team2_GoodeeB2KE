@@ -57,7 +57,7 @@ namespace Team2_ERP
                                                       where item.DefecID == txtSearch.CodeTextBox.Tag.ToString()
                                                       select item).ToList();
                 dgvDefectiveType.DataSource = searchedlist;
-                frm.NoticeMessage = Properties.Settings.Default.SearchDone;
+                frm.NoticeMessage = Resources.SearchDone;
             }
             else
             {

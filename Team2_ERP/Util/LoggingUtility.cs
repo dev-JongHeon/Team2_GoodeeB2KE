@@ -17,7 +17,7 @@ namespace Team2_ERP
         private static LoggingUtility _loggingUtility = null;
         private ILog log;
         private RollingFileAppender roller;
-        private string logFileName = "MyProject.log";
+        private string logFileName = "Team2_ERP.log";
         private bool runAsConsole = false;
                
         public static LoggingUtility GetLoggingUtility(string loggerName, Level logLevel)
@@ -229,7 +229,7 @@ namespace Team2_ERP
         /// <returns></returns>
         private string GetLoggingFolder()
         {
-            return @".\Logs"; // string.Format(@"\{0}\{1}\Logs", this.company, this.product);
+            return $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\Team2Log\\ERPFolder"; // string.Format(@"\{0}\{1}\Logs", this.company, this.product);
         }
 
         /// <summary>

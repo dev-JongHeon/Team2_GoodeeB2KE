@@ -19,8 +19,8 @@ namespace Team2_ERP
         [STAThread]
         static void Main()
         {
-            //Application.ThreadException += Application_ThreadException;
-            //AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            Application.ThreadException += Application_ThreadException;
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
