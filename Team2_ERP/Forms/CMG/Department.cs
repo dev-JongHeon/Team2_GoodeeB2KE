@@ -111,15 +111,13 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)
         {
-            if (searchDepartmentName.CodeTextBox.Text.Length > 0)
+            LoadGridView();
+
+            if (searchDepartmentName.CodeTextBox.Tag != null)
             {
                 dgvDepartment.DataSource = null;
                 List<CodeTableVO> deptList = (from item in list where item.CodeTable_CodeID.Contains(searchDepartmentName.CodeTextBox.Tag.ToString()) && item.CodeTable_DeletedYN == false select item).ToList();
                 dgvDepartment.DataSource = deptList;
-            }
-            else
-            {
-                LoadGridView();
             }
 
             frm.NoticeMessage = Resources.SearchDone;
@@ -130,8 +128,6 @@ namespace Team2_ERP
         {
             InitGridView();
             frm = (MainForm)this.ParentForm;
-            CodeTableService service = new CodeTableService();
-            list = (from item in service.GetAllCodeTable() where item.CodeTable_CodeID.Contains("Depart") select item).ToList();
         }
 
         private void Department_Activated(object sender, EventArgs e)

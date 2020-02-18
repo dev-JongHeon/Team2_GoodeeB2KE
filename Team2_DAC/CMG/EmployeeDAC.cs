@@ -106,7 +106,7 @@ namespace Team2_DAC
 
         public bool UpdateEmployee(EmployeeVO item)
         {
-            string sql = "Update Employees set Employees_Name = @Employees_Name, CodeTable_CodeID = @CodeTable_CodeID, Employees_Resigndate = @Employees_Resigndate, Employees_Phone = @Employees_Phone, Employees_Birth = @Employees_Birth where Employees_ID = @Employees_ID ";
+            string sql = "Update Employees set Employees_Name = @Employees_Name, CodeTable_CodeID = @CodeTable_CodeID, Employees_Phone = @Employees_Phone, Employees_Birth = @Employees_Birth where Employees_ID = @Employees_ID ";
 
             try
             {
@@ -114,7 +114,6 @@ namespace Team2_DAC
                 {
                     cmd.Parameters.AddWithValue("@Employees_Name", item.Employees_Name);
                     cmd.Parameters.AddWithValue("@CodeTable_CodeID", item.CodeTable_CodeID);
-                    cmd.Parameters.AddWithValue("@Employees_Resigndate", item.Employees_Resigndate);
                     cmd.Parameters.AddWithValue("@Employees_Phone", item.Employees_Phone);
                     cmd.Parameters.AddWithValue("@Employees_Birth", item.Employees_Birth);
                     cmd.Parameters.AddWithValue("@Employees_ID", item.Employees_ID);

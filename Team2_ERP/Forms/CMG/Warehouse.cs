@@ -61,8 +61,6 @@ namespace Team2_ERP
         {
             InitGridView();
             frm = (MainForm)this.ParentForm;
-            StandardService service = new StandardService();
-            list = service.GetAllWarehouse();
         }
 
         private void Warehouse_Activated(object sender, EventArgs e)
@@ -141,15 +139,13 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)
         {
-            if (searchWarehouseName.CodeTextBox.Text.Length > 0)
+            LoadGridView();
+
+            if (searchWarehouseName.CodeTextBox.Tag != null)
             {
                 dgvWarehouse.DataSource = null;
                 List<WarehouseVO> searchList = (from item in list where item.Warehouse_ID == Convert.ToInt32(searchWarehouseName.CodeTextBox.Tag) && item.Warehouse_DeletedYN == false select item).ToList();
                 dgvWarehouse.DataSource = searchList;
-            }
-            else
-            {
-                LoadGridView();
             }
 
             frm.NoticeMessage = Resources.SearchDone;
@@ -182,21 +178,42 @@ namespace Team2_ERP
                         {
                             Warehouse_ID = Convert.ToInt32(dgvWarehouse.Rows[e.RowIndex].Cells[0].Value),
                             Warehouse_Name = dgvWarehouse.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                            Warehouse_Fax = dgvWarehouse.Rows[e.RowIndex].Cells[4].Value.ToString()
+                            Warehouse_AddrNumber = dgvWarehouse.Rows[e.RowIndex].Cells[2].Value.ToString(),
+                            Warehouse_Address = dgvWarehouse.Rows[e.RowIndex].Cells[3].Value.ToString(),
+                            Warehouse_Fax = dgvWarehouse.Rows[e.RowIndex].Cells[5].Value.ToString(),
+                            Warehouse_Division_Name = dgvWarehouse.Rows[e.RowIndex].Cells[6].Value.ToString()
                         };
                     }
                 }
-                // 전화번호와 FAX번호 둘 다 있을 때
                 else
                 {
-                    item = new WarehouseVO
+                    //전화번호는 있는데 FAX번호가 없을 떄
+                    if(dgvWarehouse.Rows[e.RowIndex].Cells[5].Value == null)
                     {
-                        Warehouse_ID = Convert.ToInt32(dgvWarehouse.Rows[e.RowIndex].Cells[0].Value),
-                        Warehouse_Name = dgvWarehouse.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                        Warehouse_Address = dgvWarehouse.Rows[e.RowIndex].Cells[2].Value.ToString(),
-                        Warehouse_Number = dgvWarehouse.Rows[e.RowIndex].Cells[3].Value.ToString(),
-                        Warehouse_Fax = dgvWarehouse.Rows[e.RowIndex].Cells[4].Value.ToString()
-                    };
+                        item = new WarehouseVO
+                        {
+                            Warehouse_ID = Convert.ToInt32(dgvWarehouse.Rows[e.RowIndex].Cells[0].Value),
+                            Warehouse_Name = dgvWarehouse.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                            Warehouse_AddrNumber = dgvWarehouse.Rows[e.RowIndex].Cells[2].Value.ToString(),
+                            Warehouse_Address = dgvWarehouse.Rows[e.RowIndex].Cells[3].Value.ToString(),
+                            Warehouse_Number = dgvWarehouse.Rows[e.RowIndex].Cells[4].Value.ToString(),
+                            Warehouse_Division_Name = dgvWarehouse.Rows[e.RowIndex].Cells[6].Value.ToString()
+                        };
+                    }
+                    //전화번호와 FAX번호 둘 다 있을 때
+                    else
+                    {
+                        item = new WarehouseVO
+                        {
+                            Warehouse_ID = Convert.ToInt32(dgvWarehouse.Rows[e.RowIndex].Cells[0].Value),
+                            Warehouse_Name = dgvWarehouse.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                            Warehouse_AddrNumber = dgvWarehouse.Rows[e.RowIndex].Cells[2].Value.ToString(),
+                            Warehouse_Address = dgvWarehouse.Rows[e.RowIndex].Cells[3].Value.ToString(),
+                            Warehouse_Number = dgvWarehouse.Rows[e.RowIndex].Cells[4].Value.ToString(),
+                            Warehouse_Fax = dgvWarehouse.Rows[e.RowIndex].Cells[5].Value.ToString(),
+                            Warehouse_Division_Name = dgvWarehouse.Rows[e.RowIndex].Cells[6].Value.ToString()
+                        };
+                    }
                 }
             }
         }

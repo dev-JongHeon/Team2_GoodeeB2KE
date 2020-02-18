@@ -18,6 +18,12 @@ namespace Team2_Shop
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+               name: "Address",
+               url: "{controller}/{action}",
+               defaults: new { controller = "Address", action = "FindAddress"}
+           );
         }
     }
 }

@@ -18,6 +18,9 @@ namespace Team2_ERP
         List<ResourceVO> list;
         string mode = string.Empty;
         string code = string.Empty;
+        string category = string.Empty;
+        int wID = 0;
+        int cID = 0;
 
         public enum EditMode { Insert, Update }
 
@@ -30,11 +33,8 @@ namespace Team2_ERP
                 lblName.Text = "자재 수정";
                 mode = "Update";
                 pbxTitle.Image = Resources.Edit_32x32;
-                code = item.Product_ID;
-                txtResourceName.Text = item.Product_Name;
-                txtResourceMoney.Text = item.Product_Price.ToString();
-                numResourceNum.Value = item.Product_Qty;
-                numSafety.Value = item.Product_Safety;
+
+                UpdateInfo(item);
             }
             else
             {
@@ -42,6 +42,18 @@ namespace Team2_ERP
                 mode = "Insert";
                 pbxTitle.Image = Resources.AddFile_32x32;
             }
+        }
+
+        private void UpdateInfo(ResourceVO item)
+        {
+            code = item.Product_ID;
+            txtResourceName.Text = item.Product_Name;
+            txtResourceMoney.Text = item.Product_Price.ToString();
+            numResourceNum.Value = item.Product_Qty;
+            numSafety.Value = item.Product_Safety;
+            wID = item.Warehouse_ID;
+            category = item.Product_Category;
+            cID = item.Company_ID;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -70,6 +82,13 @@ namespace Team2_ERP
             UtilClass.ComboBinding(cboResourceCategory, meterialList, "선택");
             List<ComboItemVO> companyList = service.GetComboCompany();
             UtilClass.ComboBinding(cboCompany, companyList, "선택");
+
+            if(mode.Equals("Update"))
+            {
+                cboResourceCategory.SelectedValue = category;
+                cboCompany.SelectedValue = cID.ToString("0000");
+                cboResourceWarehouse.SelectedValue = wID.ToString("0000");
+            }
         }
 
         private void InsertResource()
@@ -77,7 +96,7 @@ namespace Team2_ERP
             ResourceVO item = new ResourceVO
             {
                 Product_Name = txtResourceName.Text,
-                Warehouse_ID = cboResourceWarehouse.SelectedValue.ToString(),
+                Warehouse_ID = Convert.ToInt32(cboResourceWarehouse.SelectedValue),
                 Product_Price = Convert.ToInt32(txtResourceMoney.Text),
                 Product_Qty = Convert.ToInt32(numResourceNum.Value),
                 Product_Safety = Convert.ToInt32(numSafety.Value),
@@ -95,7 +114,7 @@ namespace Team2_ERP
             {
                 Product_ID = code,
                 Product_Name = txtResourceName.Text,
-                Warehouse_ID = cboResourceWarehouse.SelectedValue.ToString(),
+                Warehouse_ID = Convert.ToInt32(cboResourceWarehouse.SelectedValue),
                 Product_Price = Convert.ToInt32(txtResourceMoney.Text),
                 Product_Qty = Convert.ToInt32(numResourceNum.Value),
                 Product_Safety = Convert.ToInt32(numSafety.Value),

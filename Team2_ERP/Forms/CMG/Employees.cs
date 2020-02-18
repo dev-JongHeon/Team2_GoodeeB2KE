@@ -48,6 +48,14 @@ namespace Team2_ERP
         {
             StandardService service = new StandardService();
             list = service.GetAllEmployee();
+            if (rdoWork.Checked)
+            {
+                list = (from item in list where item.Employees_DeletedYN == false select item).ToList();
+            }
+            else
+            {
+                list = (from item in list where item.Employees_DeletedYN == true select item).ToList();
+            }
             dgvEmployee.DataSource = list;
             dgvEmployee.CurrentCell = null;
         }
@@ -58,8 +66,6 @@ namespace Team2_ERP
             frm = (MainForm)this.ParentForm;
             rdoWork.Checked = true;
             searchResigndate.Visible = false;
-            StandardService service = new StandardService();
-            list = service.GetAllEmployee();
         }
 
         private void Employees_Activated(object sender, EventArgs e)
@@ -149,42 +155,28 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)
         {
-            if (rdoWork.Checked)
+            LoadGridView();
+            searchList = list;
+
+            if(searchDepartmentName.CodeTextBox.Tag != null)
             {
-                searchList = (from item in list where item.Employees_Resigndate == null select item).ToList();
-                if (searchDepartmentName.CodeTextBox.Tag != null)
-                {
-                    searchList = (from item in searchList where item.CodeTable_CodeID.Equals(searchDepartmentName.CodeTextBox.Tag.ToString()) select item).ToList();
-                }
-                if (searchEmployeeName.CodeTextBox.Tag != null)
-                {
-                    searchList = (from item in searchList where item.Employees_ID.Equals(Convert.ToInt32(searchEmployeeName.CodeTextBox.Tag)) select item).ToList();
-                }
-                if (searchHiredate.Startdate.Tag != null && searchHiredate.Enddate.Tag != null)
-                {
-                    searchList = (from item in searchList where Convert.ToDateTime(Convert.ToDateTime(item.Employees_Hiredate).ToShortDateString()) >= Convert.ToDateTime(searchHiredate.Startdate.Tag.ToString()) && Convert.ToDateTime(Convert.ToDateTime(item.Employees_Hiredate).ToShortDateString()) <= Convert.ToDateTime(searchHiredate.Enddate.Tag.ToString()) select item).ToList();
-                }
-                dgvEmployee.DataSource = searchList;
-                dgvEmployee.CurrentCell = null;
+                searchList = (from item in searchList where item.CodeTable_CodeID.Equals(searchDepartmentName.CodeTextBox.Tag.ToString()) select item).ToList();
             }
-            else
+            if(searchEmployeeName.CodeTextBox.Tag != null)
             {
-                searchList = (from item in list where item.Employees_Hiredate == null select item).ToList();
-                if (searchDepartmentName.CodeTextBox.Tag != null)
-                {
-                    searchList = (from item in searchList where item.CodeTable_CodeID.Equals(searchDepartmentName.CodeTextBox.Tag.ToString()) select item).ToList();
-                }
-                if (searchEmployeeName.CodeTextBox.Tag != null)
-                {
-                    searchList = (from item in searchList where item.Employees_ID.Equals(Convert.ToInt32(searchEmployeeName.CodeTextBox.Tag)) select item).ToList();
-                }
-                if (searchHiredate.Startdate.Tag != null && searchHiredate.Enddate.Tag != null)
-                {
-                    searchList = (from item in searchList where Convert.ToDateTime(Convert.ToDateTime(item.Employees_Resigndate).ToShortDateString()) >= Convert.ToDateTime(searchResigndate.Startdate.Tag.ToString()) && Convert.ToDateTime(Convert.ToDateTime(item.Employees_Resigndate).ToShortDateString()) <= Convert.ToDateTime(searchResigndate.Enddate.Tag.ToString()) select item).ToList();
-                }
-                dgvEmployee.DataSource = searchList;
-                dgvEmployee.CurrentCell = null;
+                searchList = (from item in searchList where item.Employees_ID.Equals(Convert.ToInt32(searchEmployeeName.CodeTextBox.Tag)) select item).ToList();
             }
+            if(searchHiredate.Startdate.Tag != null && searchHiredate.Enddate.Tag != null)
+            {
+                searchList = (from item in searchList where Convert.ToDateTime(Convert.ToDateTime(item.Employees_Hiredate).ToShortDateString()) >= Convert.ToDateTime(searchHiredate.Startdate.Tag.ToString()) && Convert.ToDateTime(Convert.ToDateTime(item.Employees_Hiredate).ToShortDateString()) <= Convert.ToDateTime(searchHiredate.Enddate.Tag.ToString()) select item).ToList();
+            }
+            if(searchResigndate.Startdate.Tag != null && searchResigndate.Enddate.Tag != null)
+            {
+                searchList = (from item in searchList where Convert.ToDateTime(Convert.ToDateTime(item.Employees_Resigndate).ToShortDateString()) >= Convert.ToDateTime(searchResigndate.Startdate.Tag.ToString()) && Convert.ToDateTime(Convert.ToDateTime(item.Employees_Resigndate).ToShortDateString()) <= Convert.ToDateTime(searchResigndate.Enddate.Tag.ToString()) select item).ToList();
+            }
+
+            dgvEmployee.DataSource = searchList;
+            dgvEmployee.CurrentCell = null;
 
             frm.NoticeMessage = Resources.SearchDone;
         }
@@ -206,7 +198,7 @@ namespace Team2_ERP
 
         private void rdo_CheckedChanged(object sender, EventArgs e)
         {
-            if(rdoWork.Checked)
+            if (rdoWork.Checked)
             {
                 searchResigndate.Visible = false;
                 searchHiredate.Visible = true;

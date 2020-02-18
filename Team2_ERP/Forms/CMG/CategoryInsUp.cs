@@ -144,7 +144,6 @@ namespace Team2_ERP
                 if (code.Substring(0, 2).Equals("CM"))
                 {
                     rdoSemiProduct.Enabled = false;
-                    rdoProduct.Enabled = false;
                     rdoResource.Checked = true;
                     cboContext.Visible = true;
                     txtContext.Visible = false;
@@ -153,17 +152,7 @@ namespace Team2_ERP
                 else if(code.Substring(0, 2).Equals("CS"))
                 {
                     rdoResource.Enabled = false;
-                    rdoProduct.Enabled = false;
                     rdoSemiProduct.Checked = true;
-                    cboContext.Visible = false;
-                    txtContext.Visible = true;
-                    txtContext.Text = info;
-                }
-                else if(code.Substring(0, 2).Equals("CP"))
-                {
-                    rdoProduct.Checked = true;
-                    rdoResource.Enabled = false;
-                    rdoSemiProduct.Enabled = false;
                     cboContext.Visible = false;
                     txtContext.Visible = true;
                     txtContext.Text = info;
@@ -194,17 +183,10 @@ namespace Team2_ERP
                 cboContext.Visible = true;
                 txtContext.Visible = false;
             }
-            else if(rdoSemiProduct.Checked)
+            else
             {
                 label1.Text = "반제품 카테고리 이름";
                 label2.Text = "반제품 카테고리 설명";
-                txtContext.Visible = true;
-                cboContext.Visible = false;
-            }
-            else
-            {
-                label1.Text = "완제품 카테고리 이름";
-                label2.Text = "완제품 카테고리 설명";
                 txtContext.Visible = true;
                 cboContext.Visible = false;
             }

@@ -142,11 +142,6 @@ namespace Team2_ERP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if(mode.Equals("Insert"))
-                InsertFactory();
-            else
-                UpdateFactory();
-
             if(txtFactoryName.Text.Length > 0 && !cboFactoryDivision.SelectedValue.Equals(2) && maskedFactoryNumber.Text.Replace("_", "").Replace("-", "").Trim().Length > 10 && addrFactory.Address1.Length > 0 && addrFactory.Address2.Length > 0)
             {
                 if(mode.Equals("Insert"))

@@ -33,7 +33,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rdoProduct = new System.Windows.Forms.RadioButton();
             this.rdoSemiProduct = new System.Windows.Forms.RadioButton();
             this.rdoResource = new System.Windows.Forms.RadioButton();
             this.cboContext = new System.Windows.Forms.ComboBox();
@@ -125,30 +124,18 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.rdoProduct);
             this.groupBox1.Controls.Add(this.rdoSemiProduct);
             this.groupBox1.Controls.Add(this.rdoResource);
-            this.groupBox1.Location = new System.Drawing.Point(61, 19);
+            this.groupBox1.Location = new System.Drawing.Point(82, 19);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(261, 66);
+            this.groupBox1.Size = new System.Drawing.Size(177, 66);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
-            // 
-            // rdoProduct
-            // 
-            this.rdoProduct.AutoSize = true;
-            this.rdoProduct.Location = new System.Drawing.Point(180, 29);
-            this.rdoProduct.Name = "rdoProduct";
-            this.rdoProduct.Size = new System.Drawing.Size(58, 18);
-            this.rdoProduct.TabIndex = 1;
-            this.rdoProduct.TabStop = true;
-            this.rdoProduct.Text = "완제품";
-            this.rdoProduct.UseVisualStyleBackColor = true;
             // 
             // rdoSemiProduct
             // 
             this.rdoSemiProduct.AutoSize = true;
-            this.rdoSemiProduct.Location = new System.Drawing.Point(100, 29);
+            this.rdoSemiProduct.Location = new System.Drawing.Point(103, 29);
             this.rdoSemiProduct.Name = "rdoSemiProduct";
             this.rdoSemiProduct.Size = new System.Drawing.Size(58, 18);
             this.rdoSemiProduct.TabIndex = 0;
@@ -160,7 +147,7 @@
             // rdoResource
             // 
             this.rdoResource.AutoSize = true;
-            this.rdoResource.Location = new System.Drawing.Point(20, 29);
+            this.rdoResource.Location = new System.Drawing.Point(24, 29);
             this.rdoResource.Name = "rdoResource";
             this.rdoResource.Size = new System.Drawing.Size(58, 18);
             this.rdoResource.TabIndex = 0;
@@ -209,6 +196,5 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rdoSemiProduct;
         private System.Windows.Forms.RadioButton rdoResource;
-        private System.Windows.Forms.RadioButton rdoProduct;
     }
 }

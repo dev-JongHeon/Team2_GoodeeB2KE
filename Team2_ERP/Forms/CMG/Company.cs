@@ -57,8 +57,6 @@ namespace Team2_ERP
         {
             InitGridView();
             frm = (MainForm)this.ParentForm;
-            StandardService service = new StandardService();
-            list = service.GetAllCompany();
         }
 
         private void InitMessage()
@@ -122,15 +120,13 @@ namespace Team2_ERP
         }
         public override void Search(object sender, EventArgs e)
         {
-            if (searchCompanyName.CodeTextBox.Text.Length > 0)
+            LoadGridView();
+
+            if (searchCompanyName.CodeTextBox.Tag != null)
             {
                 dgvCompany.DataSource = null;
                 List<CompanyVO> searchList = (from item in list where item.Company_ID.Equals(Convert.ToInt32(searchCompanyName.CodeTextBox.Tag)) select item).ToList();
                 dgvCompany.DataSource = searchList;
-            }
-            else
-            {
-                LoadGridView();
             }
 
             frm.NoticeMessage = Resources.SearchDone;
