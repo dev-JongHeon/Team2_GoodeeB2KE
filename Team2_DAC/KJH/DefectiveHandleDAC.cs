@@ -9,6 +9,9 @@ using Team2_VO;
 
 namespace Team2_DAC
 {
+    /// <summary>
+    /// 불량처리유형 DAC
+    /// </summary>
     public class DefectiveHandleDAC : ConnectionInfo
     {
         SqlConnection conn;
@@ -17,6 +20,10 @@ namespace Team2_DAC
             conn = new SqlConnection(this.ConnectionString);
         }
 
+        /// <summary>
+        /// 모든 불량처리유형을 가져오는 메서드
+        /// </summary>
+        /// <returns></returns>
         public List<DefectiveHandleVO> GetAllDefectiveHandle()
         {
             try
@@ -32,12 +39,17 @@ namespace Team2_DAC
                 }
                 return list;
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
         }
 
+        /// <summary>
+        /// 불량처리유형을 수정하는 메서드
+        /// </summary>
+        /// <param name="item">불량처리유형VO</param>
+        /// <returns></returns>
         public bool UpdateDefectiveHandle(DefectiveHandleVO item)
         {
             try
@@ -57,12 +69,17 @@ namespace Team2_DAC
                     return result > 0;
                 }
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
         }
 
+        /// <summary>
+        /// 불량처리유형을 삭제하는 메서드
+        /// </summary>
+        /// <param name="id">불량처리유형id</param>
+        /// <returns></returns>
         public bool DeleteDefectiveHandle(string id)
         {
             try
@@ -80,9 +97,9 @@ namespace Team2_DAC
                     return result > 0;
                 }
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
         }
     }
