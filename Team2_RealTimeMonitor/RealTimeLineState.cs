@@ -24,7 +24,7 @@ namespace Team2_RealTimeMonitor
 
         System.Timers.Timer timer;
         TcpClient client;
-        string host = "127.0.0.1";
+        string host = "192.168.0.10";
         int port = 5000;
         NetworkStream netStream;
         List<LineMonitorControl> lineMonitors;
@@ -106,7 +106,7 @@ namespace Team2_RealTimeMonitor
                 lineControl.CircleProgress.ProgressColor1 = lineControl.panel2.BackColor;
                 lineControl.CircleProgress.ProgressColor2 = lineControl.panel2.BackColor;
                 lineControl.CircleProgress.ProgressColor3 = Color.Violet;
-                lineControl.CircleProgress.ProgressColor4 = Color.Red;              
+                lineControl.CircleProgress.ProgressColor4 = Color.Red;
 
                 lineMonitors.Add(lineControl);
                 flowLayoutProductLine.Controls.Add(lineControl);
@@ -249,7 +249,7 @@ namespace Team2_RealTimeMonitor
             if (lineMonitor.LabelDefectiveText == "0")
             {
                 lineMonitor.CircleProgress.ProgressColor3 = Color.AliceBlue;
-                lineMonitor.CircleProgress.ProgressColor4 = Color.Green;                
+                lineMonitor.CircleProgress.ProgressColor4 = Color.Green;
             }
             // 불량이 한개라도 있는 경우 주황색
             else
@@ -258,14 +258,15 @@ namespace Team2_RealTimeMonitor
                 lineMonitor.CircleProgress.ProgressColor4 = Color.Yellow;
             }
 
+            lineMonitor.LabelStateText = "생산 중";
             lineMonitor.CircleProgress.Invoke((MethodInvoker)lineMonitor.CircleProgress.Invalidate);
 
 
             lineMonitor.LabelRequestText = msg[1];
             lineMonitor.LabelImportText = msg[2];
-            lineMonitor.LabelProduceText = (int.Parse(lineMonitor.LabelProduceText) + int.Parse(msg[3])).ToString();
-            lineMonitor.LabelDefectiveText = (int.Parse(lineMonitor.LabelDefectiveText) + int.Parse(msg[4])).ToString();
-          
+            lineMonitor.LabelProduceText = msg[3];
+            lineMonitor.LabelDefectiveText = msg[4];
+
 
             //lineMonitor.CircleProgress.Increment((int)Math.Truncate((decimal)(int.Parse(lineMonitor.LabelProduceText) / int.Parse(lineMonitor.LabelRequestText)) * 100));
             lineMonitor.CircleProgress.Invoke(
@@ -294,6 +295,7 @@ namespace Team2_RealTimeMonitor
                 control.LabelDefectiveText = "0";
                 control.CircleProgress.ProgressColor3 = Color.Violet;
                 control.CircleProgress.ProgressColor4 = Color.Red;
+                control.LabelStateText = "생산대기";
                 control.CircleProgress.Invoke((MethodInvoker)delegate { control.CircleProgress.Decrement((int)control.CircleProgress.Value); });
 
             }

@@ -13,9 +13,10 @@ namespace Team2_Machine
 {
     public class ServerMachine
     {
-        TcpListener listener;
-        string lineID;
+        #region 전역변수
+        TcpListener listener;        
         ClientInfo clientInfo;
+        #endregion
 
         public ServerMachine()
         {
@@ -28,7 +29,7 @@ namespace Team2_Machine
         // 일을 받기전에 클라이언트와 연결하는 코드
         private async Task AsyncWorkerServer()
         {
-            listener = new TcpListener(IPAddress.Any, 5000);
+            listener = new TcpListener(IPAddress.Parse("192.168.0.10"), 5000);
             listener.Start();
             clientInfo = new ClientInfo();
 
@@ -48,11 +49,17 @@ namespace Team2_Machine
         // 실질적으로 작업하는 코드
         private  void AsyncTcpProcess(object o)
         {
+            #region 전역변수
+
             TcpClient client = null;
             NetworkStream stream = null;
+            string lineID = string.Empty; // 라인아이디
+
+            #endregion
 
             try
             {
+                // 클라이언트 연결 접속값을 넘겨 받음
                 client = (TcpClient)o;
                 stream = client.GetStream();
 
@@ -60,6 +67,7 @@ namespace Team2_Machine
                 {
                     byte[] buff = new byte[1024];
 
+                    // 계속 받음
                     Task<int> readTask = stream.ReadAsync(buff, 0, buff.Length);
                     int nbytes = readTask.Result;
 
@@ -92,7 +100,7 @@ namespace Team2_Machine
 
                             lineID = workList[4];
                             // 최초 : 라인아이디(0), 메세지(1), 성공여부(2)
-                            Write(stream, new object[] { lineID, msg, isCompleted });
+                            Write(lineID, new object[] { lineID, msg, isCompleted });
 
                             OperationMachine machine = new OperationMachine();
 
@@ -102,10 +110,10 @@ namespace Team2_Machine
                             machine.RequestQty = Convert.ToInt32(workList[2]);
                             int totalQty = machine.ProductionMachine();
                             Console.WriteLine("작업완료 : {0}", totalQty);
-
+                            Console.WriteLine("생산공정아이디 : {0}", lineID);
 
                             //두번째 : 라인아이디(0), 메세지(1), 실적(2), 성공(3), 투입수량(4)
-                            Write(stream, new object[] { lineID, "생산완료", machine.PerformanceID, true, totalQty });     
+                            Write(lineID, new object[] { lineID, "생산완료", machine.PerformanceID, true, totalQty });     
 
                         }
                         else if (Convert.ToInt32(workList[0]) == 9)
@@ -141,12 +149,18 @@ namespace Team2_Machine
         /// <param name="stream"></param>
         /// <param name="arrObj"></param>
         /// <returns></returns>
-        private async void Write(NetworkStream stream, object[] arrObj)
+        private async void Write(string lineID, object[] arrObj)
         {
             try
-            {               
-                StreamWriter writer = new StreamWriter(stream);
-                //writer.AutoFlush = true;
+            {
+                List<ClientInfo> list = clientInfo.GetClient();
+                ClientInfo client = (from item in list
+                                     where item.Line == true && item.LineID == Convert.ToInt32(arrObj[0])
+                                     select item).FirstOrDefault();
+
+
+                StreamWriter writer = new StreamWriter(client.ClientData.GetStream());
+                writer.AutoFlush = true;
                 string msg = string.Join(",", arrObj);                
                 await writer.WriteLineAsync(msg).ConfigureAwait(false);
                 await writer.FlushAsync();

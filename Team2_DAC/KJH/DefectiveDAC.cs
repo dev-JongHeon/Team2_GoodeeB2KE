@@ -9,6 +9,9 @@ using Team2_VO;
 
 namespace Team2_DAC
 {
+    /// <summary>
+    /// 불량처리현황 DAC
+    /// </summary>
     public class DefectiveDAC : ConnectionInfo
     {
         SqlConnection conn;
@@ -16,7 +19,10 @@ namespace Team2_DAC
         {
             conn = new SqlConnection(this.ConnectionString);
         }
-
+        /// <summary>
+        /// 모든 불량현황을 가져오는 메서드
+        /// </summary>
+        /// <returns></returns>
         public List<DefectiveVO> GetAllDefective()
         {
             try
@@ -32,12 +38,16 @@ namespace Team2_DAC
                 }
                 return list;
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
         }
-
+        /// <summary>
+        /// 라인별 불량현황 가져오는 메서드
+        /// </summary>
+        /// <param name="date">날짜리스트</param>
+        /// <returns></returns>
         public DataSet GetDefectiveByLine(string date)
         {
             try
@@ -54,12 +64,16 @@ namespace Team2_DAC
                 }
                 return ds;
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
         }
-
+        /// <summary>
+        /// 불량유형별 불량현황을 가져오는 메서드
+        /// </summary>
+        /// <param name="date">날짜리스트</param>
+        /// <returns></returns>
         public DataSet GetDefectiveByDeftiveType(string date)
         {
             try
@@ -76,12 +90,17 @@ namespace Team2_DAC
                 }
                 return ds;
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
         }
 
+        /// <summary>
+        /// 불량처리유형별 불량현황을 가져오는 메서드
+        /// </summary>
+        /// <param name="date">날짜리스트</param>
+        /// <returns></returns>
         public DataSet GetDefectiveByDeftiveHandleType(string date)
         {
             try
@@ -98,9 +117,9 @@ namespace Team2_DAC
                 }
                 return ds;
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
         }
     }

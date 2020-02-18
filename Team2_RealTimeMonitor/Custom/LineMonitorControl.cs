@@ -38,6 +38,12 @@ namespace Team2_RealTimeMonitor
             get { return lblLineName.Text; }
             set { lblLineName.Text = value; }
         }
+
+        public string LabelStateText
+        {
+            get { return lblState.Text; }
+            set { lblState.Text = value; }
+        }
        
 
         public CircleProgressBar CircleProgress

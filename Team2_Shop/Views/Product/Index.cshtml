@@ -13,10 +13,11 @@
         @foreach (var p in Model.Products)
         {
             <div class="col-sm-12 col-md-6 col-lg-4">
+                <!-- 상품 리스트 구성 -->
                 @Html.Partial("ProductSummary", p)
             </div>
         }
-
+        <!-- 모달폼 코드 -->
         @Html.Partial("ProductModal")
     </div>
 
@@ -27,6 +28,7 @@
     </div>
 </div>
 
+<!-- 모달폼 스크립트 -->
 @section scripts {
     <script type="text/javascript">
         $(document).ready(function () {
@@ -36,7 +38,7 @@
                 var productid = button.data('productid');
                 var returnurl = button.data('returnurl');// Extract info from data-* attributes
                 var modal = $(this);
-                modal.find('.productname').text(productname + '를 장바구니에 추가하시겠습니까?');
+                modal.find('.productname').text(productname + '를 \r\n 장바구니에 추가하시겠습니까?');    
                 modal.find('.modal-footer > .col-md-6 > #productid').val(productid)
                 modal.find('#returnurl').val(returnurl)
             });

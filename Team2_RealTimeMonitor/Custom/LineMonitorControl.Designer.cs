@@ -33,8 +33,9 @@
             this.splitBody = new System.Windows.Forms.SplitContainer();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.circleProgress = new Team2_RealTimeMonitor.CircleProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblState = new System.Windows.Forms.Label();
             this.splitRightContent = new System.Windows.Forms.SplitContainer();
             this.lblLineName = new System.Windows.Forms.Label();
             this.splitTable = new System.Windows.Forms.SplitContainer();
@@ -52,7 +53,6 @@
             this.panelImport = new System.Windows.Forms.Panel();
             this.lblImport = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.circleProgress = new Team2_RealTimeMonitor.CircleProgressBar();
             this.panelMain.SuspendLayout();
             this.panelContent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitBody)).BeginInit();
@@ -154,27 +154,43 @@
             this.panel2.Size = new System.Drawing.Size(171, 151);
             this.panel2.TabIndex = 0;
             // 
+            // circleProgress
+            // 
+            this.circleProgress.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.circleProgress.Location = new System.Drawing.Point(19, 12);
+            this.circleProgress.Maximum = ((long)(100));
+            this.circleProgress.Name = "circleProgress";
+            this.circleProgress.ProgressColor1 = System.Drawing.Color.Silver;
+            this.circleProgress.ProgressColor2 = System.Drawing.Color.Silver;
+            this.circleProgress.ProgressColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
+            this.circleProgress.ProgressColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
+            this.circleProgress.ProgressShape = Team2_RealTimeMonitor.CircleProgressBar._ProgressShape.Flat;
+            this.circleProgress.Size = new System.Drawing.Size(126, 126);
+            this.circleProgress.TabIndex = 3;
+            this.circleProgress.Text = "circleProgressBar1";
+            this.circleProgress.Value = ((long)(0));
+            // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.lblState);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(171, 104);
             this.panel1.TabIndex = 0;
             // 
-            // label1
+            // lblState
             // 
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(39)))), ((int)(((byte)(64)))));
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(171, 104);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "생산 대기";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblState.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(39)))), ((int)(((byte)(64)))));
+            this.lblState.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblState.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblState.ForeColor = System.Drawing.Color.White;
+            this.lblState.Location = new System.Drawing.Point(0, 0);
+            this.lblState.Name = "lblState";
+            this.lblState.Size = new System.Drawing.Size(171, 104);
+            this.lblState.TabIndex = 2;
+            this.lblState.Text = "생산 대기";
+            this.lblState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // splitRightContent
             // 
@@ -397,22 +413,6 @@
             this.label5.Text = "생산 투입 개수";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // circleProgress
-            // 
-            this.circleProgress.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.circleProgress.Location = new System.Drawing.Point(19, 12);
-            this.circleProgress.Maximum = ((long)(100));
-            this.circleProgress.Name = "circleProgress";
-            this.circleProgress.ProgressColor1 = System.Drawing.Color.Silver;
-            this.circleProgress.ProgressColor2 = System.Drawing.Color.Silver;
-            this.circleProgress.ProgressColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
-            this.circleProgress.ProgressColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
-            this.circleProgress.ProgressShape = Team2_RealTimeMonitor.CircleProgressBar._ProgressShape.Flat;
-            this.circleProgress.Size = new System.Drawing.Size(126, 126);
-            this.circleProgress.TabIndex = 3;
-            this.circleProgress.Text = "circleProgressBar1";
-            this.circleProgress.Value = ((long)(0));
-            // 
             // LineMonitorControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -465,7 +465,7 @@
         private System.Windows.Forms.SplitContainer splitBody;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblState;
         private System.Windows.Forms.SplitContainer splitRightContent;
         private System.Windows.Forms.SplitContainer splitTable;
         private System.Windows.Forms.SplitContainer splitLeftTable;

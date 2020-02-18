@@ -466,7 +466,7 @@ namespace Team2_POP.Properties {
         }
         
         /// <summary>
-        ///   {produceID}의 생산되지 않은 작업이
+        ///   {0}의 생산되지 않은 작업이
         ///이미 할당되어 있습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string MsgWorkerSetFailResultContent {

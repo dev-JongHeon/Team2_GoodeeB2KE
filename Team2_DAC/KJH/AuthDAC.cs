@@ -9,6 +9,9 @@ using Team2_VO;
 
 namespace Team2_DAC
 {
+    /// <summary>
+    /// 유저권한 DAC
+    /// </summary>
     public class AuthDAC :ConnectionInfo
     {
         SqlConnection conn;
@@ -17,6 +20,11 @@ namespace Team2_DAC
             conn = new SqlConnection(this.ConnectionString);
         }
 
+        /// <summary>
+        /// id를 이용해서 user권한목록 가져오는 메서드
+        /// </summary>
+        /// <param name="id">유저id</param>
+        /// <returns></returns>
         public List<AuthVO> GetAuthByID(int id)
         {
             try
@@ -33,12 +41,18 @@ namespace Team2_DAC
                 }
                 return list;
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
         }
 
+        /// <summary>
+        /// id와 권한리스트를 받아서 유저권한 업데이트 메서드
+        /// </summary>
+        /// <param name="id">유저id</param>
+        /// <param name="list">권한리스트</param>
+        /// <returns></returns>
         public bool UpdateAuth(int id,List<AuthVO> list)
         {
             try
@@ -62,9 +76,9 @@ namespace Team2_DAC
                 }
                 return result > 0;
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
         }
     }

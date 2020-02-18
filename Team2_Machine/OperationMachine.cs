@@ -23,6 +23,8 @@ namespace Team2_Machine
         #region 전역변수
 
         int iTotalCnt; // 총 투입개수(소요개수)
+        int iSuccess;
+        int iDefect;
         #endregion
 
         public event MessageEventHandler MsgSender;
@@ -58,13 +60,16 @@ namespace Team2_Machine
                         currentQty--;
 
 
+                    iSuccess += itemQuality;
+                    iDefect = iTotalCnt - iSuccess;
+
                     // 생산중( 생산실적아이디, 생산성공개수, 실패개수)
                     service.Producing(PerformanceID, itemQuality, 1 - itemQuality);
 
                     //생산중 - 모니터링 화면
 
                     // 라인아이디, 요청개수, 진행개수 ,성공개수, 실패개수
-                    msg = string.Join(",", LineID, RequestQty, iTotalCnt, itemQuality, 1 - itemQuality);
+                    msg = string.Join(",", LineID, RequestQty, iTotalCnt, iSuccess, iDefect);
                     me.Message = msg;
 
                     if (MsgSender != null)
