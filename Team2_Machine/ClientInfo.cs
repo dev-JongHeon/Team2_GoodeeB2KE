@@ -13,6 +13,8 @@ namespace Team2_Machine
         public bool Line { get { return IsLine; } }
         public TcpClient ClientData { get { return Client; } }
 
+        public int LineID { get { return ID; } }
+
         List<ClientInfo> list = new List<ClientInfo>();
         TcpClient Client;
         bool IsLine;

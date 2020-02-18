@@ -295,7 +295,7 @@
     <comment>생산시작을 누른후 서버로부터 받아온 메세지 개수가 다른경우 오류가 발생한 경우 메세지</comment>
   </data>
   <data name="MsgWorkerSetFailResultContent" xml:space="preserve">
-    <value>{produceID}의 생산되지 않은 작업이
+    <value>{0}의 생산되지 않은 작업이
 이미 할당되어 있습니다.</value>
     <comment>작업할당을 눌렀을때 생산되지 않은 작업이 존재하는 경우 발생한 오류 메세지</comment>
   </data>

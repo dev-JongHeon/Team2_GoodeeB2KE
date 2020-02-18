@@ -24,7 +24,7 @@ namespace Team2_RealTimeMonitor
 
         System.Timers.Timer timer;
         TcpClient client;
-        string host = "127.0.0.1";
+        string host = "192.168.0.10";
         int port = 5000;
         NetworkStream netStream;
         List<LineMonitorControl> lineMonitors;
