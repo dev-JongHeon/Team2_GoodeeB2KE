@@ -22,6 +22,7 @@ namespace Team2_DAC
         private void WriteErrorLog(Exception ex)
         {
             string sss = ex.Message;
+            
         }
 
         #region 파라미터 대입

@@ -45,5 +45,17 @@ namespace Team2_Shop.Controllers
             Session["UserInfo"] = null;
             return RedirectToAction("../Home/Index");
         }
+
+        public ActionResult Register()
+        {
+            // 로그인 정보가 있는 경우 메인 페이지로 이동
+            if (Session["UserInfo"] != null) 
+                return View("../Home/Index");
+            // 없는 경우만 회원가입이 가능함
+            else
+            {
+                return View();
+            }
+        }
     }
 }

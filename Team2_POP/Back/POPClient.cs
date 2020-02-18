@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Net;
 using System.Diagnostics;
 using System.Timers;
+using System.Configuration;
 
 namespace Team2_POP
 {
@@ -35,7 +36,8 @@ namespace Team2_POP
         // 이벤트발생이 필요함(생산완료 or 생산실패)
         // 어떤 라인인지 필요
         // 서버에 접속할 client 필요  (AppConfig에 추가할 목록)
-        string host = "127.0.0.1";
+        string host = "192.168.0.10";
+        string clientIPInfo = ConfigurationManager.AppSettings["clientIP"];
         int port = 5000;
         NetworkStream netStream;
         System.Timers.Timer timer;
@@ -102,7 +104,7 @@ namespace Team2_POP
         public bool Connect()
         {
 
-            IPEndPoint clientIP = new IPEndPoint(IPAddress.Parse(host), new Random((int)DateTime.UtcNow.Ticks).Next(5001, 8901));
+            IPEndPoint clientIP = new IPEndPoint(IPAddress.Parse(clientIPInfo), new Random((int)DateTime.UtcNow.Ticks).Next(5001, 8901));
             client = new TcpClient(clientIP);
             try
             {

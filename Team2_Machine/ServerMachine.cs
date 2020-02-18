@@ -28,7 +28,7 @@ namespace Team2_Machine
         // 일을 받기전에 클라이언트와 연결하는 코드
         private async Task AsyncWorkerServer()
         {
-            listener = new TcpListener(IPAddress.Any, 5000);
+            listener = new TcpListener(IPAddress.Parse("192.168.0.10"), 5000);
             listener.Start();
             clientInfo = new ClientInfo();
 

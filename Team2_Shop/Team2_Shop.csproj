@@ -7442,6 +7442,7 @@
     <Content Include="Views\Product\ProductModal.cshtml" />
     <Content Include="Views\Cart\Completed.cshtml" />
     <Content Include="Views\Address\FindAddress.cshtml" />
+    <Content Include="Views\Login\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -39,7 +39,6 @@ namespace Team2_Machine
         public void DeleteClient(int ID)
         {
             ClientInfo info = list.Find(c => c.ID == ID);
-            info.Client.Close();
             info.Client.Dispose();
             list.Remove(info);
         }

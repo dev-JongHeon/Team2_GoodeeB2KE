@@ -16,7 +16,8 @@ namespace Team2_POP
         [STAThread]
         static void Main()
         {
-
+            //Application.ThreadException += Application_ThreadException;
+            //AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoginPOP());
