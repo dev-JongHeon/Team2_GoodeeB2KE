@@ -29,159 +29,160 @@
         private void InitializeComponent()
         {
             this.splitMain = new System.Windows.Forms.SplitContainer();
-            this.splitHeader = new System.Windows.Forms.SplitContainer();
-            this.panelHeaderLeft = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panelHeaderRight = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.splitBody = new System.Windows.Forms.SplitContainer();
-            this.panelBodyLeft = new System.Windows.Forms.Panel();
+            this.splitRight = new System.Windows.Forms.SplitContainer();
+            this.splitLeft = new System.Windows.Forms.SplitContainer();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.flowLayoutProductLine = new System.Windows.Forms.FlowLayoutPanel();
-            this.panelBodyRight = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.flowLayoutSemiProductLine = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.splitMain)).BeginInit();
             this.splitMain.Panel1.SuspendLayout();
             this.splitMain.Panel2.SuspendLayout();
             this.splitMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitHeader)).BeginInit();
-            this.splitHeader.Panel1.SuspendLayout();
-            this.splitHeader.Panel2.SuspendLayout();
-            this.splitHeader.SuspendLayout();
-            this.panelHeaderLeft.SuspendLayout();
-            this.panelHeaderRight.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitBody)).BeginInit();
-            this.splitBody.Panel1.SuspendLayout();
-            this.splitBody.Panel2.SuspendLayout();
-            this.splitBody.SuspendLayout();
-            this.panelBodyLeft.SuspendLayout();
-            this.panelBodyRight.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitRight)).BeginInit();
+            this.splitRight.Panel1.SuspendLayout();
+            this.splitRight.Panel2.SuspendLayout();
+            this.splitRight.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitLeft)).BeginInit();
+            this.splitLeft.Panel1.SuspendLayout();
+            this.splitLeft.Panel2.SuspendLayout();
+            this.splitLeft.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitMain
             // 
+            this.splitMain.BackColor = System.Drawing.Color.White;
             this.splitMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitMain.ForeColor = System.Drawing.Color.White;
             this.splitMain.Location = new System.Drawing.Point(0, 0);
             this.splitMain.Name = "splitMain";
-            this.splitMain.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitMain.Panel1
             // 
-            this.splitMain.Panel1.Controls.Add(this.splitHeader);
+            this.splitMain.Panel1.Controls.Add(this.splitLeft);
             // 
             // splitMain.Panel2
             // 
-            this.splitMain.Panel2.Controls.Add(this.splitBody);
+            this.splitMain.Panel2.Controls.Add(this.splitRight);
             this.splitMain.Size = new System.Drawing.Size(1904, 1041);
-            this.splitMain.SplitterDistance = 92;
+            this.splitMain.SplitterDistance = 700;
             this.splitMain.TabIndex = 0;
             // 
-            // splitHeader
+            // splitRight
             // 
-            this.splitHeader.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitHeader.Location = new System.Drawing.Point(0, 0);
-            this.splitHeader.Name = "splitHeader";
+            this.splitRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitRight.Location = new System.Drawing.Point(0, 0);
+            this.splitRight.Name = "splitRight";
+            this.splitRight.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // splitHeader.Panel1
+            // splitRight.Panel1
             // 
-            this.splitHeader.Panel1.Controls.Add(this.panelHeaderLeft);
+            this.splitRight.Panel1.Controls.Add(this.panel6);
             // 
-            // splitHeader.Panel2
+            // splitRight.Panel2
             // 
-            this.splitHeader.Panel2.Controls.Add(this.panelHeaderRight);
-            this.splitHeader.Size = new System.Drawing.Size(1904, 92);
-            this.splitHeader.SplitterDistance = 600;
-            this.splitHeader.TabIndex = 0;
+            this.splitRight.Panel2.Controls.Add(this.flowLayoutSemiProductLine);
+            this.splitRight.Panel2.Controls.Add(this.panel4);
+            this.splitRight.Panel2.Controls.Add(this.panel3);
+            this.splitRight.Size = new System.Drawing.Size(1200, 1041);
+            this.splitRight.SplitterDistance = 110;
+            this.splitRight.TabIndex = 0;
             // 
-            // panelHeaderLeft
+            // splitLeft
             // 
-            this.panelHeaderLeft.Controls.Add(this.label1);
-            this.panelHeaderLeft.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelHeaderLeft.Location = new System.Drawing.Point(0, 0);
-            this.panelHeaderLeft.Name = "panelHeaderLeft";
-            this.panelHeaderLeft.Size = new System.Drawing.Size(600, 92);
-            this.panelHeaderLeft.TabIndex = 0;
+            this.splitLeft.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitLeft.Location = new System.Drawing.Point(0, 0);
+            this.splitLeft.Name = "splitLeft";
+            this.splitLeft.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // label1
+            // splitLeft.Panel1
             // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("나눔고딕", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(600, 92);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "완제품 공장";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.splitLeft.Panel1.Controls.Add(this.panel5);
             // 
-            // panelHeaderRight
+            // splitLeft.Panel2
             // 
-            this.panelHeaderRight.Controls.Add(this.label2);
-            this.panelHeaderRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelHeaderRight.Location = new System.Drawing.Point(0, 0);
-            this.panelHeaderRight.Name = "panelHeaderRight";
-            this.panelHeaderRight.Size = new System.Drawing.Size(1300, 92);
-            this.panelHeaderRight.TabIndex = 0;
+            this.splitLeft.Panel2.Controls.Add(this.flowLayoutProductLine);
+            this.splitLeft.Panel2.Controls.Add(this.panel2);
+            this.splitLeft.Panel2.Controls.Add(this.panel1);
+            this.splitLeft.Size = new System.Drawing.Size(700, 1041);
+            this.splitLeft.SplitterDistance = 110;
+            this.splitLeft.TabIndex = 0;
             // 
-            // label2
+            // panel1
             // 
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("나눔고딕", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(0, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(1300, 92);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "반제품 공장";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(44)))), ((int)(((byte)(57)))));
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(70, 927);
+            this.panel1.TabIndex = 0;
             // 
-            // splitBody
+            // panel2
             // 
-            this.splitBody.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitBody.Location = new System.Drawing.Point(0, 0);
-            this.splitBody.Name = "splitBody";
-            // 
-            // splitBody.Panel1
-            // 
-            this.splitBody.Panel1.Controls.Add(this.panelBodyLeft);
-            // 
-            // splitBody.Panel2
-            // 
-            this.splitBody.Panel2.Controls.Add(this.panelBodyRight);
-            this.splitBody.Size = new System.Drawing.Size(1904, 945);
-            this.splitBody.SplitterDistance = 600;
-            this.splitBody.TabIndex = 0;
-            // 
-            // panelBodyLeft
-            // 
-            this.panelBodyLeft.Controls.Add(this.flowLayoutProductLine);
-            this.panelBodyLeft.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelBodyLeft.Location = new System.Drawing.Point(0, 0);
-            this.panelBodyLeft.Name = "panelBodyLeft";
-            this.panelBodyLeft.Size = new System.Drawing.Size(600, 945);
-            this.panelBodyLeft.TabIndex = 0;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(44)))), ((int)(((byte)(57)))));
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(630, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(70, 927);
+            this.panel2.TabIndex = 1;
             // 
             // flowLayoutProductLine
             // 
+            this.flowLayoutProductLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(44)))), ((int)(((byte)(57)))));
             this.flowLayoutProductLine.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutProductLine.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutProductLine.Location = new System.Drawing.Point(70, 0);
             this.flowLayoutProductLine.Name = "flowLayoutProductLine";
-            this.flowLayoutProductLine.Size = new System.Drawing.Size(600, 945);
-            this.flowLayoutProductLine.TabIndex = 0;
+            this.flowLayoutProductLine.Size = new System.Drawing.Size(560, 927);
+            this.flowLayoutProductLine.TabIndex = 2;
             // 
-            // panelBodyRight
+            // panel3
             // 
-            this.panelBodyRight.Controls.Add(this.flowLayoutSemiProductLine);
-            this.panelBodyRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelBodyRight.Location = new System.Drawing.Point(0, 0);
-            this.panelBodyRight.Name = "panelBodyRight";
-            this.panelBodyRight.Size = new System.Drawing.Size(1300, 945);
-            this.panelBodyRight.TabIndex = 0;
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(44)))), ((int)(((byte)(57)))));
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(70, 927);
+            this.panel3.TabIndex = 0;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(44)))), ((int)(((byte)(57)))));
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel4.Location = new System.Drawing.Point(1130, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(70, 927);
+            this.panel4.TabIndex = 1;
             // 
             // flowLayoutSemiProductLine
             // 
+            this.flowLayoutSemiProductLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(44)))), ((int)(((byte)(57)))));
             this.flowLayoutSemiProductLine.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutSemiProductLine.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutSemiProductLine.Location = new System.Drawing.Point(70, 0);
             this.flowLayoutSemiProductLine.Name = "flowLayoutSemiProductLine";
-            this.flowLayoutSemiProductLine.Size = new System.Drawing.Size(1300, 945);
-            this.flowLayoutSemiProductLine.TabIndex = 0;
+            this.flowLayoutSemiProductLine.Size = new System.Drawing.Size(1060, 927);
+            this.flowLayoutSemiProductLine.TabIndex = 2;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(44)))), ((int)(((byte)(57)))));
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(700, 110);
+            this.panel5.TabIndex = 0;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(44)))), ((int)(((byte)(57)))));
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(1200, 110);
+            this.panel6.TabIndex = 0;
             // 
             // RealTimeLineState
             // 
@@ -198,18 +199,14 @@
             this.splitMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitMain)).EndInit();
             this.splitMain.ResumeLayout(false);
-            this.splitHeader.Panel1.ResumeLayout(false);
-            this.splitHeader.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitHeader)).EndInit();
-            this.splitHeader.ResumeLayout(false);
-            this.panelHeaderLeft.ResumeLayout(false);
-            this.panelHeaderRight.ResumeLayout(false);
-            this.splitBody.Panel1.ResumeLayout(false);
-            this.splitBody.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitBody)).EndInit();
-            this.splitBody.ResumeLayout(false);
-            this.panelBodyLeft.ResumeLayout(false);
-            this.panelBodyRight.ResumeLayout(false);
+            this.splitRight.Panel1.ResumeLayout(false);
+            this.splitRight.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitRight)).EndInit();
+            this.splitRight.ResumeLayout(false);
+            this.splitLeft.Panel1.ResumeLayout(false);
+            this.splitLeft.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitLeft)).EndInit();
+            this.splitLeft.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -217,15 +214,15 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitMain;
-        private System.Windows.Forms.SplitContainer splitHeader;
-        private System.Windows.Forms.Panel panelHeaderLeft;
-        private System.Windows.Forms.Panel panelHeaderRight;
-        private System.Windows.Forms.SplitContainer splitBody;
-        private System.Windows.Forms.Panel panelBodyLeft;
-        private System.Windows.Forms.Panel panelBodyRight;
+        private System.Windows.Forms.SplitContainer splitRight;
+        private System.Windows.Forms.SplitContainer splitLeft;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutProductLine;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutSemiProductLine;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel6;
     }
 }

@@ -39,6 +39,7 @@
             this.btnImageAdd = new System.Windows.Forms.Button();
             this.txtProductImage = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.lblOrigin = new System.Windows.Forms.Label();
             this.nummargin = new System.Windows.Forms.NumericUpDown();
             this.txtProductMoney = new System.Windows.Forms.TextBox();
@@ -47,7 +48,6 @@
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxTitle)).BeginInit();
@@ -147,6 +147,7 @@
             // 
             // cboProductCategory
             // 
+            this.cboProductCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboProductCategory.FormattingEnabled = true;
             this.cboProductCategory.Location = new System.Drawing.Point(28, 45);
             this.cboProductCategory.Name = "cboProductCategory";
@@ -155,6 +156,7 @@
             // 
             // cboSemiProductCategory
             // 
+            this.cboSemiProductCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboSemiProductCategory.FormattingEnabled = true;
             this.cboSemiProductCategory.Location = new System.Drawing.Point(170, 45);
             this.cboSemiProductCategory.Name = "cboSemiProductCategory";
@@ -249,6 +251,15 @@
             this.label4.TabIndex = 4;
             this.label4.Text = "이미지";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(495, 24);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(168, 14);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "최대 20%까지 설정 가능합니다.";
+            // 
             // lblOrigin
             // 
             this.lblOrigin.AutoSize = true;
@@ -318,15 +329,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(495, 24);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(168, 14);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "최대 20%까지 설정 가능합니다.";
             // 
             // ProductComp
             // 

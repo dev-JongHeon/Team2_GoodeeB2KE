@@ -21,7 +21,8 @@ namespace Team2_ERP
         List<Order> Order_AllList = null;  // Masters
         List<OrderDetail> OrderDetail_AllList = null;  // Details
         List<Order> SearchedList = null;  // 검색용
-        MainForm main; 
+        MainForm main;
+        CheckBox headerCheckbox = new CheckBox();
         #endregion
         public OrderMainForm()
         {
@@ -37,6 +38,18 @@ namespace Team2_ERP
         private void LoadData()
         {
             UtilClass.SettingDgv(dgv_Order);
+
+            DataGridViewCheckBoxColumn cbx = new DataGridViewCheckBoxColumn();
+            cbx.Width = 30;
+            dgv_Order.Columns.Add(cbx);
+            Point headerLocation = dgv_Order.GetCellDisplayRectangle(0, -1, true).Location;
+            headerCheckbox.Location = new Point(headerLocation.X + 8, headerLocation.Y + 5);
+            headerCheckbox.BackColor = Color.FromArgb(55, 113, 138);
+            headerCheckbox.Size = new Size(16, 16);
+            headerCheckbox.Click += new EventHandler(headerCheckbox_Click);
+            dgv_Order.Controls.Add(headerCheckbox);
+            dgv_Order.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+
             UtilClass.AddNewColum(dgv_Order, "주문번호", "Order_ID", true);
             UtilClass.AddNewColum(dgv_Order, "고객ID", "Customer_UserID", true, 90);
             UtilClass.AddNewColum(dgv_Order, "고객성명", "Customer_Name", true);
@@ -44,10 +57,10 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Order, "배송지주소", "Order_Address1", true, 300);
             UtilClass.AddNewColum(dgv_Order, "배송지상세주소", "Order_Address2", true, 250);
             UtilClass.AddNewColum(dgv_Order, "주문총액", "TotalPrice", true);
-            dgv_Order.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_Order.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
-            dgv_Order.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgv_Order.Columns[6].DefaultCellStyle.Format = "#,#0원";
+            dgv_Order.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_Order.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
+            dgv_Order.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv_Order.Columns[7].DefaultCellStyle.Format = "#,#0원";
             Order_AllList = service.GetOrderList();
 
             UtilClass.SettingDgv(dgv_OrderDetail);
@@ -62,9 +75,37 @@ namespace Team2_ERP
             Search_Period.Enddate.BackColor = Color.LightYellow;
         }
 
+        #region 체크박스 관련 기능
+        private void headerCheckbox_Click(object sender, EventArgs e)
+        {
+            dgv_Order.EndEdit();
+            foreach (DataGridViewRow row in dgv_Order.Rows)
+            {
+                row.Cells[0].Value = headerCheckbox.Checked;
+            }
+        }
+
+        private void dgv_Order_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgv_Order.Rows.Count > 0 && e.ColumnIndex == 0)
+            {
+                bool isChecked = true;
+                foreach (DataGridViewRow row in dgv_Order.Rows)
+                {
+                    if (!Convert.ToBoolean(row.Cells[0].EditedFormattedValue))
+                    {
+                        isChecked = false;
+                        break;
+                    }
+                }
+                headerCheckbox.Checked = isChecked;
+            }
+        }
+        #endregion
+
         private void dgv_Order_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
         {
-            string Order_ID = dgv_Order.CurrentRow.Cells[0].Value.ToString();
+            string Order_ID = dgv_Order.CurrentRow.Cells[1].Value.ToString();
             List<OrderDetail> OrderDetail_List = (from list_detail in OrderDetail_AllList
                                                   where list_detail.Order_ID == Order_ID
                                                   select list_detail).ToList();
@@ -76,7 +117,7 @@ namespace Team2_ERP
             StringBuilder sb = new StringBuilder();
             foreach (DataGridViewRow row in dgv_Order.Rows)
             {
-                sb.Append($"'{row.Cells[0].Value.ToString()}',");
+                sb.Append($"'{row.Cells[1].Value.ToString()}',");
             }
             OrderDetail_AllList = service.GetOrderDetailList(sb.ToString().Trim(','));  // 디테일 AllList 갱신
         }
@@ -92,6 +133,7 @@ namespace Team2_ERP
             Search_Customer.CodeTextBox.Clear();
             Search_Period.Startdate.Clear();
             Search_Period.Enddate.Clear();
+            headerCheckbox.Checked = false;
         }
 
         #region ToolStrip 기능정의
@@ -111,10 +153,20 @@ namespace Team2_ERP
             {
                 if (MessageBox.Show(Properties.Resources.IsOrder, Properties.Resources.Notice, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    string orderID = dgv_Order.CurrentRow.Cells[0].Value.ToString();
-                    service.UpOrder_InsShipment(orderID, Session.Employee_ID);
+                    List<string> IDList = new List<string>();
+                    foreach (DataGridViewRow item in dgv_Order.Rows)
+                    {
+                        if (Convert.ToBoolean(item.Cells[0].EditedFormattedValue) != false)
+                        {
+                            IDList.Add(item.Cells[1].Value.ToString());
+                        }
+                    }
+                    bool check = service.UpOrder_InsShipment(IDList, Session.Employee_ID);
                     Func_Refresh();  // 새로고침
                     main.NoticeMessage = notice;
+
+                    if (check) MessageBox.Show(Properties.Resources.ProcessSuccess, Properties.Resources.Notice);
+                    else MessageBox.Show(Properties.Resources.ProcessFail, Properties.Resources.Notice, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
@@ -134,10 +186,20 @@ namespace Team2_ERP
             {
                 if (MessageBox.Show(Properties.Resources.IsCancelOrder, Properties.Resources.Notice, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    string order_ID = dgv_Order.CurrentRow.Cells[0].Value.ToString();
-                    service.DeleteOrder(order_ID);
+                    List<string> IDList = new List<string>();
+                    foreach (DataGridViewRow item in dgv_Order.Rows)
+                    {
+                        if (Convert.ToBoolean(item.Cells[0].EditedFormattedValue) != false)
+                        {
+                            IDList.Add(item.Cells[1].Value.ToString());
+                        }
+                    }
+                    bool check = service.DeleteOrder(IDList);
                     Func_Refresh();  // 새로고침
                     main.NoticeMessage = notice;
+
+                    if (check) MessageBox.Show(Properties.Resources.ProcessSuccess, Properties.Resources.Notice);
+                    else MessageBox.Show(Properties.Resources.ProcessFail, Properties.Resources.Notice, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {

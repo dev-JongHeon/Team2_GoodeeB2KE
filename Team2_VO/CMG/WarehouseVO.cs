@@ -16,5 +16,6 @@ namespace Team2_VO
         public bool Warehouse_DeletedYN { get; set; }
         public int Warehouse_Division { get; set; }
         public string Warehouse_Division_Name { get; set; }
+        public string Warehouse_AddrNumber { get; set; }
     }
 }

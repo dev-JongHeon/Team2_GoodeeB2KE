@@ -62,7 +62,7 @@ namespace Team2_ERP.Service.CMG
         public bool InsertWarehouse(WarehouseVO item)
         {
             WarehouseDAC dac = new WarehouseDAC();
-            return dac.InsertResource(item);
+            return dac.InsertWarehouse(item);
         }
 
         public bool UpdateWarehouse(WarehouseVO item)

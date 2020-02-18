@@ -97,7 +97,7 @@ namespace Team2_DAC
             }
         }
 
-        public void UpdateBalju_Processed(string baljuID, int employeeID)
+        public bool UpdateBalju_Processed(List<string> baljuID, int employeeID)
         {
             int check = 0;
             try
@@ -107,27 +107,27 @@ namespace Team2_DAC
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "SSD_UpdateBalju_Processed";
-                    cmd.Parameters.AddWithValue("@Balju_ID", baljuID);
-                    cmd.Parameters.AddWithValue("@employee_ID", employeeID);
+
                     conn.Open();
-                    check = cmd.ExecuteNonQuery();
+                    for (int i = 0; i < baljuID.Count; i++)
+                    {
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.AddWithValue("@Balju_ID", baljuID[i]);
+                        cmd.Parameters.AddWithValue("@employee_ID", employeeID);
+                        check += cmd.ExecuteNonQuery();
+                    }
                     conn.Close();
                 }
+                return check > 0;
             }
             catch (Exception err)
             {
                 System.Windows.Forms.MessageBox.Show(err.Message);
-            }
-            finally
-            {
-                if (check >= 1)
-                {
-                    System.Windows.Forms.MessageBox.Show("발주처리완료!");
-                }
+                return false;
             }
         }
 
-        public void DeleteBalju(string balju_ID)
+        public bool DeleteBalju(List<string> balju_ID)
         {
             int check = 0;
             try
@@ -137,26 +137,22 @@ namespace Team2_DAC
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "SSD_DeleteBalju";
-                    cmd.Parameters.AddWithValue("@Balju_ID", balju_ID);
+
                     conn.Open();
-                    check = cmd.ExecuteNonQuery();
+                    for (int i = 0; i < balju_ID.Count; i++)
+                    {
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.AddWithValue("@Balju_ID", balju_ID[i]);
+                        check += cmd.ExecuteNonQuery();
+                    }
                     conn.Close();
                 }
+                return check > 0;
             }
             catch (Exception err)
             {
                 System.Windows.Forms.MessageBox.Show(err.Message);
-            }
-            finally
-            {
-                if (check > 0)
-                {
-                    System.Windows.Forms.MessageBox.Show("삭제완료!");
-                }
-                else
-                {
-                    System.Windows.Forms.MessageBox.Show("삭제실패...");
-                }
+                return false;
             }
         }
     }

@@ -67,7 +67,9 @@ namespace Team2_ERP
         {
             frm.NoticeMessage = Resources.RefreshDone;
             dgvCustomer.DataSource = null;
-            searchCustomerName.CodeTextBox.Text = "";
+            searchCustomerName.CodeTextBox.Clear();
+            searchCustomerBirth.Startdate.Clear();
+            searchCustomerBirth.Enddate.Clear();
         }
 
         public override void Search(object sender, EventArgs e)

@@ -15,6 +15,7 @@ namespace Team2_VO
         public string Factory_Number { get; set; }
         public string Factory_Fax { get; set; }
         public string Factory_Address { get; set; }
+        public string Factory_AddrNumber { get; set; }
         public bool Factory_DeletedYN { get; set; }
     }
 }

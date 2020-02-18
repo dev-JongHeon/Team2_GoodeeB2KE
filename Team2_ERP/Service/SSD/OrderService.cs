@@ -34,16 +34,16 @@ namespace Team2_ERP.Service
             return dac.GetSalesStatus();
         }
 
-        public void UpOrder_InsShipment(string orderID, int employeeID)
+        public bool UpOrder_InsShipment(List<string> orderID, int employeeID)
         {
             OrderDAC dac = new OrderDAC();
-            dac.UpOrder_InsShipment(orderID, employeeID);
+            return dac.UpOrder_InsShipment(orderID, employeeID);
         }
 
-        public void DeleteOrder(string order_ID)
+        public bool DeleteOrder(List<string> order_ID)
         {
             OrderDAC dac = new OrderDAC();
-            dac.DeleteOrder(order_ID);
+            return dac.DeleteOrder(order_ID);
         }
     }
 }

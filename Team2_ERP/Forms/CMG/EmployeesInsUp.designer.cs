@@ -216,6 +216,7 @@
             // 
             // cboEmployeesCategory
             // 
+            this.cboEmployeesCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboEmployeesCategory.FormattingEnabled = true;
             this.cboEmployeesCategory.Location = new System.Drawing.Point(100, 76);
             this.cboEmployeesCategory.Name = "cboEmployeesCategory";

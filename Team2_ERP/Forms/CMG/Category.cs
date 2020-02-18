@@ -56,7 +56,7 @@ namespace Team2_ERP
         {
             frm.NoticeMessage = Resources.RefreshDone;
             dgvCategory.DataSource = null;
-            searchCategory.CodeTextBox.Text = "";
+            searchCategory.CodeTextBox.Clear();
         }
 
         public override void New(object sender, EventArgs e)
