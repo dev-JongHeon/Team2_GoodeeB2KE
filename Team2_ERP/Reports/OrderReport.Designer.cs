@@ -368,7 +368,7 @@ namespace Team2_ERP
             this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable1});
             this.PageHeader.Dpi = 254F;
-            this.PageHeader.HeightF = 89.95833F;
+            this.PageHeader.HeightF = 135F;
             this.PageHeader.Name = "PageHeader";
             // 
             // xrTable1
@@ -384,7 +384,7 @@ namespace Team2_ERP
             this.xrTable1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
             this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow1});
-            this.xrTable1.SizeF = new System.Drawing.SizeF(1910F, 89.95832F);
+            this.xrTable1.SizeF = new System.Drawing.SizeF(1910F, 135F);
             this.xrTable1.StylePriority.UseBackColor = false;
             this.xrTable1.StylePriority.UseBorders = false;
             this.xrTable1.StylePriority.UseFont = false;
@@ -596,7 +596,7 @@ namespace Team2_ERP
             this.DataMember = "dtOrder";
             this.DataSource = this.objectDataSource1;
             this.Dpi = 254F;
-            this.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margins = new System.Drawing.Printing.Margins(90, 100, 100, 100);
             this.PageHeight = 2970;
             this.PageWidth = 2100;

@@ -213,7 +213,7 @@ namespace Team2_ERP
         {
             frm.NoticeMessage = Resources.RefreshDone;
             GridViewReset();
-            searchProductName.CodeTextBox.Text = "";
+            searchProductName.CodeTextBox.Clear();
         }
 
         public override void New(object sender, EventArgs e)

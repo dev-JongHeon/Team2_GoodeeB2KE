@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Team2_DAC;
+using Team2_ERP.Properties;
 using Team2_ERP.Service;
 
 namespace Team2_ERP
@@ -53,6 +54,18 @@ namespace Team2_ERP
             StockStatus_AllList = service.GetStockStatus();
         }
 
+        private void SetDgvBySafety()
+        {
+            foreach (DataGridViewRow row in dgv_StockStatus.Rows)
+            {
+                if (Convert.ToInt32(row.Cells[6].Value.ToString().TrimEnd('개')) < 
+                    Convert.ToInt32(row.Cells[7].Value.ToString().TrimEnd('개')))
+                {
+                    row.DefaultCellStyle.BackColor = Color.PaleVioletRed;   // 색 수정필요
+                }
+            }
+        }
+
         private void Func_Refresh()  // 새로고침 기능
         {
             dgv_StockStatus.DataSource = null;
@@ -68,7 +81,7 @@ namespace Team2_ERP
         public override void Refresh(object sender, EventArgs e)  // 새로고침
         {
             Func_Refresh();
-            main.NoticeMessage = Properties.Settings.Default.RefreshDone;
+            main.NoticeMessage = Resources.RefreshDone;
         }
 
         public override void Search(object sender, EventArgs e)  // 검색
@@ -94,7 +107,8 @@ namespace Team2_ERP
                                        select item).ToList();
             }
             dgv_StockStatus.DataSource = SearchedList;
-            main.NoticeMessage = Properties.Settings.Default.SearchDone;
+            SetDgvBySafety();
+            main.NoticeMessage = Resources.SearchDone;
         }
 
         public override void Excel(object sender, EventArgs e)

@@ -54,8 +54,6 @@ namespace Team2_ERP
         {
             InitGridView();
             frm = (MainForm)this.ParentForm;
-            StandardService service = new StandardService();
-            list = service.GetAllCustomer();
         }
 
         private void InitMessage()
@@ -67,29 +65,27 @@ namespace Team2_ERP
         {
             frm.NoticeMessage = Resources.RefreshDone;
             dgvCustomer.DataSource = null;
-            searchCustomerName.CodeTextBox.Text = "";
+            searchCustomerName.CodeTextBox.Clear();
+            searchCustomerBirth.Startdate.Clear();
+            searchCustomerBirth.Enddate.Clear();
         }
 
         public override void Search(object sender, EventArgs e)
         {
-            if(searchCustomerName.CodeTextBox.Tag == null && searchCustomerBirth.Startdate.Tag == null && searchCustomerBirth.Enddate.Tag == null)
+            LoadGridView();
+
+            searchList = list;
+
+            if(searchCustomerName.CodeTextBox.Tag != null)
             {
-                LoadGridView();
+                searchList = (from item in searchList where item.Customer_ID.Equals(Convert.ToInt32(searchCustomerName.CodeTextBox.Tag)) select item).ToList();
             }
-            else
+            if(searchCustomerBirth.Startdate.Tag != null && searchCustomerBirth.Enddate.Tag != null)
             {
-                searchList = list;
-                if(searchCustomerName.CodeTextBox.Tag != null)
-                {
-                    searchList = (from item in searchList where item.Customer_ID == Convert.ToInt32(searchCustomerName.CodeTextBox.Tag) select item).ToList();
-                }
-                if(searchCustomerBirth.Startdate.Tag != null && searchCustomerBirth.Enddate.Tag != null)
-                {
-                    searchList = (from item in searchList where Convert.ToDateTime(Convert.ToDateTime(item.Customer_Birth).ToShortDateString()) >= Convert.ToDateTime(searchCustomerBirth.Startdate.Tag.ToString()) && Convert.ToDateTime(Convert.ToDateTime(item.Customer_Birth).ToShortDateString()) <= Convert.ToDateTime(searchCustomerBirth.Enddate.Tag.ToString()) select item).ToList();
-                }
-                dgvCustomer.DataSource = searchList;
+                searchList = (from item in searchList where Convert.ToDateTime(Convert.ToDateTime(item.Customer_Birth).ToShortDateString()) >= Convert.ToDateTime(searchCustomerBirth.Startdate.Tag.ToString()) && Convert.ToDateTime(Convert.ToDateTime(item.Customer_Birth).ToShortDateString()) <= Convert.ToDateTime(searchCustomerBirth.Enddate.Tag.ToString()) select item).ToList();
             }
 
+            dgvCustomer.DataSource = searchList;
             dgvCustomer.CurrentCell = null;
             frm.NoticeMessage = Resources.SearchDone;
         }

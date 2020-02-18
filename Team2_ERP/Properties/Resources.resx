@@ -439,7 +439,7 @@
     <comment>선도 - 발주현황에서 처리 버튼 눌렀을 때</comment>
   </data>
   <data name="IsCancelOrder" xml:space="preserve">
-    <value>정말 해당주문을 취소하시겠습니까?</value>
+    <value>정말 해당주문을 삭제하시겠습니까?</value>
     <comment>선도 - 주문현황에서 주문취소 버튼 눌렀을 때</comment>
   </data>
   <data name="IsDeleteBalju" xml:space="preserve">
@@ -448,7 +448,7 @@
   </data>
   <data name="IsOrder" xml:space="preserve">
     <value>정말 해당주문을 처리하시겠습니까?</value>
-    <comment>선도 - 주문현황에서 삭제 버튼 눌렀을 때</comment>
+    <comment>선도 - 주문현황에서 처리 버튼 눌렀을 때</comment>
   </data>
   <data name="Notice" xml:space="preserve">
     <value>알림</value>
@@ -489,5 +489,13 @@
   <data name="CalendarValidError" xml:space="preserve">
     <value>유효하지 않은 날짜형식입니다.</value>
     <comment>김종헌 달력유효성 실패 메세지</comment>
+  </data>
+  <data name="ProcessFail" xml:space="preserve">
+    <value>처리실패</value>
+    <comment>선도 - 일련의 처리들이 실패되었을 때 메시지박스의 메시지</comment>
+  </data>
+  <data name="ProcessSuccess" xml:space="preserve">
+    <value>처리완료</value>
+    <comment>선도 - 일련의 처리들이 완료되었을 때 메시지박스의 메시지</comment>
   </data>
 </root>

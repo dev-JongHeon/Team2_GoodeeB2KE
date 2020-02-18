@@ -105,6 +105,7 @@
             this.dgv_Balju.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_Balju.Size = new System.Drawing.Size(1364, 367);
             this.dgv_Balju.TabIndex = 2;
+            this.dgv_Balju.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Balju_CellContentClick);
             this.dgv_Balju.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Balju_CellDoubleClick);
             // 
             // Search_Period

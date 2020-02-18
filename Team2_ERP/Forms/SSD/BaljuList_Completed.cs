@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Team2_DAC;
+using Team2_ERP.Properties;
 using Team2_ERP.Service;
 using Team2_VO;
 
@@ -106,12 +107,12 @@ namespace Team2_ERP
         public override void Refresh(object sender, EventArgs e)  // 새로고침
         {
             Func_Refresh();
-            main.NoticeMessage = Properties.Settings.Default.RefreshDone;
+            main.NoticeMessage = Resources.RefreshDone;
         }
 
         public override void Search(object sender, EventArgs e)  // 검색
         {
-            if (Search_ReceiptPeriod.Startdate.Text == "    -  -") { main.NoticeMessage = Properties.Settings.Default.PeriodError; }
+            if (Search_ReceiptPeriod.Startdate.Text == "    -  -") { main.NoticeMessage = Resources.PeriodError; }
             else
             {
                 SearchedList = BaljuCompleted_AllList;
@@ -142,7 +143,7 @@ namespace Team2_ERP
                 dgv_BaljuCompleted.DataSource = SearchedList;
                 dgv_BaljuDetail.DataSource = null;
                 GetBaljuCompletedDetail_List();
-                main.NoticeMessage = Properties.Settings.Default.SearchDone;
+                main.NoticeMessage = Resources.SearchDone;
             }
         }
 

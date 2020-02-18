@@ -29,16 +29,16 @@ namespace Team2_ERP.Service
             return dac.GetBalju_DetailList(sb);
         }
 
-        public void UpdateBalju_Processed(string baljuID, int employeeID)
+        public bool UpdateBalju_Processed(List<string> baljuID, int employeeID)
         {
             BaljuDAC dac = new BaljuDAC();
-            dac.UpdateBalju_Processed(baljuID, employeeID);
+            return dac.UpdateBalju_Processed(baljuID, employeeID);
         }
 
-        public void DeleteBalju(string balju_ID)
+        public bool DeleteBalju(List<string> balju_ID)
         {
             BaljuDAC dac = new BaljuDAC();
-            dac.DeleteBalju(balju_ID);
+            return dac.DeleteBalju(balju_ID);
         }
     }
 }

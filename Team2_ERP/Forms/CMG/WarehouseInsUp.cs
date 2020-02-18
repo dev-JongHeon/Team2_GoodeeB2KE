@@ -20,6 +20,7 @@ namespace Team2_ERP
 
         string mode = string.Empty;
         int code = 0;
+        string division = string.Empty;
 
         public enum EditMode { Insert, Update }
 
@@ -33,10 +34,7 @@ namespace Team2_ERP
                 lblName.Text = "창고 수정";
                 pbxTitle.Image = Resources.Edit_32x32;
 
-                code = item.Warehouse_ID;
-                txtWarehouseName.Text = item.Warehouse_Name;
-                maskedWarehouseNumber.Text = item.Warehouse_Number;
-                maskedWarehouseFaxNumber.Text = item.Warehouse_Fax;
+                UpdateInfo(item);
             }
             else
             {
@@ -44,6 +42,19 @@ namespace Team2_ERP
                 lblName.Text = "창고 등록";
                 pbxTitle.Image = Resources.AddFile_32x32;
             }
+        }
+
+        private void UpdateInfo(WarehouseVO item)
+        {
+            code = item.Warehouse_ID;
+            txtWarehouseName.Text = item.Warehouse_Name;
+            maskedWarehouseNumber.Text = item.Warehouse_Number;
+            maskedWarehouseFaxNumber.Text = item.Warehouse_Fax;
+            division = item.Warehouse_Division_Name;
+            string[] str = item.Warehouse_Address.Split('　');
+            addrWarehouse.Address1 = str[0];
+            addrWarehouse.Address2 = str[1];
+            addrWarehouse.Zipcode = item.Warehouse_AddrNumber;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -61,7 +72,8 @@ namespace Team2_ERP
                     Warehouse_Division = Convert.ToInt32(cboWarehouseDivision.SelectedValue),
                     Warehouse_Number = maskedWarehouseNumber.Text,
                     Warehouse_Fax = maskedWarehouseFaxNumber.Text,
-                    Warehouse_Address = addrWarehouse.Address1 + "　" + addrWarehouse.Address2
+                    Warehouse_Address = addrWarehouse.Address1 + "　" + addrWarehouse.Address2,
+                    Warehouse_AddrNumber = addrWarehouse.Zipcode
                 };
 
                 if(item.Warehouse_Number.Replace("-", "").Trim().Length < 10)
@@ -90,7 +102,8 @@ namespace Team2_ERP
                     Warehouse_Name = txtWarehouseName.Text,
                     Warehouse_Number = maskedWarehouseNumber.Text,
                     Warehouse_Fax = maskedWarehouseNumber.Text,
-                    Warehouse_Address = addrWarehouse.Address1 + "　" + addrWarehouse.Address2
+                    Warehouse_Address = addrWarehouse.Address1 + "　" + addrWarehouse.Address2,
+                    Warehouse_AddrNumber = addrWarehouse.Zipcode
                 };
 
                 if (item.Warehouse_Number.Replace("-", "").Trim().Length < 10)
@@ -116,7 +129,7 @@ namespace Team2_ERP
 
             DataRow dr = dt.NewRow();
             dr["WName"] = "선택";
-            dr["Value"] = 0;
+            dr["Value"] = 2;
             dt.Rows.Add(dr);
 
             dr = dt.NewRow();
@@ -132,6 +145,18 @@ namespace Team2_ERP
             cboWarehouseDivision.DataSource = dt;
             cboWarehouseDivision.DisplayMember = "WName";
             cboWarehouseDivision.ValueMember = "Value";
+
+            if(mode.Equals("Update"))
+            {
+                if(division.Contains("반제품"))
+                {
+                    cboWarehouseDivision.SelectedValue = 1;
+                }
+                else
+                {
+                    cboWarehouseDivision.SelectedValue = 0;
+                }
+            }
         }
 
 
@@ -142,7 +167,7 @@ namespace Team2_ERP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if(txtWarehouseName.Text.Length > 0 && !cboWarehouseDivision.SelectedText.Equals("선택") && addrWarehouse.Address1.Length > 0 && addrWarehouse.Address2.Length > 0)
+            if(txtWarehouseName.Text.Length > 0 && !cboWarehouseDivision.SelectedValue.Equals(2) && addrWarehouse.Address1.Length > 0 && addrWarehouse.Address2.Length > 0)
             {
                 if(mode.Equals("Insert"))
                 {

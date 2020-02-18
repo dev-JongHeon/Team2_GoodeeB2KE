@@ -18,6 +18,7 @@ namespace Team2_ERP
         public enum EditMode { Insert, Update }
 
         int code = 0;
+        string division = string.Empty;
 
         string mode = string.Empty;
 
@@ -36,12 +37,23 @@ namespace Team2_ERP
                 lblName.Text = "거래처 수정";
                 mode = "Update";
                 pbxTitle.Image = Resources.Edit_32x32;
-                code = item.Company_ID;
-                txtCompanyName.Text = item.Company_Name;
-                maskedCompanyNumber.Text = item.Company_Number;
-                maskedCompanyFaxNumber.Text = item.Company_Fax;
-                txtCompanyOwner.Text = item.Company_Owner;
+
+                UpdateInfo(item);
             }
+        }
+
+        private void UpdateInfo(CompanyVO item)
+        {
+            code = item.Company_ID;
+            txtCompanyName.Text = item.Company_Name;
+            maskedCompanyNumber.Text = item.Company_Number;
+            maskedCompanyFaxNumber.Text = item.Company_Fax;
+            txtCompanyOwner.Text = item.Company_Owner;
+            addrCompany.Zipcode = item.Company_AddrNumber;
+            string[] str = item.Company_Address.Split('　');
+            addrCompany.Address1 = str[0];
+            addrCompany.Address2 = str[1];
+            division = item.CodeTable_CodeID;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -54,6 +66,11 @@ namespace Team2_ERP
             StandardService service = new StandardService();
             List<ComboItemVO> companyList = service.GetComboSector();
             UtilClass.ComboBinding(cboCompanyDivision, companyList, "선택");
+
+            if(mode.Equals("Update"))
+            {
+                cboCompanyDivision.SelectedValue = division;
+            }
         }
 
         private void InsertCompany()
@@ -65,7 +82,8 @@ namespace Team2_ERP
                 Company_Fax = maskedCompanyFaxNumber.Text,
                 CodeTable_CodeID = cboCompanyDivision.SelectedValue.ToString(),
                 Company_Owner = txtCompanyOwner.Text,
-                Company_Address = addrCompany.Address1 + "　" + addrCompany.Address2
+                Company_Address = addrCompany.Address1 + "　" + addrCompany.Address2,
+                Company_AddrNumber = addrCompany.Zipcode
             };
 
             if(item.Company_Fax.Replace("-", "").Trim().Length < 10)
@@ -87,7 +105,8 @@ namespace Team2_ERP
                 Company_Fax = maskedCompanyFaxNumber.Text,
                 CodeTable_CodeID = cboCompanyDivision.SelectedValue.ToString(),
                 Company_Owner = txtCompanyOwner.Text,
-                Company_Address = addrCompany.Address1 + "　" + addrCompany.Address2
+                Company_Address = addrCompany.Address1 + "　" + addrCompany.Address2,
+                Company_AddrNumber = addrCompany.Zipcode
             };
 
             if (item.Company_Fax.Replace("-", "").Trim().Length < 10)

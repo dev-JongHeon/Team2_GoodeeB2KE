@@ -148,6 +148,7 @@
             // 
             // cboWarehouseDivision
             // 
+            this.cboWarehouseDivision.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboWarehouseDivision.FormattingEnabled = true;
             this.cboWarehouseDivision.Location = new System.Drawing.Point(125, 81);
             this.cboWarehouseDivision.Name = "cboWarehouseDivision";

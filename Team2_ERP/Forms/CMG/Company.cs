@@ -33,9 +33,11 @@ namespace Team2_ERP
 
             UtilClass.AddNewColum(dgvCompany, "거래처ID", "Company_ID", true, 100);
             UtilClass.AddNewColum(dgvCompany, "거래처명", "Company_Name", true, 100);
+            UtilClass.AddNewColum(dgvCompany, "우편번호", "Company_AddrNumber", true, 100);
             UtilClass.AddNewColum(dgvCompany, "주소", "Company_Address", true, 100);
             UtilClass.AddNewColum(dgvCompany, "전화번호", "Company_Number", true, 100);
             UtilClass.AddNewColum(dgvCompany, "FAX번호", "Company_Fax", true, 100);
+            UtilClass.AddNewColum(dgvCompany, "구분ID", "CodeTable_CodeID", false, 100);
             UtilClass.AddNewColum(dgvCompany, "구분", "CodeTable_CodeName", true, 100);
             UtilClass.AddNewColum(dgvCompany, "대표명", "Company_Owner", true, 100);
 
@@ -55,8 +57,6 @@ namespace Team2_ERP
         {
             InitGridView();
             frm = (MainForm)this.ParentForm;
-            StandardService service = new StandardService();
-            list = service.GetAllCompany();
         }
 
         private void InitMessage()
@@ -68,7 +68,7 @@ namespace Team2_ERP
         {
             frm.NoticeMessage = Resources.RefreshDone;
             dgvCompany.DataSource = null;
-            searchCompanyName.CodeTextBox.Text = "";
+            searchCompanyName.CodeTextBox.Clear();
         }
 
         public override void New(object sender, EventArgs e)
@@ -120,15 +120,13 @@ namespace Team2_ERP
         }
         public override void Search(object sender, EventArgs e)
         {
-            if (searchCompanyName.CodeTextBox.Text.Length > 0)
+            LoadGridView();
+
+            if (searchCompanyName.CodeTextBox.Tag != null)
             {
                 dgvCompany.DataSource = null;
                 List<CompanyVO> searchList = (from item in list where item.Company_ID.Equals(Convert.ToInt32(searchCompanyName.CodeTextBox.Tag)) select item).ToList();
                 dgvCompany.DataSource = searchList;
-            }
-            else
-            {
-                LoadGridView();
             }
 
             frm.NoticeMessage = Resources.SearchDone;
@@ -159,14 +157,17 @@ namespace Team2_ERP
         {
             if (e.RowIndex < dgvCompany.Rows.Count && e.RowIndex > -1)
             {
-                if (dgvCompany.Rows[e.RowIndex].Cells[4].Value == null)
+                if (dgvCompany.Rows[e.RowIndex].Cells[5].Value == null)
                 {
                     item = new CompanyVO
                     {
                         Company_ID = Convert.ToInt32(dgvCompany.Rows[e.RowIndex].Cells[0].Value),
                         Company_Name = dgvCompany.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                        Company_Number = dgvCompany.Rows[e.RowIndex].Cells[3].Value.ToString(),
-                        Company_Owner = dgvCompany.Rows[e.RowIndex].Cells[6].Value.ToString()
+                        Company_AddrNumber = dgvCompany.Rows[e.RowIndex].Cells[2].Value.ToString(),
+                        Company_Address = dgvCompany.Rows[e.RowIndex].Cells[3].Value.ToString(),
+                        Company_Number = dgvCompany.Rows[e.RowIndex].Cells[4].Value.ToString(),
+                        CodeTable_CodeID = dgvCompany.Rows[e.RowIndex].Cells[6].Value.ToString(),
+                        Company_Owner = dgvCompany.Rows[e.RowIndex].Cells[8].Value.ToString()
                     };
                 }
                 else
@@ -175,9 +176,12 @@ namespace Team2_ERP
                     {
                         Company_ID = Convert.ToInt32(dgvCompany.Rows[e.RowIndex].Cells[0].Value),
                         Company_Name = dgvCompany.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                        Company_Number = dgvCompany.Rows[e.RowIndex].Cells[3].Value.ToString(),
-                        Company_Fax = dgvCompany.Rows[e.RowIndex].Cells[4].Value.ToString(),
-                        Company_Owner = dgvCompany.Rows[e.RowIndex].Cells[6].Value.ToString()
+                        Company_AddrNumber = dgvCompany.Rows[e.RowIndex].Cells[2].Value.ToString(),
+                        Company_Address = dgvCompany.Rows[e.RowIndex].Cells[3].Value.ToString(),
+                        Company_Number = dgvCompany.Rows[e.RowIndex].Cells[4].Value.ToString(),
+                        Company_Fax = dgvCompany.Rows[e.RowIndex].Cells[5].Value.ToString(),
+                        CodeTable_CodeID = dgvCompany.Rows[e.RowIndex].Cells[6].Value.ToString(),
+                        Company_Owner = dgvCompany.Rows[e.RowIndex].Cells[8].Value.ToString()
                     };
                 }
             }

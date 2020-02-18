@@ -129,6 +129,7 @@
     </Compile>
     <Compile Include="Models\EISInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\EISService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.css" />

@@ -38,6 +38,9 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgvResource, "제품개수", "Product_Qty", true, 100, DataGridViewContentAlignment.MiddleRight);
             UtilClass.AddNewColum(dgvResource, "안전재고량", "Product_Safety", true, 100, DataGridViewContentAlignment.MiddleRight);
             UtilClass.AddNewColum(dgvResource, "제품카테고리", "CodeTable_CodeName", true, 100);
+            UtilClass.AddNewColum(dgvResource, "거래처ID", "Company_ID", false, 100);
+            UtilClass.AddNewColum(dgvResource, "카테고리ID", "Product_Category", false, 100);
+            UtilClass.AddNewColum(dgvResource, "창고ID", "Warehouse_ID", false, 100);
             dgvResource.Columns[3].DefaultCellStyle.Format = "#,##0원";
             dgvResource.Columns[4].DefaultCellStyle.Format = "#,##0개";
             dgvResource.Columns[5].DefaultCellStyle.Format = "#,##0개";
@@ -58,8 +61,6 @@ namespace Team2_ERP
         {
             InitGridView();
             frm = (MainForm)this.ParentForm;
-            StandardService service = new StandardService();
-            list = service.GetAllResource();
         }
 
         private void InitMessage()
@@ -71,7 +72,7 @@ namespace Team2_ERP
         {
             frm.NoticeMessage = Resources.RefreshDone;
             dgvResource.DataSource = null;
-            searchResourceName.CodeTextBox.Text = "";
+            searchResourceName.CodeTextBox.Clear();
         }
 
         public override void New(object sender, EventArgs e)
@@ -124,15 +125,13 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)
         {
-            if (searchResourceName.CodeTextBox.Text.Length > 0)
+            LoadGridView();
+
+            if (searchResourceName.CodeTextBox.Tag != null)
             {
                 dgvResource.DataSource = null;
                 List<ResourceVO> searchList = (from item in list where item.Product_ID.Contains(searchResourceName.CodeTextBox.Tag.ToString()) && item.Product_DeletedYN == false select item).ToList();
                 dgvResource.DataSource = searchList;
-            }
-            else
-            {
-                LoadGridView();
             }
 
             frm.NoticeMessage = Resources.SearchDone;
@@ -168,7 +167,10 @@ namespace Team2_ERP
                     Product_Name = dgvResource.Rows[e.RowIndex].Cells[1].Value.ToString(),
                     Product_Price = Convert.ToInt32(dgvResource.Rows[e.RowIndex].Cells[3].Value.ToString().Replace(",", "").Replace("원", "")),
                     Product_Qty = Convert.ToInt32(dgvResource.Rows[e.RowIndex].Cells[4].Value.ToString()),
-                    Product_Safety = Convert.ToInt32(dgvResource.Rows[e.RowIndex].Cells[5].Value.ToString())
+                    Product_Safety = Convert.ToInt32(dgvResource.Rows[e.RowIndex].Cells[5].Value.ToString()),
+                    Company_ID = Convert.ToInt32(dgvResource.Rows[e.RowIndex].Cells[7].Value),
+                    Product_Category = dgvResource.Rows[e.RowIndex].Cells[8].Value.ToString(),
+                    Warehouse_ID = Convert.ToInt32(dgvResource.Rows[e.RowIndex].Cells[9].Value)
                 };
             }
         }
