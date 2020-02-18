@@ -55,7 +55,7 @@ namespace Team2_DAC
                     cmd.Parameters.AddWithValue("@Warehouse_Name", item.Warehouse_Name);
                     cmd.Parameters.AddWithValue("@Warehouse_Address1", str[0]);
                     cmd.Parameters.AddWithValue("@Warehouse_Address2", str[1]);
-                    if (item.Warehouse_Number == string.Empty)
+                    if (item.Warehouse_Number == null)
                     {
                         cmd.Parameters.AddWithValue("@Warehouse_Number", DBNull.Value);
                     }
@@ -63,7 +63,7 @@ namespace Team2_DAC
                     {
                         cmd.Parameters.AddWithValue("@Warehouse_Number", item.Warehouse_Number);
                     }
-                    if(item.Warehouse_Fax == string.Empty)
+                    if(item.Warehouse_Fax == null)
                     {
                         cmd.Parameters.AddWithValue("@Warehouse_Fax", DBNull.Value);
                     }
@@ -101,8 +101,22 @@ namespace Team2_DAC
                     cmd.Parameters.AddWithValue("@Warehouse_Name", item.Warehouse_Name);
                     cmd.Parameters.AddWithValue("@Warehouse_Address1", str[0]);
                     cmd.Parameters.AddWithValue("@Warehouse_Address2", str[1]);
-                    cmd.Parameters.AddWithValue("@Warehouse_Number", item.Warehouse_Number);
-                    cmd.Parameters.AddWithValue("@Warehouse_Fax", item.Warehouse_Fax);
+                    if (item.Warehouse_Number == null)
+                    {
+                        cmd.Parameters.AddWithValue("@Warehouse_Number", DBNull.Value);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@Warehouse_Number", item.Warehouse_Number);
+                    }
+                    if (item.Warehouse_Fax == null)
+                    {
+                        cmd.Parameters.AddWithValue("@Warehouse_Fax", DBNull.Value);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@Warehouse_Fax", item.Warehouse_Fax);
+                    }
                     cmd.Parameters.AddWithValue("@Warehouse_Division", item.Warehouse_Division);
                     cmd.Parameters.AddWithValue("@Warehouse_AddrNumber", item.Warehouse_AddrNumber);
                     cmd.Parameters.AddWithValue("@Warehouse_ID", item.Warehouse_ID);

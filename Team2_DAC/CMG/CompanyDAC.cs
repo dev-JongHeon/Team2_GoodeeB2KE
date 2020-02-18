@@ -45,7 +45,7 @@ namespace Team2_DAC
 
         public bool InsertCompany(CompanyVO item)
         {
-            string sql = "insert into Company(Company_Name, Company_Address1, Company_Address2, Company_Number, Company_Fax, CodeTable_CodeID, Company_Owner) values (@Company_Name, @Company_Address1, @Company_Address2, @Company_Number, @Company_Fax, @CodeTable_CodeID, @Company_Owner) ";
+            string sql = "insert into Company(Company_Name, Company_AddrNumber, Company_Address1, Company_Address2, Company_Number, Company_Fax, CodeTable_CodeID, Company_Owner) values (@Company_Name, @Company_AddrNumber, @Company_Address1, @Company_Address2, @Company_Number, @Company_Fax, @CodeTable_CodeID, @Company_Owner) ";
 
             string[] str = item.Company_Address.Split('　');
             try
@@ -53,10 +53,11 @@ namespace Team2_DAC
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@Company_Name", item.Company_Name);
-                    cmd.Parameters.AddWithValue("@Warehouse_Address1", str[0]);
-                    cmd.Parameters.AddWithValue("@Warehouse_Address2", str[1]);
+                    cmd.Parameters.AddWithValue("@Company_AddrNumber", item.Company_AddrNumber);
+                    cmd.Parameters.AddWithValue("@Company_Address1", str[0]);
+                    cmd.Parameters.AddWithValue("@Company_Address2", str[1]);
                     cmd.Parameters.AddWithValue("@Company_Number", item.Company_Number);
-                    if (item.Company_Fax == string.Empty)
+                    if (item.Company_Fax == null)
                         cmd.Parameters.AddWithValue("@Company_Fax", DBNull.Value);
                     else
                         cmd.Parameters.AddWithValue("@Company_Fax", item.Company_Fax);

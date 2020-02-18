@@ -58,12 +58,10 @@ namespace Team2_ERP
             if(mode.Equals("Insert"))
             {
                 dtpEmployeesHireDate.Enabled = true;
-                dtpEmployeesResignDate.Enabled = false;
             }
             else
             {
                 dtpEmployeesHireDate.Enabled = false;
-                dtpEmployeesResignDate.Enabled = true;
                 txtEmployeesPassword.Enabled = false;
             }
         }
@@ -95,7 +93,6 @@ namespace Team2_ERP
             {
                 Employees_Name = txtEmployeesName.Text,
                 CodeTable_CodeID = cboEmployeesCategory.SelectedValue.ToString(),
-                Employees_Resigndate = dtpEmployeesResignDate.Value.ToShortDateString(),
                 Employees_PWD = txtEmployeesPassword.Text,
                 Employees_Phone = maskedEmployeesPhoneNumber.Text,
                 Employees_Birth = dtpEmployeesBirthDay.Value.ToShortDateString(),
@@ -122,7 +119,7 @@ namespace Team2_ERP
             }
             else
             {
-                if (txtEmployeesName.Text.Length > 0 && cboEmployeesCategory.SelectedValue != null && dtpEmployeesResignDate.Value != null && maskedEmployeesPhoneNumber.Text.Replace("_", "").Replace("-", "").Trim().Length > 10 && dtpEmployeesBirthDay.Value != null)
+                if (txtEmployeesName.Text.Length > 0 && cboEmployeesCategory.SelectedValue != null && maskedEmployeesPhoneNumber.Text.Replace("_", "").Replace("-", "").Trim().Length > 10 && dtpEmployeesBirthDay.Value != null)
                 {
                     UpdateEmployee();
                     DialogResult = MessageBox.Show(Resources.ModDone, Resources.ModDone, MessageBoxButtons.OK, MessageBoxIcon.Information);

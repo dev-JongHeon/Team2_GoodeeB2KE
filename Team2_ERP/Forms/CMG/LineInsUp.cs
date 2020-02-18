@@ -91,11 +91,6 @@ namespace Team2_ERP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if(mode.Equals("Insert"))
-                InsertLine();
-            else
-                UpdateLine();
-
             if(txtLineName.Text.Length > 0 && cboFactoryName.SelectedValue != null)
             {
                 if(mode.Equals("Insert"))

@@ -63,15 +63,12 @@ namespace Team2_ERP
             dgvFactory.DataSource = FList;
             dgvFactory.CurrentCell = null;
             dgvLine.DataSource = null;
-            searchLineName.Visible = false;
         }
 
         private void Factory_Load(object sender, EventArgs e)
         {
             InitGridView();
             frm = (MainForm)this.ParentForm;
-            StandardService service = new StandardService();
-            FList = service.GetAllFactory();
             searchLineName.Visible = false;
         }
 
@@ -202,6 +199,8 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)
         {
+            LoadGridView();
+
             //공장, 공정 두개 다 검색할 때
             if (searchFactoryName.CodeTextBox.Text.Length > 0 && searchLineName.CodeTextBox.Text.Length > 0)
             {
@@ -227,10 +226,6 @@ namespace Team2_ERP
                 dgvLine.DataSource = null;
                 List<LineVO> searchLList = (from item in LList where item.Line_ID == Convert.ToInt32(searchLineName.CodeTextBox.Tag) select item).ToList();
                 dgvLine.DataSource = searchLList;
-            }
-            else
-            {
-                LoadGridView();
             }
 
             frm.NoticeMessage = Resources.SearchDone;
