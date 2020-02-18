@@ -82,7 +82,8 @@ namespace Team2_ERP
                 Company_Fax = maskedCompanyFaxNumber.Text,
                 CodeTable_CodeID = cboCompanyDivision.SelectedValue.ToString(),
                 Company_Owner = txtCompanyOwner.Text,
-                Company_Address = addrCompany.Address1 + "　" + addrCompany.Address2
+                Company_Address = addrCompany.Address1 + "　" + addrCompany.Address2,
+                Company_AddrNumber = addrCompany.Zipcode
             };
 
             if(item.Company_Fax.Replace("-", "").Trim().Length < 10)
@@ -104,7 +105,8 @@ namespace Team2_ERP
                 Company_Fax = maskedCompanyFaxNumber.Text,
                 CodeTable_CodeID = cboCompanyDivision.SelectedValue.ToString(),
                 Company_Owner = txtCompanyOwner.Text,
-                Company_Address = addrCompany.Address1 + "　" + addrCompany.Address2
+                Company_Address = addrCompany.Address1 + "　" + addrCompany.Address2,
+                Company_AddrNumber = addrCompany.Zipcode
             };
 
             if (item.Company_Fax.Replace("-", "").Trim().Length < 10)

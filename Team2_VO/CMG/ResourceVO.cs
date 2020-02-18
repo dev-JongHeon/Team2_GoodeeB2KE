@@ -10,7 +10,7 @@ namespace Team2_VO
     {
         public string Product_ID { get; set; }
         public string Product_Name { get; set; }
-        public string Warehouse_ID { get; set; }
+        public int Warehouse_ID { get; set; }
         public string Warehouse_Name { get; set; }
         public int Product_Price { get; set; }
         public int Product_Qty { get; set; }

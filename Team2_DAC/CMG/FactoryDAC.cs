@@ -45,7 +45,7 @@ namespace Team2_DAC
 
         public bool InsertFactory(FactoryVO item)
         {
-            string sql = "insert into Factory(Factory_Name, Factory_Division, Factory_Number, Factory_Fax, Factory_Address1, Factory_Address2) values (@Factory_Name, @Factory_Division, @Factory_Number, @Factory_Fax, @Factory_Address1, @Factory_Address2) ";
+            string sql = "insert into Factory(Factory_Name, Factory_Division, Factory_Number, Factory_Fax, Factory_AddrNumber, Factory_Address1, Factory_Address2) values (@Factory_Name, @Factory_Division, @Factory_Number, @Factory_Fax, @Factory_AddrNumber, @Factory_Address1, @Factory_Address2) ";
 
             string[] str = item.Factory_Address.Split('　');
             try
@@ -53,11 +53,12 @@ namespace Team2_DAC
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@Factory_Name", item.Factory_Name);
+                    cmd.Parameters.AddWithValue("@Factory_AddrNumber", item.Factory_AddrNumber);
                     cmd.Parameters.AddWithValue("@Factory_Address1", str[0]);
                     cmd.Parameters.AddWithValue("@Factory_Address2", str[1]);
                     cmd.Parameters.AddWithValue("@Factory_Division", item.Factory_Division);
                     cmd.Parameters.AddWithValue("@Factory_Number", item.Factory_Number);
-                    if (item.Factory_Fax == string.Empty)
+                    if (item.Factory_Fax == null)
                     {
                         cmd.Parameters.AddWithValue("@Factory_Fax", DBNull.Value);
                     }
@@ -83,7 +84,7 @@ namespace Team2_DAC
 
         public bool UpdateFactory(FactoryVO item)
         {
-            string sql = "Update Factory set Factory_Name = @Factory_Name, Factory_Address1 = @Factory_Address1, Factory_Address2 = @Factory_Address2, Factory_Division = @Factory_Division, Factory_Number = @Factory_Number, Factory_Fax = @Factory_Fax where Factory_ID = @Factory_ID ";
+            string sql = "Update Factory set Factory_Name = @Factory_Name, Factory_AddrNumber = @Factory_AddrNumber, Factory_Address1 = @Factory_Address1, Factory_Address2 = @Factory_Address2, Factory_Division = @Factory_Division, Factory_Number = @Factory_Number, Factory_Fax = @Factory_Fax where Factory_ID = @Factory_ID ";
 
             string[] str = item.Factory_Address.Split('　');
             try
@@ -91,6 +92,7 @@ namespace Team2_DAC
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@Factory_Name", item.Factory_Name);
+                    cmd.Parameters.AddWithValue("@Factory_AddrNumber", item.Factory_AddrNumber);
                     cmd.Parameters.AddWithValue("@Factory_Address1", str[0]);
                     cmd.Parameters.AddWithValue("@Factory_Address2", str[1]);
                     cmd.Parameters.AddWithValue("@Factory_Number", item.Factory_Number);
