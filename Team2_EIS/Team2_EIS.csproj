@@ -7541,10 +7541,10 @@
     <Content Include="build\scss\_variables.scss" />
     <Content Include="plugins\input-mask\phone-codes\phone-be.json" />
     <Content Include="plugins\input-mask\phone-codes\phone-codes.json" />
-    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\gdB2KEEIS - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\gdB2KEEIS - ReadOnly - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\gdB2KEEIS - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\HomeFTP.pubxml" />
     <None Include="Properties\PublishProfiles\KJHfortest - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\KJHfortest - FTP1.pubxml" />
     <None Include="Properties\PublishProfiles\KJHfortest - ReadOnly - FTP.pubxml" />
