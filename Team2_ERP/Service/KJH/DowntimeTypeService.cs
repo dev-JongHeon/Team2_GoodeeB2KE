@@ -16,13 +16,13 @@ namespace Team2_ERP
             return dac.GetAllDowntimeType();
         }
 
-        public bool UpdateDefectiveType(DowntimeTypeVO item)
+        public bool UpdateDowntimeType(DowntimeTypeVO item)
         {
             DowntimeTypeDAC dac = new DowntimeTypeDAC();
             return dac.UpdateDowntimeType(item);
         }
 
-        public bool DeleteDefectiveType(string id)
+        public bool DeleteDowntimeType(string id)
         {
             DowntimeTypeDAC dac = new DowntimeTypeDAC();
             return dac.DeleteDowntimeType(id);

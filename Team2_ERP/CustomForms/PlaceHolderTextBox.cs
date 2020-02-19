@@ -9,6 +9,9 @@ using System.Windows.Forms;
 
 namespace Team2_ERP
 {
+    /// <summary>
+    /// PlaceHolder기능이 있는 CustomControl TextBox
+    /// </summary>
     public partial class PlaceHolderTextBox : TextBox
     {
         public bool isPlaceHolder = true;

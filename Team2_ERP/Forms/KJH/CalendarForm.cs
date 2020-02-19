@@ -9,14 +9,34 @@ using Team2_ERP.Properties;
 
 namespace Team2_ERP
 {
+    /// <summary>
+    /// 공통 달력폼
+    /// </summary>
     public partial class CalendarForm : Team2_ERP.BasePopup
     {
+        #region 전역변수
+
+        /// <summary>
+        /// 시작날짜 프로퍼티
+        /// </summary>
         public DateTime Startdate { get => StartCalendar.SelectionStart; set => StartCalendar.SelectionStart = value; }
+
+        /// <summary>
+        /// 종료날짜 프로퍼티
+        /// </summary>
         public DateTime Enddate { get => EndCalendar.SelectionStart; set => EndCalendar.SelectionStart = value; }
+
+        /// <summary>
+        /// 모드 정의
+        /// </summary>
         public enum Mode
         {
             Today, LastWeek, Week, LastMonth, Month, Year, Year1_4, Year2_4, Year3_4, Year4_4, YearFirstHalf, YearSecondHalf, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec
         };
+
+        /// <summary>
+        /// 모드 설정
+        /// </summary>
         private Mode calendarmode;
         public Mode CalendarMode
         {
@@ -129,7 +149,9 @@ namespace Team2_ERP
                 }
             }
         }
+        #endregion
 
+        #region 폼관련
         public CalendarForm()
         {
             InitializeComponent();
@@ -142,7 +164,9 @@ namespace Team2_ERP
             Enddate = end;
 
         }
+        #endregion
 
+        #region 이벤트 관련
         private void ButtonClick(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
@@ -170,5 +194,6 @@ namespace Team2_ERP
                 DialogResult = DialogResult.None;
             }
         }
+        #endregion
     }
 }

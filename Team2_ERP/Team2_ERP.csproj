@@ -589,7 +589,6 @@
     <Compile Include="Service\CMG\BOMService.cs" />
     <Compile Include="Service\KJH\AuthService.cs" />
     <Compile Include="Service\KJH\DefectiveHandleService.cs" />
-    <Compile Include="Service\KJH\ExcelService.cs" />
     <Compile Include="Service\KJH\ProduceService.cs" />
     <Compile Include="Service\KJH\WorkService.cs" />
     <Compile Include="Service\KJH\DowntimeService.cs" />

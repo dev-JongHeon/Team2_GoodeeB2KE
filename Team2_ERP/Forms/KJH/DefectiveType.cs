@@ -80,7 +80,7 @@ namespace Team2_ERP
             }
             catch (Exception err)
             {
-                MessageBox.Show(err.Message);
+                Log.WriteError(err.Message, err);
             }
             dgvDefectiveType.DataSource = null;
             if (!isFirst)
@@ -153,7 +153,7 @@ namespace Team2_ERP
                     }
                     catch (Exception err)
                     {
-                        MessageBox.Show(err.Message);
+                        Log.WriteError(err.Message, err);
                     }
                 }
                 RefreshClicked();

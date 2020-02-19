@@ -11,9 +11,12 @@ using Team2_VO;
 
 namespace Team2_ERP
 {
+    /// <summary>
+    /// 공통 검색용 UserControl
+    /// </summary>
     public partial class SearchUserControl : UserControl
     {
-
+        #region 전역변수
         public TextBox CodeTextBox
         {
             get { return txtCode; }
@@ -34,6 +37,9 @@ namespace Team2_ERP
 
         public string Labelname { get => lblName.Text; set => lblName.Text = value; }
 
+        /// <summary>
+        /// 모드 정의
+        /// </summary>
         public enum Mode
         {
             Employee, DepOperation, DepMaterial, DepSales, DepProd1, DepProd2, Defective, Product, Downtime, Company,
@@ -42,6 +48,9 @@ namespace Team2_ERP
 
         Mode Modes = Mode.Employee;
 
+        /// <summary>
+        /// 모드 설정
+        /// </summary>
         public Mode ControlType
         {
             get { return Modes; }
@@ -117,13 +126,21 @@ namespace Team2_ERP
                 }
             }
         }
+        #endregion
 
-
+        #region 폼관련
         public SearchUserControl()
         {
             InitializeComponent();
         }
+        #endregion
 
+        #region 이벤트 관련
+        /// <summary>
+        /// 검색버튼 클릭 시 이벤트 메서드
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
             // 원하는 폼 띄우기
@@ -137,29 +154,45 @@ namespace Team2_ERP
             }
         }
 
+        /// <summary>
+        /// 키보드 입력 이벤트 메서드
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtCode_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(e.KeyChar == Convert.ToChar(Keys.Back)))
+            if (!(e.KeyChar == Convert.ToChar(Keys.Back))) // 백스페이스만 가능
             {
                 e.Handled = true;
             }
-            else
+            else // 백스페이스 입력하면
             {
-                txtCode.Tag = null;
+                txtCode.Tag = null; // Tag=null
             }
         }
 
+        /// <summary>
+        /// 마우스 클릭 이벤트 메서드
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtCode_MouseClick(object sender, MouseEventArgs e)
         {
-            txtCode.SelectAll();
+            txtCode.SelectAll(); //전체 선택
         }
 
+        /// <summary>
+        /// Text값 변경 시 이벤트 메서드
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtCode_TextChanged(object sender, EventArgs e)
         {
-            if (txtCode.TextLength == 0)
+            if (txtCode.TextLength == 0) // 길이가 0이되면
             {
-                txtCode.Tag = null;
+                txtCode.Tag = null; //Tag=null
             }
         }
+        #endregion
     }
 }

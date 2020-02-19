@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace Team2_ERP
 {
+    /// <summary>
+    /// MDI로 설정하기 위한 TabForm
+    /// </summary>
     public partial class TabForm : Form
     {
         #region MDI를위한 것들

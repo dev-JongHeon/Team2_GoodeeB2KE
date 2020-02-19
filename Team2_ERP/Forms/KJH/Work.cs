@@ -87,7 +87,7 @@ namespace Team2_ERP
             }
             catch (Exception err)
             {
-                MessageBox.Show(err.Message);
+                Log.WriteError(err.Message, err);
             }
             dgvWorkList.DataSource = null;
             dgvProduce.DataSource = null;
@@ -304,7 +304,7 @@ namespace Team2_ERP
                 }
                 catch (Exception err)
                 {
-                    MessageBox.Show(err.Message);
+                    Log.WriteError(err.Message, err);
                 }
             }
         }

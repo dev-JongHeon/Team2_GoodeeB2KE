@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace Team2_ERP
 {
+    /// <summary>
+    /// 숫자만 입력할 수 있는 CustomControl
+    /// </summary>
     public partial class NumTXT : TextBox
     {
         public NumTXT()

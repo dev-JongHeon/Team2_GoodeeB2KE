@@ -52,7 +52,7 @@ namespace Team2_ERP
             }
             catch (Exception err)
             {
-                MessageBox.Show(err.Message);
+                Log.WriteError(err.Message,err);
             }
             txtSearch.CodeTextBox.Clear();
             frm.NoticeMessage = Resources.RefreshDone;
@@ -140,7 +140,7 @@ namespace Team2_ERP
                     }
                     catch (Exception err)
                     {
-                        MessageBox.Show(err.Message);
+                        Log.WriteError(err.Message, err);
                     }
                 }
                 RefreshClicked();
