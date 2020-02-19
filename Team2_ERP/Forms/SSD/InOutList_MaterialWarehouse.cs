@@ -32,8 +32,8 @@ namespace Team2_ERP
             main = (MainForm)this.MdiParent;
             LoadData();
         }
-        
 
+        #region dgv 관련기능
         private void LoadData()
         {
             UtilClass.SettingDgv(dgv_Stock);
@@ -47,6 +47,7 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Stock, "수불수량", "StockReceipt_Quantity", true);
             UtilClass.AddNewColum(dgv_Stock, "등록사원", "Employees_Name", true);
             UtilClass.AddNewColum(dgv_Stock, "창고유형", "Warehouse_Division", false);
+            dgv_Stock.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_Stock.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_Stock.Columns[2].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
             dgv_Stock.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -58,25 +59,8 @@ namespace Team2_ERP
             Search_Period.Startdate.BackColor = Color.LightYellow;
             Search_Period.Enddate.BackColor = Color.LightYellow;
             Group_Rdo.Enabled = false;
-        }
-        private void Func_Refresh()  // 새로고침 기능
-        {
-            dgv_Stock.DataSource = null;
-
-            try { StockReceipt_AllList = service.GetStockReceipts(false); }  //  자재, 반제품 수불내역 전체 갱신
-            catch (Exception err) { Log.WriteError(err.Message, err); }
-
-            // 검색조건 초기화
-            Search_Period.Startdate.Clear();
-            Search_Period.Enddate.Clear();
-            Search_Material.CodeTextBox.Clear();
-            Search_Warehouse.CodeTextBox.Clear();
-
-            rdo_All.Checked = false;
-            rdo_In.Checked = false;
-            rdo_Out.Checked = false;
-            Group_Rdo.Enabled = false;
-        }
+        } 
+        #endregion
 
         #region 라디오버튼 검색조건
         private void radioButton1_CheckedChanged(object sender, EventArgs e) // 라디오버튼 체크상황 별 검색조건
@@ -109,6 +93,25 @@ namespace Team2_ERP
             Func_Refresh();
             main.NoticeMessage = Resources.RefreshDone;
         }
+        private void Func_Refresh()  // 새로고침 기능
+        {
+            dgv_Stock.DataSource = null;
+
+            try { StockReceipt_AllList = service.GetStockReceipts(false); }  //  자재, 반제품 수불내역 전체 갱신
+            catch (Exception err) { Log.WriteError(err.Message, err); }
+
+            // 검색조건 초기화
+            Search_Period.Startdate.Clear();
+            Search_Period.Enddate.Clear();
+            Search_Material.CodeTextBox.Clear();
+            Search_Warehouse.CodeTextBox.Clear();
+
+            rdo_All.Checked = false;
+            rdo_In.Checked = false;
+            rdo_Out.Checked = false;
+            Group_Rdo.Enabled = false;
+        }
+
         public override void Search(object sender, EventArgs e)  // 검색
         {
             if (Search_Period.Startdate.Text == "    -  -") { main.NoticeMessage = Resources.PeriodError; }
@@ -151,10 +154,7 @@ namespace Team2_ERP
 
         public override void Excel(object sender, EventArgs e)
         {
-            if (dgv_Stock.Rows.Count == 0)
-            { 
-                main.NoticeMessage = Properties.Resources.ExcelError; 
-            }
+            if (dgv_Stock.Rows.Count == 0) main.NoticeMessage = Properties.Resources.ExcelError; 
             else
             {
                 using (WaitForm frm = new WaitForm())
@@ -172,30 +172,33 @@ namespace Team2_ERP
 
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
-            if (dgv_Stock.Rows.Count == 0)
-            {
-                main.NoticeMessage = Properties.Resources.NonData;
-            }
+            if (dgv_Stock.Rows.Count == 0) main.NoticeMessage = Properties.Resources.NonData;
             else
             {
                 using (WaitForm frm = new WaitForm())
                 {
-                    InOutMaterialWarehouseReport br = new InOutMaterialWarehouseReport();
-                    dsStockReceipt ds = new dsStockReceipt();
-
-                    ds.Relations.Clear();
-                    ds.Tables.Clear();
-                    ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
-                    ds.Tables[0].TableName = "dtStockReceipt";
-
-                    //ds.AcceptChanges();
-
-                    br.DataSource = ds;
-                    using (ReportPrintTool printTool = new ReportPrintTool(br))
-                    {
-                        printTool.ShowRibbonPreviewDialog();
-                    }  
+                    frm.Processing = ExportPrint;
+                    frm.ShowDialog();
                 }
+            }
+        }
+
+        private void ExportPrint()
+        {
+            InOutMaterialWarehouseReport br = new InOutMaterialWarehouseReport();
+            dsStockReceipt ds = new dsStockReceipt();
+
+            ds.Relations.Clear();
+            ds.Tables.Clear();
+            ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+            ds.Tables[0].TableName = "dtStockReceipt";
+
+            //ds.AcceptChanges();
+
+            br.DataSource = ds;
+            using (ReportPrintTool printTool = new ReportPrintTool(br))
+            {
+                printTool.ShowRibbonPreviewDialog();
             }
         }
         #endregion

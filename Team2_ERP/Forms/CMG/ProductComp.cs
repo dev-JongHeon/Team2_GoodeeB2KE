@@ -54,23 +54,30 @@ namespace Team2_ERP
 
         private void InitCombo()
         {
-            BOMService service = new BOMService();
-            if (mode.Equals("Insert"))
+            try
             {
-                //완제품의 모든 카테고리 목록 바인딩
-                List<ComboItemVO> productList = (from item in service.GetComboProductCategory() where item.ID.Contains("CP") select item).ToList();
-                UtilClass.ComboBinding(cboProductCategory, productList, "선택");
+                BOMService service = new BOMService();
+                if (mode.Equals("Insert"))
+                {
+                    //완제품의 모든 카테고리 목록 바인딩
+                    List<ComboItemVO> productList = (from item in service.GetComboProductCategory() where item.ID.Contains("CP") select item).ToList();
+                    UtilClass.ComboBinding(cboProductCategory, productList, "선택");
+                }
+                else
+                {
+                    //수정할 완제품의 카테고리만 바인딩
+                    List<ComboItemVO> productList = (from item in service.GetComboProductCategory() where item.ID.Equals(pCategory) select item).ToList();
+                    UtilClass.ComboBinding(cboProductCategory, productList);
+                }
+                //반제품의 모든 카테고리 목록 바인딩
+                List<ComboItemVO> categoryList = (from item in service.GetComboProductCategory() where item.ID.Contains("CS") select item).ToList();
+                UtilClass.ComboBinding(cboSemiProductCategory, categoryList, "선택");
+                CategoryLabelName(categoryList);
             }
-            else
+            catch (Exception err)
             {
-                //수정할 완제품의 카테고리만 바인딩
-                List<ComboItemVO> productList = (from item in service.GetComboProductCategory() where item.ID.Equals(pCategory) select item).ToList();
-                UtilClass.ComboBinding(cboProductCategory, productList);
+                Log.WriteError(err.Message, err);
             }
-            //반제품의 모든 카테고리 목록 바인딩
-            List<ComboItemVO> categoryList = (from item in service.GetComboProductCategory() where item.ID.Contains("CS") select item).ToList();
-            UtilClass.ComboBinding(cboSemiProductCategory, categoryList, "선택");
-            CategoryLabelName(categoryList);
         }
 
         //데이터그리드뷰 설정
@@ -89,8 +96,15 @@ namespace Team2_ERP
 
         private void LoadGridView()
         {
-            BOMService service = new BOMService();
-            list = service.GetAllProduct();
+            try
+            {
+                BOMService service = new BOMService();
+                list = service.GetAllProduct();
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
             List<ProductVO> resourceList = (from item in list where item.Product_Category.Contains($"{cboSemiProductCategory.SelectedValue.ToString()}") select item).ToList();
             dgvProduct.DataSource = resourceList;
         }
@@ -135,41 +149,55 @@ namespace Team2_ERP
         //수정할 때 수정하는 완제품의 이미지를 가져온다.
         private void GetImage()
         {
-            BOMService service = new BOMService();
-            List<ProductVO> productList = service.GetImage(pCode);
-            filePath = productList[0].Product_Image;
-            MemoryStream ms = new MemoryStream(filePath);
-            pictureBox1.Image = Image.FromStream(ms);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            try
+            {
+                BOMService service = new BOMService();
+                List<ProductVO> productList = service.GetImage(pCode);
+                filePath = productList[0].Product_Image;
+                MemoryStream ms = new MemoryStream(filePath);
+                pictureBox1.Image = Image.FromStream(ms);
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
         }
 
         //수정할 완제품의 조합데이터를 List에 받아서 사용자 컨트롤에 할당
         private void UpdateInfoLoad()
         {
-            BOMService service = new BOMService();
-            list = service.GetAllProduct();
-            productList = service.GetAllCombination($"'{pCode}'");
-            foreach (Control control in splitContainer2.Panel1.Controls)
+            try
             {
-                if (control is SemiProductCompControl)
+                BOMService service = new BOMService();
+                list = service.GetAllProduct();
+                productList = service.GetAllCombination($"'{pCode}'");
+                foreach (Control control in splitContainer2.Panel1.Controls)
                 {
-                    SemiProductCompControl spc = (SemiProductCompControl)control;
-
-                    for (int i = 0; i < productList.Count; i++)
+                    if (control is SemiProductCompControl)
                     {
-                        if (spc.LblName.Tag.ToString().Equals(productList[i].Product_Category))
+                        SemiProductCompControl spc = (SemiProductCompControl)control;
+
+                        for (int i = 0; i < productList.Count; i++)
                         {
-                            spc.TxtName.Text = productList[i].Product_Name;
-                            spc.TxtName.Tag = productList[i].Combination_Product_ID;
-                            spc.Qty.Tag = productList[i].Product_Price;
-                            spc.Qty.Value = productList[i].Combination_RequiredQty;
-                            spc.LblMoney.Tag = 1;
-                            spc.LblMoney.Text = productList[i].Product_Price.ToString("#,##0") + "원";
+                            if (spc.LblName.Tag.ToString().Equals(productList[i].Product_Category))
+                            {
+                                spc.TxtName.Text = productList[i].Product_Name;
+                                spc.TxtName.Tag = productList[i].Combination_Product_ID;
+                                spc.Qty.Tag = productList[i].Product_Price;
+                                spc.Qty.Value = productList[i].Combination_RequiredQty;
+                                spc.LblMoney.Tag = 1;
+                                spc.LblMoney.Text = productList[i].Product_Price.ToString("#,##0") + "원";
+                            }
                         }
+                        spc.Qty.ValueChanged += new EventHandler(TotalPrice);
+                        nummargin.ValueChanged += new EventHandler(TotalPrice);
                     }
-                    spc.Qty.ValueChanged += new EventHandler(TotalPrice);
-                    nummargin.ValueChanged += new EventHandler(TotalPrice);
                 }
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
             }
         }
 
@@ -253,8 +281,15 @@ namespace Team2_ERP
                 }
             }
 
-            BOMService service = new BOMService();
-            service.InsertProduct(Pitem, citemList, count);
+            try
+            {
+                BOMService service = new BOMService();
+                service.InsertProduct(Pitem, citemList, count);
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
         }
 
         private void UpdateProduct()
@@ -305,8 +340,15 @@ namespace Team2_ERP
                 }
             }
 
-            BOMService service = new BOMService();
-            service.UpdateProduct(Pitem, citemList, count);
+            try
+            {
+                BOMService service = new BOMService();
+                service.UpdateProduct(Pitem, citemList, count);
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
         }
 
         private void btnOK_Click(object sender, EventArgs e)

@@ -69,19 +69,34 @@ namespace Team2_ERP
 
         private void LoadData()
         {
-            StandardService service = new StandardService();
-            list = service.GetAllResource();
+            try
+            {
+                StandardService service = new StandardService();
+                list = service.GetAllResource();
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
         }
-
+        
+        //원자재가 보관될 창고목록과 원자재가 속하는 카테고리 목록과 어느 거래처와 거래하는지 설정하기 위해 거래처 목록을 콤보바인딩
         private void InitCombo()
         {
-            StandardService service = new StandardService();
-            List<ComboItemVO> warehouseList = service.GetComboWarehouse(0);
-            UtilClass.ComboBinding(cboResourceWarehouse, warehouseList, "선택");
-            List<ComboItemVO> meterialList = (from item in service.GetComboMeterial() where item.ID.Contains("M") select item).ToList();
-            UtilClass.ComboBinding(cboResourceCategory, meterialList, "선택");
-            List<ComboItemVO> companyList = service.GetComboCompany();
-            UtilClass.ComboBinding(cboCompany, companyList, "선택");
+            try
+            {
+                StandardService service = new StandardService();
+                List<ComboItemVO> warehouseList = service.GetComboWarehouse(0);
+                UtilClass.ComboBinding(cboResourceWarehouse, warehouseList, "선택");
+                List<ComboItemVO> meterialList = (from item in service.GetComboMeterial() where item.ID.Contains("M") select item).ToList();
+                UtilClass.ComboBinding(cboResourceCategory, meterialList, "선택");
+                List<ComboItemVO> companyList = service.GetComboCompany();
+                UtilClass.ComboBinding(cboCompany, companyList, "선택");
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
 
             if(mode.Equals("Update"))
             {
@@ -104,8 +119,15 @@ namespace Team2_ERP
                 Company_ID = Convert.ToInt32(cboCompany.SelectedValue)
             };
 
-            StandardService service = new StandardService();
-            service.InsertResource(item);
+            try
+            {
+                StandardService service = new StandardService();
+                service.InsertResource(item);
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
         }
 
         private void UpdateResource()
@@ -122,8 +144,15 @@ namespace Team2_ERP
                 Company_ID = Convert.ToInt32(cboCompany.SelectedValue)
             };
 
-            StandardService service = new StandardService();
-            service.UpdateResource(item);
+            try
+            {
+                StandardService service = new StandardService();
+                service.UpdateResource(item);
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
         }
 
         private void btnOK_Click(object sender, EventArgs e)

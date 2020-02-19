@@ -35,47 +35,6 @@ namespace Team2_ERP
             LoadData();
         }
 
-        private void LoadData()
-        {
-            UtilClass.SettingDgv(dgv_Order);
-
-            DataGridViewCheckBoxColumn cbx = new DataGridViewCheckBoxColumn();
-            cbx.Width = 30;
-            dgv_Order.Columns.Add(cbx);
-            Point headerLocation = dgv_Order.GetCellDisplayRectangle(0, -1, true).Location;
-            headerCheckbox.Location = new Point(headerLocation.X + 8, headerLocation.Y + 5);
-            headerCheckbox.BackColor = Color.FromArgb(55, 113, 138);
-            headerCheckbox.Size = new Size(16, 16);
-            headerCheckbox.Click += new EventHandler(headerCheckbox_Click);
-            dgv_Order.Controls.Add(headerCheckbox);
-            dgv_Order.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-
-            UtilClass.AddNewColum(dgv_Order, "주문번호", "Order_ID", true);
-            UtilClass.AddNewColum(dgv_Order, "고객ID", "Customer_UserID", true, 90);
-            UtilClass.AddNewColum(dgv_Order, "고객성명", "Customer_Name", true);
-            UtilClass.AddNewColum(dgv_Order, "주문일시", "Order_Date", true, 170);
-            UtilClass.AddNewColum(dgv_Order, "배송지주소", "Order_Address1", true, 300);
-            UtilClass.AddNewColum(dgv_Order, "배송지상세주소", "Order_Address2", true, 250);
-            UtilClass.AddNewColum(dgv_Order, "주문총액", "TotalPrice", true);
-            dgv_Order.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_Order.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
-            dgv_Order.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgv_Order.Columns[7].DefaultCellStyle.Format = "#,#0원";
-            try { Order_AllList = service.GetOrderList(); }
-            catch (Exception err) { Log.WriteError(err.Message, err); }
-
-            UtilClass.SettingDgv(dgv_OrderDetail);
-            UtilClass.AddNewColum(dgv_OrderDetail, "주문번호", "Order_ID", false);
-            UtilClass.AddNewColum(dgv_OrderDetail, "제품ID", "Product_ID", true);
-            UtilClass.AddNewColum(dgv_OrderDetail, "제품명", "Product_Name", true, 300);
-            UtilClass.AddNewColum(dgv_OrderDetail, "주문수량", "OrderDetail_Qty", true);
-            dgv_OrderDetail.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgv_OrderDetail.Columns[3].DefaultCellStyle.Format = "#,#0개";
-
-            Search_Period.Startdate.BackColor = Color.LightYellow;
-            Search_Period.Enddate.BackColor = Color.LightYellow;
-        }
-
         #region 체크박스 관련 기능
         private void headerCheckbox_Click(object sender, EventArgs e)
         {
@@ -102,18 +61,74 @@ namespace Team2_ERP
                 headerCheckbox.Checked = isChecked;
             }
         }
+
+        private void dgv_Order_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            Point headerLocation = dgv_Order.GetCellDisplayRectangle(0, -1, true).Location;
+            headerCheckbox.Location = new Point((headerLocation.X + dgv_Order.Columns[0].Width / 2) - 7, headerLocation.Y + dgv_Order.ColumnHeadersHeight / 5 + 1);
+        }
         #endregion
+
+        #region dgv 관련기능
+
+        private void LoadData()
+        {
+            UtilClass.SettingDgv(dgv_Order);
+
+            #region 체크박스 컬럼 추가
+            DataGridViewCheckBoxColumn cbx = new DataGridViewCheckBoxColumn();
+            cbx.Width = 30;
+            dgv_Order.Columns.Add(cbx);
+            Point headerLocation = dgv_Order.GetCellDisplayRectangle(0, -1, true).Location;
+            headerCheckbox.Location = new Point(headerLocation.X + 8, headerLocation.Y + 5);
+            headerCheckbox.BackColor = Color.FromArgb(55, 113, 138);
+            headerCheckbox.Size = new Size(16, 16);
+            headerCheckbox.Click += new EventHandler(headerCheckbox_Click);
+            dgv_Order.Controls.Add(headerCheckbox);
+            dgv_Order.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dgv_Order.Columns[0].MinimumWidth = 30;
+            #endregion
+
+            UtilClass.AddNewColum(dgv_Order, "주문번호", "Order_ID", true);
+            UtilClass.AddNewColum(dgv_Order, "고객ID", "Customer_UserID", true, 90);
+            UtilClass.AddNewColum(dgv_Order, "고객성명", "Customer_Name", true);
+            UtilClass.AddNewColum(dgv_Order, "주문일시", "Order_Date", true, 170);
+            UtilClass.AddNewColum(dgv_Order, "배송지주소", "Order_Address1", true, 300);
+            UtilClass.AddNewColum(dgv_Order, "배송지상세주소", "Order_Address2", true, 250);
+            UtilClass.AddNewColum(dgv_Order, "주문총액", "TotalPrice", true);
+            dgv_Order.Columns[0].MinimumWidth = 30;
+            dgv_Order.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_Order.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
+            dgv_Order.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv_Order.Columns[7].DefaultCellStyle.Format = "#,#0원";
+            try { Order_AllList = service.GetOrderList(); }
+            catch (Exception err) { Log.WriteError(err.Message, err); }
+
+            UtilClass.SettingDgv(dgv_OrderDetail);
+            UtilClass.AddNewColum(dgv_OrderDetail, "주문번호", "Order_ID", false);
+            UtilClass.AddNewColum(dgv_OrderDetail, "제품ID", "Product_ID", true);
+            UtilClass.AddNewColum(dgv_OrderDetail, "제품명", "Product_Name", true, 300);
+            UtilClass.AddNewColum(dgv_OrderDetail, "주문수량", "OrderDetail_Qty", true);
+            dgv_OrderDetail.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv_OrderDetail.Columns[3].DefaultCellStyle.Format = "#,#0개";
+
+            Search_Period.Startdate.BackColor = Color.LightYellow;
+            Search_Period.Enddate.BackColor = Color.LightYellow;
+        }
 
         private void dgv_Order_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
         {
-            string Order_ID = dgv_Order.CurrentRow.Cells[1].Value.ToString();
-            List<OrderDetail> OrderDetail_List = (from list_detail in OrderDetail_AllList
-                                                  where list_detail.Order_ID == Order_ID
-                                                  select list_detail).ToList();
-            dgv_OrderDetail.DataSource = OrderDetail_List;
+            if (e.RowIndex > -1)
+            {
+                string Order_ID = dgv_Order.CurrentRow.Cells[1].Value.ToString();
+                List<OrderDetail> OrderDetail_List = (from list_detail in OrderDetail_AllList
+                                                      where list_detail.Order_ID == Order_ID
+                                                      select list_detail).ToList();
+                dgv_OrderDetail.DataSource = OrderDetail_List;
+            }
         }
 
-        private void GetOrderDetail_List()  // 현재 위의 Dgv의 Row수 따라 그에맞는 DetailList 가져옴
+        private void GetOrderDetail_List()  // 현재 Dgv에 맞추어 DetailList 가져옴
         {
             StringBuilder sb = new StringBuilder();
             foreach (DataGridViewRow row in dgv_Order.Rows)
@@ -122,15 +137,21 @@ namespace Team2_ERP
             }
             try { OrderDetail_AllList = service.GetOrderDetailList(sb.ToString().Trim(',')); }  // 디테일 AllList 갱신
             catch (Exception err) { Log.WriteError(err.Message, err); }
-        }
+        } 
+        #endregion
 
+        #region ToolStrip 기능정의
+        public override void Refresh(object sender, EventArgs e)  // 새로고침
+        {
+            Func_Refresh();
+            main.NoticeMessage = Resources.RefreshDone;
+        }
         private void Func_Refresh()  // 새로고침 기능
         {
             dgv_Order.DataSource = null;
             dgv_OrderDetail.DataSource = null;
             try { Order_AllList = service.GetOrderList(); }
             catch (Exception err) { Log.WriteError(err.Message, err); }
-            GetOrderDetail_List();
 
             // 검색조건 초기화
             Search_Customer.CodeTextBox.Clear();
@@ -139,14 +160,8 @@ namespace Team2_ERP
             headerCheckbox.Checked = false;
         }
 
-        #region ToolStrip 기능정의
-        public override void Refresh(object sender, EventArgs e)  // 새로고침
-        {
-            Func_Refresh();
-            main.NoticeMessage = Resources.RefreshDone;
-        }
-
-        public override void Modify(object sender, EventArgs e)  // 발주완료(수령)처리, 출하대기목록 Insert, 작업insert, 생산insert 
+        public override void Modify(object sender, EventArgs e)  // 1.주문완료(수령)처리, 2.Shipment Insert, 3.Work insert,
+                                                                 // 4.Produce insert
         {
             if (dgv_Order.Rows.Count == 0) main.NoticeMessage = Resources.NonData;
             else
@@ -219,14 +234,14 @@ namespace Team2_ERP
             else
             {
                 SearchedList = Order_AllList;
-                if (Search_Customer.CodeTextBox.Text.Length > 0)  // 고객명 검색조건 있으면
+                if (Search_Customer.CodeTextBox.Text.Length > 0)  // 고객명 검색조건
                 {
                     SearchedList = (from item in SearchedList
                                      where item.Customer_Name == Search_Customer.CodeTextBox.Text
                                      select item).ToList();
                 }
 
-                if (Search_Period.Startdate.Text != "    -  -")   // 시작기간 text가 존재하면
+                if (Search_Period.Startdate.Text != "    -  -")   // 기간 검색조건
                 {
                     SearchedList = (from item in SearchedList
                                      where item.Order_Date.Date.CompareTo(Convert.ToDateTime(Search_Period.Startdate.Text)) >= 0 &&
@@ -241,12 +256,9 @@ namespace Team2_ERP
             }
         }
 
-        public override void Excel(object sender, EventArgs e)
+        public override void Excel(object sender, EventArgs e)  // 엑셀 내보내기
         {
-            if (dgv_Order.Rows.Count == 0)
-            {
-                main.NoticeMessage = Resources.ExcelError;
-            }
+            if (dgv_Order.Rows.Count == 0) main.NoticeMessage = Resources.ExcelError;
             else
             {
                 using (WaitForm frm = new WaitForm())
@@ -264,37 +276,39 @@ namespace Team2_ERP
             UtilClass.ExportTo2DataGridView(master, detail, exceptColumns);
         }
 
-        public override void Print(object sender, EventArgs e)  // 인쇄
+        public override void Print(object sender, EventArgs e)  // 보고서 인쇄
         {
-            if (dgv_Order.Rows.Count == 0)
-            {
-                main.NoticeMessage = Resources.NonData;
-            }
+            if (dgv_Order.Rows.Count == 0) main.NoticeMessage = Resources.NonData;
             else
             {
                 using (WaitForm frm = new WaitForm())
                 {
-                    OrderReport br = new OrderReport();
-                    dsOrder ds = new dsOrder();
-
-                    ds.Relations.Clear();
-                    ds.Tables.Clear();
-                    ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
-                    ds.Tables.Add(UtilClass.ConvertToDataTable(OrderDetail_AllList));
-                    ds.Tables[0].TableName = "dtOrder";
-                    ds.Tables[1].TableName = "dtOrderDetail";
-                    ds.Relations.Add("dtOrder_dtOrderDetail", ds.Tables[0].Columns["Order_ID"], ds.Tables[1].Columns["Order_ID"]);
-
-                    //ds.AcceptChanges();
-
-                    br.DataSource = ds;
-                    using (ReportPrintTool printTool = new ReportPrintTool(br))
-                    {
-                        printTool.ShowRibbonPreviewDialog();
-                    }  
+                    frm.Processing = ExportPrint;
+                    frm.ShowDialog();
                 }
             }
-        }  
+        }
+        private void ExportPrint()
+        {
+            OrderReport br = new OrderReport();
+            dsOrder ds = new dsOrder();
+
+            ds.Relations.Clear();
+            ds.Tables.Clear();
+            ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+            ds.Tables.Add(UtilClass.ConvertToDataTable(OrderDetail_AllList));
+            ds.Tables[0].TableName = "dtOrder";
+            ds.Tables[1].TableName = "dtOrderDetail";
+            ds.Relations.Add("dtOrder_dtOrderDetail", ds.Tables[0].Columns["Order_ID"], ds.Tables[1].Columns["Order_ID"]);
+
+            //ds.AcceptChanges();
+
+            br.DataSource = ds;
+            using (ReportPrintTool printTool = new ReportPrintTool(br))
+            {
+                printTool.ShowRibbonPreviewDialog();
+            }
+        }
         #endregion
 
         #region Activated, OnOff, DeActivate
@@ -323,7 +337,7 @@ namespace Team2_ERP
             main.삭제ToolStripMenuItem.Text = "삭제";
             main.삭제ToolStripMenuItem.ToolTipText = "삭제(Ctrl+D)";
             new SettingMenuStrip().UnsetMenu(this);
-        } 
+        }
         #endregion
     }
 }

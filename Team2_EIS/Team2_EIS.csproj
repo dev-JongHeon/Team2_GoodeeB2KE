@@ -7542,12 +7542,13 @@
     <Content Include="build\scss\_variables.scss" />
     <Content Include="plugins\input-mask\phone-codes\phone-be.json" />
     <Content Include="plugins\input-mask\phone-codes\phone-codes.json" />
-    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\gdB2KEEIS - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\gdB2KEEIS - ReadOnly - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\gdB2KEEIS - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\KJHfortest - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\KJHfortest - FTP1.pubxml" />
     <None Include="Properties\PublishProfiles\KJHfortest - ReadOnly - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\KJHfortest - ReadOnly - FTP1.pubxml" />
     <None Include="Properties\PublishProfiles\KJHfortest - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

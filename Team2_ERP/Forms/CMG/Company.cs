@@ -47,8 +47,15 @@ namespace Team2_ERP
         // DataGridView 가져오기
         private void LoadGridView()
         {
-            StandardService service = new StandardService();
-            list = service.GetAllCompany();
+            try
+            {
+                StandardService service = new StandardService();
+                list = service.GetAllCompany();
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
             dgvCompany.DataSource = list;
             dgvCompany.CurrentCell = null;
         }
@@ -110,8 +117,15 @@ namespace Team2_ERP
             {
                 if (MessageBox.Show("삭제하시겠습니까?", "확인", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    StandardService service = new StandardService();
-                    service.DeleteCompany(item.Company_ID);
+                    try
+                    {
+                        StandardService service = new StandardService();
+                        service.DeleteCompany(item.Company_ID);
+                    }
+                    catch (Exception err)
+                    {
+                        Log.WriteError(err.Message, err);
+                    }
                     frm.NoticeMessage = Resources.DeleteDone;
                     dgvCompany.DataSource = null;
                     LoadGridView();

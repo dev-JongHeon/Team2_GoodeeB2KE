@@ -55,6 +55,7 @@ namespace Team2_ERP
             addrFactory.Zipcode = item.Factory_AddrNumber;
         }
 
+        //반제품 공장과 완제품 공장만 있으므로 2가지 중 1개로 선택하게 한다.
         private void InitCombo()
         {
             DataTable dt = new DataTable();
@@ -100,8 +101,15 @@ namespace Team2_ERP
                     item.Factory_Fax = null;
                 }
 
-                StandardService service = new StandardService();
-                service.InsertFactory(item);
+                try
+                {
+                    StandardService service = new StandardService();
+                    service.InsertFactory(item);
+                }
+                catch (Exception err)
+                {
+                    Log.WriteError(err.Message, err);
+                }
             }
         }
 
@@ -125,8 +133,15 @@ namespace Team2_ERP
                     item.Factory_Fax = null;
                 }
 
-                StandardService service = new StandardService();
-                service.UpdateFactory(item);
+                try
+                {
+                    StandardService service = new StandardService();
+                    service.UpdateFactory(item);
+                }
+                catch (Exception err)
+                {
+                    Log.WriteError(err.Message, err);
+                }
             }
         }
 

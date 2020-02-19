@@ -30,7 +30,8 @@ namespace Team2_ERP
             main = (MainForm)this.MdiParent;
             LoadData();
         }
-        public void LoadData()
+        #region dgv 관련기능
+        private void LoadData()
         {
             UtilClass.SettingDgv(dgv_StockStatus);
             UtilClass.AddNewColum(dgv_StockStatus, "품번", "Product_ID", true);
@@ -43,6 +44,7 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_StockStatus, "안전재고량", "Product_Safety", true, 110);
             UtilClass.AddNewColum(dgv_StockStatus, "차이수량", "Count_Subtract", true);
             UtilClass.AddNewColum(dgv_StockStatus, "삭제여부", "Product_DeletedYN", false);
+            
             dgv_StockStatus.Columns[5].DefaultCellStyle.Format = "#,#0원";
             dgv_StockStatus.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgv_StockStatus.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -51,23 +53,31 @@ namespace Team2_ERP
             dgv_StockStatus.Columns[7].DefaultCellStyle.Format = "#,#0개";
             dgv_StockStatus.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgv_StockStatus.Columns[8].DefaultCellStyle.Format = "#,#0개";
+            dgv_StockStatus.Columns[8].DefaultCellStyle.SelectionForeColor = Color.Red;
 
             try { StockStatus_AllList = service.GetStockStatus(); }
             catch (Exception err) { Log.WriteError(err.Message, err); }
         }
 
-        private void SetDgvBySafety()
+        private void SetDgvBySafety()  // 재고량 < 안전재고량인 항목만 차이수량 빨간색으로 표시해주는 함수
         {
             foreach (DataGridViewRow row in dgv_StockStatus.Rows)
             {
-                if (Convert.ToInt32(row.Cells[6].Value.ToString().TrimEnd('개')) < 
+                if (Convert.ToInt32(row.Cells[6].Value.ToString().TrimEnd('개')) <
                     Convert.ToInt32(row.Cells[7].Value.ToString().TrimEnd('개')))
                 {
-                    row.DefaultCellStyle.BackColor = Color.PaleVioletRed;   // 색 수정필요
+                    row.Cells[8].Style.ForeColor = Color.Red;
                 }
             }
-        }
+        } 
+        #endregion
 
+        #region ToolStrip 기능정의
+        public override void Refresh(object sender, EventArgs e)  // 새로고침
+        {
+            Func_Refresh();
+            main.NoticeMessage = Resources.RefreshDone;
+        }
         private void Func_Refresh()  // 새로고침 기능
         {
             dgv_StockStatus.DataSource = null;
@@ -78,13 +88,6 @@ namespace Team2_ERP
             Search_Product.CodeTextBox.Clear();
             Search_Warehouse.CodeTextBox.Clear();
             Search_Category.CodeTextBox.Clear();
-        }
-
-        #region ToolStrip 기능정의
-        public override void Refresh(object sender, EventArgs e)  // 새로고침
-        {
-            Func_Refresh();
-            main.NoticeMessage = Resources.RefreshDone;
         }
 
         public override void Search(object sender, EventArgs e)  // 검색
@@ -116,10 +119,7 @@ namespace Team2_ERP
 
         public override void Excel(object sender, EventArgs e)
         {
-            if (dgv_StockStatus.Rows.Count == 0)
-            {
-                main.NoticeMessage = Properties.Resources.ExcelError;
-            }
+            if (dgv_StockStatus.Rows.Count == 0) main.NoticeMessage = Properties.Resources.ExcelError;
             else
             {
                 using (WaitForm frm = new WaitForm())
@@ -137,30 +137,33 @@ namespace Team2_ERP
 
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
-            if (dgv_StockStatus.Rows.Count == 0)
-            {
-                main.NoticeMessage = Properties.Resources.NonData;
-            }
+            if (dgv_StockStatus.Rows.Count == 0) main.NoticeMessage = Properties.Resources.NonData;
             else
             {
                 using (WaitForm frm = new WaitForm())
                 {
-                    StockStatusReport sr = new StockStatusReport();
-                    dsStockStatus ds = new dsStockStatus();
-
-                    ds.Relations.Clear();
-                    ds.Tables.Clear();
-                    ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
-                    ds.Tables[0].TableName = "dtStockStatus";
-
-                    //ds.AcceptChanges();
-
-                    sr.DataSource = ds;
-                    using (ReportPrintTool printTool = new ReportPrintTool(sr))
-                    {
-                        printTool.ShowRibbonPreviewDialog();
-                    }  
+                    frm.Processing = ExportPrint;
+                    frm.ShowDialog();
                 }
+            }
+        }
+
+        private void ExportPrint()
+        {
+            StockStatusReport sr = new StockStatusReport();
+            dsStockStatus ds = new dsStockStatus();
+
+            ds.Relations.Clear();
+            ds.Tables.Clear();
+            ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+            ds.Tables[0].TableName = "dtStockStatus";
+
+            //ds.AcceptChanges();
+
+            sr.DataSource = ds;
+            using (ReportPrintTool printTool = new ReportPrintTool(sr))
+            {
+                printTool.ShowRibbonPreviewDialog();
             }
         }
         #endregion

@@ -44,24 +44,36 @@ namespace Team2_ERP
         private void InsertDepart()
         {
             CodeTableVO dept = new CodeTableVO();
-            CodeTableService service = new CodeTableService();
-
             dept.CodeTable_CodeName = txtName.Text;
             dept.CodeTable_CodeExplain = txtContext.Text;
 
-            service.InsertDepart(dept);
+            try
+            {
+                CodeTableService service = new CodeTableService();
+                service.InsertDepart(dept);
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
         }
 
         public void UpdateDepart()
         {
             CodeTableVO depart = new CodeTableVO();
-            CodeTableService service = new CodeTableService();
-
             depart.CodeTable_CodeName = txtName.Text;
             depart.CodeTable_CodeExplain = txtContext.Text;
             depart.CodeTable_CodeID = code;
 
-            service.UpdateCodeTable(depart);
+            try
+            {
+                CodeTableService service = new CodeTableService();
+                service.UpdateCodeTable(depart);
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
         }
 
 

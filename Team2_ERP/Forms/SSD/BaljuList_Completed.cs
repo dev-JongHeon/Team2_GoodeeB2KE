@@ -27,7 +27,6 @@ namespace Team2_ERP
         public BaljuList_Completed()
         {
             InitializeComponent();
-
         }
 
         private void BaljuList_Completed_Load(object sender, EventArgs e)
@@ -36,14 +35,15 @@ namespace Team2_ERP
             LoadData();
         }
 
+        #region dgv 관련기능
         private void LoadData()
         {
             UtilClass.SettingDgv(dgv_BaljuCompleted);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "발주지시번호", "Balju_ID", true, 130);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "거래처코드", "Company_ID", true, 110);
-            UtilClass.AddNewColum(dgv_BaljuCompleted, "거래처명칭", "Company_Name", true, 500);
+            UtilClass.AddNewColum(dgv_BaljuCompleted, "거래처명칭", "Company_Name", true, 300);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "발주요청일시", "Balju_Date", true, 170);
-            UtilClass.AddNewColum(dgv_BaljuCompleted, "등록사원", "Employees_Name", true);
+            UtilClass.AddNewColum(dgv_BaljuCompleted, "등록사원", "Employees_Name", true, 200);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "수령일시", "Balju_ReceiptDate", true, 170);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "총액", "Total", true, 170);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "삭제여부", "Balju_DeletedYN", false);
@@ -71,11 +71,14 @@ namespace Team2_ERP
 
         private void dgv_BaljuCompleted_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
         {
-            string Balju_ID = dgv_BaljuCompleted.CurrentRow.Cells[0].Value.ToString();
-            List<BaljuDetail> BaljuDetail_List = (from list_detail in BaljuDetail_AllList
-                                                  where list_detail.Balju_ID == Balju_ID
-                                                  select list_detail).ToList();
-            dgv_BaljuDetail.DataSource = BaljuDetail_List;
+            if (e.RowIndex > -1)
+            {
+                string Balju_ID = dgv_BaljuCompleted.CurrentRow.Cells[0].Value.ToString();
+                List<BaljuDetail> BaljuDetail_List = (from list_detail in BaljuDetail_AllList
+                                                      where list_detail.Balju_ID == Balju_ID
+                                                      select list_detail).ToList();
+                dgv_BaljuDetail.DataSource = BaljuDetail_List;
+            }
         }
 
         private void GetBaljuCompletedDetail_List()  // 현재 위의 Dgv의 Row수 따라 그에맞는 DetailList 가져옴
@@ -89,8 +92,14 @@ namespace Team2_ERP
             try { BaljuDetail_AllList = service.GetBalju_DetailList(sb.ToString().Trim(',')); }  // 디테일 AllList 갱신
             catch (Exception err) { Log.WriteError(err.Message, err); }
         }
+        #endregion
 
-
+        #region ToolStrip 기능정의
+        public override void Refresh(object sender, EventArgs e)  // 새로고침
+        {
+            Func_Refresh();
+            main.NoticeMessage = Resources.RefreshDone;
+        }
         private void Func_Refresh()  // 새로고침 기능
         {
             dgv_BaljuDetail.DataSource = null;
@@ -99,8 +108,6 @@ namespace Team2_ERP
             try { BaljuCompleted_AllList = service.GetBalju_CompletedList(); }
             catch (Exception err) { Log.WriteError(err.Message, err); }
 
-            GetBaljuCompletedDetail_List();
-
             // 검색조건 초기화
             Search_Period.Startdate.Clear();
             Search_Period.Enddate.Clear();
@@ -108,13 +115,6 @@ namespace Team2_ERP
             Search_ReceiptPeriod.Enddate.Clear();
             Search_Company.CodeTextBox.Clear();
             Search_Employee.CodeTextBox.Clear();
-        }
-
-        #region ToolStrip 기능정의
-        public override void Refresh(object sender, EventArgs e)  // 새로고침
-        {
-            Func_Refresh();
-            main.NoticeMessage = Resources.RefreshDone;
         }
 
         public override void Search(object sender, EventArgs e)  // 검색
@@ -156,10 +156,7 @@ namespace Team2_ERP
 
         public override void Excel(object sender, EventArgs e)
         {
-            if (dgv_BaljuCompleted.Rows.Count == 0)
-            {
-                main.NoticeMessage = Properties.Resources.ExcelError;
-            }
+            if (dgv_BaljuCompleted.Rows.Count == 0) main.NoticeMessage = Properties.Resources.ExcelError;
             else
             {
                 using (WaitForm frm = new WaitForm())
@@ -178,33 +175,36 @@ namespace Team2_ERP
         }
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
-            if (dgv_BaljuCompleted.Rows.Count == 0)
-            {
-                main.NoticeMessage = Properties.Resources.NonData;
-            }
+            if (dgv_BaljuCompleted.Rows.Count == 0) main.NoticeMessage = Properties.Resources.NonData;
             else
             {
                 using (WaitForm frm = new WaitForm())
                 {
-                    BaljuCompletedReport br = new BaljuCompletedReport();
-                    dsBalju ds = new dsBalju();
-
-                    ds.Relations.Clear();
-                    ds.Tables.Clear();
-                    ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
-                    ds.Tables.Add(UtilClass.ConvertToDataTable(BaljuDetail_AllList));
-                    ds.Tables[0].TableName = "dtBalju";
-                    ds.Tables[1].TableName = "dtBalju_Detail";
-                    ds.Relations.Add("dtBalju_dtBalju_Detail", ds.Tables[0].Columns["Balju_ID"], ds.Tables[1].Columns["Balju_ID"]);
-
-                    //ds.AcceptChanges();
-
-                    br.DataSource = ds;
-                    using (ReportPrintTool printTool = new ReportPrintTool(br))
-                    {
-                        printTool.ShowRibbonPreviewDialog();
-                    }
+                    frm.Processing = ExportPrint;
+                    frm.ShowDialog();
                 }
+            }
+        }
+
+        private void ExportPrint()
+        {
+            BaljuCompletedReport br = new BaljuCompletedReport();
+            dsBalju ds = new dsBalju();
+
+            ds.Relations.Clear();
+            ds.Tables.Clear();
+            ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+            ds.Tables.Add(UtilClass.ConvertToDataTable(BaljuDetail_AllList));
+            ds.Tables[0].TableName = "dtBalju";
+            ds.Tables[1].TableName = "dtBalju_Detail";
+            ds.Relations.Add("dtBalju_dtBalju_Detail", ds.Tables[0].Columns["Balju_ID"], ds.Tables[1].Columns["Balju_ID"]);
+
+            //ds.AcceptChanges();
+
+            br.DataSource = ds;
+            using (ReportPrintTool printTool = new ReportPrintTool(br))
+            {
+                printTool.ShowRibbonPreviewDialog();
             }
         }
         #endregion

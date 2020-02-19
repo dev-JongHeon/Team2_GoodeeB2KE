@@ -174,7 +174,9 @@
             // 
             // cboResourceWarehouse
             // 
+            this.cboResourceWarehouse.BackColor = System.Drawing.Color.White;
             this.cboResourceWarehouse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboResourceWarehouse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboResourceWarehouse.FormattingEnabled = true;
             this.cboResourceWarehouse.Location = new System.Drawing.Point(129, 80);
             this.cboResourceWarehouse.Name = "cboResourceWarehouse";
@@ -205,7 +207,9 @@
             // 
             // cboResourceCategory
             // 
+            this.cboResourceCategory.BackColor = System.Drawing.Color.White;
             this.cboResourceCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboResourceCategory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboResourceCategory.FormattingEnabled = true;
             this.cboResourceCategory.Location = new System.Drawing.Point(129, 310);
             this.cboResourceCategory.Name = "cboResourceCategory";
@@ -241,7 +245,9 @@
             // 
             // cboCompany
             // 
+            this.cboCompany.BackColor = System.Drawing.Color.White;
             this.cboCompany.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCompany.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboCompany.FormattingEnabled = true;
             this.cboCompany.Location = new System.Drawing.Point(129, 362);
             this.cboCompany.Name = "cboCompany";

@@ -188,13 +188,15 @@ namespace Team2_ERP
                                     select item
                                     ).ToList();
                 }
+                
                 dgvWorkList.DataSource = searchedlist;
-                frm.NoticeMessage = Resources.SearchDone;
+               
                 GetProduce();
                 gbxSearch.Enabled = true;
                 rbxAll.Checked = true;
+                frm.NoticeMessage = Resources.SearchDone;
             }
-
+           
         }
 
         public override void Excel(object sender, EventArgs e)
@@ -225,31 +227,34 @@ namespace Team2_ERP
 
         public override void Print(object sender, EventArgs e)
         {
-            if (dgvWorkList.Rows.Count == 0)
-            {
-                frm.NoticeMessage = Properties.Resources.NonData;
-            }
+            if (dgvWorkList.Rows.Count == 0) frm.NoticeMessage = Properties.Resources.NonData;
             else
             {
                 using (WaitForm frm = new WaitForm())
                 {
-                    WorkReport wr = new WorkReport();
-                    dsWork ds = new dsWork();
-
-                    ds.Relations.Clear();
-                    ds.Tables.Clear();
-                    ds.Tables.Add(UtilClass.ConvertToDataTable(searchedlist));
-                    ds.Tables.Add(UtilClass.ConvertToDataTable(produces));
-                    ds.Tables[0].TableName = "dtWork";
-                    ds.Tables[1].TableName = "dtWorkDetail";
-                    ds.Relations.Add("dtWork_dtWorkDetail", ds.Tables[0].Columns["Work_ID"], ds.Tables[1].Columns["ProduceWork_ID"]);
-
-                    wr.DataSource = ds;
-                    using (ReportPrintTool printTool = new ReportPrintTool(wr))
-                    {
-                        printTool.ShowRibbonPreviewDialog();
-                    } 
+                    frm.Processing = ExportPrint;
+                    frm.ShowDialog();
                 }
+            }
+        }
+
+        private void ExportPrint()
+        {
+            WorkReport wr = new WorkReport();
+            dsWork ds = new dsWork();
+
+            ds.Relations.Clear();
+            ds.Tables.Clear();
+            ds.Tables.Add(UtilClass.ConvertToDataTable(searchedlist));
+            ds.Tables.Add(UtilClass.ConvertToDataTable(produces));
+            ds.Tables[0].TableName = "dtWork";
+            ds.Tables[1].TableName = "dtWorkDetail";
+            ds.Relations.Add("dtWork_dtWorkDetail", ds.Tables[0].Columns["Work_ID"], ds.Tables[1].Columns["ProduceWork_ID"]);
+
+            wr.DataSource = ds;
+            using (ReportPrintTool printTool = new ReportPrintTool(wr))
+            {
+                printTool.ShowRibbonPreviewDialog();
             }
         }
 
