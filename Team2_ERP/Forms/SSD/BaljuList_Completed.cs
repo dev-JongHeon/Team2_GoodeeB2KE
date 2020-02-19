@@ -27,7 +27,6 @@ namespace Team2_ERP
         public BaljuList_Completed()
         {
             InitializeComponent();
-
         }
 
         private void BaljuList_Completed_Load(object sender, EventArgs e)
@@ -36,14 +35,15 @@ namespace Team2_ERP
             LoadData();
         }
 
+        #region dgv 관련기능
         private void LoadData()
         {
             UtilClass.SettingDgv(dgv_BaljuCompleted);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "발주지시번호", "Balju_ID", true, 130);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "거래처코드", "Company_ID", true, 110);
-            UtilClass.AddNewColum(dgv_BaljuCompleted, "거래처명칭", "Company_Name", true, 500);
+            UtilClass.AddNewColum(dgv_BaljuCompleted, "거래처명칭", "Company_Name", true, 300);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "발주요청일시", "Balju_Date", true, 170);
-            UtilClass.AddNewColum(dgv_BaljuCompleted, "등록사원", "Employees_Name", true);
+            UtilClass.AddNewColum(dgv_BaljuCompleted, "등록사원", "Employees_Name", true, 200);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "수령일시", "Balju_ReceiptDate", true, 170);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "총액", "Total", true, 170);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "삭제여부", "Balju_DeletedYN", false);
@@ -77,7 +77,7 @@ namespace Team2_ERP
                 List<BaljuDetail> BaljuDetail_List = (from list_detail in BaljuDetail_AllList
                                                       where list_detail.Balju_ID == Balju_ID
                                                       select list_detail).ToList();
-                dgv_BaljuDetail.DataSource = BaljuDetail_List; 
+                dgv_BaljuDetail.DataSource = BaljuDetail_List;
             }
         }
 
@@ -92,8 +92,14 @@ namespace Team2_ERP
             try { BaljuDetail_AllList = service.GetBalju_DetailList(sb.ToString().Trim(',')); }  // 디테일 AllList 갱신
             catch (Exception err) { Log.WriteError(err.Message, err); }
         }
+        #endregion
 
-
+        #region ToolStrip 기능정의
+        public override void Refresh(object sender, EventArgs e)  // 새로고침
+        {
+            Func_Refresh();
+            main.NoticeMessage = Resources.RefreshDone;
+        }
         private void Func_Refresh()  // 새로고침 기능
         {
             dgv_BaljuDetail.DataSource = null;
@@ -109,13 +115,6 @@ namespace Team2_ERP
             Search_ReceiptPeriod.Enddate.Clear();
             Search_Company.CodeTextBox.Clear();
             Search_Employee.CodeTextBox.Clear();
-        }
-
-        #region ToolStrip 기능정의
-        public override void Refresh(object sender, EventArgs e)  // 새로고침
-        {
-            Func_Refresh();
-            main.NoticeMessage = Resources.RefreshDone;
         }
 
         public override void Search(object sender, EventArgs e)  // 검색
@@ -157,10 +156,7 @@ namespace Team2_ERP
 
         public override void Excel(object sender, EventArgs e)
         {
-            if (dgv_BaljuCompleted.Rows.Count == 0)
-            {
-                main.NoticeMessage = Properties.Resources.ExcelError;
-            }
+            if (dgv_BaljuCompleted.Rows.Count == 0) main.NoticeMessage = Properties.Resources.ExcelError;
             else
             {
                 using (WaitForm frm = new WaitForm())
@@ -179,10 +175,7 @@ namespace Team2_ERP
         }
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
-            if (dgv_BaljuCompleted.Rows.Count == 0)
-            {
-                main.NoticeMessage = Properties.Resources.NonData;
-            }
+            if (dgv_BaljuCompleted.Rows.Count == 0) main.NoticeMessage = Properties.Resources.NonData;
             else
             {
                 using (WaitForm frm = new WaitForm())

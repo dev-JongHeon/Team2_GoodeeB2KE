@@ -35,10 +35,47 @@ namespace Team2_ERP
             LoadData();
         }
 
+        #region 체크박스 관련 기능
+        private void headerCheckbox_Click(object sender, EventArgs e)
+        {
+            dgv_Order.EndEdit();
+            foreach (DataGridViewRow row in dgv_Order.Rows)
+            {
+                row.Cells[0].Value = headerCheckbox.Checked;
+            }
+        }
+
+        private void dgv_Order_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgv_Order.Rows.Count > 0 && e.ColumnIndex == 0)
+            {
+                bool isChecked = true;
+                foreach (DataGridViewRow row in dgv_Order.Rows)
+                {
+                    if (!Convert.ToBoolean(row.Cells[0].EditedFormattedValue))
+                    {
+                        isChecked = false;
+                        break;
+                    }
+                }
+                headerCheckbox.Checked = isChecked;
+            }
+        }
+
+        private void dgv_Order_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            Point headerLocation = dgv_Order.GetCellDisplayRectangle(0, -1, true).Location;
+            headerCheckbox.Location = new Point((headerLocation.X + dgv_Order.Columns[0].Width / 2) - 7, headerLocation.Y + dgv_Order.ColumnHeadersHeight / 5 + 1);
+        }
+        #endregion
+
+        #region dgv 관련기능
+
         private void LoadData()
         {
             UtilClass.SettingDgv(dgv_Order);
 
+            #region 체크박스 컬럼 추가
             DataGridViewCheckBoxColumn cbx = new DataGridViewCheckBoxColumn();
             cbx.Width = 30;
             dgv_Order.Columns.Add(cbx);
@@ -49,6 +86,8 @@ namespace Team2_ERP
             headerCheckbox.Click += new EventHandler(headerCheckbox_Click);
             dgv_Order.Controls.Add(headerCheckbox);
             dgv_Order.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dgv_Order.Columns[0].MinimumWidth = 30;
+            #endregion
 
             UtilClass.AddNewColum(dgv_Order, "주문번호", "Order_ID", true);
             UtilClass.AddNewColum(dgv_Order, "고객ID", "Customer_UserID", true, 90);
@@ -77,34 +116,6 @@ namespace Team2_ERP
             Search_Period.Enddate.BackColor = Color.LightYellow;
         }
 
-        #region 체크박스 관련 기능
-        private void headerCheckbox_Click(object sender, EventArgs e)
-        {
-            dgv_Order.EndEdit();
-            foreach (DataGridViewRow row in dgv_Order.Rows)
-            {
-                row.Cells[0].Value = headerCheckbox.Checked;
-            }
-        }
-
-        private void dgv_Order_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dgv_Order.Rows.Count > 0 && e.ColumnIndex == 0)
-            {
-                bool isChecked = true;
-                foreach (DataGridViewRow row in dgv_Order.Rows)
-                {
-                    if (!Convert.ToBoolean(row.Cells[0].EditedFormattedValue))
-                    {
-                        isChecked = false;
-                        break;
-                    }
-                }
-                headerCheckbox.Checked = isChecked;
-            }
-        }
-        #endregion
-
         private void dgv_Order_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
         {
             if (e.RowIndex > -1)
@@ -113,11 +124,11 @@ namespace Team2_ERP
                 List<OrderDetail> OrderDetail_List = (from list_detail in OrderDetail_AllList
                                                       where list_detail.Order_ID == Order_ID
                                                       select list_detail).ToList();
-                dgv_OrderDetail.DataSource = OrderDetail_List; 
+                dgv_OrderDetail.DataSource = OrderDetail_List;
             }
         }
 
-        private void GetOrderDetail_List()  // 현재 위의 Dgv의 Row수 따라 그에맞는 DetailList 가져옴
+        private void GetOrderDetail_List()  // 현재 Dgv에 맞추어 DetailList 가져옴
         {
             StringBuilder sb = new StringBuilder();
             foreach (DataGridViewRow row in dgv_Order.Rows)
@@ -126,15 +137,21 @@ namespace Team2_ERP
             }
             try { OrderDetail_AllList = service.GetOrderDetailList(sb.ToString().Trim(',')); }  // 디테일 AllList 갱신
             catch (Exception err) { Log.WriteError(err.Message, err); }
-        }
+        } 
+        #endregion
 
+        #region ToolStrip 기능정의
+        public override void Refresh(object sender, EventArgs e)  // 새로고침
+        {
+            Func_Refresh();
+            main.NoticeMessage = Resources.RefreshDone;
+        }
         private void Func_Refresh()  // 새로고침 기능
         {
             dgv_Order.DataSource = null;
             dgv_OrderDetail.DataSource = null;
             try { Order_AllList = service.GetOrderList(); }
             catch (Exception err) { Log.WriteError(err.Message, err); }
-            GetOrderDetail_List();
 
             // 검색조건 초기화
             Search_Customer.CodeTextBox.Clear();
@@ -143,14 +160,8 @@ namespace Team2_ERP
             headerCheckbox.Checked = false;
         }
 
-        #region ToolStrip 기능정의
-        public override void Refresh(object sender, EventArgs e)  // 새로고침
-        {
-            Func_Refresh();
-            main.NoticeMessage = Resources.RefreshDone;
-        }
-
-        public override void Modify(object sender, EventArgs e)  // 발주완료(수령)처리, 출하대기목록 Insert, 작업insert, 생산insert 
+        public override void Modify(object sender, EventArgs e)  // 1.주문완료(수령)처리, 2.Shipment Insert, 3.Work insert,
+                                                                 // 4.Produce insert
         {
             if (dgv_Order.Rows.Count == 0) main.NoticeMessage = Resources.NonData;
             else
@@ -223,14 +234,14 @@ namespace Team2_ERP
             else
             {
                 SearchedList = Order_AllList;
-                if (Search_Customer.CodeTextBox.Text.Length > 0)  // 고객명 검색조건 있으면
+                if (Search_Customer.CodeTextBox.Text.Length > 0)  // 고객명 검색조건
                 {
                     SearchedList = (from item in SearchedList
                                      where item.Customer_Name == Search_Customer.CodeTextBox.Text
                                      select item).ToList();
                 }
 
-                if (Search_Period.Startdate.Text != "    -  -")   // 시작기간 text가 존재하면
+                if (Search_Period.Startdate.Text != "    -  -")   // 기간 검색조건
                 {
                     SearchedList = (from item in SearchedList
                                      where item.Order_Date.Date.CompareTo(Convert.ToDateTime(Search_Period.Startdate.Text)) >= 0 &&
@@ -245,12 +256,9 @@ namespace Team2_ERP
             }
         }
 
-        public override void Excel(object sender, EventArgs e)
+        public override void Excel(object sender, EventArgs e)  // 엑셀 내보내기
         {
-            if (dgv_Order.Rows.Count == 0)
-            {
-                main.NoticeMessage = Resources.ExcelError;
-            }
+            if (dgv_Order.Rows.Count == 0) main.NoticeMessage = Resources.ExcelError;
             else
             {
                 using (WaitForm frm = new WaitForm())
@@ -268,12 +276,9 @@ namespace Team2_ERP
             UtilClass.ExportTo2DataGridView(master, detail, exceptColumns);
         }
 
-        public override void Print(object sender, EventArgs e)  // 인쇄
+        public override void Print(object sender, EventArgs e)  // 보고서 인쇄
         {
-            if (dgv_Order.Rows.Count == 0)
-            {
-                main.NoticeMessage = Resources.NonData;
-            }
+            if (dgv_Order.Rows.Count == 0) main.NoticeMessage = Resources.NonData;
             else
             {
                 using (WaitForm frm = new WaitForm())
@@ -283,7 +288,6 @@ namespace Team2_ERP
                 }
             }
         }
-
         private void ExportPrint()
         {
             OrderReport br = new OrderReport();
@@ -335,11 +339,5 @@ namespace Team2_ERP
             new SettingMenuStrip().UnsetMenu(this);
         }
         #endregion
-
-        private void dgv_Order_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
-        {
-            Point headerLocation = dgv_Order.GetCellDisplayRectangle(0, -1, true).Location;
-            headerCheckbox.Location = new Point((headerLocation.X + dgv_Order.Columns[0].Width / 2) - 7, headerLocation.Y + dgv_Order.ColumnHeadersHeight / 5 + 1);
-        }
     }
 }

@@ -227,10 +227,7 @@ namespace Team2_ERP
 
         public override void Print(object sender, EventArgs e)
         {
-            if (dgvWorkList.Rows.Count == 0)
-            {
-                frm.NoticeMessage = Properties.Resources.NonData;
-            }
+            if (dgvWorkList.Rows.Count == 0) frm.NoticeMessage = Properties.Resources.NonData;
             else
             {
                 using (WaitForm frm = new WaitForm())

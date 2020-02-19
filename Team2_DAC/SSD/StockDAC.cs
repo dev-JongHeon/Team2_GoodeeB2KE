@@ -18,7 +18,7 @@ namespace Team2_DAC
             conn = new SqlConnection(this.ConnectionString);
         }
 
-        public List<StockReceipt> GetStockReceipts(bool Warehouse_Division) // 뷰 사용
+        public List<StockReceipt> GetStockReceipts(bool Warehouse_Division)  // 자재, 반제품 수불리스트 조회
         {
             try
             {
@@ -49,7 +49,7 @@ namespace Team2_DAC
             }
         }
 
-        public List<StockStatus> GetStockStatus() // 뷰 사용
+        public List<StockStatus> GetStockStatus()  // 자재현황 리스트 조회
         {
             try
             {

@@ -34,6 +34,7 @@ namespace Team2_ERP
             LoadData();
         }
 
+        #region dgv 관련기능
         private void LoadData()
         {
             UtilClass.SettingDgv(dgv_Shipment);
@@ -75,7 +76,7 @@ namespace Team2_ERP
                 List<ShipmentDetail> ShipmentDetail_List = (from list_detail in ShipmentDetail_AllList
                                                             where list_detail.Shipment_ID == shipment_id
                                                             select list_detail).ToList();
-                dgv_ShipmentDetail.DataSource = ShipmentDetail_List; 
+                dgv_ShipmentDetail.DataSource = ShipmentDetail_List;
             }
         }
 
@@ -89,8 +90,15 @@ namespace Team2_ERP
 
             try { ShipmentDetail_AllList = service.GetShipmentDetailList(sb.ToString().Trim(',')); } // 디테일 AllList 갱신
             catch (Exception err) { Log.WriteError(err.Message, err); }
-        }
+        } 
+        #endregion
 
+        #region ToolStrip 기능정의
+        public override void Refresh(object sender, EventArgs e)  // 새로고침
+        {
+            Func_Refresh();
+            main.NoticeMessage = Resources.RefreshDone;
+        }
         private void Func_Refresh()  // 새로고침 기능
         {
             dgv_Shipment.DataSource = null;
@@ -99,8 +107,6 @@ namespace Team2_ERP
             try { Shipment_AllList = service.GetShipmentList(); }
             catch (Exception err) { Log.WriteError(err.Message, err); }
 
-            GetShipmentDetail_List();
-
             // 검색조건 초기화
             Search_Customer.CodeTextBox.Clear();
             Search_Employees.CodeTextBox.Clear();
@@ -108,13 +114,6 @@ namespace Team2_ERP
             Search_OrderPeriod.Enddate.Clear();
             Search_ShipmentIndexPeriod.Startdate.Clear();
             Search_ShipmentIndexPeriod.Enddate.Clear();
-        }
-
-        #region ToolStrip 기능정의
-        public override void Refresh(object sender, EventArgs e)  // 새로고침
-        {
-            Func_Refresh();
-            main.NoticeMessage = Resources.RefreshDone;
         }
 
         public override void Search(object sender, EventArgs e)  // 검색
@@ -164,11 +163,8 @@ namespace Team2_ERP
 
         public override void Excel(object sender, EventArgs e)
         {
-            if (dgv_Shipment.Rows.Count == 0)
-            {
-                main.NoticeMessage = Properties.Resources.ExcelError;
-            }
-            if (dgv_Shipment.Rows.Count > 0)
+            if (dgv_Shipment.Rows.Count == 0) main.NoticeMessage = Properties.Resources.ExcelError;
+            else
             {
                 using (WaitForm frm = new WaitForm())
                 {
@@ -187,10 +183,7 @@ namespace Team2_ERP
 
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
-            if (dgv_Shipment.Rows.Count == 0)
-            {
-                main.NoticeMessage = Properties.Resources.NonData;
-            }
+            if (dgv_Shipment.Rows.Count == 0) main.NoticeMessage = Properties.Resources.NonData;
             else
             {
                 using (WaitForm frm = new WaitForm())
