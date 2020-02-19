@@ -37,20 +37,19 @@ namespace Team2_ERP
         private void LoadData()
         {
             UtilClass.SettingDgv(dgv_Balju);
-            dgv_Balju.MultiSelect = true;
 
             #region 체크박스 컬럼추가
-            DataGridViewCheckBoxColumn cbx = new DataGridViewCheckBoxColumn();
-            cbx.DataPropertyName = "Check";
-            cbx.Width = 30;
-            dgv_Balju.Columns.Add(cbx);
-            Point headerLocation = dgv_Balju.GetCellDisplayRectangle(0, -1, true).Location;
-            headerCheckbox.Location = new Point(headerLocation.X + 8, headerLocation.Y + 5);
-            headerCheckbox.BackColor = Color.FromArgb(55, 113, 138);
-            headerCheckbox.Size = new Size(16, 16);
-            headerCheckbox.Click += new EventHandler(headerCheckbox_Click);
-            dgv_Balju.Controls.Add(headerCheckbox);
-            dgv_Balju.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.None; 
+            //DataGridViewCheckBoxColumn cbx = new DataGridViewCheckBoxColumn();
+            //cbx.DataPropertyName = "Check";
+            //cbx.Width = 30;
+            //dgv_Balju.Columns.Add(cbx);
+            //Point headerLocation = dgv_Balju.GetCellDisplayRectangle(0, -1, true).Location;
+            //headerCheckbox.Location = new Point(headerLocation.X + 8, headerLocation.Y + 5);
+            //headerCheckbox.BackColor = Color.FromArgb(55, 113, 138);
+            //headerCheckbox.Size = new Size(16, 16);
+            //headerCheckbox.Click += new EventHandler(headerCheckbox_Click);
+            //dgv_Balju.Controls.Add(headerCheckbox);
+            //dgv_Balju.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.None; 
             #endregion
 
             //dgv_Balju.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
@@ -62,10 +61,10 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Balju, "총액", "Total", true);
             UtilClass.AddNewColum(dgv_Balju, "삭제여부", "Balju_DeletedYN", false);
 
-            dgv_Balju.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_Balju.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
-            dgv_Balju.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgv_Balju.Columns[6].DefaultCellStyle.Format = "#,#0원";
+            dgv_Balju.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_Balju.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
+            dgv_Balju.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv_Balju.Columns[5].DefaultCellStyle.Format = "#,#0원";
             try { Balju_AllList = service.GetBaljuList(); }  // 발주리스트 갱신
             catch (Exception err) { Log.WriteError(err.Message, err); }
 
@@ -111,11 +110,14 @@ namespace Team2_ERP
 
         private void dgv_Balju_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
         {
-            string Balju_ID = dgv_Balju.CurrentRow.Cells[1].Value.ToString();
-            List<BaljuDetail> BaljuDetail_List = (from list_detail in BaljuDetail_AllList
-                                                  where list_detail.Balju_ID == Balju_ID
-                                                  select list_detail).ToList();
-            dgv_BaljuDetail.DataSource = BaljuDetail_List;
+            if (e.RowIndex > -1)
+            {
+                string Balju_ID = dgv_Balju.CurrentRow.Cells[1].Value.ToString();
+                List<BaljuDetail> BaljuDetail_List = (from list_detail in BaljuDetail_AllList
+                                                      where list_detail.Balju_ID == Balju_ID
+                                                      select list_detail).ToList();
+                dgv_BaljuDetail.DataSource = BaljuDetail_List;
+            }
         }
 
         private void GetBaljuDetail_List()  // 현재 Dgv에 맞추어 DetailList 가져옴
@@ -137,8 +139,6 @@ namespace Team2_ERP
 
             try { Balju_AllList = service.GetBaljuList(); }
             catch (Exception err) { Log.WriteError(err.Message, err); }
-            
-            GetBaljuDetail_List();   // 새로운 DetailList 가져옴
 
             // 검색조건 초기화
             Search_Period.Startdate.Clear();

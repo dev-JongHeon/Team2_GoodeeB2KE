@@ -71,11 +71,14 @@ namespace Team2_ERP
 
         private void dgv_BaljuCompleted_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
         {
-            string Balju_ID = dgv_BaljuCompleted.CurrentRow.Cells[0].Value.ToString();
-            List<BaljuDetail> BaljuDetail_List = (from list_detail in BaljuDetail_AllList
-                                                  where list_detail.Balju_ID == Balju_ID
-                                                  select list_detail).ToList();
-            dgv_BaljuDetail.DataSource = BaljuDetail_List;
+            if (e.RowIndex > -1)
+            {
+                string Balju_ID = dgv_BaljuCompleted.CurrentRow.Cells[0].Value.ToString();
+                List<BaljuDetail> BaljuDetail_List = (from list_detail in BaljuDetail_AllList
+                                                      where list_detail.Balju_ID == Balju_ID
+                                                      select list_detail).ToList();
+                dgv_BaljuDetail.DataSource = BaljuDetail_List; 
+            }
         }
 
         private void GetBaljuCompletedDetail_List()  // 현재 위의 Dgv의 Row수 따라 그에맞는 DetailList 가져옴
@@ -98,8 +101,6 @@ namespace Team2_ERP
 
             try { BaljuCompleted_AllList = service.GetBalju_CompletedList(); }
             catch (Exception err) { Log.WriteError(err.Message, err); }
-
-            GetBaljuCompletedDetail_List();
 
             // 검색조건 초기화
             Search_Period.Startdate.Clear();
