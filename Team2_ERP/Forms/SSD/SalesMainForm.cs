@@ -149,22 +149,28 @@ namespace Team2_ERP
             {
                 using (WaitForm frm = new WaitForm())
                 {
-                    SalesReport br = new SalesReport();
-                    dsSales ds = new dsSales();
-
-                    ds.Relations.Clear();
-                    ds.Tables.Clear();
-                    ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
-                    ds.Tables[0].TableName = "dtSales";
-
-                    //ds.AcceptChanges();
-
-                    br.DataSource = ds;
-                    using (ReportPrintTool printTool = new ReportPrintTool(br))
-                    {
-                        printTool.ShowRibbonPreviewDialog();
-                    }  
+                    frm.Processing = ExportPrint;
+                    frm.ShowDialog();
                 }
+            }
+        }
+
+        private void ExportPrint()
+        {
+            SalesReport br = new SalesReport();
+            dsSales ds = new dsSales();
+
+            ds.Relations.Clear();
+            ds.Tables.Clear();
+            ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+            ds.Tables[0].TableName = "dtSales";
+
+            //ds.AcceptChanges();
+
+            br.DataSource = ds;
+            using (ReportPrintTool printTool = new ReportPrintTool(br))
+            {
+                printTool.ShowRibbonPreviewDialog();
             }
         }
         #endregion

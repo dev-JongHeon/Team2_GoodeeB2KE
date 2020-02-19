@@ -72,11 +72,14 @@ namespace Team2_ERP
 
         private void dgv_Shipment_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string shipment_id = dgv_Shipment.CurrentRow.Cells[0].Value.ToString();
-            List<ShipmentDetail> ShipmentDetail_List = (from list_detail in ShipmentDetail_AllList
-                                                        where list_detail.Shipment_ID == shipment_id
-                                                        select list_detail).ToList();
-            dgv_ShipmentDetail.DataSource = ShipmentDetail_List;
+            if (e.RowIndex > -1)
+            {
+                string shipment_id = dgv_Shipment.CurrentRow.Cells[0].Value.ToString();
+                List<ShipmentDetail> ShipmentDetail_List = (from list_detail in ShipmentDetail_AllList
+                                                            where list_detail.Shipment_ID == shipment_id
+                                                            select list_detail).ToList();
+                dgv_ShipmentDetail.DataSource = ShipmentDetail_List; 
+            }
         }
 
         private void GetShipmentDetail_List()  // 현재 위의 Dgv의 Row수 따라 그에맞는 DetailList 가져옴
@@ -206,25 +209,31 @@ namespace Team2_ERP
             {
                 using (WaitForm frm = new WaitForm())
                 {
-                    ShipmentCompletedReport sr = new ShipmentCompletedReport();
-                    dsShipment ds = new dsShipment();
-
-                    ds.Relations.Clear();
-                    ds.Tables.Clear();
-                    ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
-                    ds.Tables.Add(UtilClass.ConvertToDataTable(ShipmentDetail_AllList));
-                    ds.Tables[0].TableName = "dtShipment";
-                    ds.Tables[1].TableName = "dtShipmentDetail";
-                    ds.Relations.Add("dtShipment_dtShipmentDetail", ds.Tables[0].Columns["Shipment_ID"], ds.Tables[1].Columns["Shipment_ID"]);
-
-                    //ds.AcceptChanges();
-
-                    sr.DataSource = ds;
-                    using (ReportPrintTool printTool = new ReportPrintTool(sr))
-                    {
-                        printTool.ShowRibbonPreviewDialog();
-                    }  
+                    frm.Processing = ExportPrint;
+                    frm.ShowDialog();
                 }
+            }
+        }
+
+        private void ExportPrint()
+        {
+            ShipmentCompletedReport sr = new ShipmentCompletedReport();
+            dsShipment ds = new dsShipment();
+
+            ds.Relations.Clear();
+            ds.Tables.Clear();
+            ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+            ds.Tables.Add(UtilClass.ConvertToDataTable(ShipmentDetail_AllList));
+            ds.Tables[0].TableName = "dtShipment";
+            ds.Tables[1].TableName = "dtShipmentDetail";
+            ds.Relations.Add("dtShipment_dtShipmentDetail", ds.Tables[0].Columns["Shipment_ID"], ds.Tables[1].Columns["Shipment_ID"]);
+
+            //ds.AcceptChanges();
+
+            sr.DataSource = ds;
+            using (ReportPrintTool printTool = new ReportPrintTool(sr))
+            {
+                printTool.ShowRibbonPreviewDialog();
             }
         }
         #endregion
