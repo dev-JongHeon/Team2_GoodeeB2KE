@@ -61,6 +61,7 @@ namespace Team2_ERP
             this.Close();
         }
 
+        //업종목록을 콤보바인딩 한다.
         private void InitCombo()
         {
             try

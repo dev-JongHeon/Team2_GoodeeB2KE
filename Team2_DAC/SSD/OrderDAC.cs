@@ -17,7 +17,7 @@ namespace Team2_DAC
             conn = new SqlConnection(this.ConnectionString);
         }
 
-        public List<Order> GetOrderList()  // 뷰 사용
+        public List<Order> GetOrderList()  // 주문 리스트 조회 (Order_State = 0)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace Team2_DAC
         }
          
 
-        public List<OrderDetail> GetOrderDetailList(string sb)  // 뷰사용
+        public List<OrderDetail> GetOrderDetailList(string sb)  // 주문디테일 리스트 조회
         {
             try
             {
@@ -69,7 +69,7 @@ namespace Team2_DAC
             }
         }
         
-        public List<Order> GetOrderCompletedList()  // 뷰 사용
+        public List<Order> GetOrderCompletedList()  // 주문완료 리스트 조회 (Order_State > 1)
         {
             try
             {
@@ -97,7 +97,7 @@ namespace Team2_DAC
             }
         }
 
-        public List<Sales> GetSalesStatus()  // 뷰 사용
+        public List<Sales> GetSalesStatus()  // 매출현황 조회
         {
             try
             {
@@ -123,7 +123,8 @@ namespace Team2_DAC
             }
         }
 
-        public bool UpOrder_InsShipment(List<string> orderID, int employeeID)  // 주문 처리
+        public bool UpOrder_InsShipment(List<string> orderID, int employeeID)  // 1.주문 처리(Order_State 0에서 1로 Update)
+                                                                               // 2.Produce Insert, 3.Work Insert, 4.Shipment Insert
         {
             int check = 0;
             try

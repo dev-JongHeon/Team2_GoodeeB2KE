@@ -9,6 +9,9 @@ using Team2_VO;
 
 namespace Team2_DAC
 {
+    /// <summary>
+    /// 비가동현황 DAC
+    /// </summary>
     public class DowntimeDAC : ConnectionInfo
     {
         SqlConnection conn;
@@ -17,6 +20,10 @@ namespace Team2_DAC
             conn = new SqlConnection(this.ConnectionString);
         }
 
+        /// <summary>
+        /// 모든 비가동현황을 가져오는 메서드
+        /// </summary>
+        /// <returns></returns>
         public List<DowntimeVO> GetAllDowntime()
         {
             try
@@ -32,12 +39,17 @@ namespace Team2_DAC
                 }
                 return list;
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
         }
 
+        /// <summary>
+        /// 공정별 비가동현황을 가져오는 메서드
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
         public DataSet GetDowntimeByLine(string date)
         {
             try
@@ -54,35 +66,17 @@ namespace Team2_DAC
                 }
                 return ds;
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
         }
 
-        public DataSet GetDowntimeByLine2(string line)
-        {
-            try
-            {
-                DataSet ds = new DataSet();
-                string sql = "KJH_GetDowntimeByLine2";
-                using (SqlDataAdapter adpt = new SqlDataAdapter(sql, conn))
-                {
-                    adpt.SelectCommand.CommandType = CommandType.StoredProcedure;
-                    adpt.SelectCommand.Parameters.AddWithValue("@line", line);
-                    conn.Open();
-                    adpt.Fill(ds);
-                    conn.Close();
-                }
-                return ds;
-            }
-            catch (Exception err)
-            {
-                throw new Exception(err.Message);
-            }
-        }
-
-
+        /// <summary>
+        /// 비가동유형별 비가동현황을 가져오는 메서드
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
         public DataSet GetDowntimeByType(string date)
         {
             try
@@ -99,9 +93,9 @@ namespace Team2_DAC
                 }
                 return ds;
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
         }
     }

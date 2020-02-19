@@ -43,6 +43,7 @@ namespace Team2_ERP
             }
         }
 
+        //부서목록을 콤보바인딩
         private void InitCombo()
         {
             try
@@ -62,13 +63,9 @@ namespace Team2_ERP
             InitCombo();
             txtEmployeesPassword.PasswordChar = '*';
 
-            if(mode.Equals("Insert"))
+            //수정 시 비밀번호 수정은 불가능하게 한다.(비밀번호 수정은 로그인창에서 가능)
+            if(mode.Equals("Update"))
             {
-                dtpEmployeesHireDate.Enabled = true;
-            }
-            else
-            {
-                dtpEmployeesHireDate.Enabled = false;
                 txtEmployeesPassword.Enabled = false;
             }
         }

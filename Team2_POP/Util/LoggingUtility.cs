@@ -229,7 +229,7 @@ namespace Team2_POP
         /// <returns></returns>
         private string GetLoggingFolder()
         {
-            return $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\Team2Log\\POPFolder"; // string.Format(@"\{0}\{1}\Logs", this.company, this.product);
+            return $"D:\\Team2Log\\POPFolder"; // string.Format(@"\{0}\{1}\Logs", this.company, this.product);
         }
 
         /// <summary>

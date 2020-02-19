@@ -107,6 +107,7 @@
             this.dgv_Balju.TabIndex = 2;
             this.dgv_Balju.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Balju_CellContentClick);
             this.dgv_Balju.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Balju_CellDoubleClick);
+            this.dgv_Balju.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgv_Balju_ColumnWidthChanged);
             // 
             // Search_Period
             // 

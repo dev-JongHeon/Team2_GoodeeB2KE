@@ -9,27 +9,26 @@ using System.Net;
 using System.Net.Sockets;
 using System.ServiceProcess;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Team2_Machine
 {
     public partial class Machine : ServiceBase
     {
-        ServerMachine serverM;        
+        ServerMachine serverM = null;
         public Machine()
         {
             InitializeComponent();
         }
 
         protected override void OnStart(string[] args)
-        {            
+        {
+            
             serverM = new ServerMachine();
+            new Thread(new ThreadStart(serverM.Start)).Start();
         }
 
-        public void Start()
-        {
-            OnStart(null);
-        }
 
         protected override void OnStop()
         {

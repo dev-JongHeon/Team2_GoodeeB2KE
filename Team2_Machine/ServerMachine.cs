@@ -20,16 +20,21 @@ namespace Team2_Machine
 
         public ServerMachine()
         {
-            Console.WriteLine($"{DateTime.Now.ToString("yyyyMMdd HH:mm:ss")} 머신 기계 가동시작");
+           
+        }
+
+        public void Start()
+        {
+            Program.Log.WriteInfo($"{DateTime.Now.ToString("yyyyMMdd HH:mm:ss")} 머신 기계 가동시작");
             AsyncWorkerServer().Wait();
-            Console.WriteLine($"{DateTime.Now.ToString("yyyyMMdd HH:mm:ss")} 머신 기계 가동종료");
+            Program.Log.WriteInfo($"{DateTime.Now.ToString("yyyyMMdd HH:mm:ss")} 머신 기계 가동종료");
         }
 
 
         // 일을 받기전에 클라이언트와 연결하는 코드
         private async Task AsyncWorkerServer()
         {
-            listener = new TcpListener(IPAddress.Parse("192.168.0.10"), 5000);
+            listener = new TcpListener(Dns.GetHostEntry(Dns.GetHostName()).AddressList.ToList().Find(i => i.AddressFamily == AddressFamily.InterNetwork), 5000);
             listener.Start();
             clientInfo = new ClientInfo();
 
@@ -79,13 +84,12 @@ namespace Team2_Machine
                         // 데이터를 가져옴(실적번호, 요구수량, 생산번호, 라인아이디)
                         // Worklist[0] => 개인정보 || Worklist[1] => 생산지시
                         string[] workList = Encoding.UTF8.GetString(buff, 0, nbytes).Trim().Split(',');
-
-                        workList.ToList().ForEach(p => Console.WriteLine(p)); // 확인코드
+                        
 
                         // 접속 정보를 담음
                         if (Convert.ToInt32(workList[0]) == 0)
-                        {                            
-                            Console.WriteLine($"{DateTime.Now.ToString("yyyymmdd HH:MM:ss")} 클라이언트 접속 \n접속공정 - {Convert.ToInt32(workList[1])}");                            
+                        {
+                            Program.Log.WriteInfo($"{DateTime.Now.ToString("yyyymmdd HH:MM:ss")} 클라이언트 접속 \n접속공정 - {Convert.ToInt32(workList[1])}");                            
                             clientInfo.SetClient(client, Convert.ToInt32(workList[1]), Convert.ToBoolean(workList[2]));
                         }
                         else if (Convert.ToInt32(workList[0]) == 1)
@@ -109,8 +113,8 @@ namespace Team2_Machine
                             machine.PerformanceID = workList[1];
                             machine.RequestQty = Convert.ToInt32(workList[2]);
                             int totalQty = machine.ProductionMachine();
-                            Console.WriteLine("작업완료 : {0}", totalQty);
-                            Console.WriteLine("생산공정아이디 : {0}", lineID);
+                            Program.Log.WriteInfo($"작업완료 : {totalQty}");
+                            Program.Log.WriteInfo($"생산공정아이디 : {lineID}");
 
                             //두번째 : 라인아이디(0), 메세지(1), 실적(2), 성공(3), 투입수량(4)
                             Write(lineID, new object[] { lineID, "생산완료", machine.PerformanceID, true, totalQty });     
@@ -118,7 +122,7 @@ namespace Team2_Machine
                         }
                         else if (Convert.ToInt32(workList[0]) == 9)
                         {
-                            Debug.WriteLine("클라이언트 접속해제 요청");
+                            Program.Log.WriteWarn("클라이언트 접속해제 요청");
                             break;
                         }
                     }
@@ -129,15 +133,14 @@ namespace Team2_Machine
             }
             catch (Exception ex)
             {
-                WriteErrorLog(ex);
-                Console.WriteLine(ex.Message);
+                WriteErrorLog(ex);                
             }
             finally
             {
                 clientInfo.DeleteClient(Convert.ToInt32(lineID));
                 stream.Close();
                 client.Close();
-                Console.WriteLine($"{DateTime.Now.ToString("yyyymmdd HH:MM:ss")} 클라이언트 접속해제");
+                Program.Log.WriteInfo($"{DateTime.Now.ToString("yyyymmdd HH:MM:ss")} 클라이언트 접속해제");
             }
         }
 
@@ -209,8 +212,8 @@ namespace Team2_Machine
 
         public void ServerDown()
         {
-            listener.Server.Close();
             listener.Stop();
+            listener.Server.Close();
         }
 
         private void WriteErrorLog(Exception ex)

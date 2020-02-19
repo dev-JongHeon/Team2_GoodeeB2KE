@@ -9,6 +9,9 @@ using Team2_VO;
 
 namespace Team2_DAC
 {
+    /// <summary>
+    /// 공통검색 DAC
+    /// </summary>
     public class SearchDAC :ConnectionInfo
     {
         SqlConnection conn;
@@ -17,6 +20,11 @@ namespace Team2_DAC
             conn = new SqlConnection(this.ConnectionString);
         }
 
+        /// <summary>
+        /// 공통검색폼용 정보를 가져오는 메서드
+        /// </summary>
+        /// <param name="div">구분자</param>
+        /// <returns></returns>
         public List<SearchedInfoVO> GetInfo(string div)
         {
             try
@@ -33,9 +41,9 @@ namespace Team2_DAC
                 }
                 return list;
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
 
         }

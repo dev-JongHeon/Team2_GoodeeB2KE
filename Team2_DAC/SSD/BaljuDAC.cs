@@ -17,8 +17,8 @@ namespace Team2_DAC
             conn = new SqlConnection(this.ConnectionString);
         }
 
-        // 발주조회
-        public List<Balju> GetBaljuList()
+        
+        public List<Balju> GetBaljuList()  // 발주 리스트 조회 (Balju_Processed = 0)
         {
             try
             {
@@ -26,7 +26,7 @@ namespace Team2_DAC
                 {
                     StringBuilder sb = new StringBuilder();
                     sb.Append("SELECT Balju_ID, Company_ID, Company_Name, Balju_Date, Employees_Name, Total, Balju_DeletedYN ");
-                    sb.Append("FROM   BaljuList ");
+                    sb.Append("FROM BaljuList ");
                     sb.Append("ORDER BY Balju_ID DESC ");
                     
                     cmd.Connection = conn;
@@ -46,7 +46,7 @@ namespace Team2_DAC
             }
         }
 
-        public List<Balju> GetBalju_CompletedList()
+        public List<Balju> GetBalju_CompletedList()  // 발주완료 리스트 조회 (Balju_Processed = 1)
         {
             try
             {
@@ -73,7 +73,7 @@ namespace Team2_DAC
             }
         }
 
-        public List<BaljuDetail> GetBalju_DetailList(string sb)
+        public List<BaljuDetail> GetBalju_DetailList(string sb)  // 발주디테일 리스트 조회
         {
             try
             {
@@ -97,8 +97,8 @@ namespace Team2_DAC
             }
         }
 
-        public bool UpdateBalju_Processed(List<string> baljuID, int employeeID)
-        {
+        public bool UpdateBalju_Processed(List<string> baljuID, int employeeID)  // 발주완료처리
+        {                                                                      //(+ 해당 Products Qty Update, 원자재창고 수불내역 Insert)
             int check = 0;
             try
             {
@@ -126,7 +126,7 @@ namespace Team2_DAC
             }
         }
 
-        public bool DeleteBalju(List<string> balju_ID)
+        public bool DeleteBalju(List<string> balju_ID)  // 발주삭제
         {
             int check = 0;
             try

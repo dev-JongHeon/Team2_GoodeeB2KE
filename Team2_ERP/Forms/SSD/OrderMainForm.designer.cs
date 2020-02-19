@@ -91,6 +91,7 @@
             this.dgv_Order.TabIndex = 0;
             this.dgv_Order.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Order_CellContentClick);
             this.dgv_Order.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Order_CellDoubleClick);
+            this.dgv_Order.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgv_Order_ColumnWidthChanged);
             // 
             // dgv_OrderDetail
             // 

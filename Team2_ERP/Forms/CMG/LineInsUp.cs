@@ -43,6 +43,7 @@ namespace Team2_ERP
             }
         }
 
+        //공정이 속할 공장목록과 공정이 없는 반제품 카테고리 목록을 가져와서 콤보바인딩한다.
         private void InitCombo()
         {
             try

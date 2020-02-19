@@ -79,7 +79,8 @@ namespace Team2_ERP
                 Log.WriteError(err.Message, err);
             }
         }
-
+        
+        //원자재가 보관될 창고목록과 원자재가 속하는 카테고리 목록과 어느 거래처와 거래하는지 설정하기 위해 거래처 목록을 콤보바인딩
         private void InitCombo()
         {
             try

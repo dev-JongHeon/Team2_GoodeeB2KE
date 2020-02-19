@@ -17,7 +17,7 @@ namespace Team2_DAC
             conn = new SqlConnection(this.ConnectionString);
         }
 
-        public List<Shipment> GetShipmentList() // 뷰 사용
+        public List<Shipment> GetShipmentList()  // 출하리스트 조회
         {
             try
             {
@@ -44,7 +44,7 @@ namespace Team2_DAC
             }
         }
 
-        public List<Shipment> GetShipmentCompletedList() // 뷰 사용
+        public List<Shipment> GetShipmentCompletedList() // 출하완료 리스트 조회 (Shipment_DoneDate가 존재하는)
         {
             try
             {
@@ -71,7 +71,7 @@ namespace Team2_DAC
             }
         }
 
-        public List<ShipmentDetail> GetShipmentDetailList(string sb)
+        public List<ShipmentDetail> GetShipmentDetailList(string sb)  // 출하디테일 리스트 조회
         {
             try
             {

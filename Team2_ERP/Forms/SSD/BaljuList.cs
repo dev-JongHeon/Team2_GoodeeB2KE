@@ -34,54 +34,8 @@ namespace Team2_ERP
             LoadData();
         }
 
-        private void LoadData()
-        {
-            UtilClass.SettingDgv(dgv_Balju);
-
-            #region 체크박스 컬럼추가
-            //DataGridViewCheckBoxColumn cbx = new DataGridViewCheckBoxColumn();
-            //cbx.DataPropertyName = "Check";
-            //cbx.Width = 30;
-            //dgv_Balju.Columns.Add(cbx);
-            //Point headerLocation = dgv_Balju.GetCellDisplayRectangle(0, -1, true).Location;
-            //headerCheckbox.Location = new Point(headerLocation.X + 8, headerLocation.Y + 5);
-            //headerCheckbox.BackColor = Color.FromArgb(55, 113, 138);
-            //headerCheckbox.Size = new Size(16, 16);
-            //headerCheckbox.Click += new EventHandler(headerCheckbox_Click);
-            //dgv_Balju.Controls.Add(headerCheckbox);
-            //dgv_Balju.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.None; 
-            #endregion
-
-            //dgv_Balju.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            UtilClass.AddNewColum(dgv_Balju, "발주지시번호", "Balju_ID", true, 130);
-            UtilClass.AddNewColum(dgv_Balju, "거래처코드", "Company_ID", true, 110);
-            UtilClass.AddNewColum(dgv_Balju, "거래처명칭", "Company_Name", true, 500);
-            UtilClass.AddNewColum(dgv_Balju, "발주요청일시", "Balju_Date", true, 170);
-            UtilClass.AddNewColum(dgv_Balju, "등록사원", "Employees_Name", true, 100);
-            UtilClass.AddNewColum(dgv_Balju, "총액", "Total", true);
-            UtilClass.AddNewColum(dgv_Balju, "삭제여부", "Balju_DeletedYN", false);
-
-            dgv_Balju.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_Balju.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
-            dgv_Balju.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgv_Balju.Columns[5].DefaultCellStyle.Format = "#,#0원";
-            try { Balju_AllList = service.GetBaljuList(); }  // 발주리스트 갱신
-            catch (Exception err) { Log.WriteError(err.Message, err); }
-
-            UtilClass.SettingDgv(dgv_BaljuDetail);
-            UtilClass.AddNewColum(dgv_BaljuDetail, "발주지시번호", "Balju_ID", false, 130);
-            UtilClass.AddNewColum(dgv_BaljuDetail, "품목코드", "Product_ID", true, 100);
-            UtilClass.AddNewColum(dgv_BaljuDetail, "품목명", "Product_Name", true, 500);
-            UtilClass.AddNewColum(dgv_BaljuDetail, "발주요청수량", "BaljuDetail_Qty", true, 130);
-            dgv_BaljuDetail.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgv_BaljuDetail.Columns[3].DefaultCellStyle.Format = "#,#0개";
-
-            Search_Period.Startdate.BackColor = Color.LightYellow;
-            Search_Period.Enddate.BackColor = Color.LightYellow;
-        }
-
-        #region 체크박스 관련 기능
-        private void headerCheckbox_Click(object sender, EventArgs e)
+        #region 체크박스 관련기능
+        private void headerCheckbox_Click(object sender, EventArgs e)  // 체크박스 헤더 클릭 시 전체 체크/해제
         {
             dgv_Balju.EndEdit();
             foreach (DataGridViewRow row in dgv_Balju.Rows)
@@ -90,7 +44,7 @@ namespace Team2_ERP
             }
         }
 
-        private void dgv_Balju_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgv_Balju_CellContentClick(object sender, DataGridViewCellEventArgs e)  // 하나라도 체크안돼있으면 맨위 체크 품
         {
             if (dgv_Balju.Rows.Count > 0 && e.ColumnIndex == 0)
             {
@@ -105,8 +59,63 @@ namespace Team2_ERP
                 }
                 headerCheckbox.Checked = isChecked;
             }
-        } 
+        }
+
+        private void dgv_Balju_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)  // 체크박스 위치 바꿔주는 이벤트
+        {
+            Point headerLocation = dgv_Balju.GetCellDisplayRectangle(0, -1, true).Location;
+            headerCheckbox.Location = new Point((headerLocation.X + dgv_Balju.Columns[0].Width / 2) - 7, headerLocation.Y + dgv_Balju.ColumnHeadersHeight / 5 + 1);
+        }
         #endregion
+
+        #region dgv 관련기능
+
+        private void LoadData()
+        {
+            UtilClass.SettingDgv(dgv_Balju);
+
+            #region 체크박스 컬럼추가
+            DataGridViewCheckBoxColumn cbx = new DataGridViewCheckBoxColumn();
+            cbx.DataPropertyName = "Check";
+            cbx.Width = 30;
+            dgv_Balju.Columns.Add(cbx);
+            Point headerLocation = dgv_Balju.GetCellDisplayRectangle(0, -1, true).Location;
+            headerCheckbox.Location = new Point(headerLocation.X + 8, headerLocation.Y + 5);
+            headerCheckbox.BackColor = Color.FromArgb(55, 113, 138);
+            headerCheckbox.Size = new Size(16, 16);
+            headerCheckbox.Click += new EventHandler(headerCheckbox_Click);
+            dgv_Balju.Controls.Add(headerCheckbox);
+            dgv_Balju.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            #endregion
+
+            //dgv_Balju.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            UtilClass.AddNewColum(dgv_Balju, "발주지시번호", "Balju_ID", true, 130);
+            UtilClass.AddNewColum(dgv_Balju, "거래처코드", "Company_ID", true, 110);
+            UtilClass.AddNewColum(dgv_Balju, "거래처명칭", "Company_Name", true, 300);
+            UtilClass.AddNewColum(dgv_Balju, "발주요청일시", "Balju_Date", true, 170);
+            UtilClass.AddNewColum(dgv_Balju, "등록사원", "Employees_Name", true, 200);
+            UtilClass.AddNewColum(dgv_Balju, "총액", "Total", true, 170);
+            UtilClass.AddNewColum(dgv_Balju, "삭제여부", "Balju_DeletedYN", false);
+
+            dgv_Balju.Columns[0].MinimumWidth = 30;
+            dgv_Balju.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_Balju.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
+            dgv_Balju.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv_Balju.Columns[6].DefaultCellStyle.Format = "#,#0원";
+            try { Balju_AllList = service.GetBaljuList(); }  // 발주리스트 갱신
+            catch (Exception err) { Log.WriteError(err.Message, err); }
+
+            UtilClass.SettingDgv(dgv_BaljuDetail);
+            UtilClass.AddNewColum(dgv_BaljuDetail, "발주지시번호", "Balju_ID", false, 130);
+            UtilClass.AddNewColum(dgv_BaljuDetail, "품목코드", "Product_ID", true, 100);
+            UtilClass.AddNewColum(dgv_BaljuDetail, "품목명", "Product_Name", true, 500);
+            UtilClass.AddNewColum(dgv_BaljuDetail, "발주요청수량", "BaljuDetail_Qty", true, 130);
+            dgv_BaljuDetail.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv_BaljuDetail.Columns[3].DefaultCellStyle.Format = "#,#0개";
+
+            Search_Period.Startdate.BackColor = Color.LightYellow;
+            Search_Period.Enddate.BackColor = Color.LightYellow;
+        }
 
         private void dgv_Balju_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
         {
@@ -128,16 +137,23 @@ namespace Team2_ERP
                 sb.Append($"'{row.Cells[1].Value.ToString()}',");
             }
 
-            try { BaljuDetail_AllList = service.GetBalju_DetailList(sb.ToString().Trim(',')); }  // 디테일 AllList 갱신
+            try { BaljuDetail_AllList = service.GetBalju_DetailList(sb.ToString().Trim(',')); }  // BaljuDetail_AllList 갱신
             catch (Exception err) { Log.WriteError(err.Message, err); }
-        }
+        } 
+        #endregion
 
+        #region ToolStrip 기능정의
+        public override void Refresh(object sender, EventArgs e)  // 새로고침
+        {
+            Func_Refresh();
+            main.NoticeMessage = Resources.RefreshDone;
+        }
         private void Func_Refresh()  // 새로고침 기능
         {
             dgv_BaljuDetail.DataSource = null;
             dgv_Balju.DataSource = null;
 
-            try { Balju_AllList = service.GetBaljuList(); }
+            try { Balju_AllList = service.GetBaljuList(); }  // Balju_AllList 갱신
             catch (Exception err) { Log.WriteError(err.Message, err); }
 
             // 검색조건 초기화
@@ -147,14 +163,7 @@ namespace Team2_ERP
             Search_Employee.CodeTextBox.Clear();
             headerCheckbox.Checked = false;
         }
-
-        #region ToolStrip 기능정의
-        public override void Refresh(object sender, EventArgs e)  // 새로고침
-        {
-            Func_Refresh();
-            main.NoticeMessage = Resources.RefreshDone;
-        }
-        public override void Search(object sender, EventArgs e)
+        public override void Search(object sender, EventArgs e)  // 검색
         {
             if (Search_Period.Startdate.Text == "    -  -") { main.NoticeMessage = Resources.PeriodError; }
             else
@@ -181,9 +190,8 @@ namespace Team2_ERP
                 }
                 dgv_Balju.DataSource = SearchedList;
                 dgv_BaljuDetail.DataSource = null;
-                GetBaljuDetail_List();
+                GetBaljuDetail_List();  // BaljuDetail_AllList 갱신
                 headerCheckbox.Checked = false;
-                //dgv_Balju.Rows[0].Cells[0].Value = true;
                 main.NoticeMessage = Resources.SearchDone;
             }
         }
@@ -239,12 +247,16 @@ namespace Team2_ERP
                             IDList.Add(item.Cells[1].Value.ToString());
                         }
                     }
+                    bool check = true;
 
                     try { service.DeleteBalju(IDList); }
                     catch (Exception err) { Log.WriteError(err.Message, err); }
 
                     Func_Refresh();  // 새로고침
                     main.NoticeMessage = notice;
+
+                    if (check) MessageBox.Show(Resources.ProcessSuccess, Resources.Notice);
+                    else MessageBox.Show(Resources.ProcessFail, Resources.Notice, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
@@ -254,12 +266,9 @@ namespace Team2_ERP
             }
         }
 
-        public override void Excel(object sender, EventArgs e)
+        public override void Excel(object sender, EventArgs e)  // 엑셀 내보내기
         {
-            if (dgv_Balju.Rows.Count == 0)
-            {
-                main.NoticeMessage = Resources.ExcelError;
-            }
+            if (dgv_Balju.Rows.Count == 0) main.NoticeMessage = Resources.ExcelError;
             else
             {
                 using (WaitForm frm = new WaitForm())
@@ -277,40 +286,40 @@ namespace Team2_ERP
             UtilClass.ExportTo2DataGridView(master, detail, exceptColumns);
         }
 
-        public override void Print(object sender, EventArgs e)  // 인쇄
+        public override void Print(object sender, EventArgs e)  // 보고서 인쇄
         {
-            if (dgv_Balju.Rows.Count == 0)
-            {
-                main.NoticeMessage = Resources.NonData;
-            }
+            if (dgv_Balju.Rows.Count == 0) main.NoticeMessage = Resources.NonData;
             else
             {
                 using (WaitForm frm = new WaitForm())
                 {
-
-                    BaljuReport br = new BaljuReport();
-                    dsBalju ds = new dsBalju();
-
-                    ds.Relations.Clear();
-                    ds.Tables.Clear();
-                    ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
-                    ds.Tables.Add(UtilClass.ConvertToDataTable(BaljuDetail_AllList));
-                    ds.Tables[0].TableName = "dtBalju";
-                    ds.Tables[1].TableName = "dtBalju_Detail";
-                    ds.Relations.Add("dtBalju_dtBalju_Detail", ds.Tables[0].Columns["Balju_ID"], ds.Tables[1].Columns["Balju_ID"]);
-
-                    //dOrg.Tables.Add(UtilClass.ConvertToDataTable(BaljuDetail_AllList));
-                    //ds = (dsBalju)dOrg;
-                    ds.AcceptChanges();
-
-                    br.DataSource = ds;
-
-                    using (ReportPrintTool printTool = new ReportPrintTool(br))
-                    {
-                        printTool.ShowRibbonPreviewDialog();
-                    }
+                    frm.Processing = ExportPrint;
+                    frm.ShowDialog();
                 }
             }
+        }
+        private void ExportPrint()
+        {
+            BaljuReport br = new BaljuReport();
+            dsBalju ds = new dsBalju();
+
+            ds.Relations.Clear();
+            ds.Tables.Clear();
+            ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+            ds.Tables.Add(UtilClass.ConvertToDataTable(BaljuDetail_AllList));
+            ds.Tables[0].TableName = "dtBalju";
+            ds.Tables[1].TableName = "dtBalju_Detail";
+            ds.Relations.Add("dtBalju_dtBalju_Detail", ds.Tables[0].Columns["Balju_ID"], ds.Tables[1].Columns["Balju_ID"]);
+
+            //dOrg.Tables.Add(UtilClass.ConvertToDataTable(BaljuDetail_AllList));
+            //ds = (dsBalju)dOrg;
+            ds.AcceptChanges();
+
+            br.DataSource = ds;
+
+            ReportPrintTool printTool = new ReportPrintTool(br);
+           
+            printTool.ShowRibbonPreviewDialog();
         }
         #endregion
 
@@ -337,8 +346,7 @@ namespace Team2_ERP
             main.수정ToolStripMenuItem.ToolTipText = "수정(Ctrl+M)";
             new SettingMenuStrip().UnsetMenu(this);
         }
-        #endregion
 
-        
+        #endregion
     }
 }

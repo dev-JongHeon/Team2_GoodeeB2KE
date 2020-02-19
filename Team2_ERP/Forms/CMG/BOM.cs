@@ -97,16 +97,19 @@ namespace Team2_ERP
             {
                 BOMService service = new BOMService();
 
+                //원자재 리스트
                 if (rdoResource.Checked)
                 {
                     list = service.GetProductList("Resource");
                     dgvBOM.DataSource = list;
                 }
+                //반제품 리스트
                 else if (rdoSemiProduct.Checked)
                 {
                     list = service.GetProductList("SemiProduct");
                     dgvBOM.DataSource = list;
                 }
+                //완제품 리스트
                 else
                 {
                     list = service.GetProductList("Product");
@@ -117,7 +120,9 @@ namespace Team2_ERP
                 foreach (DataGridViewRow item in dgvBOM.Rows)
                     sb.Append($"'{item.Cells[0].Value.ToString()}',");
 
+                //정전개 리스트
                 bomList = service.GetAllCombination(sb.ToString().Trim(','));
+                //역전개 리스트
                 bomReverseList = service.GetAllCombinationReverse(sb.ToString().Trim(','));
             }
             catch (Exception err)
@@ -184,6 +189,7 @@ namespace Team2_ERP
 
         private void ItemSelect(object sender, ToolStripItemClickedEventArgs e)
         {
+            //DropDown 메뉴 중 반제품을 선택했을 때 반제품 조합 팝업을 띄우고 완제품을 선택하면 완제품 조합 팝업을 띄운다.
             if (e.ClickedItem.Text == "반제품")
             {
                 SemiProductComp popup = new SemiProductComp(SemiProductComp.EditMode.Insert, null);
@@ -350,6 +356,7 @@ namespace Team2_ERP
 
         private void ExcelExport()
         {
+            //엑셀로 내보내기 위한 list들을 복사해서 보이지 않는 컬럼은 엑셀에서 제외시킨다.
             List<ProductVO> allList = list.ToList();
             List<BOMVO> detail1 = bomList.ToList();
             List<BOMVO> detail2 = bomReverseList.ToList();
@@ -373,11 +380,13 @@ namespace Team2_ERP
                 dgvBOMDetail1.DataSource = null;
                 dgvBOMDetail2.DataSource = null;
 
+                //원자재 품목일 때 전개를 누르면 역전개만 보인다.
                 if (e.ColumnIndex == 13 && dgvBOM.CurrentRow.Cells[1].Value.ToString().Contains("CM"))
                 {
                     List<BOMVO> productList = (from item in bomReverseList where item.Combination_Product_ID.Equals(dgvBOM.Rows[e.RowIndex].Cells[0].Value.ToString()) select item).ToList();
                     dgvBOMDetail2.DataSource = productList;
                 }
+                //반제품 품목일 때 전개를 누르면 정전개, 역전개 모두 보인다.
                 else if (e.ColumnIndex == 13 && dgvBOM.CurrentRow.Cells[1].Value.ToString().Contains("CS"))
                 {
                     List<BOMVO> semiProductList = (from item in bomList where item.Product_ID.Equals(dgvBOM.Rows[e.RowIndex].Cells[0].Value.ToString()) select item).ToList();
@@ -386,6 +395,7 @@ namespace Team2_ERP
                     List<BOMVO> productList = (from item in bomReverseList where item.Combination_Product_ID.Equals(dgvBOM.Rows[e.RowIndex].Cells[0].Value.ToString()) select item).ToList();
                     dgvBOMDetail2.DataSource = productList;
                 }
+                //완제품 품목일 때 전개를 누르면 정전개만 보인다.
                 else if (e.ColumnIndex == 13 && dgvBOM.CurrentRow.Cells[1].Value.ToString().Contains("CP"))
                 {
                     List<BOMVO> semiProductList = (from item in bomList where item.Product_ID.Equals(dgvBOM.Rows[e.RowIndex].Cells[0].Value.ToString()) select item).ToList();
