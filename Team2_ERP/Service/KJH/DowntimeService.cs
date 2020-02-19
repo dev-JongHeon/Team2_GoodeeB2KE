@@ -23,12 +23,6 @@ namespace Team2_ERP
             return dac.GetDowntimeByLine(date);
         }
 
-        public DataSet GetDowntimeByLine2(string line)
-        {
-            DowntimeDAC dac = new DowntimeDAC();
-            return dac.GetDowntimeByLine2(line);
-        }
-
         public DataSet GetDowntimeByType(string date)
         {
             DowntimeDAC dac = new DowntimeDAC();

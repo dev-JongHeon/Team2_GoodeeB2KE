@@ -9,6 +9,9 @@ using Team2_VO;
 
 namespace Team2_DAC
 {
+    /// <summary>
+    /// 작업 DAC
+    /// </summary>
     public class WorkDAC : ConnectionInfo
     {
         SqlConnection conn;
@@ -17,6 +20,10 @@ namespace Team2_DAC
             conn = new SqlConnection(this.ConnectionString);
         }
 
+        /// <summary>
+        /// 모든 작업을 가져오는 메서드
+        /// </summary>
+        /// <returns></returns>
         public List<WorkVO> GetAllWork()
         {
             try
@@ -32,11 +39,10 @@ namespace Team2_DAC
                 }
                 return list;
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
-
         }
     }
 }

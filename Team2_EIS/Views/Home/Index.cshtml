@@ -7,6 +7,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @{
+    
     StringBuilder sb = new StringBuilder();
     StringBuilder sb2 = new StringBuilder();
     StringBuilder sb3 = new StringBuilder();
@@ -313,7 +314,6 @@
                                 {
                                 <tr>
                                     <td><span>@row["id"]</span></td>
-                                    <td>@row["name"]</td>
                                     @if (Convert.ToInt32(row["state"]) == 0)
                                     {
                                         <td><span class="label label-danger">주문접수</span></td>
@@ -330,6 +330,7 @@
                                     {
                                         <td><span class="label label-success">배송완료</span></td>
                                     }
+                                    <td>@row["name"]</td>
                                 </tr>
                                 }
                             </tbody>
