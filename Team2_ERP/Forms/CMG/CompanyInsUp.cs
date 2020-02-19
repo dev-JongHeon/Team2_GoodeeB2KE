@@ -63,9 +63,16 @@ namespace Team2_ERP
 
         private void InitCombo()
         {
-            StandardService service = new StandardService();
-            List<ComboItemVO> companyList = service.GetComboSector();
-            UtilClass.ComboBinding(cboCompanyDivision, companyList, "선택");
+            try
+            {
+                StandardService service = new StandardService();
+                List<ComboItemVO> companyList = service.GetComboSector();
+                UtilClass.ComboBinding(cboCompanyDivision, companyList, "선택");
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
 
             if(mode.Equals("Update"))
             {
@@ -91,8 +98,15 @@ namespace Team2_ERP
                 item.Company_Fax = null;
             }
 
-            StandardService service = new StandardService();
-            service.InsertCompany(item);
+            try
+            {
+                StandardService service = new StandardService();
+                service.InsertCompany(item);
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
         }
 
         private void UpdateCompany()
@@ -114,8 +128,15 @@ namespace Team2_ERP
                 item.Company_Fax = null;
             }
 
-            StandardService service = new StandardService();
-            service.UpdateCompany(item);
+            try
+            {
+                StandardService service = new StandardService();
+                service.UpdateCompany(item);
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
         }
 
         private void btnOK_Click(object sender, EventArgs e)

@@ -46,8 +46,15 @@ namespace Team2_ERP
         // DataGridView 가져오기
         private void LoadGridView()
         {
-            StandardService service = new StandardService();
-            list = service.GetAllEmployee();
+            try
+            {
+                StandardService service = new StandardService();
+                list = service.GetAllEmployee();
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
             if (rdoWork.Checked)
             {
                 list = (from item in list where item.Employees_DeletedYN == false select item).ToList();
@@ -144,8 +151,15 @@ namespace Team2_ERP
             {
                 if (MessageBox.Show("삭제하시겠습니까?", "확인", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    StandardService service = new StandardService();
-                    service.DeleteEmployee(item.Employees_ID);
+                    try
+                    {
+                        StandardService service = new StandardService();
+                        service.DeleteEmployee(item.Employees_ID);
+                    }
+                    catch (Exception err)
+                    {
+                        Log.WriteError(err.Message, err);
+                    }
                     frm.NoticeMessage = Resources.DeleteDone;
                     dgvEmployee.DataSource = null;
                     LoadGridView();

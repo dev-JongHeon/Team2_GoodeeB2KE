@@ -53,8 +53,15 @@ namespace Team2_ERP
             else
                 category.CodeTable_CodeExplain = cboContext.SelectedValue.ToString();
 
-            CodeTableService service = new CodeTableService();
-            service.InsertCategory(category);
+            try
+            {
+                CodeTableService service = new CodeTableService();
+                service.InsertCategory(category);
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
         }
 
         public void UpdateCategory()
@@ -70,8 +77,15 @@ namespace Team2_ERP
 
             category.CodeTable_CodeID = code;
 
-            CodeTableService service = new CodeTableService();
-            service.UpdateCodeTable(category);
+            try
+            {
+                CodeTableService service = new CodeTableService();
+                service.UpdateCodeTable(category);
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -169,9 +183,16 @@ namespace Team2_ERP
 
         private void InitCombo()
         {
-            CodeTableService service = new CodeTableService();
-            List<ComboItemVO> categoryList = (from item in service.GetComboProductCategory() where item.ID.Contains("CS") select item).ToList();
-            UtilClass.ComboBinding(cboContext, categoryList, "선택");
+            try
+            {
+                CodeTableService service = new CodeTableService();
+                List<ComboItemVO> categoryList = (from item in service.GetComboProductCategory() where item.ID.Contains("CS") select item).ToList();
+                UtilClass.ComboBinding(cboContext, categoryList, "선택");
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
         }
 
         private void rdo_CheckedChanged(object sender, EventArgs e)

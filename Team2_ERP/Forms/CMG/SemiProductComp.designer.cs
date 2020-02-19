@@ -117,7 +117,9 @@
             // 
             // cboCategoryDetail
             // 
+            this.cboCategoryDetail.BackColor = System.Drawing.Color.White;
             this.cboCategoryDetail.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCategoryDetail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboCategoryDetail.FormattingEnabled = true;
             this.cboCategoryDetail.Location = new System.Drawing.Point(151, 49);
             this.cboCategoryDetail.Name = "cboCategoryDetail";
@@ -127,7 +129,9 @@
             // 
             // cboCategory
             // 
+            this.cboCategory.BackColor = System.Drawing.Color.White;
             this.cboCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCategory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboCategory.FormattingEnabled = true;
             this.cboCategory.Location = new System.Drawing.Point(11, 49);
             this.cboCategory.Name = "cboCategory";
@@ -174,7 +178,7 @@
             this.splitContainer2.Panel2.Controls.Add(this.txtSemiproductMoney);
             this.splitContainer2.Panel2.Controls.Add(this.label3);
             this.splitContainer2.Size = new System.Drawing.Size(503, 407);
-            this.splitContainer2.SplitterDistance = 255;
+            this.splitContainer2.SplitterDistance = 254;
             this.splitContainer2.TabIndex = 0;
             // 
             // numSafety
@@ -206,7 +210,9 @@
             // 
             // cboWarehouse
             // 
+            this.cboWarehouse.BackColor = System.Drawing.Color.White;
             this.cboWarehouse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboWarehouse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboWarehouse.FormattingEnabled = true;
             this.cboWarehouse.Location = new System.Drawing.Point(303, 17);
             this.cboWarehouse.Name = "cboWarehouse";

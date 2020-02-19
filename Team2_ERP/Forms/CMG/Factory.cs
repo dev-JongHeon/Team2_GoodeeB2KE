@@ -58,8 +58,15 @@ namespace Team2_ERP
         // DataGridView 가져오기
         private void LoadGridView()
         {
-            StandardService service = new StandardService();
-            FList = service.GetAllFactory();
+            try
+            {
+                StandardService service = new StandardService();
+                FList = service.GetAllFactory();
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
             dgvFactory.DataSource = FList;
             dgvFactory.CurrentCell = null;
             dgvLine.DataSource = null;
@@ -169,8 +176,15 @@ namespace Team2_ERP
                 {
                     if(MessageBox.Show("삭제하시겠습니까?", "안내", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        StandardService service = new StandardService();
-                        service.DeleteFactory(factoryItem.Factory_ID);
+                        try
+                        {
+                            StandardService service = new StandardService();
+                            service.DeleteFactory(factoryItem.Factory_ID);
+                        }
+                        catch (Exception err)
+                        {
+                            Log.WriteError(err.Message, err);
+                        }
                         frm.NoticeMessage = Resources.DeleteDone;
                         dgvFactory.DataSource = null;
                         LoadGridView();
@@ -187,8 +201,15 @@ namespace Team2_ERP
                 {
                     if (MessageBox.Show("삭제하시겠습니까?", "안내", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        StandardService service = new StandardService();
-                        service.DeleteLine(lineItem.Factory_ID);
+                        try
+                        {
+                            StandardService service = new StandardService();
+                            service.DeleteLine(lineItem.Factory_ID);
+                        }
+                        catch (Exception err)
+                        {
+                            Log.WriteError(err.Message, err);
+                        }
                         frm.NoticeMessage = Resources.DeleteDone;
                         dgvFactory.DataSource = null;
                         LoadGridView();
@@ -309,8 +330,15 @@ namespace Team2_ERP
 
             if (e.RowIndex < dgvFactory.Rows.Count && e.RowIndex > -1)
             {
-                StandardService service = new StandardService();
-                LList = service.GetAllLine(Convert.ToInt32(dgvFactory.Rows[e.RowIndex].Cells[0].Value));
+                try
+                {
+                    StandardService service = new StandardService();
+                    LList = service.GetAllLine(Convert.ToInt32(dgvFactory.Rows[e.RowIndex].Cells[0].Value));
+                }
+                catch (Exception err)
+                {
+                    Log.WriteError(err.Message, err);
+                }
                 dgvLine.DataSource = LList;
                 dgvLine.CurrentCell = null;
             }

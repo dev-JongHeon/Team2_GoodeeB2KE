@@ -93,31 +93,37 @@ namespace Team2_ERP
         // DataGridView 가져오기
         private void LoadGridView()
         {
-            BOMService service = new BOMService();
-
-            if(rdoResource.Checked)
+            try
             {
-                list = service.GetProductList("Resource");
-                dgvBOM.DataSource = list;
+                BOMService service = new BOMService();
+
+                if (rdoResource.Checked)
+                {
+                    list = service.GetProductList("Resource");
+                    dgvBOM.DataSource = list;
+                }
+                else if (rdoSemiProduct.Checked)
+                {
+                    list = service.GetProductList("SemiProduct");
+                    dgvBOM.DataSource = list;
+                }
+                else
+                {
+                    list = service.GetProductList("Product");
+                    dgvBOM.DataSource = list;
+                }
+                StringBuilder sb = new StringBuilder();
+
+                foreach (DataGridViewRow item in dgvBOM.Rows)
+                    sb.Append($"'{item.Cells[0].Value.ToString()}',");
+
+                bomList = service.GetAllCombination(sb.ToString().Trim(','));
+                bomReverseList = service.GetAllCombinationReverse(sb.ToString().Trim(','));
             }
-            else if(rdoSemiProduct.Checked)
+            catch (Exception err)
             {
-                list = service.GetProductList("SemiProduct");
-                dgvBOM.DataSource = list;
+                Log.WriteError(err.Message, err);
             }
-            else
-            {
-                list = service.GetProductList("Product");
-                dgvBOM.DataSource = list;
-            }
-
-            StringBuilder sb = new StringBuilder();
-
-            foreach (DataGridViewRow item in dgvBOM.Rows)
-                sb.Append($"'{item.Cells[0].Value.ToString()}',");
-
-            bomList = service.GetAllCombination(sb.ToString().Trim(','));
-            bomReverseList = service.GetAllCombinationReverse(sb.ToString().Trim(','));
         }
 
         private void GridViewReset()
@@ -270,8 +276,15 @@ namespace Team2_ERP
                 {
                     if (MessageBox.Show("삭제하시겠습니까?", "안내", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        BOMService service = new BOMService();
-                        service.DeleteSemiProduct(item);
+                        try
+                        {
+                            BOMService service = new BOMService();
+                            service.DeleteSemiProduct(item);
+                        }
+                        catch (Exception err)
+                        {
+                            Log.WriteError(err.Message, err);
+                        }
                         frm.NoticeMessage = Resources.DeleteDone;
                         GridViewReset();
                         InitMessage();
@@ -282,8 +295,15 @@ namespace Team2_ERP
                 {
                     if (MessageBox.Show("삭제하시겠습니까?", "안내", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        BOMService service = new BOMService();
-                        service.DeleteProduct(item);
+                        try
+                        {
+                            BOMService service = new BOMService();
+                            service.DeleteProduct(item);
+                        }
+                        catch (Exception err)
+                        {
+                            Log.WriteError(err.Message, err);
+                        }
                         frm.NoticeMessage = Resources.DeleteDone;
                         GridViewReset();
                         InitMessage();

@@ -195,7 +195,9 @@
             // 
             // cboEmployeesCategory
             // 
+            this.cboEmployeesCategory.BackColor = System.Drawing.Color.White;
             this.cboEmployeesCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboEmployeesCategory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboEmployeesCategory.FormattingEnabled = true;
             this.cboEmployeesCategory.Location = new System.Drawing.Point(100, 76);
             this.cboEmployeesCategory.Name = "cboEmployeesCategory";

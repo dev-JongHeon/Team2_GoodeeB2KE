@@ -45,11 +45,18 @@ namespace Team2_ERP
 
         private void InitCombo()
         {
-            StandardService service = new StandardService();
-            List<ComboItemVO> factoryList = service.GetComboFactory();
-            UtilClass.ComboBinding(cboFactoryName, factoryList, "선택");
-            List<ComboItemVO> categoryList = service.GetComboCategory();
-            UtilClass.ComboBinding(cboCategory, categoryList, "선택");
+            try
+            {
+                StandardService service = new StandardService();
+                List<ComboItemVO> factoryList = service.GetComboFactory();
+                UtilClass.ComboBinding(cboFactoryName, factoryList, "선택");
+                List<ComboItemVO> categoryList = service.GetComboCategory();
+                UtilClass.ComboBinding(cboCategory, categoryList, "선택");
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
         }
 
         private void InsertLine()
@@ -61,8 +68,15 @@ namespace Team2_ERP
                 Line_CodeID = cboCategory.SelectedValue.ToString()
             };
 
-            StandardService service = new StandardService();
-            service.InsertLine(item);
+            try
+            {
+                StandardService service = new StandardService();
+                service.InsertLine(item);
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
         }
 
         private void UpdateLine()
@@ -75,8 +89,15 @@ namespace Team2_ERP
                 Line_CodeID = cboCategory.SelectedValue.ToString()
             };
 
-            StandardService service = new StandardService();
-            service.UpdateLine(item);
+            try
+            {
+                StandardService service = new StandardService();
+                service.UpdateLine(item);
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

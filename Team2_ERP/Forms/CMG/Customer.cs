@@ -44,8 +44,15 @@ namespace Team2_ERP
         // DataGridView 가져오기
         private void LoadGridView()
         {
-            StandardService service = new StandardService();
-            list = service.GetAllCustomer();
+            try
+            {
+                StandardService service = new StandardService();
+                list = service.GetAllCustomer();
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
             dgvCustomer.DataSource = list;
             dgvCustomer.CurrentCell = null;
         }

@@ -33,9 +33,9 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
             finally
             {
@@ -58,9 +58,9 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
             finally
             {
@@ -83,9 +83,9 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
             finally
             {
@@ -108,9 +108,9 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
             finally
             {
@@ -137,9 +137,9 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
             finally
             {
@@ -166,9 +166,9 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
             finally
             {
@@ -215,10 +215,10 @@ namespace Team2_DAC
 
                 trans.Commit();
             }
-            catch (Exception err)
+            catch
             {
                 trans.Rollback();
-                throw new Exception(err.Message);
+                throw;
             }
             finally
             {
@@ -266,10 +266,10 @@ namespace Team2_DAC
 
                 trans.Commit();
             }
-            catch (Exception err)
+            catch
             {
                 trans.Rollback();
-                throw new Exception(err.Message);
+                throw;
             }
             finally
             {
@@ -310,10 +310,10 @@ namespace Team2_DAC
 
                 trans.Commit();
             }
-            catch (Exception err)
+            catch
             {
                 trans.Rollback();
-                throw new Exception(err.Message);
+                throw;
             }
             finally
             {
@@ -360,10 +360,10 @@ namespace Team2_DAC
 
                 trans.Commit();
             }
-            catch (Exception err)
+            catch
             {
                 trans.Rollback();
-                throw new Exception(err.Message);
+                throw;
             }
             finally
             {
@@ -411,10 +411,10 @@ namespace Team2_DAC
 
                 trans.Commit();
             }
-            catch (Exception err)
+            catch
             {
                 trans.Rollback();
-                throw new Exception(err.Message);
+                throw;
             }
             finally
             {
@@ -455,10 +455,10 @@ namespace Team2_DAC
 
                 trans.Commit();
             }
-            catch (Exception err)
+            catch
             {
                 trans.Rollback();
-                throw new Exception(err.Message);
+                throw;
             }
             finally
             {
@@ -480,9 +480,9 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
             finally
             {

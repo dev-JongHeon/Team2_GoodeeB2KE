@@ -45,9 +45,16 @@ namespace Team2_ERP
 
         private void InitCombo()
         {
-            StandardService service = new StandardService();
-            List<ComboItemVO> employeeList = service.GetComboEmployee();
-            UtilClass.ComboBinding(cboEmployeesCategory, employeeList, "선택");
+            try
+            {
+                StandardService service = new StandardService();
+                List<ComboItemVO> employeeList = service.GetComboEmployee();
+                UtilClass.ComboBinding(cboEmployeesCategory, employeeList, "선택");
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
         }
 
         private void EmployeesInsUp_Load(object sender, EventArgs e)
@@ -83,8 +90,15 @@ namespace Team2_ERP
                 Employees_Birth = dtpEmployeesBirthDay.Value.ToShortDateString()
             };
 
-            StandardService service = new StandardService();
-            service.InsertEmployee(item);
+            try
+            {
+                StandardService service = new StandardService();
+                service.InsertEmployee(item);
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
         }
 
         private void UpdateEmployee()
@@ -99,8 +113,15 @@ namespace Team2_ERP
                 Employees_ID = eCode
             };
 
-            StandardService service = new StandardService();
-            service.UpdateEmployee(item);
+            try
+            {
+                StandardService service = new StandardService();
+                service.UpdateEmployee(item);
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
         }
 
         private void btnOK_Click(object sender, EventArgs e)
