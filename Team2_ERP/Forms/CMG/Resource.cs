@@ -141,6 +141,7 @@ namespace Team2_ERP
         {
             LoadGridView();
 
+            //원자재 ID로 검색
             if (searchResourceName.CodeTextBox.Tag != null)
             {
                 dgvResource.DataSource = null;

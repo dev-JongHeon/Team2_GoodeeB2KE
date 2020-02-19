@@ -326,7 +326,10 @@ namespace Team2_ERP
 
         private void dgvFactory_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            searchLineName.Visible = true;
+            if (dgvFactory.Rows.Count > 0)
+            {
+                searchLineName.Visible = true;
+            }
 
             if (e.RowIndex < dgvFactory.Rows.Count && e.RowIndex > -1)
             {

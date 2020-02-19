@@ -55,10 +55,13 @@ namespace Team2_ERP
             {
                 Log.WriteError(err.Message, err);
             }
+
+            //재직자
             if (rdoWork.Checked)
             {
                 list = (from item in list where item.Employees_DeletedYN == false select item).ToList();
             }
+            //퇴사자
             else
             {
                 list = (from item in list where item.Employees_DeletedYN == true select item).ToList();
@@ -172,18 +175,22 @@ namespace Team2_ERP
             LoadGridView();
             searchList = list;
 
+            //부서 검색
             if(searchDepartmentName.CodeTextBox.Tag != null)
             {
                 searchList = (from item in searchList where item.CodeTable_CodeID.Equals(searchDepartmentName.CodeTextBox.Tag.ToString()) select item).ToList();
             }
+            //사원이름 검색
             if(searchEmployeeName.CodeTextBox.Tag != null)
             {
                 searchList = (from item in searchList where item.Employees_ID.Equals(Convert.ToInt32(searchEmployeeName.CodeTextBox.Tag)) select item).ToList();
             }
+            //입사일 검색
             if(searchHiredate.Startdate.Tag != null && searchHiredate.Enddate.Tag != null)
             {
                 searchList = (from item in searchList where Convert.ToDateTime(Convert.ToDateTime(item.Employees_Hiredate).ToShortDateString()) >= Convert.ToDateTime(searchHiredate.Startdate.Tag.ToString()) && Convert.ToDateTime(Convert.ToDateTime(item.Employees_Hiredate).ToShortDateString()) <= Convert.ToDateTime(searchHiredate.Enddate.Tag.ToString()) select item).ToList();
             }
+            //퇴사일 검색
             if(searchResigndate.Startdate.Tag != null && searchResigndate.Enddate.Tag != null)
             {
                 searchList = (from item in searchList where Convert.ToDateTime(Convert.ToDateTime(item.Employees_Resigndate).ToShortDateString()) >= Convert.ToDateTime(searchResigndate.Startdate.Tag.ToString()) && Convert.ToDateTime(Convert.ToDateTime(item.Employees_Resigndate).ToShortDateString()) <= Convert.ToDateTime(searchResigndate.Enddate.Tag.ToString()) select item).ToList();
@@ -212,11 +219,13 @@ namespace Team2_ERP
 
         private void rdo_CheckedChanged(object sender, EventArgs e)
         {
+            //재직자는 퇴사일은 검색할 수 없게 한다.
             if (rdoWork.Checked)
             {
                 searchResigndate.Visible = false;
                 searchHiredate.Visible = true;
             }
+            //퇴사자는 입사일은 검색할 수 없게 한다.
             else
             {
                 searchResigndate.Visible = true;

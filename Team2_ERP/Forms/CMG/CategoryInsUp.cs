@@ -183,6 +183,7 @@ namespace Team2_ERP
 
         private void InitCombo()
         {
+            //반제품 카테고리 목록을 콤보바인딩 한다.
             try
             {
                 CodeTableService service = new CodeTableService();
