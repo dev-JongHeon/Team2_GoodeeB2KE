@@ -26,7 +26,7 @@ namespace Team2_DAC
                 {
                     StringBuilder sb = new StringBuilder();
                     sb.Append("SELECT Balju_ID, Company_ID, Company_Name, Balju_Date, Employees_Name, Total, Balju_DeletedYN ");
-                    sb.Append("FROM   BaljuList ");
+                    sb.Append("FROM BaljuList ");
                     sb.Append("ORDER BY Balju_ID DESC ");
                     
                     cmd.Connection = conn;
