@@ -57,6 +57,7 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Order, "배송지주소", "Order_Address1", true, 300);
             UtilClass.AddNewColum(dgv_Order, "배송지상세주소", "Order_Address2", true, 250);
             UtilClass.AddNewColum(dgv_Order, "주문총액", "TotalPrice", true);
+            dgv_Order.Columns[0].MinimumWidth = 30;
             dgv_Order.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_Order.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
             dgv_Order.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -106,11 +107,14 @@ namespace Team2_ERP
 
         private void dgv_Order_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
         {
-            string Order_ID = dgv_Order.CurrentRow.Cells[1].Value.ToString();
-            List<OrderDetail> OrderDetail_List = (from list_detail in OrderDetail_AllList
-                                                  where list_detail.Order_ID == Order_ID
-                                                  select list_detail).ToList();
-            dgv_OrderDetail.DataSource = OrderDetail_List;
+            if (e.RowIndex > -1)
+            {
+                string Order_ID = dgv_Order.CurrentRow.Cells[1].Value.ToString();
+                List<OrderDetail> OrderDetail_List = (from list_detail in OrderDetail_AllList
+                                                      where list_detail.Order_ID == Order_ID
+                                                      select list_detail).ToList();
+                dgv_OrderDetail.DataSource = OrderDetail_List; 
+            }
         }
 
         private void GetOrderDetail_List()  // 현재 위의 Dgv의 Row수 따라 그에맞는 DetailList 가져옴
@@ -274,27 +278,33 @@ namespace Team2_ERP
             {
                 using (WaitForm frm = new WaitForm())
                 {
-                    OrderReport br = new OrderReport();
-                    dsOrder ds = new dsOrder();
-
-                    ds.Relations.Clear();
-                    ds.Tables.Clear();
-                    ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
-                    ds.Tables.Add(UtilClass.ConvertToDataTable(OrderDetail_AllList));
-                    ds.Tables[0].TableName = "dtOrder";
-                    ds.Tables[1].TableName = "dtOrderDetail";
-                    ds.Relations.Add("dtOrder_dtOrderDetail", ds.Tables[0].Columns["Order_ID"], ds.Tables[1].Columns["Order_ID"]);
-
-                    //ds.AcceptChanges();
-
-                    br.DataSource = ds;
-                    using (ReportPrintTool printTool = new ReportPrintTool(br))
-                    {
-                        printTool.ShowRibbonPreviewDialog();
-                    }  
+                    frm.Processing = ExportPrint;
+                    frm.ShowDialog();
                 }
             }
-        }  
+        }
+
+        private void ExportPrint()
+        {
+            OrderReport br = new OrderReport();
+            dsOrder ds = new dsOrder();
+
+            ds.Relations.Clear();
+            ds.Tables.Clear();
+            ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+            ds.Tables.Add(UtilClass.ConvertToDataTable(OrderDetail_AllList));
+            ds.Tables[0].TableName = "dtOrder";
+            ds.Tables[1].TableName = "dtOrderDetail";
+            ds.Relations.Add("dtOrder_dtOrderDetail", ds.Tables[0].Columns["Order_ID"], ds.Tables[1].Columns["Order_ID"]);
+
+            //ds.AcceptChanges();
+
+            br.DataSource = ds;
+            using (ReportPrintTool printTool = new ReportPrintTool(br))
+            {
+                printTool.ShowRibbonPreviewDialog();
+            }
+        }
         #endregion
 
         #region Activated, OnOff, DeActivate
@@ -323,7 +333,13 @@ namespace Team2_ERP
             main.삭제ToolStripMenuItem.Text = "삭제";
             main.삭제ToolStripMenuItem.ToolTipText = "삭제(Ctrl+D)";
             new SettingMenuStrip().UnsetMenu(this);
-        } 
+        }
         #endregion
+
+        private void dgv_Order_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            Point headerLocation = dgv_Order.GetCellDisplayRectangle(0, -1, true).Location;
+            headerCheckbox.Location = new Point((headerLocation.X + dgv_Order.Columns[0].Width / 2) - 7, headerLocation.Y + dgv_Order.ColumnHeadersHeight / 5 + 1);
+        }
     }
 }

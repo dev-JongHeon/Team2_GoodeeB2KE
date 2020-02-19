@@ -145,22 +145,28 @@ namespace Team2_ERP
             {
                 using (WaitForm frm = new WaitForm())
                 {
-                    StockStatusReport sr = new StockStatusReport();
-                    dsStockStatus ds = new dsStockStatus();
-
-                    ds.Relations.Clear();
-                    ds.Tables.Clear();
-                    ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
-                    ds.Tables[0].TableName = "dtStockStatus";
-
-                    //ds.AcceptChanges();
-
-                    sr.DataSource = ds;
-                    using (ReportPrintTool printTool = new ReportPrintTool(sr))
-                    {
-                        printTool.ShowRibbonPreviewDialog();
-                    }  
+                    frm.Processing = ExportPrint;
+                    frm.ShowDialog();
                 }
+            }
+        }
+
+        private void ExportPrint()
+        {
+            StockStatusReport sr = new StockStatusReport();
+            dsStockStatus ds = new dsStockStatus();
+
+            ds.Relations.Clear();
+            ds.Tables.Clear();
+            ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+            ds.Tables[0].TableName = "dtStockStatus";
+
+            //ds.AcceptChanges();
+
+            sr.DataSource = ds;
+            using (ReportPrintTool printTool = new ReportPrintTool(sr))
+            {
+                printTool.ShowRibbonPreviewDialog();
             }
         }
         #endregion

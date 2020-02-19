@@ -179,24 +179,30 @@ namespace Team2_ERP
             {
                 using (WaitForm frm = new WaitForm())
                 {
-                    InOutSemiProductWarehouseReport br = new InOutSemiProductWarehouseReport();
-                    dsStockReceipt ds = new dsStockReceipt();
-
-                    ds.Relations.Clear();
-                    ds.Tables.Clear();
-                    ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
-                    ds.Tables[0].TableName = "dtStockReceipt";
-
-                    //ds.AcceptChanges();
-
-                    br.DataSource = ds;
-                    using (ReportPrintTool printTool = new ReportPrintTool(br))
-                    {
-                        printTool.ShowRibbonPreviewDialog();
-                    }  
+                    frm.Processing = ExportPrint;
+                    frm.ShowDialog();
                 }
             }
-        } 
+        }
+
+        private void ExportPrint()
+        {
+            InOutSemiProductWarehouseReport br = new InOutSemiProductWarehouseReport();
+            dsStockReceipt ds = new dsStockReceipt();
+
+            ds.Relations.Clear();
+            ds.Tables.Clear();
+            ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+            ds.Tables[0].TableName = "dtStockReceipt";
+
+            //ds.AcceptChanges();
+
+            br.DataSource = ds;
+            using (ReportPrintTool printTool = new ReportPrintTool(br))
+            {
+                printTool.ShowRibbonPreviewDialog();
+            }
+        }
         #endregion
 
         #region Activated, OnOff, DeActivate

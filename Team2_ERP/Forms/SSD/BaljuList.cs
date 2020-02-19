@@ -39,17 +39,17 @@ namespace Team2_ERP
             UtilClass.SettingDgv(dgv_Balju);
 
             #region 체크박스 컬럼추가
-            //DataGridViewCheckBoxColumn cbx = new DataGridViewCheckBoxColumn();
-            //cbx.DataPropertyName = "Check";
-            //cbx.Width = 30;
-            //dgv_Balju.Columns.Add(cbx);
-            //Point headerLocation = dgv_Balju.GetCellDisplayRectangle(0, -1, true).Location;
-            //headerCheckbox.Location = new Point(headerLocation.X + 8, headerLocation.Y + 5);
-            //headerCheckbox.BackColor = Color.FromArgb(55, 113, 138);
-            //headerCheckbox.Size = new Size(16, 16);
-            //headerCheckbox.Click += new EventHandler(headerCheckbox_Click);
-            //dgv_Balju.Controls.Add(headerCheckbox);
-            //dgv_Balju.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.None; 
+            DataGridViewCheckBoxColumn cbx = new DataGridViewCheckBoxColumn();
+            cbx.DataPropertyName = "Check";
+            cbx.Width = 30;
+            dgv_Balju.Columns.Add(cbx);
+            Point headerLocation = dgv_Balju.GetCellDisplayRectangle(0, -1, true).Location;
+            headerCheckbox.Location = new Point(headerLocation.X + 8, headerLocation.Y + 5);
+            headerCheckbox.BackColor = Color.FromArgb(55, 113, 138);
+            headerCheckbox.Size = new Size(16, 16);
+            headerCheckbox.Click += new EventHandler(headerCheckbox_Click);
+            dgv_Balju.Controls.Add(headerCheckbox);
+            dgv_Balju.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             #endregion
 
             //dgv_Balju.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
@@ -61,10 +61,11 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Balju, "총액", "Total", true);
             UtilClass.AddNewColum(dgv_Balju, "삭제여부", "Balju_DeletedYN", false);
 
-            dgv_Balju.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_Balju.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
-            dgv_Balju.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgv_Balju.Columns[5].DefaultCellStyle.Format = "#,#0원";
+            dgv_Balju.Columns[0].MinimumWidth = 30;
+            dgv_Balju.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_Balju.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
+            dgv_Balju.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv_Balju.Columns[6].DefaultCellStyle.Format = "#,#0원";
             try { Balju_AllList = service.GetBaljuList(); }  // 발주리스트 갱신
             catch (Exception err) { Log.WriteError(err.Message, err); }
 
@@ -183,7 +184,6 @@ namespace Team2_ERP
                 dgv_BaljuDetail.DataSource = null;
                 GetBaljuDetail_List();
                 headerCheckbox.Checked = false;
-                //dgv_Balju.Rows[0].Cells[0].Value = true;
                 main.NoticeMessage = Resources.SearchDone;
             }
         }
@@ -287,30 +287,34 @@ namespace Team2_ERP
             {
                 using (WaitForm frm = new WaitForm())
                 {
-
-                    BaljuReport br = new BaljuReport();
-                    dsBalju ds = new dsBalju();
-
-                    ds.Relations.Clear();
-                    ds.Tables.Clear();
-                    ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
-                    ds.Tables.Add(UtilClass.ConvertToDataTable(BaljuDetail_AllList));
-                    ds.Tables[0].TableName = "dtBalju";
-                    ds.Tables[1].TableName = "dtBalju_Detail";
-                    ds.Relations.Add("dtBalju_dtBalju_Detail", ds.Tables[0].Columns["Balju_ID"], ds.Tables[1].Columns["Balju_ID"]);
-
-                    //dOrg.Tables.Add(UtilClass.ConvertToDataTable(BaljuDetail_AllList));
-                    //ds = (dsBalju)dOrg;
-                    ds.AcceptChanges();
-
-                    br.DataSource = ds;
-
-                    using (ReportPrintTool printTool = new ReportPrintTool(br))
-                    {
-                        printTool.ShowRibbonPreviewDialog();
-                    }
+                    frm.Processing = ExportPrint;
+                    frm.ShowDialog();
                 }
             }
+        }
+
+        private void ExportPrint()
+        {
+            BaljuReport br = new BaljuReport();
+            dsBalju ds = new dsBalju();
+
+            ds.Relations.Clear();
+            ds.Tables.Clear();
+            ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+            ds.Tables.Add(UtilClass.ConvertToDataTable(BaljuDetail_AllList));
+            ds.Tables[0].TableName = "dtBalju";
+            ds.Tables[1].TableName = "dtBalju_Detail";
+            ds.Relations.Add("dtBalju_dtBalju_Detail", ds.Tables[0].Columns["Balju_ID"], ds.Tables[1].Columns["Balju_ID"]);
+
+            //dOrg.Tables.Add(UtilClass.ConvertToDataTable(BaljuDetail_AllList));
+            //ds = (dsBalju)dOrg;
+            ds.AcceptChanges();
+
+            br.DataSource = ds;
+
+            ReportPrintTool printTool = new ReportPrintTool(br);
+           
+            printTool.ShowRibbonPreviewDialog();
         }
         #endregion
 
@@ -337,8 +341,13 @@ namespace Team2_ERP
             main.수정ToolStripMenuItem.ToolTipText = "수정(Ctrl+M)";
             new SettingMenuStrip().UnsetMenu(this);
         }
+
         #endregion
 
-        
+        private void dgv_Balju_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            Point headerLocation = dgv_Balju.GetCellDisplayRectangle(0, -1, true).Location;
+            headerCheckbox.Location = new Point((headerLocation.X + dgv_Balju.Columns[0].Width / 2) - 7, headerLocation.Y + dgv_Balju.ColumnHeadersHeight / 5 + 1);
+        }
     }
 }

@@ -68,11 +68,14 @@ namespace Team2_ERP
 
         private void dgv_Order_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
         {
-            string Order_ID = dgv_Order.CurrentRow.Cells[0].Value.ToString();
-            List<OrderDetail> OrderDetail_List = (from list_detail in OrderDetail_AllList
-                                                  where list_detail.Order_ID == Order_ID
-                                                  select list_detail).ToList();
-            dgv_OrderDetail.DataSource = OrderDetail_List;
+            if (e.RowIndex > -1)
+            {
+                string Order_ID = dgv_Order.CurrentRow.Cells[0].Value.ToString();
+                List<OrderDetail> OrderDetail_List = (from list_detail in OrderDetail_AllList
+                                                      where list_detail.Order_ID == Order_ID
+                                                      select list_detail).ToList();
+                dgv_OrderDetail.DataSource = OrderDetail_List; 
+            }
         }
 
         private void GetOrderDetail_List()  // 현재 위의 Dgv의 Row수 따라 그에맞는 DetailList 가져옴
@@ -168,23 +171,29 @@ namespace Team2_ERP
             {
                 using (WaitForm frm = new WaitForm())
                 {
-                    OrderCompletedReport br = new OrderCompletedReport();
-                    dsOrder ds = new dsOrder();
-
-                    ds.Relations.Clear();
-                    ds.Tables.Clear();
-                    ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
-                    ds.Tables.Add(UtilClass.ConvertToDataTable(OrderDetail_AllList));
-                    ds.Tables[0].TableName = "dtOrder";
-                    ds.Tables[1].TableName = "dtOrderDetail";
-                    ds.Relations.Add("dtOrder_dtOrderDetail", ds.Tables[0].Columns["Order_ID"], ds.Tables[1].Columns["Order_ID"]);
-
-                    br.DataSource = ds;
-                    using (ReportPrintTool printTool = new ReportPrintTool(br))
-                    {
-                        printTool.ShowRibbonPreviewDialog();
-                    }  
+                    frm.Processing = ExportPrint;
+                    frm.ShowDialog();
                 }
+            }
+        }
+
+        private void ExportPrint()
+        {
+            OrderCompletedReport br = new OrderCompletedReport();
+            dsOrder ds = new dsOrder();
+
+            ds.Relations.Clear();
+            ds.Tables.Clear();
+            ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+            ds.Tables.Add(UtilClass.ConvertToDataTable(OrderDetail_AllList));
+            ds.Tables[0].TableName = "dtOrder";
+            ds.Tables[1].TableName = "dtOrderDetail";
+            ds.Relations.Add("dtOrder_dtOrderDetail", ds.Tables[0].Columns["Order_ID"], ds.Tables[1].Columns["Order_ID"]);
+
+            br.DataSource = ds;
+            using (ReportPrintTool printTool = new ReportPrintTool(br))
+            {
+                printTool.ShowRibbonPreviewDialog();
             }
         }
         #endregion
