@@ -76,7 +76,8 @@ namespace Team2_ERP
                     Warehouse_AddrNumber = addrWarehouse.Zipcode
                 };
 
-                if(item.Warehouse_Number.Replace("-", "").Trim().Length < 10)
+                //MaskTextBox는 값이 없을 때 공백과 -만 남으므로 item 값을 null로 준다.
+                if (item.Warehouse_Number.Replace("-", "").Trim().Length < 10)
                 {
                     item.Warehouse_Number = null;
                 }
@@ -113,6 +114,7 @@ namespace Team2_ERP
                     Warehouse_AddrNumber = addrWarehouse.Zipcode
                 };
 
+                //MaskTextBox는 값이 없을 때 공백과 -만 남으므로 item 값을 null로 준다.
                 if (item.Warehouse_Number.Replace("-", "").Trim().Length < 10)
                 {
                     item.Warehouse_Number = null;
@@ -135,6 +137,7 @@ namespace Team2_ERP
             }
         }
 
+        //창고는 원자재창고와 반제품창고 밖에 없으므로 둘중 하나를 선택하게 한다.
         private void InitCombo()
         {
             DataTable dt = new DataTable();
