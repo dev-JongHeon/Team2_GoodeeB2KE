@@ -13,7 +13,7 @@
             <th>상품명</th>
             <th>수량</th>
             <th class="text-right">가격</th>
-            <th class="text-right">subTotal</th>
+            <th class="text-right">총 가격</th>
             <th></th>
         </tr>
     </thead>
@@ -44,7 +44,7 @@
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="3" class="text-right">Total:</td>
+            <td colspan="3" class="text-right">총액 :</td>
             <td class="text-right">
                 @Model.Cart.ComputeTotalValue().ToString("c")
             </td>

@@ -18,7 +18,7 @@ namespace Team2_Shop.Controllers
             return View();
         }
 
-        public ActionResult RoadAddress(string confmKey = "devU01TX0FVVEgyMDIwMDIxNjEzMTEzNjEwOTQ3MDA=", int currentPage = 1, int countPerPage = 10, string keyword ="고풍로")
+        public ActionResult RoadAddress(string confmKey = "devU01TX0FVVEgyMDIwMDIxNjEzMTEzNjEwOTQ3MDA=", int currentPage = 1, int countPerPage = 50, string keyword ="")
         {
             string responseFromServer;
             AddressModel model = new AddressModel();

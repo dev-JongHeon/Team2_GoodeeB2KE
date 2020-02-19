@@ -26,39 +26,23 @@
             <!-- 기본 도로명 주소 -->
             <div class="form-group invoice-col col-sm-6">
                 @Html.LabelFor(model => model.Addr1, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Addr1, new { htmlAttributes = new { @class = "form-control" } })
+                <div class="col-md-6">
+                    @Html.TextBoxFor(model => model.Addr1, new { @Value = ((WebCustomerModel)Session["UserInfo"]).Customer_Address1 })
                     @Html.ValidationMessageFor(model => model.Addr1, "", new { @class = "text-danger" })
                 </div>
             </div>
-
-            <!-- 이메일 -->>
-            <div class="form-group invoice-col col-sm-6">
-                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                </div>
-            </div>
+           
+            <br />
 
             <!-- 상세주소 -->
             <div class="form-group invoice-col col-sm-6">
                 @Html.LabelFor(model => model.Addr2, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Addr2, new { htmlAttributes = new { @class = "form-control" } })
+                <div class="col-md-6">
+                    @Html.TextBoxFor(model => model.Addr2, new { @Value = ((WebCustomerModel)Session["UserInfo"]).Customer_Address2 })
                     @Html.ValidationMessageFor(model => model.Addr2, "", new { @class = "text-danger" })
                 </div>
             </div>
-
-
-            <!-- 배송 메세지 -->
-            <div class="form-group invoice-col col-sm-6">
-                @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
-                </div>
-            </div>
+            
 
             <div class="form-group invoice-col">
                 <div class="col-md-12">

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
@@ -24,7 +25,7 @@ namespace Team2_RealTimeMonitor
 
         System.Timers.Timer timer;
         TcpClient client;
-        string host = "192.168.0.10";
+        string host = ConfigurationManager.AppSettings["serverIP"];
         int port = 5000;
         NetworkStream netStream;
         List<LineMonitorControl> lineMonitors;
@@ -43,16 +44,19 @@ namespace Team2_RealTimeMonitor
         ---------------- */
 
         private void RealTimeLineState_Load(object sender, EventArgs e)
-        {
+        {            
             SettingControl();
             InitData();
-            ConnectServer();
+            ConnectServer();            
             this.ActiveControl = splitLeft.Panel1;
         }
 
         private void SettingControl()
         {
             splitMain.IsSplitterFixed = splitRight.IsSplitterFixed = splitLeft.IsSplitterFixed = true;
+            
+            this.picExit.Image = Properties.Resources.Img_Exit;
+            picExit.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         private void InitData()
@@ -206,34 +210,6 @@ namespace Team2_RealTimeMonitor
                             break;
                         }
                     }
-
-                    #region 주석
-                    //foreach (LineMonitorControl lineMonitor in lineMonitors)
-                    //{
-                    //    Debug.WriteLine($"태그값 : {lineMonitor.Tag}");
-
-                    //    if (lineMonitor.Tag.ToString() == msg[0])
-                    //    {
-                    //        lineMonitor.LabelRequestText = msg[1];
-                    //        lineMonitor.LabelImportText = msg[2];
-                    //        lineMonitor.LabelProduceText = (int.Parse(lineMonitor.LabelProduceText) + int.Parse(msg[3])).ToString();
-                    //        lineMonitor.LabelDefectiveText = (int.Parse(lineMonitor.LabelDefectiveText) + int.Parse(msg[4])).ToString(); ;
-
-                    //        if (Convert.ToInt32(lineMonitor.LabelDefectiveText) > 1)
-                    //            lineMonitor.PictureStateImage = Properties.Resources.Img_CircleYellow;
-                    //        else
-                    //            lineMonitor.PictureStateImage = Properties.Resources.Img_CircleGreen;
-
-                    //        lineMonitor.CircleProgress.Value = (int.Parse(lineMonitor.LabelProduceText) / int.Parse(lineMonitor.LabelRequestText)) * 100;
-
-
-                    //        Debug.WriteLine($" 서클 값 : {lineMonitor.CircleProgress.Value}");
-
-                    //        break;
-
-                    //    }
-                    //}
-                    #endregion
                 }
             }
             catch (Exception ex)
@@ -307,7 +283,7 @@ namespace Team2_RealTimeMonitor
             {
                 WriteLog(ex);
             }
-        }
+        }        
 
         /*------------------------
          *  로그 기록해주는 코드
@@ -315,6 +291,21 @@ namespace Team2_RealTimeMonitor
         private void WriteLog(Exception ex)
         {
             Program.Log.WriteError(ex.Message, ex);
+        }
+
+        private void picExit_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void picExit_MouseHover(object sender, EventArgs e)
+        {
+            picExit.BorderStyle = BorderStyle.FixedSingle;
+        }
+
+        private void picExit_MouseLeave(object sender, EventArgs e)
+        {
+            picExit.BorderStyle = BorderStyle.None;
         }
     }
 }
