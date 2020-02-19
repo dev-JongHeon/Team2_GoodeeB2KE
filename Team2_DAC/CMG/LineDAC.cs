@@ -34,9 +34,9 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
             finally
             {
@@ -62,9 +62,9 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
             finally
             {
@@ -91,9 +91,9 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
             finally
             {
@@ -118,9 +118,9 @@ namespace Team2_DAC
                     return rowsAffected > 0;
                 }
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
             finally
             {
@@ -146,9 +146,9 @@ namespace Team2_DAC
                     return rowsAffected > 0;
                 }
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
             finally
             {
@@ -171,9 +171,9 @@ namespace Team2_DAC
                     return rowsAffected > 0;
                 }
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
             finally
             {

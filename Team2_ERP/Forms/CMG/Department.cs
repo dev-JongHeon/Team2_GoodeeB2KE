@@ -41,8 +41,15 @@ namespace Team2_ERP
         // DataGridView 가져오기
         private void LoadGridView()
         {
-            CodeTableService service = new CodeTableService();
-            list = (from item in service.GetAllCodeTable() where item.CodeTable_CodeID.Contains("Depart") select item).ToList();
+            try
+            {
+                CodeTableService service = new CodeTableService();
+                list = (from item in service.GetAllCodeTable() where item.CodeTable_CodeID.Contains("Depart") select item).ToList();
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
             dgvDepartment.DataSource = list;
             dgvDepartment.CurrentCell = null;
         }
@@ -100,8 +107,15 @@ namespace Team2_ERP
             {
                  if (MessageBox.Show("삭제하시겠습니까?", "확인", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    CodeTableService service = new CodeTableService();
-                    service.DeleteCodeTable(item.CodeTable_CodeID);
+                    try
+                    {
+                        CodeTableService service = new CodeTableService();
+                        service.DeleteCodeTable(item.CodeTable_CodeID);
+                    }
+                    catch (Exception err)
+                    {
+                        Log.WriteError(err.Message, err);
+                    }
                     frm.NoticeMessage = Resources.DeleteDone;
                     dgvDepartment.DataSource = null;
                     LoadGridView();

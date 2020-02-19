@@ -33,7 +33,7 @@ namespace Team2_ERP
             LoadData();
         }
 
-
+        #region dgv 관련기능
         private void LoadData()
         {
             UtilClass.SettingDgv(dgv_SalesStatus);
@@ -54,8 +54,15 @@ namespace Team2_ERP
 
             Search_OrderIndexPeriod.Startdate.BackColor = Color.LightYellow;
             Search_OrderIndexPeriod.Enddate.BackColor = Color.LightYellow;
-        }
+        } 
+        #endregion
 
+        #region ToolStrip 기능정의
+        public override void Refresh(object sender, EventArgs e)  // 새로고침
+        {
+            Func_Refresh();
+            main.NoticeMessage = Resources.RefreshDone;
+        }
         private void Func_Refresh()  // 새로고침 기능
         {
             dgv_SalesStatus.DataSource = null;
@@ -69,13 +76,6 @@ namespace Team2_ERP
             Search_ShipmentPeriod.Startdate.Clear();
             Search_ShipmentPeriod.Enddate.Clear();
             lbl_Total.Text = "0원";
-        }
-
-        #region ToolStrip 기능정의
-        public override void Refresh(object sender, EventArgs e)  // 새로고침
-        {
-            Func_Refresh();
-            main.NoticeMessage = Resources.RefreshDone;
         }
 
         public override void Search(object sender, EventArgs e)  // 검색
@@ -120,10 +120,7 @@ namespace Team2_ERP
 
         public override void Excel(object sender, EventArgs e)
         {
-            if (dgv_SalesStatus.Rows.Count == 0)
-            {
-                main.NoticeMessage = Properties.Resources.ExcelError;
-            }
+            if (dgv_SalesStatus.Rows.Count == 0) main.NoticeMessage = Properties.Resources.ExcelError;
             else
             {
                 using (WaitForm frm = new WaitForm())
@@ -141,30 +138,33 @@ namespace Team2_ERP
 
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
-            if (dgv_SalesStatus.Rows.Count == 0)
-            {
-                main.NoticeMessage = Properties.Resources.NonData;
-            }
+            if (dgv_SalesStatus.Rows.Count == 0) main.NoticeMessage = Properties.Resources.NonData;
             else
             {
                 using (WaitForm frm = new WaitForm())
                 {
-                    SalesReport br = new SalesReport();
-                    dsSales ds = new dsSales();
-
-                    ds.Relations.Clear();
-                    ds.Tables.Clear();
-                    ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
-                    ds.Tables[0].TableName = "dtSales";
-
-                    //ds.AcceptChanges();
-
-                    br.DataSource = ds;
-                    using (ReportPrintTool printTool = new ReportPrintTool(br))
-                    {
-                        printTool.ShowRibbonPreviewDialog();
-                    }  
+                    frm.Processing = ExportPrint;
+                    frm.ShowDialog();
                 }
+            }
+        }
+
+        private void ExportPrint()
+        {
+            SalesReport br = new SalesReport();
+            dsSales ds = new dsSales();
+
+            ds.Relations.Clear();
+            ds.Tables.Clear();
+            ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+            ds.Tables[0].TableName = "dtSales";
+
+            //ds.AcceptChanges();
+
+            br.DataSource = ds;
+            using (ReportPrintTool printTool = new ReportPrintTool(br))
+            {
+                printTool.ShowRibbonPreviewDialog();
             }
         }
         #endregion

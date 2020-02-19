@@ -43,11 +43,19 @@ namespace Team2_ERP
             }
         }
 
+        //부서목록을 콤보바인딩
         private void InitCombo()
         {
-            StandardService service = new StandardService();
-            List<ComboItemVO> employeeList = service.GetComboEmployee();
-            UtilClass.ComboBinding(cboEmployeesCategory, employeeList, "선택");
+            try
+            {
+                StandardService service = new StandardService();
+                List<ComboItemVO> employeeList = service.GetComboEmployee();
+                UtilClass.ComboBinding(cboEmployeesCategory, employeeList, "선택");
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
         }
 
         private void EmployeesInsUp_Load(object sender, EventArgs e)
@@ -55,13 +63,9 @@ namespace Team2_ERP
             InitCombo();
             txtEmployeesPassword.PasswordChar = '*';
 
-            if(mode.Equals("Insert"))
+            //수정 시 비밀번호 수정은 불가능하게 한다.(비밀번호 수정은 로그인창에서 가능)
+            if(mode.Equals("Update"))
             {
-                dtpEmployeesHireDate.Enabled = true;
-            }
-            else
-            {
-                dtpEmployeesHireDate.Enabled = false;
                 txtEmployeesPassword.Enabled = false;
             }
         }
@@ -83,8 +87,15 @@ namespace Team2_ERP
                 Employees_Birth = dtpEmployeesBirthDay.Value.ToShortDateString()
             };
 
-            StandardService service = new StandardService();
-            service.InsertEmployee(item);
+            try
+            {
+                StandardService service = new StandardService();
+                service.InsertEmployee(item);
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
         }
 
         private void UpdateEmployee()
@@ -99,8 +110,15 @@ namespace Team2_ERP
                 Employees_ID = eCode
             };
 
-            StandardService service = new StandardService();
-            service.UpdateEmployee(item);
+            try
+            {
+                StandardService service = new StandardService();
+                service.UpdateEmployee(item);
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
         }
 
         private void btnOK_Click(object sender, EventArgs e)

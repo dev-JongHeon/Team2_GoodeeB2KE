@@ -16,15 +16,12 @@ namespace Team2_Machine
         /// </summary>
         static void Main()
         {
-            //ServiceBase[] ServicesToRun;
-            //ServicesToRun = new ServiceBase[]
-            //{
-            //    new Machine()
-            //};
-            //ServiceBase.Run(ServicesToRun);
-
-            Machine machine = new Machine();
-            machine.Start();
+            ServiceBase[] ServicesToRun;
+            ServicesToRun = new ServiceBase[]
+            {
+                new Machine()
+            };
+            ServiceBase.Run(ServicesToRun);
         }
 
         private static LoggingUtility _logging = LoggingUtility.GetLoggingUtility("TEAM2_Server", Level.Debug);

@@ -40,6 +40,7 @@
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -125,6 +126,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\iconfinder_Circle_Yellow_34215.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Close.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -44,6 +44,9 @@ namespace Team2_ERP
             cbx.DataPropertyName = "Auth";
             cbx.Width = 30;
             dgvAuthList.Columns.Add(cbx);
+            dgvAuthList.Columns[1].MinimumWidth = 30;
+            
+            
 
             Point headerLocation = dgvAuthList.GetCellDisplayRectangle(1, -1, true).Location;
             headerbox.Location = new Point(headerLocation.X + 8, headerLocation.Y + 5);

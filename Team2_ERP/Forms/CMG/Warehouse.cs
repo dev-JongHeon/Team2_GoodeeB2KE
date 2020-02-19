@@ -45,8 +45,15 @@ namespace Team2_ERP
         // DataGridView 가져오기
         private void LoadGridView()
         {
-            StandardService service = new StandardService();
-            list = service.GetAllWarehouse();
+            try
+            {
+                StandardService service = new StandardService();
+                list = service.GetAllWarehouse();
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
             dgvWarehouse.DataSource = list;
             dgvWarehouse.CurrentCell = null;
         }
@@ -129,8 +136,15 @@ namespace Team2_ERP
             {
                 if (MessageBox.Show("삭제하시겠습니까?", "확인", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    StandardService service = new StandardService();
-                    service.DeleteWarehouse(item.Warehouse_ID);
+                    try
+                    {
+                        StandardService service = new StandardService();
+                        service.DeleteWarehouse(item.Warehouse_ID);
+                    }
+                    catch (Exception err)
+                    {
+                        Log.WriteError(err.Message, err);
+                    }
                     dgvWarehouse.DataSource = null;
                     LoadGridView();
                 }

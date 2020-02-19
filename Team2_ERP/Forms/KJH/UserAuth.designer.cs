@@ -110,7 +110,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.ClientSize = new System.Drawing.Size(1364, 820);
-            this.DoubleBuffered = true;
+            this.DoubleBuffered = false;
             this.FormName = "사용자권한설정";
             this.Name = "UserAuth";
             this.Activated += new System.EventHandler(this.UserAuth_Activated);

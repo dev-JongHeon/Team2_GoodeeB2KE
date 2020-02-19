@@ -111,6 +111,7 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -128,6 +129,7 @@
             // splitContainer3
             // 
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.IsSplitterFixed = true;
             this.splitContainer3.Location = new System.Drawing.Point(0, 0);
             this.splitContainer3.Name = "splitContainer3";
             this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -147,7 +149,9 @@
             // 
             // cboProductCategory
             // 
+            this.cboProductCategory.BackColor = System.Drawing.Color.White;
             this.cboProductCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboProductCategory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboProductCategory.FormattingEnabled = true;
             this.cboProductCategory.Location = new System.Drawing.Point(28, 45);
             this.cboProductCategory.Name = "cboProductCategory";
@@ -156,7 +160,9 @@
             // 
             // cboSemiProductCategory
             // 
+            this.cboSemiProductCategory.BackColor = System.Drawing.Color.White;
             this.cboSemiProductCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboSemiProductCategory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboSemiProductCategory.FormattingEnabled = true;
             this.cboSemiProductCategory.Location = new System.Drawing.Point(170, 45);
             this.cboSemiProductCategory.Name = "cboSemiProductCategory";
@@ -188,6 +194,7 @@
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.IsSplitterFixed = true;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;

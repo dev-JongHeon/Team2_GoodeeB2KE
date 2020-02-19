@@ -31,7 +31,7 @@ namespace Team2_Shop.Controllers
                 else
                 {
                     Session["UserInfo"] = customerInfo;
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Product");
                 }
             }
             else
@@ -43,18 +43,18 @@ namespace Team2_Shop.Controllers
         public ActionResult LogOut()
         {
             Session["UserInfo"] = null;
-            return RedirectToAction("../Home/Index");
+            return RedirectToAction("../Product/Index");
         }
 
-        public ActionResult Register()
+        public ActionResult Register(WebCustomerModel model)
         {
             // 로그인 정보가 있는 경우 메인 페이지로 이동
             if (Session["UserInfo"] != null) 
-                return View("../Home/Index");
+                return View("../Product/Index");
             // 없는 경우만 회원가입이 가능함
             else
             {
-                return View();
+                return View(model);
             }
         }
     }

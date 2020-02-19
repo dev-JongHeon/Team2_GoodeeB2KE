@@ -34,6 +34,7 @@ namespace Team2_ERP
             LoadData();
         }
 
+        #region dgv 관련기능
         private void LoadData()
         {
             UtilClass.SettingDgv(dgv_Order);
@@ -68,11 +69,14 @@ namespace Team2_ERP
 
         private void dgv_Order_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
         {
-            string Order_ID = dgv_Order.CurrentRow.Cells[0].Value.ToString();
-            List<OrderDetail> OrderDetail_List = (from list_detail in OrderDetail_AllList
-                                                  where list_detail.Order_ID == Order_ID
-                                                  select list_detail).ToList();
-            dgv_OrderDetail.DataSource = OrderDetail_List;
+            if (e.RowIndex > -1)
+            {
+                string Order_ID = dgv_Order.CurrentRow.Cells[0].Value.ToString();
+                List<OrderDetail> OrderDetail_List = (from list_detail in OrderDetail_AllList
+                                                      where list_detail.Order_ID == Order_ID
+                                                      select list_detail).ToList();
+                dgv_OrderDetail.DataSource = OrderDetail_List;
+            }
         }
 
         private void GetOrderDetail_List()  // 현재 위의 Dgv의 Row수 따라 그에맞는 DetailList 가져옴
@@ -85,27 +89,26 @@ namespace Team2_ERP
 
             try { OrderDetail_AllList = service.GetOrderDetailList(sb.ToString().Trim(',')); }  // 디테일 AllList 갱신
             catch (Exception err) { Log.WriteError(err.Message, err); }
-        }
-
-        private void Func_Refresh()  // 새로고침 기능
-        {
-            dgv_Order.DataSource = null;
-            dgv_OrderDetail.DataSource = null;
-            try { Order_AllList = service.GetOrderCompletedList(); }
-            catch (Exception err) { Log.WriteError(err.Message, err); }
-            GetOrderDetail_List();            
-
-            // 검색조건 초기화
-            Search_Customer.CodeTextBox.Clear();
-            Search_Period.Startdate.Clear();
-            Search_Period.Enddate.Clear();
-        }
+        } 
+        #endregion
 
         #region ToolStrip 기능정의
         public override void Refresh(object sender, EventArgs e)  // 새로고침
         {
             Func_Refresh();
             main.NoticeMessage = Resources.RefreshDone;
+        }
+        private void Func_Refresh()  // 새로고침 기능
+        {
+            dgv_Order.DataSource = null;
+            dgv_OrderDetail.DataSource = null;
+            try { Order_AllList = service.GetOrderCompletedList(); }
+            catch (Exception err) { Log.WriteError(err.Message, err); }
+
+            // 검색조건 초기화
+            Search_Customer.CodeTextBox.Clear();
+            Search_Period.Startdate.Clear();
+            Search_Period.Enddate.Clear();
         }
 
         public override void Search(object sender, EventArgs e)  // 검색
@@ -137,10 +140,7 @@ namespace Team2_ERP
 
         public override void Excel(object sender, EventArgs e)
         {
-            if (dgv_Order.Rows.Count == 0)
-            {
-                main.NoticeMessage = Properties.Resources.ExcelError;
-            }
+            if (dgv_Order.Rows.Count == 0) main.NoticeMessage = Properties.Resources.ExcelError;
             else
             {
                 using (WaitForm frm = new WaitForm())
@@ -160,31 +160,34 @@ namespace Team2_ERP
 
         public override void Print(object sender, EventArgs e)  // 인쇄
         {
-            if (dgv_Order.Rows.Count == 0)
-            {
-                main.NoticeMessage = Properties.Resources.NonData;
-            }
+            if (dgv_Order.Rows.Count == 0) main.NoticeMessage = Properties.Resources.NonData;
             else
             {
                 using (WaitForm frm = new WaitForm())
                 {
-                    OrderCompletedReport br = new OrderCompletedReport();
-                    dsOrder ds = new dsOrder();
-
-                    ds.Relations.Clear();
-                    ds.Tables.Clear();
-                    ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
-                    ds.Tables.Add(UtilClass.ConvertToDataTable(OrderDetail_AllList));
-                    ds.Tables[0].TableName = "dtOrder";
-                    ds.Tables[1].TableName = "dtOrderDetail";
-                    ds.Relations.Add("dtOrder_dtOrderDetail", ds.Tables[0].Columns["Order_ID"], ds.Tables[1].Columns["Order_ID"]);
-
-                    br.DataSource = ds;
-                    using (ReportPrintTool printTool = new ReportPrintTool(br))
-                    {
-                        printTool.ShowRibbonPreviewDialog();
-                    }  
+                    frm.Processing = ExportPrint;
+                    frm.ShowDialog();
                 }
+            }
+        }
+
+        private void ExportPrint()
+        {
+            OrderCompletedReport br = new OrderCompletedReport();
+            dsOrder ds = new dsOrder();
+
+            ds.Relations.Clear();
+            ds.Tables.Clear();
+            ds.Tables.Add(UtilClass.ConvertToDataTable(SearchedList));
+            ds.Tables.Add(UtilClass.ConvertToDataTable(OrderDetail_AllList));
+            ds.Tables[0].TableName = "dtOrder";
+            ds.Tables[1].TableName = "dtOrderDetail";
+            ds.Relations.Add("dtOrder_dtOrderDetail", ds.Tables[0].Columns["Order_ID"], ds.Tables[1].Columns["Order_ID"]);
+
+            br.DataSource = ds;
+            using (ReportPrintTool printTool = new ReportPrintTool(br))
+            {
+                printTool.ShowRibbonPreviewDialog();
             }
         }
         #endregion
