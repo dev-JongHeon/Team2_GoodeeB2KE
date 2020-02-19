@@ -158,7 +158,9 @@
             // 
             // cboContext
             // 
+            this.cboContext.BackColor = System.Drawing.Color.White;
             this.cboContext.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboContext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboContext.FormattingEnabled = true;
             this.cboContext.Location = new System.Drawing.Point(156, 181);
             this.cboContext.Name = "cboContext";

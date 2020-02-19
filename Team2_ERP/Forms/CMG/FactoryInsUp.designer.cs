@@ -140,16 +140,21 @@
             // 
             // addrFactory
             // 
+            this.addrFactory.Address1 = "";
+            this.addrFactory.Address2 = "";
             this.addrFactory.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.addrFactory.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.addrFactory.Location = new System.Drawing.Point(36, 260);
             this.addrFactory.Name = "addrFactory";
             this.addrFactory.Size = new System.Drawing.Size(505, 106);
             this.addrFactory.TabIndex = 4;
+            this.addrFactory.Zipcode = "";
             // 
             // cboFactoryDivision
             // 
+            this.cboFactoryDivision.BackColor = System.Drawing.Color.White;
             this.cboFactoryDivision.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboFactoryDivision.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboFactoryDivision.FormattingEnabled = true;
             this.cboFactoryDivision.Location = new System.Drawing.Point(110, 92);
             this.cboFactoryDivision.Name = "cboFactoryDivision";

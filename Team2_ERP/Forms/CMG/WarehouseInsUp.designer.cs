@@ -139,16 +139,21 @@
             // 
             // addrWarehouse
             // 
+            this.addrWarehouse.Address1 = "";
+            this.addrWarehouse.Address2 = "";
             this.addrWarehouse.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.addrWarehouse.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.addrWarehouse.Location = new System.Drawing.Point(51, 250);
             this.addrWarehouse.Name = "addrWarehouse";
             this.addrWarehouse.Size = new System.Drawing.Size(505, 106);
             this.addrWarehouse.TabIndex = 4;
+            this.addrWarehouse.Zipcode = "";
             // 
             // cboWarehouseDivision
             // 
+            this.cboWarehouseDivision.BackColor = System.Drawing.Color.White;
             this.cboWarehouseDivision.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboWarehouseDivision.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboWarehouseDivision.FormattingEnabled = true;
             this.cboWarehouseDivision.Location = new System.Drawing.Point(125, 81);
             this.cboWarehouseDivision.Name = "cboWarehouseDivision";

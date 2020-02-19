@@ -86,8 +86,15 @@ namespace Team2_ERP
                     item.Warehouse_Fax = null;
                 }
 
-                StandardService service = new StandardService();
-                service.InsertWarehouse(item);
+                try
+                {
+                    StandardService service = new StandardService();
+                    service.InsertWarehouse(item);
+                }
+                catch (Exception err)
+                {
+                    Log.WriteError(err.Message, err);
+                }
             }
         }
 
@@ -116,8 +123,15 @@ namespace Team2_ERP
                     item.Warehouse_Fax = null;
                 }
 
-                StandardService service = new StandardService();
-                service.UpdateWarehouse(item);
+                try
+                {
+                    StandardService service = new StandardService();
+                    service.UpdateWarehouse(item);
+                }
+                catch (Exception err)
+                {
+                    Log.WriteError(err.Message, err);
+                }
             }
         }
 

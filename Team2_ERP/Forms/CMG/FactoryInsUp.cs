@@ -100,8 +100,15 @@ namespace Team2_ERP
                     item.Factory_Fax = null;
                 }
 
-                StandardService service = new StandardService();
-                service.InsertFactory(item);
+                try
+                {
+                    StandardService service = new StandardService();
+                    service.InsertFactory(item);
+                }
+                catch (Exception err)
+                {
+                    Log.WriteError(err.Message, err);
+                }
             }
         }
 
@@ -125,8 +132,15 @@ namespace Team2_ERP
                     item.Factory_Fax = null;
                 }
 
-                StandardService service = new StandardService();
-                service.UpdateFactory(item);
+                try
+                {
+                    StandardService service = new StandardService();
+                    service.UpdateFactory(item);
+                }
+                catch (Exception err)
+                {
+                    Log.WriteError(err.Message, err);
+                }
             }
         }
 

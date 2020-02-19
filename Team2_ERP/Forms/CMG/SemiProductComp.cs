@@ -50,22 +50,29 @@ namespace Team2_ERP
         //반제품 카테고리 목록을 가져오는 콤보 바인딩 메서드
         private void InitCombo()
         {
-            BOMService service = new BOMService();
-            if (mode.Equals("Insert"))
+            try
             {
-                List<ComboItemVO> categoryList = (from item in service.GetComboProductCategory() where item.ID.Contains("CS") select item).ToList();
-                UtilClass.ComboBinding(cboCategory, categoryList, "선택");
+                BOMService service = new BOMService();
+                if (mode.Equals("Insert"))
+                {
+                    List<ComboItemVO> categoryList = (from item in service.GetComboProductCategory() where item.ID.Contains("CS") select item).ToList();
+                    UtilClass.ComboBinding(cboCategory, categoryList, "선택");
+                }
+                else
+                {
+                    List<ComboItemVO> categoryList = (from item in service.GetComboProductCategory() where item.ID.Equals(pCategory) select item).ToList();
+                    UtilClass.ComboBinding(cboCategory, categoryList);
+                    List<ComboItemVO> resourceList = service.GetComboResourceCategory(pCategory.ToString());
+                    UtilClass.ComboBinding(cboCategoryDetail, resourceList, "선택");
+                    CategoryLabelName(resourceList);
+                }
+                List<ComboItemVO> warehouseList = service.GetComboWarehouse(1);
+                UtilClass.ComboBinding(cboWarehouse, warehouseList, "선택");
             }
-            else
+            catch (Exception err)
             {
-                List<ComboItemVO> categoryList = (from item in service.GetComboProductCategory() where item.ID.Equals(pCategory) select item).ToList();
-                UtilClass.ComboBinding(cboCategory, categoryList);
-                List<ComboItemVO> resourceList = service.GetComboResourceCategory(pCategory.ToString());
-                UtilClass.ComboBinding(cboCategoryDetail, resourceList, "선택");
-                CategoryLabelName(resourceList);
+                Log.WriteError(err.Message, err);
             }
-            List<ComboItemVO> warehouseList = service.GetComboWarehouse(1);
-            UtilClass.ComboBinding(cboWarehouse, warehouseList, "선택");
         }
 
         //데이터그리드뷰 설정
@@ -85,8 +92,15 @@ namespace Team2_ERP
         // DataGridView 가져오기
         private void LoadGridView()
         {
-            BOMService service = new BOMService();
-            list = service.GetAllProduct();
+            try
+            {
+                BOMService service = new BOMService();
+                list = service.GetAllProduct();
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
             List<ProductVO> resourceList = (from item in list where item.Product_Category.Contains($"{cboCategoryDetail.SelectedValue.ToString()}") select item).ToList();
             dgvSemiProduct.DataSource = resourceList;
         }
@@ -130,29 +144,36 @@ namespace Team2_ERP
         //수정할 반제품의 조합데이터를 List에 받아서 사용자 컨트롤에 할당
         private void UpdateInfoLoad()
         {
+            try
+            { 
             BOMService service = new BOMService();
             list = service.GetAllProduct();
             List<BOMVO> productList = service.GetAllCombination($"'{pCode}'");
-            foreach (Control control in splitContainer2.Panel1.Controls)
-            {
-                if (control is SemiProductCompControl)
+                foreach (Control control in splitContainer2.Panel1.Controls)
                 {
-                    SemiProductCompControl spc = (SemiProductCompControl)control;
-
-                    for (int i = 0; i < productList.Count; i++)
+                    if (control is SemiProductCompControl)
                     {
-                        if (spc.LblName.Tag.ToString().Equals(productList[i].Product_Category))
+                        SemiProductCompControl spc = (SemiProductCompControl)control;
+
+                        for (int i = 0; i < productList.Count; i++)
                         {
-                            spc.TxtName.Text = productList[i].Product_Name;
-                            spc.TxtName.Tag = productList[i].Combination_Product_ID;
-                            spc.Qty.Tag = productList[i].Product_Price;
-                            spc.Qty.Value = productList[i].Combination_RequiredQty;
-                            spc.LblMoney.Tag = 1;
-                            spc.LblMoney.Text = productList[i].Product_Price.ToString("#,##0") + "원";
+                            if (spc.LblName.Tag.ToString().Equals(productList[i].Product_Category))
+                            {
+                                spc.TxtName.Text = productList[i].Product_Name;
+                                spc.TxtName.Tag = productList[i].Combination_Product_ID;
+                                spc.Qty.Tag = productList[i].Product_Price;
+                                spc.Qty.Value = productList[i].Combination_RequiredQty;
+                                spc.LblMoney.Tag = 1;
+                                spc.LblMoney.Text = productList[i].Product_Price.ToString("#,##0") + "원";
+                            }
                         }
+                        spc.Qty.ValueChanged += new EventHandler(TotalPrice);
                     }
-                    spc.Qty.ValueChanged += new EventHandler(TotalPrice);
                 }
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
             }
         }
 
@@ -180,13 +201,20 @@ namespace Team2_ERP
             if (!cboCategory.SelectedValue.ToString().Contains("CS"))
                 return;
 
-            BOMService service = new BOMService();
-            if (mode.Equals("Insert"))
+            try
             {
-                List<ComboItemVO> resourceList = service.GetComboResourceCategory(cboCategory.SelectedValue.ToString());
-                UtilClass.ComboBinding(cboCategoryDetail, resourceList, "선택");
-                splitContainer2.Panel1.Controls.Clear();
-                CategoryLabelName(resourceList);
+                BOMService service = new BOMService();
+                if (mode.Equals("Insert"))
+                {
+                    List<ComboItemVO> resourceList = service.GetComboResourceCategory(cboCategory.SelectedValue.ToString());
+                    UtilClass.ComboBinding(cboCategoryDetail, resourceList, "선택");
+                    splitContainer2.Panel1.Controls.Clear();
+                    CategoryLabelName(resourceList);
+                }
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
             }
 
             dgvSemiProduct.DataSource = null;
@@ -235,8 +263,15 @@ namespace Team2_ERP
                 }
             }
 
-            BOMService service = new BOMService();
-            service.InsertSemiProduct(Pitem, citemList, splitContainer2.Panel1.Controls.Count);
+            try
+            {
+                BOMService service = new BOMService();
+                service.InsertSemiProduct(Pitem, citemList, splitContainer2.Panel1.Controls.Count);
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
         }
 
         //Product 테이블과 Combination 테이블 수정
@@ -270,8 +305,15 @@ namespace Team2_ERP
                 }
             }
 
-            BOMService service = new BOMService();
-            service.UpdateSemiProduct(Pitem, citemList, splitContainer2.Panel1.Controls.Count);
+            try
+            {
+                BOMService service = new BOMService();
+                service.UpdateSemiProduct(Pitem, citemList, splitContainer2.Panel1.Controls.Count);
+            }
+            catch (Exception err)
+            {
+                Log.WriteError(err.Message, err);
+            }
         }
 
         private void btnOK_Click(object sender, EventArgs e)

@@ -31,9 +31,9 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
             finally
             {
