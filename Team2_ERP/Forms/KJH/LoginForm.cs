@@ -277,6 +277,7 @@ namespace Team2_ERP
             {
                 Log.WriteError(err.Message, err);
             }
+            Log.WriteInfo("배송상태변경 완료");
         }
     }
 }
