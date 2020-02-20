@@ -30,7 +30,7 @@
     <SuiteName>Team2 솔루션</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>POP.htm</WebPage>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -68,7 +68,7 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>33A40657DB47DC6260E634D2E43AE41CAD82FAE3</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>702ACC6E047D393C091F51CC7A8724CA3ED5E376</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>Team2_POP_TemporaryKey.pfx</ManifestKeyFile>

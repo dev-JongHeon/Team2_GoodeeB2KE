@@ -55,23 +55,19 @@
     <StartupObject />
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>B4416098433D4257FC8F66013CCA86ED7F210C3A</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>A1B7E312302B5BA4A656919A80280385034939CD</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Team2_Machine_1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>Team2_Machine_2_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>false</GenerateManifests>
+    <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>false</SignManifests>
-  </PropertyGroup>
-  <PropertyGroup />
-  <PropertyGroup>
-    <TargetZone>LocalIntranet</TargetZone>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+    <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
@@ -114,7 +110,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="Properties\app.manifest" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Team2_DAC\Team2_DAC.csproj">

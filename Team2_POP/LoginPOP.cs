@@ -206,7 +206,7 @@ namespace Team2_POP
                     if (doUpdate)
                     {
                         AppDeploy.Update();
-                        MessageBox.Show("최신버젼의 업데이트가 있습니다. 업데이트 적용을 위해 프로그램을 재시작합니다.");
+                        MessageBox.Show("최신버젼의 업데이트가 있습니다.\n업데이트 적용을 위해 프로그램을 재시작합니다.");
                         this.Close();
                         Application.Restart();
                     }

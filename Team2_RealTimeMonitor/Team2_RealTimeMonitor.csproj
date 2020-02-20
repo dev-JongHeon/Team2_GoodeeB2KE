@@ -28,7 +28,7 @@
     <ProductName>구디B2KE RealMonitor</ProductName>
     <PublisherName>구디아카데미 Team2</PublisherName>
     <SuiteName>Team2 솔루션</SuiteName>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -57,7 +57,7 @@
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>34E8470C053D9C4725A91035A7D949CA759C4E28</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>7BC25BD5240DA2D16ADFA0D7F87279A38D1487D4</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>Team2_RealTimeMonitor_TemporaryKey.pfx</ManifestKeyFile>
@@ -144,7 +144,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Team2_RealTimeMonitor_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

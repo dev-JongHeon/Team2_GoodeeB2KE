@@ -30,7 +30,7 @@
     <SuiteName>Team2 솔루션</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>erp.htm</WebPage>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -59,7 +59,7 @@
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>C3FB16BC9190AE786BF884E696F77F3C71862B21</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>35A8CD34434152D28A5733CB871D37055764F9FF</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>Team2_ERP_TemporaryKey.pfx</ManifestKeyFile>
