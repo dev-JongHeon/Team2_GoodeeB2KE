@@ -29,24 +29,32 @@ namespace Team2_POP
 
         private void DowntimeRegister_Load(object sender, EventArgs e)
         {
-            lblFairName.Text = LineName;
-            lblFairName.Tag = LineID;
-            cboDowntime.DropDownStyle = ComboBoxStyle.DropDownList;
-
-            Service service = new Service();
-
-            List<ComboItemVO> list = service.GetDowntimeCode();
-            UtilClass.ComboBinding(cboDowntime, list, "비가동유형 선택");
-
-            // 바인딩한 값이 없는 경우
-            if (list == null)
+            try
             {
-                if (CustomMessageBox.ShowDialog(Properties.Resources.MsgDowntimeGetResultFailHeader
-                        , Properties.Resources.MsgDowntimeGetResultFailContent, MessageBoxIcon.Information, MessageBoxButtons.OKCancel) == DialogResult.OK)
+
+                lblFairName.Text = LineName;
+                lblFairName.Tag = LineID;
+                cboDowntime.DropDownStyle = ComboBoxStyle.DropDownList;
+
+                Service service = new Service();
+
+                List<ComboItemVO> list = service.GetDowntimeCode();
+                UtilClass.ComboBinding(cboDowntime, list, "비가동유형 선택");
+
+                // 바인딩한 값이 없는 경우
+                if (list == null)
                 {
-                    list = service.GetDowntimeCode();
-                    UtilClass.ComboBinding(cboDowntime, list, "비가동유형 선택");
+                    if (CustomMessageBox.ShowDialog(Properties.Resources.MsgDowntimeGetResultFailHeader
+                            , Properties.Resources.MsgDowntimeGetResultFailContent, MessageBoxIcon.Information, MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    {
+                        list = service.GetDowntimeCode();
+                        UtilClass.ComboBinding(cboDowntime, list, "비가동유형 선택");
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Program.Log.WriteError(ex.Message, ex);
             }
         }
 
@@ -57,21 +65,28 @@ namespace Team2_POP
 
         private void btnToggle_Click(object sender, EventArgs e)
         {
-            if(lblDowntimeName.Tag !=null)
+            try
             {
-                // 비가동 처리
-                bool bResult = new Service().SetDowntime(LineID, lblDowntimeName.Tag.ToString(), EmployeeID);
+                if (lblDowntimeName.Tag != null)
+                {
+                    // 비가동 처리
+                    bool bResult = new Service().SetDowntime(LineID, lblDowntimeName.Tag.ToString(), EmployeeID);
 
 
-                if (bResult)
-                    DialogResult = DialogResult.OK;
+                    if (bResult)
+                        DialogResult = DialogResult.OK;
+                    else
+                        CustomMessageBox.ShowDialog(Properties.Resources.MsgDowntimeSetResultFailHeader
+                            , Properties.Resources.MsgDowntimeSetResultFailContent, MessageBoxIcon.Error);
+                }
                 else
-                    CustomMessageBox.ShowDialog(Properties.Resources.MsgDowntimeSetResultFailHeader
-                        , Properties.Resources.MsgDowntimeSetResultFailContent ,MessageBoxIcon.Error);
+                {
+                    CustomMessageBox.ShowDialog("비가동 전환오류", "비가동 유형을 선택해주세요.", MessageBoxIcon.Warning, MessageBoxButtons.OK);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                CustomMessageBox.ShowDialog("비가동 전환오류", "비가동 유형을 선택해주세요.", MessageBoxIcon.Warning, MessageBoxButtons.OK);
+                Program.Log.WriteError(ex.Message, ex);
             }
         }
 

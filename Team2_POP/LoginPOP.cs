@@ -43,14 +43,23 @@ namespace Team2_POP
 
         private void InitData()
         {
-            Service service = new Service();
-            factory = service.GetFactoryList();
+            try
+            {
 
-            List<ComboItemVO> list = null;
+                Service service = new Service();
+                factory = service.GetFactoryList();
 
-            UtilClass.ComboBinding(cboFactory, factory, "공장 선택");
-            UtilClass.ComboBinding(cboLine, list, "공장을 먼저 선택해주세요");
-            UtilClass.ComboBinding(cboWorker, list, "공장을 먼저 선택해주세요");
+                List<ComboItemVO> list = null;
+
+                UtilClass.ComboBinding(cboFactory, factory, "공장 선택");
+                UtilClass.ComboBinding(cboLine, list, "공장을 먼저 선택해주세요");
+                UtilClass.ComboBinding(cboWorker, list, "공장을 먼저 선택해주세요");
+            }
+            catch (Exception ex)
+            {
+
+                Program.Log.WriteError(ex.Message, ex);
+            }
         }
         #endregion
 
@@ -111,26 +120,34 @@ namespace Team2_POP
         =============================================== */
         private void cboFactory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboFactory.SelectedIndex > 0)
+            try
             {
-                // 공장리스트에서 공장타입번호가 같은것만 찾아서 공정 리스트를 호출 바인딩함
-                string facDivision = factory.Find(f => f.ID == cboFactory.SelectedValue.ToString()).CodeType;
 
-                UtilClass.ComboBinding(cboWorker, new Service().GetWorker(Convert.ToInt32(facDivision)), "작업자 선택");
-                UtilClass.ComboBinding(cboLine, new Service().GetLineList(Convert.ToInt32(cboFactory.SelectedValue)), "공정 선택");
-
-                if (workerInfo != null)
+                if (cboFactory.SelectedIndex > 0)
                 {
-                    cboLine.SelectedValue = workerInfo.LineID.ToString();
-                    //cboLine.SelectedIndex = ((List<ComboItemVO>)cboLine.DataSource).FindIndex(k => k.ID == workerInfo.LineID.ToString());
-                    workerInfo = null;
-                }                
+                    // 공장리스트에서 공장타입번호가 같은것만 찾아서 공정 리스트를 호출 바인딩함
+                    string facDivision = factory.Find(f => f.ID == cboFactory.SelectedValue.ToString()).CodeType;
+
+                    UtilClass.ComboBinding(cboWorker, new Service().GetWorker(Convert.ToInt32(facDivision)), "작업자 선택");
+                    UtilClass.ComboBinding(cboLine, new Service().GetLineList(Convert.ToInt32(cboFactory.SelectedValue)), "공정 선택");
+
+                    if (workerInfo != null)
+                    {
+                        cboLine.SelectedValue = workerInfo.LineID.ToString();
+                        //cboLine.SelectedIndex = ((List<ComboItemVO>)cboLine.DataSource).FindIndex(k => k.ID == workerInfo.LineID.ToString());
+                        workerInfo = null;
+                    }
+                }
+                else
+                {
+                    List<ComboItemVO> list = null;
+                    UtilClass.ComboBinding(cboLine, list, "공장을 먼저 선택해주세요");
+                    UtilClass.ComboBinding(cboWorker, list, "공장을 먼저 선택해주세요");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                List<ComboItemVO> list = null;
-                UtilClass.ComboBinding(cboLine, list, "공장을 먼저 선택해주세요");
-                UtilClass.ComboBinding(cboWorker, list, "공장을 먼저 선택해주세요");
+                Program.Log.WriteError(ex.Message, ex);
             }
         }
 

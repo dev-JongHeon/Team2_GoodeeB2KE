@@ -212,37 +212,44 @@ namespace Team2_POP
         /// <param name="isNotFirst">(true : 가동상태 false: 비가동상태)</param>
         private void IsDowntime(bool isNotFirst)
         {
-            dgvWork.DataSource = dgvProduce.DataSource = dgvPerformance.DataSource = null;
-            lblWorker.Text = string.Empty;
-
-            bool bResult = new Service().IsDowntime(WorkerInfo.LineID);
-            pictureBox1.Tag = bResult;
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-
-            // 가동일때
-            if (bResult)
+            try
             {
-                pictureBox1.Image = Resources.Img_CircleGreen;
-                btnDownTime.Text = "비가동 전환";
-                BtnEnable(btnDate);
+                dgvWork.DataSource = dgvProduce.DataSource = dgvPerformance.DataSource = null;
+                lblWorker.Text = string.Empty;
+
+                bool bResult = new Service().IsDowntime(WorkerInfo.LineID);
+                pictureBox1.Tag = bResult;
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                // 가동일때
+                if (bResult)
+                {
+                    pictureBox1.Image = Resources.Img_CircleGreen;
+                    btnDownTime.Text = "비가동 전환";
+                    BtnEnable(btnDate);
+                }
+                // 비가동일때
+                else
+                {
+                    pictureBox1.Image = Resources.Img_CircleRed;
+                    btnDownTime.Text = "가동 전환";
+                    BtnDisable(btnDate);
+                    BtnDisable(btnDefective);
+                    BtnDisable(btnProduceStart);
+                    BtnDisable(btnWorker);
+                }
+
+                // true : 처음이 아닐때만 
+                // false: 처음일때 
+                if (isNotFirst)
+                {
+                    CustomMessageBox.ShowDialog($"{btnDownTime.Text} 완료", $"{lblLine.Text}가 {btnDownTime.Text.Split(' ')[0]}상태로 전환됬습니다.",
+                            MessageBoxIcon.Information);
+                }
             }
-            // 비가동일때
-            else
+            catch (Exception ex)
             {
-                pictureBox1.Image = Resources.Img_CircleRed;
-                btnDownTime.Text = "가동 전환";
-                BtnDisable(btnDate);
-                BtnDisable(btnDefective);
-                BtnDisable(btnProduceStart);
-                BtnDisable(btnWorker);
-            }
-
-            // true : 처음이 아닐때만 
-            // false: 처음일때 
-            if (isNotFirst)
-            {
-                CustomMessageBox.ShowDialog($"{btnDownTime.Text} 완료", $"{lblLine.Text}가 {btnDownTime.Text.Split(' ')[0]}상태로 전환됬습니다.",
-                        MessageBoxIcon.Information);
+                WriteLog(ex);
             }
         }
 
@@ -254,18 +261,26 @@ namespace Team2_POP
         /// <param name="date">날짜</param>
         private void GetWork(string date)
         {
-            List<Work> list = new Service().GetWorks(date, Convert.ToInt32(lblLine.Tag));
+            try
+            {
 
-            dgvWork.DataSource = null;
-            dgvProduce.DataSource = null;
-            dgvPerformance.DataSource = null;
-            lblWorker.Text = string.Empty;
+                List<Work> list = new Service().GetWorks(date, Convert.ToInt32(lblLine.Tag));
 
-            if (list.Count > 0)
-                dgvWork.DataSource = list;
-            else
-                CustomMessageBox.ShowDialog(Resources.MsgWorkResultNulllHeader
-                    , string.Format(Resources.MsgWorkResultNullContent, date, lblLine.Text), MessageBoxIcon.Information);
+                dgvWork.DataSource = null;
+                dgvProduce.DataSource = null;
+                dgvPerformance.DataSource = null;
+                lblWorker.Text = string.Empty;
+
+                if (list.Count > 0)
+                    dgvWork.DataSource = list;
+                else
+                    CustomMessageBox.ShowDialog(Resources.MsgWorkResultNulllHeader
+                        , string.Format(Resources.MsgWorkResultNullContent, date, lblLine.Text), MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                WriteLog(ex);
+            }
 
         }
 
@@ -295,27 +310,34 @@ namespace Team2_POP
         /// <param name="e"></param>
         private void btnDownTime_Click(object sender, EventArgs e)
         {
-            if (Convert.ToBoolean(pictureBox1.Tag) == true)
+            try
             {
-                DowntimeRegister downtime = new DowntimeRegister();
-
-                downtime.LineName = WorkerInfo.LineName;
-                downtime.LineID = WorkerInfo.LineID;
-                downtime.EmployeeID = WorkerInfo.WorkID;
-
-                if (downtime.ShowDialog() == DialogResult.OK)
+                if (Convert.ToBoolean(pictureBox1.Tag) == true)
                 {
-                    IsDowntime(true);
+                    DowntimeRegister downtime = new DowntimeRegister();
+
+                    downtime.LineName = WorkerInfo.LineName;
+                    downtime.LineID = WorkerInfo.LineID;
+                    downtime.EmployeeID = WorkerInfo.WorkID;
+
+                    if (downtime.ShowDialog() == DialogResult.OK)
+                    {
+                        IsDowntime(true);
+                    }
+                }
+                else
+                {
+                    bool bResult = new Service().SetDowntime(WorkerInfo.LineID, "none", WorkerInfo.WorkID);
+                    if (bResult)
+                        IsDowntime(true);
+                    else
+                        CustomMessageBox.ShowDialog(Resources.MsgDowntimeSetResultFailHeader
+                            , Resources.MsgDowntimeSetResultFailContent, MessageBoxIcon.Error);
                 }
             }
-            else
+            catch (Exception ex) 
             {
-                bool bResult = new Service().SetDowntime(WorkerInfo.LineID, "none", WorkerInfo.WorkID);
-                if (bResult)
-                    IsDowntime(true);
-                else
-                    CustomMessageBox.ShowDialog(Resources.MsgDowntimeSetResultFailHeader
-                        , Resources.MsgDowntimeSetResultFailContent, MessageBoxIcon.Error);
+                WriteLog(ex);
             }
 
         }
@@ -485,24 +507,31 @@ namespace Team2_POP
         // 작업자 설정버튼을 누른 경우
         private void btnWorker_Click(object sender, EventArgs e)
         {
-            if (dgvProduce.SelectedRows.Count < 1)
-                return;
+            try
+            {
+                if (dgvProduce.SelectedRows.Count < 1)
+                    return;
 
-            string produceID = dgvProduce.SelectedRows[0].Cells[0].Value.ToString();
+                string produceID = dgvProduce.SelectedRows[0].Cells[0].Value.ToString();
 
-            bool bResult = new Service().SetWorker(produceID, Convert.ToInt32(lblWorkerName.Tag));
-            dgvPerformance.DataSource = null;
-            lblWorker.Text = string.Empty;
+                bool bResult = new Service().SetWorker(produceID, Convert.ToInt32(lblWorkerName.Tag));
+                dgvPerformance.DataSource = null;
+                lblWorker.Text = string.Empty;
 
-            dgvPerformance.DataSource = new Service().GetPerformance(produceID);
+                dgvPerformance.DataSource = new Service().GetPerformance(produceID);
 
-            // 작업자 설정을 성공한 경우
-            if (bResult)
-                CustomMessageBox.ShowDialog(string.Format(Resources.MsgWorkerSetResultHeader, "성공")
-                    , string.Format(Resources.MsgWorkerSucceesContent, produceID, lblWorkerName.Text), MessageBoxIcon.Question);
-            else
-                CustomMessageBox.ShowDialog(string.Format(Resources.MsgWorkerSetResultHeader, "실패")
-                    , string.Format(Resources.MsgWorkerSetFailResultContent, produceID), MessageBoxIcon.Error);
+                // 작업자 설정을 성공한 경우
+                if (bResult)
+                    CustomMessageBox.ShowDialog(string.Format(Resources.MsgWorkerSetResultHeader, "성공")
+                        , string.Format(Resources.MsgWorkerSucceesContent, produceID, lblWorkerName.Text), MessageBoxIcon.Question);
+                else
+                    CustomMessageBox.ShowDialog(string.Format(Resources.MsgWorkerSetResultHeader, "실패")
+                        , string.Format(Resources.MsgWorkerSetFailResultContent, produceID), MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                WriteLog(ex);
+            }
         }
 
 

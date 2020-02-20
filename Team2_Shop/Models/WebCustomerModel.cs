@@ -45,4 +45,14 @@ namespace Team2_Shop.Models
         //public string Msg { get; set; }
     }
 
+    public class RegisterModel : WebCustomerModel
+    {
+        public string Customer_Phone1 { get; set; }
+        public string Customer_Phone2 { get; set; }
+        public string Customer_Phone3 { get; set; }
+        public string Customer_Birth_Y { get; set; }
+        public string Customer_Birth_M { get; set; }
+        public string Customer_Birth_D { get; set; }
+    }
+
 }
