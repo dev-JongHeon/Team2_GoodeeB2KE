@@ -45,10 +45,10 @@ namespace Team2_RealTimeMonitor
         ---------------- */
 
         private void RealTimeLineState_Load(object sender, EventArgs e)
-        {            
+        {
             SettingControl();
             InitData();
-            ConnectServer();            
+            ConnectServer();
             this.ActiveControl = splitLeft.Panel1;
             CheckUpdate();
 
@@ -85,7 +85,7 @@ namespace Team2_RealTimeMonitor
                     if (doUpdate)
                     {
                         AppDeploy.Update();
-                        MessageBox.Show("최신버젼의 업데이트가 있습니다. 업데이트 적용을 위해 프로그램을 재시작합니다.");
+                        MessageBox.Show("최신버젼의 업데이트가 있습니다.\n업데이트 적용을 위해 프로그램을 재시작합니다.");
                         this.Close();
                         Application.Restart();
                     }
@@ -96,7 +96,7 @@ namespace Team2_RealTimeMonitor
         private void SettingControl()
         {
             splitMain.IsSplitterFixed = splitRight.IsSplitterFixed = splitLeft.IsSplitterFixed = true;
-            
+
             this.picExit.Image = Properties.Resources.Img_Exit;
             picExit.SizeMode = PictureBoxSizeMode.StretchImage;
         }
@@ -200,6 +200,15 @@ namespace Team2_RealTimeMonitor
             catch (Exception ex)
             {
                 WriteLog(ex);
+
+                timer.Stop();
+                timer.Enabled = false;
+                if (netStream != null)
+                {
+                    netStream.Close();
+                    if (client != null)
+                        client.Close();
+                }
             }
         }
 
@@ -265,6 +274,12 @@ namespace Team2_RealTimeMonitor
             catch (Exception ex)
             {
                 WriteLog(ex);
+                if (netStream != null)
+                {
+                    netStream.Close();
+                    if (client != null)
+                        client.Close();
+                }
             }
         }
 
@@ -333,7 +348,7 @@ namespace Team2_RealTimeMonitor
             {
                 WriteLog(ex);
             }
-        }        
+        }
 
         /*------------------------
          *  로그 기록해주는 코드
