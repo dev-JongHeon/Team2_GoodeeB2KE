@@ -44,7 +44,7 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_StockStatus, "안전재고량", "Product_Safety", true, 110);
             UtilClass.AddNewColum(dgv_StockStatus, "차이수량", "Count_Subtract", true);
             UtilClass.AddNewColum(dgv_StockStatus, "삭제여부", "Product_DeletedYN", false);
-            
+
             dgv_StockStatus.Columns[5].DefaultCellStyle.Format = "#,#0원";
             dgv_StockStatus.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgv_StockStatus.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -53,10 +53,21 @@ namespace Team2_ERP
             dgv_StockStatus.Columns[7].DefaultCellStyle.Format = "#,#0개";
             dgv_StockStatus.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgv_StockStatus.Columns[8].DefaultCellStyle.Format = "#,#0개";
-            dgv_StockStatus.Columns[8].DefaultCellStyle.SelectionForeColor = Color.Red;
+            
 
             try { StockStatus_AllList = service.GetStockStatus(); }
             catch (Exception err) { Log.WriteError(err.Message, err); }
+        }
+
+        private void SetDGVForeColorRed()
+        {
+            foreach (DataGridViewRow item in dgv_StockStatus.Rows)
+            {
+                if (int.Parse(item.Cells[8].Value.ToString()) < 0)
+                {
+                    item.Cells[8].Style.SelectionForeColor = Color.Red;
+                }
+            }
         }
 
         private void SetDgvBySafety()  // 재고량 < 안전재고량인 항목만 차이수량 빨간색으로 표시해주는 함수
@@ -114,6 +125,7 @@ namespace Team2_ERP
             }
             dgv_StockStatus.DataSource = SearchedList;
             SetDgvBySafety();
+            SetDGVForeColorRed();
             main.NoticeMessage = Resources.SearchDone;
         }
 
