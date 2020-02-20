@@ -14,13 +14,13 @@ namespace Team2_Machine
     public class ServerMachine
     {
         #region 전역변수
-        TcpListener listener;        
+        TcpListener listener;
         ClientInfo clientInfo;
         #endregion
 
         public ServerMachine()
         {
-           
+
         }
 
         public void Start()
@@ -52,7 +52,7 @@ namespace Team2_Machine
 
 
         // 실질적으로 작업하는 코드
-        private  void AsyncTcpProcess(object o)
+        private void AsyncTcpProcess(object o)
         {
             #region 전역변수
 
@@ -84,13 +84,14 @@ namespace Team2_Machine
                         // 데이터를 가져옴(실적번호, 요구수량, 생산번호, 라인아이디)
                         // Worklist[0] => 개인정보 || Worklist[1] => 생산지시
                         string[] workList = Encoding.UTF8.GetString(buff, 0, nbytes).Trim().Split(',');
-                        
+
 
                         // 접속 정보를 담음
                         if (Convert.ToInt32(workList[0]) == 0)
                         {
-                            Program.Log.WriteInfo($"{DateTime.Now.ToString("yyyymmdd HH:MM:ss")} 클라이언트 접속 \n접속공정 - {Convert.ToInt32(workList[1])}");                            
+                            Program.Log.WriteInfo($"{DateTime.Now.ToString("yyyymmdd HH:MM:ss")} 클라이언트 접속 \n접속공정 - {Convert.ToInt32(workList[1])}");
                             clientInfo.SetClient(client, Convert.ToInt32(workList[1]), Convert.ToBoolean(workList[2]));
+                            lineID = workList[1];
                         }
                         else if (Convert.ToInt32(workList[0]) == 1)
                         {
@@ -117,7 +118,7 @@ namespace Team2_Machine
                             Program.Log.WriteInfo($"생산공정아이디 : {lineID}");
 
                             //두번째 : 라인아이디(0), 메세지(1), 실적(2), 성공(3), 투입수량(4)
-                            Write(lineID, new object[] { lineID, "생산완료", machine.PerformanceID, true, totalQty });     
+                            Write(lineID, new object[] { lineID, "생산완료", machine.PerformanceID, true, totalQty });
 
                         }
                         else if (Convert.ToInt32(workList[0]) == 9)
@@ -133,11 +134,15 @@ namespace Team2_Machine
             }
             catch (Exception ex)
             {
-                WriteErrorLog(ex);                
+                WriteErrorLog(ex);
             }
             finally
             {
+                if (string.IsNullOrEmpty(lineID))
+                    clientInfo.DeleteClient(100);
+                else
                 clientInfo.DeleteClient(Convert.ToInt32(lineID));
+
                 stream.Close();
                 client.Close();
                 Program.Log.WriteInfo($"{DateTime.Now.ToString("yyyymmdd HH:MM:ss")} 클라이언트 접속해제");
@@ -164,7 +169,7 @@ namespace Team2_Machine
 
                 StreamWriter writer = new StreamWriter(client.ClientData.GetStream());
                 writer.AutoFlush = true;
-                string msg = string.Join(",", arrObj);                
+                string msg = string.Join(",", arrObj);
                 await writer.WriteLineAsync(msg).ConfigureAwait(false);
                 await writer.FlushAsync();
 
@@ -203,12 +208,12 @@ namespace Team2_Machine
                 }
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 WriteErrorLog(ex);
             }
         }
-       
+
 
         public void ServerDown()
         {

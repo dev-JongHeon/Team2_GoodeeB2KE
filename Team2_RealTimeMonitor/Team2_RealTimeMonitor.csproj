@@ -25,7 +25,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://bluemoon1510.ddns.net:15100/Monitor/</InstallUrl>
     <UpdateUrl>http://bluemoon1510.ddns.net:15100/Monitor/</UpdateUrl>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -54,10 +54,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>4F785FFCF37F4BCCB4FF0079FA36190037CDF6A4</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>78CE6256B8D52169C785E5105EF7803BEFBE6B10</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Team2_RealTimeMonitor_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>Team2_RealTimeMonitor_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
@@ -141,6 +141,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Team2_RealTimeMonitor_1_TemporaryKey.pfx" />
     <None Include="Team2_RealTimeMonitor_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

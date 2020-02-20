@@ -23,12 +23,10 @@ namespace Team2_Machine
         }
 
         protected override void OnStart(string[] args)
-        {
-            
+        {            
             serverM = new ServerMachine();
             new Thread(new ThreadStart(serverM.Start)).Start();
         }
-
 
         protected override void OnStop()
         {
