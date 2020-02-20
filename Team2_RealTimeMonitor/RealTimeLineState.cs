@@ -46,21 +46,31 @@ namespace Team2_RealTimeMonitor
 
         private void RealTimeLineState_Load(object sender, EventArgs e)
         {
-            SettingControl();
-            InitData();
-            ConnectServer();
-            this.ActiveControl = splitLeft.Panel1;
-            CheckUpdate();
-
-            if (ApplicationDeployment.IsNetworkDeployed)
+            try
             {
-                ApplicationDeployment appDeployment = ApplicationDeployment.CurrentDeployment;
+                SettingControl();
+                InitData();
+                ConnectServer();
 
-                lblVersion.Text = $"Version : {appDeployment.CurrentVersion.ToString()} ";  // 현재버전의 정보를 가져옴
+                if (this.Controls.Count > 0)
+                    this.ActiveControl = splitLeft.Panel1;
+
+                CheckUpdate();
+
+                if (ApplicationDeployment.IsNetworkDeployed)
+                {
+                    ApplicationDeployment appDeployment = ApplicationDeployment.CurrentDeployment;
+
+                    lblVersion.Text = $"Version : {appDeployment.CurrentVersion.ToString()} ";  // 현재버전의 정보를 가져옴
+                }
+                else
+                {
+                    lblVersion.Text = "Version : Not Deployed";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                lblVersion.Text = "Version : Not Deployed";
+                Program.Log.WriteError(ex.Message, ex);
             }
         }
 
@@ -201,14 +211,21 @@ namespace Team2_RealTimeMonitor
             {
                 WriteLog(ex);
 
-                timer.Stop();
-                timer.Enabled = false;
+                if (timer != null)
+                {
+                    timer.Stop();
+                    timer.Enabled = false;
+                }
                 if (netStream != null)
                 {
                     netStream.Close();
                     if (client != null)
                         client.Close();
                 }
+
+                CustomMessageBox.ShowDialog(Properties.Resources.MsgServerConnectFailResultHeader,
+                    Properties.Resources.MsgServerConnectFailResultContent, MessageBoxIcon.Error, MessageBoxButtons.OK);
+                Close();
             }
         }
 
@@ -226,9 +243,12 @@ namespace Team2_RealTimeMonitor
             {
                 WriteLog(ex);
                 // 타이머 종료
-                timer.Stop();
-                timer.Enabled = false;
-                timer.Dispose();
+                if (timer != null)
+                {
+                    timer.Stop();
+                    timer.Enabled = false;
+                    timer.Dispose();
+                }
             }
         }
 

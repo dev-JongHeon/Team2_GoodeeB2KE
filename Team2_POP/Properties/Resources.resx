@@ -308,4 +308,7 @@
 작업자 : {1}에게 할당했습니다.</value>
     <comment>작업할당을 눌렀을때 작업자 할당이 정상적으로 생성된경우 발생한 메세지</comment>
   </data>
+  <data name="IMG_POPMain" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\IMG_POPMain (2).ICO;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
