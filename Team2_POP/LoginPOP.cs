@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Deployment.Application;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -33,6 +34,18 @@ namespace Team2_POP
         {
             SettingControl();
             InitData();
+            CheckUpdate();
+
+            if (ApplicationDeployment.IsNetworkDeployed)
+            {
+                ApplicationDeployment appDeployment = ApplicationDeployment.CurrentDeployment;
+
+                lblVersion.Text = $"Version : {appDeployment.CurrentVersion.ToString()} ";  // 현재버전의 정보를 가져옴
+            }
+            else
+            {
+                lblVersion.Text = "Version : Not Deployed";
+            }
         }
 
         private void SettingControl()
@@ -171,5 +184,34 @@ namespace Team2_POP
             }
         }
         #endregion
+
+        private void CheckUpdate()
+        {
+            UpdateCheckInfo info = null;
+
+            if (!ApplicationDeployment.IsNetworkDeployed)  // 로컬실행
+            {
+                Program.Log.WriteInfo("배포된 버젼이 아닙니다.");
+            }
+            else
+            {
+                ApplicationDeployment AppDeploy = ApplicationDeployment.CurrentDeployment;
+
+                info = AppDeploy.CheckForDetailedUpdate();
+
+                if (info.UpdateAvailable)
+                {
+                    bool doUpdate = true;
+
+                    if (doUpdate)
+                    {
+                        AppDeploy.Update();
+                        MessageBox.Show("최신버젼의 업데이트가 있습니다. 업데이트 적용을 위해 프로그램을 재시작합니다.");
+                        this.Close();
+                        Application.Restart();
+                    }
+                }
+            }
+        }
     }
 }

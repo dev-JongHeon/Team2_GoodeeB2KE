@@ -39,13 +39,14 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitRight = new System.Windows.Forms.SplitContainer();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.picExit = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.panel9 = new System.Windows.Forms.Panel();
             this.flowLayoutSemiProductLine = new System.Windows.Forms.FlowLayoutPanel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.picExit = new System.Windows.Forms.PictureBox();
+            this.lblVersion = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitMain)).BeginInit();
             this.splitMain.Panel1.SuspendLayout();
             this.splitMain.Panel2.SuspendLayout();
@@ -64,11 +65,11 @@
             this.splitRight.Panel2.SuspendLayout();
             this.splitRight.SuspendLayout();
             this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picExit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picExit)).BeginInit();
             this.SuspendLayout();
             // 
             // splitMain
@@ -209,6 +210,7 @@
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(44)))), ((int)(((byte)(57)))));
+            this.panel6.Controls.Add(this.lblVersion);
             this.panel6.Controls.Add(this.picExit);
             this.panel6.Controls.Add(this.label2);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -216,6 +218,17 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1200, 110);
             this.panel6.TabIndex = 0;
+            // 
+            // picExit
+            // 
+            this.picExit.Location = new System.Drawing.Point(1113, 12);
+            this.picExit.Name = "picExit";
+            this.picExit.Size = new System.Drawing.Size(75, 75);
+            this.picExit.TabIndex = 2;
+            this.picExit.TabStop = false;
+            this.picExit.Click += new System.EventHandler(this.picExit_Click);
+            this.picExit.MouseLeave += new System.EventHandler(this.picExit_MouseLeave);
+            this.picExit.MouseHover += new System.EventHandler(this.picExit_MouseHover);
             // 
             // label2
             // 
@@ -283,16 +296,15 @@
             this.panel3.Size = new System.Drawing.Size(70, 927);
             this.panel3.TabIndex = 0;
             // 
-            // picExit
+            // lblVersion
             // 
-            this.picExit.Location = new System.Drawing.Point(1113, 12);
-            this.picExit.Name = "picExit";
-            this.picExit.Size = new System.Drawing.Size(75, 75);
-            this.picExit.TabIndex = 2;
-            this.picExit.TabStop = false;
-            this.picExit.Click += new System.EventHandler(this.picExit_Click);
-            this.picExit.MouseLeave += new System.EventHandler(this.picExit_MouseLeave);
-            this.picExit.MouseHover += new System.EventHandler(this.picExit_MouseHover);
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblVersion.Location = new System.Drawing.Point(1110, 90);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(41, 14);
+            this.lblVersion.TabIndex = 3;
+            this.lblVersion.Text = "label3";
             // 
             // RealTimeLineState
             // 
@@ -326,11 +338,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitRight)).EndInit();
             this.splitRight.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picExit)).EndInit();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picExit)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -355,5 +368,6 @@
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutSemiProductLine;
         private System.Windows.Forms.PictureBox picExit;
+        private System.Windows.Forms.Label lblVersion;
     }
 }

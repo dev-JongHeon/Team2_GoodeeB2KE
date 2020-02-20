@@ -61,6 +61,7 @@ namespace Team2_Shop.Controllers
         // 회원가입 성공한 경우
         public ActionResult Completed(RegisterModel model)
         {
+
             WebCustomerModel userInfo = new WebCustomerModel
             {
                 Customer_Name = model.Customer_Name,
@@ -72,6 +73,15 @@ namespace Team2_Shop.Controllers
                 Customer_UserID = model.Customer_UserID,
                 Customer_PWD = model.Customer_PWD
             };
+
+            if (userInfo.Customer_Name == null || userInfo.Customer_Address1 == null || userInfo.Customer_Address2 == null
+                || userInfo.Customer_Email == null || userInfo.Customer_Birth == null || userInfo.Customer_Phone == null
+                || userInfo.Customer_UserID == null || userInfo.Customer_PWD == null)
+            {
+                ViewBag.Message = "필수 사항을 입력해주세요.!!!";
+                return View("Register");
+            }
+
 
             // 대충 회원가입하는코드
             Service service = new Service();
