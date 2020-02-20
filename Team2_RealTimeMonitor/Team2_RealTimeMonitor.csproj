@@ -57,7 +57,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>4F785FFCF37F4BCCB4FF0079FA36190037CDF6A4</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>7BC25BD5240DA2D16ADFA0D7F87279A38D1487D4</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>Team2_RealTimeMonitor_TemporaryKey.pfx</ManifestKeyFile>

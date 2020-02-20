@@ -55,10 +55,10 @@
     <StartupObject />
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>B4416098433D4257FC8F66013CCA86ED7F210C3A</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>A1B7E312302B5BA4A656919A80280385034939CD</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Team2_Machine_1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>Team2_Machine_2_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -110,8 +110,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="Team2_Machine_1_TemporaryKey.pfx" />
-    <None Include="Team2_Machine_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Team2_DAC\Team2_DAC.csproj">
