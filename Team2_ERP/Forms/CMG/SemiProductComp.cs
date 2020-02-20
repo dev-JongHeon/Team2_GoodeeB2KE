@@ -318,7 +318,7 @@ namespace Team2_ERP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (cboCategory.SelectedValue != null && cboCategoryDetail.SelectedValue != null && spc.TxtName.Tag != null && cboWarehouse.SelectedValue != null && txtSemiproductName.Text.Length > 0 && numSafety.Value > 0 && txtSemiproductMoney.Text.Length > 0)
+            if (cboCategory.SelectedValue != null && spc.TxtName.Tag != null && cboWarehouse.SelectedValue != null && txtSemiproductName.Text.Length > 0 && numSafety.Value > 0 && txtSemiproductMoney.Text.Length > 0)
             {
                 if (mode.Equals("Insert"))
                 {
