@@ -6,6 +6,7 @@ using System.Web;
 using Team2_Shop.Models;
 using System.Web.Configuration;
 using System.Data;
+using System.Text;
 
 namespace Team2_Shop.DAC
 {
@@ -129,6 +130,40 @@ namespace Team2_Shop.DAC
             {
                 WriteErrorLog(ex);
                 return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public void CustomerInsert(WebCustomerModel customerInfo)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    StringBuilder qrySelect = new StringBuilder();
+                    qrySelect.Append(" INSERT INTO Customer ([Customer_UserID], [Customer_PWD], [Customer_Name], [Customer_Phone], [Customer_Email], [Customer_Birth], [Customer_Address1], [Customer_Address2], [Customer_DeletedYN]) ");
+                    qrySelect.Append(" VALUES (@CustomerID, @CustomerPWD, @CustomerName, @CustomerPhone, @CustomerEmail, @CustomerBirth, @CustomerAddr1, @CustomerAddr2, 0)  ");
+
+
+                    cmd.Connection = conn;
+                    cmd.CommandText = qrySelect.ToString();
+                        
+
+                    FillParameter(cmd, new string[] { "@CustomerID", "@CustomerPWD", "@CustomerName", "@CustomerPhone", "@CustomerEmail", "CustomerBirth", "CustomerAddr1", "CustomerAddr2" },
+                        new object[] { customerInfo.Customer_UserID, customerInfo.Customer_PWD, customerInfo.Customer_Name, customerInfo.Customer_Phone,
+                            customerInfo.Customer_Email, customerInfo.Customer_Birth, customerInfo.Customer_Address1, customerInfo.Customer_Address2 });
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteErrorLog(ex);
             }
             finally
             {

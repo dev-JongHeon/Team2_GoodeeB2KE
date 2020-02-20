@@ -48,19 +48,34 @@ namespace Team2_POP
 
             Service service = new Service();
 
-            List<ComboItemVO> list = service.GetDefectiveCode();
+            try
+            {
+                List<ComboItemVO> list = service.GetDefectiveCode();
 
-            UtilClass.ComboBinding(cboDefectiveName, list.FindAll(c => c.CodeType.Contains("Defec")), "불량유형 선택");
-            UtilClass.ComboBinding(cboHandle, list.FindAll(c => c.CodeType.Contains("Handle")), "불량처리유형 선택");
+                UtilClass.ComboBinding(cboDefectiveName, list.FindAll(c => c.CodeType.Contains("Defec")), "불량유형 선택");
+                UtilClass.ComboBinding(cboHandle, list.FindAll(c => c.CodeType.Contains("Handle")), "불량처리유형 선택");
+            }
+            catch (Exception ex)
+            {
+                Program.Log.WriteError(ex.Message, ex);
+            }
 
 
 
             #endregion
 
             #region 콤보박스 바인딩 - 생산실적에 있는 불량 유형
-            List<string> listDefective = service.GetDefective(Performance_ID);
+            try
+            {
+                List<string> listDefective = service.GetDefective(Performance_ID);
 
-            UtilClass.ComboBinding(cboDefItem, listDefective, "코드 선택");
+                UtilClass.ComboBinding(cboDefItem, listDefective, "코드 선택");
+            }
+            catch (Exception ex)
+            {
+
+                Program.Log.WriteError(ex.Message, ex);
+            }
 
             #endregion
         }
@@ -89,17 +104,25 @@ namespace Team2_POP
             string defecCode = lblDefectiveName.Tag.ToString();      // 불량유형코드
             string handleCode = lblHandle.Tag.ToString();            // 불량처리코드
 
+            bool bResult = false;
 
-            bool bResult = new Service().SetDefective(defectiveID, handleCode, defecCode);
-            if (bResult) // 성공한 경우
-                CustomMessageBox.ShowDialog(Properties.Resources.MsgDefectiveResultSucceesHeader
-                    , string.Format(Properties.Resources.MsgDefectiveResultSucceesContents, defectiveID, lblDefectiveName.Text, lblHandle.Text)
-                    , MessageBoxIcon.Question);
-
-            else // 실패한 경우
+            try
             {
-                CustomMessageBox.ShowDialog(Properties.Resources.MsgDefectiveResultFailHeader
-                    , string.Format(Properties.Resources.MsgDefectiveResultFailContents, defectiveID), MessageBoxIcon.Error);
+                bResult = new Service().SetDefective(defectiveID, handleCode, defecCode);
+                if (bResult) // 성공한 경우
+                    CustomMessageBox.ShowDialog(Properties.Resources.MsgDefectiveResultSucceesHeader
+                        , string.Format(Properties.Resources.MsgDefectiveResultSucceesContents, defectiveID, lblDefectiveName.Text, lblHandle.Text)
+                        , MessageBoxIcon.Question);
+
+                else // 실패한 경우
+                {
+                    CustomMessageBox.ShowDialog(Properties.Resources.MsgDefectiveResultFailHeader
+                        , string.Format(Properties.Resources.MsgDefectiveResultFailContents, defectiveID), MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                Program.Log.WriteError(ex.Message, ex);
             }
 
             return bResult;

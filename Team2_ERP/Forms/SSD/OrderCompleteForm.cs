@@ -109,6 +109,8 @@ namespace Team2_ERP
             Search_Customer.CodeTextBox.Clear();
             Search_Period.Startdate.Clear();
             Search_Period.Enddate.Clear();
+            Search_Completed.Startdate.Clear();
+            Search_Completed.Enddate.Clear();
         }
 
         public override void Search(object sender, EventArgs e)  // 검색
@@ -124,11 +126,19 @@ namespace Team2_ERP
                                     select item).ToList();
                 }
 
-                if (Search_Period.Startdate.Text != "    -  -")   // 시작기간 text가 존재하면
+                if (Search_Period.Startdate.Text != "    -  -")   // 주문일자 Startdate.text가 존재하면
                 {
                     SearchedList = (from   item in SearchedList
                                     where  item.Order_Date.Date.CompareTo(Convert.ToDateTime(Search_Period.Startdate.Text)) >= 0 &&
                                            item.Order_Date.Date.CompareTo(Convert.ToDateTime(Search_Period.Enddate.Text)) <= 0
+                                    select item).ToList();
+                }
+
+                if (Search_Completed.Startdate.Text != "    -  -")   // 주문처리일자 Startdate.text가 존재하면
+                {
+                    SearchedList = (from item in SearchedList
+                                    where item.OrderCompleted_Date.Date.CompareTo(Convert.ToDateTime(Search_Completed.Startdate.Text)) >= 0 &&
+                                           item.OrderCompleted_Date.Date.CompareTo(Convert.ToDateTime(Search_Completed.Enddate.Text)) <= 0
                                     select item).ToList();
                 }
                 dgv_Order.DataSource = SearchedList;

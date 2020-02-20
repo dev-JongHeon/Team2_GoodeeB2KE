@@ -47,8 +47,15 @@ namespace Team2_POP
         {
             // 반제품 라인일 경우 생산 1팀
             // 완제품 라인일 경우 생산 2팀
-           
+
+            try
+            {
                 UtilClass.ComboBinding(cboWorker, new Service().GetWorker(FactoryDivision), "작업자 선택");
+            }
+            catch (Exception ex)
+            {
+                Program.Log.WriteError(ex.Message, ex);
+            }
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
