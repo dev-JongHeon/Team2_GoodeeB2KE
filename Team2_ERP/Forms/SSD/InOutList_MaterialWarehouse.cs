@@ -38,7 +38,7 @@ namespace Team2_ERP
         {
             UtilClass.SettingDgv(dgv_Stock);
             UtilClass.AddNewColum(dgv_Stock, "수불번호", "StockReceipt_ID", true);
-            UtilClass.AddNewColum(dgv_Stock, "수불유형", "StockReceipt_Division1", true);
+            UtilClass.AddNewColum(dgv_Stock, "수불유형", "StockReceipt_Division1", true, 80);
             UtilClass.AddNewColum(dgv_Stock, "처리일시", "StockReceipt_Date", true, 170);
             UtilClass.AddNewColum(dgv_Stock, "창고코드", "Warehouse_ID", true);
             UtilClass.AddNewColum(dgv_Stock, "창고명", "Warehouse_Name", true, 160);

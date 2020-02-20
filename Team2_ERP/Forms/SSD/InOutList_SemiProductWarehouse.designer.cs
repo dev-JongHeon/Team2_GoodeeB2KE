@@ -116,7 +116,7 @@
             this.Search_SemiProduct.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
             this.Search_SemiProduct.ControlType = Team2_ERP.SearchUserControl.Mode.SemiProduct;
             this.Search_SemiProduct.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Search_SemiProduct.Labelname = "반제품";
+            this.Search_SemiProduct.Labelname = "반제품명";
             this.Search_SemiProduct.Location = new System.Drawing.Point(186, 81);
             this.Search_SemiProduct.Name = "Search_SemiProduct";
             this.Search_SemiProduct.Size = new System.Drawing.Size(312, 25);
@@ -127,7 +127,7 @@
             this.Search_Warehouse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
             this.Search_Warehouse.ControlType = Team2_ERP.SearchUserControl.Mode.Warehouse;
             this.Search_Warehouse.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Search_Warehouse.Labelname = "창고";
+            this.Search_Warehouse.Labelname = "창고명";
             this.Search_Warehouse.Location = new System.Drawing.Point(186, 49);
             this.Search_Warehouse.Name = "Search_Warehouse";
             this.Search_Warehouse.Size = new System.Drawing.Size(312, 25);
