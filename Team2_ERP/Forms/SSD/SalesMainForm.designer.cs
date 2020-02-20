@@ -110,11 +110,11 @@
             this.Search_Customer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
             this.Search_Customer.ControlType = Team2_ERP.SearchUserControl.Mode.Customer;
             this.Search_Customer.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Search_Customer.Labelname = "고객ID";
+            this.Search_Customer.Labelname = "고객성명";
             this.Search_Customer.Location = new System.Drawing.Point(349, 14);
             this.Search_Customer.Margin = new System.Windows.Forms.Padding(4);
             this.Search_Customer.Name = "Search_Customer";
-            this.Search_Customer.Size = new System.Drawing.Size(401, 30);
+            this.Search_Customer.Size = new System.Drawing.Size(328, 30);
             this.Search_Customer.TabIndex = 0;
             // 
             // Search_OrderIndexPeriod

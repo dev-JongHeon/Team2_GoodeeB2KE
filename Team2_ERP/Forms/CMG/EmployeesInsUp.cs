@@ -104,7 +104,7 @@ namespace Team2_ERP
             {
                 Employees_Name = txtEmployeesName.Text,
                 CodeTable_CodeID = cboEmployeesCategory.SelectedValue.ToString(),
-                Employees_PWD = txtEmployeesPassword.Text,
+                Employees_Hiredate = dtpEmployeesHireDate.Value.ToShortDateString(),
                 Employees_Phone = maskedEmployeesPhoneNumber.Text,
                 Employees_Birth = dtpEmployeesBirthDay.Value.ToShortDateString(),
                 Employees_ID = eCode

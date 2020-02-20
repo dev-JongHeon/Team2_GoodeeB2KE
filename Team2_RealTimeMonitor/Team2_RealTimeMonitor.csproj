@@ -25,7 +25,10 @@
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://bluemoon1510.ddns.net:15100/Monitor/</InstallUrl>
     <UpdateUrl>http://bluemoon1510.ddns.net:15100/Monitor/</UpdateUrl>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ProductName>구디B2KE RealMonitor</ProductName>
+    <PublisherName>구디아카데미 Team2</PublisherName>
+    <SuiteName>Team2 솔루션</SuiteName>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -54,10 +57,10 @@
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>78CE6256B8D52169C785E5105EF7803BEFBE6B10</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>7BC25BD5240DA2D16ADFA0D7F87279A38D1487D4</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Team2_RealTimeMonitor_1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>Team2_RealTimeMonitor_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
@@ -150,8 +153,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Team2_RealTimeMonitor_1_TemporaryKey.pfx" />
-    <None Include="Team2_RealTimeMonitor_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
