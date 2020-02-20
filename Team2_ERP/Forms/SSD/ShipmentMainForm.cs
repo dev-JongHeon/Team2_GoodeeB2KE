@@ -38,14 +38,14 @@ namespace Team2_ERP
         private void LoadData()
         {
             UtilClass.SettingDgv(dgv_Shipment);
-            UtilClass.AddNewColum(dgv_Shipment, "출하번호", "Shipment_ID", true);
-            UtilClass.AddNewColum(dgv_Shipment, "주문번호", "Order_ID", true);
-            UtilClass.AddNewColum(dgv_Shipment, "주문일시", "Order_Date", false, 170);
-            UtilClass.AddNewColum(dgv_Shipment, "주문처리일시", "OrderCompleted_Date", false, 170);
+            UtilClass.AddNewColum(dgv_Shipment, "출하번호", "Shipment_ID", true, 110);
+            UtilClass.AddNewColum(dgv_Shipment, "주문번호", "Order_ID", true, 110);
+            UtilClass.AddNewColum(dgv_Shipment, "주문일시", "Order_Date", true, 170);
+            UtilClass.AddNewColum(dgv_Shipment, "주문처리일시", "OrderCompleted_Date", true, 170);
             UtilClass.AddNewColum(dgv_Shipment, "고객ID", "Customer_userID", true, 90);
-            UtilClass.AddNewColum(dgv_Shipment, "고객성명", "Customer_Name", true);
-            UtilClass.AddNewColum(dgv_Shipment, "출하요청일자", "Shipment_RequiredDate", true, 120);
-            UtilClass.AddNewColum(dgv_Shipment, "출하지시자", "Employees_Name", true, 110);
+            UtilClass.AddNewColum(dgv_Shipment, "고객성명", "Customer_Name", true, 110);
+            UtilClass.AddNewColum(dgv_Shipment, "출하요청일자", "Shipment_RequiredDate", true, 130);
+            UtilClass.AddNewColum(dgv_Shipment, "출하지시자", "Employees_Name", true, 120);
             dgv_Shipment.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_Shipment.Columns[2].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
             dgv_Shipment.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -64,8 +64,8 @@ namespace Team2_ERP
             dgv_ShipmentDetail.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgv_ShipmentDetail.Columns[3].DefaultCellStyle.Format = "#,#0개";
 
-            Search_OrderPeriod.Startdate.BackColor = Color.LightYellow;
-            Search_OrderPeriod.Enddate.BackColor = Color.LightYellow;
+            Search_ShipmentIndexPeriod.Startdate.BackColor = Color.LightYellow;
+            Search_ShipmentIndexPeriod.Enddate.BackColor = Color.LightYellow;
         }
 
         private void dgv_Shipment_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
@@ -112,24 +112,15 @@ namespace Team2_ERP
             Search_Employees.CodeTextBox.Clear();
             Search_OrderPeriod.Startdate.Clear();
             Search_OrderPeriod.Enddate.Clear();
-            Search_ShipmentIndexPeriod.Startdate.Clear();
-            Search_ShipmentIndexPeriod.Enddate.Clear();
+            Search_ShipmentRequiredDate.Startdate.Clear();
+            Search_ShipmentRequiredDate.Enddate.Clear();
         }
 
         public override void Search(object sender, EventArgs e)  // 검색
         {
-            if (Search_OrderPeriod.Startdate.Text == "    -  -") { main.NoticeMessage = Resources.PeriodError; }
+            if (Search_ShipmentIndexPeriod.Startdate.Text == "    -  -") { main.NoticeMessage = Resources.PeriodError; }
             else
             {
-                SearchedList = Shipment_AllList;
-                if (Search_OrderPeriod.Startdate.Text != "    -  -")  //주문일시 검색조건 존재한다면
-                {
-                    SearchedList = (from item in SearchedList
-                                    where item.Order_Date.Date.CompareTo(Convert.ToDateTime(Search_OrderPeriod.Startdate.Text)) >= 0 &&
-                                           item.Order_Date.Date.CompareTo(Convert.ToDateTime(Search_OrderPeriod.Enddate.Text)) <= 0
-                                    select item).ToList();
-                }
-
                 if (Search_Customer.CodeTextBox.Text.Length > 0)  // 고객명 검색조건 있으면
                 {
                     SearchedList = (from item in SearchedList
@@ -144,13 +135,33 @@ namespace Team2_ERP
                                     select item).ToList();
                 }
 
-                if (Search_ShipmentIndexPeriod.Startdate.Text != "    -  -")  // 출하지시일시 검색조건 존재한다면
+                SearchedList = Shipment_AllList;
+                if (Search_OrderPeriod.Startdate.Text != "    -  -")  //주문일자 검색조건 존재한다면
+                {
+                    SearchedList = (from item in SearchedList
+                                    where item.Order_Date.Date.CompareTo(Convert.ToDateTime(Search_OrderPeriod.Startdate.Text)) >= 0 &&
+                                           item.Order_Date.Date.CompareTo(Convert.ToDateTime(Search_OrderPeriod.Enddate.Text)) <= 0
+                                    select item).ToList();
+                }
+
+                if (Search_ShipmentRequiredDate.Startdate.Text != "    -  -")  // 출하요청일자 검색조건 존재한다면
                 {
                     SearchedList = (from item in SearchedList
                                     where item.Shipment_RequiredDate.Date.CompareTo
-                                          (Convert.ToDateTime(Search_ShipmentIndexPeriod.Startdate.Text)) >= 0
+                                          (Convert.ToDateTime(Search_ShipmentRequiredDate.Startdate.Text)) >= 0
                                           &&
                                           item.Shipment_RequiredDate.Date.CompareTo
+                                          (Convert.ToDateTime(Search_ShipmentRequiredDate.Enddate.Text)) <= 0
+                                    select item).ToList();
+                }
+
+                if (Search_ShipmentIndexPeriod.Startdate.Text != "    -  -")  // 주문처리일자 검색조건 존재한다면
+                {
+                    SearchedList = (from item in SearchedList
+                                    where item.OrderCompleted_Date.Date.CompareTo
+                                          (Convert.ToDateTime(Search_ShipmentIndexPeriod.Startdate.Text)) >= 0
+                                          &&
+                                          item.OrderCompleted_Date.Date.CompareTo
                                           (Convert.ToDateTime(Search_ShipmentIndexPeriod.Enddate.Text)) <= 0
                                     select item).ToList();
                 }

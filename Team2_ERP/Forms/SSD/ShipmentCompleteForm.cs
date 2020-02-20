@@ -41,12 +41,12 @@ namespace Team2_ERP
             UtilClass.SettingDgv(dgv_Shipment);
             UtilClass.AddNewColum(dgv_Shipment, "출하번호", "Shipment_ID", true);
             UtilClass.AddNewColum(dgv_Shipment, "주문번호", "Order_ID", true);
-            UtilClass.AddNewColum(dgv_Shipment, "주문일시", "Order_Date", false, 170);
-            UtilClass.AddNewColum(dgv_Shipment, "주문처리일시", "OrderCompleted_Date", false, 170);
+            UtilClass.AddNewColum(dgv_Shipment, "주문일시", "Order_Date", true, 170);
+            UtilClass.AddNewColum(dgv_Shipment, "주문처리일시", "OrderCompleted_Date", true, 170);
             UtilClass.AddNewColum(dgv_Shipment, "고객ID", "Customer_userID", true, 90);
             UtilClass.AddNewColum(dgv_Shipment, "고객성명", "Customer_Name", true);
-            UtilClass.AddNewColum(dgv_Shipment, "출하요청날짜", "Shipment_RequiredDate", true, 170);
-            UtilClass.AddNewColum(dgv_Shipment, "출하지시자", "Employees_Name", true, 110);
+            UtilClass.AddNewColum(dgv_Shipment, "출하요청일짜", "Shipment_RequiredDate", true, 130);
+            UtilClass.AddNewColum(dgv_Shipment, "출하지시자", "Employees_Name", true, 120);
             UtilClass.AddNewColum(dgv_Shipment, "출하처리일시", "Shipment_DoneDate", true, 170);
             dgv_Shipment.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_Shipment.Columns[2].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
@@ -140,7 +140,7 @@ namespace Team2_ERP
                                         select item).ToList();
                 }
 
-                if (Search_OrderPeriod.Startdate.Text != "    -  -")  //주문일시 검색조건 존재한다면
+                if (Search_OrderPeriod.Startdate.Text != "    -  -")  //주문일자 검색조건 존재한다면
                 {
                     SearchedList = (from item in SearchedList
                                         where item.Order_Date.Date.CompareTo(Convert.ToDateTime(Search_OrderPeriod.Startdate.Text)) >= 0 &&
@@ -148,7 +148,7 @@ namespace Team2_ERP
                                         select item).ToList();
                 }
 
-                if (Search_ShipmentIndexPeriod.Startdate.Text != "    -  -")  // 출하지시일시 검색조건 존재한다면
+                if (Search_ShipmentIndexPeriod.Startdate.Text != "    -  -")  // 출하지시일자 검색조건 존재한다면
                 {
                     SearchedList = (from item in SearchedList
                                         where item.Shipment_RequiredDate.Date.CompareTo
@@ -159,7 +159,7 @@ namespace Team2_ERP
                                         select item).ToList();
                 }
 
-                if (Search_ShipmentRequiredDate.Startdate.Text != "    -  -")  // 출하요청날짜 검색조건 존재한다면
+                if (Search_ShipmentRequiredDate.Startdate.Text != "    -  -")  // 출하요청일자 검색조건 존재한다면
                 {
                     SearchedList = (from item in SearchedList
                                         where item.Shipment_RequiredDate.Date.CompareTo
@@ -168,6 +168,17 @@ namespace Team2_ERP
                                               item.Shipment_RequiredDate.Date.CompareTo
                                               (Convert.ToDateTime(Search_ShipmentRequiredDate.Enddate.Text)) <= 0
                                         select item).ToList();
+                }
+
+                if (Search_ShipmentDoneDate.Startdate.Text != "    -  -")  // 출하처리일자 검색조건 존재한다면
+                {
+                    SearchedList = (from item in SearchedList
+                                    where item.Shipment_DoneDate.Date.CompareTo
+                                          (Convert.ToDateTime(Search_ShipmentDoneDate.Startdate.Text)) >= 0
+                                          &&
+                                          item.Shipment_DoneDate.Date.CompareTo
+                                          (Convert.ToDateTime(Search_ShipmentDoneDate.Enddate.Text)) <= 0
+                                    select item).ToList();
                 }
                 dgv_Shipment.DataSource = SearchedList;
                 dgv_ShipmentDetail.DataSource = null;

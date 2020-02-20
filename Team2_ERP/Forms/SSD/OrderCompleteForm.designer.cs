@@ -84,7 +84,7 @@
             this.Search_Customer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
             this.Search_Customer.ControlType = Team2_ERP.SearchUserControl.Mode.Customer;
             this.Search_Customer.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Search_Customer.Labelname = "고객";
+            this.Search_Customer.Labelname = "고객성명";
             this.Search_Customer.Location = new System.Drawing.Point(20, 73);
             this.Search_Customer.Name = "Search_Customer";
             this.Search_Customer.Size = new System.Drawing.Size(312, 25);
