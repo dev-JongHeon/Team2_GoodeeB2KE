@@ -356,22 +356,44 @@ namespace Team2_ERP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (cboProductCategory.SelectedValue != null && spc.TxtName.Tag != null && pictureBox1.Image != pictureBox1.InitialImage && txtProductName.Text.Length > 0 && txtProductMoney.Text.Length > 0)
+            bool check = true;
+
+            foreach (Control control in splitContainer2.Panel1.Controls)
             {
-                if (mode.Equals("Insert"))
+                if (control is SemiProductCompControl)
                 {
-                    InsertProduct();
-                    DialogResult = MessageBox.Show(Resources.AddDone, Resources.AddDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    SemiProductCompControl spc = (SemiProductCompControl)control;
+
+                    if(spc.TxtName.Tag == null)
+                    {
+                        check = false;
+                    }
+                }
+            }
+
+            if (Convert.ToInt32(txtProductMoney.Text.Replace(",", "").Replace("원", "")) > 0)
+            {
+                if (cboProductCategory.SelectedValue != null && check && pictureBox1.Image != pictureBox1.InitialImage && txtProductName.Text.Length > 0 && txtProductMoney.Text.Length > 0)
+                {
+                    if (mode.Equals("Insert"))
+                    {
+                        InsertProduct();
+                        DialogResult = MessageBox.Show(Resources.AddDone, Resources.AddDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        UpdateProduct();
+                        DialogResult = MessageBox.Show(Resources.ModDone, Resources.ModDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
-                    UpdateProduct();
-                    DialogResult = MessageBox.Show(Resources.ModDone, Resources.ModDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(Resources.isEssential, Resources.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else
             {
-                MessageBox.Show(Resources.isEssential, Resources.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Resources.PriceError, Resources.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

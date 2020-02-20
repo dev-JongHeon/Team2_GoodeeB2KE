@@ -19,6 +19,7 @@ namespace Team2_ERP
 
         string mode = string.Empty;
         int eCode = 0;
+        string departID = string.Empty;
 
         public EmployeesInsUp(EditMode editMode, EmployeeVO item)
         {
@@ -35,12 +36,19 @@ namespace Team2_ERP
                 lblName.Text = "사원수정";
                 mode = "Update";
                 pbxTitle.Image = Resources.Edit_32x32;
-                eCode = item.Employees_ID;
-                txtEmployeesName.Text = item.Employees_Name;
-                maskedEmployeesPhoneNumber.Text = item.Employees_Phone;
-                dtpEmployeesBirthDay.Value = Convert.ToDateTime(item.Employees_Birth);
-                dtpEmployeesHireDate.Value = Convert.ToDateTime(item.Employees_Hiredate);
+
+                UpdateInfo(item);
             }
+        }
+
+        private void UpdateInfo(EmployeeVO item)
+        {
+            eCode = item.Employees_ID;
+            txtEmployeesName.Text = item.Employees_Name;
+            maskedEmployeesPhoneNumber.Text = item.Employees_Phone;
+            departID = item.CodeTable_CodeID;
+            dtpEmployeesBirthDay.Value = Convert.ToDateTime(item.Employees_Birth);
+            dtpEmployeesHireDate.Value = Convert.ToDateTime(item.Employees_Hiredate);
         }
 
         //부서목록을 콤보바인딩
@@ -67,6 +75,7 @@ namespace Team2_ERP
             if(mode.Equals("Update"))
             {
                 txtEmployeesPassword.Enabled = false;
+                cboEmployeesCategory.SelectedValue = departID;
             }
         }
 
@@ -125,7 +134,7 @@ namespace Team2_ERP
         {
             if (mode.Equals("Insert"))
             {
-                if(txtEmployeesName.Text.Length > 0 && cboEmployeesCategory.SelectedValue != null && dtpEmployeesHireDate.Value != null && txtEmployeesPassword.Text.Length > 0 && maskedEmployeesPhoneNumber.Text.Replace("_", "").Replace("-", "").Trim().Length > 10 && dtpEmployeesBirthDay.Value != null)
+                if(txtEmployeesName.Text.Trim().Length > 0 && cboEmployeesCategory.SelectedValue != null && dtpEmployeesHireDate.Value != null && txtEmployeesPassword.Text.Trim().Length > 0 && maskedEmployeesPhoneNumber.Text.Replace("_", "").Replace("-", "").Trim().Length > 10 && dtpEmployeesBirthDay.Value != null)
                 {
                     InsertEmployee();
                     DialogResult = MessageBox.Show(Resources.AddDone, Resources.AddDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -137,7 +146,7 @@ namespace Team2_ERP
             }
             else
             {
-                if (txtEmployeesName.Text.Length > 0 && cboEmployeesCategory.SelectedValue != null && maskedEmployeesPhoneNumber.Text.Replace("_", "").Replace("-", "").Trim().Length > 10 && dtpEmployeesBirthDay.Value != null)
+                if (txtEmployeesName.Text.Trim().Length > 0 && cboEmployeesCategory.SelectedValue != null && maskedEmployeesPhoneNumber.Text.Replace("_", "").Replace("-", "").Trim().Length > 10 && dtpEmployeesBirthDay.Value != null)
                 {
                     UpdateEmployee();
                     DialogResult = MessageBox.Show(Resources.ModDone, Resources.ModDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
