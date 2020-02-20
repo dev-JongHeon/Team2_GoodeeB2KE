@@ -25,7 +25,10 @@
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://bluemoon1510.ddns.net:15100/Monitor/</InstallUrl>
     <UpdateUrl>http://bluemoon1510.ddns.net:15100/Monitor/</UpdateUrl>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ProductName>구디B2KE RealMonitor</ProductName>
+    <PublisherName>구디아카데미 Team2</PublisherName>
+    <SuiteName>Team2 솔루션</SuiteName>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
