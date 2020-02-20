@@ -589,7 +589,6 @@
     <Compile Include="Service\CMG\BOMService.cs" />
     <Compile Include="Service\KJH\AuthService.cs" />
     <Compile Include="Service\KJH\DefectiveHandleService.cs" />
-    <Compile Include="Service\KJH\ExcelService.cs" />
     <Compile Include="Service\KJH\ProduceService.cs" />
     <Compile Include="Service\KJH\WorkService.cs" />
     <Compile Include="Service\KJH\DowntimeService.cs" />
@@ -608,6 +607,7 @@
     <Compile Include="Service\SSD\ShipmentService.cs" />
     <Compile Include="Service\SSD\StockService.cs" />
     <Compile Include="Util\FieldNameAtrribute.cs" />
+    <Compile Include="Util\Log.cs" />
     <Compile Include="Util\LoggingUtility.cs" />
     <Compile Include="Util\SettingMenuStrip.cs" />
     <Compile Include="Util\UtilClass.cs" />

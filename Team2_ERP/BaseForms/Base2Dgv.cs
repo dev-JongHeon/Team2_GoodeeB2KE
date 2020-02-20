@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace Team2_ERP
 {
+    /// <summary>
+    /// DatagridView가 2개짜리인 베이스폼
+    /// </summary>
     public partial class Base2Dgv : BaseForm
     {
         public new string FormName

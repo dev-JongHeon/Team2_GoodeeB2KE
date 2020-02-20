@@ -9,6 +9,9 @@ using Team2_VO;
 
 namespace Team2_DAC
 {
+    /// <summary>
+    /// 생산실적 DAC
+    /// </summary>
     public class ProduceDAC : ConnectionInfo
     {
         SqlConnection conn;
@@ -17,6 +20,10 @@ namespace Team2_DAC
             conn = new SqlConnection(this.ConnectionString);
         }
 
+        /// <summary>
+        /// 모든 생산목록을 가져오는 메서드
+        /// </summary>
+        /// <returns></returns>
         public List<ProduceVO> GetAllProduce()
         {
             try
@@ -32,13 +39,17 @@ namespace Team2_DAC
                 }
                 return list;
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
-
         }
 
+        /// <summary>
+        /// 작업ID로 생산목록을 조회하는 메서드
+        /// </summary>
+        /// <param name="id">작업ID</param>
+        /// <returns></returns>
         public List<ProduceVO> GetProduceByWorkID(string id)
         {
             try
@@ -55,12 +66,17 @@ namespace Team2_DAC
                 }
                 return list;
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
         }
 
+        /// <summary>
+        /// 생산ID로 생산실적을 가져오는 메서드
+        /// </summary>
+        /// <param name="id">생산ID</param>
+        /// <returns></returns>
         public List<PerformanceVO> GetPerformanceByProduceID(string id)
         {
             try
@@ -77,9 +93,9 @@ namespace Team2_DAC
                 }
                 return list;
             }
-            catch (Exception err)
+            catch
             {
-                throw new Exception(err.Message);
+                throw;
             }
         }
     }

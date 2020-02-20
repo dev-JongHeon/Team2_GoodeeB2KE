@@ -123,7 +123,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="DAC\EISProcess.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -7545,6 +7544,7 @@
     <None Include="Properties\PublishProfiles\gdB2KEEIS - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\gdB2KEEIS - ReadOnly - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\gdB2KEEIS - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\HomeFTP.pubxml" />
     <None Include="Properties\PublishProfiles\KJHfortest - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\KJHfortest - FTP1.pubxml" />
     <None Include="Properties\PublishProfiles\KJHfortest - ReadOnly - FTP.pubxml" />

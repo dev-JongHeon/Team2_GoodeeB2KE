@@ -56,7 +56,7 @@ namespace Team2_ERP
                 {
                     DowntimeTypeVO vo = new DowntimeTypeVO { DownID = txtID.Text, DownName = txtName.Text.Trim(), DownExplain = txtExplain.Text.Trim() };
                     DowntimeTypeService service = new DowntimeTypeService();
-                    if (service.UpdateDefectiveType(vo))
+                    if (service.UpdateDowntimeType(vo))
                     {
                         if (vo.DownID != "0")
                         {
@@ -81,7 +81,7 @@ namespace Team2_ERP
                 }
                 catch (Exception err)
                 {
-                    MessageBox.Show(err.Message);
+                    Log.WriteError(err.Message, err);
                 }
             }
             else

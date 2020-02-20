@@ -73,7 +73,7 @@ namespace Team2_ERP
             }
             catch (Exception err)
             {
-                MessageBox.Show(err.Message);
+                Log.WriteError(err.Message, err);
             }
             ClearSearchOption();
             frm.NoticeMessage = Resources.RefreshDone;
@@ -96,14 +96,21 @@ namespace Team2_ERP
                 }
                 if (DialogResult.Yes == MessageBox.Show(Resources.AuthQuestion, Resources.MsgBoxTitleSetting, MessageBoxButtons.YesNo, MessageBoxIcon.Question))
                 {
-                    AuthService service = new AuthService();
-                    if (service.UpdateAuth(uid, authlist))
+                    try
                     {
-                        frm.NoticeMessage = Resources.AuthDone;
+                        AuthService service = new AuthService();
+                        if (service.UpdateAuth(uid, authlist))
+                        {
+                            frm.NoticeMessage = Resources.AuthDone;
+                        }
+                        else
+                        {
+                            frm.NoticeMessage = Resources.AuthError;
+                        }
                     }
-                    else
+                    catch (Exception err)
                     {
-                        frm.NoticeMessage = Resources.AuthError;
+                        Log.WriteError(err.Message, err);
                     }
                     isFirst = true;
                     RefreshClicked();
@@ -126,8 +133,15 @@ namespace Team2_ERP
                 dgvEmpList.DataSource = SearchedInfo;
                 int id = Convert.ToInt32(dgvEmpList.SelectedRows[0].Cells[0].Value);
                 uid = id;
-                AuthService service = new AuthService();
-                dgvAuthList.DataSource = service.GetAuthByID(id);
+                try
+                {
+                    AuthService service = new AuthService();
+                    dgvAuthList.DataSource = service.GetAuthByID(id);
+                }
+                catch (Exception err)
+                {
+                    Log.WriteError(err.Message,err);
+                }
                 dgvAuthList.ClearSelection();
                 dgvAuthList.CurrentCell = null;
                 frm.NoticeMessage = Resources.SearchDone;
@@ -187,8 +201,15 @@ namespace Team2_ERP
                 uid = id;
                 try
                 {
-                    AuthService service = new AuthService();
-                    dgvAuthList.DataSource = service.GetAuthByID(id);
+                    try
+                    {
+                        AuthService service = new AuthService();
+                        dgvAuthList.DataSource = service.GetAuthByID(id);
+                    }
+                    catch (Exception err)
+                    {
+                        Log.WriteError(err.Message, err);
+                    }
                     dgvAuthList.ClearSelection();
                     dgvAuthList.CurrentCell = null;
                 }

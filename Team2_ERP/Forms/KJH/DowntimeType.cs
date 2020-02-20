@@ -46,7 +46,7 @@ namespace Team2_ERP
             }
             catch (Exception err)
             {
-                MessageBox.Show(err.Message);
+                Log.WriteError(err.Message, err);
             }
             dgvDowntimeType.DataSource = null;
             if (!isFirst)
@@ -128,8 +128,7 @@ namespace Team2_ERP
                 {
                     try
                     {
-                        DefectiveTypeService service = new DefectiveTypeService();
-                        if (service.DeleteDefectiveType(dgvDowntimeType.SelectedRows[0].Cells[0].Value.ToString()))
+                        if (service.DeleteDowntimeType(dgvDowntimeType.SelectedRows[0].Cells[0].Value.ToString()))
                         {
                             frm.NoticeMessage = Resources.DeleteDone;
 
@@ -142,7 +141,7 @@ namespace Team2_ERP
                     }
                     catch (Exception err)
                     {
-                        MessageBox.Show(err.Message);
+                        Log.WriteError(err.Message, err);
                     }
                 }
                 RefreshClicked();

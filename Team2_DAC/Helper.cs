@@ -9,8 +9,17 @@ using System.Threading.Tasks;
 
 namespace Team2_DAC
 {
+    /// <summary>
+    /// DAC용 Helper클래스
+    /// </summary>
     public static class Helper
     {
+        /// <summary>
+        /// DataReader로 읽어들인 정보를 리스트로 바꾸는 메서드
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="dr"></param>
+        /// <returns></returns>
         public static List<T> DataReaderMapToList<T>(IDataReader dr)
         {
             try
@@ -45,6 +54,12 @@ namespace Team2_DAC
             }
         }
 
+        /// <summary>
+        /// 컬럼이 존재하는지 확인하는 메서드
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <param name="columnName"></param>
+        /// <returns></returns>
         private static bool ColumnExists(IDataReader reader, string columnName)
         {
 
@@ -54,6 +69,12 @@ namespace Team2_DAC
                          .Any(row => row["ColumnName"].ToString() == columnName);
         }
 
+        /// <summary>
+        /// DataTable의 정보를 리스트로 바꿔주는 메서드
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="table"></param>
+        /// <returns></returns>
         public static List<T> ConvertDataTableToList<T>(DataTable table) where T : class, new()
         {
             try

@@ -187,7 +187,7 @@ namespace Team2_ERP
             }
             catch (Exception err)
             {
-                MessageBox.Show(err.Message);
+                Log.WriteError(err.Message, err);
             }
             ClearSearchOption();
             frm.NoticeMessage = Resources.RefreshDone;
@@ -305,7 +305,14 @@ namespace Team2_ERP
                 {
                     GetSearchDays();
                     ds1.Clear();
-                    ds1 = service.GetDowntimeByLine(sb.ToString().TrimEnd(','));
+                    try
+                    {
+                        ds1 = service.GetDowntimeByLine(sb.ToString().TrimEnd(','));
+                    }
+                    catch (Exception err)
+                    {
+                        Log.WriteError(err.Message, err);
+                    }
                     DataTable searcheddt = ds1.Tables[0].Copy();
                     BindingDgv(dgvDowntimeByLine, searcheddt);
                     frm.NoticeMessage = Resources.SearchDone;
@@ -321,7 +328,14 @@ namespace Team2_ERP
                 {
                     GetSearchDays();
                     ds2.Clear();
-                    ds2 = service.GetDowntimeByType(sb.ToString().TrimEnd(','));
+                    try
+                    {
+                        ds2 = service.GetDowntimeByType(sb.ToString().TrimEnd(','));
+                    }
+                    catch (Exception err)
+                    {
+                        Log.WriteError(err.Message, err);
+                    }
                     DataTable searcheddt2 = ds2.Tables[0].Copy();
                     BindingDgv(dgvDowntimeByType, searcheddt2);
                     frm.NoticeMessage = Resources.SearchDone;
