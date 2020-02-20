@@ -93,10 +93,78 @@ namespace Team2_RealTimeMonitor.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap Img_Close {
+            get {
+                object obj = ResourceManager.GetObject("Img_Close", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Img_Error {
+            get {
+                object obj = ResourceManager.GetObject("Img_Error", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap Img_Exit {
             get {
                 object obj = ResourceManager.GetObject("Img_Exit", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Img_Information {
+            get {
+                object obj = ResourceManager.GetObject("Img_Information", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Img_Success {
+            get {
+                object obj = ResourceManager.GetObject("Img_Success", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Img_Warning {
+            get {
+                object obj = ResourceManager.GetObject("Img_Warning", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgServerConnectFailResultContent {
+            get {
+                return ResourceManager.GetString("MsgServerConnectFailResultContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   서버연결접속 실패과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgServerConnectFailResultHeader {
+            get {
+                return ResourceManager.GetString("MsgServerConnectFailResultHeader", resourceCulture);
             }
         }
     }

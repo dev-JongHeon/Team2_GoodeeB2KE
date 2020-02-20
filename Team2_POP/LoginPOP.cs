@@ -50,6 +50,8 @@ namespace Team2_POP
 
         private void SettingControl()
         {
+            this.Icon = Properties.Resources.IMG_POPMain;
+
             // 콤보박스 디자인
             cboFactory.DropDownStyle = cboLine.DropDownStyle = cboWorker.DropDownStyle = ComboBoxStyle.DropDownList;
         }
