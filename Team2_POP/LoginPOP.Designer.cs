@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginPOP));
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.cboFactory = new System.Windows.Forms.ComboBox();
             this.cboLine = new System.Windows.Forms.ComboBox();
@@ -141,6 +142,7 @@
             this.Controls.Add(this.pictureBox2);
             this.Font = new System.Drawing.Font("나눔고딕", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
             this.Name = "LoginPOP";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

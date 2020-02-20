@@ -56,6 +56,8 @@ namespace Team2_POP
 
         private void SettingControl()
         {
+            this.Icon = Properties.Resources.IMG_POPMain;
+
             //폼이 뜰때
             this.WindowState = FormWindowState.Maximized;
 
@@ -65,9 +67,9 @@ namespace Team2_POP
             BtnDisable(btnProduceStart);
 
             #region 이미지관련          
-            
-            
-            
+
+
+
             picLeft.Image = Resources.Img_LeftButton;
             picRight.Image = Resources.Img_RightButton;
             picLogout.Image = Resources.Img_Logout;
@@ -76,8 +78,6 @@ namespace Team2_POP
             picLeft.SizeMode = picRight.SizeMode = picLogout.SizeMode = picExit.SizeMode
                 = PictureBoxSizeMode.StretchImage;
 
-            
-         
             #endregion
 
 
@@ -194,7 +194,6 @@ namespace Team2_POP
                 LineID = WorkerInfo.LineID
             };
 
-            //client.Received -= Receive;
             client.Received += new ReceiveEventHandler(Receive);
 
             if (client.Connect())
@@ -221,6 +220,14 @@ namespace Team2_POP
                 pictureBox1.Tag = bResult;
                 pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
 
+                // true : 처음이 아닐때만 
+                // false: 처음일때 
+                if (isNotFirst)
+                {
+                    CustomMessageBox.ShowDialog($"{btnDownTime.Text} 완료", $"{lblLine.Text}이 {btnDownTime.Text.Split(' ')[0]}상태로 전환됬습니다.",
+                            MessageBoxIcon.Information);
+                }
+
                 // 가동일때
                 if (bResult)
                 {
@@ -237,14 +244,6 @@ namespace Team2_POP
                     BtnDisable(btnDefective);
                     BtnDisable(btnProduceStart);
                     BtnDisable(btnWorker);
-                }
-
-                // true : 처음이 아닐때만 
-                // false: 처음일때 
-                if (isNotFirst)
-                {
-                    CustomMessageBox.ShowDialog($"{btnDownTime.Text} 완료", $"{lblLine.Text}가 {btnDownTime.Text.Split(' ')[0]}상태로 전환됬습니다.",
-                            MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -321,9 +320,7 @@ namespace Team2_POP
                     downtime.EmployeeID = WorkerInfo.WorkID;
 
                     if (downtime.ShowDialog() == DialogResult.OK)
-                    {
                         IsDowntime(true);
-                    }
                 }
                 else
                 {
@@ -335,7 +332,7 @@ namespace Team2_POP
                             , Resources.MsgDowntimeSetResultFailContent, MessageBoxIcon.Error);
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 WriteLog(ex);
             }
@@ -382,13 +379,6 @@ namespace Team2_POP
         private void ProduceStart()
         {
             string[] result = null;
-
-            //// 생산실적의 선택된 데이터가 없는 경우
-            //if (dgvProduce.SelectedRows.Count < 1)
-            //{
-            //    CustomMessageBox.ShowDialog("데이터 오류", "생산목록을 선택해주세요.", MessageBoxIcon.Warning);
-            //    return;
-            //}
 
             try
             {
@@ -450,8 +440,10 @@ namespace Team2_POP
             Task.Factory.StartNew(ReceiveMessage, e).Wait();
         }
 
+        //메세지를 전송해주는 델리게이트
         public delegate void CloseDelegate();
 
+        // 메세지를 이벤트를 받는 함수
         private void ReceiveMessage(object re)
         {
             try
@@ -471,7 +463,7 @@ namespace Team2_POP
                 }
                 else
                 {
-                    if(e.Message == "하나 이상의 오류가 발생했습니다.")
+                    if (e.Message == "하나 이상의 오류가 발생했습니다.")
                     {
                         if (pFrm != null)
                         {
@@ -481,14 +473,11 @@ namespace Team2_POP
                         return;
                     }
 
-
+                    // 오류 메세지 출력
                     CustomMessageBox.ShowDialog(Resources.MsgCommonResultFailHeader, e.Message, MessageBoxIcon.Error);
-                    if(!pFrm.IsDisposed)
-                     pFrm.Invoke(new CloseDelegate(pFrm.Close));
+                    if (!pFrm.IsDisposed)
+                        pFrm.Invoke(new CloseDelegate(pFrm.Close));
                 }
-
-                // 클라이언트 부분을 해제함
-                //client = null;
             }
             catch (Exception ex)
             {
@@ -500,7 +489,6 @@ namespace Team2_POP
                 }
             }
         }
-
 
 
         #region 작업자 불량유형
@@ -543,7 +531,7 @@ namespace Team2_POP
                 if (dgvPerformance.SelectedRows.Count < 1)
                 {
                     CustomMessageBox.ShowDialog(Resources.MsgPerformanceSelectFailHeader
-                        ,Resources.MsgPerformanceSelectFailContent, MessageBoxIcon.Warning);
+                        , Resources.MsgPerformanceSelectFailContent, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -569,15 +557,8 @@ namespace Team2_POP
         }
         #endregion
 
-        #endregion
-
-
-        // 공정조회 버튼을 누른 경우
-        private void btnLineSearch_Click(object sender, EventArgs e)
-        {
-            // DAC단에서 오늘날짜의 작업을 가져옴
-            GetWork(lblDate.Text);
-        }
+        #endregion      
+     
 
         #region 날짜 관련 버튼 ( 날짜조회버튼 , 이전버튼 , 다음버튼)
 
@@ -707,7 +688,7 @@ namespace Team2_POP
             catch (Exception ex)
             {
                 WriteLog(ex);
-                CustomMessageBox.ShowDialog(Resources.MsgCommonResultFailHeader, ex.Message, MessageBoxIcon.Error);                
+                CustomMessageBox.ShowDialog(Resources.MsgCommonResultFailHeader, ex.Message, MessageBoxIcon.Error);
             }
         }
 
@@ -722,14 +703,14 @@ namespace Team2_POP
                     lblWorker.Text = "작업자명 : " + dgvPerformance.SelectedRows[0].Cells[8].Value.ToString();
             }
         }
-
+        // 버튼 활성화 시키는 메서드
         private void BtnEnable(Button btn)
         {
             btn.Enabled = true;
             btn.BackColor = Color.FromArgb(40, 40, 89);
             btn.ForeColor = Color.White;
         }
-
+        // 버튼 비활성화 시키는 메서드
         private void BtnDisable(Button btn)
         {
             btn.Enabled = false;
@@ -737,6 +718,7 @@ namespace Team2_POP
             btn.ForeColor = Color.Gray;
         }
 
+        #region 오른쪽 상단 종료버튼 로그아웃버튼
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.No;
@@ -746,7 +728,7 @@ namespace Team2_POP
         {
             this.DialogResult = DialogResult.OK;
         }
-
+        #endregion
 
         #endregion
 
@@ -801,8 +783,8 @@ namespace Team2_POP
 
 
         #endregion
-        
-        
+
+
         // 오류난 로그를 작성하는 코드
         private void WriteLog(Exception ex)
         {
