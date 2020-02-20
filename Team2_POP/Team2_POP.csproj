@@ -56,7 +56,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
@@ -68,10 +68,10 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>F1943F1F2816B502046D88BEAD575D0EEC219FC0</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>33A40657DB47DC6260E634D2E43AE41CAD82FAE3</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Team2_POP_1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>Team2_POP_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
@@ -199,7 +199,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Team2_POP_1_TemporaryKey.pfx" />
     <None Include="Team2_POP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
