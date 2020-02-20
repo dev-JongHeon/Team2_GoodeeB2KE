@@ -62,58 +62,66 @@ namespace Team2_RealTimeMonitor
         private void InitData()
         {
             // DB에서 공장아이디, 라인아이디, 라인이름을 불러옴
-            Service service = new Service();
-            List<LineMonitor> list = service.GetLineInfo();
-            lineMonitors = new List<LineMonitorControl>();
-
-            // 공장아이디가 완제품 공장인것은 왼쪽 레이아웃
-            // 공장아이디가 반제품 공장인것은 오른쪽 레이아웃
-            // 컨트롤 Tag = 라인아이디
-
-
-            #region 계기판 컨트롤 리스트에 담는 코드
-
-            List<LineMonitor> listSemi = list.FindAll(elem => elem.Factory_ID == 1);
-            List<LineMonitor> listProduct = list.FindAll(elem => elem.Factory_ID == 2);
-
-            // 반제품 공정생성
-            for (int i = 0; i < listSemi.Count; i++)
+            try
             {
-                LineMonitorControl lineControl = new LineMonitorControl();
-                lineControl.LabelLineNameText = listSemi[i].Line_Name;
+                Service service = new Service();
+                List<LineMonitor> list = service.GetLineInfo();
+                lineMonitors = new List<LineMonitorControl>();
 
-                // 컨트롤 태그에 라인아이디를 지정
-                lineControl.Tag = listSemi[i].Line_ID.ToString();
+                // 공장아이디가 완제품 공장인것은 왼쪽 레이아웃
+                // 공장아이디가 반제품 공장인것은 오른쪽 레이아웃
+                // 컨트롤 Tag = 라인아이디
 
-                // ProgressColor 3,4 : 게이지
-                // ProgressColor 1,2 : 원 색깔 (Bottom :1, Top : 2)
-                lineControl.CircleProgress.ProgressColor1 = lineControl.panel2.BackColor;
-                lineControl.CircleProgress.ProgressColor2 = lineControl.panel2.BackColor;
-                lineControl.CircleProgress.ProgressColor3 = Color.Violet;
-                lineControl.CircleProgress.ProgressColor4 = Color.Red;
 
-                lineMonitors.Add(lineControl);
-                flowLayoutSemiProductLine.Controls.Add(lineControl);
+                #region 계기판 컨트롤 리스트에 담는 코드
+
+                List<LineMonitor> listSemi = list.FindAll(elem => elem.Factory_ID == 1);
+                List<LineMonitor> listProduct = list.FindAll(elem => elem.Factory_ID == 2);
+
+                // 반제품 공정생성
+                for (int i = 0; i < listSemi.Count; i++)
+                {
+                    LineMonitorControl lineControl = new LineMonitorControl();
+                    lineControl.LabelLineNameText = listSemi[i].Line_Name;
+
+                    // 컨트롤 태그에 라인아이디를 지정
+                    lineControl.Tag = listSemi[i].Line_ID.ToString();
+
+                    // ProgressColor 3,4 : 게이지
+                    // ProgressColor 1,2 : 원 색깔 (Bottom :1, Top : 2)
+                    lineControl.CircleProgress.ProgressColor1 = lineControl.panel2.BackColor;
+                    lineControl.CircleProgress.ProgressColor2 = lineControl.panel2.BackColor;
+                    lineControl.CircleProgress.ProgressColor3 = Color.Violet;
+                    lineControl.CircleProgress.ProgressColor4 = Color.Red;
+
+                    lineMonitors.Add(lineControl);
+                    flowLayoutSemiProductLine.Controls.Add(lineControl);
+                }
+
+                // 완제품 공정 생성
+                for (int i = 0; i < listProduct.Count; i++)
+                {
+                    LineMonitorControl lineControl = new LineMonitorControl();
+                    lineControl.LabelLineNameText = listProduct[i].Line_Name;
+
+                    // 컨트롤 태그에 라인아이디를 지정
+                    lineControl.Tag = listProduct[i].Line_ID.ToString();
+
+                    // ProgressColor 3,4 : 게이지
+                    // ProgressColor 1,2 : 원 색깔 (Bottom :1, Top : 2)
+                    lineControl.CircleProgress.ProgressColor1 = lineControl.panel2.BackColor;
+                    lineControl.CircleProgress.ProgressColor2 = lineControl.panel2.BackColor;
+                    lineControl.CircleProgress.ProgressColor3 = Color.Violet;
+                    lineControl.CircleProgress.ProgressColor4 = Color.Red;
+
+                    lineMonitors.Add(lineControl);
+                    flowLayoutProductLine.Controls.Add(lineControl);
+                }
             }
-
-            // 완제품 공정 생성
-            for (int i = 0; i < listProduct.Count; i++)
+            catch (Exception ex)
             {
-                LineMonitorControl lineControl = new LineMonitorControl();
-                lineControl.LabelLineNameText = listProduct[i].Line_Name;
 
-                // 컨트롤 태그에 라인아이디를 지정
-                lineControl.Tag = listProduct[i].Line_ID.ToString();
-
-                // ProgressColor 3,4 : 게이지
-                // ProgressColor 1,2 : 원 색깔 (Bottom :1, Top : 2)
-                lineControl.CircleProgress.ProgressColor1 = lineControl.panel2.BackColor;
-                lineControl.CircleProgress.ProgressColor2 = lineControl.panel2.BackColor;
-                lineControl.CircleProgress.ProgressColor3 = Color.Violet;
-                lineControl.CircleProgress.ProgressColor4 = Color.Red;
-
-                lineMonitors.Add(lineControl);
-                flowLayoutProductLine.Controls.Add(lineControl);
+                WriteLog(ex);
             }
 
             #endregion

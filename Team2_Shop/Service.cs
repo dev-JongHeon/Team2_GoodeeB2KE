@@ -39,5 +39,10 @@ namespace Team2_Shop
         {
             return new ShopDAC().CheckOut(cart, shipInfo);
         }
+
+        public void CustomerInsert(WebCustomerModel model)
+        {
+            new ProductDAC().CustomerInsert(model);
+        }
     }
 }

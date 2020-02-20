@@ -19,12 +19,7 @@ namespace Team2_DAC
         }
 
         // 오류가 난경우 로그를 기록하는 메서드
-        private void WriteErrorLog(Exception ex)
-        {
-            string sss = ex.Message;
-            
-        }
-
+       
         #region 파라미터 대입
 
         // 파라미터 넣는 함수 Null이 있는경우 ==> Null값을 전달
@@ -71,10 +66,9 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch(Exception ex)
-            {
-                WriteErrorLog(ex);
-                return null;
+            catch
+            { 
+                throw;
             }
             finally
             {
@@ -103,10 +97,9 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch(Exception ex)
+            catch
             {
-                WriteErrorLog(ex);
-                return null;
+                throw;
             }
             finally
             {
@@ -135,10 +128,9 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch (Exception ex)
+            catch 
             {
-                WriteErrorLog(ex);
-                return null;
+                throw;
             }
             finally
             {
@@ -171,10 +163,9 @@ namespace Team2_DAC
                     return !bResult;
                 }
             }
-            catch(Exception ex)
+            catch
             {
-                WriteErrorLog(ex);
-                return false;
+                throw;
             }
             finally
             {
@@ -212,10 +203,9 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                WriteErrorLog(ex);
-                return null;
+                throw;
             }
             finally
             {
@@ -249,10 +239,9 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch(Exception ex)
+            catch
             {
-                WriteErrorLog(ex);
-                return null;
+                throw;
             }
             finally
             {
@@ -284,10 +273,9 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch(Exception ex)
+            catch
             {
-                WriteErrorLog(ex);
-                return null;
+                throw;
             }
             finally
             {
@@ -331,10 +319,9 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                WriteErrorLog(ex);
-                return list;
+                throw;
             }
             finally
             {
@@ -370,9 +357,9 @@ namespace Team2_DAC
 
                 }
             }
-            catch (Exception ex)
+            catch 
             {
-                WriteErrorLog(ex);
+                throw;
             }
             finally
             {
@@ -398,9 +385,9 @@ namespace Team2_DAC
                     conn.Close();
                 }
             }
-            catch (Exception ex)
+            catch 
             {
-                WriteErrorLog(ex);
+                throw;
             }
             finally
             {
@@ -439,10 +426,9 @@ namespace Team2_DAC
                 return iResult > 0;
             }
 
-            catch(Exception ex)
+            catch
             {
-                WriteErrorLog(ex);
-                return false;
+                throw;
             }
             finally
             {
@@ -476,10 +462,9 @@ namespace Team2_DAC
                     return iResult > 0;
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                WriteErrorLog(ex);
-                return iResult > 0;
+                throw;
             }
             finally
             {
@@ -512,10 +497,9 @@ namespace Team2_DAC
                     
                 }
             }
-            catch (Exception ex)
+            catch 
             {
-                WriteErrorLog(ex);
-                return null;
+                throw;
             }
             finally
             {
@@ -549,10 +533,9 @@ namespace Team2_DAC
 
                 return list;
             }
-            catch (Exception ex)
+            catch 
             {
-                WriteErrorLog(ex);
-                return null;
+                throw;
             }
             finally
             {
@@ -589,10 +572,9 @@ namespace Team2_DAC
                     return iResult > 0;
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                WriteErrorLog(ex);
-                return false;
+                throw;
             }
             finally
             {
@@ -628,10 +610,9 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                WriteErrorLog(ex);
-                return null;
+                throw;
             }
             finally
             {
@@ -662,10 +643,9 @@ namespace Team2_DAC
                     return iResult > 0;
                 }
             }
-            catch (Exception ex)
+            catch 
             {
-                WriteErrorLog(ex);
-                return false;
+                throw;
             }
             finally
             {

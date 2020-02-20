@@ -353,7 +353,7 @@ namespace Team2_ERP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (spc.TxtName.Tag != null && pictureBox1.Image != pictureBox1.InitialImage && txtProductName.Text.Length > 0 && txtProductMoney.Text.Length > 0)
+            if (cboProductCategory.SelectedValue != null && cboSemiProductCategory.SelectedValue != null && spc.TxtName.Tag != null && pictureBox1.Image != pictureBox1.InitialImage && txtProductName.Text.Length > 0 && txtProductMoney.Text.Length > 0)
             {
                 if (mode.Equals("Insert"))
                 {
