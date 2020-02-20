@@ -36,13 +36,14 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.txtEmpID = new Team2_ERP.NumTXT();
             this.txtEmpPwd = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtEmpName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtEmpID = new Team2_ERP.NumTXT();
+            this.lblVersion = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
@@ -54,6 +55,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.lblVersion);
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -68,7 +70,7 @@
             // 
             this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox2.Image = global::Team2_ERP.Properties.Resources.logo;
-            this.pictureBox2.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox2.Location = new System.Drawing.Point(12, 10);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(156, 117);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -83,7 +85,7 @@
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.panel3);
-            this.panel2.Location = new System.Drawing.Point(87, 95);
+            this.panel2.Location = new System.Drawing.Point(87, 90);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(291, 150);
             this.panel2.TabIndex = 0;
@@ -161,6 +163,15 @@
             this.panel3.Size = new System.Drawing.Size(207, 148);
             this.panel3.TabIndex = 0;
             // 
+            // txtEmpID
+            // 
+            this.txtEmpID.Location = new System.Drawing.Point(81, 40);
+            this.txtEmpID.Name = "txtEmpID";
+            this.txtEmpID.Size = new System.Drawing.Size(89, 21);
+            this.txtEmpID.TabIndex = 11;
+            this.txtEmpID.Click += new System.EventHandler(this.txtEmpID_Click);
+            this.txtEmpID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmpID_KeyPress);
+            // 
             // txtEmpPwd
             // 
             this.txtEmpPwd.Location = new System.Drawing.Point(81, 116);
@@ -226,14 +237,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "사원번호";
             // 
-            // txtEmpID
+            // lblVersion
             // 
-            this.txtEmpID.Location = new System.Drawing.Point(81, 40);
-            this.txtEmpID.Name = "txtEmpID";
-            this.txtEmpID.Size = new System.Drawing.Size(89, 21);
-            this.txtEmpID.TabIndex = 11;
-            this.txtEmpID.Click += new System.EventHandler(this.txtEmpID_Click);
-            this.txtEmpID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmpID_KeyPress);
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblVersion.Location = new System.Drawing.Point(4, 240);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(41, 14);
+            this.lblVersion.TabIndex = 3;
+            this.lblVersion.Text = "label4";
             // 
             // LoginForm
             // 
@@ -248,6 +260,7 @@
             this.Text = "LoginForm";
             this.Load += new System.EventHandler(this.LoginForm_Load);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
@@ -274,5 +287,6 @@
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.TextBox txtEmpPwd;
         private NumTXT txtEmpID;
+        private System.Windows.Forms.Label lblVersion;
     }
 }

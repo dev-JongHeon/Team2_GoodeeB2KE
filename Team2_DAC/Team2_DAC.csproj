@@ -90,6 +90,6 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(SolutionDir)\Team2_DAC\ConnectionInfo.xml" "$(SolutionDir)\Team2_ERP\bin\Debug"
-</PostBuildEvent>
+copy "$(SolutionDir)\Team2_DAC\ConnectionInfo.xml" "$(SolutionDir)\Team2_ERP\bin\Release"</PostBuildEvent>
   </PropertyGroup>
 </Project>
