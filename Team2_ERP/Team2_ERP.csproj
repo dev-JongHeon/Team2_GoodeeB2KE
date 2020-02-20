@@ -56,13 +56,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>C30D885FAAB02FC41962E1107B0CB117BFA6AF9C</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>38344039A4AA8E84E01B9B76E9A05FBD7FB37175</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Team2_ERP_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>Team2_ERP_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
@@ -897,7 +897,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Team2_ERP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
