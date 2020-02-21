@@ -84,7 +84,7 @@ namespace Team2_ERP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if(txtName.Text.Length > 0 && txtContext.Text.Length > 0)
+            if(txtName.Text.Trim().Length > 0 && txtContext.Text.Trim().Length > 0)
             {
                 if(mode.Equals("Insert"))
                 {

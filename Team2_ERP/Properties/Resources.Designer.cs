@@ -406,6 +406,15 @@ namespace Team2_ERP.Properties {
         }
         
         /// <summary>
+        ///   퇴사한 직원은 삭제할 수 없습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string DelResigndateError {
+            get {
+                return ResourceManager.GetString("DelResigndateError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   원자재 항목은 원자재 탭에서 삭제 가능합니다.과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string DelResourceError {
@@ -709,6 +718,15 @@ namespace Team2_ERP.Properties {
         }
         
         /// <summary>
+        ///   퇴사한 직원은 수정할 수 없습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string ModResigndateError {
+            get {
+                return ResourceManager.GetString("ModResigndateError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   원자재 항목은 원자재 탭에서 수정 가능합니다.과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string ModResourceError {
@@ -858,6 +876,15 @@ namespace Team2_ERP.Properties {
         }
         
         /// <summary>
+        ///   가격은 0원 이하로 설정하실 수 없습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string PriceError {
+            get {
+                return ResourceManager.GetString("PriceError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
         internal static System.Drawing.Bitmap Printer_32x32 {
@@ -955,6 +982,15 @@ namespace Team2_ERP.Properties {
         internal static string PwdSucess {
             get {
                 return ResourceManager.GetString("PwdSucess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   재직여부를 선택하셔야 합니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string rdoWorkError {
+            get {
+                return ResourceManager.GetString("rdoWorkError", resourceCulture);
             }
         }
         

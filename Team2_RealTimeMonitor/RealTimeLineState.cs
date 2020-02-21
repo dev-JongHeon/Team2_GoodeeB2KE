@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+using System.Deployment.Application;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -44,17 +45,68 @@ namespace Team2_RealTimeMonitor
         ---------------- */
 
         private void RealTimeLineState_Load(object sender, EventArgs e)
-        {            
-            SettingControl();
-            InitData();
-            ConnectServer();            
-            this.ActiveControl = splitLeft.Panel1;
+        {
+            try
+            {
+                SettingControl();
+                InitData();
+                ConnectServer();
+
+                if (this.Controls.Count > 0)
+                    this.ActiveControl = splitLeft.Panel1;
+
+                CheckUpdate();
+
+                if (ApplicationDeployment.IsNetworkDeployed)
+                {
+                    ApplicationDeployment appDeployment = ApplicationDeployment.CurrentDeployment;
+
+                    lblVersion.Text = $"Version : {appDeployment.CurrentVersion.ToString()} ";  // 현재버전의 정보를 가져옴
+                }
+                else
+                {
+                    lblVersion.Text = "Version : Not Deployed";
+                }
+            }
+            catch (Exception ex)
+            {
+                Program.Log.WriteError(ex.Message, ex);
+            }
+        }
+
+        private void CheckUpdate()
+        {
+            UpdateCheckInfo info = null;
+
+            if (!ApplicationDeployment.IsNetworkDeployed)  // 로컬실행
+            {
+                Program.Log.WriteInfo("배포된 버젼이 아닙니다.");
+            }
+            else
+            {
+                ApplicationDeployment AppDeploy = ApplicationDeployment.CurrentDeployment;
+
+                info = AppDeploy.CheckForDetailedUpdate();
+
+                if (info.UpdateAvailable)
+                {
+                    bool doUpdate = true;
+
+                    if (doUpdate)
+                    {
+                        AppDeploy.Update();
+                        MessageBox.Show("최신버젼의 업데이트가 있습니다.\n업데이트 적용을 위해 프로그램을 재시작합니다.");
+                        this.Close();
+                        Application.Restart();
+                    }
+                }
+            }
         }
 
         private void SettingControl()
         {
             splitMain.IsSplitterFixed = splitRight.IsSplitterFixed = splitLeft.IsSplitterFixed = true;
-            
+
             this.picExit.Image = Properties.Resources.Img_Exit;
             picExit.SizeMode = PictureBoxSizeMode.StretchImage;
         }
@@ -62,58 +114,66 @@ namespace Team2_RealTimeMonitor
         private void InitData()
         {
             // DB에서 공장아이디, 라인아이디, 라인이름을 불러옴
-            Service service = new Service();
-            List<LineMonitor> list = service.GetLineInfo();
-            lineMonitors = new List<LineMonitorControl>();
-
-            // 공장아이디가 완제품 공장인것은 왼쪽 레이아웃
-            // 공장아이디가 반제품 공장인것은 오른쪽 레이아웃
-            // 컨트롤 Tag = 라인아이디
-
-
-            #region 계기판 컨트롤 리스트에 담는 코드
-
-            List<LineMonitor> listSemi = list.FindAll(elem => elem.Factory_ID == 1);
-            List<LineMonitor> listProduct = list.FindAll(elem => elem.Factory_ID == 2);
-
-            // 반제품 공정생성
-            for (int i = 0; i < listSemi.Count; i++)
+            try
             {
-                LineMonitorControl lineControl = new LineMonitorControl();
-                lineControl.LabelLineNameText = listSemi[i].Line_Name;
+                Service service = new Service();
+                List<LineMonitor> list = service.GetLineInfo();
+                lineMonitors = new List<LineMonitorControl>();
 
-                // 컨트롤 태그에 라인아이디를 지정
-                lineControl.Tag = listSemi[i].Line_ID.ToString();
+                // 공장아이디가 완제품 공장인것은 왼쪽 레이아웃
+                // 공장아이디가 반제품 공장인것은 오른쪽 레이아웃
+                // 컨트롤 Tag = 라인아이디
 
-                // ProgressColor 3,4 : 게이지
-                // ProgressColor 1,2 : 원 색깔 (Bottom :1, Top : 2)
-                lineControl.CircleProgress.ProgressColor1 = lineControl.panel2.BackColor;
-                lineControl.CircleProgress.ProgressColor2 = lineControl.panel2.BackColor;
-                lineControl.CircleProgress.ProgressColor3 = Color.Violet;
-                lineControl.CircleProgress.ProgressColor4 = Color.Red;
 
-                lineMonitors.Add(lineControl);
-                flowLayoutSemiProductLine.Controls.Add(lineControl);
+                #region 계기판 컨트롤 리스트에 담는 코드
+
+                List<LineMonitor> listSemi = list.FindAll(elem => elem.Factory_ID == 1);
+                List<LineMonitor> listProduct = list.FindAll(elem => elem.Factory_ID == 2);
+
+                // 반제품 공정생성
+                for (int i = 0; i < listSemi.Count; i++)
+                {
+                    LineMonitorControl lineControl = new LineMonitorControl();
+                    lineControl.LabelLineNameText = listSemi[i].Line_Name;
+
+                    // 컨트롤 태그에 라인아이디를 지정
+                    lineControl.Tag = listSemi[i].Line_ID.ToString();
+
+                    // ProgressColor 3,4 : 게이지
+                    // ProgressColor 1,2 : 원 색깔 (Bottom :1, Top : 2)
+                    lineControl.CircleProgress.ProgressColor1 = lineControl.panel2.BackColor;
+                    lineControl.CircleProgress.ProgressColor2 = lineControl.panel2.BackColor;
+                    lineControl.CircleProgress.ProgressColor3 = Color.Violet;
+                    lineControl.CircleProgress.ProgressColor4 = Color.Red;
+
+                    lineMonitors.Add(lineControl);
+                    flowLayoutSemiProductLine.Controls.Add(lineControl);
+                }
+
+                // 완제품 공정 생성
+                for (int i = 0; i < listProduct.Count; i++)
+                {
+                    LineMonitorControl lineControl = new LineMonitorControl();
+                    lineControl.LabelLineNameText = listProduct[i].Line_Name;
+
+                    // 컨트롤 태그에 라인아이디를 지정
+                    lineControl.Tag = listProduct[i].Line_ID.ToString();
+
+                    // ProgressColor 3,4 : 게이지
+                    // ProgressColor 1,2 : 원 색깔 (Bottom :1, Top : 2)
+                    lineControl.CircleProgress.ProgressColor1 = lineControl.panel2.BackColor;
+                    lineControl.CircleProgress.ProgressColor2 = lineControl.panel2.BackColor;
+                    lineControl.CircleProgress.ProgressColor3 = Color.Violet;
+                    lineControl.CircleProgress.ProgressColor4 = Color.Red;
+
+                    lineMonitors.Add(lineControl);
+                    flowLayoutProductLine.Controls.Add(lineControl);
+                }
             }
-
-            // 완제품 공정 생성
-            for (int i = 0; i < listProduct.Count; i++)
+            catch (Exception ex)
             {
-                LineMonitorControl lineControl = new LineMonitorControl();
-                lineControl.LabelLineNameText = listProduct[i].Line_Name;
 
-                // 컨트롤 태그에 라인아이디를 지정
-                lineControl.Tag = listProduct[i].Line_ID.ToString();
-
-                // ProgressColor 3,4 : 게이지
-                // ProgressColor 1,2 : 원 색깔 (Bottom :1, Top : 2)
-                lineControl.CircleProgress.ProgressColor1 = lineControl.panel2.BackColor;
-                lineControl.CircleProgress.ProgressColor2 = lineControl.panel2.BackColor;
-                lineControl.CircleProgress.ProgressColor3 = Color.Violet;
-                lineControl.CircleProgress.ProgressColor4 = Color.Red;
-
-                lineMonitors.Add(lineControl);
-                flowLayoutProductLine.Controls.Add(lineControl);
+                WriteLog(ex);
             }
 
             #endregion
@@ -150,6 +210,22 @@ namespace Team2_RealTimeMonitor
             catch (Exception ex)
             {
                 WriteLog(ex);
+
+                if (timer != null)
+                {
+                    timer.Stop();
+                    timer.Enabled = false;
+                }
+                if (netStream != null)
+                {
+                    netStream.Close();
+                    if (client != null)
+                        client.Close();
+                }
+
+                CustomMessageBox.ShowDialog(Properties.Resources.MsgServerConnectFailResultHeader,
+                    Properties.Resources.MsgServerConnectFailResultContent, MessageBoxIcon.Error, MessageBoxButtons.OK);
+                Close();
             }
         }
 
@@ -167,9 +243,12 @@ namespace Team2_RealTimeMonitor
             {
                 WriteLog(ex);
                 // 타이머 종료
-                timer.Stop();
-                timer.Enabled = false;
-                timer.Dispose();
+                if (timer != null)
+                {
+                    timer.Stop();
+                    timer.Enabled = false;
+                    timer.Dispose();
+                }
             }
         }
 
@@ -215,6 +294,12 @@ namespace Team2_RealTimeMonitor
             catch (Exception ex)
             {
                 WriteLog(ex);
+                if (netStream != null)
+                {
+                    netStream.Close();
+                    if (client != null)
+                        client.Close();
+                }
             }
         }
 
@@ -283,7 +368,7 @@ namespace Team2_RealTimeMonitor
             {
                 WriteLog(ex);
             }
-        }        
+        }
 
         /*------------------------
          *  로그 기록해주는 코드

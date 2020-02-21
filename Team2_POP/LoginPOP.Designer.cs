@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginPOP));
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.cboFactory = new System.Windows.Forms.ComboBox();
             this.cboLine = new System.Windows.Forms.ComboBox();
@@ -35,6 +36,7 @@
             this.btnConnect = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblVersion = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -114,12 +116,23 @@
             this.label1.Text = "사원카드를 찍어주세요";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lblVersion
+            // 
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblVersion.Location = new System.Drawing.Point(12, 381);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(68, 24);
+            this.lblVersion.TabIndex = 6;
+            this.lblVersion.Text = "label2";
+            // 
             // LoginPOP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(20F, 40F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(236)))), ((int)(((byte)(241)))));
             this.ClientSize = new System.Drawing.Size(1166, 408);
+            this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnConnect);
@@ -129,6 +142,7 @@
             this.Controls.Add(this.pictureBox2);
             this.Font = new System.Drawing.Font("나눔고딕", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
             this.Name = "LoginPOP";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -138,6 +152,7 @@
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LoginPOP_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -150,5 +165,6 @@
         private System.Windows.Forms.Button btnConnect;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblVersion;
     }
 }

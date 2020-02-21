@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Deployment.Application;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -33,24 +34,47 @@ namespace Team2_POP
         {
             SettingControl();
             InitData();
+            CheckUpdate();
+
+            if (ApplicationDeployment.IsNetworkDeployed)
+            {
+                ApplicationDeployment appDeployment = ApplicationDeployment.CurrentDeployment;
+
+                lblVersion.Text = $"Version : {appDeployment.CurrentVersion.ToString()} ";  // 현재버전의 정보를 가져옴
+            }
+            else
+            {
+                lblVersion.Text = "Version : Not Deployed";
+            }
         }
 
         private void SettingControl()
         {
+            this.Icon = Properties.Resources.IMG_POPMain;
+
             // 콤보박스 디자인
             cboFactory.DropDownStyle = cboLine.DropDownStyle = cboWorker.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void InitData()
         {
-            Service service = new Service();
-            factory = service.GetFactoryList();
+            try
+            {
 
-            List<ComboItemVO> list = null;
+                Service service = new Service();
+                factory = service.GetFactoryList();
 
-            UtilClass.ComboBinding(cboFactory, factory, "공장 선택");
-            UtilClass.ComboBinding(cboLine, list, "공장을 먼저 선택해주세요");
-            UtilClass.ComboBinding(cboWorker, list, "공장을 먼저 선택해주세요");
+                List<ComboItemVO> list = null;
+
+                UtilClass.ComboBinding(cboFactory, factory, "공장 선택");
+                UtilClass.ComboBinding(cboLine, list, "공장을 먼저 선택해주세요");
+                UtilClass.ComboBinding(cboWorker, list, "공장을 먼저 선택해주세요");
+            }
+            catch (Exception ex)
+            {
+
+                Program.Log.WriteError(ex.Message, ex);
+            }
         }
         #endregion
 
@@ -111,26 +135,34 @@ namespace Team2_POP
         =============================================== */
         private void cboFactory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboFactory.SelectedIndex > 0)
+            try
             {
-                // 공장리스트에서 공장타입번호가 같은것만 찾아서 공정 리스트를 호출 바인딩함
-                string facDivision = factory.Find(f => f.ID == cboFactory.SelectedValue.ToString()).CodeType;
 
-                UtilClass.ComboBinding(cboWorker, new Service().GetWorker(Convert.ToInt32(facDivision)), "작업자 선택");
-                UtilClass.ComboBinding(cboLine, new Service().GetLineList(Convert.ToInt32(cboFactory.SelectedValue)), "공정 선택");
-
-                if (workerInfo != null)
+                if (cboFactory.SelectedIndex > 0)
                 {
-                    cboLine.SelectedValue = workerInfo.LineID.ToString();
-                    //cboLine.SelectedIndex = ((List<ComboItemVO>)cboLine.DataSource).FindIndex(k => k.ID == workerInfo.LineID.ToString());
-                    workerInfo = null;
-                }                
+                    // 공장리스트에서 공장타입번호가 같은것만 찾아서 공정 리스트를 호출 바인딩함
+                    string facDivision = factory.Find(f => f.ID == cboFactory.SelectedValue.ToString()).CodeType;
+
+                    UtilClass.ComboBinding(cboWorker, new Service().GetWorker(Convert.ToInt32(facDivision)), "작업자 선택");
+                    UtilClass.ComboBinding(cboLine, new Service().GetLineList(Convert.ToInt32(cboFactory.SelectedValue)), "공정 선택");
+
+                    if (workerInfo != null)
+                    {
+                        cboLine.SelectedValue = workerInfo.LineID.ToString();
+                        //cboLine.SelectedIndex = ((List<ComboItemVO>)cboLine.DataSource).FindIndex(k => k.ID == workerInfo.LineID.ToString());
+                        workerInfo = null;
+                    }
+                }
+                else
+                {
+                    List<ComboItemVO> list = null;
+                    UtilClass.ComboBinding(cboLine, list, "공장을 먼저 선택해주세요");
+                    UtilClass.ComboBinding(cboWorker, list, "공장을 먼저 선택해주세요");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                List<ComboItemVO> list = null;
-                UtilClass.ComboBinding(cboLine, list, "공장을 먼저 선택해주세요");
-                UtilClass.ComboBinding(cboWorker, list, "공장을 먼저 선택해주세요");
+                Program.Log.WriteError(ex.Message, ex);
             }
         }
 
@@ -154,5 +186,34 @@ namespace Team2_POP
             }
         }
         #endregion
+
+        private void CheckUpdate()
+        {
+            UpdateCheckInfo info = null;
+
+            if (!ApplicationDeployment.IsNetworkDeployed)  // 로컬실행
+            {
+                Program.Log.WriteInfo("배포된 버젼이 아닙니다.");
+            }
+            else
+            {
+                ApplicationDeployment AppDeploy = ApplicationDeployment.CurrentDeployment;
+
+                info = AppDeploy.CheckForDetailedUpdate();
+
+                if (info.UpdateAvailable)
+                {
+                    bool doUpdate = true;
+
+                    if (doUpdate)
+                    {
+                        AppDeploy.Update();
+                        MessageBox.Show("최신버젼의 업데이트가 있습니다.\n업데이트 적용을 위해 프로그램을 재시작합니다.");
+                        this.Close();
+                        Application.Restart();
+                    }
+                }
+            }
+        }
     }
 }

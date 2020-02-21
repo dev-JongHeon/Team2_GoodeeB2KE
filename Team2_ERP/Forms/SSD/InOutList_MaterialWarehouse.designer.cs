@@ -125,7 +125,7 @@
             this.Search_Material.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
             this.Search_Material.ControlType = Team2_ERP.SearchUserControl.Mode.Meterial;
             this.Search_Material.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Search_Material.Labelname = "원자재";
+            this.Search_Material.Labelname = "원자재명";
             this.Search_Material.Location = new System.Drawing.Point(185, 82);
             this.Search_Material.Name = "Search_Material";
             this.Search_Material.Size = new System.Drawing.Size(312, 25);
@@ -136,7 +136,7 @@
             this.Search_Warehouse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
             this.Search_Warehouse.ControlType = Team2_ERP.SearchUserControl.Mode.Warehouse;
             this.Search_Warehouse.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Search_Warehouse.Labelname = "창고";
+            this.Search_Warehouse.Labelname = "창고명";
             this.Search_Warehouse.Location = new System.Drawing.Point(185, 51);
             this.Search_Warehouse.Name = "Search_Warehouse";
             this.Search_Warehouse.Size = new System.Drawing.Size(312, 25);

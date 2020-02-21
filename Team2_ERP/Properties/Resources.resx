@@ -498,4 +498,20 @@
     <value>처리완료</value>
     <comment>선도 - 일련의 처리들이 완료되었을 때 메시지박스의 메시지</comment>
   </data>
+  <data name="PriceError" xml:space="preserve">
+    <value>가격은 0원 이하로 설정하실 수 없습니다.</value>
+    <comment>최명근 가격을 임의로 조정 시 0원 이하로 설정할 수 없게 만드는 것</comment>
+  </data>
+  <data name="DelResigndateError" xml:space="preserve">
+    <value>퇴사한 직원은 삭제할 수 없습니다.</value>
+    <comment>최명근 사원테이블 메세지</comment>
+  </data>
+  <data name="ModResigndateError" xml:space="preserve">
+    <value>퇴사한 직원은 수정할 수 없습니다.</value>
+    <comment>최명근 사원테이블 메세지</comment>
+  </data>
+  <data name="rdoWorkError" xml:space="preserve">
+    <value>재직여부를 선택하셔야 합니다.</value>
+    <comment>최명근 재직여부 라디오버튼 미선택시 메세지</comment>
+  </data>
 </root>

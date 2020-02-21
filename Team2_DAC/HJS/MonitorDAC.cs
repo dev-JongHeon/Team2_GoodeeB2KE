@@ -17,13 +17,7 @@ namespace Team2_DAC
             conn = new SqlConnection();
             conn.ConnectionString = this.ConnectionString;
         }
-
-        // 오류가 난경우 로그를 기록하는 메서드
-        private void WriteErrorLog(Exception ex)
-        {
-            string sss = ex.Message;
-        }
-
+        
         #region 파라미터 대입
 
         // 파라미터 넣는 함수 Null이 있는경우 ==> Null값을 전달
@@ -63,10 +57,9 @@ namespace Team2_DAC
                     return list;
                 }
             }
-            catch (Exception ex)
-            {
-                WriteErrorLog(ex);
-                return null;
+            catch
+            {               
+                throw;
             }
             finally
             {

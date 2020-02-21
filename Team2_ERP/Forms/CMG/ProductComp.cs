@@ -294,19 +294,22 @@ namespace Team2_ERP
 
         private void UpdateProduct()
         {
-            //이미지를 Byte배열로 변환
-            Cursor currentCursor = this.Cursor;
-            this.Cursor = Cursors.WaitCursor;
-            string localFile = pictureBox1.Tag.ToString().Replace("\\", "/");
+            byte[] ImageData = null;
 
-            byte[] ImageData;
-            FileStream fs = new FileStream(localFile, FileMode.Open, FileAccess.Read);
-            BinaryReader br = new BinaryReader(fs);
-            ImageData = br.ReadBytes((int)fs.Length);
-            br.Close();
-            fs.Close();
+            if (txtProductImage.Text.Length > 1)
+            {
+                //이미지를 Byte배열로 변환
+                Cursor currentCursor = this.Cursor;
+                this.Cursor = Cursors.WaitCursor;
+                string localFile = pictureBox1.Tag.ToString().Replace("\\", "/");
 
-            if (ImageData == null)
+                FileStream fs = new FileStream(localFile, FileMode.Open, FileAccess.Read);
+                BinaryReader br = new BinaryReader(fs);
+                ImageData = br.ReadBytes((int)fs.Length);
+                br.Close();
+                fs.Close();
+            }
+            else
             {
                 ImageData = filePath;
             }
@@ -317,7 +320,7 @@ namespace Team2_ERP
                 Product_Name = txtProductName.Text,
                 Product_Image = ImageData,
                 Product_Price = Convert.ToInt32(txtProductMoney.Text.Replace(",", "").Replace("원", "")),
-                Product_Origin = Convert.ToInt32(lblOrigin.Text),
+                Product_Origin = Convert.ToInt32(lblOrigin.Text.Replace(",", "").Replace("원", "")),
                 Product_Category = cboProductCategory.SelectedValue.ToString()
             };
 
@@ -353,22 +356,44 @@ namespace Team2_ERP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (spc.TxtName.Tag != null && pictureBox1.Image != pictureBox1.InitialImage && txtProductName.Text.Length > 0 && txtProductMoney.Text.Length > 0)
+            bool check = true;
+
+            foreach (Control control in splitContainer2.Panel1.Controls)
             {
-                if (mode.Equals("Insert"))
+                if (control is SemiProductCompControl)
                 {
-                    InsertProduct();
-                    DialogResult = MessageBox.Show(Resources.AddDone, Resources.AddDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    SemiProductCompControl spc = (SemiProductCompControl)control;
+
+                    if(spc.TxtName.Tag == null)
+                    {
+                        check = false;
+                    }
+                }
+            }
+
+            if (Convert.ToInt32(txtProductMoney.Text.Replace(",", "").Replace("원", "")) > 0)
+            {
+                if (cboProductCategory.SelectedValue != null && check && pictureBox1.Image != pictureBox1.InitialImage && txtProductName.Text.Length > 0 && txtProductMoney.Text.Length > 0)
+                {
+                    if (mode.Equals("Insert"))
+                    {
+                        InsertProduct();
+                        DialogResult = MessageBox.Show(Resources.AddDone, Resources.AddDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        UpdateProduct();
+                        DialogResult = MessageBox.Show(Resources.ModDone, Resources.ModDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
-                    UpdateProduct();
-                    DialogResult = MessageBox.Show(Resources.ModDone, Resources.ModDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(Resources.isEssential, Resources.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else
             {
-                MessageBox.Show(Resources.isEssential, Resources.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Resources.PriceError, Resources.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
