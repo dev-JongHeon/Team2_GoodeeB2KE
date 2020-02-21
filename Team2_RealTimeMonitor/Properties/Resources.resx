@@ -146,7 +146,9 @@
     <value>..\Resources\Warning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="MsgServerConnectFailResultContent" xml:space="preserve">
-    <value />
+    <value>서버와의 연결접속을 실패했습니다.
+서버를 다시 확인해주세요.
+프로그램이 종료됩니다. </value>
   </data>
   <data name="MsgServerConnectFailResultHeader" xml:space="preserve">
     <value>서버연결접속 실패</value>
