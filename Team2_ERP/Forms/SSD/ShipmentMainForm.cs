@@ -160,10 +160,10 @@ namespace Team2_ERP
                 if (Search_OrderCompletedPeriod.Startdate.Text != "    -  -")  // 주문처리일자 검색조건 존재한다면
                 {
                     SearchedList = (from item in SearchedList
-                                    where item.OrderCompleted_Date.Date.CompareTo
+                                    where item.OrderCompleted_Date.Value.Date.CompareTo
                                           (Convert.ToDateTime(Search_OrderCompletedPeriod.Startdate.Text)) >= 0
                                           &&
-                                          item.OrderCompleted_Date.Date.CompareTo
+                                          item.OrderCompleted_Date.Value.Date.CompareTo
                                           (Convert.ToDateTime(Search_OrderCompletedPeriod.Enddate.Text)) <= 0
                                     select item).ToList();
                 }

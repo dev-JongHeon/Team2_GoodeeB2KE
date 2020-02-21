@@ -28,7 +28,9 @@
     <ProductName>구디B2KE RealMonitor</ProductName>
     <PublisherName>구디아카데미 Team2</PublisherName>
     <SuiteName>Team2 솔루션</SuiteName>
-    <ApplicationRevision>4</ApplicationRevision>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>Monitor.htm</WebPage>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
