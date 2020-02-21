@@ -374,7 +374,8 @@ namespace Team2_ERP
                     Product_Category = dgvBOM.Rows[e.RowIndex].Cells[1].Value.ToString(),
                     Product_Name = dgvBOM.Rows[e.RowIndex].Cells[3].Value.ToString(),
                     Product_Price = Convert.ToInt32(dgvBOM.Rows[e.RowIndex].Cells[4].Value),
-                    Product_Safety = Convert.ToInt32(dgvBOM.Rows[e.RowIndex].Cells[8].Value)
+                    Product_Safety = Convert.ToInt32(dgvBOM.Rows[e.RowIndex].Cells[8].Value),
+                    Product_Origin = Convert.ToInt32(dgvBOM.Rows[e.RowIndex].Cells[12].Value)
                 };
 
                 dgvBOMDetail1.DataSource = null;

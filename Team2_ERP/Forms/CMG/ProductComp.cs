@@ -49,6 +49,9 @@ namespace Team2_ERP
                 pCategory = item.Product_Category;
                 pCode = item.Product_ID;
                 txtProductName.Text = item.Product_Name;
+                double price = item.Product_Price;
+                double origin = item.Product_Origin;
+                nummargin.Value = Convert.ToDecimal((price - origin) / origin * 100);
             }
         }
 
