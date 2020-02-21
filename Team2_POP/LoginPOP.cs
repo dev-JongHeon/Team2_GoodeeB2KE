@@ -29,6 +29,7 @@ namespace Team2_POP
         /* ===================================
          *  SettingControl : 콤보박스 디자인
          *  InitData : 콤보박스 바인딩
+         *  CheckUpdate : 버전의 정보를 확인
         =====================================*/
         private void LoginPOP_Load(object sender, EventArgs e)
         {
@@ -36,6 +37,7 @@ namespace Team2_POP
             InitData();
             CheckUpdate();
 
+            #region 업데이트 정보를 가져오는 코드
             if (ApplicationDeployment.IsNetworkDeployed)
             {
                 ApplicationDeployment appDeployment = ApplicationDeployment.CurrentDeployment;
@@ -46,6 +48,7 @@ namespace Team2_POP
             {
                 lblVersion.Text = "Version : Not Deployed";
             }
+            #endregion
         }
 
         private void SettingControl()
@@ -60,15 +63,15 @@ namespace Team2_POP
         {
             try
             {
-
+                // 공장의 정보 목록을 가져오는 코드
                 Service service = new Service();
                 factory = service.GetFactoryList();
 
                 List<ComboItemVO> list = null;
 
                 UtilClass.ComboBinding(cboFactory, factory, "공장 선택");
-                UtilClass.ComboBinding(cboLine, list, "공장을 먼저 선택해주세요");
-                UtilClass.ComboBinding(cboWorker, list, "공장을 먼저 선택해주세요");
+                UtilClass.ComboBinding(cboLine, list, string.Format(Properties.Resources.MsgChoice2, "공장"));
+                UtilClass.ComboBinding(cboWorker, list, string.Format(Properties.Resources.MsgChoice2, "공정"));
             }
             catch (Exception ex)
             {
@@ -78,19 +81,19 @@ namespace Team2_POP
         }
         #endregion
 
-        // 연결 선택시
+        // 연결(로그인) 선택시
         private void btnConnect_Click(object sender, EventArgs e)
         {
             StringBuilder msg = new StringBuilder();
 
             if (cboFactory.SelectedIndex < 1)
-                msg.AppendLine("공장을 선택해주세요.");
+                msg.AppendLine(string.Format(Properties.Resources.MsgChoice2, "공장"));
 
             if (cboLine.SelectedIndex < 1)
-                msg.AppendLine("공정을 선택해주세요.");
+                msg.AppendLine(string.Format(Properties.Resources.MsgChoice2, "공정"));
 
             if (cboWorker.SelectedIndex < 1)
-                msg.AppendLine("작업자를 선택해주세요.");
+                msg.AppendLine(string.Format(Properties.Resources.MsgChoice1, "작업자"));
 
             if (msg.Length > 1)
             {
@@ -98,7 +101,7 @@ namespace Team2_POP
                 return;
             }
 
-            // 유효성 검사
+            // 유효성 검사(Login 성공시 => POPWorkInfo로 데이터를 담음)
             workerInfo = new WorkerInfoPOP
             {
                 WorkID = Convert.ToInt32(cboWorker.SelectedValue),
@@ -156,8 +159,8 @@ namespace Team2_POP
                 else
                 {
                     List<ComboItemVO> list = null;
-                    UtilClass.ComboBinding(cboLine, list, "공장을 먼저 선택해주세요");
-                    UtilClass.ComboBinding(cboWorker, list, "공장을 먼저 선택해주세요");
+                    UtilClass.ComboBinding(cboLine, list, string.Format(Properties.Resources.MsgChoice2, "공장"));
+                    UtilClass.ComboBinding(cboWorker, list, string.Format(Properties.Resources.MsgChoice2, "공장"));
                 }
             }
             catch (Exception ex)
@@ -208,8 +211,9 @@ namespace Team2_POP
                     if (doUpdate)
                     {
                         AppDeploy.Update();
-                        MessageBox.Show("최신버젼의 업데이트가 있습니다.\n업데이트 적용을 위해 프로그램을 재시작합니다.");
-                        this.Close();
+                        CustomMessageBox.ShowDialog(Properties.Resources.MsgUpdateResultHeader,
+                            Properties.Resources.MsgUpdateResultContent, MessageBoxIcon.Information, MessageBoxButtons.OK);                        
+                        Close();
                         Application.Restart();
                     }
                 }

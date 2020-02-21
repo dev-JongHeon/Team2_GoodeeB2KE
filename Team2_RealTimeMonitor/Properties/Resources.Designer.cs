@@ -151,7 +151,9 @@ namespace Team2_RealTimeMonitor.Properties {
         }
         
         /// <summary>
-        ///   과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   서버와의 연결접속을 실패했습니다.
+        ///서버를 다시 확인해주세요.
+        ///프로그램이 종료됩니다. 과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string MsgServerConnectFailResultContent {
             get {

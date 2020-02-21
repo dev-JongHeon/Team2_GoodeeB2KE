@@ -318,17 +318,39 @@ namespace Team2_ERP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (cboCategory.SelectedValue != null && spc.TxtName.Tag != null && cboWarehouse.SelectedValue != null && txtSemiproductName.Text.Length > 0 && numSafety.Value > 0 && txtSemiproductMoney.Text.Length > 0)
+            bool check = true;
+
+            foreach (Control control in splitContainer2.Panel1.Controls)
             {
-                if (mode.Equals("Insert"))
+                if (control is SemiProductCompControl)
                 {
-                    InsertSemiProduct();
-                    DialogResult = MessageBox.Show(Resources.AddDone, Resources.AddDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    SemiProductCompControl spc = (SemiProductCompControl)control;
+
+                    if (spc.TxtName.Tag == null)
+                    {
+                        check = false;
+                    }
+                }
+            }
+
+            if (Convert.ToInt32(txtSemiproductMoney.Text.Replace(",", "").Replace("원", "")) > 0)
+            {
+                if (cboCategory.SelectedValue != null && check && cboWarehouse.SelectedValue != null && txtSemiproductName.Text.Length > 0 && numSafety.Value > 0 && txtSemiproductMoney.Text.Length > 0)
+                {
+                    if (mode.Equals("Insert"))
+                    {
+                        InsertSemiProduct();
+                        DialogResult = MessageBox.Show(Resources.AddDone, Resources.AddDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        UpdateSemiProduct();
+                        DialogResult = MessageBox.Show(Resources.ModDone, Resources.ModDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
-                    UpdateSemiProduct();
-                    DialogResult = MessageBox.Show(Resources.ModDone, Resources.ModDone, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(Resources.isEssential, Resources.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else

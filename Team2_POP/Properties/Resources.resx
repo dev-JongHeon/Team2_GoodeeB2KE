@@ -154,7 +154,7 @@
   </data>
   <data name="MsgChoice1" xml:space="preserve">
     <value>{0}를 선택해주세요.</value>
-    <comment>콤보박스 유효성 검사1 (를)</comment>
+    <comment>콤보박스 바인딩 메세지 유형 1 :  유효성 검사1 (를)</comment>
   </data>
   <data name="MsgDowntimeGetResultFailContent" xml:space="preserve">
     <value>비가동 데이터가 존재하지 않습니다. 
@@ -192,7 +192,7 @@
   </data>
   <data name="MsgChoice2" xml:space="preserve">
     <value>{0}을 선택해주세요.</value>
-    <comment>콤보박스 유효성 검사2 (을)</comment>
+    <comment>콤보박스 바인딩 메세지 유형 2 : 유효성 검사2 (을)</comment>
   </data>
   <data name="MsgDefectiveResultSucceesHeader" xml:space="preserve">
     <value>불량등록 성공</value>
@@ -310,5 +310,14 @@
   </data>
   <data name="IMG_POPMain" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\IMG_POPMain (2).ICO;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MsgUpdateResultContent" xml:space="preserve">
+    <value>최신버젼의 업데이트가 있습니다.
+업데이트 적용을 위해 프로그램을 재시작합니다.</value>
+    <comment>업데이트 정보가 있을때 활성화 되는 메세지</comment>
+  </data>
+  <data name="MsgUpdateResultHeader" xml:space="preserve">
+    <value>업데이트 확인</value>
+    <comment>업데이트 정보가 있을때 활성화 되는 헤더</comment>
   </data>
 </root>

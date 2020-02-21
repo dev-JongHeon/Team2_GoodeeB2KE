@@ -69,7 +69,6 @@ namespace Team2_ERP
         #endregion
 
         #region dgv 관련기능
-
         private void LoadData()
         {
             UtilClass.SettingDgv(dgv_Balju);
@@ -126,6 +125,11 @@ namespace Team2_ERP
                                                       where list_detail.Balju_ID == Balju_ID
                                                       select list_detail).ToList();
                 dgv_BaljuDetail.DataSource = BaljuDetail_List;
+
+                if (Convert.ToBoolean(dgv_Balju.Rows[e.RowIndex].Cells[0].Value))  // 체크가 되어있으면
+                    dgv_Balju.Rows[e.RowIndex].Cells[0].Value = false;              // 체크풀어줌
+                else
+                    dgv_Balju.Rows[e.RowIndex].Cells[0].Value = true;               // 체크 안되어있으면 다시체크
             }
         }
 
@@ -139,7 +143,21 @@ namespace Team2_ERP
 
             try { BaljuDetail_AllList = service.GetBalju_DetailList(sb.ToString().Trim(',')); }  // BaljuDetail_AllList 갱신
             catch (Exception err) { Log.WriteError(err.Message, err); }
-        } 
+        }
+
+        private bool Check_ExistCheckedRows()
+        {
+            bool check = false;
+            foreach (DataGridViewRow row in dgv_Balju.Rows)
+            {
+                if (Convert.ToBoolean(row.Cells[0].Value) == true)  // 체크된 Row가 하나라도 있으면 check에 true 저장 없으면 그대로 false반환
+                { 
+                    check = true;
+                    return check;
+                }
+            }
+            return check;
+        }
         #endregion
 
         #region ToolStrip 기능정의
@@ -200,7 +218,7 @@ namespace Team2_ERP
 
         public override void Modify(object sender, EventArgs e)  // 발주완료(수령)처리
         {
-            if (dgv_Balju.Rows.Count == 0) main.NoticeMessage = Resources.NonData;
+            if (dgv_Balju.Rows.Count == 0 || Check_ExistCheckedRows() != true) main.NoticeMessage = Resources.NonData;  // 데이터소스가 0개이거나, 체크된게 하나도 없으면
             else
             {
                 if (MessageBox.Show(Resources.IsBalju, notice, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -234,7 +252,7 @@ namespace Team2_ERP
 
         public override void Delete(object sender, EventArgs e)  // 삭제
         {
-            if (dgv_Balju.Rows.Count == 0) main.NoticeMessage = Resources.NonData;
+            if (dgv_Balju.Rows.Count == 0 || Check_ExistCheckedRows() != true) main.NoticeMessage = Resources.NonData;  // 데이터소스가 0개이거나, 체크된게 하나도 없으면
             else
             {
                 if (MessageBox.Show(Resources.IsDeleteBalju, Resources.Notice, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)

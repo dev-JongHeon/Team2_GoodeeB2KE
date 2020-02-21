@@ -476,6 +476,25 @@ namespace Team2_POP.Properties {
         }
         
         /// <summary>
+        ///   최신버젼의 업데이트가 있습니다.
+        ///업데이트 적용을 위해 프로그램을 재시작합니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgUpdateResultContent {
+            get {
+                return ResourceManager.GetString("MsgUpdateResultContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   업데이트 확인과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgUpdateResultHeader {
+            get {
+                return ResourceManager.GetString("MsgUpdateResultHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   {0}의 생산되지 않은 작업이
         ///이미 할당되어 있습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>

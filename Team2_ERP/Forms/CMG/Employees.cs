@@ -17,6 +17,7 @@ namespace Team2_ERP
     {
         List<EmployeeVO> list;
         List<EmployeeVO> searchList;
+        List<EmployeeVO> rdoList;
 
         MainForm frm;
 
@@ -35,6 +36,7 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgvEmployee, "사원번호", "Employees_ID", true, 100);
             UtilClass.AddNewColum(dgvEmployee, "사원이름", "Employees_Name", true, 100);
             UtilClass.AddNewColum(dgvEmployee, "소속부서", "CodeTable_CodeName", true, 100);
+            UtilClass.AddNewColum(dgvEmployee, "소속부서ID", "CodeTable_CodeID", false, 100);
             UtilClass.AddNewColum(dgvEmployee, "입사일", "Employees_Hiredate", true, 100);
             UtilClass.AddNewColum(dgvEmployee, "퇴사일", "Employees_Resigndate", true, 100);
             UtilClass.AddNewColum(dgvEmployee, "연락망", "Employees_Phone", true, 100);
@@ -56,15 +58,13 @@ namespace Team2_ERP
                 Log.WriteError(err.Message, err);
             }
 
-            //재직자
-            if (rdoWork.Checked)
-            {
-                list = (from item in list where item.Employees_DeletedYN == false select item).ToList();
-            }
-            //퇴사자
-            else
+            if(rdoWork.Checked)
             {
                 list = (from item in list where item.Employees_DeletedYN == true select item).ToList();
+            }
+            else
+            {
+                list = (from item in list where item.Employees_DeletedYN == false select item).ToList();
             }
             dgvEmployee.DataSource = list;
             dgvEmployee.CurrentCell = null;
@@ -74,7 +74,6 @@ namespace Team2_ERP
         {
             InitGridView();
             frm = (MainForm)this.ParentForm;
-            rdoWork.Checked = true;
             searchResigndate.Visible = false;
         }
 
@@ -106,6 +105,8 @@ namespace Team2_ERP
         {
             frm.NoticeMessage = Resources.RefreshDone;
             dgvEmployee.DataSource = null;
+            rdoWork.Checked = false;
+            rdoResign.Checked = false;
             searchEmployeeName.CodeTextBox.Clear();
             searchDepartmentName.CodeTextBox.Clear();
             searchHiredate.Startdate.Clear();
@@ -127,11 +128,17 @@ namespace Team2_ERP
 
         public override void Modify(object sender, EventArgs e)
         {
-            if (dgvEmployee.SelectedRows.Count < 1)
+            if(dgvEmployee.SelectedRows.Count < 1)
             {
                 frm.NoticeMessage = Resources.ModEmpty;
             }
-            else
+
+            if (rdoResign.Checked && dgvEmployee.SelectedRows.Count > 0)
+            {
+                frm.NoticeMessage = Properties.Resources.ModResigndateError;
+            }
+
+            if(rdoWork.Checked && dgvEmployee.SelectedRows.Count > 0)
             {
                 EmployeesInsUp popup = new EmployeesInsUp(EmployeesInsUp.EditMode.Update, item);
                 if (popup.ShowDialog() == DialogResult.OK)
@@ -150,7 +157,12 @@ namespace Team2_ERP
                 frm.NoticeMessage = Resources.DelEmpty;
             }
 
-            else
+            if (rdoResign.Checked && dgvEmployee.SelectedRows.Count > 0)
+            {
+                frm.NoticeMessage = Properties.Resources.DelResigndateError;
+            }
+            
+            if(rdoWork.Checked && dgvEmployee.SelectedRows.Count > 0)
             {
                 if (MessageBox.Show("삭제하시겠습니까?", "확인", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
@@ -172,34 +184,41 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)
         {
-            LoadGridView();
-            searchList = list;
+            if (rdoWork.Checked || rdoResign.Checked)
+            {
+                LoadGridView();
+                searchList = list;
 
-            //부서 검색
-            if(searchDepartmentName.CodeTextBox.Tag != null)
-            {
-                searchList = (from item in searchList where item.CodeTable_CodeID.Equals(searchDepartmentName.CodeTextBox.Tag.ToString()) select item).ToList();
-            }
-            //사원이름 검색
-            if(searchEmployeeName.CodeTextBox.Tag != null)
-            {
-                searchList = (from item in searchList where item.Employees_ID.Equals(Convert.ToInt32(searchEmployeeName.CodeTextBox.Tag)) select item).ToList();
-            }
-            //입사일 검색
-            if(searchHiredate.Startdate.Tag != null && searchHiredate.Enddate.Tag != null)
-            {
-                searchList = (from item in searchList where Convert.ToDateTime(Convert.ToDateTime(item.Employees_Hiredate).ToShortDateString()) >= Convert.ToDateTime(searchHiredate.Startdate.Tag.ToString()) && Convert.ToDateTime(Convert.ToDateTime(item.Employees_Hiredate).ToShortDateString()) <= Convert.ToDateTime(searchHiredate.Enddate.Tag.ToString()) select item).ToList();
-            }
-            //퇴사일 검색
-            if(searchResigndate.Startdate.Tag != null && searchResigndate.Enddate.Tag != null)
-            {
-                searchList = (from item in searchList where Convert.ToDateTime(Convert.ToDateTime(item.Employees_Resigndate).ToShortDateString()) >= Convert.ToDateTime(searchResigndate.Startdate.Tag.ToString()) && Convert.ToDateTime(Convert.ToDateTime(item.Employees_Resigndate).ToShortDateString()) <= Convert.ToDateTime(searchResigndate.Enddate.Tag.ToString()) select item).ToList();
-            }
+                //부서 검색
+                if (searchDepartmentName.CodeTextBox.Tag != null)
+                {
+                    searchList = (from item in searchList where item.CodeTable_CodeID.Equals(searchDepartmentName.CodeTextBox.Tag.ToString()) select item).ToList();
+                }
+                //사원이름 검색
+                if (searchEmployeeName.CodeTextBox.Tag != null)
+                {
+                    searchList = (from item in searchList where item.Employees_ID.Equals(Convert.ToInt32(searchEmployeeName.CodeTextBox.Tag)) select item).ToList();
+                }
+                //입사일 검색
+                if (searchHiredate.Startdate.Tag != null && searchHiredate.Enddate.Tag != null)
+                {
+                    searchList = (from item in searchList where Convert.ToDateTime(Convert.ToDateTime(item.Employees_Hiredate).ToShortDateString()) >= Convert.ToDateTime(searchHiredate.Startdate.Tag.ToString()) && Convert.ToDateTime(Convert.ToDateTime(item.Employees_Hiredate).ToShortDateString()) <= Convert.ToDateTime(searchHiredate.Enddate.Tag.ToString()) select item).ToList();
+                }
+                //퇴사일 검색
+                if (searchResigndate.Startdate.Tag != null && searchResigndate.Enddate.Tag != null)
+                {
+                    searchList = (from item in searchList where Convert.ToDateTime(Convert.ToDateTime(item.Employees_Resigndate).ToShortDateString()) >= Convert.ToDateTime(searchResigndate.Startdate.Tag.ToString()) && Convert.ToDateTime(Convert.ToDateTime(item.Employees_Resigndate).ToShortDateString()) <= Convert.ToDateTime(searchResigndate.Enddate.Tag.ToString()) select item).ToList();
+                }
 
-            dgvEmployee.DataSource = searchList;
-            dgvEmployee.CurrentCell = null;
+                dgvEmployee.DataSource = searchList;
+                dgvEmployee.CurrentCell = null;
 
-            frm.NoticeMessage = Resources.SearchDone;
+                frm.NoticeMessage = Resources.SearchDone;
+            }
+            else
+            {
+                frm.NoticeMessage = Properties.Resources.rdoWorkError;
+            }
         }
 
         private void dgvEmployee_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -210,9 +229,10 @@ namespace Team2_ERP
                 {
                     Employees_ID = Convert.ToInt32(dgvEmployee.Rows[e.RowIndex].Cells[0].Value),
                     Employees_Name = dgvEmployee.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                    Employees_Hiredate = dgvEmployee.Rows[e.RowIndex].Cells[3].Value.ToString(),
-                    Employees_Phone = dgvEmployee.Rows[e.RowIndex].Cells[5].Value.ToString(),
-                    Employees_Birth = dgvEmployee.Rows[e.RowIndex].Cells[6].Value.ToString()
+                    CodeTable_CodeID = dgvEmployee.Rows[e.RowIndex].Cells[3].Value.ToString(),
+                    Employees_Hiredate = dgvEmployee.Rows[e.RowIndex].Cells[4].Value.ToString(),
+                    Employees_Phone = dgvEmployee.Rows[e.RowIndex].Cells[6].Value.ToString(),
+                    Employees_Birth = dgvEmployee.Rows[e.RowIndex].Cells[7].Value.ToString()
                 };
             }
         }
@@ -231,6 +251,8 @@ namespace Team2_ERP
                 searchResigndate.Visible = true;
                 searchHiredate.Visible = false;
             }
+
+            LoadGridView();
         }
     }
 }
