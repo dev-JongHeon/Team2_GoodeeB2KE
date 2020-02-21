@@ -45,9 +45,9 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Shipment, "주문처리일시", "OrderCompleted_Date", true, 170);
             UtilClass.AddNewColum(dgv_Shipment, "고객ID", "Customer_userID", true, 90);
             UtilClass.AddNewColum(dgv_Shipment, "고객성명", "Customer_Name", true);
-            UtilClass.AddNewColum(dgv_Shipment, "출하요청일짜", "Shipment_RequiredDate", true, 130);
+            UtilClass.AddNewColum(dgv_Shipment, "출하요청일시", "Shipment_RequiredDate", true, 170);
             UtilClass.AddNewColum(dgv_Shipment, "출하지시자", "Employees_Name", true, 120);
-            UtilClass.AddNewColum(dgv_Shipment, "출하처리일시", "Shipment_DoneDate", true, 170);
+            UtilClass.AddNewColum(dgv_Shipment, "출하완료일시", "Shipment_DoneDate", true, 170);
             dgv_Shipment.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_Shipment.Columns[2].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
             dgv_Shipment.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
