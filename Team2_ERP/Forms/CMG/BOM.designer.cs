@@ -258,6 +258,7 @@
             this.rdoResource.TabStop = true;
             this.rdoResource.Text = "원자재";
             this.rdoResource.UseVisualStyleBackColor = true;
+            this.rdoResource.CheckedChanged += new System.EventHandler(this.rdo_CheckedChanged);
             // 
             // rdoSemiProduct
             // 
@@ -269,6 +270,7 @@
             this.rdoSemiProduct.TabStop = true;
             this.rdoSemiProduct.Text = "반제품";
             this.rdoSemiProduct.UseVisualStyleBackColor = true;
+            this.rdoSemiProduct.CheckedChanged += new System.EventHandler(this.rdo_CheckedChanged);
             // 
             // rdoProduct
             // 
@@ -280,6 +282,7 @@
             this.rdoProduct.TabStop = true;
             this.rdoProduct.Text = "완제품";
             this.rdoProduct.UseVisualStyleBackColor = true;
+            this.rdoProduct.CheckedChanged += new System.EventHandler(this.rdo_CheckedChanged);
             // 
             // groupBox1
             // 

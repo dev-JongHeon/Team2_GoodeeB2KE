@@ -60,18 +60,10 @@ namespace Team2_ERP
             try
             {
                 BOMService service = new BOMService();
-                if (mode.Equals("Insert"))
-                {
-                    //완제품의 모든 카테고리 목록 바인딩
-                    List<ComboItemVO> productList = (from item in service.GetComboProductCategory() where item.ID.Contains("CP") select item).ToList();
-                    UtilClass.ComboBinding(cboProductCategory, productList, "선택");
-                }
-                else
-                {
-                    //수정할 완제품의 카테고리만 바인딩
-                    List<ComboItemVO> productList = (from item in service.GetComboProductCategory() where item.ID.Equals(pCategory) select item).ToList();
-                    UtilClass.ComboBinding(cboProductCategory, productList);
-                }
+                //완제품의 모든 카테고리 목록 바인딩
+                List<ComboItemVO> productList = (from item in service.GetComboProductCategory() where item.ID.Contains("CP") select item).ToList();
+                UtilClass.ComboBinding(cboProductCategory, productList);
+
                 //반제품의 모든 카테고리 목록 바인딩
                 List<ComboItemVO> categoryList = (from item in service.GetComboProductCategory() where item.ID.Contains("CS") select item).ToList();
                 UtilClass.ComboBinding(cboSemiProductCategory, categoryList, "선택");
@@ -367,7 +359,7 @@ namespace Team2_ERP
                 {
                     SemiProductCompControl spc = (SemiProductCompControl)control;
 
-                    if(spc.TxtName.Tag == null)
+                    if (spc.TxtName.Tag == null)
                     {
                         check = false;
                     }

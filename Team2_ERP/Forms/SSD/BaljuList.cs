@@ -146,14 +146,17 @@ namespace Team2_ERP
 
         private void GetBaljuDetail_List()  // 현재 Dgv에 맞추어 DetailList 가져옴
         {
-            StringBuilder sb = new StringBuilder();
-            foreach (DataGridViewRow row in dgv_Balju.Rows)
+            if (dgv_Balju.Rows.Count > 0)
             {
-                sb.Append($"'{row.Cells[1].Value.ToString()}',");
-            }
+                StringBuilder sb = new StringBuilder();
+                foreach (DataGridViewRow row in dgv_Balju.Rows)
+                {
+                    sb.Append($"'{row.Cells[1].Value.ToString()}',");
+                }
 
-            try { BaljuDetail_AllList = service.GetBalju_DetailList(sb.ToString().Trim(',')); }  // BaljuDetail_AllList 갱신
-            catch (Exception err) { Log.WriteError(err.Message, err); }
+                try { BaljuDetail_AllList = service.GetBalju_DetailList(sb.ToString().Trim(',')); }  // BaljuDetail_AllList 갱신
+                catch (Exception err) { Log.WriteError(err.Message, err); } 
+            }
         }
 
         private bool Check_ExistCheckedRows()

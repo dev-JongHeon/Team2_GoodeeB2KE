@@ -145,13 +145,16 @@ namespace Team2_ERP
 
         private void GetOrderDetail_List()  // 현재 Dgv에 맞추어 DetailList 가져옴
         {
-            StringBuilder sb = new StringBuilder();
-            foreach (DataGridViewRow row in dgv_Order.Rows)
+            if (dgv_Order.Rows.Count > 0)
             {
-                sb.Append($"'{row.Cells[1].Value.ToString()}',");
+                StringBuilder sb = new StringBuilder();
+                foreach (DataGridViewRow row in dgv_Order.Rows)
+                {
+                    sb.Append($"'{row.Cells[1].Value.ToString()}',");
+                }
+                try { OrderDetail_AllList = service.GetOrderDetailList(sb.ToString().Trim(',')); }  // 디테일 AllList 갱신
+                catch (Exception err) { Log.WriteError(err.Message, err); } 
             }
-            try { OrderDetail_AllList = service.GetOrderDetailList(sb.ToString().Trim(',')); }  // 디테일 AllList 갱신
-            catch (Exception err) { Log.WriteError(err.Message, err); }
         }
 
         private bool Check_ExistCheckedRows()

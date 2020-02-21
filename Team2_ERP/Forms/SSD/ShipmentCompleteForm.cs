@@ -85,14 +85,17 @@ namespace Team2_ERP
 
         private void GetShipmentDetail_List()  // 현재 위의 Dgv의 Row수 따라 그에맞는 DetailList 가져옴
         {
-            StringBuilder sb = new StringBuilder();
-            foreach (DataGridViewRow row in dgv_Shipment.Rows)
+            if (dgv_Shipment.Rows.Count > 0)
             {
-                sb.Append($"'{row.Cells[0].Value.ToString()}',");
-            }
+                StringBuilder sb = new StringBuilder();
+                foreach (DataGridViewRow row in dgv_Shipment.Rows)
+                {
+                    sb.Append($"'{row.Cells[0].Value.ToString()}',");
+                }
 
-            try { ShipmentDetail_AllList = service.GetShipmentDetailList(sb.ToString().Trim(',')); }  // 디테일 AllList 갱신
-            catch (Exception err) { Log.WriteError(err.Message, err); }
+                try { ShipmentDetail_AllList = service.GetShipmentDetailList(sb.ToString().Trim(',')); }  // 디테일 AllList 갱신
+                catch (Exception err) { Log.WriteError(err.Message, err); } 
+            }
         } 
         #endregion
 
