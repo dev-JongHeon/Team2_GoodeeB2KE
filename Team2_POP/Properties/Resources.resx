@@ -320,4 +320,8 @@
     <value>업데이트 확인</value>
     <comment>업데이트 정보가 있을때 활성화 되는 헤더</comment>
   </data>
+  <data name="FormateDate" xml:space="preserve">
+    <value>yyyy-MM-dd</value>
+    <comment>그리드뷰 날짜 포멧</comment>
+  </data>
 </root>

@@ -61,6 +61,15 @@ namespace Team2_POP.Properties {
         }
         
         /// <summary>
+        ///   yyyy-MM-dd과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string FormateDate {
+            get {
+                return ResourceManager.GetString("FormateDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
         internal static System.Drawing.Bitmap Img_CircleGreen {
