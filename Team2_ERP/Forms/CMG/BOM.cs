@@ -16,6 +16,7 @@ namespace Team2_ERP
     public partial class BOM : BaseForm
     {
         List<ProductVO> list;
+        List<ProductVO> rdoList;
         List<BOMVO> bomList;
         List<BOMVO> bomReverseList;
 
@@ -110,10 +111,14 @@ namespace Team2_ERP
                     dgvBOM.DataSource = list;
                 }
                 //완제품 리스트
-                else
+                else if (rdoProduct.Checked)
                 {
                     list = service.GetProductList("Product");
                     dgvBOM.DataSource = list;
+                }
+                else
+                {
+                    dgvBOM.DataSource = null;
                 }
                 StringBuilder sb = new StringBuilder();
 
@@ -142,7 +147,6 @@ namespace Team2_ERP
         {
             InitGridView();
             frm = (MainForm)this.ParentForm;
-            rdoResource.Checked = true;
         }
 
         private void dgvBOM_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -226,6 +230,9 @@ namespace Team2_ERP
             frm.NoticeMessage = Resources.RefreshDone;
             GridViewReset();
             searchProductName.CodeTextBox.Clear();
+            rdoResource.Checked = false;
+            rdoSemiProduct.Checked = false;
+            rdoProduct.Checked = false;
         }
 
         public override void New(object sender, EventArgs e)
@@ -325,17 +332,23 @@ namespace Team2_ERP
 
         public override void Search(object sender, EventArgs e)
         {
-            GridViewReset();
-            LoadGridView();
-
-            if(searchProductName.CodeTextBox.Tag != null)
+            if (rdoResource.Checked || rdoSemiProduct.Checked || rdoProduct.Checked)
             {
-                list = (from item in list where item.Product_ID.Equals(searchProductName.CodeTextBox.Tag.ToString()) select item).ToList();
-                dgvBOM.DataSource = list;
-            }
+                GridViewReset();
 
-            dgvBOM.CurrentCell = null;
-            frm.NoticeMessage = Resources.SearchDone;
+                if (searchProductName.CodeTextBox.Tag != null)
+                {
+                    list = (from item in list where item.Product_ID.Equals(searchProductName.CodeTextBox.Tag.ToString()) select item).ToList();
+                    dgvBOM.DataSource = list;
+                }
+
+                dgvBOM.CurrentCell = null;
+                frm.NoticeMessage = Resources.SearchDone;
+            }
+            else
+            {
+                frm.NoticeMessage = Properties.Resources.rdoWorkError;
+            }
         }
 
         public override void Excel(object sender, EventArgs e)
@@ -404,6 +417,12 @@ namespace Team2_ERP
                     dgvBOMDetail1.DataSource = semiProductList;
                 }
             }
+        }
+
+        private void rdo_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadGridView();
+            searchProductName.CodeTextBox.Clear();
         }
     }
 }
