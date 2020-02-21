@@ -20,7 +20,7 @@ namespace Team2_ERP
 
         string mode = string.Empty;
         int code = 0;
-        string division = string.Empty;
+        int division = 0;
 
         public enum EditMode { Insert, Update }
 
@@ -50,7 +50,7 @@ namespace Team2_ERP
             txtWarehouseName.Text = item.Warehouse_Name;
             maskedWarehouseNumber.Text = item.Warehouse_Number;
             maskedWarehouseFaxNumber.Text = item.Warehouse_Fax;
-            division = item.Warehouse_Division_Name;
+            division = item.Warehouse_Division;
             string[] str = item.Warehouse_Address.Split('　');
             addrWarehouse.Address1 = str[0];
             addrWarehouse.Address2 = str[1];
@@ -162,29 +162,22 @@ namespace Team2_ERP
             cboWarehouseDivision.DataSource = dt;
             cboWarehouseDivision.DisplayMember = "WName";
             cboWarehouseDivision.ValueMember = "Value";
-
-            if(mode.Equals("Update"))
-            {
-                if(division.Contains("반제품"))
-                {
-                    cboWarehouseDivision.SelectedValue = 1;
-                }
-                else
-                {
-                    cboWarehouseDivision.SelectedValue = 0;
-                }
-            }
         }
 
 
         private void WarehouseInsUp_Load(object sender, EventArgs e)
         {
             InitCombo();
+            
+            if(mode.Equals("Update"))
+            {
+                cboWarehouseDivision.SelectedValue = division;
+            }
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if(txtWarehouseName.Text.Length > 0 && !cboWarehouseDivision.SelectedValue.Equals(2) && addrWarehouse.Address1.Length > 0 && addrWarehouse.Address2.Length > 0)
+            if(txtWarehouseName.Text.Trim().Length > 0 && !cboWarehouseDivision.SelectedValue.Equals(2) && addrWarehouse.Address1.Trim().Length > 0 && addrWarehouse.Address2.Trim().Length > 0)
             {
                 if(mode.Equals("Insert"))
                 {

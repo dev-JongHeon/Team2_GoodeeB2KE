@@ -126,7 +126,7 @@ namespace Team2_ERP
             {
                 if(rdoResource.Checked)
                 {
-                    if(txtName.Text.Length > 0 && cboContext.SelectedValue != null)
+                    if(txtName.Text.Trim().Length > 0 && cboContext.SelectedValue != null)
                     {
                         UpdateCategory();
                         DialogResult = MessageBox.Show(Resources.ModDone, Resources.ModDone, MessageBoxButtons.OK);
@@ -138,7 +138,7 @@ namespace Team2_ERP
                 }
                 else
                 {
-                    if (txtName.Text.Length > 0 && txtContext.Text.Length > 0)
+                    if (txtName.Text.Trim().Length > 0 && txtContext.Text.Trim().Length > 0)
                     {
                         UpdateCategory();
                         DialogResult = MessageBox.Show(Resources.ModDone, Resources.ModDone, MessageBoxButtons.OK);
@@ -201,7 +201,7 @@ namespace Team2_ERP
             if(rdoResource.Checked)
             {
                 label1.Text = "원자재 카테고리 이름";
-                label2.Text = "원자재 카테고리 설명";
+                label2.Text = "소속 반제품";
                 cboContext.Visible = true;
                 txtContext.Visible = false;
             }

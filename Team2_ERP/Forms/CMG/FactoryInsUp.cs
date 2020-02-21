@@ -20,6 +20,7 @@ namespace Team2_ERP
 
         string mode = string.Empty;
         int code = 0;
+        int division = 0;
 
         public enum EditMode { Insert, Update }
 
@@ -53,6 +54,7 @@ namespace Team2_ERP
             addrFactory.Address1 = str[0];
             addrFactory.Address2 = str[1];
             addrFactory.Zipcode = item.Factory_AddrNumber;
+            division = item.Factory_Division;
         }
 
         //반제품 공장과 완제품 공장만 있으므로 2가지 중 1개로 선택하게 한다.
@@ -153,11 +155,15 @@ namespace Team2_ERP
         private void FactoryInsUp_Load(object sender, EventArgs e)
         {
             InitCombo();
+            if(mode.Equals("Update"))
+            {
+                cboFactoryDivision.SelectedValue = division;
+            }
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if(txtFactoryName.Text.Length > 0 && !cboFactoryDivision.SelectedValue.Equals(2) && maskedFactoryNumber.Text.Replace("_", "").Replace("-", "").Trim().Length > 10 && addrFactory.Address1.Length > 0 && addrFactory.Address2.Length > 0)
+            if(txtFactoryName.Text.Trim().Length > 0 && !cboFactoryDivision.SelectedValue.Equals(2) && maskedFactoryNumber.Text.Replace("_", "").Replace("-", "").Trim().Length > 10 && addrFactory.Address1.Trim().Length > 0 && addrFactory.Address2.Trim().Length > 0)
             {
                 if(mode.Equals("Insert"))
                 {

@@ -22,6 +22,7 @@ namespace Team2_ERP
 
         int code = 0;
         string mode = string.Empty;
+        int fID = 0;
 
         public LineInsUp(EditMode editMode, LineVO item)
         {
@@ -40,6 +41,7 @@ namespace Team2_ERP
                 pbxTitle.Image = Resources.Edit_32x32;
                 code = item.Line_ID;
                 txtLineName.Text = item.Line_Name;
+                fID = item.Factory_ID;
             }
         }
 
@@ -109,11 +111,15 @@ namespace Team2_ERP
         private void LineInsUp_Load(object sender, EventArgs e)
         {
             InitCombo();
+            if (mode.Equals("Update"))
+            {
+                cboFactoryName.SelectedValue = fID.ToString("0000");
+            }
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if(txtLineName.Text.Length > 0 && cboFactoryName.SelectedValue != null && cboCategory.SelectedValue != null)
+            if(txtLineName.Text.Trim().Length > 0 && cboFactoryName.SelectedValue != null && cboCategory.SelectedValue != null)
             {
                 if(mode.Equals("Insert"))
                 {
