@@ -64,8 +64,8 @@ namespace Team2_ERP
             dgv_ShipmentDetail.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgv_ShipmentDetail.Columns[3].DefaultCellStyle.Format = "#,#0개";
 
-            Search_ShipmentIndexPeriod.Startdate.BackColor = Color.LightYellow;
-            Search_ShipmentIndexPeriod.Enddate.BackColor = Color.LightYellow;
+            Search_OrderCompletedPeriod.Startdate.BackColor = Color.LightYellow;
+            Search_OrderCompletedPeriod.Enddate.BackColor = Color.LightYellow;
         }
 
         private void dgv_Shipment_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  // Master 더블클릭 이벤트
@@ -112,16 +112,19 @@ namespace Team2_ERP
             Search_Employees.CodeTextBox.Clear();
             Search_OrderPeriod.Startdate.Clear();
             Search_OrderPeriod.Enddate.Clear();
-            Search_ShipmentRequiredDate.Startdate.Clear();
-            Search_ShipmentRequiredDate.Enddate.Clear();
+            Search_ShipmentRequiredPeriod.Startdate.Clear();
+            Search_ShipmentRequiredPeriod.Enddate.Clear();
+            Search_OrderCompletedPeriod.Startdate.Clear();
+            Search_OrderCompletedPeriod.Enddate.Clear();
         }
 
         public override void Search(object sender, EventArgs e)  // 검색
         {
-            if (Search_ShipmentIndexPeriod.Startdate.Text == "    -  -") { main.NoticeMessage = Resources.PeriodError; }
+            if (Search_OrderCompletedPeriod.Startdate.Text == "    -  -") { main.NoticeMessage = Resources.PeriodError; }
             else
             {
-                if (Search_Customer.CodeTextBox.Text.Length > 0)  // 고객명 검색조건 있으면
+                SearchedList = Shipment_AllList;
+                if (Search_Customer.CodeTextBox.Text.Length > 0)  // 고객성명 검색조건 있으면
                 {
                     SearchedList = (from item in SearchedList
                                     where item.Customer_Name == Search_Customer.CodeTextBox.Text
@@ -135,7 +138,6 @@ namespace Team2_ERP
                                     select item).ToList();
                 }
 
-                SearchedList = Shipment_AllList;
                 if (Search_OrderPeriod.Startdate.Text != "    -  -")  //주문일자 검색조건 존재한다면
                 {
                     SearchedList = (from item in SearchedList
@@ -144,25 +146,25 @@ namespace Team2_ERP
                                     select item).ToList();
                 }
 
-                if (Search_ShipmentRequiredDate.Startdate.Text != "    -  -")  // 출하요청일자 검색조건 존재한다면
+                if (Search_ShipmentRequiredPeriod.Startdate.Text != "    -  -")  // 출하요청일자 검색조건 존재한다면
                 {
                     SearchedList = (from item in SearchedList
                                     where item.Shipment_RequiredDate.Date.CompareTo
-                                          (Convert.ToDateTime(Search_ShipmentRequiredDate.Startdate.Text)) >= 0
+                                          (Convert.ToDateTime(Search_ShipmentRequiredPeriod.Startdate.Text)) >= 0
                                           &&
                                           item.Shipment_RequiredDate.Date.CompareTo
-                                          (Convert.ToDateTime(Search_ShipmentRequiredDate.Enddate.Text)) <= 0
+                                          (Convert.ToDateTime(Search_ShipmentRequiredPeriod.Enddate.Text)) <= 0
                                     select item).ToList();
                 }
 
-                if (Search_ShipmentIndexPeriod.Startdate.Text != "    -  -")  // 주문처리일자 검색조건 존재한다면
+                if (Search_OrderCompletedPeriod.Startdate.Text != "    -  -")  // 주문처리일자 검색조건 존재한다면
                 {
                     SearchedList = (from item in SearchedList
                                     where item.OrderCompleted_Date.Date.CompareTo
-                                          (Convert.ToDateTime(Search_ShipmentIndexPeriod.Startdate.Text)) >= 0
+                                          (Convert.ToDateTime(Search_OrderCompletedPeriod.Startdate.Text)) >= 0
                                           &&
                                           item.OrderCompleted_Date.Date.CompareTo
-                                          (Convert.ToDateTime(Search_ShipmentIndexPeriod.Enddate.Text)) <= 0
+                                          (Convert.ToDateTime(Search_OrderCompletedPeriod.Enddate.Text)) <= 0
                                     select item).ToList();
                 }
                 dgv_Shipment.DataSource = SearchedList;
