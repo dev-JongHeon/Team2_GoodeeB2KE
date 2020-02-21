@@ -80,6 +80,9 @@ namespace Team2_ERP
             AddNewColumnToDataGridView(dataGridView1, "우편번호", "zipNo", true, 80);
             AddNewColumnToDataGridView(dataGridView1, "도로명 주소", "roadAddr", true, 300);
             AddNewColumnToDataGridView(dataGridView1, "지번 주소", "jibunAddr", true, 300);
+
+            btnOK.Visible = false;
+            btnCancel.Visible = false;
         }
 
         private void AddNewColumnToDataGridView(DataGridView dgv, string headerText, string dataPropertyName, bool visiblity, int colWidth = 100, DataGridViewContentAlignment textAlign = DataGridViewContentAlignment.MiddleLeft)
@@ -138,11 +141,6 @@ namespace Team2_ERP
             }
             else
                 MessageBox.Show("상세주소를 입력하여 주세요.");
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

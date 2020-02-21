@@ -36,7 +36,10 @@ namespace Team2_VO
         public int Order_State { get; set; }  
 
         [FieldName("총액")]
-        public int TotalPrice { get; set; }  
+        public int TotalPrice { get; set; }
+        
+        [FieldName("주문처리사원")]
+        public string Employees_Name { get; set; }
     }
 
     public class OrderDetail

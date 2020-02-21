@@ -34,6 +34,7 @@
             this.Search_Employee = new Team2_ERP.SearchUserControl();
             this.Search_Period = new Team2_ERP.SearchPeriodControl();
             this.Search_ReceiptPeriod = new Team2_ERP.SearchPeriodControl();
+            this.searchUserControl1 = new Team2_ERP.SearchUserControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -76,6 +77,7 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.searchUserControl1);
             this.panel5.Controls.Add(this.Search_ReceiptPeriod);
             this.panel5.Controls.Add(this.Search_Company);
             this.panel5.Controls.Add(this.Search_Employee);
@@ -138,7 +140,7 @@
             this.Search_Employee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
             this.Search_Employee.ControlType = Team2_ERP.SearchUserControl.Mode.Employee;
             this.Search_Employee.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Search_Employee.Labelname = "사원";
+            this.Search_Employee.Labelname = "요청등록사원";
             this.Search_Employee.Location = new System.Drawing.Point(371, 10);
             this.Search_Employee.Name = "Search_Employee";
             this.Search_Employee.Size = new System.Drawing.Size(312, 25);
@@ -161,6 +163,17 @@
             this.Search_ReceiptPeriod.Name = "Search_ReceiptPeriod";
             this.Search_ReceiptPeriod.Size = new System.Drawing.Size(312, 26);
             this.Search_ReceiptPeriod.TabIndex = 4;
+            // 
+            // searchUserControl1
+            // 
+            this.searchUserControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.searchUserControl1.ControlType = Team2_ERP.SearchUserControl.Mode.Employee;
+            this.searchUserControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchUserControl1.Labelname = "수령사원";
+            this.searchUserControl1.Location = new System.Drawing.Point(371, 41);
+            this.searchUserControl1.Name = "searchUserControl1";
+            this.searchUserControl1.Size = new System.Drawing.Size(312, 25);
+            this.searchUserControl1.TabIndex = 5;
             // 
             // BaljuList_Completed
             // 
@@ -198,5 +211,6 @@
         private SearchUserControl Search_Employee;
         private SearchPeriodControl Search_Period;
         private SearchPeriodControl Search_ReceiptPeriod;
+        private SearchUserControl searchUserControl1;
     }
 }

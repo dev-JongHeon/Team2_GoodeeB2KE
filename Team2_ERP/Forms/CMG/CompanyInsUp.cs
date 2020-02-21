@@ -142,7 +142,7 @@ namespace Team2_ERP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (txtCompanyName.Text.Length > 0 && maskedCompanyNumber.Text.Replace("_", "").Replace("-", "").Trim().Length > 10 && cboCompanyDivision.SelectedValue != null && txtCompanyOwner.Text.Length > 0 && addrCompany.Address1.Length > 0 && addrCompany.Address2.Length > 0)
+            if (txtCompanyName.Text.Trim().Length > 0 && maskedCompanyNumber.Text.Replace("_", "").Replace("-", "").Trim().Length > 10 && cboCompanyDivision.SelectedValue != null && txtCompanyOwner.Text.Trim().Length > 0 && addrCompany.Address1.Trim().Length > 0 && addrCompany.Address2.Trim().Length > 0)
             {
                 if(mode.Equals("Insert"))
                 {

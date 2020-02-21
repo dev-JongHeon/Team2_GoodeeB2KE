@@ -24,8 +24,11 @@ namespace Team2_VO
         [FieldName("발주수령날짜")]
         public DateTime Balju_ReceiptDate { get; set; }
 
-        [FieldName("사원명")]
+        [FieldName("발주요청사원")]
         public string Employees_Name { get; set; }
+
+        [FieldName("수령사원")]
+        public int ReceiptEmployees_Name { get; set; }
 
         [FieldName("총액")]
         public int Total { get; set; }

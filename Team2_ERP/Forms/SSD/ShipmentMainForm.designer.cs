@@ -30,11 +30,11 @@
         {
             this.dgv_Shipment = new System.Windows.Forms.DataGridView();
             this.dgv_ShipmentDetail = new System.Windows.Forms.DataGridView();
-            this.Search_ShipmentRequiredDate = new Team2_ERP.SearchPeriodControl();
+            this.Search_ShipmentRequiredPeriod = new Team2_ERP.SearchPeriodControl();
             this.Search_Employees = new Team2_ERP.SearchUserControl();
             this.Search_OrderPeriod = new Team2_ERP.SearchPeriodControl();
             this.Search_Customer = new Team2_ERP.SearchUserControl();
-            this.Search_ShipmentIndexPeriod = new Team2_ERP.SearchPeriodControl();
+            this.Search_OrderCompletedPeriod = new Team2_ERP.SearchPeriodControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -67,8 +67,8 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.Search_ShipmentIndexPeriod);
-            this.panel5.Controls.Add(this.Search_ShipmentRequiredDate);
+            this.panel5.Controls.Add(this.Search_OrderCompletedPeriod);
+            this.panel5.Controls.Add(this.Search_ShipmentRequiredPeriod);
             this.panel5.Controls.Add(this.Search_Employees);
             this.panel5.Controls.Add(this.Search_OrderPeriod);
             this.panel5.Controls.Add(this.Search_Customer);
@@ -100,14 +100,14 @@
             this.dgv_ShipmentDetail.Size = new System.Drawing.Size(1364, 378);
             this.dgv_ShipmentDetail.TabIndex = 37;
             // 
-            // Search_ShipmentRequiredDate
+            // Search_ShipmentRequiredPeriod
             // 
-            this.Search_ShipmentRequiredDate.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Search_ShipmentRequiredDate.Labelname = "출하요청일자";
-            this.Search_ShipmentRequiredDate.Location = new System.Drawing.Point(12, 72);
-            this.Search_ShipmentRequiredDate.Name = "Search_ShipmentRequiredDate";
-            this.Search_ShipmentRequiredDate.Size = new System.Drawing.Size(312, 25);
-            this.Search_ShipmentRequiredDate.TabIndex = 11;
+            this.Search_ShipmentRequiredPeriod.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Search_ShipmentRequiredPeriod.Labelname = "출하요청일자";
+            this.Search_ShipmentRequiredPeriod.Location = new System.Drawing.Point(12, 72);
+            this.Search_ShipmentRequiredPeriod.Name = "Search_ShipmentRequiredPeriod";
+            this.Search_ShipmentRequiredPeriod.Size = new System.Drawing.Size(312, 25);
+            this.Search_ShipmentRequiredPeriod.TabIndex = 11;
             // 
             // Search_Employees
             // 
@@ -140,14 +140,14 @@
             this.Search_Customer.Size = new System.Drawing.Size(312, 25);
             this.Search_Customer.TabIndex = 8;
             // 
-            // Search_ShipmentIndexPeriod
+            // Search_OrderCompletedPeriod
             // 
-            this.Search_ShipmentIndexPeriod.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Search_ShipmentIndexPeriod.Labelname = "주문처리일자";
-            this.Search_ShipmentIndexPeriod.Location = new System.Drawing.Point(12, 10);
-            this.Search_ShipmentIndexPeriod.Name = "Search_ShipmentIndexPeriod";
-            this.Search_ShipmentIndexPeriod.Size = new System.Drawing.Size(312, 25);
-            this.Search_ShipmentIndexPeriod.TabIndex = 12;
+            this.Search_OrderCompletedPeriod.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Search_OrderCompletedPeriod.Labelname = "주문처리일자";
+            this.Search_OrderCompletedPeriod.Location = new System.Drawing.Point(12, 10);
+            this.Search_OrderCompletedPeriod.Name = "Search_OrderCompletedPeriod";
+            this.Search_OrderCompletedPeriod.Size = new System.Drawing.Size(312, 25);
+            this.Search_OrderCompletedPeriod.TabIndex = 12;
             // 
             // ShipmentMainForm
             // 
@@ -180,10 +180,10 @@
 
         private System.Windows.Forms.DataGridView dgv_Shipment;
         private System.Windows.Forms.DataGridView dgv_ShipmentDetail;
-        private SearchPeriodControl Search_ShipmentRequiredDate;
+        private SearchPeriodControl Search_ShipmentRequiredPeriod;
         private SearchUserControl Search_Employees;
         private SearchPeriodControl Search_OrderPeriod;
         private SearchUserControl Search_Customer;
-        private SearchPeriodControl Search_ShipmentIndexPeriod;
+        private SearchPeriodControl Search_OrderCompletedPeriod;
     }
 }

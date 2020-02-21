@@ -195,7 +195,7 @@
             this.Search_Employees.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
             this.Search_Employees.ControlType = Team2_ERP.SearchUserControl.Mode.Employee;
             this.Search_Employees.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Search_Employees.Labelname = "작업자";
+            this.Search_Employees.Labelname = "등록사원";
             this.Search_Employees.Location = new System.Drawing.Point(537, 19);
             this.Search_Employees.Name = "Search_Employees";
             this.Search_Employees.Size = new System.Drawing.Size(312, 25);

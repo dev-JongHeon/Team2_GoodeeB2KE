@@ -33,6 +33,7 @@
             this.dgv_Order = new System.Windows.Forms.DataGridView();
             this.dgv_OrderDetail = new System.Windows.Forms.DataGridView();
             this.Search_Completed = new Team2_ERP.SearchPeriodControl();
+            this.searchUserControl1 = new Team2_ERP.SearchUserControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -62,6 +63,7 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.searchUserControl1);
             this.panel5.Controls.Add(this.Search_Completed);
             this.panel5.Controls.Add(this.Search_Period);
             this.panel5.Controls.Add(this.Search_Customer);
@@ -122,6 +124,17 @@
             this.Search_Completed.Size = new System.Drawing.Size(312, 25);
             this.Search_Completed.TabIndex = 6;
             // 
+            // searchUserControl1
+            // 
+            this.searchUserControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.searchUserControl1.ControlType = Team2_ERP.SearchUserControl.Mode.Employee;
+            this.searchUserControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchUserControl1.Labelname = "주문처리사원";
+            this.searchUserControl1.Location = new System.Drawing.Point(360, 11);
+            this.searchUserControl1.Name = "searchUserControl1";
+            this.searchUserControl1.Size = new System.Drawing.Size(312, 25);
+            this.searchUserControl1.TabIndex = 7;
+            // 
             // OrderCompleteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -156,5 +169,6 @@
         private System.Windows.Forms.DataGridView dgv_Order;
         private System.Windows.Forms.DataGridView dgv_OrderDetail;
         private SearchPeriodControl Search_Completed;
+        private SearchUserControl searchUserControl1;
     }
 }
