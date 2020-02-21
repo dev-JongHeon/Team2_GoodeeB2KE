@@ -120,11 +120,26 @@ namespace Team2_ERP
         {
             if (e.RowIndex > -1)
             {
+                bool isChecked = true;
                 string Order_ID = dgv_Order.CurrentRow.Cells[1].Value.ToString();
                 List<OrderDetail> OrderDetail_List = (from list_detail in OrderDetail_AllList
                                                       where list_detail.Order_ID == Order_ID
                                                       select list_detail).ToList();
                 dgv_OrderDetail.DataSource = OrderDetail_List;
+                if (Convert.ToBoolean(dgv_Order.Rows[e.RowIndex].Cells[0].Value))  // 체크가 되어있으면
+                    dgv_Order.Rows[e.RowIndex].Cells[0].Value = false;              // 체크풀어줌
+                else
+                    dgv_Order.Rows[e.RowIndex].Cells[0].Value = true;   
+                // 체크 안되어있으면 다시체크
+                foreach (DataGridViewRow row in dgv_Order.Rows)
+                {
+                    if (!Convert.ToBoolean(row.Cells[0].EditedFormattedValue))
+                    {
+                        isChecked = false;
+                        break;
+                    }
+                }
+                headerCheckbox.Checked = isChecked;
             }
         }
 
@@ -137,7 +152,21 @@ namespace Team2_ERP
             }
             try { OrderDetail_AllList = service.GetOrderDetailList(sb.ToString().Trim(',')); }  // 디테일 AllList 갱신
             catch (Exception err) { Log.WriteError(err.Message, err); }
-        } 
+        }
+
+        private bool Check_ExistCheckedRows()
+        {
+            bool check = false;
+            foreach (DataGridViewRow row in dgv_Order.Rows)
+            {
+                if (Convert.ToBoolean(row.Cells[0].Value) == true)  // 체크된 Row가 하나라도 있으면 check에 true 저장 없으면 그대로 false반환
+                {
+                    check = true;
+                    return check;
+                }
+            }
+            return check;
+        }
         #endregion
 
         #region ToolStrip 기능정의
@@ -163,7 +192,7 @@ namespace Team2_ERP
         public override void Modify(object sender, EventArgs e)  // 1.주문완료(수령)처리, 2.Shipment Insert, 3.Work insert,
                                                                  // 4.Produce insert
         {
-            if (dgv_Order.Rows.Count == 0) main.NoticeMessage = Resources.NonData;
+            if (dgv_Order.Rows.Count == 0 || Check_ExistCheckedRows() != true) main.NoticeMessage = Resources.NonData;  // 데이터소스가 0개이거나, 체크된게 하나도 없으면
             else
             {
                 if (MessageBox.Show(Resources.IsOrder, Resources.Notice, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -196,7 +225,7 @@ namespace Team2_ERP
 
         public override void Delete(object sender, EventArgs e)  // 삭제
         {
-            if (dgv_Order.Rows.Count == 0) main.NoticeMessage = Resources.NonData;
+            if (dgv_Order.Rows.Count == 0 || Check_ExistCheckedRows() != true) main.NoticeMessage = Resources.NonData;  // 데이터소스가 0개이거나, 체크된게 하나도 없으면
             else
             {
                 if (MessageBox.Show(Resources.IsCancelOrder, Resources.Notice, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -318,6 +347,8 @@ namespace Team2_ERP
             main.수정ToolStripMenuItem.Visible = flag;
             main.삭제ToolStripMenuItem.Visible = flag;
             main.인쇄ToolStripMenuItem.Visible = flag;
+            dgv_Order.Columns[0].Visible = flag;
+            headerCheckbox.Visible = flag;
         }
 
         private void OrderMainForm_Activated(object sender, EventArgs e)
