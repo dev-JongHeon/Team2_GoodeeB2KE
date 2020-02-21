@@ -28,7 +28,7 @@ namespace Team2_VO
         public string Employees_Name { get; set; }
 
         [FieldName("수령사원")]
-        public int ReceiptEmployees_Name { get; set; }
+        public string ReceiptEmployees_Name { get; set; }
 
         [FieldName("총액")]
         public int Total { get; set; }
