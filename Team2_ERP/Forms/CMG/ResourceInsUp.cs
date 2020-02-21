@@ -79,7 +79,7 @@ namespace Team2_ERP
                 Log.WriteError(err.Message, err);
             }
         }
-        
+
         //원자재가 보관될 창고목록과 원자재가 속하는 카테고리 목록과 어느 거래처와 거래하는지 설정하기 위해 거래처 목록을 콤보바인딩
         private void InitCombo()
         {
@@ -98,7 +98,7 @@ namespace Team2_ERP
                 Log.WriteError(err.Message, err);
             }
 
-            if(mode.Equals("Update"))
+            if (mode.Equals("Update"))
             {
                 cboResourceCategory.SelectedValue = category;
                 cboCompany.SelectedValue = cID.ToString("0000");
@@ -157,22 +157,29 @@ namespace Team2_ERP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (txtResourceName.Text.Length > 0 && cboResourceWarehouse.SelectedValue != null && txtResourceMoney.Text.Length > 0 && numResourceNum.Value != 0 && numSafety.Value != 0 && cboResourceCategory.SelectedValue != null)
+            if (Convert.ToInt32(txtResourceMoney.Text) > 0)
             {
-                if (mode.Equals("Insert"))
+                if (txtResourceName.Text.Trim().Length > 0 && cboResourceWarehouse.SelectedValue != null && txtResourceMoney.Text.Trim().Length > 0 && numResourceNum.Value != 0 && numSafety.Value != 0 && cboResourceCategory.SelectedValue != null && cboCompany.SelectedValue != null)
                 {
-                    InsertResource();
-                    DialogResult = MessageBox.Show(Resources.AddDone, Resources.AddDone, MessageBoxButtons.OK);
+                    if (mode.Equals("Insert"))
+                    {
+                        InsertResource();
+                        DialogResult = MessageBox.Show(Resources.AddDone, Resources.AddDone, MessageBoxButtons.OK);
+                    }
+                    else
+                    {
+                        UpdateResource();
+                        DialogResult = MessageBox.Show(Resources.ModDone, Resources.ModDone, MessageBoxButtons.OK);
+                    }
                 }
                 else
                 {
-                    UpdateResource();
-                    DialogResult = MessageBox.Show(Resources.ModDone, Resources.ModDone, MessageBoxButtons.OK);
+                    MessageBox.Show(Resources.isEssential, Resources.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else
             {
-                MessageBox.Show(Resources.isEssential, Resources.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Resources.PriceError, Resources.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }
