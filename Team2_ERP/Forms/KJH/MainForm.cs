@@ -847,7 +847,7 @@ namespace Team2_ERP
 
         private void pictureBox1_DoubleClick(object sender, EventArgs e)
         {
-            Process.Start("http://gdb2keeis.azurewebsites.net/");
+            Process.Start("http://gdb2keshop.azurewebsites.net/");
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
