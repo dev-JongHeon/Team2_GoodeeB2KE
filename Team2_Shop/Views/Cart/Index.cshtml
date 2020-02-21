@@ -1,8 +1,14 @@
 ﻿@model Team2_Shop.Models.CartIndexViewModel
+@using System.Globalization
+
+@{
+    NumberFormatInfo nf = new CultureInfo("ko-KR", false).NumberFormat;
+}
 
 @{
     ViewBag.Title = "Index";
 }
+
 
 <h2>장바구니</h2>
 
@@ -24,9 +30,9 @@
                 <td> <img src="data:image;base64,@System.Convert.ToBase64String(line.Product.Product_Image)" class="img-thumbnail">   </td>
                 <td class="text-left">@line.Product.Product_Name</td>
                 <td class="text-center">@line.Qty</td>
-                <td class="text-right">@line.Product.Product_Price.ToString("c")</td>
+                <td class="text-right">@line.Product.Product_Price.ToString("c", nf)</td>
                 <td class="text-right">
-                    @((line.Qty * line.Product.Product_Price).ToString("c"))
+                    @((line.Qty * line.Product.Product_Price).ToString("c", nf))
                 </td>
                 <td>
 

@@ -1,5 +1,9 @@
 ﻿@model Team2_Shop.Models.Cart
+@using System.Globalization
 
+@{
+    NumberFormatInfo nf = new CultureInfo("ko-KR", false).NumberFormat;
+}
 
 <!-- 카트에 몇개 담겨 있는지 표시해주는 토글-->
 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -12,11 +16,11 @@
     <li class="header">
         <div class="list-group-item-text">
             <div class="text-right">
-               장바구니 담긴 수량 &nbsp;:&nbsp; <b>@Model.Lines.Sum(x => x.Qty)&nbsp; 개</b>
+                장바구니 담긴 수량 &nbsp;:&nbsp; <b>@Model.Lines.Sum(x => x.Qty)&nbsp; 개</b>
             </div>
             <br />
             <div class="text-right">
-                총 결제 예상 금액 &nbsp;:&nbsp; <b>@Model.ComputeTotalValue().ToString("#,##0") &nbsp;원</b>
+                총 결제 예상 금액 &nbsp;:&nbsp; <b>@Model.ComputeTotalValue().ToString("#,##0", nf) &nbsp;원</b>
             </div>
         </div>
     </li>
