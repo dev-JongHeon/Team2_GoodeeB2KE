@@ -162,7 +162,7 @@ namespace Team2_ERP
             bool check = false;
             foreach (DataGridViewRow row in dgv_Order.Rows)
             {
-                if (Convert.ToBoolean(row.Cells[0].Value) == true)  // 체크된 Row가 하나라도 있으면 check에 true 저장 없으면 그대로 false반환
+                if (Convert.ToBoolean(row.Cells[0].EditedFormattedValue))  // 체크된 Row가 하나라도 있으면 check에 true 저장 없으면 그대로 false반환
                 {
                     check = true;
                     return check;
