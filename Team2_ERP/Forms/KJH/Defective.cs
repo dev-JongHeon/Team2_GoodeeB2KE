@@ -175,7 +175,6 @@ namespace Team2_ERP
         /// </summary>
         private void SettingDgvDefective()
         {
-
             UtilClass.SettingDgv(dgvDefective);
             UtilClass.AddNewColum(dgvDefective, "생산실적번호", "Performance_ID", true, 130);
             UtilClass.AddNewColum(dgvDefective, "공장번호", "Factory_ID", false);

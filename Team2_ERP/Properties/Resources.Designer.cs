@@ -772,6 +772,15 @@ namespace Team2_ERP.Properties {
         }
         
         /// <summary>
+        ///   업데이트과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MsgBoxTitleUpdate {
+            get {
+                return ResourceManager.GetString("MsgBoxTitleUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   경고과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string MsgBoxTitleWarn {
@@ -901,6 +910,16 @@ namespace Team2_ERP.Properties {
         internal static string ProgramExit {
             get {
                 return ResourceManager.GetString("ProgramExit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   최신버젼의 업데이트가 있습니다.
+        ///업데이트 적용을 위해 프로그램을 재시작합니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string ProgramUpdateMsg {
+            get {
+                return ResourceManager.GetString("ProgramUpdateMsg", resourceCulture);
             }
         }
         

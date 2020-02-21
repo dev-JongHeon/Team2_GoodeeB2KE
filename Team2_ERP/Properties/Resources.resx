@@ -498,4 +498,13 @@
     <value>처리완료</value>
     <comment>선도 - 일련의 처리들이 완료되었을 때 메시지박스의 메시지</comment>
   </data>
+  <data name="MsgBoxTitleUpdate" xml:space="preserve">
+    <value>업데이트</value>
+    <comment>김종헌 메세지박스 업데이트 제목</comment>
+  </data>
+  <data name="ProgramUpdateMsg" xml:space="preserve">
+    <value>최신버젼의 업데이트가 있습니다.
+업데이트 적용을 위해 프로그램을 재시작합니다.</value>
+    <comment>김종헌 업데이트메세지</comment>
+  </data>
 </root>
