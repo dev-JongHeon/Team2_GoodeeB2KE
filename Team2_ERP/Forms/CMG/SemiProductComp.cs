@@ -24,6 +24,7 @@ namespace Team2_ERP
         string mode = string.Empty;
         string pCode = string.Empty;
         string pCategory = string.Empty;
+        int wID = 0;
 
         public SemiProductComp(EditMode editMode, ProductVO item)
         {
@@ -43,6 +44,7 @@ namespace Team2_ERP
                 pCode = item.Product_ID;
                 pCategory = item.Product_Category;
                 txtSemiproductName.Text = item.Product_Name;
+                wID = item.Warehouse_ID;
                 numSafety.Value = item.Product_Safety;
             }
         }
@@ -189,6 +191,7 @@ namespace Team2_ERP
             if(mode.Equals("Update"))
             {
                 UpdateInfoLoad();
+                cboWarehouse.SelectedValue = wID.ToString("0000");
             }
         }
 
