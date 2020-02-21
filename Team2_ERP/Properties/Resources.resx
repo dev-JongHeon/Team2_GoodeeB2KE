@@ -507,4 +507,20 @@
 업데이트 적용을 위해 프로그램을 재시작합니다.</value>
     <comment>김종헌 업데이트메세지</comment>
   </data>
+  <data name="DelResigndateError" xml:space="preserve">
+    <value>퇴사한 직원은 삭제할 수 없습니다.</value>
+    <comment>최명근 퇴사직원삭제 오류메세지</comment>
+  </data>
+  <data name="ModResigndateError" xml:space="preserve">
+    <value>퇴사한 직원은 수정할 수 없습니다.</value>
+    <comment>최명근 퇴사직원수정 오류메세지</comment>
+  </data>
+  <data name="PriceError" xml:space="preserve">
+    <value>가격은 0원 이하로 설정하실 수 없습니다.</value>
+    <comment>최명근 가격설정 오류메세지</comment>
+  </data>
+  <data name="rdoWorkError" xml:space="preserve">
+    <value>재직여부를 선택하셔야 합니다.</value>
+    <comment>최명근 재직여부 설정메세지</comment>
+  </data>
 </root>

@@ -58,7 +58,7 @@ namespace Team2_ERP
                 Log.WriteError(err.Message, err);
             }
 
-            if(rdoWork.Checked)
+            if(!rdoWork.Checked)
             {
                 list = (from item in list where item.Employees_DeletedYN == true select item).ToList();
             }
