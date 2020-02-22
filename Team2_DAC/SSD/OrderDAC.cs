@@ -105,7 +105,8 @@ namespace Team2_DAC
                 {
                     StringBuilder sb = new StringBuilder();
                     sb.Append("SELECT Order_ID, Customer_UserID, Customer_Name, Order_Date, Shipment_DoneDate, TotalPrice ");
-                    sb.Append("FROM   SalesStatus");
+                    sb.Append("FROM   SalesStatus ");
+                    sb.Append("WHERE Customer_UserID NOT IN ('Admin')");
                     
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;

@@ -43,7 +43,7 @@ namespace Team2_ERP
         public enum Mode
         {
             Employee, DepOperation, DepMaterial, DepSales, DepProd1, DepProd2, Defective, Product, Downtime, Company,
-            Factory, Line, Meterial, SemiProduct, Customer, Warehouse, Department, ProductCategory,Worker,Handle,AllProduct
+            Factory, Line, Meterial, SemiProduct, Customer, Warehouse, Department, ProductCategory,Worker,Handle,AllProduct,WorkListWorker, DowntimeWorker, DefectiveWorker, InOutWorker, semiInOutWokrer, baljureqWorker, baljuacceptWorker
         };
 
         Mode Modes = Mode.Employee;
@@ -123,6 +123,28 @@ namespace Team2_ERP
                     case Mode.AllProduct:
                         this.CodeLabel.Text = "품목";
                         break;
+                    case Mode.WorkListWorker:
+                        this.CodeLabel.Text = "작업지시자";
+                        break;
+                    case Mode.DowntimeWorker:
+                        this.CodeLabel.Text = "작업자";
+                        break;
+                    case Mode.DefectiveWorker:
+                        this.CodeLabel.Text = "작업자";
+                        break;
+                    case Mode.InOutWorker:
+                        this.CodeLabel.Text = "등록사원";
+                        break;
+                    case Mode.semiInOutWokrer:
+                        this.CodeLabel.Text = "등록사원";
+                        break;
+                    case Mode.baljureqWorker:
+                        this.CodeLabel.Text = "요청등록사원";
+                        break;
+                    case Mode.baljuacceptWorker:
+                        this.CodeLabel.Text = "수령사원";
+                        break;
+                        
                 }
             }
         }

@@ -167,7 +167,7 @@
             // searchUserControl1
             // 
             this.searchUserControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchUserControl1.ControlType = Team2_ERP.SearchUserControl.Mode.Employee;
+            this.searchUserControl1.ControlType = Team2_ERP.SearchUserControl.Mode.baljuacceptWorker;
             this.searchUserControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.searchUserControl1.Labelname = "수령사원";
             this.searchUserControl1.Location = new System.Drawing.Point(371, 41);

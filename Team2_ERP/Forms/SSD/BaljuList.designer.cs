@@ -145,7 +145,7 @@
             // Search_Employee
             // 
             this.Search_Employee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.Search_Employee.ControlType = Team2_ERP.SearchUserControl.Mode.Employee;
+            this.Search_Employee.ControlType = Team2_ERP.SearchUserControl.Mode.baljureqWorker;
             this.Search_Employee.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Search_Employee.Labelname = "요청등록사원";
             this.Search_Employee.Location = new System.Drawing.Point(23, 73);

@@ -115,7 +115,7 @@
             // 
             this.Search_Period.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Search_Period.Labelname = "처리일자";
-            this.Search_Period.Location = new System.Drawing.Point(185, 21);
+            this.Search_Period.Location = new System.Drawing.Point(190, 21);
             this.Search_Period.Name = "Search_Period";
             this.Search_Period.Size = new System.Drawing.Size(312, 35);
             this.Search_Period.TabIndex = 4;
@@ -126,7 +126,7 @@
             this.Search_Material.ControlType = Team2_ERP.SearchUserControl.Mode.Meterial;
             this.Search_Material.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Search_Material.Labelname = "원자재명";
-            this.Search_Material.Location = new System.Drawing.Point(185, 82);
+            this.Search_Material.Location = new System.Drawing.Point(190, 82);
             this.Search_Material.Name = "Search_Material";
             this.Search_Material.Size = new System.Drawing.Size(312, 25);
             this.Search_Material.TabIndex = 6;
@@ -137,7 +137,7 @@
             this.Search_Warehouse.ControlType = Team2_ERP.SearchUserControl.Mode.Warehouse;
             this.Search_Warehouse.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Search_Warehouse.Labelname = "창고명";
-            this.Search_Warehouse.Location = new System.Drawing.Point(185, 51);
+            this.Search_Warehouse.Location = new System.Drawing.Point(190, 51);
             this.Search_Warehouse.Name = "Search_Warehouse";
             this.Search_Warehouse.Size = new System.Drawing.Size(312, 25);
             this.Search_Warehouse.TabIndex = 5;
@@ -183,7 +183,7 @@
             this.Group_Rdo.Controls.Add(this.rdo_In);
             this.Group_Rdo.Controls.Add(this.rdo_Out);
             this.Group_Rdo.Controls.Add(this.rdo_All);
-            this.Group_Rdo.Location = new System.Drawing.Point(30, 20);
+            this.Group_Rdo.Location = new System.Drawing.Point(35, 20);
             this.Group_Rdo.Name = "Group_Rdo";
             this.Group_Rdo.Size = new System.Drawing.Size(137, 86);
             this.Group_Rdo.TabIndex = 61;
@@ -193,10 +193,10 @@
             // Search_Employees
             // 
             this.Search_Employees.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.Search_Employees.ControlType = Team2_ERP.SearchUserControl.Mode.Employee;
+            this.Search_Employees.ControlType = Team2_ERP.SearchUserControl.Mode.InOutWorker;
             this.Search_Employees.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Search_Employees.Labelname = "등록사원";
-            this.Search_Employees.Location = new System.Drawing.Point(531, 21);
+            this.Search_Employees.Location = new System.Drawing.Point(536, 21);
             this.Search_Employees.Name = "Search_Employees";
             this.Search_Employees.Size = new System.Drawing.Size(312, 25);
             this.Search_Employees.TabIndex = 72;
