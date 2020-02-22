@@ -53,7 +53,7 @@ namespace Team2_DAC
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     StringBuilder sb = new StringBuilder();
-                    sb.Append("SELECT Balju_ID, Company_ID, Company_Name, Balju_Date,                                                                        Balju_ReceiptDate, Employees_Name, Total, Balju_DeletedYN ");
+                    sb.Append("SELECT Balju_ID, Company_ID, Company_Name, Balju_Date, Balju_ReceiptDate, Employees_Name, Total, ReceiptEmployees_Name ");
                     sb.Append("FROM   BaljuList_Completed_Top ");
                     sb.Append("ORDER BY Balju_ID DESC ");
 

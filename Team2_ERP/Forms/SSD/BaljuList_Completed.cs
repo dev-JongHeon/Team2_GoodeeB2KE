@@ -41,18 +41,19 @@ namespace Team2_ERP
             UtilClass.SettingDgv(dgv_BaljuCompleted);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "발주지시번호", "Balju_ID", true, 130);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "거래처코드", "Company_ID", true, 110);
-            UtilClass.AddNewColum(dgv_BaljuCompleted, "거래처명칭", "Company_Name", true, 300);
+            UtilClass.AddNewColum(dgv_BaljuCompleted, "거래처명칭", "Company_Name", true, 200);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "발주요청일시", "Balju_Date", true, 170);
-            UtilClass.AddNewColum(dgv_BaljuCompleted, "등록사원", "Employees_Name", true, 200);
+            UtilClass.AddNewColum(dgv_BaljuCompleted, "요청등록사원", "Employees_Name", true, 150);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "수령일시", "Balju_ReceiptDate", true, 170);
+            UtilClass.AddNewColum(dgv_BaljuCompleted, "수령사원", "ReceiptEmployees_Name", true, 150);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "총액", "Total", true, 170);
             UtilClass.AddNewColum(dgv_BaljuCompleted, "삭제여부", "Balju_DeletedYN", false);
             dgv_BaljuCompleted.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_BaljuCompleted.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
             dgv_BaljuCompleted.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_BaljuCompleted.Columns[5].DefaultCellStyle.Format = "yyyy-MM-dd   HH:mm";
-            dgv_BaljuCompleted.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgv_BaljuCompleted.Columns[6].DefaultCellStyle.Format = "#,#0원";
+            dgv_BaljuCompleted.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv_BaljuCompleted.Columns[7].DefaultCellStyle.Format = "#,#0원";
 
             try { BaljuCompleted_AllList = service.GetBalju_CompletedList(); }// 발주리스트 갱신
             catch (Exception err) { Log.WriteError(err.Message, err); }
@@ -83,14 +84,17 @@ namespace Team2_ERP
 
         private void GetBaljuCompletedDetail_List()  // 현재 위의 Dgv의 Row수 따라 그에맞는 DetailList 가져옴
         {
-            StringBuilder sb = new StringBuilder();
-            foreach (DataGridViewRow row in dgv_BaljuCompleted.Rows)
+            if (dgv_BaljuCompleted.Rows.Count > 0)
             {
-                sb.Append($"'{row.Cells[0].Value.ToString()}',");
-            }
+                StringBuilder sb = new StringBuilder();
+                foreach (DataGridViewRow row in dgv_BaljuCompleted.Rows)
+                {
+                    sb.Append($"'{row.Cells[0].Value.ToString()}',");
+                }
 
-            try { BaljuDetail_AllList = service.GetBalju_DetailList(sb.ToString().Trim(',')); }  // 디테일 AllList 갱신
-            catch (Exception err) { Log.WriteError(err.Message, err); }
+                try { BaljuDetail_AllList = service.GetBalju_DetailList(sb.ToString().Trim(',')); }  // 디테일 AllList 갱신
+                catch (Exception err) { Log.WriteError(err.Message, err); } 
+            }
         }
         #endregion
 

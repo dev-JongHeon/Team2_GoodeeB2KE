@@ -68,7 +68,6 @@
             // 
             this.btnCancel.FlatAppearance.BorderSize = 0;
             this.btnCancel.TabIndex = 11;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOK
             // 

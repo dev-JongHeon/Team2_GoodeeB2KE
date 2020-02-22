@@ -143,14 +143,14 @@ namespace Team2_POP
 
 
             //그리드뷰 포멧 관련
-            dgvWork.Columns[1].DefaultCellStyle.Format = "yyyy-MM-dd";
-            dgvWork.Columns[2].DefaultCellStyle.Format = "yyyy-MM-dd";
-            dgvWork.Columns[7].DefaultCellStyle.Format = "yyyy-MM-dd";
+            dgvWork.Columns[1].DefaultCellStyle.Format = Resources.FormateDate;
+            dgvWork.Columns[2].DefaultCellStyle.Format = Resources.FormateDate;
+            dgvWork.Columns[7].DefaultCellStyle.Format = Resources.FormateDate;
 
-            dgvProduce.Columns[2].DefaultCellStyle.Format = "yyyy-MM-dd";
-            dgvProduce.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd";
+            dgvProduce.Columns[2].DefaultCellStyle.Format = Resources.FormateDate;
+            dgvProduce.Columns[3].DefaultCellStyle.Format = Resources.FormateDate;
 
-            dgvPerformance.Columns[1].DefaultCellStyle.Format = "yyyy-MM-dd";
+            dgvPerformance.Columns[1].DefaultCellStyle.Format = Resources.FormateDate;
             dgvPerformance.Columns[5].DefaultCellStyle.Format = "HH:mm:ss";
             dgvPerformance.Columns[6].DefaultCellStyle.Format = "HH:mm:ss";
 

@@ -37,6 +37,7 @@ namespace Team2_ERP
 
             UtilClass.AddNewColum(dgvFactory, "공장코드", "Factory_ID", true, 100);
             UtilClass.AddNewColum(dgvFactory, "공장이름", "Factory_Name", true, 100);
+            UtilClass.AddNewColum(dgvFactory, "공장구분ID", "Factory_Division", false, 100);
             UtilClass.AddNewColum(dgvFactory, "공장구분", "Factory_Division_Name", true, 100);
             UtilClass.AddNewColum(dgvFactory, "전화번호", "Factory_Number", true, 100);
             UtilClass.AddNewColum(dgvFactory, "FAX번호", "Factory_Fax", true, 100);
@@ -49,6 +50,7 @@ namespace Team2_ERP
 
             UtilClass.AddNewColum(dgvLine, "공정코드", "Line_ID", true, 100);
             UtilClass.AddNewColum(dgvLine, "라인이름", "Line_Name", true, 100);
+            UtilClass.AddNewColum(dgvLine, "공장ID", "Factory_ID", true, 100);
             UtilClass.AddNewColum(dgvLine, "공장이름", "Factory_Name", true, 100);
             UtilClass.AddNewColum(dgvLine, "비가동상태", "Line_Downtome_Name", true, 100);
 
@@ -284,15 +286,16 @@ namespace Team2_ERP
 
             if (e.RowIndex < dgvFactory.Rows.Count && e.RowIndex > -1)
             {
-                if (dgvFactory.Rows[e.RowIndex].Cells[4].Value == null)
+                if (dgvFactory.Rows[e.RowIndex].Cells[5].Value == null)
                 {
                     factoryItem = new FactoryVO()
                     {
                         Factory_ID = Convert.ToInt32(dgvFactory.Rows[e.RowIndex].Cells[0].Value),
                         Factory_Name = dgvFactory.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                        Factory_Number = dgvFactory.Rows[e.RowIndex].Cells[3].Value.ToString(),
-                        Factory_AddrNumber = dgvFactory.Rows[e.RowIndex].Cells[5].Value.ToString(),
-                        Factory_Address = dgvFactory.Rows[e.RowIndex].Cells[6].Value.ToString()
+                        Factory_Division = Convert.ToInt32(dgvFactory.Rows[e.RowIndex].Cells[2].Value),
+                        Factory_Number = dgvFactory.Rows[e.RowIndex].Cells[4].Value.ToString(),
+                        Factory_AddrNumber = dgvFactory.Rows[e.RowIndex].Cells[6].Value.ToString(),
+                        Factory_Address = dgvFactory.Rows[e.RowIndex].Cells[7].Value.ToString()
                     };
                 }
                 else
@@ -301,10 +304,11 @@ namespace Team2_ERP
                     {
                         Factory_ID = Convert.ToInt32(dgvFactory.Rows[e.RowIndex].Cells[0].Value),
                         Factory_Name = dgvFactory.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                        Factory_Number = dgvFactory.Rows[e.RowIndex].Cells[3].Value.ToString(),
-                        Factory_Fax = dgvFactory.Rows[e.RowIndex].Cells[4].Value.ToString(),
-                        Factory_AddrNumber = dgvFactory.Rows[e.RowIndex].Cells[5].Value.ToString(),
-                        Factory_Address = dgvFactory.Rows[e.RowIndex].Cells[6].Value.ToString()
+                        Factory_Division = Convert.ToInt32(dgvFactory.Rows[e.RowIndex].Cells[2].Value),
+                        Factory_Number = dgvFactory.Rows[e.RowIndex].Cells[4].Value.ToString(),
+                        Factory_Fax = dgvFactory.Rows[e.RowIndex].Cells[5].Value.ToString(),
+                        Factory_AddrNumber = dgvFactory.Rows[e.RowIndex].Cells[6].Value.ToString(),
+                        Factory_Address = dgvFactory.Rows[e.RowIndex].Cells[7].Value.ToString()
                     };
                 }
             }
@@ -319,7 +323,8 @@ namespace Team2_ERP
                 lineItem = new LineVO()
                 {
                     Line_ID = Convert.ToInt32(dgvLine.Rows[e.RowIndex].Cells[0].Value),
-                    Line_Name = dgvLine.Rows[e.RowIndex].Cells[1].Value.ToString()
+                    Line_Name = dgvLine.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                    Factory_ID = Convert.ToInt32(dgvLine.Rows[e.RowIndex].Cells[2].Value)
                 };
             }
         }

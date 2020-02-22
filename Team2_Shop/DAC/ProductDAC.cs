@@ -144,8 +144,8 @@ namespace Team2_Shop.DAC
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     StringBuilder qrySelect = new StringBuilder();
-                    qrySelect.Append(" INSERT INTO Customer ([Customer_UserID], [Customer_PWD], [Customer_Name], [Customer_Phone], [Customer_Email], [Customer_Birth], [Customer_Address1], [Customer_Address2], [Customer_DeletedYN]) ");
-                    qrySelect.Append(" VALUES (@CustomerID, @CustomerPWD, @CustomerName, @CustomerPhone, @CustomerEmail, @CustomerBirth, @CustomerAddr1, @CustomerAddr2, 0)  ");
+                    qrySelect.Append(" INSERT INTO Customer ([Customer_UserID], [Customer_PWD], [Customer_Name], [Customer_Phone], [Customer_Email], [Customer_Birth], [Customer_Address1], [Customer_Address2], [Customer_DeletedYN], Customer_RegDate) ");
+                    qrySelect.Append(" VALUES (@CustomerID, @CustomerPWD, @CustomerName, @CustomerPhone, @CustomerEmail, @CustomerBirth, @CustomerAddr1, @CustomerAddr2, 0, (select dbo.GetKSTDate())) ");
 
 
                     cmd.Connection = conn;

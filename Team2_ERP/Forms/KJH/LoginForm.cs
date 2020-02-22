@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Team2_ERP.Properties;
 using Team2_VO;
 
 namespace Team2_ERP
@@ -314,7 +315,7 @@ namespace Team2_ERP
                     if (doUpdate)
                     {
                         AppDeploy.Update();
-                        MessageBox.Show("최신버젼의 업데이트가 있습니다. 업데이트 적용을 위해 프로그램을 재시작합니다.");
+                        MessageBox.Show(Resources.ProgramUpdateMsg,Resources.MsgBoxTitleUpdate);
                         this.Close();
                         Application.Restart();
                     }

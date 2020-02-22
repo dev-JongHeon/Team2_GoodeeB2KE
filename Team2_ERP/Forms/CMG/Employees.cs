@@ -58,15 +58,15 @@ namespace Team2_ERP
                 Log.WriteError(err.Message, err);
             }
 
-            if(rdoWork.Checked)
+            if(!rdoWork.Checked)
             {
-                list = (from item in list where item.Employees_DeletedYN == true select item).ToList();
+                rdoList = (from item in list where item.Employees_DeletedYN == true select item).ToList();
             }
             else
             {
-                list = (from item in list where item.Employees_DeletedYN == false select item).ToList();
+                rdoList = (from item in list where item.Employees_DeletedYN == false select item).ToList();
             }
-            dgvEmployee.DataSource = list;
+            dgvEmployee.DataSource = rdoList;
             dgvEmployee.CurrentCell = null;
         }
 
@@ -187,7 +187,7 @@ namespace Team2_ERP
             if (rdoWork.Checked || rdoResign.Checked)
             {
                 LoadGridView();
-                searchList = list;
+                searchList = rdoList;
 
                 //부서 검색
                 if (searchDepartmentName.CodeTextBox.Tag != null)
@@ -242,12 +242,16 @@ namespace Team2_ERP
             //재직자는 퇴사일은 검색할 수 없게 한다.
             if (rdoWork.Checked)
             {
+                searchResigndate.Startdate.Clear();
+                searchResigndate.Enddate.Clear();
                 searchResigndate.Visible = false;
                 searchHiredate.Visible = true;
             }
             //퇴사자는 입사일은 검색할 수 없게 한다.
             else
             {
+                searchHiredate.Startdate.Clear();
+                searchHiredate.Enddate.Clear();
                 searchResigndate.Visible = true;
                 searchHiredate.Visible = false;
             }

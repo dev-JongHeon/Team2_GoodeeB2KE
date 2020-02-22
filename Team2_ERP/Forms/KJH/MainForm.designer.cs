@@ -464,16 +464,16 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.87465F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.12535F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.18307F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.81693F));
             this.tableLayoutPanel1.Controls.Add(this.panel17, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel16, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(1262, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(1143, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(318, 22);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(437, 22);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // panel17
@@ -481,9 +481,9 @@
             this.panel17.Controls.Add(this.lblUserDept);
             this.panel17.Controls.Add(this.label5);
             this.panel17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel17.Location = new System.Drawing.Point(177, 3);
+            this.panel17.Location = new System.Drawing.Point(266, 3);
             this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(138, 16);
+            this.panel17.Size = new System.Drawing.Size(168, 16);
             this.panel17.TabIndex = 1;
             // 
             // lblUserDept
@@ -519,7 +519,7 @@
             this.panel16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel16.Location = new System.Drawing.Point(3, 3);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(168, 16);
+            this.panel16.Size = new System.Drawing.Size(257, 16);
             this.panel16.TabIndex = 0;
             // 
             // lblUserName
@@ -1302,6 +1302,7 @@
             this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip;

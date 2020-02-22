@@ -18,7 +18,7 @@ namespace Team2_VO
         public DateTime Order_Date { get; set; }  // 주문일시
 
         [FieldName("주문처리날짜")]
-        public DateTime OrderCompleted_Date { get; set; }  // 주문처리일시
+        public DateTime? OrderCompleted_Date { get; set; }  // 주문처리일시
 
         [FieldName("주문자ID")]
         public string Customer_userID { get; set; }  // 고객ID

@@ -92,7 +92,7 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Balju, "거래처코드", "Company_ID", true, 110);
             UtilClass.AddNewColum(dgv_Balju, "거래처명칭", "Company_Name", true, 300);
             UtilClass.AddNewColum(dgv_Balju, "발주요청일시", "Balju_Date", true, 170);
-            UtilClass.AddNewColum(dgv_Balju, "등록사원", "Employees_Name", true, 200);
+            UtilClass.AddNewColum(dgv_Balju, "요청등록사원", "Employees_Name", true, 200);
             UtilClass.AddNewColum(dgv_Balju, "총액", "Total", true, 170);
             UtilClass.AddNewColum(dgv_Balju, "삭제여부", "Balju_DeletedYN", false);
 
@@ -120,6 +120,7 @@ namespace Team2_ERP
         {
             if (e.RowIndex > -1)
             {
+                bool isChecked = true;
                 string Balju_ID = dgv_Balju.CurrentRow.Cells[1].Value.ToString();
                 List<BaljuDetail> BaljuDetail_List = (from list_detail in BaljuDetail_AllList
                                                       where list_detail.Balju_ID == Balju_ID
@@ -130,19 +131,32 @@ namespace Team2_ERP
                     dgv_Balju.Rows[e.RowIndex].Cells[0].Value = false;              // 체크풀어줌
                 else
                     dgv_Balju.Rows[e.RowIndex].Cells[0].Value = true;               // 체크 안되어있으면 다시체크
+                
+                foreach (DataGridViewRow row in dgv_Balju.Rows)
+                {
+                    if (!Convert.ToBoolean(row.Cells[0].EditedFormattedValue))
+                    {
+                        isChecked = false;
+                        break;
+                    }
+                }
+                headerCheckbox.Checked = isChecked;
             }
         }
 
         private void GetBaljuDetail_List()  // 현재 Dgv에 맞추어 DetailList 가져옴
         {
-            StringBuilder sb = new StringBuilder();
-            foreach (DataGridViewRow row in dgv_Balju.Rows)
+            if (dgv_Balju.Rows.Count > 0)
             {
-                sb.Append($"'{row.Cells[1].Value.ToString()}',");
-            }
+                StringBuilder sb = new StringBuilder();
+                foreach (DataGridViewRow row in dgv_Balju.Rows)
+                {
+                    sb.Append($"'{row.Cells[1].Value.ToString()}',");
+                }
 
-            try { BaljuDetail_AllList = service.GetBalju_DetailList(sb.ToString().Trim(',')); }  // BaljuDetail_AllList 갱신
-            catch (Exception err) { Log.WriteError(err.Message, err); }
+                try { BaljuDetail_AllList = service.GetBalju_DetailList(sb.ToString().Trim(',')); }  // BaljuDetail_AllList 갱신
+                catch (Exception err) { Log.WriteError(err.Message, err); } 
+            }
         }
 
         private bool Check_ExistCheckedRows()
@@ -150,7 +164,7 @@ namespace Team2_ERP
             bool check = false;
             foreach (DataGridViewRow row in dgv_Balju.Rows)
             {
-                if (Convert.ToBoolean(row.Cells[0].Value) == true)  // 체크된 Row가 하나라도 있으면 check에 true 저장 없으면 그대로 false반환
+                if (Convert.ToBoolean(row.Cells[0].EditedFormattedValue))  // 체크된 Row가 하나라도 있으면 check에 true 저장 없으면 그대로 false반환
                 { 
                     check = true;
                     return check;
@@ -349,6 +363,7 @@ namespace Team2_ERP
             main.수정ToolStripMenuItem.ToolTipText = "처리(Ctrl+M)";
             main.NoticeMessage = notice;
         }
+   
 
         public override void MenuStripONOFF(bool flag)
         {
@@ -356,6 +371,10 @@ namespace Team2_ERP
             main.수정ToolStripMenuItem.Visible = flag;
             main.삭제ToolStripMenuItem.Visible = flag;
             main.인쇄ToolStripMenuItem.Visible = flag;
+            dgv_Balju.Columns[0].Visible = flag;
+            headerCheckbox.Visible = flag;
+
+
         }
 
         private void BaljuList_Deactivate(object sender, EventArgs e)

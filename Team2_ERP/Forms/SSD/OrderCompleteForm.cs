@@ -43,9 +43,10 @@ namespace Team2_ERP
             UtilClass.AddNewColum(dgv_Order, "고객성명", "Customer_Name", true);
             UtilClass.AddNewColum(dgv_Order, "주문일시", "Order_Date", true, 140);
             UtilClass.AddNewColum(dgv_Order, "주문처리일시", "OrderCompleted_Date", true, 140);
-            UtilClass.AddNewColum(dgv_Order, "배송지주소", "Order_Address1", true, 300);
-            UtilClass.AddNewColum(dgv_Order, "배송지상세주소", "Order_Address2", true, 250);
+            UtilClass.AddNewColum(dgv_Order, "배송지주소", "Order_Address1", true, 200);
+            UtilClass.AddNewColum(dgv_Order, "배송지상세주소", "Order_Address2", true, 200);
             UtilClass.AddNewColum(dgv_Order, "주문총액", "TotalPrice", true);
+            UtilClass.AddNewColum(dgv_Order, "주문처리사원", "Employees_Name", true, 120);
             dgv_Order.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_Order.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm";
             dgv_Order.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -81,14 +82,17 @@ namespace Team2_ERP
 
         private void GetOrderDetail_List()  // 현재 위의 Dgv의 Row수 따라 그에맞는 DetailList 가져옴
         {
-            StringBuilder sb = new StringBuilder();
-            foreach (DataGridViewRow row in dgv_Order.Rows)
+            if (dgv_Order.Rows.Count > 0)
             {
-                sb.Append($"'{row.Cells[0].Value.ToString()}',");
-            }
+                StringBuilder sb = new StringBuilder();
+                foreach (DataGridViewRow row in dgv_Order.Rows)
+                {
+                    sb.Append($"'{row.Cells[0].Value.ToString()}',");
+                }
 
-            try { OrderDetail_AllList = service.GetOrderDetailList(sb.ToString().Trim(',')); }  // 디테일 AllList 갱신
-            catch (Exception err) { Log.WriteError(err.Message, err); }
+                try { OrderDetail_AllList = service.GetOrderDetailList(sb.ToString().Trim(',')); }  // 디테일 AllList 갱신
+                catch (Exception err) { Log.WriteError(err.Message, err); } 
+            }
         } 
         #endregion
 
