@@ -84,7 +84,7 @@
             // searchWorker
             // 
             this.searchWorker.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchWorker.ControlType = Team2_ERP.SearchUserControl.Mode.Worker;
+            this.searchWorker.ControlType = Team2_ERP.SearchUserControl.Mode.DefectiveWorker;
             this.searchWorker.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.searchWorker.Labelname = "작업자";
             this.searchWorker.Location = new System.Drawing.Point(336, 36);

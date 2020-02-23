@@ -99,7 +99,7 @@
             // searchSales
             // 
             this.searchSales.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.searchSales.ControlType = Team2_ERP.SearchUserControl.Mode.DepSales;
+            this.searchSales.ControlType = Team2_ERP.SearchUserControl.Mode.WorkListWorker;
             this.searchSales.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.searchSales.Labelname = "작업지시자";
             this.searchSales.Location = new System.Drawing.Point(148, 13);

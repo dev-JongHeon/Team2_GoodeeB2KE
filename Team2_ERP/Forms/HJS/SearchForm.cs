@@ -41,7 +41,6 @@ namespace Team2_ERP
 
         private void SettingData()
         {
-            
             switch (Mode.ToString())
             {
                 case "Employee":
@@ -106,6 +105,27 @@ namespace Team2_ERP
                     break;
                 case "AllProduct":
                     SettingForm("품목", 100,160);
+                    break;
+                case "WorkListWorker":
+                    SettingForm("작업지시자", 130, 160);
+                    break;
+                case "DowntimeWorker":
+                    SettingForm("작업자", 100, 160);
+                    break;
+                case "DefectiveWorker":
+                    SettingForm("작업자", 100, 160);
+                    break;
+                case "InOutWorker":
+                    SettingForm("등록사원", 110, 160);
+                    break;
+                case "semiInOutWokrer":
+                    SettingForm("등록사원", 110, 160);
+                    break;
+                case "baljureqWorker":
+                    SettingForm("요청등록사원", 150, 160);
+                    break;
+                case "baljuacceptWorker":
+                    SettingForm("수령사원", 110, 160);
                     break;
             }
 
