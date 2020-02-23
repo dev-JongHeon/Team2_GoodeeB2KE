@@ -14,6 +14,7 @@ namespace Team2_ERP
     {
         public enum EditMode { Insert, Update }
         public EditMode currentMode;
+        bool isFail=false;
 
         public DefectiveHandleAdd()
         {
@@ -52,7 +53,7 @@ namespace Team2_ERP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (txtExplain.TextLength > 0 && txtName.TextLength > 0)
+            if (txtExplain.Text.Trim().Length > 0 && txtName.Text.Trim().Length > 0)
             {
                 try
                 {
@@ -89,9 +90,9 @@ namespace Team2_ERP
             else
             {
                 MessageBox.Show(Resources.isEssential, Resources.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                
             }
         }
-
     }
 }
 

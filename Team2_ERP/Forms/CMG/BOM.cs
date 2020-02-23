@@ -347,7 +347,7 @@ namespace Team2_ERP
             }
             else
             {
-                frm.NoticeMessage = Properties.Resources.rdoWorkError;
+                frm.NoticeMessage = Properties.Resources.rdoBOMError;
             }
         }
 

@@ -523,4 +523,12 @@
     <value>재직여부를 선택하셔야 합니다.</value>
     <comment>최명근 재직여부 설정메세지</comment>
   </data>
+  <data name="PwdNewNotCorrect" xml:space="preserve">
+    <value>새 암호와 새 암호확인이 같지 않습니다.</value>
+    <comment>김종헌  새로운 암호와 암호확인이 같지 않을 때 실패 메세지</comment>
+  </data>
+  <data name="rdoBOMError" xml:space="preserve">
+    <value>제품분류를 선택하셔야 합니다.</value>
+    <comment>최명근 제품분류 메세지</comment>
+  </data>
 </root>

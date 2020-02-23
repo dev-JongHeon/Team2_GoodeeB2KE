@@ -969,6 +969,15 @@ namespace Team2_ERP.Properties {
         }
         
         /// <summary>
+        ///   새 암호와 새 암호확인이 같지 않습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string PwdNewNotCorrect {
+            get {
+                return ResourceManager.GetString("PwdNewNotCorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   새로운 암호를 입력하지 않으셨습니다.과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string PwdNoInsertNew {
@@ -1001,6 +1010,15 @@ namespace Team2_ERP.Properties {
         internal static string PwdSucess {
             get {
                 return ResourceManager.GetString("PwdSucess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   제품분류를 선택하셔야 합니다.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string rdoBOMError {
+            get {
+                return ResourceManager.GetString("rdoBOMError", resourceCulture);
             }
         }
         

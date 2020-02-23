@@ -121,7 +121,7 @@ namespace Team2_ERP
             MenuByAuth(Auth);
             ActiveControl = searchSales;
             searchSales.Focus();
-            
+            frm.NoticeMessage = notice;
         }
 
         public override void MenuStripONOFF(bool flag)

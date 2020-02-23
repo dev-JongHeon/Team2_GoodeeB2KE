@@ -40,7 +40,7 @@ namespace Team2_ERP
         #region 이벤트 관련
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (txtPrevPwd.TextLength > 0 && txtNewPwd.TextLength > 0 && txtNewPwd2.TextLength > 0) //모든항목이 입력이 되면
+            if (txtPrevPwd.TextLength > 0 && txtNewPwd.TextLength > 0 && txtNewPwd2.TextLength > 0&&errorProvider1.GetError(txtNewPwd2)==string.Empty) //모든항목이 입력이 되면
             {
                 try
                 {
@@ -83,6 +83,12 @@ namespace Team2_ERP
                     this.ActiveControl = txtNewPwd2;
                     txtNewPwd2.SelectAll();
                 }
+                else if (errorProvider1.GetError(txtNewPwd2) != string.Empty)
+                {
+                    MessageBox.Show(Resources.PwdNewNotCorrect, Resources.MsgBoxTitleWarn, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    this.ActiveControl = txtNewPwd2;
+                    txtNewPwd2.SelectAll();
+                }
             }
         }
 
@@ -105,9 +111,10 @@ namespace Team2_ERP
             }
             else
             {
-                errorProvider1.SetError(txtNewPwd2, "");
+                errorProvider1.SetError(txtNewPwd2, ""); //에러해제
             }
         }
+
         /// <summary>
         /// 키보드 입력 이벤트 메서드
         /// </summary>

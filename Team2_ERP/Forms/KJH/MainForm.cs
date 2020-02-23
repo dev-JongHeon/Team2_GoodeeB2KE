@@ -308,7 +308,7 @@ namespace Team2_ERP
 
         private void treeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            if (e.Node.Parent != null)
+            if (e.Node.Parent != null&&e.Node.IsSelected)
             {
                 OpenForm(e);
             }

@@ -52,7 +52,7 @@ namespace Team2_ERP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (txtExplain.TextLength > 0 && txtName.TextLength > 0)
+            if (txtExplain.Text.Trim().Length > 0 && txtName.Text.Trim().Length > 0)
             {
                 try
                 {

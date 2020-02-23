@@ -88,7 +88,7 @@ namespace Team2_ERP
             else
             {
                 RefreshClicked();
-                frm.NoticeMessage = notice;
+                frm.NoticeMessage = Resources.SearchDone;
             }
         }
 
