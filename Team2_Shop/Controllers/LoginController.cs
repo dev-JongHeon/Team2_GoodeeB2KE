@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using Team2_Shop;
@@ -20,12 +21,13 @@ namespace Team2_Shop.Controllers
         // 로그인이 성공하면 사이트로 실패하면 로그인 페이지로 이동
         public ActionResult Login(WebLoginModel loginInfo)
         {
-            if (loginInfo.UserID != null || loginInfo.UserPwd != null)
+            if (loginInfo.UserID != null && loginInfo.UserPwd != null)
             {
                 // 로그인정보를 넘겨줌
                 WebCustomerModel customerInfo = new Service().CheckUser(loginInfo);
                 if (customerInfo == null) // 값이없음 == 일치하는 정보가 없다.
                 {
+                    Response.Write($@"<script language='javascript'>alert(' 아이디, 비밀번호를 확인해주세요 ');</script>");
                     return View("Index");
                 }
                 else
@@ -35,7 +37,8 @@ namespace Team2_Shop.Controllers
                 }
             }
             else
-            {
+            {                
+                Response.Write($@"<script language='javascript'>alert(' 아이디, 비밀번호를 모두 기입해주세요 ');</script>");
                 return View("Index");
             }
         }

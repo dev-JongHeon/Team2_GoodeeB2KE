@@ -163,6 +163,8 @@ namespace Team2_POP
         {
             try
             {
+                if (stream == null) return;
+
                 if (!stream.CanWrite)
                     return;
 
