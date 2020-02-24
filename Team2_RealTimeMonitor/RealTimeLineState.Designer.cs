@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RealTimeLineState));
             this.splitMain = new System.Windows.Forms.SplitContainer();
             this.splitLeft = new System.Windows.Forms.SplitContainer();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -39,6 +40,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitRight = new System.Windows.Forms.SplitContainer();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.lblVersion = new System.Windows.Forms.Label();
             this.picExit = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -46,7 +48,8 @@
             this.flowLayoutSemiProductLine = new System.Windows.Forms.FlowLayoutPanel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.lblVersion = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.splitMain)).BeginInit();
             this.splitMain.Panel1.SuspendLayout();
             this.splitMain.Panel2.SuspendLayout();
@@ -87,9 +90,13 @@
             // splitMain.Panel2
             // 
             this.splitMain.Panel2.Controls.Add(this.splitRight);
+            this.splitMain.Panel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.label2_MouseDown);
+            this.splitMain.Panel2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.label2_MouseMove);
             this.splitMain.Size = new System.Drawing.Size(1904, 1041);
             this.splitMain.SplitterDistance = 700;
             this.splitMain.TabIndex = 0;
+            this.splitMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.label2_MouseDown);
+            this.splitMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.label2_MouseMove);
             // 
             // splitLeft
             // 
@@ -114,6 +121,7 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(44)))), ((int)(((byte)(57)))));
+            this.panel5.Controls.Add(this.panel10);
             this.panel5.Controls.Add(this.label1);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(0, 0);
@@ -131,6 +139,8 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "완제품 공장";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.label2_MouseDown);
+            this.label1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.label2_MouseMove);
             // 
             // splitContainer1
             // 
@@ -210,14 +220,25 @@
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(44)))), ((int)(((byte)(57)))));
-            this.panel6.Controls.Add(this.lblVersion);
             this.panel6.Controls.Add(this.picExit);
+            this.panel6.Controls.Add(this.panel8);
+            this.panel6.Controls.Add(this.lblVersion);
             this.panel6.Controls.Add(this.label2);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(0, 0);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1200, 110);
             this.panel6.TabIndex = 0;
+            // 
+            // lblVersion
+            // 
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblVersion.Location = new System.Drawing.Point(1110, 90);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(41, 14);
+            this.lblVersion.TabIndex = 3;
+            this.lblVersion.Text = "label3";
             // 
             // picExit
             // 
@@ -240,6 +261,8 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "반제품 공장";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.label2_MouseDown);
+            this.label2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.label2_MouseMove);
             // 
             // splitContainer2
             // 
@@ -296,15 +319,28 @@
             this.panel3.Size = new System.Drawing.Size(70, 927);
             this.panel3.TabIndex = 0;
             // 
-            // lblVersion
+            // panel8
             // 
-            this.lblVersion.AutoSize = true;
-            this.lblVersion.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblVersion.Location = new System.Drawing.Point(1110, 90);
-            this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(41, 14);
-            this.lblVersion.TabIndex = 3;
-            this.lblVersion.Text = "label3";
+            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(44)))), ((int)(((byte)(57)))));
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel8.Location = new System.Drawing.Point(0, 0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(1200, 25);
+            this.panel8.TabIndex = 4;
+            this.panel8.DoubleClick += new System.EventHandler(this.panel8_DoubleClick);
+            this.panel8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.label2_MouseDown);
+            this.panel8.MouseMove += new System.Windows.Forms.MouseEventHandler(this.label2_MouseMove);
+            // 
+            // panel10
+            // 
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel10.Location = new System.Drawing.Point(0, 0);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(700, 25);
+            this.panel10.TabIndex = 1;
+            this.panel10.DoubleClick += new System.EventHandler(this.panel8_DoubleClick);
+            this.panel10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.label2_MouseDown);
+            this.panel10.MouseMove += new System.Windows.Forms.MouseEventHandler(this.label2_MouseMove);
             // 
             // RealTimeLineState
             // 
@@ -314,11 +350,11 @@
             this.Controls.Add(this.splitMain);
             this.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "RealTimeLineState";
             this.Text = "실시간 모니터링 화면";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.RealTimeLineState_Load);
             this.splitMain.Panel1.ResumeLayout(false);
             this.splitMain.Panel2.ResumeLayout(false);
@@ -369,5 +405,7 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutSemiProductLine;
         private System.Windows.Forms.PictureBox picExit;
         private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Panel panel8;
     }
 }

@@ -360,7 +360,7 @@ namespace Team2_ERP
             int sum = 0;
             foreach (DataRow row in dt.Rows)
             {
-                for (int i = 2; i < dt.Columns.Count - 1; i++)
+                for (int i = 1; i < dt.Columns.Count - 1; i++)
                 {
                     if (row[dt.Columns[i].ColumnName].ToString() != string.Empty)
                     {

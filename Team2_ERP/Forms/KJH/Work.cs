@@ -171,7 +171,6 @@ namespace Team2_ERP
                 {
                     searchedlist = (from item in searchedlist
                                     where Convert.ToDateTime(item.Work_StartDate) >= Convert.ToDateTime(searchPeriodwork.Startdate.Tag.ToString()) && Convert.ToDateTime(item.Work_StartDate) <= Convert.ToDateTime(searchPeriodwork.Enddate.Tag.ToString())
-                                    orderby item.Work_StartDate
                                     select item).ToList();
                 }
                 if (searchSales.CodeTextBox.Tag != null)
@@ -184,7 +183,6 @@ namespace Team2_ERP
                 {
                     searchedlist = (from item in searchedlist
                                     where Convert.ToDateTime(item.Shipment_RequiredDate) >= Convert.ToDateTime(searchPeriodRequire.Startdate.Tag.ToString()) && Convert.ToDateTime(item.Shipment_RequiredDate) <= Convert.ToDateTime(searchPeriodRequire.Enddate.Tag.ToString())
-                                    orderby item.Shipment_RequiredDate
                                     select item
                                     ).ToList();
                 }
