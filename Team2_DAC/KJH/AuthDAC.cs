@@ -14,6 +14,9 @@ namespace Team2_DAC
     /// </summary>
     public class AuthDAC :ConnectionInfo
     {
+        /// <summary>
+        /// 0225 최종커밋
+        /// </summary>
         SqlConnection conn;
         public AuthDAC()
         {

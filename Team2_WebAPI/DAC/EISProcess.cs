@@ -10,6 +10,7 @@ namespace Team2_WebAPI.DAC
 {
     public class EISProcess
     {
+        /// 0225 최종커밋
         SqlConnection conn = null;
         public EISProcess()
         {

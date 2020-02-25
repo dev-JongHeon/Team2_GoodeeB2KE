@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <configuration>
   <settings>
-    <add key ="TEAM2"><![CDATA[Server=tcp:guditeam2db.database.windows.net,1433;Initial Catalog=GudiDB;Persist Security Info=False;User ID=team2sa;Password=rnel1234!@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;]]></add>
+    <add key ="TEAM2"><![CDATA[Server=bluemoon1510.ddns.net,1433;Initial Catalog=team2;Persist Security Info=False;User ID=sa;Password=1234;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;]]></add>
   </settings>
 </configuration>

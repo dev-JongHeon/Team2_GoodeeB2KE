@@ -492,6 +492,9 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="F:Team2_WebAPI.DAC.EISProcess.conn">
+            0225 최종커밋
+        </member>
         <member name="M:Team2_WebAPI.DAC.EISProcess.GetEIS(System.Data.DataSet)">
             <summary>
             EIS에 필요한 모든정보를 DataSet으로 가져옴

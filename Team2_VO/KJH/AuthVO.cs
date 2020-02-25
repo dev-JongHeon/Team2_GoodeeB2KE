@@ -8,6 +8,7 @@ namespace Team2_VO
 {
     public class AuthVO
     {
+        /// 0225 최종커밋
         public string Form { get; set; }
         public bool Auth { get; set; }
     }

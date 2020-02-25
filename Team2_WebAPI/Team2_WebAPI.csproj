@@ -149,6 +149,7 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\gdb2keapi - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\gdb2keapi - ReadOnly - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\gdb2keapi - Web Deploy.pubxml" />

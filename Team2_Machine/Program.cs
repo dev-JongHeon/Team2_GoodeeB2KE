@@ -11,6 +11,7 @@ namespace Team2_Machine
 {
     static class Program
     {
+        /// 0225 최종커밋
         /// <summary>
         /// 해당 애플리케이션의 주 진입점입니다.
         /// </summary>

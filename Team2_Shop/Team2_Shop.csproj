@@ -7360,6 +7360,7 @@
     <Content Include="dist\css\adminlte.css.map" />
     <Content Include="dist\css\adminlte.min.css.map" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <None Include="Properties\PublishProfiles\gdB2KEShop - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\gdB2KEShop - ReadOnly - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\gdB2KEShop - Web Deploy.pubxml" />
