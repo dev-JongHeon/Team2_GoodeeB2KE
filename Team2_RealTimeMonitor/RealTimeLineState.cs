@@ -27,9 +27,11 @@ namespace Team2_RealTimeMonitor
         System.Timers.Timer timer;
         TcpClient client;
         string host = ConfigurationManager.AppSettings["serverIP"];
+        IPAddress clientIPInfo = Dns.GetHostEntry(Dns.GetHostName()).AddressList.ToList().Find(i => i.AddressFamily == AddressFamily.InterNetwork);
         int port = 5000;
         NetworkStream netStream;
         List<LineMonitorControl> lineMonitors;
+        private Point mousePoint;
 
         #endregion
 
@@ -184,7 +186,7 @@ namespace Team2_RealTimeMonitor
             try
             {
                 // 서버와 연결을 함 Write 한번 => (While Read)
-                IPEndPoint clientIP = new IPEndPoint(IPAddress.Parse(host), new Random((int)DateTime.UtcNow.Ticks).Next(7001, 8901));
+                IPEndPoint clientIP = new IPEndPoint(clientIPInfo, new Random((int)DateTime.UtcNow.Ticks).Next(7001, 8901));
                 client = new TcpClient(clientIP);
                 client.ConnectAsync(host, port).Wait();
                 client.NoDelay = true;
@@ -391,6 +393,33 @@ namespace Team2_RealTimeMonitor
         private void picExit_MouseLeave(object sender, EventArgs e)
         {
             picExit.BorderStyle = BorderStyle.None;
+        }
+
+        private void label2_MouseDown(object sender, MouseEventArgs e)
+        {
+            mousePoint = new Point(e.X, e.Y);
+        }
+
+        private void label2_MouseMove(object sender, MouseEventArgs e)
+        {
+            if ((e.Button & MouseButtons.Left) == MouseButtons.Left)
+            {
+                Location = new Point(this.Left - (mousePoint.X - e.X),
+                    this.Top - (mousePoint.Y - e.Y));
+            }
+        }
+
+        private void panel8_DoubleClick(object sender, EventArgs e)
+        {
+
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
         }
     }
 }
